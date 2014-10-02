@@ -113,7 +113,7 @@
                     <br />
 
                     </fieldset>
-                    <asp:Button ID="btnEnvia" runat="server" Text="Enviar" OnClientClick="return validaCadastro()" OnClick="btnEnvia_Click" />
+                    <asp:Button ID="btnEnvia" runat="server" Text="Enviar" OnClientClick="return validaCadastro()"  />
                     <asp:Button ID="btnLimpa" runat="server" Text="Limpar" OnClick="btnLimpa_Click" />
                     
                     <br />
@@ -123,4 +123,3 @@
                     <br />
     </div>
 </asp:Content>
-

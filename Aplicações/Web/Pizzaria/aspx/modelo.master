@@ -23,13 +23,12 @@
 		        </div>
 
 			
-			        <div class = "menu">
-                        <a href="../index.html">Home</a> |
-				        <a href="../html/cardapio.html">Cardápio</a> |
-				        <a href="cadastro.aspx">Login / Cadastro</a> |
-				        <a href="../html/promocoes.html">Promoções</a> |
-				        <a href="../html/contato.html">Contato</a>
-			        </div>
+            <div class = "menu">
+				<a href="home.html">Home</a> |
+                <a href="cardapio.html">Cardápio</a> |
+				<a href="../aspx/cadastro.aspx">Login / Cadastro</a> |
+				<a href="promocoes.html">Promoções</a> |
+			</div>
 
 	        </div>
 
@@ -55,10 +54,11 @@
 		
 			<div id = "informacoes">
 			
-				Telefone: 3333-3333 - Aberto de Segunda à Sexta das 18h às 24h
+                Telefone: 3333-3333
 				<br />
-				Rua Logradouro, 654, São Paulo - SP
+                Rua Logradouro, 654, São Paulo - SP 
 				<br />
+                Aberto de Segunda à Sexta das 18h às 24h
 
 				<div id = "copyright">©Todos os direitos reservados.</div>
 
