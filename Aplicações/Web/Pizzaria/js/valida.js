@@ -116,11 +116,6 @@ function validaCadastro()
     //VALIDAÇÃO DA DATA DE NASCIMENTO
         alert(datanasc);
         
-        for(i = 0; datanasc.length <= 10; i++)
-        {
-            
-        }
-
         if (isNaN(datanasc) && datanasc.length < 10) {
             alert("Insira apenas números na Data de Nascimento");
             ContentPlaceHolder1_txtDtNasc.focus();
@@ -220,7 +215,7 @@ function validaCadastro()
         }
         if (isNan(cep) && cep.length == 9) {
             ContentPlaceHolder1_btnEnvia.focus();
-        }*/
+        }
 
     }
 
