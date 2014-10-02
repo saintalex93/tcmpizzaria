@@ -15,9 +15,9 @@ function validaCadastro()
 
         var datanasc = document.getElementById("ContentPlaceHolder1_txtDtNasc").value;
     //Validação de conteúdo por expressão regular
-/*        var datanasc_exp = /^([0-2]{1}[0-9]{1}|3{1}[0|1]{1})\/(01{2}|0{1}[3-9]{1}|1{1}[0-2]{1})\/([1|2]{1}[9|0]{1}[0-9]{1}[0-9]{1})$/;
+        var datanasc_exp = /^([0-2]{1}[0-9]{1}|3{1}[0|1]{1})\/(01{2}|0{1}[3-9]{1}|1{1}[0-2]{1})\/([1|2]{1}[9|0]{1}[0-9]{1}[0-9]{1})$/;
         var datanasc_exp2 = /^([0-2]{1}[0-9]{1})\/(0{1}2{1})\/([1|2]{1}[9|0]{1}[0-9]{1}[0-9]{1})$/;
-*/
+
         var senha = document.getElementById("ContentPlaceHolder1_txtSenha").value;
         var senha_confirm = document.getElementById("ContentPlaceHolder1_txtSenhaConfirm").value;
 
@@ -46,7 +46,7 @@ function validaCadastro()
 
         //VALIDAÇÃO DO NOME
 
-  /*      if (nome.search(nome_exp) || nome.length < 3) {
+        if (nome.search(nome_exp) || nome.length < 3) {
             alert("Insira um nome");
             ContentPlaceHolder1_txtNome.focus();
             return false;
@@ -112,7 +112,6 @@ function validaCadastro()
             ContentPlaceHolder1_txtCpf.focus();
             return false;
         }
-        */
 
     //VALIDAÇÃO DA DATA DE NASCIMENTO
         alert(datanasc);
@@ -122,7 +121,7 @@ function validaCadastro()
             
         }
 
-/*        if (isNaN(datanasc) && datanasc.length < 10) {
+        if (isNaN(datanasc) && datanasc.length < 10) {
             alert("Insira apenas números na Data de Nascimento");
             ContentPlaceHolder1_txtDtNasc.focus();
             return false;
@@ -140,8 +139,8 @@ function validaCadastro()
             alert("Data de Nascimento inválida");
             ContentPlaceHolder1_txtDtNasc.focus();
             return false;
-        }*/
-    /*
+        }
+   
         //VALIDAÇÃO DA SENHA
 
         if (senha.length < 5) {
