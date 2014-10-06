@@ -133,12 +133,20 @@ function validaCadastro()
                 sessao++;
             else
             {
-                if (sessao == 0)
-                    dia += datanasc[i];
-                else if (sessao == 1)
-                    mes += datanasc[i];
-                else
-                    ano += datanasc[i];
+                switch (sessao)
+                {
+                    case 0:
+                        dia += datanasc[i];
+                        break;
+
+                    case 1:
+                        mes += datanasc[i];
+                        break;
+
+                    default:
+                        ano += datanasc[i];
+                        break;
+                }
             }
         }
     }
