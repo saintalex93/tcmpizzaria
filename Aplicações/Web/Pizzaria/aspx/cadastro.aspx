@@ -20,7 +20,8 @@
                         <br />
                             <asp:Label ID="lblNome" runat="server" Text="Nome Completo"></asp:Label>
                             <asp:TextBox ID="txtNome" name="nome" runat="server" MaxLength="70" Width="267px"></asp:TextBox>
-                            <asp:Label ID="lblObrigatório" runat="server" Text="(*)"></asp:Label>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtNome"></asp:RequiredFieldValidator>
+                            <asp:Label ID="Label2" runat="server" Text="(*)"></asp:Label>
                         <br />
                             <asp:Label ID="lblTel" runat="server" Text="Telefone"></asp:Label>
                             <asp:TextBox ID="txtTel" runat="server" MaxLength="10" Width="146px"></asp:TextBox>
