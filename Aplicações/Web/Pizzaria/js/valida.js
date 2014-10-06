@@ -1,128 +1,294 @@
 ﻿
 function validaCadastro()
 {
-        var nome = document.getElementById("ContentPlaceHolder1_txtNome").value;
-        var nome_exp = /\w+/;
+    var nome = document.getElementById("ContentPlaceHolder1_txtNome").value;
+    var nome_exp = /\w+/;
 
-        var tele = document.getElementById("ContentPlaceHolder1_txtTel").value;
+    var tele = document.getElementById("ContentPlaceHolder1_txtTel").value;
 
-        var cel = document.getElementById("ContentPlaceHolder1_txtCel").value;
+    var cel = document.getElementById("ContentPlaceHolder1_txtCel").value;
 
-        var email = document.getElementById("ContentPlaceHolder1_txtEmail").value;
-        var email_exp = /\w+@\w+\.\w{2,3}/;
+    var email = document.getElementById("ContentPlaceHolder1_txtEmail").value;
+    var email_exp = /\w+@\w+\.\w{2,3}/;
 
-        var cpf = document.getElementById("ContentPlaceHolder1_txtCpf").value;
+    var cpf = document.getElementById("ContentPlaceHolder1_txtCpf").value;
 
-        var datanasc = document.getElementById("ContentPlaceHolder1_txtDtNasc").value;
+    var datanasc = document.getElementById("ContentPlaceHolder1_txtDtNasc").value;
     //Validação de conteúdo por expressão regular
-        var datanasc_exp = /^([0-2]{1}[0-9]{1}|3{1}[0|1]{1})\/(01{2}|0{1}[3-9]{1}|1{1}[0-2]{1})\/([1|2]{1}[9|0]{1}[0-9]{1}[0-9]{1})$/;
-        var datanasc_exp2 = /^([0-2]{1}[0-9]{1})\/(0{1}2{1})\/([1|2]{1}[9|0]{1}[0-9]{1}[0-9]{1})$/;
+    /*        var datanasc_exp = /^([0-2]{2}|3{1}[0|1]{1})\/(01{2}|0{1}[3-9]{1}|1{1}[0-2]{1})\/([1|2]{1}[9|0]{1}[0-9]{1}[0-9]{1})$/;
+            var datanasc_exp2 = /^([0-2]{1}[0-9]{1})\/(0{1}2{1})\/([1|2]{1}[9|0]{1}[0-9]{1}[0-9]{1})$/;*/
+    var dia = "";
+    var mes = "";
+    var ano = "";
+    var ultimoDia = "Valor original";
 
-        var senha = document.getElementById("ContentPlaceHolder1_txtSenha").value;
-        var senha_confirm = document.getElementById("ContentPlaceHolder1_txtSenhaConfirm").value;
+    var senha = document.getElementById("ContentPlaceHolder1_txtSenha").value;
+    var senha_confirm = document.getElementById("ContentPlaceHolder1_txtSenhaConfirm").value;
 
-        var estado = document.getElementById("ContentPlaceHolder1_DDLEstado").value;
+    var estado = document.getElementById("ContentPlaceHolder1_DDLEstado").value;
 
-        var cidade = document.getElementById("ContentPlaceHolder1_txtCidade").value;
+    var cidade = document.getElementById("ContentPlaceHolder1_txtCidade").value;
 
-        var rua = document.getElementById("ContentPlaceHolder1_txtRua").value;
-        var rua_exp = /[a-z]/;
+    var rua = document.getElementById("ContentPlaceHolder1_txtRua").value;
+    var rua_exp = /[a-z]/;
 
-        var num_casa = document.getElementById("ContentPlaceHolder1_txtNumCasa").value;
+    var num_casa = document.getElementById("ContentPlaceHolder1_txtNumCasa").value;
 
-        var num_apart = document.getElementById("ContentPlaceHolder1_txtNumApart").value;
-        var num_apart_exp = /\d*/;
-        var num_apart_exp2 = /\d+/;
+    var num_apart = document.getElementById("ContentPlaceHolder1_txtNumApart").value;
+    var num_apart_exp = /\d*/;
+    var num_apart_exp2 = /\d+/;
 
-        var cep = document.getElementById("ContentPlaceHolder1_txtCep").value;
-        var cep_exp = /\d{5}\d{3}/;
+    var cep = document.getElementById("ContentPlaceHolder1_txtCep").value;
+    var cep_exp = /\d{5}\d{3}/;
 
-        var bairro = document.getElementById("ContentPlaceHolder1_txtBairro").value;
+    var bairro = document.getElementById("ContentPlaceHolder1_txtBairro").value;
 
-        //FIM DE DECLARAÇÃO DAS VARIÁVEIS
+    //FIM DE DECLARAÇÃO DAS VARIÁVEIS
 
 
-        //VALIDAÇÕES DOS CAMPOS
-
-        //VALIDAÇÃO DO NOME
-
-        if (nome.search(nome_exp) || nome.length < 3) {
-            alert("Insira um nome");
-            ContentPlaceHolder1_txtNome.focus();
-            return false;
-        }
-
-        //VALIDAÇÃO DO TELEFONE
-
-        if (tele.length < 10)
-        {
-            alert("Número de telefone inválido.\nInsira apenas números.");
-            ContentPlaceHolder1_txtTel.focus();
-            return false;
-        }
-        if (isNaN(tele) && tele.length < 13) {
-            alert("Número de telefone inválido.\nInsira apenas números.");
-            ContentPlaceHolder1_txtTel.focus();
-            return false;
-        }
-        if (isNaN(tele) && tele.length == 13) {
-            ContentPlaceHolder1_txtEmail.focus();
-        }
-
-        //VALIDAÇÃO DO CELULAR
-
-        if (cel.length != 0)  // Verifico se o usuário digitou alguma coisa com !=0 (Diferente de 0).
-        {
-            
-            if (isNaN(cel) && cel.length < 13) // Se digitou, eu verifico se digitou apenas números com isNaN E se todo o campo é menor que 13(se for menor que 13, ele apagou depois da máscara ser aplicada)
-            {   
-                alert("Celular inválido.\nInsira apenas números.");
-                ContentPlaceHolder1_txtCel.focus();
+            //VALIDAÇÕES DOS CAMPOS
+    
+            //VALIDAÇÃO DO NOME
+    
+            if (nome.search(nome_exp) || nome.length < 3) {
+                alert("Insira um nome");
+                ContentPlaceHolder1_txtNome.focus();
                 return false;
             }
-            if (cel.length < 10) // Se digitou apenas números, eu verifico se digitou MENOS que 10 números.
+    
+            //VALIDAÇÃO DO TELEFONE
+    
+            if (tele.length < 10)
             {
-                alert("Celular inválido.");
-                ContentPlaceHolder1_txtCel.focus();
+                alert("Número de telefone inválido.\nInsira apenas números.");
+                ContentPlaceHolder1_txtTel.focus();
                 return false;
             }
-            if (cel.length == 13 || cel.length == 15) {
+            if (isNaN(tele) && tele.length < 13) {
+                alert("Número de telefone inválido.\nInsira apenas números.");
+                ContentPlaceHolder1_txtTel.focus();
+                return false;
+            }
+            if (isNaN(tele) && tele.length == 13) {
                 ContentPlaceHolder1_txtEmail.focus();
             }
+    
+            //VALIDAÇÃO DO CELULAR
+    
+            if (cel.length != 0)  // Verifico se o usuário digitou alguma coisa com !=0 (Diferente de 0).
+            {
+                
+                if (isNaN(cel) && cel.length < 13) // Se digitou, eu verifico se digitou apenas números com isNaN E se todo o campo é menor que 13(se for menor que 13, ele apagou depois da máscara ser aplicada)
+                {   
+                    alert("Celular inválido.\nInsira apenas números.");
+                    ContentPlaceHolder1_txtCel.focus();
+                    return false;
+                }
+                if (cel.length < 10) // Se digitou apenas números, eu verifico se digitou MENOS que 10 números.
+                {
+                    alert("Celular inválido.");
+                    ContentPlaceHolder1_txtCel.focus();
+                    return false;
+                }
+                if (cel.length == 13 || cel.length == 15) {
+                    ContentPlaceHolder1_txtEmail.focus();
+                }
+    
+            }
+    
+            //VALIDAÇÃO DO EMAIL
+    
+            if (email.search(email_exp)) {
+                alert("Email Inválido");
+                ContentPlaceHolder1_txtEmail.focus();
+                return false;
+            }
+    
+            //VALIDAÇÃO DO CPF
+    
+            if (cpf.length < 11) {
+                alert("Número de CPF inválido.");
+                ContentPlaceHolder1_txtCpf.focus();
+                return false;
+            }
+            if (isNaN(cpf) && cpf.length < 14) {
+                alert("Número de CPF inválido.\nInsira apenas números.");
+                ContentPlaceHolder1_txtCpf.focus();
+                return false;
+            }
+    
+        //VALIDAÇÃO DA DATA DE NASCIMENTO
+    if (isNaN(datanasc) && datanasc.length < 10) {
+        alert("Insira apenas números na Data de Nascimento");
+        ContentPlaceHolder1_txtDtNasc.focus();
+        return false;
+    }
+    else
+    {
+        var sessao = 0;
 
+        for(i = 0; i < datanasc.length; i++)
+        {
+            if (datanasc[i] == "/")
+                sessao++;
+            else
+            {
+                if (sessao == 0)
+                    dia += datanasc[i];
+                else if (sessao == 1)
+                    mes += datanasc[i];
+                else
+                    ano += datanasc[i];
+            }
         }
+    }
 
-        //VALIDAÇÃO DO EMAIL
+    dia = parseInt(dia, 10);
+    mes = parseInt(mes, 10);
+    ano = parseInt(ano, 10);
 
-        if (email.search(email_exp)) {
-            alert("Email Inválido");
-            ContentPlaceHolder1_txtEmail.focus();
-            return false;
+    if (ano % 4 == 0 && ano % 100 != 0)
+    {
+
+        switch (mes)
+        {
+            case 1:
+                ultimoDia = 31;
+                break;
+
+            case 2:
+                ultimoDia = 29;
+                break;
+
+            case 3:
+                ultimoDia = 31;
+                break;
+
+            case 4:
+                ultimoDia = 30;
+                break;
+
+            case 5:
+                ultimoDia = 31;
+                break;
+
+            case 6:
+                ultimoDia = 30;
+                break;
+
+            case 7:
+                ultimoDia = 31;
+                break;
+
+            case 8:
+                ultimoDia = 31;
+                break;
+
+            case 9:
+                ultimoDia = 30;
+                break;
+
+            case 10:
+                ultimoDia = 31;
+                break;
+
+            case 11:
+                ultimoDia = 30;
+                break;
+
+            case 12:
+                ultimoDia = 31;
+                break;
+
+            default:
+                alert("Deu uma merda ai no switch do ano bissexto");
+                break;
         }
+    }
+    else
+    {
 
-        //VALIDAÇÃO DO CPF
+        switch (mes) 
+        {
+            case 1:
+                ultimoDia = 31;
+                break;
 
-        if (cpf.length < 11) {
-            alert("Número de CPF inválido.");
-            ContentPlaceHolder1_txtCpf.focus();
-            return false;
+            case 2:
+                ultimoDia = 28;
+                break;
+
+            case 3:
+                ultimoDia = 31;
+                break;
+
+            case 4:
+                ultimoDia = 30;
+                break;
+
+            case 5:
+                ultimoDia = 31;
+                break;
+
+            case 6:
+                ultimoDia = 30;
+                break;
+
+            case 7:
+                ultimoDia = 31;
+                break;
+
+            case 8:
+                ultimoDia = 31;
+                break;
+
+            case 9:
+                ultimoDia = 30;
+                break;
+
+            case 10:
+                ultimoDia = 31;
+                break;
+
+            case 11:
+                ultimoDia = 30;
+                break;
+
+            case 12:
+                ultimoDia = 31;
+                break;
+
+            default:
+                alert("Deu uma merda ai no switch do ano NÃO bissexto");
+                break;
         }
-        if (isNaN(cpf) && cpf.length < 14) {
-            alert("Número de CPF inválido.\nInsira apenas números.");
-            ContentPlaceHolder1_txtCpf.focus();
-            return false;
-        }
+    }
 
-    //VALIDAÇÃO DA DATA DE NASCIMENTO
-        alert(datanasc);
-        
-        if (isNaN(datanasc) && datanasc.length < 10) {
-            alert("Insira apenas números na Data de Nascimento");
-            ContentPlaceHolder1_txtDtNasc.focus();
-            return false;
-        }
+    if (
+        ano > 2014
+        ||
+        ano < 0
+        ||
+        mes > 12
+        ||
+        mes < 0
+        ||
+        dia > ultimoDia
+        ||
+        dia < 0
+        )
+    {
+        alert("A data que você inseriu não é válida. Por favor, reveja os campos preenchidos.");
+        ContentPlaceHolder1_txtDtNasc.focus();
+        return false;
+    }
 
-        if (datanasc_exp2.test(datanasc) == false && datanasc_exp.test(datanasc) == false) {
+    /*
+    
+    */
+
+
+/*        if (datanasc_exp2.test(datanasc) == false && datanasc_exp.test(datanasc) == false) {
             alert("Data de Nascimento inválida");
             ContentPlaceHolder1_txtDtNasc.focus();
             return false;
@@ -134,9 +300,9 @@ function validaCadastro()
             alert("Data de Nascimento inválida");
             ContentPlaceHolder1_txtDtNasc.focus();
             return false;
-        }
+        }*/
    
-        //VALIDAÇÃO DA SENHA
+       /* //VALIDAÇÃO DA SENHA
 
         if (senha.length < 5) {
             alert("Suas senhas não possuem mais que 6 dígitos");
@@ -215,7 +381,7 @@ function validaCadastro()
         }
         if (isNan(cep) && cep.length == 9) {
             ContentPlaceHolder1_btnEnvia.focus();
-        }
+        }*/
 
     }
 
@@ -303,6 +469,7 @@ function retiraMascaraDtNasc()
             datanasc = datanasc.replace(datanasc_exp, '');
             document.getElementById("ContentPlaceHolder1_txtDtNasc").value = datanasc;
         }
+
     }
 
 
