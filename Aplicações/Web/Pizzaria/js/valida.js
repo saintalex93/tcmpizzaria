@@ -14,9 +14,6 @@ function validaCadastro()
     var cpf = document.getElementById("ContentPlaceHolder1_txtCpf").value;
 
     var datanasc = document.getElementById("ContentPlaceHolder1_txtDtNasc").value;
-    //Validação de conteúdo por expressão regular
-    /*        var datanasc_exp = /^([0-2]{2}|3{1}[0|1]{1})\/(01{2}|0{1}[3-9]{1}|1{1}[0-2]{1})\/([1|2]{1}[9|0]{1}[0-9]{1}[0-9]{1})$/;
-            var datanasc_exp2 = /^([0-2]{1}[0-9]{1})\/(0{1}2{1})\/([1|2]{1}[9|0]{1}[0-9]{1}[0-9]{1})$/;*/
     var dia = "";
     var mes = "";
     var ano = "";
@@ -125,46 +122,60 @@ function validaCadastro()
     }
     else
     {
-        var sessao = 0;
+        var sessao = 0; //Variável criada para indicar qual parte da data de nascimento se está processando
+
 
         for(i = 0; i < datanasc.length; i++)
         {
-            if (datanasc[i] == "/")
+            if (datanasc[i] == "/") //Se o caracter encontrado for uma barra, quer dizer que já acabou a sessão anterior e agora vem a próxima
                 sessao++;
             else
             {
-                switch (sessao)
+                switch (sessao) //O conteúo dessa variável indica qual sessão da data se está, então ela é passada como parâmetro pro switch
                 {
-                    case 0:
+                    case 0: //Se estiver com zero nela, se está processando a primeira parte da data, ou seja, o dia
                         dia += datanasc[i];
                         break;
 
-                    case 1:
+                    case 1: //Se estiver com 1 nela, é a segunda parte: Mês
                         mes += datanasc[i];
                         break;
 
-                    default:
+                    case 2: //Se estiver com 2 nela, é a terceira: Ano
                         ano += datanasc[i];
+                        break;
+
+                    default: //Se não tiver nenhuma das anteriores, um erro aconteceu.
+                        alert("Um erro aconteceu. Por favor, atualize a página e tente de novo.");
                         break;
                 }
             }
         }
     }
 
+    //Mudar o conteúdo de string pra int
     dia = parseInt(dia, 10);
     mes = parseInt(mes, 10);
     ano = parseInt(ano, 10);
 
+    //Anos bissextos são encontrados matematicamente se ele for divisível por 4, mas não por 100. 
     if (ano % 4 == 0 && ano % 100 != 0)
     {
-
-        switch (mes)
+        /*
+        Uma outra parte da validação diz respeito a se o dia que o usuário colocou existe de fato no calendário. 
+        Para isso, o computador segue a sequência:
+        - Ver o mês que o usuário colocou
+        - Ver quantos dias esse mês tem
+        - Colocar esse valor em uma segunda variável
+        - Usar o conteúdo da segunda variável para ver se o dia do usuário é menor que o último dia do mês, logo, se ele existe.
+        */
+        switch (mes) 
         {
-            case 1:
+            case 1: //"É mês 1? Se for, esse tem 31 dias"
                 ultimoDia = 31;
                 break;
 
-            case 2:
+            case 2: //"É mês 2? Se for, esse tem 29 dias" (lembrando que estamos dentro da parte do if que lida com ano bissexto). Etc...
                 ultimoDia = 29;
                 break;
 
@@ -208,12 +219,12 @@ function validaCadastro()
                 ultimoDia = 31;
                 break;
 
-            default:
-                alert("Deu uma merda ai no switch do ano bissexto");
+            default: //Se não deu nenhuma das opções anteriores, deu merda e tem que recomeçar.
+                alert("Um erro aconteceu. Por favor atualize a página e tente de novo.");
                 break;
         }
     }
-    else
+    else //Agora é a mesma coisa com a única diferença de que Fevereiro vai ter 28 dias, porque aqui não é bissexto.
     {
 
         switch (mes) 
@@ -267,50 +278,33 @@ function validaCadastro()
                 break;
 
             default:
-                alert("Deu uma merda ai no switch do ano NÃO bissexto");
+                alert("Um erro aconteceu. Por favor atualize a página e tente de novo.");
                 break;
         }
     }
-
-    if (
-        ano > 2014
+    
+    //Tudo que aconteceu até agora era a criação dos recursos necessários para a verificação e avaliação do input do usuário.
+    
+    if ( //É aqui que toda validação acontece.
+        ano > 2014 //"O ano é maior que o ano atual?" - Tem que validar, porque, se não a pessoa ainda não nasceu, e isso é meio bad.
+        || //Operador "ou", porque, se qualquer uma dessas informações estiver errada, a data não é válida
+        ano < 0 //Ano não pode ser negativo, porque não podemos esperar Cristo nascer pra poder cadastrar a data de nascimento dos clientes.
         ||
-        ano < 0
+        mes > 12 //Tem que ser um dos doze meses do ano, de preferência.
         ||
-        mes > 12
+        mes < 0 //Mês negativo não, né? Deixar as Leis da Física em paz de vez em quando, pô. Mó trabalho pesado o delas... elas merecem um descanso.
         ||
-        mes < 0
+        dia > ultimoDia //Ver se o dia que o usuário colocou é menor do que o último dia do mês, porque, né...
         ||
-        dia > ultimoDia
-        ||
-        dia < 0
+        dia < 0 //Dia negativo também não. Mó deselegante.
         )
     {
-        alert("A data que você inseriu não é válida. Por favor, reveja os campos preenchidos.");
+        alert("A data que você inseriu não é válida. Por favor, reveja os campos preenchidos."); //E, se deu alguma merda em algum lugar, isso aqui aciona.
         ContentPlaceHolder1_txtDtNasc.focus();
         return false;
-    }
-
-    /*
-    
-    */
-
-
-/*        if (datanasc_exp2.test(datanasc) == false && datanasc_exp.test(datanasc) == false) {
-            alert("Data de Nascimento inválida");
-            ContentPlaceHolder1_txtDtNasc.focus();
-            return false;
-        }
-        else {
-            ContentPlaceHolder1_txtSenha.focus();
-        }
-        if (datanasc.length != 10) {
-            alert("Data de Nascimento inválida");
-            ContentPlaceHolder1_txtDtNasc.focus();
-            return false;
-        }*/
+    }//Essa é toda a validação da data de nascimento. Boa noite e obrigado. - Tuca
    
-       /* //VALIDAÇÃO DA SENHA
+        //VALIDAÇÃO DA SENHA
 
         if (senha.length < 5) {
             alert("Suas senhas não possuem mais que 6 dígitos");
@@ -389,7 +383,7 @@ function validaCadastro()
         }
         if (isNan(cep) && cep.length == 9) {
             ContentPlaceHolder1_btnEnvia.focus();
-        }*/
+        }
 
     }
 
