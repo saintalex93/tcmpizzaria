@@ -18,6 +18,11 @@ font-family: Arial;
 font-weight: bold;
 }
 
+.botoes 
+{
+    text-align: center;
+}
+
 #cabecalho
 {
 height: auto;
@@ -42,6 +47,12 @@ line-height: 400px;
 background-image: url('img/ph-carrossel.jpg');
 }
 
+.campos 
+{
+    height: 290px;
+    width: auto;
+}
+
 #conteudo
 {
 height: auto;
@@ -53,11 +64,17 @@ margin-top: 50px;
 div#conteudo  input#ContentPlaceHolder1_btnEnvia
 {
     height: 25px;
-    margin-left: 45%;
+    /*margin: 10px auto;
+    margin-left: 45%;*/
 }
 div#conteudo input#ContentPlaceHolder1_btnLimpa
 {
     height: 25px;
+}
+
+div#conteudo input#ContentPlaceHolder1_Label1 
+{
+    margin: 0;
 }
 
 .faixa
@@ -70,13 +87,20 @@ text-align: center;
 margin-bottom: 15px;
 }
 
+#form_cadastro 
+{
+    /*background-color: red;*/
+    margin: auto;
+}
+
 .grupoformulario
 {
-margin: 15px auto;
-padding: 10px 0px 10px 10px; 
-height: auto;
-width: 450px;
-border: 1px solid white;
+    margin: 0 19px;
+    padding: 10px 0px 10px 10px; 
+    height: 225px;
+    width: 450px;
+    border: 1px solid white;
+    float:left;
 }
 
 h1, h2
