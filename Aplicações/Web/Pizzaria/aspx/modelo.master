@@ -25,7 +25,7 @@
 			
             <div class = "menu">
 				<a href="../html/index.html">Home</a> |
-                <a href="../html/cardapio.html">Cardápio</a> |
+                <a href="cardapio.aspx">Cardápio</a> |
 				<a href="cadastro.aspx">Login / Cadastro</a> |
 				<a href="../html/promocoes.html">Promoções</a>
 			</div>
