@@ -82,7 +82,7 @@ Valor_Compra DECIMAL(6,2),
 Validade DATE,
 Qtd_Recomendavel INT,
 Qtd_Estoque INT,
-Sobe_Site bit,
+Sobe_Site INT,
 Cod_Categoria INT FOREIGN KEY REFERENCES Categoria(Cod_Categoria)
 )
 go
