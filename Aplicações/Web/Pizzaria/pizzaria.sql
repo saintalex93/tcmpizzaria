@@ -180,9 +180,8 @@ Cod_Pedido INT FOREIGN KEY REFERENCES Pedido(Cod_Pedido),
 )
 go
 
-delete from Produto
 insert into Produto(Nome_Produto,Valor_Venda,Sobe_Site)
 values
 ('Pizza Baiana',20.00,0),('Pizza Mussarela',18.40,1),('Pizza Bacon',22.20,1),
-('Pizza Americana',24.00,0),('Pizza Bauru',23.50,0),('Pizza Calabresa',18.00,0),
+('Pizza Americana',24.00,0),('Pizza Bauru',23.50,1),('Pizza Calabresa',18.00,0),
 ('Pizza Catupiry',23.00,0),('Pizza Camarão',28.70,1),('Pizza Alemã',25.20,1)

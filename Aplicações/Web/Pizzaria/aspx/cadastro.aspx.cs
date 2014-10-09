@@ -32,8 +32,6 @@ public partial class aspx_cadastro : System.Web.UI.Page
         txtTel.Attributes.Add("onfocus", "retiraMascaraTel()");
         txtCel.Attributes.Add("onfocus", "retiraMascaraCel()");
         txtCep.Attributes.Add("onfocus", "retiraMascaraCep()");
-
-        btnEnvia.OnClientClick = "return validaCadastro()";
     }
     protected void btnEnvia_Click(object sender, EventArgs e)
     {
@@ -123,5 +121,25 @@ public partial class aspx_cadastro : System.Web.UI.Page
         txtBairro.Text = "";
         txtCep.Text = "";
         btnLimpa.Focus();
+    }
+    protected void Preenche_Click(object sender, EventArgs e)
+    {
+        txtNome.Text = "Nome Teste";
+        txtTel.Text = "1199999999";
+        txtCel.Text = "11933333333";
+        txtEmail.Text = "email@teste.com";
+        txtCpf.Text = "66666666666";
+        txtDtNasc.Text = "12051995";
+        txtSenha.Text = "123321";
+        txtSenhaConfirm.Text = "123321";
+        DDLEstado.SelectedIndex = 1;
+        txtCidade.Text = "Cidade Teste";
+        txtRua.Text = "Rua Teste";
+        txtComplemento.Text = "Complemento Teste";
+        txtNumCasa.Text = "123";
+        txtNumApart.Text = "321";
+        txtBairro.Text = "Bairro Teste";
+        txtCep.Text = "55555555";
+        btnEnvia.Focus();
     }
 }

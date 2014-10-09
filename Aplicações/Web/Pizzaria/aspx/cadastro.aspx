@@ -116,9 +116,9 @@
                     <br />
 
                     </fieldset>
-                    <asp:Button ID="btnEnvia" runat="server" Text="Enviar" OnClientClick="return validaCadastro()"  />
+                    <asp:Button ID="btnEnvia" runat="server" Text="Enviar" OnClick="btnEnvia_Click"  />
                     <asp:Button ID="btnLimpa" runat="server" Text="Limpar" OnClick="btnLimpa_Click" />
-                    
+                <asp:Button ID="Preenche" runat="server" Text="Preencher Campos" OnClick="Preenche_Click" Width="125px" />
                     <br />
                     <br />
                     <asp:Label ID="lblresposta" runat="server"></asp:Label>
