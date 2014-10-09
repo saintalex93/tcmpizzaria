@@ -1,0 +1,153 @@
+﻿namespace Pizzaria
+{
+    partial class Promocao
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.lbl_promocaoativa = new System.Windows.Forms.Label();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.lbl_resumopromo = new System.Windows.Forms.Label();
+            this.txt_resumopromocao = new System.Windows.Forms.TextBox();
+            this.lbl_promocaoinativa = new System.Windows.Forms.Label();
+            this.SuspendLayout();
+            // 
+            // lbl_promocaoativa
+            // 
+            this.lbl_promocaoativa.AutoSize = true;
+            this.lbl_promocaoativa.Location = new System.Drawing.Point(100, 93);
+            this.lbl_promocaoativa.Name = "lbl_promocaoativa";
+            this.lbl_promocaoativa.Size = new System.Drawing.Size(92, 13);
+            this.lbl_promocaoativa.TabIndex = 0;
+            this.lbl_promocaoativa.Text = "Promoções Ativas";
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(54, 127);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(186, 95);
+            this.listBox1.TabIndex = 1;
+            // 
+            // listBox2
+            // 
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.Location = new System.Drawing.Point(362, 127);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.Size = new System.Drawing.Size(186, 95);
+            this.listBox2.TabIndex = 2;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(265, 127);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Habilitar";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(265, 165);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 4;
+            this.button2.Text = "Desabilitar";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(265, 199);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 5;
+            this.button3.Text = "Remover";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // lbl_resumopromo
+            // 
+            this.lbl_resumopromo.AutoSize = true;
+            this.lbl_resumopromo.Location = new System.Drawing.Point(246, 284);
+            this.lbl_resumopromo.Name = "lbl_resumopromo";
+            this.lbl_resumopromo.Size = new System.Drawing.Size(112, 13);
+            this.lbl_resumopromo.TabIndex = 6;
+            this.lbl_resumopromo.Text = "Resumo da Promoção";
+            // 
+            // txt_resumopromocao
+            // 
+            this.txt_resumopromocao.Location = new System.Drawing.Point(36, 321);
+            this.txt_resumopromocao.Multiline = true;
+            this.txt_resumopromocao.Name = "txt_resumopromocao";
+            this.txt_resumopromocao.Size = new System.Drawing.Size(527, 92);
+            this.txt_resumopromocao.TabIndex = 7;
+            // 
+            // lbl_promocaoinativa
+            // 
+            this.lbl_promocaoinativa.AutoSize = true;
+            this.lbl_promocaoinativa.Location = new System.Drawing.Point(410, 93);
+            this.lbl_promocaoinativa.Name = "lbl_promocaoinativa";
+            this.lbl_promocaoinativa.Size = new System.Drawing.Size(100, 13);
+            this.lbl_promocaoinativa.TabIndex = 8;
+            this.lbl_promocaoinativa.Text = "Promoções Inativas";
+            // 
+            // Promocao
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(596, 674);
+            this.Controls.Add(this.lbl_promocaoinativa);
+            this.Controls.Add(this.txt_resumopromocao);
+            this.Controls.Add(this.lbl_resumopromo);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.listBox2);
+            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.lbl_promocaoativa);
+            this.Name = "Promocao";
+            this.Text = "Gerenciamento de Promocões";
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Label lbl_promocaoativa;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Label lbl_resumopromo;
+        private System.Windows.Forms.TextBox txt_resumopromocao;
+        private System.Windows.Forms.Label lbl_promocaoinativa;
+    }
+}

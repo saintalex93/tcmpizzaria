@@ -1,0 +1,11 @@
+https://tcmpizzaria.googlecode.com/svn/trunk/
+
+ dV6fV8JP7uG5
+
+
+update para recerber as atualizações feitas por outro
+checkout para receber projeto (One X)
+commit para enviar modificações de arquivos
+
+
+QLQ Deletar.
