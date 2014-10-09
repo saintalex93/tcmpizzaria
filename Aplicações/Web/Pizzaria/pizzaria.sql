@@ -10,7 +10,7 @@ go
 
 use Pizzaria
 go
-
+select * from Cliente
 create table Cliente(
 Cod_Cliente INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 Nome_Cliente VARCHAR(40),
@@ -179,6 +179,8 @@ Cod_Produto INT FOREIGN KEY REFERENCES Produto(Cod_Produto),
 Cod_Pedido INT FOREIGN KEY REFERENCES Pedido(Cod_Pedido),
 )
 go
+
+delete from Produto
 
 insert into Produto(Nome_Produto,Valor_Venda,Sobe_Site)
 values
