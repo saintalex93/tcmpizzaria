@@ -194,5 +194,21 @@ namespace Pizzaria
             Promo.MdiParent = this;
             Promo.Show();
         }
+
+        private void empresaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fecharJanelasFilhas();
+
+            Fornecedores For = new Fornecedores();
+            For.MdiParent = this;
+            For.Show();
+        }
+
+        public void fecharJanelasFilhas() 
+        {
+            while (Home.ActiveForm.MdiChildren.Length > 0)
+                Home.ActiveForm.ActiveMdiChild.Close();
+        }
+
     }
 }
