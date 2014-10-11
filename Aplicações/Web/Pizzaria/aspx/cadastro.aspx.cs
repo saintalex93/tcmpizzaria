@@ -142,4 +142,25 @@ public partial class aspx_cadastro : System.Web.UI.Page
         txtCep.Text = "55555-555";
         btnEnvia.Focus();
     }
+    protected void btnLogin_Click(object sender, EventArgs e)
+    {
+        String login = txtLogin.Text;
+        String senha = txtLogin_Senha.Text;
+        //var logado = false;
+        try
+        {
+            conexao con = new conexao();
+            con.conectar();
+            con.command.CommandText = "select * from Cliente where Email_Cliente = @email AND Senha_Cliente = @senha";
+            con.command.Parameters.Add("@email", SqlDbType.VarChar).Value = login;
+            con.command.Parameters.Add("@senha", SqlDbType.VarChar).Value = senha;
+            con.command.ExecuteNonQuery();
+            con.fechaConexao();
+            lblLoginInc.Text = "Logado com sucesso";
+        }
+        catch(Exception ex)
+        {
+            lblLoginInc.Text = "Login e Senha incorretos";
+        }
+    }
 }

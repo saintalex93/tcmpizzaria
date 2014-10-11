@@ -5,11 +5,11 @@
     <link rel="stylesheet" type="text/css" href="../css/style2.css" />
 
     <script type="text/javascript" src="../js/valida.js"></script>
+    <script type="text/javascript" src="../js/login.js"></script>
 
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <div id = "conteudo">
 
             <form id="form_cadastro" runat="server">
 
@@ -116,13 +116,28 @@
                     <br />
 
                     </fieldset>
-                    <asp:Button ID="btnEnvia" runat="server" Text="Enviar" OnClick="btnEnvia_Click"  />
+                    <asp:Button ID="btnEnvia" runat="server" Text="Enviar" OnClick="btnEnvia_Click"  OnClientClick="return validaCadastro();" />
                     <asp:Button ID="btnLimpa" runat="server" Text="Limpar" OnClick="btnLimpa_Click" />
                 <asp:Button ID="Preenche" runat="server" Text="Preencher Campos" OnClick="Preenche_Click" Width="125px" />
                     <br />
                     <br />
                     <asp:Label ID="lblresposta" runat="server"></asp:Label>
-                </form>
-                    <br />
-    </div>
+
+
+
+                 <div id="Login">
+
+            <asp:Label ID="Label3" runat="server" Text="Email"></asp:Label><br />
+            <asp:TextBox ID="txtLogin" runat="server" Width="180px"></asp:TextBox><br />
+            <asp:Label ID="senha" runat="server" Text="Senha"></asp:Label><br />
+            <asp:TextBox ID="txtLogin_Senha" runat="server" TextMode="Password"></asp:TextBox><br />
+            <asp:Button ID="btnLogin" runat="server" Text="Login" OnClientClick="return recuperarlogin()" OnClick="btnLogin_Click" />
+            <asp:Button ID="btnEsqueciSenha" runat="server" Text="Esqueci minha senha" /><br />
+            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/aspx/cadastro.aspx">Ainda não é cadastrado?</asp:HyperLink><br />
+            <asp:Label ID="lblLoginInc" runat="server"></asp:Label>
+                </div>
+                    </form>
+                        <br />
+
+   
 </asp:Content>

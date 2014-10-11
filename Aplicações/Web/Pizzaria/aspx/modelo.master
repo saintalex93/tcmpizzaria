@@ -17,7 +17,7 @@
 
 		        <div id = "logo">
 			
-			        <a href="../html/index.html"><img src="../img/banner-principal.png" /></a>
+			        <img src="../img/banner-principal.png" />
 			
 		        </div>
 
@@ -33,17 +33,12 @@
 
             <div id="conteudo">
 
-
-            
-
-            	
-            
-
         <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
-        
+
         </asp:ContentPlaceHolder>
 
-                </div>
+            </div>
+
         <div id = "rodape">
 
 			

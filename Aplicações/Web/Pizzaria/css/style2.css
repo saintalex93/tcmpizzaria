@@ -116,6 +116,30 @@ height: auto;
 width: 70%;
 }
 
+div#Login 
+{
+position:absolute;
+top: 220px;
+left: 820px;
+}
+div#Login a 
+{
+color: white;
+text-decoration: none;
+}
+div#Login a:hover 
+{
+color: red;
+}
+div#Login span 
+{
+color: #fff;
+}
+div#Login span#ContentPlaceHolder1_lblLoginInc 
+{
+color: red;
+}
+
 #logo
 {
 height: 400px;
