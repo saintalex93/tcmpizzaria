@@ -7,7 +7,6 @@
     <title>Pizzaria - TCM - Cadastro de usuário</title>
     <asp:ContentPlaceHolder id="head" runat="server">
         <link rel="stylesheet" type="text/css" href="../css/style2.css" />
-        <script type="text/javascript" src="../js/valida.js"></script>
     </asp:ContentPlaceHolder>
 </head>
 <body>
@@ -26,7 +25,7 @@
             <div class = "menu">
 				<a href="../html/index.html">Home</a> |
                 <a href="cardapio.aspx">Cardápio</a> |
-				<a href="cadastro.aspx">Login / Cadastro</a> |
+				<a href="cadastro.aspx">Cadastro</a> |
 				<a href="../html/promocoes.html">Promoções</a>
 			</div>
 
@@ -35,7 +34,7 @@
             <div id="conteudo">
 
 
-            </div>
+            
 
             	
             
@@ -44,6 +43,7 @@
         
         </asp:ContentPlaceHolder>
 
+                </div>
         <div id = "rodape">
 
 			
