@@ -26,7 +26,7 @@ Complemento_Cliente VARCHAR(40),
 Telefone_Cliente VARCHAR(14),
 Celular_Cliente VarChar (15),
 Email_Cliente VARCHAR(40),
-Senha_Cliente Varchar (10),
+Senha_Cliente Varchar (15),
 DataNascimento Varchar(10)
 )
 go
@@ -180,7 +180,7 @@ Cod_Pedido INT FOREIGN KEY REFERENCES Pedido(Cod_Pedido),
 )
 go
 
-delete from Produto
+--delete from Produto
 
 insert into Produto(Nome_Produto,Valor_Venda,Sobe_Site)
 values
