@@ -241,3 +241,6 @@ C:\Users\ACS\Desktop\Pizzaria_08_10-20_23-2014-10-09\Pizzaria 08_10-20_23\Pizzar
 C:\Users\ACS\Desktop\Pizzaria_08_10-20_23-2014-10-09\Pizzaria 08_10-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.csproj.GenerateResource.Cache
 C:\Users\ACS\Desktop\Pizzaria_08_10-20_23-2014-10-09\Pizzaria 08_10-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.csprojResolveAssemblyReference.cache
 C:\Users\ACS\Desktop\Pizzaria_08_10-20_23-2014-10-09\Pizzaria 08_10-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Home.resources
+E:\TCM\Aplicações\C#\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe.config
+E:\TCM\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.exe
+E:\TCM\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.pdb

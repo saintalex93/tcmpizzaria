@@ -142,17 +142,6 @@ namespace Pizzaria
 
         private void cadastrarPromoçãoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            while (Home.ActiveForm.MdiChildren.Length > 0)
-            {
-                Home.ActiveForm.ActiveMdiChild.Close();
-
-
-
-
-            }
-            Promocao Promo = new Promocao();
-            Promo.MdiParent = this;
-            Promo.Show();
           
         }
 
@@ -194,6 +183,16 @@ namespace Pizzaria
         private void pnl_login_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void promoçõesAtivasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            while (Home.ActiveForm.MdiChildren.Length > 0)
+                Home.ActiveForm.ActiveMdiChild.Close();
+
+            Promocao Promo = new Promocao();
+            Promo.MdiParent = this;
+            Promo.Show();
         }
     }
 }
