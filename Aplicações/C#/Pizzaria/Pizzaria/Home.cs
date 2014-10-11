@@ -195,7 +195,7 @@ namespace Pizzaria
             Promo.Show();
         }
 
-        private void empresaToolStripMenuItem_Click(object sender, EventArgs e)
+        public void empresaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             fecharJanelasFilhas();
 
@@ -204,7 +204,7 @@ namespace Pizzaria
             For.Show();
         }
 
-        public void fecharJanelasFilhas() 
+        public static void fecharJanelasFilhas() 
         {
             while (Home.ActiveForm.MdiChildren.Length > 0)
                 Home.ActiveForm.ActiveMdiChild.Close();
