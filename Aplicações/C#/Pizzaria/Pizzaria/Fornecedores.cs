@@ -21,5 +21,27 @@ namespace Pizzaria
         {
             Close();
         }
+
+        private void mtxtCNPJ_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
+
+        private void rdCPF_CheckedChanged(object sender, EventArgs e)
+        {
+            mtxtCNPJ.Visible = false;
+            mtxtCPF.Visible = true;
+
+            mtxtCNPJ.Enabled = false;
+            mtxtCPF.Enabled = true;
+        }
+
+        private void rdCNPJ_CheckedChanged(object sender, EventArgs e)
+        {
+            mtxtCPF.Visible = false;
+            mtxtCNPJ.Visible = true;
+
+            mtxtCNPJ.Enabled = true;
+        }
     }
 }
