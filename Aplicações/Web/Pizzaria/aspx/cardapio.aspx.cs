@@ -45,7 +45,7 @@ public partial class aspx_cardapio : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblLoginInc.Text = "Login e/ou Senha incorretos";
+            lblLoginInc.Text = "Login e/ou Senha incorreto(s)";
         }
     }
 }

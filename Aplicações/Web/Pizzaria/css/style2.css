@@ -43,6 +43,11 @@ background-color: #fff;
 color: #ae0101;
 }
 
+.colunaheader 
+{
+color: #128700;
+}
+
 #conteudo
 {
 height: auto;
@@ -57,6 +62,11 @@ margin-left: 45%;
 #conteudo input#ContentPlaceHolder1_btnLimpa
 {
 height: 25px;
+}
+
+#conteudo #ContentPlaceHolder1_HyperLink1 
+{
+font-size: 12px;
 }
 
 div#Login 
@@ -149,6 +159,8 @@ line-height: 300px;
 font-size: 100px;
 }
 
+/* CSS DO MENU */
+
 nav#menu{
 display: block;
 text-align: center;
@@ -172,18 +184,15 @@ transition: background-color 1.2s;
 }
 nav#menu li:hover{
 background-color: rgba(255, 255, 255, 0.7);
+text-shadow: 0px 5px 3px #000;
 }
 nav#menu li a 
 {
 text-decoration: none;
 color: #fff;
 font-size: 18px;
-transition: color 1.2s;
 }
-nav#menu li a:hover
-{
-color: #000;
-}
+
 .painel
 {
 float: right;
@@ -202,6 +211,8 @@ padding-bottom: 50px;
 margin-top: 50px;
 }
 
+/* CSS DO CARDÁPIO */
+
 table#ContentPlaceHolder1_DataGrid1 
 {
 margin-left: 32%;
@@ -219,10 +230,7 @@ table#ContentPlaceHolder1_DataGrid1 caption
 font-size: 50px;
 margin-bottom: 50px;
 }
-.colunaheader 
-{
-color: #128700;
-}
+
 #tudo
 {
 height: auto;

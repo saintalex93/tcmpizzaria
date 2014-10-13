@@ -13,7 +13,7 @@
         <h1>Cadastro</h1>
 
             <form id="form_cadastro" runat="server">
-			<fieldset class = "grupoformulario" >
+			    <fieldset class = "grupoformulario" >
                         <legend style="margin-left: 5px;color:#fff;">Dados Pessoais</legend>
                             <asp:Label ID="Label1" runat="server" Text="Campos obrigatórios são marcados com (*)"></asp:Label>
                         <br />
@@ -49,7 +49,7 @@
 
                             <asp:Label ID="lblObrigatório6" runat="server" Text="(*)"></asp:Label>
                     
-                        </fieldset>
+                </fieldset>
 
                     <br />
 
