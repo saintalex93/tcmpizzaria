@@ -1,11 +1,42 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/aspx/modelo.master" AutoEventWireup="true" CodeFile="cardapio.aspx.cs" Inherits="aspx_cardapio" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/aspx/modelo.master" AutoEventWireup="true" CodeFile="index.aspx.cs" Inherits="aspx_index" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <link rel="stylesheet" type="text/css" href="../css/style2.css" />
     <script type="text/javascript" src="../js/login.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <form runat="server">
+
+    <div id = "carrossel">
+			
+				<object width="100%" height="100%"  data="../flash/carrossel.swf"></object>
+			
+			</div>
+
+			<div class = "painel">
+				<img src = "../img/painelMelhorPizza.jpg" height = "220" width = "220" />
+			</div>
+
+			
+			
+			
+			<div id = "linksFaixa">
+				<div class = "faixa">
+				
+<!--				<a href = "../html/promocoes.html"><img src = "../img/faixaPromocoes.png" height = "100" width = "700" /></a> -->
+
+                    <object width="100%" height="100%"  data="../flash/faixaCadastro.swf"></object>
+				
+				</div>
+				
+					<div class = "faixa">
+				
+<!--				<a href = "../html/promocoes.html"><img src = "../img/faixaPromocoes.png" height = "100" width = "700" /></a> -->
+
+                    <object width="100%" height="100%"  data="../flash/faixaCardapio.swf"></object>
+				
+				</div>
+			</div>
+     <form id="Form1" runat="server">
         
         <div id="Login">
             <fieldset>
@@ -22,18 +53,5 @@
             </div>
             
     </form>
-    
-    <asp:DataGrid ID="DataGrid1" runat="server" AutoGenerateColumns="False" Caption="Cardápio">
-        <Columns>
-            <asp:BoundColumn DataField="Nome_Produto" HeaderText="Sabores" ReadOnly="True" ItemStyle-CssClass="ce" HeaderStyle-CssClass="colunaheader">
-<HeaderStyle CssClass="colunaheader"></HeaderStyle>
-
-<ItemStyle CssClass="ce"></ItemStyle>
-            </asp:BoundColumn>
-            <asp:BoundColumn DataField="Valor_Venda" HeaderText="Preço" HeaderStyle-CssClass="colunaheader">
-<HeaderStyle CssClass="colunaheader"></HeaderStyle>
-            </asp:BoundColumn>
-        </Columns>
-</asp:DataGrid>
 </asp:Content>
 

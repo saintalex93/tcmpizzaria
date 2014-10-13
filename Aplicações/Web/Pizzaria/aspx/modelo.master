@@ -22,12 +22,14 @@
 		        </div>
 
 			
-            <div class = "menu">
-				<a href="../html/index.html">Home</a> |
-                <a href="cardapio.aspx">Cardápio</a> |
-				<a href="cadastro.aspx">Cadastro</a> |
-				<a href="../html/promocoes.html">Promoções</a>
-			</div>
+            <nav id="menu">
+              <ul>
+				<li><a href="index.aspx">Home</a></li>
+                <li><a href="cardapio.aspx">Cardápio</a></li>
+				<li><a href="cadastro.aspx">Cadastro</a></li>
+				<li><a href="promocoes.aspx">Promoções</a></li>
+              </ul>
+			</nav>
 
 	        </div>
 
