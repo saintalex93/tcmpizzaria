@@ -31,12 +31,30 @@ namespace Pizzaria
         }
 
         SqlConnection conn;
-        string cod_permissao = "",cod_cliente,usuario ="",senha="",cargo="", nome = "", cep = "", email = "", endereco = "", bairro = "", cidade = "", uf = "", complemento = "", telefone = "", cel = "", cpf = "", strIncluir = "";
+
+        string 
+            cod_permissao = "",
+            cod_cliente,
+            usuario ="",
+            senha="",
+            cargo="",
+            nome = "",
+            cep = "",
+            email = "",
+            endereco = "",
+            bairro = "",
+            cidade = "", 
+            uf = "",
+            complemento = "",
+            telefone = "",
+            cel = "",
+            cpf = "",
+            strIncluir = "";
+        
         int num_endereco = 0;
       
-        //conexao DB
-        string conexao = "Data Source=ALEX\\SQLEXPRESS ;Initial Catalog=Pizzaria; Persist Security Info = True; User ID=sa; Password=1234";
-        // string conexao = "Data Source=192.168.1.105\\BPAServer9;Initial Catalog=Pizzaria; Persist Security Info = True; User ID=sa; Password=AutoMateBPA9";
+        //String com informações de acesso pro BD
+        string conexao = "Data Source=Tuca\\SQLEXPRESS ;Initial Catalog=Pizzaria; Persist Security Info = True; User ID=sa; Password=peganomeupau";
 
         //Validar se e update ou insert
         Boolean valida = false;
@@ -638,6 +656,7 @@ namespace Pizzaria
           {
               conn = new SqlConnection(conexao);
               conn.Open();
+
               try
               {
                   SqlCommand sqlComm = new SqlCommand(stringUpd, conn);
@@ -690,6 +709,7 @@ namespace Pizzaria
               preenchegrid();
             
           }
+
           public Boolean ValidaCPF(string strValida)
         {
             
@@ -703,8 +723,6 @@ namespace Pizzaria
 
                try
               {
-
-
                   SqlCommand sqlComm = new SqlCommand(strValida, conn);
 
                   sqlComm.ExecuteNonQuery();
