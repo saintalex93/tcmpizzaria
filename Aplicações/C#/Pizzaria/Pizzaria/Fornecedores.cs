@@ -17,58 +17,157 @@ namespace Pizzaria
         //String com informações de acesso pro BD
         string conexao = "Data Source=Tuca\\SQLEXPRESS ;Initial Catalog=Pizzaria; Persist Security Info = True; User ID=sa; Password=123456";
 
+        //Usada para definir se o botão "Salvar" deverá gravar um registro ou atualizá-lo
+        bool gravar;
+
+        SqlConnection conn;
+
+        //
+        string
+            cod_permissao = "",
+            cod_cliente,
+            usuario = "",
+            senha = "",
+            cargo = "",
+            nome = "",
+            cep = "",
+            email = "",
+            endereco = "",
+            bairro = "",
+            cidade = "",
+            uf = "",
+            complemento = "",
+            telefone = "",
+            cel = "",
+            cpf = "",
+            strIncluir = "";
+
+        int num_endereco = 0;
+
         public Fornecedores()
         {
             InitializeComponent();
         }
 
-        private void btnVoltar_Click(object sender, EventArgs e)
-        {
-            Close();
+        //        public void InsereFunc(string stringInc)
+        /*{
+            conn = new SqlConnection(conexao);
+            conn.Open();
+            try
+            {
+
+                SqlCommand sqlComm = new SqlCommand(stringInc, conn);
+
+                sqlComm.ExecuteNonQuery();
+                //Seleciona Cargo
+                DataTable dt = new DataTable();
+                try
+                {
+                    stringInc = "select cod_Permissao from Permissao where Cargo = '" + cargo + "'";
+                    sqlComm = new SqlCommand(stringInc, conn);
+
+                    sqlComm.ExecuteNonQuery();
+                    SqlDataAdapter da = new SqlDataAdapter();
+                    da.SelectCommand = sqlComm;
+                    da.Fill(dt);
+                    cod_permissao = dt.Rows[0][0].ToString();
+
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Falha ao Selecionar o Cargo");
+                }
+
+                //Cod Funcionario
+
+                dt = new DataTable();
+                try
+                {
+                    stringInc = "select cod_Funcionario from Funcionario where CPF_Funcionario = '" + cpf + "'";
+                    sqlComm = new SqlCommand(stringInc, conn);
+
+                    sqlComm.ExecuteNonQuery();
+                    SqlDataAdapter da = new SqlDataAdapter();
+                    da.SelectCommand = sqlComm;
+                    da.Fill(dt);
+                    cod_cliente = dt.Rows[0][0].ToString();
+
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Falha ao obter numero do Funcionario");
+                }
+
+                //insere tabela permissao funcionario
+
+                dt = new DataTable();
+                try
+                {
+                    stringInc = "insert into FuncPermissao (Login_,Senha,Cod_Funcionario,Cod_Permissao) values ('" + usuario + "','" + senha + "','" + cod_cliente + "','" + cod_permissao + "')";
+                    sqlComm = new SqlCommand(stringInc, conn);
+
+                    sqlComm.ExecuteNonQuery();
+
+                    stringInc = "update FUncPermissao set Login_ = '" + usuario + "',senha='" + senha + "',cod_Permissao = '" + cod_permissao + "' where cod_Funcionario ='" + cod_cliente + "'";
+                    sqlComm = new SqlCommand(stringInc, conn);
+                    sqlComm.ExecuteNonQuery();
+
+                    stringInc = "update Funcionario set cod_Permissao = '" + cod_permissao + "',Usuario_Funcionario='" + usuario + "' where cod_Funcionario ='" + cod_cliente + "'";
+                    sqlComm = new SqlCommand(stringInc, conn);
+                    sqlComm.ExecuteNonQuery();
+
+
+
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Falha tabela de permissoes de funcionario");
+                }
+
+
+                MessageBox.Show("Funcionario Inserido com sucesso");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Falha ao Inserir Funcionario");
+
+            }
+            conn.Close();
+
+            preenchegrid();
+            Clear_Dados();
         }
+        */
 
-        private void mtxtCNPJ_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
-        {
+        /*        public void Clear_Dados()
+                {
 
-        }
+                    txtRazaoSocial.Text = "";
+                    txtNomeFantasia.Text = "";
+                    mtxtTelefone.Text = "";
+                    txtEmail.Text = "";
+                    mtxt_celular.Text = "";
+                    mtxt_cep.Text = "";
+                    mtxt_cpf.Text = "";
+                    txt_endereco.Text = "";
+                    txt_bairro.Text = "";
+                    txt_cidade.Text = "";
+                    txt_complemento.Text = "";
+                    txt_numero.Text = "";
+                    cb_uf.Text = "";
+                    txt_Senha.Text = "";
+                    txt_Usuario.Text = "";
 
-        private void rdCPF_CheckedChanged(object sender, EventArgs e)
-        {
-            mtxtCNPJ.Visible = false;
-            mtxtCPF.Visible = true;
+                    gp_dadosfunc.Enabled = true;
+                    groupBox3.Enabled = true;
+                }*/
 
-            mtxtCNPJ.Enabled = false;
-            mtxtCPF.Enabled = true;
-
-            mtxtCNPJ.Text = "";
-
-            mtxtCPF.Focus();
-        }
-
-        private void rdCNPJ_CheckedChanged(object sender, EventArgs e)
-        {
-            mtxtCNPJ.Visible = true;
-            mtxtCPF.Visible = false;
-
-            mtxtCNPJ.Enabled = true;
-            mtxtCPF.Enabled = false;
-
-            mtxtCPF.Text = "";
-
-            mtxtCNPJ.Focus();
-        }
-
-        private void btnSalvar_Click(object sender, EventArgs e)
-        {
-            validaCampos();
-        }
-
-        private bool validaCampos() 
+        private bool validaCampos()
         {
             //Dados Dados do Fornecedor
             //Validação Razão Social/Nome Fantasia
             if (
-                txtRazaoSocial.TextLength == 0 
+                txtRazaoSocial.TextLength == 0
                 &&
                 txtNomeFantasia.TextLength == 0
                 )
@@ -100,31 +199,31 @@ namespace Pizzaria
                 return false;
             }
 
-/*            if (
-                txtRazaoSocial.TextLength < 4
-                &&
-                txtNomeFantasia.TextLength == 0
-                )
-            {
-                mensagemDeErro("O conteúdo passado no campo \"Razão Social\" não é válido. Por favor, certifique-se de que ele está correto.");
-                txtRazaoSocial.Focus();
-                return false;
-            }
+            /*            if (
+                            txtRazaoSocial.TextLength < 4
+                            &&
+                            txtNomeFantasia.TextLength == 0
+                            )
+                        {
+                            mensagemDeErro("O conteúdo passado no campo \"Razão Social\" não é válido. Por favor, certifique-se de que ele está correto.");
+                            txtRazaoSocial.Focus();
+                            return false;
+                        }
 
-            if (
-                txtRazaoSocial.TextLength == 0
-                &&
-                txtNomeFantasia.TextLength < 4
-                ) 
-            {
-                mensagemDeErro("O conteúdo passado no campo \"Nome Fantasia\" não é válido. Por favor, certifique-se de que ele está correto.");
-                txtNomeFantasia.Focus();
-                return false;
-            }*/
+                        if (
+                            txtRazaoSocial.TextLength == 0
+                            &&
+                            txtNomeFantasia.TextLength < 4
+                            ) 
+                        {
+                            mensagemDeErro("O conteúdo passado no campo \"Nome Fantasia\" não é válido. Por favor, certifique-se de que ele está correto.");
+                            txtNomeFantasia.Focus();
+                            return false;
+                        }*/
 
             //Validação Responsável
             if (
-                txtResponsavel.Text.Length != 0 
+                txtResponsavel.Text.Length != 0
                 &&
                 txtResponsavel.Text.Length < 3
                 )
@@ -150,7 +249,7 @@ namespace Pizzaria
                 .Replace(",", "")
                 .Replace("_", "")
                 .Replace("-", "").Length == 0
-                ) 
+                )
             {
                 mensagemDeErro("Por favor, é preciso que um dos campos \"CPF\" ou \"CNPJ\" seja preenchido para que o processo de cadastro possa seguir até o final.");
 
@@ -275,27 +374,34 @@ namespace Pizzaria
             {
                 if (email[i].ToString() == "@")
                     arroba = true;
-                
-                if
+
+                try
+                {
+                    if
                     (
                     dominio == false
                     &&
                     arroba == true
                     &&
-                    email[i+1].ToString() != "."
+                    email[i + 1].ToString() != "."
                     )
-                    dominio = true;
+                        dominio = true;
+                }
+                catch (Exception e) 
+                {
                 
-                if 
+                }
+
+                if
                     (
-                    arroba == true 
-                    && 
+                    arroba == true
+                    &&
                     dominio == true
                     &&
                     email[i].ToString() == "."
                     )
                     ponto = true;
-                
+
                 if (
                     arroba == true
                     &&
@@ -304,7 +410,7 @@ namespace Pizzaria
                     ponto == true
                     &&
                         (
-                        email.Substring(i + 1, email.Length-i-1).ToString().Contains("com")
+                        email.Substring(i + 1, email.Length - i - 1).ToString().Contains("com")
                         ||
                         email.Substring(i + 1, email.Length - i - 1).ToString().Contains("net")
                         ||
@@ -333,7 +439,7 @@ namespace Pizzaria
             }
 
             //Validação Telefone de contato
-            if(
+            if (
                 mtxtTelefoneDeContato.Text
                 .Replace("(", "")
                 .Replace(")", "")
@@ -351,7 +457,7 @@ namespace Pizzaria
                 .Replace(")", "")
                 .Replace(" ", "")
                 .Replace("-", "").Length < 10
-                ) 
+                )
             {
                 mensagemDeErro("Infelizmente, o valor preenchido no campo \"Telefone de contato\" não é válido. Certifique-se de que o número está correto.");
                 mtxtTelefoneDeContato.Focus();
@@ -374,8 +480,8 @@ namespace Pizzaria
                     txtBanco.Focus();
                     return false;
                 }
-            
-            if (txtBanco.Text.Length < 3) 
+
+            if (txtBanco.Text.Length < 3)
             {
                 mensagemDeErro("Infelizmente, o valor preenchido no campo \"Banco\" não é válido. Certifique-se de que o número está correto.");
                 txtBanco.Focus();
@@ -434,7 +540,7 @@ namespace Pizzaria
                 txtNomeDaRua.TextLength > 0
                 &&
                 txtNomeDaRua.TextLength < 5
-                ) 
+                )
             {
                 mensagemDeErro("Infelizmente, o valor preenchido no campo \"Nome da Rua\" não é válido. Certifique-se de que o nome está correto.");
                 txtNomeDaRua.Focus();
@@ -481,11 +587,68 @@ namespace Pizzaria
                 );
         }
 
+        public void AtualizaFunc(string stringUpd)
+        {
+            conn = new SqlConnection(conexao);
+            conn.Open();
+
+            try
+            {
+                SqlCommand sqlComm = new SqlCommand(stringUpd, conn);
+
+                sqlComm.ExecuteNonQuery();
+
+                //Seleciona Cargo
+                DataTable dt = new DataTable();
+                try
+                {
+                    stringUpd = "select cod_Permissao from Permissao where Cargo = '" + cargo + "'";
+                    sqlComm = new SqlCommand(stringUpd, conn);
+
+                    sqlComm.ExecuteNonQuery();
+                    SqlDataAdapter da = new SqlDataAdapter();
+                    da.SelectCommand = sqlComm;
+                    da.Fill(dt);
+                    cod_permissao = dt.Rows[0][0].ToString();
+
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Falha ao Selecionar o Cargo");
+                }
+
+
+
+                stringUpd = "update FUncPermissao set Login_ = '" + usuario + "',senha='" + senha + "',cod_Permissao = '" + cod_permissao + "' where cod_Funcionario ='" + cod_cliente + "'";
+                sqlComm = new SqlCommand(stringUpd, conn);
+                sqlComm.ExecuteNonQuery();
+
+                stringUpd = "update Funcionario set cod_Permissao = '" + cod_permissao + "',Usuario_Funcionario='" + usuario + "' where cod_Funcionario ='" + cod_cliente + "'";
+                sqlComm = new SqlCommand(stringUpd, conn);
+                sqlComm.ExecuteNonQuery();
+
+
+
+
+                MessageBox.Show("Dados do funcionario Atualizado");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Falha ao Atualizar Funcionario");
+
+
+
+            }
+            conn.Close();
+
+            preenchegrid();
+
+        }
 
         public Boolean ValidaCPF(string strValida)
         {
             strValida = "select * from Fornecedor where CNPJ_CPF = '" + strValida + "'";
-            
+
             SqlConnection conn = new SqlConnection(conexao);
             DataTable dt = new DataTable();
             conn.Open();
@@ -515,9 +678,82 @@ namespace Pizzaria
 
         }
 
+        public void preenchegrid()
+        {
+
+            string strIncluir = "select * from Funcionario";
+            SqlConnection conn = new SqlConnection(conexao);
+            conn.Open();
+
+            try
+            {
+                SqlCommand sqlComm = new SqlCommand(strIncluir, conn);
+
+                //sqlComm.ExecuteNonQuery();
+                SqlDataAdapter da = new SqlDataAdapter();
+                da.SelectCommand = sqlComm;
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                dtgvFornecedores.DataSource = dt;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Falha ao conectar ao Bano de Dados, Contate seu suporte");
+            }
+
+            conn.Close();
+        }
+
+        private void btnVoltar_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void mtxtCNPJ_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
+
+        private void rdCPF_CheckedChanged(object sender, EventArgs e)
+        {
+            mtxtCNPJ.Visible = false;
+            mtxtCPF.Visible = true;
+
+            mtxtCNPJ.Enabled = false;
+            mtxtCPF.Enabled = true;
+
+            mtxtCNPJ.Text = "";
+
+            mtxtCPF.Focus();
+        }
+
+        private void rdCNPJ_CheckedChanged(object sender, EventArgs e)
+        {
+            mtxtCNPJ.Visible = true;
+            mtxtCPF.Visible = false;
+
+            mtxtCNPJ.Enabled = true;
+            mtxtCPF.Enabled = false;
+
+            mtxtCPF.Text = "";
+
+            mtxtCNPJ.Focus();
+        }
+
+        private void btnSalvar_Click(object sender, EventArgs e)
+        {
+            validaCampos();
+        }
+
         private void txtBanco_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void butto1_nClick(object sender, EventArgs e)
         {
 
         }
     }
 }
+

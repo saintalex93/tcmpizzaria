@@ -52,6 +52,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.mtxtCEP = new System.Windows.Forms.MaskedTextBox();
             this.txtBairro = new System.Windows.Forms.TextBox();
             this.txtConjunto = new System.Windows.Forms.TextBox();
             this.txtNumero = new System.Windows.Forms.TextBox();
@@ -62,15 +63,16 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.btnVoltar = new System.Windows.Forms.Button();
-            this.dgvFornecedores = new System.Windows.Forms.DataGridView();
+            this.dtgvFornecedores = new System.Windows.Forms.DataGridView();
             this.btnSalvar = new System.Windows.Forms.Button();
             this.btnAlterar = new System.Windows.Forms.Button();
             this.btnExcluir = new System.Windows.Forms.Button();
-            this.mtxtCEP = new System.Windows.Forms.MaskedTextBox();
+            this.btnBuscar = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.grpDadosFornecedor.SuspendLayout();
             this.grpDadosBancarios.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvFornecedores)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvFornecedores)).BeginInit();
             this.SuspendLayout();
             // 
             // grpDadosFornecedor
@@ -316,6 +318,14 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Dados de localidade";
             // 
+            // mtxtCEP
+            // 
+            this.mtxtCEP.Location = new System.Drawing.Point(229, 65);
+            this.mtxtCEP.Mask = "99999-999";
+            this.mtxtCEP.Name = "mtxtCEP";
+            this.mtxtCEP.Size = new System.Drawing.Size(59, 20);
+            this.mtxtCEP.TabIndex = 14;
+            // 
             // txtBairro
             // 
             this.txtBairro.Location = new System.Drawing.Point(83, 65);
@@ -391,7 +401,7 @@
             // 
             // btnVoltar
             // 
-            this.btnVoltar.Location = new System.Drawing.Point(137, 574);
+            this.btnVoltar.Location = new System.Drawing.Point(224, 568);
             this.btnVoltar.Name = "btnVoltar";
             this.btnVoltar.Size = new System.Drawing.Size(75, 23);
             this.btnVoltar.TabIndex = 3;
@@ -399,17 +409,17 @@
             this.btnVoltar.UseVisualStyleBackColor = true;
             this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
             // 
-            // dgvFornecedores
+            // dtgvFornecedores
             // 
-            this.dgvFornecedores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvFornecedores.Location = new System.Drawing.Point(12, 381);
-            this.dgvFornecedores.Name = "dgvFornecedores";
-            this.dgvFornecedores.Size = new System.Drawing.Size(340, 150);
-            this.dgvFornecedores.TabIndex = 4;
+            this.dtgvFornecedores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgvFornecedores.Location = new System.Drawing.Point(12, 381);
+            this.dtgvFornecedores.Name = "dtgvFornecedores";
+            this.dtgvFornecedores.Size = new System.Drawing.Size(340, 150);
+            this.dtgvFornecedores.TabIndex = 4;
             // 
             // btnSalvar
             // 
-            this.btnSalvar.Location = new System.Drawing.Point(56, 538);
+            this.btnSalvar.Location = new System.Drawing.Point(60, 538);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(75, 23);
             this.btnSalvar.TabIndex = 5;
@@ -419,7 +429,7 @@
             // 
             // btnAlterar
             // 
-            this.btnAlterar.Location = new System.Drawing.Point(137, 538);
+            this.btnAlterar.Location = new System.Drawing.Point(143, 538);
             this.btnAlterar.Name = "btnAlterar";
             this.btnAlterar.Size = new System.Drawing.Size(75, 23);
             this.btnAlterar.TabIndex = 6;
@@ -428,30 +438,43 @@
             // 
             // btnExcluir
             // 
-            this.btnExcluir.Location = new System.Drawing.Point(218, 537);
+            this.btnExcluir.Location = new System.Drawing.Point(143, 568);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(75, 23);
             this.btnExcluir.TabIndex = 7;
             this.btnExcluir.Text = "Excluir";
             this.btnExcluir.UseVisualStyleBackColor = true;
             // 
-            // mtxtCEP
+            // btnBuscar
             // 
-            this.mtxtCEP.Location = new System.Drawing.Point(229, 65);
-            this.mtxtCEP.Mask = "99999-999";
-            this.mtxtCEP.Name = "mtxtCEP";
-            this.mtxtCEP.Size = new System.Drawing.Size(59, 20);
-            this.mtxtCEP.TabIndex = 14;
+            this.btnBuscar.Location = new System.Drawing.Point(225, 538);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(75, 23);
+            this.btnBuscar.TabIndex = 8;
+            this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(61, 568);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "Limpar";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Fornecedores
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(365, 603);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.btnExcluir);
             this.Controls.Add(this.btnAlterar);
             this.Controls.Add(this.btnSalvar);
-            this.Controls.Add(this.dgvFornecedores);
+            this.Controls.Add(this.dtgvFornecedores);
             this.Controls.Add(this.btnVoltar);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.grpDadosBancarios);
@@ -464,9 +487,14 @@
             this.grpDadosBancarios.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvFornecedores)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvFornecedores)).EndInit();
             this.ResumeLayout(false);
 
+        }
+
+        private void button1_Click(object sender, System.EventArgs e)
+        {
+            throw new System.NotImplementedException();
         }
 
         #endregion
@@ -498,7 +526,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnVoltar;
-        private System.Windows.Forms.DataGridView dgvFornecedores;
+        private System.Windows.Forms.DataGridView dtgvFornecedores;
         private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.Button btnAlterar;
         private System.Windows.Forms.Button btnExcluir;
@@ -510,5 +538,7 @@
         private System.Windows.Forms.TextBox txtAgencia;
         private System.Windows.Forms.TextBox txtBanco;
         private System.Windows.Forms.MaskedTextBox mtxtCEP;
+        private System.Windows.Forms.Button btnBuscar;
+        private System.Windows.Forms.Button button1;
     }
 }
