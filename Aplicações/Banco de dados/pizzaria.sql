@@ -184,6 +184,13 @@ go
 
 insert into Produto(Nome_Produto,Valor_Venda,Sobe_Site)
 values
-('Pizza Baiana',20.00,0),('Pizza Mussarela',18.40,1),('Pizza Bacon',22.20,1),
-('Pizza Americana',24.00,0),('Pizza Bauru',23.50,1),('Pizza Calabresa',18.00,0),
-('Pizza Catupiry',23.00,0),('Pizza Camarão',28.70,1),('Pizza Alemã',25.20,1)
+('Pizza Baiana',20.00,1),('Pizza Mussarela',18.40,1),('Pizza Bacon',22.20,1),
+('Pizza Americana',24.00,1),('Pizza Bauru',23.50,1),('Pizza Calabresa',18.00,1),
+('Pizza Catupiry',23.00,1),('Pizza Camarão',28.70,1),('Pizza Alemã',25.20,1)
+go
+insert into Cliente(Nome_Cliente,Email_Cliente,Senha_Cliente)
+values
+('Raphael Vieira','rapha_teste@gmail.com','minhasenha123'),
+('Arthur Lopes','tuca_teste@hotmail.com','suasenha456'),
+('Alex Santos','alex_teste@yahoo.com','umasenha789')
+go

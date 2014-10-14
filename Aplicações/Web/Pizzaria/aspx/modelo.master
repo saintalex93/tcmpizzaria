@@ -10,6 +10,7 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
+    <form id="form1" runat="server">
     <div>
         <div id = "tudo">
 		    <div id = "cabecalho">
@@ -20,8 +21,20 @@
 			        <img src="../img/banner-principal.png" />
 			
 		        </div>
+        
 
-			
+            <div id="login">
+                <asp:Label ID="Label1" runat="server" Text="Email"></asp:Label> <br />
+                <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox> <br />
+                <asp:Label ID="Label2" runat="server" Text="Senha"></asp:Label> <br />
+                <asp:TextBox ID="txtLogin_senha" runat="server" TextMode="Password"></asp:TextBox> <br />
+                <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click" />
+                <asp:Button ID="btnLogout" runat="server" Text="Logout" OnClick="btnLogout_Click" /><br /><br />
+                <asp:Label ID="lblLoginInc" runat="server"></asp:Label> <br />
+                <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/aspx/cadastro.aspx">Ainda não é cadastrado?</asp:HyperLink>
+            </div>
+
+
             <nav id="menu">
               <ul>
 				<li><a href="index.aspx">Home</a></li>
@@ -65,5 +78,6 @@
 		</div>
             </div>
     </div>
+        </form>
 </body>
 </html>

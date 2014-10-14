@@ -11,8 +11,6 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
         <h1>Cadastro</h1>
-
-            <form id="form_cadastro" runat="server">
 			    <fieldset class = "grupoformulario" >
                         <legend style="margin-left: 5px;color:#fff;">Dados Pessoais</legend>
                             <asp:Label ID="Label1" runat="server" Text="Campos obrigatórios são marcados com (*)"></asp:Label>
@@ -121,24 +119,7 @@
                 <asp:Button ID="Preenche" runat="server" Text="Preencher Campos" OnClick="Preenche_Click" Width="125px" />
                     <br />
                     <br />
-                    <asp:Label ID="lblresposta" runat="server"></asp:Label>
-
-
-
-                 <div id="Login">
-                     <fieldset>
-            <legend>Faça seu Login</legend>
-            <asp:Label ID="Label3" runat="server" Text="Email"></asp:Label><br />
-            <asp:TextBox ID="txtLogin" runat="server" Width="180px"></asp:TextBox><br />
-            <asp:Label ID="senha" runat="server" Text="Senha"></asp:Label><br />
-            <asp:TextBox ID="txtLogin_Senha" runat="server" TextMode="Password"></asp:TextBox><br />
-            <asp:Button ID="btnLogin" runat="server" Text="Login" OnClientClick="return recuperarlogin()" OnClick="btnLogin_Click" />
-            <asp:Button ID="btnEsqueciSenha" runat="server" Text="Esqueci minha senha" /><br />
-            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/aspx/cadastro.aspx">Ainda não é cadastrado?</asp:HyperLink><br />
-            <asp:Label ID="lblLoginInc" runat="server"></asp:Label>
-                    </fieldset>
-                </div>
-            </form>
+                    <asp:Label ID="lblresposta" runat="server" ForeColor="White"></asp:Label>
         <br />
 
    

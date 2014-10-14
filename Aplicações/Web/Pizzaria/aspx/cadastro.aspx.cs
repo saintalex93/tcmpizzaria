@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using System.Data.SqlClient;
 
 public partial class aspx_cadastro : System.Web.UI.Page
 {
@@ -35,7 +36,8 @@ public partial class aspx_cadastro : System.Web.UI.Page
     }
     protected void btnEnvia_Click(object sender, EventArgs e)
     {
-        String nome = txtNome.Text;
+        try{
+        String nome = txtNome.Text.Trim();
         String tel = txtTel.Text;
         String cel = txtCel.Text;
         String email = txtEmail.Text;
@@ -43,12 +45,12 @@ public partial class aspx_cadastro : System.Web.UI.Page
         String datanasc = txtDtNasc.Text;
         String senha = txtSenha.Text;
         String senhaconf = txtSenhaConfirm.Text;
-        String cidade = txtCidade.Text;
-        String rua = txtRua.Text;
-        String complemento = txtComplemento.Text;
+        String cidade = txtCidade.Text.Trim();
+        String rua = txtRua.Text.Trim();
+        String complemento = txtComplemento.Text.Trim();
         int numcasa = Convert.ToInt32(txtNumCasa.Text);
         int numapart = Convert.ToInt32(txtNumApart.Text);
-        String bairro = txtBairro.Text;
+        String bairro = txtBairro.Text.Trim();
         String cep = txtCep.Text;
         String estado = DDLEstado.SelectedValue.ToString();
 
@@ -74,8 +76,12 @@ public partial class aspx_cadastro : System.Web.UI.Page
         con.fechaConexao();
         String resposta = "Dados Cadastrados com sucesso.<br/>Você já pode se logar.";
         lblresposta.Text = resposta;
-
-        LimpaCamposAprovado();
+        }
+        catch(Exception ex) 
+        {
+            lblresposta.Text = "Dados incorretos.";
+        }
+            LimpaCamposAprovado();
     }
     protected void btnLimpa_Click(object sender, EventArgs e)
     {
@@ -130,8 +136,6 @@ public partial class aspx_cadastro : System.Web.UI.Page
         txtEmail.Text = "email@teste.com";
         txtCpf.Text = "666.666.666-66";
         txtDtNasc.Text = "12/05/1995";
-        txtSenha.Text = "123321";
-        txtSenhaConfirm.Text = "123321";
         DDLEstado.SelectedIndex = 1;
         txtCidade.Text = "Cidade Teste";
         txtRua.Text = "Rua Teste";
@@ -142,25 +146,5 @@ public partial class aspx_cadastro : System.Web.UI.Page
         txtCep.Text = "55555-555";
         btnEnvia.Focus();
     }
-    protected void btnLogin_Click(object sender, EventArgs e)
-    {
-        String login = txtLogin.Text;
-        String senha = txtLogin_Senha.Text;
-        //var logado = false;
-        try
-        {
-            conexao con = new conexao();
-            con.conectar();
-            con.command.CommandText = "select * from Cliente where Email_Cliente = @email AND Senha_Cliente = @senha";
-            con.command.Parameters.Add("@email", SqlDbType.VarChar).Value = login;
-            con.command.Parameters.Add("@senha", SqlDbType.VarChar).Value = senha;
-            con.command.ExecuteNonQuery();
-            con.fechaConexao();
-            lblLoginInc.Text = "Logado com sucesso";
-        }
-        catch(Exception ex)
-        {
-            lblLoginInc.Text = "Login e/ou Senha incorreto(s)";
-        }
-    }
+
 }
