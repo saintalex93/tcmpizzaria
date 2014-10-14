@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -120,6 +121,18 @@ namespace Pizzaria
                 txtNomeFantasia.Focus();
                 return false;
             }*/
+
+            //Validação Responsável
+            if (
+                txtResponsavel.Text.Length != 0 
+                &&
+                txtResponsavel.Text.Length < 3
+                )
+            {
+                mensagemDeErro("Infelizmente, o valor preenchido no campo \"Resposável\" não é válido. Certifique-se de que o número está correto.");
+                txtResponsavel.Focus();
+                return false;
+            }
 
             //Validação CPF/CNPJ
             if (
@@ -250,6 +263,75 @@ namespace Pizzaria
                     return false;
                 }*/
 
+            //Validação email
+            string email = txtEmailResponsavel.Text;
+            bool arroba = false;
+            bool dominio = false;
+            bool ponto = false;
+            bool final = false;
+
+
+            for (int i = 0; i < email.Length; i++)
+            {
+                if (email[i].ToString() == "@")
+                    arroba = true;
+                
+                if
+                    (
+                    dominio == false
+                    &&
+                    arroba == true
+                    &&
+                    email[i+1].ToString() != "."
+                    )
+                    dominio = true;
+                
+                if 
+                    (
+                    arroba == true 
+                    && 
+                    dominio == true
+                    &&
+                    email[i].ToString() == "."
+                    )
+                    ponto = true;
+                
+                if (
+                    arroba == true
+                    &&
+                    dominio == true
+                    &&
+                    ponto == true
+                    &&
+                        (
+                        email.Substring(i + 1, email.Length-i-1).ToString().Contains("com")
+                        ||
+                        email.Substring(i + 1, email.Length - i - 1).ToString().Contains("net")
+                        ||
+                        email.Substring(i + 1, email.Length - i - 1).ToString().Contains("gov")
+                        ||
+                        email.Substring(i + 1, email.Length - i - 1).ToString().Contains("br")
+                        )
+                    )
+                    final = true;
+            }
+
+            if
+                (
+                arroba == false
+                ||
+                dominio == false
+                ||
+                ponto == false
+                ||
+                final == false
+                )
+            {
+                mensagemDeErro("Infelizmente, o endereço fornecido no campo \"Email\" não é válido. Por favor, utilize um endereço de email válido.");
+                txtEmailResponsavel.Focus();
+                return false;
+            }
+
             //Validação Telefone de contato
             if(
                 mtxtTelefoneDeContato.Text
@@ -344,6 +426,43 @@ namespace Pizzaria
             {
                 mensagemDeErro("Infelizmente, o valor preenchido no campo \"Conta\" não é válido. Certifique-se de que o número está correto.");
                 txtConta.Focus();
+                return false;
+            }
+
+            //Validação Nome da rua
+            if (
+                txtNomeDaRua.TextLength > 0
+                &&
+                txtNomeDaRua.TextLength < 5
+                ) 
+            {
+                mensagemDeErro("Infelizmente, o valor preenchido no campo \"Nome da Rua\" não é válido. Certifique-se de que o nome está correto.");
+                txtNomeDaRua.Focus();
+                return false;
+            }
+
+            //Validação Bairro
+            if (txtBairro.TextLength > 0
+                &&
+                txtBairro.TextLength < 5
+                )
+            {
+                mensagemDeErro("Infelizmente, o valor preenchido no campo \"Bairro\" não é válido. Certifique-se de que o número está correto.");
+                txtBairro.Focus();
+                return false;
+            }
+
+            //Validação CEP
+            string CEP =
+                mtxtCEP.Text
+                .Replace("_", "")
+                .Replace("-", "")
+                .Replace(" ", "");
+
+            if (CEP.Length != 0 && CEP.Length < 8)
+            {
+                mensagemDeErro("Infelizmente, o valor preenchido no campo \"CEP\" não é válido. Certifique-se de que o número está correto.");
+                mtxtCEP.Focus();
                 return false;
             }
 

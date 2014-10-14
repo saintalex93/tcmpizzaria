@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.grpDadosFornecedor = new System.Windows.Forms.GroupBox();
+            this.mtxtTelefoneDeContato = new System.Windows.Forms.MaskedTextBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.mtxtCNPJ = new System.Windows.Forms.MaskedTextBox();
             this.mtxtCPF = new System.Windows.Forms.MaskedTextBox();
             this.txtEmailResponsavel = new System.Windows.Forms.TextBox();
@@ -43,15 +45,17 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.grpDadosBancarios = new System.Windows.Forms.GroupBox();
+            this.txtConta = new System.Windows.Forms.TextBox();
+            this.txtAgencia = new System.Windows.Forms.TextBox();
+            this.txtBanco = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtBairro = new System.Windows.Forms.TextBox();
+            this.txtConjunto = new System.Windows.Forms.TextBox();
+            this.txtNumero = new System.Windows.Forms.TextBox();
+            this.txtNomeDaRua = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -62,11 +66,7 @@
             this.btnSalvar = new System.Windows.Forms.Button();
             this.btnAlterar = new System.Windows.Forms.Button();
             this.btnExcluir = new System.Windows.Forms.Button();
-            this.label13 = new System.Windows.Forms.Label();
-            this.mtxtTelefoneDeContato = new System.Windows.Forms.MaskedTextBox();
-            this.txtConta = new System.Windows.Forms.TextBox();
-            this.txtAgencia = new System.Windows.Forms.TextBox();
-            this.txtBanco = new System.Windows.Forms.TextBox();
+            this.mtxtCEP = new System.Windows.Forms.MaskedTextBox();
             this.grpDadosFornecedor.SuspendLayout();
             this.grpDadosBancarios.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -96,6 +96,23 @@
             this.grpDadosFornecedor.TabIndex = 0;
             this.grpDadosFornecedor.TabStop = false;
             this.grpDadosFornecedor.Text = "Dados do Fornecedor";
+            // 
+            // mtxtTelefoneDeContato
+            // 
+            this.mtxtTelefoneDeContato.Location = new System.Drawing.Point(125, 175);
+            this.mtxtTelefoneDeContato.Mask = "(99) 9999-9999";
+            this.mtxtTelefoneDeContato.Name = "mtxtTelefoneDeContato";
+            this.mtxtTelefoneDeContato.Size = new System.Drawing.Size(100, 20);
+            this.mtxtTelefoneDeContato.TabIndex = 15;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(16, 177);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(107, 13);
+            this.label13.TabIndex = 14;
+            this.label13.Text = "Telefone de contato*";
             // 
             // mtxtCNPJ
             // 
@@ -128,9 +145,9 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(6, 147);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(113, 13);
+            this.label4.Size = new System.Drawing.Size(117, 13);
             this.label4.TabIndex = 10;
-            this.label4.Text = "Email do responspável";
+            this.label4.Text = "Email do responspável*";
             // 
             // rdCNPJ
             // 
@@ -161,9 +178,9 @@
             this.Documento.AutoSize = true;
             this.Documento.Location = new System.Drawing.Point(19, 112);
             this.Documento.Name = "Documento";
-            this.Documento.Size = new System.Drawing.Size(62, 13);
+            this.Documento.Size = new System.Drawing.Size(66, 13);
             this.Documento.TabIndex = 6;
-            this.Documento.Text = "Documento";
+            this.Documento.Text = "Documento*";
             // 
             // txtResponsavel
             // 
@@ -200,18 +217,18 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(6, 50);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(75, 13);
+            this.label2.Size = new System.Drawing.Size(79, 13);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Nome fantasia";
+            this.label2.Text = "Nome fantasia*";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(11, 24);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(70, 13);
+            this.label1.Size = new System.Drawing.Size(74, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Razão Social";
+            this.label1.Text = "Razão Social*";
             // 
             // grpDadosBancarios
             // 
@@ -228,40 +245,65 @@
             this.grpDadosBancarios.TabStop = false;
             this.grpDadosBancarios.Text = "Dados bancários";
             // 
+            // txtConta
+            // 
+            this.txtConta.Location = new System.Drawing.Point(272, 20);
+            this.txtConta.MaxLength = 8;
+            this.txtConta.Name = "txtConta";
+            this.txtConta.Size = new System.Drawing.Size(56, 20);
+            this.txtConta.TabIndex = 5;
+            // 
+            // txtAgencia
+            // 
+            this.txtAgencia.Location = new System.Drawing.Point(159, 20);
+            this.txtAgencia.MaxLength = 8;
+            this.txtAgencia.Name = "txtAgencia";
+            this.txtAgencia.Size = new System.Drawing.Size(56, 20);
+            this.txtAgencia.TabIndex = 4;
+            // 
+            // txtBanco
+            // 
+            this.txtBanco.Location = new System.Drawing.Point(53, 20);
+            this.txtBanco.MaxLength = 3;
+            this.txtBanco.Name = "txtBanco";
+            this.txtBanco.Size = new System.Drawing.Size(38, 20);
+            this.txtBanco.TabIndex = 3;
+            this.txtBanco.TextChanged += new System.EventHandler(this.txtBanco_TextChanged);
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(231, 23);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(35, 13);
+            this.label7.Size = new System.Drawing.Size(39, 13);
             this.label7.TabIndex = 2;
-            this.label7.Text = "Conta";
+            this.label7.Text = "Conta*";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(107, 23);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(46, 13);
+            this.label6.Size = new System.Drawing.Size(50, 13);
             this.label6.TabIndex = 1;
-            this.label6.Text = "Agência";
+            this.label6.Text = "Agência*";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(11, 23);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(38, 13);
+            this.label5.Size = new System.Drawing.Size(42, 13);
             this.label5.TabIndex = 0;
-            this.label5.Text = "Banco";
+            this.label5.Text = "Banco*";
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.textBox5);
-            this.groupBox1.Controls.Add(this.textBox4);
-            this.groupBox1.Controls.Add(this.textBox3);
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.mtxtCEP);
+            this.groupBox1.Controls.Add(this.txtBairro);
+            this.groupBox1.Controls.Add(this.txtConjunto);
+            this.groupBox1.Controls.Add(this.txtNumero);
+            this.groupBox1.Controls.Add(this.txtNomeDaRua);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.label10);
@@ -274,40 +316,33 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Dados de localidade";
             // 
-            // textBox5
+            // txtBairro
             // 
-            this.textBox5.Location = new System.Drawing.Point(227, 66);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(100, 20);
-            this.textBox5.TabIndex = 14;
+            this.txtBairro.Location = new System.Drawing.Point(83, 65);
+            this.txtBairro.Name = "txtBairro";
+            this.txtBairro.Size = new System.Drawing.Size(100, 20);
+            this.txtBairro.TabIndex = 13;
             // 
-            // textBox4
+            // txtConjunto
             // 
-            this.textBox4.Location = new System.Drawing.Point(83, 65);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 20);
-            this.textBox4.TabIndex = 13;
+            this.txtConjunto.Location = new System.Drawing.Point(199, 40);
+            this.txtConjunto.Name = "txtConjunto";
+            this.txtConjunto.Size = new System.Drawing.Size(45, 20);
+            this.txtConjunto.TabIndex = 3;
             // 
-            // textBox3
+            // txtNumero
             // 
-            this.textBox3.Location = new System.Drawing.Point(199, 40);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(45, 20);
-            this.textBox3.TabIndex = 3;
+            this.txtNumero.Location = new System.Drawing.Point(84, 39);
+            this.txtNumero.Name = "txtNumero";
+            this.txtNumero.Size = new System.Drawing.Size(52, 20);
+            this.txtNumero.TabIndex = 12;
             // 
-            // textBox2
+            // txtNomeDaRua
             // 
-            this.textBox2.Location = new System.Drawing.Point(84, 39);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(52, 20);
-            this.textBox2.TabIndex = 12;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(84, 13);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(237, 20);
-            this.textBox1.TabIndex = 11;
+            this.txtNomeDaRua.Location = new System.Drawing.Point(84, 13);
+            this.txtNomeDaRua.Name = "txtNomeDaRua";
+            this.txtNomeDaRua.Size = new System.Drawing.Size(237, 20);
+            this.txtNomeDaRua.TabIndex = 11;
             // 
             // label12
             // 
@@ -400,47 +435,13 @@
             this.btnExcluir.Text = "Excluir";
             this.btnExcluir.UseVisualStyleBackColor = true;
             // 
-            // label13
+            // mtxtCEP
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(16, 177);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(103, 13);
-            this.label13.TabIndex = 14;
-            this.label13.Text = "Telefone de contato";
-            // 
-            // mtxtTelefoneDeContato
-            // 
-            this.mtxtTelefoneDeContato.Location = new System.Drawing.Point(125, 175);
-            this.mtxtTelefoneDeContato.Mask = "(99) 9999-9999";
-            this.mtxtTelefoneDeContato.Name = "mtxtTelefoneDeContato";
-            this.mtxtTelefoneDeContato.Size = new System.Drawing.Size(100, 20);
-            this.mtxtTelefoneDeContato.TabIndex = 15;
-            // 
-            // txtConta
-            // 
-            this.txtConta.Location = new System.Drawing.Point(272, 20);
-            this.txtConta.MaxLength = 8;
-            this.txtConta.Name = "txtConta";
-            this.txtConta.Size = new System.Drawing.Size(56, 20);
-            this.txtConta.TabIndex = 5;
-            // 
-            // txtAgencia
-            // 
-            this.txtAgencia.Location = new System.Drawing.Point(159, 20);
-            this.txtAgencia.MaxLength = 8;
-            this.txtAgencia.Name = "txtAgencia";
-            this.txtAgencia.Size = new System.Drawing.Size(56, 20);
-            this.txtAgencia.TabIndex = 4;
-            // 
-            // txtBanco
-            // 
-            this.txtBanco.Location = new System.Drawing.Point(53, 20);
-            this.txtBanco.MaxLength = 3;
-            this.txtBanco.Name = "txtBanco";
-            this.txtBanco.Size = new System.Drawing.Size(38, 20);
-            this.txtBanco.TabIndex = 3;
-            this.txtBanco.TextChanged += new System.EventHandler(this.txtBanco_TextChanged);
+            this.mtxtCEP.Location = new System.Drawing.Point(229, 65);
+            this.mtxtCEP.Mask = "99999-999";
+            this.mtxtCEP.Name = "mtxtCEP";
+            this.mtxtCEP.Size = new System.Drawing.Size(59, 20);
+            this.mtxtCEP.TabIndex = 14;
             // 
             // Fornecedores
             // 
@@ -487,11 +488,10 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtBairro;
+        private System.Windows.Forms.TextBox txtConjunto;
+        private System.Windows.Forms.TextBox txtNumero;
+        private System.Windows.Forms.TextBox txtNomeDaRua;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
@@ -509,5 +509,6 @@
         private System.Windows.Forms.TextBox txtConta;
         private System.Windows.Forms.TextBox txtAgencia;
         private System.Windows.Forms.TextBox txtBanco;
+        private System.Windows.Forms.MaskedTextBox mtxtCEP;
     }
 }
