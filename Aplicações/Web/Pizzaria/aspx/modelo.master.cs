@@ -24,6 +24,7 @@ public partial class aspx_modelo : System.Web.UI.MasterPage
             txtLogin_senha.Visible = false;
             btnLogin.Visible = false;
             btnLogout.Visible = true;
+            
         }
     }
     protected void btnLogin_Click(object sender, EventArgs e)
@@ -60,6 +61,8 @@ public partial class aspx_modelo : System.Web.UI.MasterPage
                 txtEmail.Visible = false;
                 Label2.Text = "";
                 txtLogin_senha.Visible = false;
+                HyperLink1.Visible = false;
+
             }
             else 
             {

@@ -26,6 +26,7 @@ public partial class aspx_cardapio : System.Web.UI.Page
         dAdapter.Fill(ds);
         DataGrid1.DataSource = ds;
         DataGrid1.DataBind();
+        c.fechaConexao();
     }
     
 }

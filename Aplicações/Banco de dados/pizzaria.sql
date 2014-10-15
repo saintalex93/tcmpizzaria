@@ -13,21 +13,21 @@ go
 
 create table Cliente(
 Cod_Cliente INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
-Nome_Cliente VARCHAR(40),
-CPF_Cliente VARCHAR(15),
-Endereco_Cliente VARCHAR(40),
-Numero_Residencia int,
+Nome_Cliente VARCHAR(40) NOT NULL,
+CPF_Cliente VARCHAR(15)  NOT NULL,
+Endereco_Cliente VARCHAR(40) NOT NULL,
+Numero_Residencia int NOT NULL,
 Numero_Apartamento int,
-Bairro_Cliente Varchar(30),
-CEP_Cliente VARCHAR(9),
-Estado_Cliente VARCHAR(2),
-Cidade_Cliente VARCHAR(20),
+Bairro_Cliente Varchar(30) NOT NULL,
+CEP_Cliente VARCHAR(9) NOT NULL,
+Estado_Cliente VARCHAR(2) NOT NULL,
+Cidade_Cliente VARCHAR(20) NOT NULL,
 Complemento_Cliente VARCHAR(40),
-Telefone_Cliente VARCHAR(14),
+Telefone_Cliente VARCHAR(14) NOT NULL,
 Celular_Cliente VarChar (15),
-Email_Cliente VARCHAR(40),
-Senha_Cliente Varchar (15),
-DataNascimento Varchar(10)
+Email_Cliente VARCHAR(40) NOT NULL,
+Senha_Cliente Varchar (15) NOT NULL,
+DataNascimento Varchar(10) NOT NULL
 )
 go
 
@@ -180,17 +180,35 @@ Cod_Pedido INT FOREIGN KEY REFERENCES Pedido(Cod_Pedido),
 )
 go
 
---delete from Produto
+insert into Cliente
+(
+Nome_Cliente,
+CPF_Cliente,
+Endereco_Cliente,
+Numero_Residencia,
+Numero_Apartamento,
+Bairro_Cliente,
+CEP_Cliente,
+Estado_Cliente,
+Cidade_Cliente,
+Complemento_Cliente,
+Telefone_Cliente,
+Celular_Cliente,
+Email_Cliente,
+Senha_Cliente,
+DataNascimento)
+values
+
+('João da Cunha','123.456.789-14','Rua das Caviúnas',49,32,'Alphaville','78061-302','SP','Barueri','Edifício Pelicano','(11)4972-1976',null,'joao.cunha@gmail.com','joaocunha123','12/05/1981'),
+('Maria Joaquina','814.198.872-68','Rua Canjeranas',574,null,'Jabaquara','04349-020','SP','São Paulo',null,'(11)3697-4567','(11)9-7419-9715','carrossel@sbt.com.br','cirilo123','12/05/1994'),
+('Sandra Costa da Silva','496.527.352-98','Rua dos Bobos',9,727,'Jardins','18949-850','SP','São Paulo',null,'(11)5789-1240','(11)9-8752-6714','sandra@gmail.com','costa123','12/05/1977'),
+('Gabriel Andrade Yamotsu','155.157.758-61','Rua das Laranjeiras',1785,null,'Capão Redondo','54189-206','SP','São Paulo','Em frente ao Habibs','(11)4972-1546',null,'andrade@yahoo.com','andrade123','12/05/1985')
+
+go
 
 insert into Produto(Nome_Produto,Valor_Venda,Sobe_Site)
 values
-('Pizza Baiana',20.00,1),('Pizza Mussarela',18.40,1),('Pizza Bacon',22.20,1),
+('Pizza Baiana',20.00,0),('Pizza Mussarela',18.40,1),('Pizza Bacon',22.20,1),
 ('Pizza Americana',24.00,1),('Pizza Bauru',23.50,1),('Pizza Calabresa',18.00,1),
 ('Pizza Catupiry',23.00,1),('Pizza Camarão',28.70,1),('Pizza Alemã',25.20,1)
-go
-insert into Cliente(Nome_Cliente,Email_Cliente,Senha_Cliente)
-values
-('Raphael Vieira','rapha_teste@gmail.com','minhasenha123'),
-('Arthur Lopes','tuca_teste@hotmail.com','suasenha456'),
-('Alex Santos','alex_teste@yahoo.com','umasenha789')
 go
