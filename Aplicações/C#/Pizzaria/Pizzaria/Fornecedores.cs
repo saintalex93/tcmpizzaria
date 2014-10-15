@@ -15,7 +15,9 @@ namespace Pizzaria
     public partial class Fornecedores : Form
     {
         //String com informações de acesso pro BD
-        string conexao = "Data Source=Tuca\\SQLEXPRESS ;Initial Catalog=Pizzaria; Persist Security Info = True; User ID=sa; Password=123456";
+        string conexao = "Data Source=Tuca\\SQLEXPRESS ;Initial Catalog=Pizzaria; Persist Security Info = True; User ID=sa; Password=peganomeupau";
+
+        SqlCommand sqlComm;
 
         //Usada para definir se o botão "Salvar" deverá gravar um registro ou atualizá-lo
         bool gravar;
@@ -221,15 +223,29 @@ namespace Pizzaria
                             return false;
                         }*/
 
-            //Validação Responsável
+            //Validação Telefone
             if (
-                txtResponsavel.Text.Length != 0
-                &&
-                txtResponsavel.Text.Length < 3
+                mtxtTelefoneDeContato.Text
+                .Replace("(", "")
+                .Replace(")", "")
+                .Replace(" ", "")
+                .Replace("-", "").Length == 0
                 )
             {
-                mensagemDeErro("Infelizmente, o valor preenchido no campo \"Resposável\" não é válido. Certifique-se de que o número está correto.");
-                txtResponsavel.Focus();
+                mensagemDeErro("Por favor, é preciso que o campo \"Telefone de contato\" seja preenchido para que o processo de cadastro possa seguir até o final.");
+                mtxtTelefoneDeContato.Focus();
+                return false;
+            }
+            else if (
+                mtxtTelefoneDeContato.Text
+                .Replace("(", "")
+                .Replace(")", "")
+                .Replace(" ", "")
+                .Replace("-", "").Length < 10
+                )
+            {
+                mensagemDeErro("Infelizmente, o valor preenchido no campo \"Telefone\" não é válido. Certifique-se de que o número está correto.");
+                mtxtTelefoneDeContato.Focus();
                 return false;
             }
 
@@ -266,7 +282,7 @@ namespace Pizzaria
                 mtxtCNPJ.Text
                 .Replace(" ", "")
                 .Replace(".", "")
-                .Replace(".", "")
+                .Replace(",", "")
                 .Replace("_", "")
                 .Replace("/", "")
                 .Replace("-", "").Length < 14
@@ -276,6 +292,7 @@ namespace Pizzaria
                 .Replace(".", "")
                 .Replace(",", "")
                 .Replace("_", "")
+                .Replace("/", "")
                 .Replace("-", "").Length == 0
                 )
             {
@@ -304,7 +321,46 @@ namespace Pizzaria
             {
                 mensagemDeErro("Infelizmente, o valor preenchido no campo \"CPF\" não é válido. Por favor, utilize um valor de CPF válido.");
 
-                mtxtCPF.Focus();
+                if (mtxtCPF.Visible == true)
+                    mtxtCPF.Focus();
+                else if (mtxtCNPJ.Visible == true)
+                    mtxtCNPJ.Focus();
+
+                return false;
+            }
+
+            string documento = "";
+
+            if (mtxtCPF.Visible == true)
+                documento = mtxtCPF.Text
+                .Replace(" ", "")
+                .Replace(".", "")
+                .Replace(",", "")
+                .Replace("_", "")
+                .Replace("-", "");
+            else if (mtxtCNPJ.Visible == true)
+                documento = mtxtCNPJ.Text
+                .Replace(" ", "")
+                .Replace("/", "")
+                .Replace(".", "")
+                .Replace(",", "")
+                .Replace("_", "")
+                .Replace("-", "");
+
+            if (!ValidaCPF(documento)) 
+            {
+                mensagemDeErro("Infelizmente, um documento com esse número já conta no banco. Certifique-se do número e tente novamente.");
+
+
+                if (mtxtCPF.Visible == true)
+                    documento = mtxtCPF.Text
+                    .Replace(" ", "")
+                    .Replace(".", "")
+                    .Replace(",", "")
+                    .Replace("_", "")
+                    .Replace("-", "");
+                else if (mtxtCNPJ.Visible == true)
+                    mtxtCPF.Focus();
 
                 return false;
             }
@@ -362,7 +418,19 @@ namespace Pizzaria
                     return false;
                 }*/
 
-            //Validação email
+            //Validação Nome do responsável
+            if (
+                txtResponsavel.Text.Length > 0
+                &&
+                txtResponsavel.Text.Length < 3
+                )
+            {
+                mensagemDeErro("Infelizmente, o nome dado no campo \"Resposável\" não é válido. Certifique-se de que o nome está correto.");
+                txtResponsavel.Focus();
+                return false;
+            }
+
+            //Validação email do Responsável
             string email = txtEmailResponsavel.Text;
             bool arroba = false;
             bool dominio = false;
@@ -438,29 +506,35 @@ namespace Pizzaria
                 return false;
             }
 
-            //Validação Telefone de contato
+            //Validação de celular
             if (
-                mtxtTelefoneDeContato.Text
+                mtxtCelular.Text
                 .Replace("(", "")
                 .Replace(")", "")
                 .Replace(" ", "")
                 .Replace("-", "").Length == 0
                 )
             {
-                mensagemDeErro("Por favor, é preciso que o campo \"Telefone de contato\" seja preenchido para que o processo de cadastro possa seguir até o final.");
-                mtxtTelefoneDeContato.Focus();
+                mensagemDeErro("Por favor, é preciso que o campo \"Celular\" seja preenchido para que o processo de cadastro possa seguir até o final.");
+                mtxtCelular.Focus();
                 return false;
             }
             else if (
-                mtxtTelefoneDeContato.Text
+                mtxtCelular.Text
                 .Replace("(", "")
                 .Replace(")", "")
                 .Replace(" ", "")
-                .Replace("-", "").Length < 10
+                .Replace("-", "").Length > 0
+                &&
+                mtxtCelular.Text
+                .Replace("(", "")
+                .Replace(")", "")
+                .Replace(" ", "")
+                .Replace("-", "").Length < 11
                 )
             {
-                mensagemDeErro("Infelizmente, o valor preenchido no campo \"Telefone de contato\" não é válido. Certifique-se de que o número está correto.");
-                mtxtTelefoneDeContato.Focus();
+                mensagemDeErro("Infelizmente, o valor preenchido no campo \"Celular\" não é válido. Certifique-se de que o número está correto.");
+                mtxtCelular.Focus();
                 return false;
             }
 
@@ -535,6 +609,7 @@ namespace Pizzaria
                 return false;
             }
 
+            //Dados de localidade
             //Validação Nome da rua
             if (
                 txtNomeDaRua.TextLength > 0
@@ -546,6 +621,26 @@ namespace Pizzaria
                 txtNomeDaRua.Focus();
                 return false;
             }
+
+            //Validação Número
+            if(txtNumero.Text.Length != 0)
+                for (int i = 0; i < txtNumero.Text.Length; i++)
+                    if (!char.IsNumber(txtNumero.Text[i]))
+                    {
+                        mensagemDeErro("É permitido apenas o uso de números no campo \"Número\" na sessão de \"Dados de localidade\". Por favor, certifique-se de que o valor preenchido está correto.");
+                        txtNumero.Focus();
+                        return false;
+                    }
+
+            //Validação Conjunto
+            if (txtConjunto.Text.Length != 0)
+                for (int i = 0; i < txtConjunto.Text.Length; i++)
+                    if (!char.IsNumber(txtConjunto.Text[i]))
+                    {
+                        mensagemDeErro("É permitido apenas o uso de números no campo \"Conjunto\" na sessão de \"Dados de localidade\". Por favor, certifique-se de que o valor preenchido está correto.");
+                        txtConjunto.Focus();
+                        return false;
+                    }
 
             //Validação Bairro
             if (txtBairro.TextLength > 0
@@ -572,9 +667,19 @@ namespace Pizzaria
                 return false;
             }
 
+            //Validação Cidade
+            if (txtCidade.TextLength > 0
+                &&
+                txtCidade.TextLength < 3
+                )
+            {
+                mensagemDeErro("Infelizmente, o conteúdo preenchido no campo \"Cidade\" não é válido. Certifique-se de que o conteúdo está correto.");
+                txtBairro.Focus();
+                return false;
+            }
+
             return true;
         }
-
 
         public void mensagemDeErro(string erro)
         {
@@ -641,7 +746,7 @@ namespace Pizzaria
             }
             conn.Close();
 
-            preenchegrid();
+            preencherGrid();
 
         }
 
@@ -674,14 +779,12 @@ namespace Pizzaria
             conn.Close();
 
             return true;
-
-
         }
 
-        public void preenchegrid()
+        public void preencherGrid()
         {
 
-            string strIncluir = "select * from Funcionario";
+            string strIncluir = "select * from Fornecedor";
             SqlConnection conn = new SqlConnection(conexao);
             conn.Open();
 
@@ -702,6 +805,198 @@ namespace Pizzaria
             }
 
             conn.Close();
+        }
+
+        public string preencherComandoInsert(TextBox campo) 
+        {
+            string comando = "";
+
+            comando += ", '"+campo.Text+"'";
+
+            return comando;
+
+        }
+
+        public string preencherComandoInsert(MaskedTextBox campo)
+        {
+            string comando = "";
+
+            comando += ", '" + campo.Text + "'";
+
+            return comando;
+
+        }
+
+        public string preencherComandoInsert(ComboBox campo)
+        {
+            string comando = "";
+
+            comando += ", '" + campo.Text + "'";
+
+            return comando;
+
+        } 
+
+        public void inserirFornecedor()
+        {
+            //Insere dados
+            conn = new SqlConnection(conexao);
+/*            strIncluir = 
+                "insert into Produto (Nome_Produto, Valor_venda,validade,qtd_Estoque,cod_categoria) values ('" + nome + "','" + valoruntd + "','" + datavalidade + "','" + qtd + "','" + dt.Rows[0][0].ToString() + "')";*/
+
+            string documento = "";
+
+            if (mtxtCPF.Visible == true)
+                documento =
+                    mtxtCNPJ.Text
+                .Replace(" ", "")
+                .Replace(".", "")
+                .Replace(".", "")
+                .Replace("_", "")
+                .Replace("/", "")
+                .Replace("-", "");
+            else if (mtxtCNPJ.Visible == true)
+                documento =
+                    mtxtCNPJ.Text
+                .Replace(" ", "")
+                .Replace(".", "")
+                .Replace(".", "")
+                .Replace("_", "")
+                .Replace("/", "")
+                .Replace("-", "");
+
+            string CEP = 
+                mtxtCEP.Text
+                .Replace(" ", "")
+                .Replace(".", "")
+                .Replace(".", "")
+                .Replace("_", "")
+                .Replace("/", "")
+                .Replace("-", "");
+
+
+            strIncluir =
+                "insert into Produto " +
+                /*
+                "CNPJ_CPF,"+
+                "Razao_Social,"+
+                "Nome_Fantasia,"+
+                "Nome_Banco,"+
+                "Agencia,"+
+                "Conta_Corrente,"+
+                "Responsavel,"+
+                "Celular_Responsavel,"+
+                "Email_Responsavel,"+
+                "Telefone_Comercial,"+
+                "Endereco_Fornecedor,"+
+                "Numero_Residencia,"+
+                "CEP_Fornecedor,"+
+                "Estado_Fornecedor,"+
+                "Cidade_Fornecedor,"+
+                "Bairro_Fornecedor,"+
+                "Complemento)"+
+                 */
+
+                "values (" +
+                documento + ", ";/*+
+                "'" + txtRazaoSocial.Text + "', " +
+                "'" + txtNomeFantasia.Text + ", " +
+                "'" + txtBanco.Text + ", " +
+                "'" + txtAgencia.Text + ", " +
+                "'" + txtConta.Text + ", " +
+                "'" + txtResponsavel.Text + ", " +
+                "'" + mtxtTelefoneDeContato.Text + ", " +
+                "'" + txtEmailResponsavel.Text + ", " +
+                "'" + txtNomeDaRua.Text + ", " +
+                "'" + txtNumero.Text + ", " +
+                "'" + CEP + ", " +
+                "'" + cbxUF.Text + ", " +
+                "'" + txtCidade.Text + ", " +
+                "'" + txtBairro.Text + ", " +
+                "'" + txtComplemento.Text + ", " +
+                ")";*/
+            strIncluir += preencherComandoInsert(txtRazaoSocial);
+            strIncluir += preencherComandoInsert(txtNomeFantasia);
+            strIncluir += preencherComandoInsert(txtBanco);
+            strIncluir += preencherComandoInsert(txtAgencia);
+            strIncluir += preencherComandoInsert(txtConta);
+            strIncluir += preencherComandoInsert(txtResponsavel);
+            strIncluir += preencherComandoInsert(mtxtTelefoneDeContato);
+            strIncluir += preencherComandoInsert(txtEmailResponsavel);
+            strIncluir += preencherComandoInsert(txtNomeDaRua);
+            strIncluir += preencherComandoInsert(txtNumero);
+            strIncluir += ", '"+CEP+"'";
+            strIncluir += preencherComandoInsert(cbxUF);
+            strIncluir += preencherComandoInsert(txtCidade);
+            strIncluir += preencherComandoInsert(txtBairro);
+            strIncluir += preencherComandoInsert(txtComplemento);
+
+            strIncluir += ")";
+                            
+                            /*
+            CNPJ_CPF,
+            Razao_Social,
+            Nome_Fantasia,
+            Nome_Banco,
+            Agencia,
+            Conta_Corrente,
+            Responsavel,
+            Celular_Responsavel,
+            Email_Responsavel,
+            Telefone_Comercial,
+            Endereco_Fornecedor,
+            Numero_Residencia,
+            CEP_Fornecedor,
+            Estado_Fornecedor,
+            Cidade_Fornecedor,
+            Bairro_Fornecedor,
+            Complemento
+            */
+
+            conn.Open();
+            sqlComm = new SqlCommand(strIncluir, conn);
+            sqlComm.ExecuteNonQuery();
+        }
+
+        public DataTable Buscar(string strIncluir)
+        {
+
+
+            SqlConnection conn = new SqlConnection(conexao);
+
+            conn.Open();
+            DataTable dt = new DataTable();
+
+            try
+            {
+
+
+                SqlCommand sqlComm = new SqlCommand(strIncluir, conn);
+
+                sqlComm.ExecuteNonQuery();
+                SqlDataAdapter da = new SqlDataAdapter();
+                da.SelectCommand = sqlComm;
+
+                da.Fill(dt);
+                if (dt.Rows.Count > 0)
+                {
+                    dtgvFornecedores.Columns.Clear();
+                    dtgvFornecedores.DataSource = dt;
+                    //  MessageBox.Show("CLiente com este CPF ja Cadastrado");
+                }
+
+                return dt;
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Falha ao conectar ao Bano de Dados, Contate seu suporte");
+
+                return dt;
+            }
+            conn.Close();
+
+
         }
 
         private void btnVoltar_Click(object sender, EventArgs e)
@@ -742,7 +1037,12 @@ namespace Pizzaria
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            validaCampos();
+            if (!validaCampos())
+                return;
+
+            inserirFornecedor();
+
+            preencherGrid();
         }
 
         private void txtBanco_TextChanged(object sender, EventArgs e)
@@ -753,6 +1053,13 @@ namespace Pizzaria
         private void butto1_nClick(object sender, EventArgs e)
         {
 
+        }
+
+        private void Fornecedores_Load(object sender, EventArgs e)
+        {
+            rdCNPJ.Checked = true;
+
+            preencherGrid();
         }
     }
 }
