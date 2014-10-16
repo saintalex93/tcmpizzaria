@@ -66,7 +66,7 @@ Nome_Insumo VARCHAR(20),
 ValorDeCompra DECIMAL,
 QtdeRecomendavel INT,
 QtdeEmEstoque INT,
-Validade DATE,
+Validade VARCHAR(10),
 )
 go
 
@@ -93,7 +93,7 @@ Cod_Produto INT IDENTITY(1,1) PRIMARY KEY,
 Nome_Produto VARCHAR(40),
 Valor_Venda DECIMAL(6,2),
 Valor_Compra DECIMAL(6,2),
-Validade DATE,
+Validade VARCHAR(10),
 Qtd_Recomendavel INT,
 Qtd_Estoque INT,
 Sobe_Site INT,
@@ -104,7 +104,7 @@ go
 create table Pedido
 (
 Cod_Pedido INT IDENTITY(1,1) PRIMARY KEY,
-Data DATE,
+Data VARCHAR(10),
 Hora time,
 Cod_Funcionario INT FOREIGN KEY REFERENCES Funcionario(Cod_Funcionario),
 Cod_Cliente INT FOREIGN KEY REFERENCES Cliente(Cod_Cliente),
@@ -158,7 +158,7 @@ Nome_Promocao VARCHAR(40),
 Descricao VARCHAR(70),
 Preco_Original DECIMAL(6,2),
 Preco_Promocao DECIMAL(6,2),
-Vigencia DATE,
+Vigencia VARCHAR(10),
 Cod_Produto INT FOREIGN KEY REFERENCES Produto(Cod_Produto)
 )
 go
@@ -168,7 +168,7 @@ create table PedidoFornecedor
 (
 Cod_PedidoF INT IDENTITY(1,1) PRIMARY KEY,
 Valor_Venda DECIMAL(10),
-Data_Venda DATE,
+Data_Venda VARCHAR(10),
 Cod_Fornecedor INT FOREIGN KEY REFERENCES Fornecedor(Cod_Fornecedor),
 Cod_Funcionario INT FOREIGN KEY REFERENCES Funcionario(Cod_Funcionario)
 )
@@ -184,12 +184,60 @@ go
 
 --delete from Produto
 
+insert into Cliente
+(
+Nome_Cliente,
+CPF_Cliente,
+Endereco_Cliente,
+Numero_Residencia,
+Numero_Apartamento,
+Bairro_Cliente,
+CEP_Cliente,
+Estado_Cliente,
+Cidade_Cliente,
+Complemento_Cliente,
+Telefone_Cliente,
+Celular_Cliente,
+Email_Cliente,
+Senha_Cliente,
+DataNascimento
+)
+values
+('João da Cunha','123.456.789-14','Rua das Caviúnas',49,32,'Alphaville','78061-302','SP','Barueri','Edifício Pelicano','(11)4972-1976',null,'joao.cunha@gmail.com','joaocunha123','27/07/1981'),
+('Maria Joaquina','814.198.872-68','Rua Canjeranas',574,null,'Jabaquara','04349-020','SP','São Paulo',null,'(11)3697-4567','(11)9-7419-9715','carrossel@sbt.com.br','cirilo123','04/10/1994'),
+('Sandra Costa da Silva','496.527.352-98','Rua dos Bobos',9,727,'Jardins','18949-850','SP','São Paulo',null,'(11)5789-1240','(11)9-8752-6714','sandra@gmail.com','costa123','16/12/1977'),
+('Gabriel Andrade Yamotsu','155.157.758-61','Rua das Laranjeiras',1785,null,'Capão Redondo','54189-206','SP','São Paulo','Em frente ao Habibs','(11)4972-1546',null,'andrade@yahoo.com','andrade123','12/05/1985')
+go
+
+insert into Permissao(Cargo)
+values
+('Administrador'),('Gerente'),('Atendente')
+go
+
+insert into Funcionario(
+Nome_Func,
+CPF_Funcionario,
+Endereco_Funcionario,
+Complemento_Funcionario,
+Numero_Residencia,
+CEP_Funcionario,
+Estado_Funcionario,
+Cidade_Funcionario,
+Bairro_Funcionario,
+Email_Funcionario,
+Telefone_Funcionario,
+Celular_Funcionario
+)
+values
+('Maria do Carmo','128.589.519-87','Rua dos Funcionários',null,159,'12598-11','SP','São Paulo','Santa Cecília','maria_teste@hotmail.com','(11)4529-4196','(11)9-7988-4895')
+
 insert into Produto(Nome_Produto,Valor_Venda,Sobe_Site)
 values
 ('Pizza Baiana',20.00,1),('Pizza Mussarela',18.40,1),('Pizza Bacon',22.20,1),
 ('Pizza Americana',24.00,1),('Pizza Bauru',23.50,1),('Pizza Calabresa',18.00,1),
 ('Pizza Catupiry',23.00,1),('Pizza Camarão',28.70,1),('Pizza Alemã',25.20,1)
 go
+
 insert into Cliente(Nome_Cliente,Email_Cliente,Senha_Cliente)
 values
 ('Raphael Vieira','rapha_teste@gmail.com','minhasenha123'),
@@ -200,3 +248,30 @@ go
 insert into Fornecedor(CNPJ_CPF, Razao_Social)
 values(22222222222, 'Caixa de Queijo Ltda')
 go
+
+
+
+/*
+
+insert into Produto(Nome_Produto,Qtd_Estoque,Valor_Venda,Sobe_Site)
+values
+('Pizza Baiana',20.00,0),('Pizza Mussarela',18.40,1),('Pizza Bacon',22.20,1),
+=======
+('Pizza Baiana',20.00,1),('Pizza Mussarela',18.40,1),('Pizza Bacon',22.20,1),
+>>>>>>> .r89
+('Pizza Americana',24.00,1),('Pizza Bauru',23.50,1),('Pizza Calabresa',18.00,1),
+('Pizza Catupiry',23.00,1),('Pizza Camarão',28.70,1),('Pizza Alemã',25.20,1)
+go
+<<<<<<< .mine
+
+=======
+insert into Cliente(Nome_Cliente,Email_Cliente,Senha_Cliente)
+values
+('Raphael Vieira','rapha_teste@gmail.com','minhasenha123'),
+('Arthur Lopes','tuca_teste@hotmail.com','suasenha456'),
+('Alex Santos','alex_teste@yahoo.com','umasenha789')
+go
+
+insert into Fornecedor(CNPJ_CPF, Razao_Social)
+values(22222222222, 'Caixa de Queijo Ltda')
+go>>>>>>> .r89
