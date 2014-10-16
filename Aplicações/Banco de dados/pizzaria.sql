@@ -209,12 +209,16 @@ values
 ('Gabriel Andrade Yamotsu','155.157.758-61','Rua das Laranjeiras',1785,null,'Capão Redondo','54189-206','SP','São Paulo','Em frente ao Habibs','(11)4972-1546',null,'andrade@yahoo.com','andrade123','12/05/1985')
 go
 
-insert into Permissao(Cargo)
+insert into Permissao
+(
+Cargo
+)
 values
 ('Administrador'),('Gerente'),('Atendente')
 go
 
-insert into Funcionario(
+insert into Funcionario
+(
 Nome_Func,
 CPF_Funcionario,
 Endereco_Funcionario,
@@ -231,47 +235,22 @@ Celular_Funcionario
 values
 ('Maria do Carmo','128.589.519-87','Rua dos Funcionários',null,159,'12598-11','SP','São Paulo','Santa Cecília','maria_teste@hotmail.com','(11)4529-4196','(11)9-7988-4895')
 
-insert into Produto(Nome_Produto,Valor_Venda,Sobe_Site)
+insert into Produto
+(
+Nome_Produto,
+Valor_Venda,
+Sobe_Site
+)
 values
 ('Pizza Baiana',20.00,1),('Pizza Mussarela',18.40,1),('Pizza Bacon',22.20,1),
 ('Pizza Americana',24.00,1),('Pizza Bauru',23.50,1),('Pizza Calabresa',18.00,1),
 ('Pizza Catupiry',23.00,1),('Pizza Camarão',28.70,1),('Pizza Alemã',25.20,1)
 go
 
-insert into Cliente(Nome_Cliente,Email_Cliente,Senha_Cliente)
-values
-('Raphael Vieira','rapha_teste@gmail.com','minhasenha123'),
-('Arthur Lopes','tuca_teste@hotmail.com','suasenha456'),
-('Alex Santos','alex_teste@yahoo.com','umasenha789')
-go
-
-insert into Fornecedor(CNPJ_CPF, Razao_Social)
+insert into Fornecedor
+(
+CNPJ_CPF,
+Razao_Social
+)
 values(22222222222, 'Caixa de Queijo Ltda')
 go
-
-
-
-/*
-
-insert into Produto(Nome_Produto,Qtd_Estoque,Valor_Venda,Sobe_Site)
-values
-('Pizza Baiana',20.00,0),('Pizza Mussarela',18.40,1),('Pizza Bacon',22.20,1),
-=======
-('Pizza Baiana',20.00,1),('Pizza Mussarela',18.40,1),('Pizza Bacon',22.20,1),
->>>>>>> .r89
-('Pizza Americana',24.00,1),('Pizza Bauru',23.50,1),('Pizza Calabresa',18.00,1),
-('Pizza Catupiry',23.00,1),('Pizza Camarão',28.70,1),('Pizza Alemã',25.20,1)
-go
-<<<<<<< .mine
-
-=======
-insert into Cliente(Nome_Cliente,Email_Cliente,Senha_Cliente)
-values
-('Raphael Vieira','rapha_teste@gmail.com','minhasenha123'),
-('Arthur Lopes','tuca_teste@hotmail.com','suasenha456'),
-('Alex Santos','alex_teste@yahoo.com','umasenha789')
-go
-
-insert into Fornecedor(CNPJ_CPF, Razao_Social)
-values(22222222222, 'Caixa de Queijo Ltda')
-go>>>>>>> .r89
