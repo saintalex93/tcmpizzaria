@@ -54,7 +54,9 @@ Bairro_Funcionario VarChar (30),
 Celular_Funcionario VarChar (15),
 Telefone_Funcionario VarChar (14),
 Cod_Permissao INT FOREIGN KEY REFERENCES Permissao(Cod_Permissao),
+data_Nasc datetime,
 )
+
 go
 
 
@@ -253,4 +255,10 @@ CNPJ_CPF,
 Razao_Social
 )
 values(22222222222, 'Caixa de Queijo Ltda')
+go
+insert into permissao (cargo) 
+values 
+('Adiministrador'),
+('Gerente'),  
+('Atendente')
 go
