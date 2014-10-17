@@ -24,7 +24,7 @@ public partial class aspx_cadastro : System.Web.UI.Page
         txtCel.Attributes.Add("placeholder", "Digite apenas números");
         txtCep.Attributes.Add("placeholder", "Digite apenas números");
         txtCpf.Attributes.Add("placeholder", "Digite apenas números");
-        txtDtNasc.Attributes.Add("placeholder", "30121990");
+        txtDtNasc.Attributes.Add("placeholder", "Digite apenas números");
         txtEmail.Attributes.Add("placeholder", "exemplo@exemplo.com.br");
 
         //Adicionando atributo onfocus e chamando a função retiraMascara() referente a cada campo
