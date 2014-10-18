@@ -24,12 +24,6 @@
 <ItemStyle CssClass="cd"></ItemStyle>
             </asp:BoundColumn>
 
-            <asp:BoundColumn DataField="Cod_Promocao" HeaderText="Preço Promocional" ReadOnly="True" ItemStyle-CssClass="cd" HeaderStyle-CssClass="colunaheader">
-<HeaderStyle CssClass="colunaheader"></HeaderStyle>
-
-<ItemStyle CssClass="cd"></ItemStyle>
-            </asp:BoundColumn>
-
         </Columns>
     </asp:DataGrid>
 

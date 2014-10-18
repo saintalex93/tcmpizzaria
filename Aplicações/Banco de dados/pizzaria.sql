@@ -54,12 +54,9 @@ Bairro_Funcionario VarChar (30),
 Celular_Funcionario VarChar (15),
 Telefone_Funcionario VarChar (14),
 Cod_Permissao INT FOREIGN KEY REFERENCES Permissao(Cod_Permissao),
-data_Nasc datetime,
+data_Nasc VARCHAR(10),
 )
-
 go
-
-
 
 create table Insumo
 (
@@ -94,7 +91,6 @@ create table Produto
 Cod_Produto INT IDENTITY(1,1) PRIMARY KEY,
 Nome_Produto VARCHAR(40),
 Valor_Venda DECIMAL(6,2),
-Valor_Compra DECIMAL(6,2),
 Validade VARCHAR(10),
 Qtd_Recomendavel INT,
 Qtd_Estoque INT,
@@ -157,10 +153,11 @@ create table Promocao
 (
 Cod_Promocao INT IDENTITY(1,1) PRIMARY KEY,
 Nome_Promocao VARCHAR(40),
-Descricao VARCHAR(70),
+Descricao VARCHAR(150),
 Preco_Original DECIMAL(6,2),
 Preco_Promocao DECIMAL(6,2),
 Vigencia VARCHAR(10),
+sobe_promocao INT,
 Cod_Produto INT FOREIGN KEY REFERENCES Produto(Cod_Produto)
 )
 go
@@ -256,9 +253,20 @@ Razao_Social
 )
 values(22222222222, 'Caixa de Queijo Ltda')
 go
+
 insert into permissao (cargo) 
 values 
 ('Adiministrador'),
 ('Gerente'),  
 ('Atendente')
+go
+
+insert into Promocao
+(
+Nome_Promocao,
+Descricao,
+sobe_promocao
+)
+values
+('Final de semana','Nos finais de semana deste mês(Novembro), as pizzas de Mussarela,Calabresa e Baiana terão seu preço reduzido a R$16,00.<br /> Aproveite !!',1)
 go

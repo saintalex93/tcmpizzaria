@@ -23,8 +23,8 @@ public partial class aspx_promocoes : System.Web.UI.Page
 
         dAdapter.SelectCommand = c.command;
         dAdapter.Fill(dt);
-        DataGrid1.DataSource = dt;
-        DataGrid1.DataBind();
+        TabelaPromocao.DataSource = dt;
+        TabelaPromocao.DataBind();
         c.fechaConexao();
     }
 

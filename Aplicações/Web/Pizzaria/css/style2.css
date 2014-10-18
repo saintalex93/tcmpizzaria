@@ -50,6 +50,7 @@ color: #fff;
 .colunaheader 
 {
 color: #128700;
+text-align: center;
 }
 
 #conteudo
@@ -101,7 +102,7 @@ float:initial;
 
 .erros 
 {
-color: red;
+color: #c40000;
 }
 .spans 
 {
@@ -128,7 +129,7 @@ border: 1px solid white;
 }
 fieldset#formulario1 span
 {
-margin-left: 7px;
+margin-left: 2px;
 }
 fieldset#formulario1 input,select
 {
@@ -145,13 +146,12 @@ font-weight : bold;
 margin: 15px auto;
 padding: 10px 0px 10px 10px; 
 height: auto;
-width: 460px;
+width: 430px;
 border: 1px solid white;
 }
 .grupoformulario2 span
 {
-color: #fff;
-margin-left: 7px;
+margin-left: 2px;
 }
 .grupoformulario2 input,select
 {
@@ -286,6 +286,21 @@ table#ContentPlaceHolder1_DataGrid1 caption
 font-size: 50px;
 margin-bottom: 50px;
 color: #fff;
+}
+
+
+/* TABELA DE PROMOÇÕES */
+
+table#ContentPlaceHolder1_TabelaPromocao caption 
+{
+font-size: 50px;
+margin-bottom: 50px;
+color: #fff;
+}
+
+table#ContentPlaceHolder1_TabelaPromocao 
+{
+border: 2px solid gold;
 }
 
 #tudo

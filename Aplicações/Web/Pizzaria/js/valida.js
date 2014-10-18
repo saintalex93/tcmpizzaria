@@ -29,6 +29,8 @@ function validaCadastro()
     var rua = document.getElementById("ContentPlaceHolder1_txtRua").value;
     var rua_exp = /[a-z]/;
 
+    var complemento = document.getElementById("ContentPlaceHolder1_txtComplemento").value;
+
     var num_casa = document.getElementById("ContentPlaceHolder1_txtNumCasa").value;
 
     var num_apart = document.getElementById("ContentPlaceHolder1_txtNumApart").value;
@@ -43,7 +45,7 @@ function validaCadastro()
     //FIM DE DECLARAÇÃO DAS VARIÁVEIS
 
 
-            //VALIDAÇÕES DOS CAMPOS
+        //VALIDAÇÕES DOS CAMPOS
     
             //VALIDAÇÃO DO NOME
     
@@ -61,12 +63,14 @@ function validaCadastro()
                 ContentPlaceHolder1_txtTel.focus();
                 return false;
             }
-            if (isNaN(tele) && tele.length < 13) {
+            if (isNaN(tele) && tele.length < 13)
+            {
                 alert("Número de telefone inválido.\nInsira apenas números.");
                 ContentPlaceHolder1_txtTel.focus();
                 return false;
             }
-            if (isNaN(tele) && tele.length == 13) {
+            if (isNaN(tele) && tele.length == 13)
+            {
                 ContentPlaceHolder1_txtEmail.focus();
             }
     
@@ -87,7 +91,8 @@ function validaCadastro()
                     ContentPlaceHolder1_txtCel.focus();
                     return false;
                 }
-                if (cel.length == 13 || cel.length == 15) {
+                if (cel.length == 13 || cel.length == 15)
+                {
                     ContentPlaceHolder1_txtEmail.focus();
                 }
     
@@ -95,7 +100,8 @@ function validaCadastro()
     
             //VALIDAÇÃO DO EMAIL
     
-            if (email.search(email_exp)) {
+            if (email.search(email_exp))
+            {
                 alert("Email Inválido");
                 ContentPlaceHolder1_txtEmail.focus();
                 return false;
@@ -103,23 +109,26 @@ function validaCadastro()
     
             //VALIDAÇÃO DO CPF
     
-            if (cpf.length < 11) {
+            if (cpf.length < 11)
+            {
                 alert("Número de CPF inválido.");
                 ContentPlaceHolder1_txtCpf.focus();
                 return false;
             }
-            if (isNaN(cpf) && cpf.length < 14) {
+            if (isNaN(cpf) && cpf.length < 14)
+            {
                 alert("Número de CPF inválido.\nInsira apenas números.");
                 ContentPlaceHolder1_txtCpf.focus();
                 return false;
             }
     
         //VALIDAÇÃO DA DATA DE NASCIMENTO
-    if (isNaN(datanasc) && datanasc.length < 10) {
+            if (isNaN(datanasc) && datanasc.length < 10)
+            {
         alert("Insira apenas números na Data de Nascimento");
         ContentPlaceHolder1_txtDtNasc.focus();
         return false;
-    }
+            }
     else
     {
         var sessao = 0; //Variável criada para indicar qual parte da data de nascimento se está processando
@@ -220,7 +229,8 @@ function validaCadastro()
                 break;
 
             default: //Se não deu nenhuma das opções anteriores, deu merda e tem que recomeçar.
-                alert("Um erro aconteceu. Por favor atualize a página e tente de novo.");
+                alert("Data de Nascimento inválida. Reeveja o campo por favor.");
+                return false;
                 break;
         }
     }
@@ -278,7 +288,8 @@ function validaCadastro()
                 break;
 
             default:
-                alert("Um erro aconteceu. Por favor atualize a página e tente de novo.");
+                alert("Data de Nascimento inválida. Reeveja o campo por favor.");
+                return false;
                 break;
         }
     }
@@ -306,7 +317,8 @@ function validaCadastro()
    
         //VALIDAÇÃO DA SENHA
 
-        if (senha.length < 5) {
+    if (senha.length < 5)
+    {
             alert("Suas senhas não possuem mais que 6 dígitos");
             ContentPlaceHolder1_txtSenha.focus();
             return false;
@@ -324,40 +336,47 @@ function validaCadastro()
 
 
         //VALIDAÇÃO DO ESTADO
-        if (estado == "Escolha") {
+        if (estado == "Escolha")
+        {
             alert("Selecione um estado");
             ContentPlaceHolder1_DDLEstado.focus();
             return false;
         }
 
         //VALIDAÇÃO DA CIDADE
-        if (cidade.length < 3) {
+        if (cidade.length < 3)
+        {
             alert("Insira uma cidade");
             ContentPlaceHolder1_txtCidade.focus();
             return false;
         }
         //VALIDAÇÃO DA RUA
-        if (rua.length < 1) {
+        if (rua.length < 1)
+        {
             alert("Insira um endereço válido");
             ContentPlaceHolder1_txtRua.focus();
             return false;
         }
 
         //VALIDAÇÃO DO NÚMERO DA CASA
-        if (num_casa.length < 1) {
-            alert("Número de endereço válido.");
+        if (num_casa.length < 1)
+        {
+            alert("Número de endereço inválido.");
             ContentPlaceHolder1_txtNumCasa.focus();
             return false;
         }
-        if (isNaN(num_casa)) {
+        if (isNaN(num_casa))
+        {
             alert("Número de endereço inválido.\nInsira apenas números");
             ContentPlaceHolder1_txtNumCasa.focus();
             return false;
         }
 
         //VALIDAÇÃO DO NÚMERO DO APARTAMENTO
-        if (num_apart.length != 0) {
-            if (isNaN(num_apart)) {
+        if (num_apart.length != 0)
+        {
+            if (isNaN(num_apart))
+            {
                 alert("Número de apartamento inválido.\nInsira apenas números.");
                 ContentPlaceHolder1_txtNumApart.focus();
                 return false;
@@ -365,23 +384,27 @@ function validaCadastro()
         }
 
         //VALIDAÇÃO DO BAIRRO
-        if (bairro.length < 4) {
-            alert("Insira um nome de bairro válido.");
+        if (bairro.length < 4)
+        {
+            alert("Insira um nome de bairro inválido.");
             ContentPlaceHolder1_txtBairro.focus();
             return false;
         }
         //VALIDAÇÃO DO CEP
-        if (cep.length < 8) {
+        if (cep.length < 8)
+        {
+            alert("Insira um CEP inválido.");
+            ContentPlaceHolder1_txtCep.focus();
+            return false;
+        }
+        if (isNaN(cep) && cep.length < 9)
+        {
             alert("Insira um CEP válido.");
             ContentPlaceHolder1_txtCep.focus();
             return false;
         }
-        if (isNaN(cep) && cep.length < 9) {
-            alert("Insira um CEP válido.");
-            ContentPlaceHolder1_txtCep.focus();
-            return false;
-        }
-        if (isNan(cep) && cep.length == 9) {
+        if (isNan(cep) && cep.length == 9)
+        {
             ContentPlaceHolder1_btnEnvia.focus();
         }
 

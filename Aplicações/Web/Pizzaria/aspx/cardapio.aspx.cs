@@ -17,7 +17,7 @@ public partial class aspx_cardapio : System.Web.UI.Page
     {
         conexao c = new conexao();
         c.conectar();
-        String sql = "select Nome_Produto,Valor_Venda,Cod_Promocao from Produto where Sobe_Site=1";
+        String sql = "select Nome_Produto,Valor_Venda from Produto where Sobe_Site=1";
         c.command.CommandText = sql;
         SqlDataAdapter dAdapter = new SqlDataAdapter();
         DataSet ds = new DataSet();

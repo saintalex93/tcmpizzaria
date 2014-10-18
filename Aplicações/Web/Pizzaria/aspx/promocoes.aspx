@@ -8,10 +8,10 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
-    <asp:DataGrid ID="DataGrid1" runat="server" AutoGenerateColumns="False" Caption="Promoções">
+    <asp:DataGrid ID="TabelaPromocao" runat="server" AutoGenerateColumns="False" Caption="Promoções">
         <Columns>
-            <asp:BoundColumn DataField="Nome_Promocao"></asp:BoundColumn>
-            <asp:BoundColumn DataField="Descricao"></asp:BoundColumn>
+            <asp:BoundColumn DataField="Nome_Promocao" HeaderText="Nome da Promoção" HeaderStyle-CssClass="colunaheader" ItemStyle-CssClass="ce"></asp:BoundColumn>
+            <asp:BoundColumn DataField="Descricao" HeaderText="Descrição" HeaderStyle-CssClass="colunaheader" ItemStyle-CssClass="cd"></asp:BoundColumn>
         </Columns>
 
 

@@ -9,6 +9,7 @@ using System.Data.SqlClient;
 
 public partial class aspx_cadastro : System.Web.UI.Page
 {
+    bool x = true;
     protected void Page_Load(object sender, EventArgs e)
     {
         /*Adicionando o atributo onblur e chamando a função aplicaMascara().
@@ -34,54 +35,66 @@ public partial class aspx_cadastro : System.Web.UI.Page
         txtCel.Attributes.Add("onfocus", "retiraMascaraCel()");
         txtCep.Attributes.Add("onfocus", "retiraMascaraCep()");
     }
+
     protected void btnEnvia_Click(object sender, EventArgs e)
     {
-        try{
-        String nome = txtNome.Text.Trim();
-        String tel = txtTel.Text;
-        String cel = txtCel.Text;
-        String email = txtEmail.Text;
-        String cpf = txtCpf.Text;
-        String datanasc = txtDtNasc.Text;
-        String senha = txtSenha.Text;
-        String senhaconf = txtSenhaConfirm.Text;
-        String cidade = txtCidade.Text.Trim();
-        String rua = txtRua.Text.Trim();
-        String complemento = txtComplemento.Text.Trim();
-        int numcasa = Convert.ToInt32(txtNumCasa.Text);
-        int numapart = Convert.ToInt32(txtNumApart.Text);
-        String bairro = txtBairro.Text.Trim();
-        String cep = txtCep.Text;
-        String estado = DDLEstado.SelectedValue.ToString();
+        validacao();
 
-        conexao con = new conexao();
-        con.conectar();
-        con.command.CommandText = "insert into Cliente(Nome_Cliente, CPF_Cliente,Endereco_Cliente, Numero_Residencia, Numero_Apartamento, Bairro_Cliente, CEP_Cliente, Estado_Cliente, Cidade_Cliente, Complemento_Cliente, Telefone_Cliente, Celular_Cliente, Email_Cliente, Senha_Cliente, DataNascimento)" + "values(@nome, @cpf, @rua, @numcasa, @numapart, @bairro, @cep, @estado, @cidade, @complemento, @telefone, @celular, @email, @senha, @datanasc)";
-        con.command.Parameters.Add("@nome", SqlDbType.VarChar).Value = nome;
-        con.command.Parameters.Add("@cpf", SqlDbType.VarChar).Value = cpf;
-        con.command.Parameters.Add("@rua", SqlDbType.VarChar).Value = rua;
-        con.command.Parameters.Add("@numcasa", SqlDbType.Int).Value = numcasa;
-        con.command.Parameters.Add("@numapart", SqlDbType.Int).Value = numapart;
-        con.command.Parameters.Add("@bairro", SqlDbType.VarChar).Value = bairro;
-        con.command.Parameters.Add("@cep", SqlDbType.VarChar).Value = cep;
-        con.command.Parameters.Add("@estado", SqlDbType.VarChar).Value = estado;
-        con.command.Parameters.Add("@cidade", SqlDbType.VarChar).Value = cidade;
-        con.command.Parameters.Add("@complemento", SqlDbType.VarChar).Value = complemento;
-        con.command.Parameters.Add("@telefone", SqlDbType.VarChar).Value = tel;
-        con.command.Parameters.Add("@celular", SqlDbType.VarChar).Value = cel;
-        con.command.Parameters.Add("@email", SqlDbType.VarChar).Value = email;
-        con.command.Parameters.Add("@senha", SqlDbType.VarChar).Value = senha;
-        con.command.Parameters.Add("@datanasc", SqlDbType.VarChar).Value = datanasc;
-        con.command.ExecuteNonQuery();
-        con.fechaConexao();
-        String resposta = "Dados Cadastrados com sucesso.<br/>Você já pode se logar.";
-        lblresposta.Text = resposta;
-        }
-        catch(Exception ex) 
+        if (x == false) 
         {
-            lblresposta.Text = "Dados incorretos.";
+            Response.Write("Tudo errado");
+        }
+        if (x == true)
+        {
+            try
+            {
+                String nome = txtNome.Text.Trim();
+                String tel = txtTel.Text;
+                String cel = txtCel.Text;
+                String email = txtEmail.Text;
+                String cpf = txtCpf.Text;
+                String datanasc = txtDtNasc.Text;
+                String senha = txtSenha.Text;
+                String senhaconf = txtSenhaConfirm.Text;
+                String cidade = txtCidade.Text.Trim();
+                String rua = txtRua.Text.Trim();
+                String complemento = txtComplemento.Text.Trim();
+                int numcasa = Convert.ToInt32(txtNumCasa.Text);
+                int numapart = Convert.ToInt32(txtNumApart.Text);
+                String bairro = txtBairro.Text.Trim();
+                String cep = txtCep.Text;
+                String estado = DDLEstado.SelectedValue.ToString();
+
+                conexao con = new conexao();
+                con.conectar();
+                con.command.CommandText = "insert into Cliente(Nome_Cliente, CPF_Cliente,Endereco_Cliente, Numero_Residencia, Numero_Apartamento, Bairro_Cliente, CEP_Cliente, Estado_Cliente, Cidade_Cliente, Complemento_Cliente, Telefone_Cliente, Celular_Cliente, Email_Cliente, Senha_Cliente, DataNascimento)" + "values(@nome, @cpf, @rua, @numcasa, @numapart, @bairro, @cep, @estado, @cidade, @complemento, @telefone, @celular, @email, @senha, @datanasc)";
+                con.command.Parameters.Add("@nome", SqlDbType.VarChar).Value = nome;
+                con.command.Parameters.Add("@cpf", SqlDbType.VarChar).Value = cpf;
+                con.command.Parameters.Add("@rua", SqlDbType.VarChar).Value = rua;
+                con.command.Parameters.Add("@numcasa", SqlDbType.Int).Value = numcasa;
+                con.command.Parameters.Add("@numapart", SqlDbType.Int).Value = numapart;
+                con.command.Parameters.Add("@bairro", SqlDbType.VarChar).Value = bairro;
+                con.command.Parameters.Add("@cep", SqlDbType.VarChar).Value = cep;
+                con.command.Parameters.Add("@estado", SqlDbType.VarChar).Value = estado;
+                con.command.Parameters.Add("@cidade", SqlDbType.VarChar).Value = cidade;
+                con.command.Parameters.Add("@complemento", SqlDbType.VarChar).Value = complemento;
+                con.command.Parameters.Add("@telefone", SqlDbType.VarChar).Value = tel;
+                con.command.Parameters.Add("@celular", SqlDbType.VarChar).Value = cel;
+                con.command.Parameters.Add("@email", SqlDbType.VarChar).Value = email;
+                con.command.Parameters.Add("@senha", SqlDbType.VarChar).Value = senha;
+                con.command.Parameters.Add("@datanasc", SqlDbType.VarChar).Value = datanasc;
+                con.command.ExecuteNonQuery();
+                con.fechaConexao();
+                String resposta = "Dados Cadastrados com sucesso.<br/>Você já pode se logar.";
+                lblresposta.Text = resposta;
+            }
+            catch (Exception ex)
+            {
+                lblresposta.Text = "Dados incorretos.";
+            }
         }
             LimpaCamposAprovado();
+        
     }
     protected void btnLimpa_Click(object sender, EventArgs e)
     {
@@ -89,6 +102,8 @@ public partial class aspx_cadastro : System.Web.UI.Page
     }
     protected void LimpaCampos() 
     {
+        requiredCpf.Visible = false;
+
         txtNome.Text = "";
         txtTel.Text = "";
         txtCel.Text = "";
@@ -107,6 +122,7 @@ public partial class aspx_cadastro : System.Web.UI.Page
         txtCep.Text = "";
         btnLimpa.Focus();
         lblresposta.Text = "";
+
     }
     protected void LimpaCamposAprovado()
     {
@@ -145,6 +161,76 @@ public partial class aspx_cadastro : System.Web.UI.Page
         txtBairro.Text = "Bairro Teste";
         txtCep.Text = "55555-555";
         btnEnvia.Focus();
+    }
+
+    protected void validacao()
+    {
+        if (txtNome.Text.Length < 3) 
+        {
+            x = false;
+        }
+        if (txtTel.Text.Length != 10 && txtTel.Text.Length != 13)
+        {
+            x = false;
+        }
+
+        
+        if (txtCel.Text.Length != 0)
+        {
+            if (txtCel.Text.Length != 10 && txtCel.Text.Length != 11 && txtCel.Text.Length != 13 && txtCel.Text.Length != 15)
+            {
+                x = false;
+            }
+        }
+        
+        if (txtEmail.Text.Length < 5)
+        {
+            x = false;
+        }
+        
+        if (txtCpf.Text.Length != 11 && txtCpf.Text.Length != 14)
+        {
+            x = false;
+        }
+        
+        if (txtDtNasc.Text.Length != 8 && txtDtNasc.Text.Length != 10)
+        {
+            x = false;
+        }
+        
+        if (txtSenha.Text.Length < 5)
+        {
+            x = false;
+        }
+        if (txtSenhaConfirm.Text != txtSenha.Text) 
+        {
+            x = false;
+        }
+        
+        if (txtCidade.Text.Length < 3)
+        {
+            x = false;
+        }
+
+        if (txtRua.Text.Length < 1)
+        {
+            x = false;
+        }
+
+        if (txtNumCasa.Text.Length < 1)
+        {
+            x = false;
+        }
+
+        if (txtBairro.Text.Length < 3)
+        {
+            x = false;
+        }
+
+        if (txtCep.Text.Length != 8 && txtCep.Text.Length != 9)
+        {
+            x = false;
+        }
     }
 
 }
