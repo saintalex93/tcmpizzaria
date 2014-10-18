@@ -41,7 +41,7 @@ go
 create table Funcionario
 (
 Cod_Funcionario INT IDENTITY(1,1) PRIMARY KEY,
-Nome VARCHAR(40),
+Nome_Func VARCHAR(40),
 CPF_Funcionario VARCHAR(15),
 Endereco_Funcionario VARCHAR(40),
 Complemento_Funcionario VARCHAR(40),

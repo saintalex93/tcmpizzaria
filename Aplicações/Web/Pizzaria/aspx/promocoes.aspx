@@ -7,6 +7,15 @@
     <script type="text/javascript" src="../js/login.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+
+    <asp:DataGrid ID="DataGrid1" runat="server" AutoGenerateColumns="False" Caption="Promoções">
+        <Columns>
+            <asp:BoundColumn DataField="Nome_Promocao"></asp:BoundColumn>
+            <asp:BoundColumn DataField="Descricao"></asp:BoundColumn>
+        </Columns>
+
+
+    </asp:DataGrid>
     
 </asp:Content>
 

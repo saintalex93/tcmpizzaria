@@ -11,6 +11,21 @@ public partial class aspx_promocoes : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        refresh();
     }
+    protected void refresh()
+    {
+        conexao c = new conexao();
+        c.conectar();
+        c.command.CommandText = "select Nome_Promocao,Descricao from Promocao where sobe_promocao = 1";
+        SqlDataAdapter dAdapter = new SqlDataAdapter();
+        DataSet dt = new DataSet();
+
+        dAdapter.SelectCommand = c.command;
+        dAdapter.Fill(dt);
+        DataGrid1.DataSource = dt;
+        DataGrid1.DataBind();
+        c.fechaConexao();
+    }
+
 }

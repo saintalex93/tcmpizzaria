@@ -6,7 +6,6 @@
     <link rel="icon" type="image/png" href="../img/marca.ico" />
 
     <script type="text/javascript" src="../js/valida.js"></script>
-    <script type="text/javascript" src="../js/login.js"></script>
 
 </asp:Content>
 
@@ -17,10 +16,10 @@
 			    <fieldset id="formulario1" class = "grupoformulario" >
                         <legend style="margin-left: 5px;color:#fff;font-weight: bold;">Dados Pessoais</legend>
                           
-                            <asp:Label ID="lblNome" runat="server" Text="Nome Completo" style="margin-left: 36px;" CssClass="spans"></asp:Label>
-                            <asp:TextBox ID="txtNome" name="nome" runat="server" MaxLength="70" Width="220px"></asp:TextBox>
+                            <asp:Label ID="lblNome" runat="server" Text="Nome Completo" style="margin-left: 36px;" CssClass="spans" ></asp:Label>
+                            <asp:TextBox ID="txtNome" name="nome" runat="server" MaxLength="70" Width="220px" required="true"></asp:TextBox>
                             <asp:Label ID="Label2" runat="server" Text="(*)" CssClass="spans"></asp:Label>
-                            <asp:RequiredFieldValidator ID="requiredNome" runat="server" ErrorMessage="Campo nome não preenchido" Display="Dynamic" ControlToValidate="txtNome" SetFocusOnError="True" CssClass="erros"></asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ID="requiredNome" runat="server" ErrorMessage="Nome deve ser informado *" Display="Dynamic" ControlToValidate="txtNome" SetFocusOnError="True" CssClass="erros"></asp:RequiredFieldValidator>
                         <br />
                             <asp:Label ID="lblTel" runat="server" Text="Telefone" style="margin-left: 91px;" CssClass="spans"></asp:Label>
                             <asp:TextBox ID="txtTel" runat="server" MaxLength="10" Width="146px"></asp:TextBox>
@@ -43,10 +42,12 @@
                             <asp:Label ID="lblDataNasc" runat="server" Text="Data de Nascimento" CssClass="spans"></asp:Label>
                             <asp:TextBox ID="txtDtNasc" runat="server" Width="146px" MaxLength="8"></asp:TextBox>
                             <asp:Label ID="lblObrigatório4" runat="server" Text="(*)" CssClass="spans"></asp:Label>
+                    <asp:RequiredFieldValidator ID="requiredDataNasc" runat="server" ErrorMessage="Data de nascimento deve ser informada *" SetFocusOnError="True" Display="Dynamic" ControlToValidate="txtDtNasc"></asp:RequiredFieldValidator>
                         <br />
                             <asp:Label ID="lblSenha" runat="server" Text="Senha" style="margin-left: 106px" CssClass="spans"></asp:Label>
                             <asp:TextBox ID="txtSenha" runat="server" Width="146px" TextMode="Password" MaxLength="20"></asp:TextBox>
                             <asp:Label ID="lblObrigatório5" runat="server" Text="(*)" CssClass="spans"></asp:Label>
+                    <asp:RequiredFieldValidator ID="requiredSenha" runat="server" ErrorMessage="RequiredFieldValidator" SetFocusOnError="True" ControlToValidate="txtSenha" Display="Dynamic"></asp:RequiredFieldValidator>
                         <br />
                             <asp:Label ID="lblSenhaConfirm" runat="server" Text="Confirmar Senha" style="margin-left: 31px" CssClass="spans"></asp:Label>
                             <asp:TextBox ID="txtSenhaConfirm" runat="server" Width="146px" TextMode="Password" MaxLength="20"></asp:TextBox>
