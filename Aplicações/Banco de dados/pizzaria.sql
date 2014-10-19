@@ -163,6 +163,7 @@ Preco_Original DECIMAL(6,2),
 Preco_Promocao DECIMAL(6,2),
 Vigencia VARCHAR(10),
 sobe_promocao INT,
+usuario_cadastrado INT,
 Cod_Produto INT FOREIGN KEY REFERENCES Produto(Cod_Produto)
 )
 go
@@ -270,8 +271,10 @@ insert into Promocao
 (
 Nome_Promocao,
 Descricao,
-sobe_promocao
+sobe_promocao,
+usuario_cadastrado
 )
 values
-('Final de semana','Nos finais de semana deste mês(Novembro), as pizzas de Mussarela,Calabresa e Baiana terão seu preço reduzido a R$16,00.<br /> Aproveite !!',1)
+('Final de semana','Nos finais de semana deste mês(Novembro), as pizzas de Mussarela,Calabresa e Baiana terão seu preço reduzido a R$16,00.<br /> Aproveite !!',1,0),
+('Cookie Promocional','Compras acima de R$50,00, você ganha dois deliciosos cookies de chocolate.',1,1)
 go

@@ -11,21 +11,47 @@ public partial class aspx_promocoes : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        refresh();
+        if (Session["logado"] != null)
+        {
+            refreshCadastrado();
+        }
+        else
+        {
+            refresh();
+        }
     }
+
+
     protected void refresh()
     {
-        conexao c = new conexao();
-        c.conectar();
-        c.command.CommandText = "select Nome_Promocao,Descricao from Promocao where sobe_promocao = 1";
-        SqlDataAdapter dAdapter = new SqlDataAdapter();
-        DataSet dt = new DataSet();
+        {
+            conexao c = new conexao();
+            c.conectar();
+            c.command.CommandText = "select Nome_Promocao,Descricao from Promocao where sobe_promocao = 1 and usuario_cadastrado = 0";
+            SqlDataAdapter dAdapter = new SqlDataAdapter();
+            DataSet dt = new DataSet();
 
-        dAdapter.SelectCommand = c.command;
-        dAdapter.Fill(dt);
-        TabelaPromocao.DataSource = dt;
-        TabelaPromocao.DataBind();
-        c.fechaConexao();
+            dAdapter.SelectCommand = c.command;
+            dAdapter.Fill(dt);
+            TabelaPromocao.DataSource = dt;
+            TabelaPromocao.DataBind();
+            c.fechaConexao();
+        }
     }
+
+        protected void refreshCadastrado()
+        {
+ 	    conexao c = new conexao();
+            c.conectar();
+            c.command.CommandText = "select Nome_Promocao,Descricao from Promocao where sobe_promocao = 1 and usuario_cadastrado >= 0";
+            SqlDataAdapter dAdapter = new SqlDataAdapter();
+            DataSet dt = new DataSet();
+
+            dAdapter.SelectCommand = c.command;
+            dAdapter.Fill(dt);
+            TabelaPromocao.DataSource = dt;
+            TabelaPromocao.DataBind();
+            c.fechaConexao();
+        }
 
 }
