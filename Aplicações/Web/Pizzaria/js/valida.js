@@ -535,4 +535,4 @@ function retiraMascaraCep()
             document.getElementById("ContentPlaceHolder1_txtCep").value = cep;
         }
 
-    }
+}

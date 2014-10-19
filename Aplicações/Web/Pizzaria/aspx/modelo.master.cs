@@ -24,7 +24,7 @@ public partial class aspx_modelo : System.Web.UI.MasterPage
             txtLogin_senha.Visible = false;
             btnLogin.Visible = false;
             btnLogout.Visible = true;
-            
+            linkCadastro.Visible = false;
         }
     }
     protected void btnLogin_Click(object sender, EventArgs e)
@@ -53,6 +53,7 @@ public partial class aspx_modelo : System.Web.UI.MasterPage
             if (qtde == 1)
             {
                 Session["logado"] = 1;
+                Response.Redirect("index.aspx");
                 lblLoginInc.Text = "Logado com sucesso !!";
                 btnLogin.Visible = false;
                 btnLogout.Visible = true;
@@ -61,8 +62,6 @@ public partial class aspx_modelo : System.Web.UI.MasterPage
                 txtEmail.Visible = false;
                 Label2.Text = "";
                 txtLogin_senha.Visible = false;
-                HyperLink1.Visible = false;
-
             }
             else 
             {
@@ -78,7 +77,7 @@ public partial class aspx_modelo : System.Web.UI.MasterPage
     protected void btnLogout_Click(object sender, EventArgs e)
     {
         Session.Abandon();
-
+        Response.Redirect("index.aspx");
         Label1.Text = "Login"; 
         txtEmail.Visible = true;
         Label2.Text = "Senha";

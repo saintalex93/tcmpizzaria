@@ -40,10 +40,6 @@ public partial class aspx_cadastro : System.Web.UI.Page
     {
         validacao();
 
-        if (x == false) 
-        {
-            Response.Write("Tudo errado");
-        }
         if (x == true)
         {
             try

@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Pizzaria - TCM - Cadastro de usuário</title>
+    <title>Giovanelli's Pizzaria</title>
     <asp:ContentPlaceHolder id="head" runat="server">
         <link rel="stylesheet" type="text/css" href="../css/style2.css" />
     </asp:ContentPlaceHolder>
@@ -37,10 +37,10 @@
 
             <nav id="menu">
               <ul>
-				<li><a href="index.aspx">Home</a></li>
-                <li><a href="cardapio.aspx">Cardápio</a></li>
-				<li><a href="cadastro.aspx">Cadastro</a></li>
-				<li><a href="promocoes.aspx">Promoções</a></li>
+				<li><asp:HyperLink ID="linkHome" runat="server" NavigateUrl="index.aspx">Home</asp:HyperLink></li>
+                <li><asp:HyperLink ID="linkCardápio" runat="server" NavigateUrl="cardapio.aspx">Cardápio</asp:HyperLink></li>
+				<li> <asp:HyperLink ID="linkCadastro" runat="server" NavigateUrl="cadastro.aspx">Cadastro</asp:HyperLink></li>
+				<li> <asp:HyperLink ID="linkPromocao" runat="server" NavigateUrl="promocoes.aspx">Promoções</asp:HyperLink></li>
               </ul>
 			</nav>
 
