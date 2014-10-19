@@ -114,7 +114,7 @@ go
 create table Fornecedor
 (
 Cod_Fornecedor INT IDENTITY(1,1) PRIMARY KEY,
-CNPJ_CPF BIGINT,
+CNPJ_CPF varchar(18),
 Razao_Social VARCHAR(50),
 Nome_Fantasia VARCHAR(50),
 Nome_Banco VARCHAR(30),
@@ -125,7 +125,7 @@ Celular_Responsavel VARCHAR(15),
 Email_Responsavel VARCHAR(50),
 Telefone_Comercial VARCHAR(40),
 Endereco_Fornecedor VarChar (40),
-Numero_Residencia Int,
+Numero_Residencia VarChar (5),
 CEP_Fornecedor VarChar (10),
 Estado_Fornecedor VarChar (2),
 Cidade_Fornecedor VarChar (20),
@@ -134,6 +134,11 @@ Complemento VarChar (40),
 Cod_Produto INt Foreign Key References Pedido (Cod_Pedido),
 )
 go
+
+Insert into Fornecedor (CNPJ_CPF, Razao_Social, Nome_Fantasia, Nome_Banco, Agencia, Conta_Corrente, Responsavel, Celular_Responsavel, Email_Responsavel, Telefone_Comercial, Endereco_Fornecedor, Numero_Residencia, CEP_Fornecedor, Estado_Fornecedor, Cidade_Fornecedor, Bairro_Fornecedor,Complemento)
+values (12121212112, 'razao', 'fantasia', 0, 22222222, 33333333, 'nome', '(11) 98936-1878', 'email@email.com', '(11) 1111-1111', 'nome rua', 321, '015460100', 'SP', 'Cidade', 'Bairro', 'Complemento')
+
+select * from Fornecedor
 
 create table Insumo_Fornecedor
 (
