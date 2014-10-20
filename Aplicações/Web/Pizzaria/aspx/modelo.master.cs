@@ -53,7 +53,6 @@ public partial class aspx_modelo : System.Web.UI.MasterPage
             if (qtde == 1)
             {
                 Session["logado"] = 1;
-                Response.Redirect("index.aspx");
                 lblLoginInc.Text = "Logado com sucesso !!";
                 btnLogin.Visible = false;
                 btnLogout.Visible = true;
@@ -74,6 +73,7 @@ public partial class aspx_modelo : System.Web.UI.MasterPage
             lblLoginInc.Text = "Dados incorretos.Tente novamente.";
         }
     }
+
     protected void btnLogout_Click(object sender, EventArgs e)
     {
         Session.Abandon();

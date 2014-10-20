@@ -534,5 +534,4 @@ function retiraMascaraCep()
             cep = cep.replace(cep_exp, '');
             document.getElementById("ContentPlaceHolder1_txtCep").value = cep;
         }
-
-}
+    }

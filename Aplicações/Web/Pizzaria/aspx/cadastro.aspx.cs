@@ -39,7 +39,10 @@ public partial class aspx_cadastro : System.Web.UI.Page
     protected void btnEnvia_Click(object sender, EventArgs e)
     {
         validacao();
-
+        if (x == false) 
+        {
+            txtNome.Focus();
+        }
         if (x == true)
         {
             try
@@ -98,7 +101,6 @@ public partial class aspx_cadastro : System.Web.UI.Page
     }
     protected void LimpaCampos() 
     {
-        requiredCpf.Visible = false;
 
         txtNome.Text = "";
         txtTel.Text = "";
@@ -161,13 +163,17 @@ public partial class aspx_cadastro : System.Web.UI.Page
 
     protected void validacao()
     {
-        if (txtNome.Text.Length < 3) 
+        if (txtNome.Text.Length < 3)
         {
             x = false;
+            txtNome.Focus();
+            lblvalidNome.Style.Add("display", "inline");
         }
         if (txtTel.Text.Length != 10 && txtTel.Text.Length != 13)
         {
             x = false;
+            txtTel.Focus();
+            lblvalidTel.Style.Add("display", "inline");
         }
 
         
@@ -176,57 +182,97 @@ public partial class aspx_cadastro : System.Web.UI.Page
             if (txtCel.Text.Length != 10 && txtCel.Text.Length != 11 && txtCel.Text.Length != 13 && txtCel.Text.Length != 15)
             {
                 x = false;
+                txtCel.Focus();
+                lblvalidCel.Style.Add("display", "inline");
             }
         }
         
         if (txtEmail.Text.Length < 5)
         {
             x = false;
+            txtEmail.Focus();
+            lblvalidEmail.Style.Add("display", "inline");
         }
         
         if (txtCpf.Text.Length != 11 && txtCpf.Text.Length != 14)
         {
             x = false;
+            txtCpf.Focus();
+            lblvalidCpf.Style.Add("display", "inline");
         }
         
         if (txtDtNasc.Text.Length != 8 && txtDtNasc.Text.Length != 10)
         {
             x = false;
+            txtDtNasc.Focus();
+            lblvalidDtNasc.Style.Add("display", "inline");
         }
         
         if (txtSenha.Text.Length < 5)
         {
             x = false;
+            txtSenha.Focus();
+            lblvalidSenha.Style.Add("display", "inline");
         }
         if (txtSenhaConfirm.Text != txtSenha.Text) 
         {
             x = false;
+            txtSenhaConfirm.Focus();
+            lblvalidSenhaConfirm.Style.Add("display", "inline");
         }
         
         if (txtCidade.Text.Length < 3)
         {
             x = false;
+            txtCidade.Focus();
+            lblvalidCidade.Style.Add("display", "inline");
         }
 
         if (txtRua.Text.Length < 1)
         {
             x = false;
+            txtRua.Focus();
+            lblvalidRua.Style.Add("display", "inline");
         }
 
         if (txtNumCasa.Text.Length < 1)
         {
             x = false;
+            txtNumCasa.Focus();
+            lblvalidNumCasa.Style.Add("display", "inline");
         }
 
         if (txtBairro.Text.Length < 3)
         {
             x = false;
+            txtBairro.Focus();
+            lblvalidBairro.Style.Add("display", "inline");
         }
 
         if (txtCep.Text.Length != 8 && txtCep.Text.Length != 9)
         {
             x = false;
+            txtCep.Focus();
+            lblvalidCep.Style.Add("display", "inline");
         }
     }
+    protected void LimparValid()
+    {
+        lblvalidNome.Style.Add("display", "none");
+        lblvalidTel.Style.Add("display", "none");
+        lblvalidCel.Style.Add("display", "none");
+        lblvalidEmail.Style.Add("display", "none");
+        lblvalidCpf.Style.Add("display", "none");
+        lblvalidDtNasc.Style.Add("display", "none");
+        lblvalidSenha.Style.Add("display", "none");
+        lblvalidSenhaConfirm.Style.Add("display", "none");
 
+        lblvalidCidade.Style.Add("display", "none");
+        lblvalidRua.Style.Add("display", "none");
+        lblvalidNumCasa.Style.Add("display", "none");
+        lblvalidBairro.Style.Add("display", "none");
+        lblvalidCep.Style.Add("display", "none");
+
+    }
+    
 }

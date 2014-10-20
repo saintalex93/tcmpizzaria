@@ -50,7 +50,6 @@ color: #fff;
 .colunaheader 
 {
 color: #128700;
-text-align: center;
 }
 
 #conteudo
@@ -74,28 +73,54 @@ height: 25px;
 font-size: 12px;
 }
 
+/* CSS DA DIV LOGIN */
+
 div#login 
 {
 position:absolute;
-top: 30%;
-left: 65%;
-background-color: rgba(255,255,255,0.4);
+top: 28%;
+left: 67%;
+background-color: rgba(255,0,30,0.5);
+height: 170px;
+padding: 5px;
+border: 2px solid #fff;
 }
 
-div#login a, span, legend
+div#login a,#Label1,#Label2
 {
 color: #000;
 text-decoration: none;
+font-weight: bold;
 }
 
-div#login a:hover 
+div#login #txtEmail,#txtLogin_senha
 {
-color: red;
+margin-bottom: 6px;
+border-radius: 5px;
 }
 
-div#login span#lblLoginInc 
+div#login #btnLogin,#btnLogout
 {
-color: #c40000;
+background-color: #c21b1b;
+border: 2px solid #c79292;
+border-radius: 5px;
+margin-top: 8px;
+margin-bottom: 6px;
+padding: 4px;
+box-shadow: 5px 4px 2px rgba(0,0,0,0.6);
+font-weight: bold;
+font-size: 14px;
+color: #fff;
+}
+
+div#login a:hover
+{
+color: #4c9c05;
+}
+
+div#login span#lblLoginInc
+{
+color: gold;
 font-weight:bold;
 float:initial;
 }
@@ -103,10 +128,6 @@ float:initial;
 .erros 
 {
 color: #c40000;
-}
-.spans 
-{
-    color: #fff;
 }
 
 .faixa
@@ -260,6 +281,11 @@ margin-top: 50px;
 color: #fff;
 }
 
+.spans 
+{
+    color: #fff;
+}
+
 span#ContentPlaceHolder1_Label1 /* "Campos obrigatórios são marcados com (*)" */
 {
 color: gold;
@@ -307,6 +333,5 @@ border: 2px solid gold;
 {
 height: auto;
 margin: 0 auto;
-width: 1000px;	
-/*background-color: white;*/
+width: 1000px;
 }
