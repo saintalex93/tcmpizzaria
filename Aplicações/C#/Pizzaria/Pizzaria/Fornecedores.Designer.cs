@@ -75,7 +75,7 @@
             this.btnAlterar = new System.Windows.Forms.Button();
             this.btnExcluir = new System.Windows.Forms.Button();
             this.btnBuscar = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnLimpar = new System.Windows.Forms.Button();
             this.grpDadosFornecedor.SuspendLayout();
             this.grpResponsável.SuspendLayout();
             this.grpDadosBancarios.SuspendLayout();
@@ -554,6 +554,7 @@
             this.btnExcluir.TabIndex = 7;
             this.btnExcluir.Text = "Excluir";
             this.btnExcluir.UseVisualStyleBackColor = true;
+            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
             // btnBuscar
             // 
@@ -565,22 +566,22 @@
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
-            // button1
+            // btnLimpar
             // 
-            this.button1.Location = new System.Drawing.Point(61, 678);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "Limpar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnLimpar.Location = new System.Drawing.Point(60, 678);
+            this.btnLimpar.Name = "btnLimpar";
+            this.btnLimpar.Size = new System.Drawing.Size(75, 23);
+            this.btnLimpar.TabIndex = 61;
+            this.btnLimpar.Text = "Limpar";
+            this.btnLimpar.UseVisualStyleBackColor = true;
+            this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
             // 
             // Fornecedores
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(365, 746);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnLimpar);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.btnExcluir);
             this.Controls.Add(this.btnAlterar);
@@ -608,7 +609,7 @@
 
         private void button1_Click(object sender, System.EventArgs e)
         {
-            throw new System.NotImplementedException();
+            
         }
 
         #endregion
@@ -651,7 +652,6 @@
         private System.Windows.Forms.TextBox txtBanco;
         private System.Windows.Forms.MaskedTextBox mtxtCEP;
         private System.Windows.Forms.Button btnBuscar;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.ComboBox cbxUF;
         private System.Windows.Forms.TextBox txtCidade;
@@ -661,5 +661,6 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.GroupBox grpResponsável;
         private System.Windows.Forms.MaskedTextBox mtxtCelular;
+        private System.Windows.Forms.Button btnLimpar;
     }
 }
