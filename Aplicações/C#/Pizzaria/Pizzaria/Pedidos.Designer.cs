@@ -251,6 +251,7 @@
             this.btn_alterar.TabIndex = 12;
             this.btn_alterar.Text = "Alterar";
             this.btn_alterar.UseVisualStyleBackColor = true;
+            this.btn_alterar.Click += new System.EventHandler(this.btn_alterar_Click);
             // 
             // lbl_saldo
             // 

@@ -60,7 +60,7 @@
             // 
             // btn_sair
             // 
-            this.btn_sair.Location = new System.Drawing.Point(582, 574);
+            this.btn_sair.Location = new System.Drawing.Point(625, 552);
             this.btn_sair.Name = "btn_sair";
             this.btn_sair.Size = new System.Drawing.Size(75, 23);
             this.btn_sair.TabIndex = 13;
@@ -70,7 +70,7 @@
             // 
             // btn_excluir
             // 
-            this.btn_excluir.Location = new System.Drawing.Point(456, 574);
+            this.btn_excluir.Location = new System.Drawing.Point(469, 552);
             this.btn_excluir.Name = "btn_excluir";
             this.btn_excluir.Size = new System.Drawing.Size(75, 23);
             this.btn_excluir.TabIndex = 12;
@@ -80,7 +80,7 @@
             // 
             // btn_gravar
             // 
-            this.btn_gravar.Location = new System.Drawing.Point(189, 574);
+            this.btn_gravar.Location = new System.Drawing.Point(169, 552);
             this.btn_gravar.Name = "btn_gravar";
             this.btn_gravar.Size = new System.Drawing.Size(75, 23);
             this.btn_gravar.TabIndex = 11;
@@ -90,7 +90,7 @@
             // 
             // btn_alterar
             // 
-            this.btn_alterar.Location = new System.Drawing.Point(63, 574);
+            this.btn_alterar.Location = new System.Drawing.Point(13, 552);
             this.btn_alterar.Name = "btn_alterar";
             this.btn_alterar.Size = new System.Drawing.Size(75, 23);
             this.btn_alterar.TabIndex = 10;
@@ -100,17 +100,18 @@
             // 
             // btn_inserir
             // 
-            this.btn_inserir.Location = new System.Drawing.Point(325, 324);
+            this.btn_inserir.Location = new System.Drawing.Point(315, 303);
             this.btn_inserir.Name = "btn_inserir";
             this.btn_inserir.Size = new System.Drawing.Size(75, 23);
             this.btn_inserir.TabIndex = 9;
             this.btn_inserir.Text = "Inserir";
             this.btn_inserir.UseVisualStyleBackColor = true;
+            this.btn_inserir.Click += new System.EventHandler(this.btn_inserir_Click_1);
             // 
             // dtg_gravacao
             // 
             this.dtg_gravacao.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtg_gravacao.Location = new System.Drawing.Point(8, 376);
+            this.dtg_gravacao.Location = new System.Drawing.Point(9, 354);
             this.dtg_gravacao.MultiSelect = false;
             this.dtg_gravacao.Name = "dtg_gravacao";
             this.dtg_gravacao.ReadOnly = true;
@@ -140,16 +141,17 @@
             this.gpb_compras.Controls.Add(this.lbl_valorunitario);
             this.gpb_compras.Controls.Add(this.lbl_categoria);
             this.gpb_compras.Controls.Add(this.lbl_nome);
-            this.gpb_compras.Location = new System.Drawing.Point(8, 44);
+            this.gpb_compras.Location = new System.Drawing.Point(9, 22);
             this.gpb_compras.Name = "gpb_compras";
             this.gpb_compras.Size = new System.Drawing.Size(695, 259);
             this.gpb_compras.TabIndex = 7;
             this.gpb_compras.TabStop = false;
-            this.gpb_compras.Text = "Cadastro de Compras";
+            this.gpb_compras.Text = "Cadastro de Produtos";
+            this.gpb_compras.Enter += new System.EventHandler(this.gpb_compras_Enter);
             // 
             // txt_vlrunitario
             // 
-            this.txt_vlrunitario.Location = new System.Drawing.Point(159, 109);
+            this.txt_vlrunitario.Location = new System.Drawing.Point(150, 109);
             this.txt_vlrunitario.Mask = "$ 0000,00";
             this.txt_vlrunitario.Name = "txt_vlrunitario";
             this.txt_vlrunitario.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -182,7 +184,7 @@
             "Itens para cozinha",
             "Ingredientes",
             "Embalagens"});
-            this.cmb_categoria.Location = new System.Drawing.Point(159, 67);
+            this.cmb_categoria.Location = new System.Drawing.Point(150, 72);
             this.cmb_categoria.Name = "cmb_categoria";
             this.cmb_categoria.Size = new System.Drawing.Size(121, 21);
             this.cmb_categoria.TabIndex = 16;
@@ -194,11 +196,12 @@
             this.dtp_datafabricacao.Name = "dtp_datafabricacao";
             this.dtp_datafabricacao.Size = new System.Drawing.Size(100, 20);
             this.dtp_datafabricacao.TabIndex = 15;
+            this.dtp_datafabricacao.ValueChanged += new System.EventHandler(this.dtp_datafabricacao_ValueChanged);
             // 
             // dtp_datavalidade
             // 
             this.dtp_datavalidade.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtp_datavalidade.Location = new System.Drawing.Point(160, 187);
+            this.dtp_datavalidade.Location = new System.Drawing.Point(150, 187);
             this.dtp_datavalidade.Name = "dtp_datavalidade";
             this.dtp_datavalidade.Size = new System.Drawing.Size(96, 20);
             this.dtp_datavalidade.TabIndex = 14;
@@ -206,7 +209,7 @@
             // dtp_datarecebimento
             // 
             this.dtp_datarecebimento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtp_datarecebimento.Location = new System.Drawing.Point(160, 145);
+            this.dtp_datarecebimento.Location = new System.Drawing.Point(150, 146);
             this.dtp_datarecebimento.Name = "dtp_datarecebimento";
             this.dtp_datarecebimento.Size = new System.Drawing.Size(96, 20);
             this.dtp_datarecebimento.TabIndex = 13;
@@ -220,7 +223,7 @@
             // 
             // txt_fornecedor
             // 
-            this.txt_fornecedor.Location = new System.Drawing.Point(515, 187);
+            this.txt_fornecedor.Location = new System.Drawing.Point(515, 190);
             this.txt_fornecedor.Name = "txt_fornecedor";
             this.txt_fornecedor.Size = new System.Drawing.Size(100, 20);
             this.txt_fornecedor.TabIndex = 11;
@@ -316,7 +319,7 @@
             // 
             // btn_cancelar
             // 
-            this.btn_cancelar.Location = new System.Drawing.Point(325, 574);
+            this.btn_cancelar.Location = new System.Drawing.Point(315, 552);
             this.btn_cancelar.Name = "btn_cancelar";
             this.btn_cancelar.Size = new System.Drawing.Size(75, 23);
             this.btn_cancelar.TabIndex = 14;
@@ -328,7 +331,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(711, 640);
+            this.ClientSize = new System.Drawing.Size(711, 612);
             this.Controls.Add(this.btn_cancelar);
             this.Controls.Add(this.btn_sair);
             this.Controls.Add(this.btn_excluir);

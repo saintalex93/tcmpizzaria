@@ -173,13 +173,23 @@ namespace Pizzaria
 
         private void Home_Load(object sender, EventArgs e)
         {
-
+            /* Formulário Login 
+             * 
+            while (Login.ActiveForm.MdiChildren.Length > 0)
+                Login.ActiveForm.ActiveMdiChild.Close();
+            Login Promo = new Login();
+            Promo.MdiParent = this;
+            Promo.Show();
+             */
             //Maximiza a tela
             Screen tela = Screen.FromPoint(this.Location);
             this.Size = tela.WorkingArea.Size;
             this.Location = Point.Empty;
+        
         }
 
+
+ 
         private void pnl_login_Paint(object sender, PaintEventArgs e)
         {
 
@@ -208,6 +218,28 @@ namespace Pizzaria
         {
             while (Home.ActiveForm.MdiChildren.Length > 0)
                 Home.ActiveForm.ActiveMdiChild.Close();
+        }
+
+        private void tbp_alterarLogin_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void insumoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            while (Home.ActiveForm.MdiChildren.Length > 0)
+            {
+                Home.ActiveForm.ActiveMdiChild.Close();
+
+
+
+
+            }
+            Insumo Insu = new Insumo();
+            Insu.MdiParent = this;
+            Insu.Show();
+          
         }
 
     }

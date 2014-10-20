@@ -445,5 +445,20 @@ namespace Pizzaria
                 MessageBox.Show("Falha ao excluir arquivo");
             }
         }
+
+        private void gpb_compras_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtp_datafabricacao_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_inserir_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

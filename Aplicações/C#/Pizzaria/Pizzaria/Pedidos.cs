@@ -67,5 +67,10 @@ namespace Pizzaria
                 {
 
                 }
+
+                private void btn_alterar_Click(object sender, EventArgs e)
+                {
+
+                }
     }
 }

@@ -856,6 +856,11 @@ namespace Pizzaria
             conn.Close();
         }
 
+        private void lbl_telefone_Click(object sender, EventArgs e)
+        {
+
+        }
+
 
 
 
