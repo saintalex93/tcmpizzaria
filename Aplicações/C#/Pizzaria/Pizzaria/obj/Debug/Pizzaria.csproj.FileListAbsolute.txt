@@ -284,7 +284,6 @@ C:\Users\Casa\Documents\TortoiseSVN\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\
 C:\Users\Casa\Documents\TortoiseSVN\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Compras.resources
 C:\Users\Casa\Documents\TortoiseSVN\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Funcionario.resources
 C:\Users\Casa\Documents\TortoiseSVN\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.CadastroCliente.resources
-C:\Users\Casa\Documents\TortoiseSVN\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Produtos.resources
 C:\Users\Casa\Documents\TortoiseSVN\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Promocao.resources
 C:\Users\Casa\Documents\TortoiseSVN\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Properties.Resources.resources
 C:\Users\Casa\Documents\TortoiseSVN\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.csproj.GenerateResource.Cache
@@ -306,3 +305,6 @@ C:\Users\Alex\Desktop\SVN-2014-10-19\SVN\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria
 C:\Users\Alex\Desktop\SVN-2014-10-19\SVN\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.csproj.GenerateResource.Cache
 C:\Users\Alex\Desktop\SVN-2014-10-19\SVN\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Insumo.resources
 C:\Users\Alex\Desktop\SVN-2014-10-19\SVN\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Login.resources
+C:\Users\Casa\Documents\TortoiseSVN\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Insumo.resources
+C:\Users\Casa\Documents\TortoiseSVN\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Login.resources
+C:\Users\Casa\Documents\TortoiseSVN\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Produto.resources

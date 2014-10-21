@@ -1,6 +1,6 @@
 ﻿namespace Pizzaria
 {
-    partial class Produtos
+    partial class Produto
     {
         /// <summary>
         /// Required designer variable.
@@ -28,358 +28,249 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btn_sair = new System.Windows.Forms.Button();
-            this.btn_excluir = new System.Windows.Forms.Button();
-            this.btn_gravar = new System.Windows.Forms.Button();
-            this.btn_alterar = new System.Windows.Forms.Button();
-            this.btn_inserir = new System.Windows.Forms.Button();
-            this.dtg_gravacao = new System.Windows.Forms.DataGridView();
-            this.gpb_compras = new System.Windows.Forms.GroupBox();
-            this.txt_vlrunitario = new System.Windows.Forms.MaskedTextBox();
-            this.cmb_medida = new System.Windows.Forms.ComboBox();
-            this.cmb_categoria = new System.Windows.Forms.ComboBox();
-            this.dtp_datafabricacao = new System.Windows.Forms.DateTimePicker();
+            this.gbp_produtos = new System.Windows.Forms.GroupBox();
             this.dtp_datavalidade = new System.Windows.Forms.DateTimePicker();
-            this.dtp_datarecebimento = new System.Windows.Forms.DateTimePicker();
-            this.txt_qdtcomprada = new System.Windows.Forms.TextBox();
-            this.txt_fornecedor = new System.Windows.Forms.TextBox();
+            this.chk_site = new System.Windows.Forms.CheckBox();
+            this.cmb_categoria = new System.Windows.Forms.ComboBox();
+            this.txt_vlrunitario = new System.Windows.Forms.MaskedTextBox();
             this.txt_nome = new System.Windows.Forms.TextBox();
-            this.lbl_fornecedor = new System.Windows.Forms.Label();
-            this.lbl_datafabricacao = new System.Windows.Forms.Label();
-            this.lbl_qtdcomprada = new System.Windows.Forms.Label();
-            this.lbl_medida = new System.Windows.Forms.Label();
-            this.lbl_validade = new System.Windows.Forms.Label();
-            this.lbl_datarecebimento = new System.Windows.Forms.Label();
-            this.lbl_valorunitario = new System.Windows.Forms.Label();
-            this.lbl_categoria = new System.Windows.Forms.Label();
-            this.lbl_nome = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btn_inserir = new System.Windows.Forms.Button();
+            this.dtg_produtos = new System.Windows.Forms.DataGridView();
+            this.btn_alterar = new System.Windows.Forms.Button();
+            this.btn_atualizar = new System.Windows.Forms.Button();
             this.btn_cancelar = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dtg_gravacao)).BeginInit();
-            this.gpb_compras.SuspendLayout();
+            this.btn_excluir = new System.Windows.Forms.Button();
+            this.btn_sair = new System.Windows.Forms.Button();
+            this.gbp_produtos.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtg_produtos)).BeginInit();
             this.SuspendLayout();
             // 
-            // btn_sair
+            // gbp_produtos
             // 
-            this.btn_sair.Location = new System.Drawing.Point(625, 552);
-            this.btn_sair.Name = "btn_sair";
-            this.btn_sair.Size = new System.Drawing.Size(75, 23);
-            this.btn_sair.TabIndex = 13;
-            this.btn_sair.Text = "Sair";
-            this.btn_sair.UseVisualStyleBackColor = true;
-            this.btn_sair.Click += new System.EventHandler(this.btn_sair_Click);
+            this.gbp_produtos.Controls.Add(this.dtp_datavalidade);
+            this.gbp_produtos.Controls.Add(this.chk_site);
+            this.gbp_produtos.Controls.Add(this.cmb_categoria);
+            this.gbp_produtos.Controls.Add(this.txt_vlrunitario);
+            this.gbp_produtos.Controls.Add(this.txt_nome);
+            this.gbp_produtos.Controls.Add(this.label5);
+            this.gbp_produtos.Controls.Add(this.label4);
+            this.gbp_produtos.Controls.Add(this.label3);
+            this.gbp_produtos.Controls.Add(this.label2);
+            this.gbp_produtos.Controls.Add(this.label1);
+            this.gbp_produtos.Location = new System.Drawing.Point(12, 36);
+            this.gbp_produtos.Name = "gbp_produtos";
+            this.gbp_produtos.Size = new System.Drawing.Size(663, 163);
+            this.gbp_produtos.TabIndex = 0;
+            this.gbp_produtos.TabStop = false;
+            this.gbp_produtos.Text = "Produtos";
             // 
-            // btn_excluir
+            // dtp_datavalidade
             // 
-            this.btn_excluir.Location = new System.Drawing.Point(469, 552);
-            this.btn_excluir.Name = "btn_excluir";
-            this.btn_excluir.Size = new System.Drawing.Size(75, 23);
-            this.btn_excluir.TabIndex = 12;
-            this.btn_excluir.Text = "Excluir";
-            this.btn_excluir.UseVisualStyleBackColor = true;
-            this.btn_excluir.Click += new System.EventHandler(this.btn_excluir_Click);
+            this.dtp_datavalidade.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtp_datavalidade.Location = new System.Drawing.Point(472, 28);
+            this.dtp_datavalidade.Name = "dtp_datavalidade";
+            this.dtp_datavalidade.Size = new System.Drawing.Size(89, 20);
+            this.dtp_datavalidade.TabIndex = 10;
+            this.dtp_datavalidade.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
-            // btn_gravar
+            // chk_site
             // 
-            this.btn_gravar.Location = new System.Drawing.Point(169, 552);
-            this.btn_gravar.Name = "btn_gravar";
-            this.btn_gravar.Size = new System.Drawing.Size(75, 23);
-            this.btn_gravar.TabIndex = 11;
-            this.btn_gravar.Text = "Atualizar";
-            this.btn_gravar.UseVisualStyleBackColor = true;
-            this.btn_gravar.Click += new System.EventHandler(this.btn_gravar_Click_1);
-            // 
-            // btn_alterar
-            // 
-            this.btn_alterar.Location = new System.Drawing.Point(13, 552);
-            this.btn_alterar.Name = "btn_alterar";
-            this.btn_alterar.Size = new System.Drawing.Size(75, 23);
-            this.btn_alterar.TabIndex = 10;
-            this.btn_alterar.Text = "Alterar";
-            this.btn_alterar.UseVisualStyleBackColor = true;
-            this.btn_alterar.Click += new System.EventHandler(this.btn_alterar_Click);
-            // 
-            // btn_inserir
-            // 
-            this.btn_inserir.Location = new System.Drawing.Point(315, 303);
-            this.btn_inserir.Name = "btn_inserir";
-            this.btn_inserir.Size = new System.Drawing.Size(75, 23);
-            this.btn_inserir.TabIndex = 9;
-            this.btn_inserir.Text = "Inserir";
-            this.btn_inserir.UseVisualStyleBackColor = true;
-            this.btn_inserir.Click += new System.EventHandler(this.btn_inserir_Click_1);
-            // 
-            // dtg_gravacao
-            // 
-            this.dtg_gravacao.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtg_gravacao.Location = new System.Drawing.Point(9, 354);
-            this.dtg_gravacao.MultiSelect = false;
-            this.dtg_gravacao.Name = "dtg_gravacao";
-            this.dtg_gravacao.ReadOnly = true;
-            this.dtg_gravacao.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dtg_gravacao.Size = new System.Drawing.Size(695, 150);
-            this.dtg_gravacao.TabIndex = 8;
-            this.dtg_gravacao.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtg_gravacao_CellContentClick);
-            this.dtg_gravacao.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtg_gravacao_CellDoubleClick);
-            // 
-            // gpb_compras
-            // 
-            this.gpb_compras.Controls.Add(this.txt_vlrunitario);
-            this.gpb_compras.Controls.Add(this.cmb_medida);
-            this.gpb_compras.Controls.Add(this.cmb_categoria);
-            this.gpb_compras.Controls.Add(this.dtp_datafabricacao);
-            this.gpb_compras.Controls.Add(this.dtp_datavalidade);
-            this.gpb_compras.Controls.Add(this.dtp_datarecebimento);
-            this.gpb_compras.Controls.Add(this.txt_qdtcomprada);
-            this.gpb_compras.Controls.Add(this.txt_fornecedor);
-            this.gpb_compras.Controls.Add(this.txt_nome);
-            this.gpb_compras.Controls.Add(this.lbl_fornecedor);
-            this.gpb_compras.Controls.Add(this.lbl_datafabricacao);
-            this.gpb_compras.Controls.Add(this.lbl_qtdcomprada);
-            this.gpb_compras.Controls.Add(this.lbl_medida);
-            this.gpb_compras.Controls.Add(this.lbl_validade);
-            this.gpb_compras.Controls.Add(this.lbl_datarecebimento);
-            this.gpb_compras.Controls.Add(this.lbl_valorunitario);
-            this.gpb_compras.Controls.Add(this.lbl_categoria);
-            this.gpb_compras.Controls.Add(this.lbl_nome);
-            this.gpb_compras.Location = new System.Drawing.Point(9, 22);
-            this.gpb_compras.Name = "gpb_compras";
-            this.gpb_compras.Size = new System.Drawing.Size(695, 259);
-            this.gpb_compras.TabIndex = 7;
-            this.gpb_compras.TabStop = false;
-            this.gpb_compras.Text = "Cadastro de Produtos";
-            this.gpb_compras.Enter += new System.EventHandler(this.gpb_compras_Enter);
-            // 
-            // txt_vlrunitario
-            // 
-            this.txt_vlrunitario.Location = new System.Drawing.Point(150, 109);
-            this.txt_vlrunitario.Mask = "$ 0000,00";
-            this.txt_vlrunitario.Name = "txt_vlrunitario";
-            this.txt_vlrunitario.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txt_vlrunitario.Size = new System.Drawing.Size(100, 20);
-            this.txt_vlrunitario.TabIndex = 18;
-            this.txt_vlrunitario.TextChanged += new System.EventHandler(this.txt_vlrunitario_TextChanged);
-            // 
-            // cmb_medida
-            // 
-            this.cmb_medida.FormattingEnabled = true;
-            this.cmb_medida.Items.AddRange(new object[] {
-            "Selecione...",
-            "Unidade",
-            "Litro",
-            "Caixa",
-            "Fardo",
-            "Kilograma"});
-            this.cmb_medida.Location = new System.Drawing.Point(515, 72);
-            this.cmb_medida.Name = "cmb_medida";
-            this.cmb_medida.Size = new System.Drawing.Size(100, 21);
-            this.cmb_medida.TabIndex = 17;
+            this.chk_site.AutoSize = true;
+            this.chk_site.Location = new System.Drawing.Point(472, 74);
+            this.chk_site.Name = "chk_site";
+            this.chk_site.Size = new System.Drawing.Size(43, 17);
+            this.chk_site.TabIndex = 9;
+            this.chk_site.Text = "Sim";
+            this.chk_site.UseVisualStyleBackColor = true;
             // 
             // cmb_categoria
             // 
             this.cmb_categoria.FormattingEnabled = true;
             this.cmb_categoria.Items.AddRange(new object[] {
-            "Selecione...",
-            "Bebida alcóolica",
-            "Bebida não alcóolica",
-            "Itens para cozinha",
-            "Ingredientes",
-            "Embalagens"});
-            this.cmb_categoria.Location = new System.Drawing.Point(150, 72);
+            "Selecione.."});
+            this.cmb_categoria.Location = new System.Drawing.Point(140, 112);
             this.cmb_categoria.Name = "cmb_categoria";
             this.cmb_categoria.Size = new System.Drawing.Size(121, 21);
-            this.cmb_categoria.TabIndex = 16;
+            this.cmb_categoria.TabIndex = 8;
             // 
-            // dtp_datafabricacao
+            // txt_vlrunitario
             // 
-            this.dtp_datafabricacao.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtp_datafabricacao.Location = new System.Drawing.Point(515, 146);
-            this.dtp_datafabricacao.Name = "dtp_datafabricacao";
-            this.dtp_datafabricacao.Size = new System.Drawing.Size(100, 20);
-            this.dtp_datafabricacao.TabIndex = 15;
-            this.dtp_datafabricacao.ValueChanged += new System.EventHandler(this.dtp_datafabricacao_ValueChanged);
-            // 
-            // dtp_datavalidade
-            // 
-            this.dtp_datavalidade.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtp_datavalidade.Location = new System.Drawing.Point(150, 187);
-            this.dtp_datavalidade.Name = "dtp_datavalidade";
-            this.dtp_datavalidade.Size = new System.Drawing.Size(96, 20);
-            this.dtp_datavalidade.TabIndex = 14;
-            // 
-            // dtp_datarecebimento
-            // 
-            this.dtp_datarecebimento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtp_datarecebimento.Location = new System.Drawing.Point(150, 146);
-            this.dtp_datarecebimento.Name = "dtp_datarecebimento";
-            this.dtp_datarecebimento.Size = new System.Drawing.Size(96, 20);
-            this.dtp_datarecebimento.TabIndex = 13;
-            // 
-            // txt_qdtcomprada
-            // 
-            this.txt_qdtcomprada.Location = new System.Drawing.Point(515, 109);
-            this.txt_qdtcomprada.Name = "txt_qdtcomprada";
-            this.txt_qdtcomprada.Size = new System.Drawing.Size(100, 20);
-            this.txt_qdtcomprada.TabIndex = 12;
-            // 
-            // txt_fornecedor
-            // 
-            this.txt_fornecedor.Location = new System.Drawing.Point(515, 190);
-            this.txt_fornecedor.Name = "txt_fornecedor";
-            this.txt_fornecedor.Size = new System.Drawing.Size(100, 20);
-            this.txt_fornecedor.TabIndex = 11;
+            this.txt_vlrunitario.Location = new System.Drawing.Point(140, 71);
+            this.txt_vlrunitario.Mask = "$ 0000,00";
+            this.txt_vlrunitario.Name = "txt_vlrunitario";
+            this.txt_vlrunitario.Size = new System.Drawing.Size(100, 20);
+            this.txt_vlrunitario.TabIndex = 6;
             // 
             // txt_nome
             // 
-            this.txt_nome.Location = new System.Drawing.Point(150, 34);
+            this.txt_nome.Location = new System.Drawing.Point(140, 28);
             this.txt_nome.Name = "txt_nome";
-            this.txt_nome.Size = new System.Drawing.Size(359, 20);
-            this.txt_nome.TabIndex = 9;
-            this.txt_nome.TextChanged += new System.EventHandler(this.txt_nome_TextChanged);
+            this.txt_nome.Size = new System.Drawing.Size(100, 20);
+            this.txt_nome.TabIndex = 5;
             // 
-            // lbl_fornecedor
+            // label5
             // 
-            this.lbl_fornecedor.AutoSize = true;
-            this.lbl_fornecedor.Location = new System.Drawing.Point(408, 193);
-            this.lbl_fornecedor.Name = "lbl_fornecedor";
-            this.lbl_fornecedor.Size = new System.Drawing.Size(61, 13);
-            this.lbl_fornecedor.TabIndex = 8;
-            this.lbl_fornecedor.Text = "Fornecedor";
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(391, 74);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(25, 13);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "Site";
             // 
-            // lbl_datafabricacao
+            // label4
             // 
-            this.lbl_datafabricacao.AutoSize = true;
-            this.lbl_datafabricacao.Location = new System.Drawing.Point(408, 152);
-            this.lbl_datafabricacao.Name = "lbl_datafabricacao";
-            this.lbl_datafabricacao.Size = new System.Drawing.Size(101, 13);
-            this.lbl_datafabricacao.TabIndex = 7;
-            this.lbl_datafabricacao.Text = "Data de Fabricação";
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(391, 31);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(48, 13);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Validade";
             // 
-            // lbl_qtdcomprada
+            // label3
             // 
-            this.lbl_qtdcomprada.AutoSize = true;
-            this.lbl_qtdcomprada.Location = new System.Drawing.Point(408, 112);
-            this.lbl_qtdcomprada.Name = "lbl_qtdcomprada";
-            this.lbl_qtdcomprada.Size = new System.Drawing.Size(75, 13);
-            this.lbl_qtdcomprada.TabIndex = 6;
-            this.lbl_qtdcomprada.Text = "Qdt Comprada";
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(7, 115);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(52, 13);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Categoria";
             // 
-            // lbl_medida
+            // label2
             // 
-            this.lbl_medida.AutoSize = true;
-            this.lbl_medida.Location = new System.Drawing.Point(408, 75);
-            this.lbl_medida.Name = "lbl_medida";
-            this.lbl_medida.Size = new System.Drawing.Size(42, 13);
-            this.lbl_medida.TabIndex = 5;
-            this.lbl_medida.Text = "Medida";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(7, 74);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(79, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Valor de venda";
             // 
-            // lbl_validade
+            // label1
             // 
-            this.lbl_validade.AutoSize = true;
-            this.lbl_validade.Location = new System.Drawing.Point(19, 193);
-            this.lbl_validade.Name = "lbl_validade";
-            this.lbl_validade.Size = new System.Drawing.Size(89, 13);
-            this.lbl_validade.TabIndex = 4;
-            this.lbl_validade.Text = "Data de Validade";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(7, 31);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Nome";
             // 
-            // lbl_datarecebimento
+            // btn_inserir
             // 
-            this.lbl_datarecebimento.AutoSize = true;
-            this.lbl_datarecebimento.Location = new System.Drawing.Point(19, 152);
-            this.lbl_datarecebimento.Name = "lbl_datarecebimento";
-            this.lbl_datarecebimento.Size = new System.Drawing.Size(111, 13);
-            this.lbl_datarecebimento.TabIndex = 3;
-            this.lbl_datarecebimento.Text = "Data de Recebimento";
+            this.btn_inserir.Location = new System.Drawing.Point(307, 238);
+            this.btn_inserir.Name = "btn_inserir";
+            this.btn_inserir.Size = new System.Drawing.Size(75, 23);
+            this.btn_inserir.TabIndex = 1;
+            this.btn_inserir.Text = "Inserir";
+            this.btn_inserir.UseVisualStyleBackColor = true;
+            this.btn_inserir.Click += new System.EventHandler(this.btn_inserir_Click);
             // 
-            // lbl_valorunitario
+            // dtg_produtos
             // 
-            this.lbl_valorunitario.AutoSize = true;
-            this.lbl_valorunitario.Location = new System.Drawing.Point(19, 112);
-            this.lbl_valorunitario.Name = "lbl_valorunitario";
-            this.lbl_valorunitario.Size = new System.Drawing.Size(70, 13);
-            this.lbl_valorunitario.TabIndex = 2;
-            this.lbl_valorunitario.Text = "Valor Unitário";
+            this.dtg_produtos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtg_produtos.Location = new System.Drawing.Point(12, 307);
+            this.dtg_produtos.Name = "dtg_produtos";
+            this.dtg_produtos.Size = new System.Drawing.Size(663, 150);
+            this.dtg_produtos.TabIndex = 2;
+            this.dtg_produtos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtg_produtos_CellDoubleClick);
             // 
-            // lbl_categoria
+            // btn_alterar
             // 
-            this.lbl_categoria.AutoSize = true;
-            this.lbl_categoria.Location = new System.Drawing.Point(19, 75);
-            this.lbl_categoria.Name = "lbl_categoria";
-            this.lbl_categoria.Size = new System.Drawing.Size(52, 13);
-            this.lbl_categoria.TabIndex = 1;
-            this.lbl_categoria.Text = "Categoria";
+            this.btn_alterar.Location = new System.Drawing.Point(12, 496);
+            this.btn_alterar.Name = "btn_alterar";
+            this.btn_alterar.Size = new System.Drawing.Size(75, 23);
+            this.btn_alterar.TabIndex = 3;
+            this.btn_alterar.Text = "Alterar";
+            this.btn_alterar.UseVisualStyleBackColor = true;
+            this.btn_alterar.Click += new System.EventHandler(this.btn_altera_Click);
             // 
-            // lbl_nome
+            // btn_atualizar
             // 
-            this.lbl_nome.AutoSize = true;
-            this.lbl_nome.Location = new System.Drawing.Point(19, 37);
-            this.lbl_nome.Name = "lbl_nome";
-            this.lbl_nome.Size = new System.Drawing.Size(35, 13);
-            this.lbl_nome.TabIndex = 0;
-            this.lbl_nome.Text = "Nome";
+            this.btn_atualizar.Location = new System.Drawing.Point(162, 496);
+            this.btn_atualizar.Name = "btn_atualizar";
+            this.btn_atualizar.Size = new System.Drawing.Size(75, 23);
+            this.btn_atualizar.TabIndex = 4;
+            this.btn_atualizar.Text = "Atualizar";
+            this.btn_atualizar.UseVisualStyleBackColor = true;
+            this.btn_atualizar.Click += new System.EventHandler(this.btn_atualizar_Click);
             // 
             // btn_cancelar
             // 
-            this.btn_cancelar.Location = new System.Drawing.Point(315, 552);
+            this.btn_cancelar.Location = new System.Drawing.Point(307, 496);
             this.btn_cancelar.Name = "btn_cancelar";
             this.btn_cancelar.Size = new System.Drawing.Size(75, 23);
-            this.btn_cancelar.TabIndex = 14;
+            this.btn_cancelar.TabIndex = 5;
             this.btn_cancelar.Text = "Cancelar";
             this.btn_cancelar.UseVisualStyleBackColor = true;
             this.btn_cancelar.Click += new System.EventHandler(this.btn_cancelar_Click);
             // 
-            // Produtos
+            // btn_excluir
+            // 
+            this.btn_excluir.Location = new System.Drawing.Point(450, 496);
+            this.btn_excluir.Name = "btn_excluir";
+            this.btn_excluir.Size = new System.Drawing.Size(75, 23);
+            this.btn_excluir.TabIndex = 6;
+            this.btn_excluir.Text = "Excluir";
+            this.btn_excluir.UseVisualStyleBackColor = true;
+            this.btn_excluir.Click += new System.EventHandler(this.btn_excluir_Click);
+            // 
+            // btn_sair
+            // 
+            this.btn_sair.Location = new System.Drawing.Point(600, 496);
+            this.btn_sair.Name = "btn_sair";
+            this.btn_sair.Size = new System.Drawing.Size(75, 23);
+            this.btn_sair.TabIndex = 7;
+            this.btn_sair.Text = "Sair";
+            this.btn_sair.UseVisualStyleBackColor = true;
+            this.btn_sair.Click += new System.EventHandler(this.btn_sair_Click);
+            // 
+            // Produto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(711, 612);
-            this.Controls.Add(this.btn_cancelar);
+            this.ClientSize = new System.Drawing.Size(687, 544);
             this.Controls.Add(this.btn_sair);
             this.Controls.Add(this.btn_excluir);
-            this.Controls.Add(this.btn_gravar);
+            this.Controls.Add(this.btn_cancelar);
+            this.Controls.Add(this.btn_atualizar);
             this.Controls.Add(this.btn_alterar);
+            this.Controls.Add(this.dtg_produtos);
             this.Controls.Add(this.btn_inserir);
-            this.Controls.Add(this.dtg_gravacao);
-            this.Controls.Add(this.gpb_compras);
+            this.Controls.Add(this.gbp_produtos);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Produtos";
+            this.Name = "Produto";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Produtos";
-            this.Load += new System.EventHandler(this.Produtos_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dtg_gravacao)).EndInit();
-            this.gpb_compras.ResumeLayout(false);
-            this.gpb_compras.PerformLayout();
+            this.Text = "Insumo";
+            this.Load += new System.EventHandler(this.Insumo_Load);
+            this.gbp_produtos.ResumeLayout(false);
+            this.gbp_produtos.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtg_produtos)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button btn_sair;
-        private System.Windows.Forms.Button btn_excluir;
-        private System.Windows.Forms.Button btn_gravar;
-        private System.Windows.Forms.Button btn_alterar;
-        private System.Windows.Forms.Button btn_inserir;
-        private System.Windows.Forms.DataGridView dtg_gravacao;
-        private System.Windows.Forms.GroupBox gpb_compras;
-        private System.Windows.Forms.ComboBox cmb_medida;
-        private System.Windows.Forms.ComboBox cmb_categoria;
-        private System.Windows.Forms.DateTimePicker dtp_datafabricacao;
-        private System.Windows.Forms.DateTimePicker dtp_datavalidade;
-        private System.Windows.Forms.DateTimePicker dtp_datarecebimento;
-        private System.Windows.Forms.TextBox txt_qdtcomprada;
-        private System.Windows.Forms.TextBox txt_fornecedor;
+        private System.Windows.Forms.GroupBox gbp_produtos;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txt_nome;
-        private System.Windows.Forms.Label lbl_fornecedor;
-        private System.Windows.Forms.Label lbl_datafabricacao;
-        private System.Windows.Forms.Label lbl_qtdcomprada;
-        private System.Windows.Forms.Label lbl_medida;
-        private System.Windows.Forms.Label lbl_validade;
-        private System.Windows.Forms.Label lbl_datarecebimento;
-        private System.Windows.Forms.Label lbl_valorunitario;
-        private System.Windows.Forms.Label lbl_categoria;
-        private System.Windows.Forms.Label lbl_nome;
-        private System.Windows.Forms.Button btn_cancelar;
+        private System.Windows.Forms.CheckBox chk_site;
+        private System.Windows.Forms.ComboBox cmb_categoria;
         private System.Windows.Forms.MaskedTextBox txt_vlrunitario;
-
+        private System.Windows.Forms.Button btn_inserir;
+        private System.Windows.Forms.DataGridView dtg_produtos;
+        private System.Windows.Forms.Button btn_alterar;
+        private System.Windows.Forms.Button btn_atualizar;
+        private System.Windows.Forms.Button btn_cancelar;
+        private System.Windows.Forms.Button btn_excluir;
+        private System.Windows.Forms.Button btn_sair;
+        private System.Windows.Forms.DateTimePicker dtp_datavalidade;
     }
 }

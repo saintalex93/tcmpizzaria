@@ -118,7 +118,7 @@ namespace Pizzaria
 
 
             }
-            Produtos Prod = new Produtos();
+            Produto Prod = new Produto();
             Prod.MdiParent = this;
             Prod.Show();
           
