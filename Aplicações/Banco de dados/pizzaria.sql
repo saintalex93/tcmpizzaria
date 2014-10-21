@@ -85,6 +85,13 @@ Cod_Categoria INT IDENTITY(1,1) PRIMARY KEY,
 Nome_Categoria VARCHAR(30)
 )
 go
+insert into Categoria (Nome_Categoria) 
+values
+('Bebida alcóolica'),
+('Bebida não alcóolica'),
+('Itens para cozinha'),
+('Ingredientes'),
+('Embalagens')
 
 create table Produto
 (
@@ -278,3 +285,7 @@ values
 ('Final de semana','Nos finais de semana deste mês(Novembro), as pizzas de Mussarela,Calabresa e Baiana terão seu preço reduzido a R$16,00.<br /> Aproveite !!',1,0),
 ('Cookie Promocional','Compras acima de R$50,00, você ganha dois deliciosos cookies de chocolate.',1,1)
 go
+
+
+
+select * from Categoria
