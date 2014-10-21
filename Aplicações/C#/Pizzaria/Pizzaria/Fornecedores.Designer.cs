@@ -511,7 +511,7 @@
             // 
             // btnVoltar
             // 
-            this.btnVoltar.Location = new System.Drawing.Point(224, 678);
+            this.btnVoltar.Location = new System.Drawing.Point(220, 676);
             this.btnVoltar.Name = "btnVoltar";
             this.btnVoltar.Size = new System.Drawing.Size(75, 23);
             this.btnVoltar.TabIndex = 60;
@@ -526,20 +526,21 @@
             this.dtgvFornecedores.Name = "dtgvFornecedores";
             this.dtgvFornecedores.Size = new System.Drawing.Size(340, 150);
             this.dtgvFornecedores.TabIndex = 4;
+            this.dtgvFornecedores.SelectionChanged += new System.EventHandler(this.dtgvFornecedores_SelectionChanged);
             // 
             // btnSalvar
             // 
-            this.btnSalvar.Location = new System.Drawing.Point(60, 648);
+            this.btnSalvar.Location = new System.Drawing.Point(53, 647);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(75, 23);
             this.btnSalvar.TabIndex = 19;
-            this.btnSalvar.Text = "Salvar";
+            this.btnSalvar.Text = "Adicionar";
             this.btnSalvar.UseVisualStyleBackColor = true;
             this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
             // btnAlterar
             // 
-            this.btnAlterar.Location = new System.Drawing.Point(224, 649);
+            this.btnAlterar.Location = new System.Drawing.Point(137, 676);
             this.btnAlterar.Name = "btnAlterar";
             this.btnAlterar.Size = new System.Drawing.Size(75, 23);
             this.btnAlterar.TabIndex = 6;
@@ -549,7 +550,7 @@
             // 
             // btnExcluir
             // 
-            this.btnExcluir.Location = new System.Drawing.Point(143, 678);
+            this.btnExcluir.Location = new System.Drawing.Point(56, 676);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(75, 23);
             this.btnExcluir.TabIndex = 7;
@@ -559,7 +560,7 @@
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(144, 648);
+            this.btnBuscar.Location = new System.Drawing.Point(137, 647);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(75, 23);
             this.btnBuscar.TabIndex = 8;
@@ -569,7 +570,7 @@
             // 
             // btnLimpar
             // 
-            this.btnLimpar.Location = new System.Drawing.Point(60, 678);
+            this.btnLimpar.Location = new System.Drawing.Point(220, 647);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(75, 23);
             this.btnLimpar.TabIndex = 61;
@@ -581,7 +582,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(365, 726);
+            this.ClientSize = new System.Drawing.Size(365, 710);
             this.Controls.Add(this.btnLimpar);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.btnExcluir);

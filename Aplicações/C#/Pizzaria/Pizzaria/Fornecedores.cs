@@ -20,7 +20,7 @@ namespace Pizzaria
         SqlCommand sqlComm;
 
         //Usada para definir se o botão "Salvar" deverá gravar um registro ou atualizá-lo
-        bool gravar;
+        bool alterar = false;
 
         SqlConnection conn;
 
@@ -733,6 +733,7 @@ namespace Pizzaria
 
         public bool validaBusca()
         {
+            //Verificação de campos
             if (
                 mtxtCNPJ.Text
                 .Replace(" ", "")
@@ -805,6 +806,38 @@ namespace Pizzaria
 
                 return false;
 
+            }
+
+            //Verificação de banco
+            string stringDeBusca = "select * from Fornecedor where CNPJ_CPF = '" + getDocumento() + "'";
+
+            SqlConnection conn = new SqlConnection(conexao);
+
+
+            SqlDataAdapter da = new SqlDataAdapter();
+
+            SqlCommand sqlComm = new SqlCommand(stringDeBusca, conn);            
+            
+            da.SelectCommand = sqlComm;
+
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+
+            if (dt.Rows.Count == 0)
+            {
+                mensagemDeErro("Não foi encontrado nenhum fornecedor com esse documento no sistema.\n\nPor favor, certifique-se de que o número e/ou tipo do documento estejam corretos e tente novamente.");
+
+                setFocusDocumento();
+
+                preencherGrid();
+                
+                return false;
+            }
+            else if (dt.Rows.Count > 1) 
+            {
+                mensagemDeErro("Foram detectados mais de um fornecedor com o número de documento fornecido.\n\n Verifique se não há alguma inconsistência nos registros.");
+
+                setFocusDocumento();
             }
 
             return true;
@@ -950,9 +983,7 @@ namespace Pizzaria
         }
 
         public string preencherComandoInsert(TextBox campo)
-        {/*(12121212112, 'razao', 'fantasia', 111, 22222222, 33333333, 'nome', '(11) 98936-1878', 'email@email.com', '(11) 1111-1111', 'nome rua', 321, '015460100', 'SP', 'Cidade', 'Bairro', 'Complemento')*/
-
-            string comando = "";
+        {string comando = "";
 
             comando += ", '" + campo.Text + "'";
 
@@ -995,8 +1026,6 @@ namespace Pizzaria
         {
             //Insere dados
             conn = new SqlConnection(conexao);
-            /*            strIncluir = 
-                            "insert into Produto (Nome_Produto, Valor_venda,validade,qtd_Estoque,cod_categoria) values ('" + nome + "','" + valoruntd + "','" + datavalidade + "','" + qtd + "','" + dt.Rows[0][0].ToString() + "')";*/
 
             string documento = "'";
 
@@ -1020,16 +1049,14 @@ namespace Pizzaria
 
             documento += "'";
 
-            string CEP =
+/*            string CEP =
                 mtxtCEP.Text
                 .Replace(" ", "")
                 .Replace(".", "")
                 .Replace(".", "")
                 .Replace("_", "")
                 .Replace("/", "")
-                .Replace("-", "");
-
-            /*            strIncluir = "insert into Fornecedor (CNPJ_CPF,Razao_Social,Nome_Fantasia,Nome_Banco,Agencia,Conta_Corrente,Responsavel,Celular_Responsavel,Email_Responsavel,Telefone_Comercial,Endereco_Fornecedor,Numero_Residencia,CEP_Fornecedor,Estado_Fornecedor,Cidade_Fornecedor,Bairro_Fornecedor,Complemento)values(11111111111,'razao','fantasia','111','22222222','33333333','1','(11) 1111-1111','asdf!@aasdf.com','1','1','1','1','1','1','1','1')";*/
+                .Replace("-", "");*/
 
             strIncluir = "insert into Fornecedor (CNPJ_CPF, Razao_Social, Nome_Fantasia, Nome_Banco, Agencia, Conta_Corrente, Responsavel, Celular_Responsavel, Email_Responsavel, Telefone_Comercial, Endereco_Fornecedor, Numero_Residencia, CEP_Fornecedor, Estado_Fornecedor, Cidade_Fornecedor, Bairro_Fornecedor,Complemento) values (";
 
@@ -1046,7 +1073,7 @@ namespace Pizzaria
             strIncluir += preencherComandoInsert(mtxtTelefoneDeContato);
             strIncluir += preencherComandoInsert(txtNomeDaRua);
             strIncluir += preencherComandoInsert(txtNumero);
-            strIncluir += ", '" + CEP + "'";
+            strIncluir += ", '" + mtxtCEP.Text + "'";
             strIncluir += preencherComandoInsert(cbxUF);
             strIncluir += preencherComandoInsert(txtCidade);
             strIncluir += preencherComandoInsert(txtBairro);
@@ -1061,9 +1088,97 @@ namespace Pizzaria
             sqlComm.ExecuteNonQuery();
         }
 
-        public DataTable Buscar(string documento)
+        public void atualizarFornecedor()
         {
-            string stringDeBusca = "select * from Fornecedor where CNPJ_CPF = '" + documento + "'"; ;
+            conn = new SqlConnection(conexao);
+
+            string documento = "'";
+
+            if (mtxtCPF.Text
+                .Replace(" ", "")
+                .Replace(".", "")
+                .Replace(".", "")
+                .Replace("_", "")
+                .Replace("/", "")
+                .Replace("-", "").Length > 0)
+                documento += mtxtCPF.Text;
+
+            else if (mtxtCNPJ.Text
+                .Replace(" ", "")
+                .Replace(".", "")
+                .Replace(".", "")
+                .Replace("_", "")
+                .Replace("/", "")
+                .Replace("-", "").Length > 0)
+                documento += mtxtCNPJ.Text;
+
+            documento += "'";
+
+            /*            string CEP =
+                            mtxtCEP.Text
+                            .Replace(" ", "")
+                            .Replace(".", "")
+                            .Replace(".", "")
+                            .Replace("_", "")
+                            .Replace("/", "")
+                            .Replace("-", "");*/
+
+            /*UPDATE Customers
+SET 
+ContactName='Alfred Schmidt', 
+City='Hamburg'
+WHERE CustomerName='Alfreds Futterkiste';
+
+			*/
+
+            strIncluir = "update Fornecedor set " +
+                "CNPJ_CPF = " + documento +
+                ", Razao_Social = '" +
+                txtRazaoSocial.Text +
+                "', Nome_Fantasia = '" +
+                txtNomeFantasia.Text +
+                "', Nome_Banco = '" +
+                txtBanco.Text +
+                "', Agencia = '" +
+                txtAgencia.Text +
+                "', Conta_Corrente = '" +
+                txtConta.Text +
+                "', Responsavel = '" +
+                txtResponsavel.Text +
+                "', Celular_Responsavel = '" +
+                mtxtCelular.Text +
+                "', Email_Responsavel = '" +
+                txtEmailResponsavel.Text +
+                "', Telefone_Comercial = '" +
+            mtxtTelefoneDeContato.Text +
+                "', Endereco_Fornecedor = '" +
+                txtNomeDaRua.Text +
+                "', Numero_Residencia = '" +
+                txtNumero.Text +
+                "', CEP_Fornecedor = '" +
+                mtxtCEP.Text +
+                "', Estado_Fornecedor = '" +
+                cbxUF.Text +
+                "', Cidade_Fornecedor = '" +
+                txtCidade.Text +
+                "', Bairro_Fornecedor = '" +
+                txtBairro.Text +
+                "', Complemento = '" +
+                txtComplemento.Text +
+
+                "' WHERE CNPJ_CPF = '"+cpf+"'";
+
+            conn.Open();
+            sqlComm = new SqlCommand(strIncluir, conn);
+            sqlComm.ExecuteNonQuery();
+
+            cpf = "";
+
+        }
+
+        public DataTable Buscar()
+        {
+            string stringDeBusca = "select * from Fornecedor where CNPJ_CPF = '" + cpf + "'"; ;
 
             SqlConnection conn = new SqlConnection(conexao);
             SqlCommand sqlComm = new SqlCommand(stringDeBusca, conn);
@@ -1072,47 +1187,11 @@ namespace Pizzaria
             da.SelectCommand = sqlComm;
 
             DataTable dt = new DataTable();
+
             da.Fill(dt);
-
-            dtgvFornecedores.DataSource = dt;
-
             return dt;
 
-/*            SqlConnection conn = new SqlConnection(conexao);
-
-            conn.Open();
-            DataTable dt = new DataTable();
-
-            try
-            {
-
-
-                SqlCommand sqlComm = new SqlCommand(strIncluir, conn);
-
-                sqlComm.ExecuteNonQuery();
-                SqlDataAdapter da = new SqlDataAdapter();
-                da.SelectCommand = sqlComm;
-
-                da.Fill(dt);
-
-                if (dt.Rows.Count > 0)
-                {
-                    dtgvFornecedores.Columns.Clear();
-                    dtgvFornecedores.DataSource = dt;
-                }
-
-                return dt;
-
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Infelizmente houve uma falha ao entrar em contato com o banco e a operação foi cancelada.");
-
-                return dt;
-            }
-            conn.Close();*/
-
-
+            cpf = "";
         }
 
         public void limparCampos()
@@ -1135,6 +1214,13 @@ namespace Pizzaria
             };
 
             func(Controls);
+        }
+
+        public void estadoDosBotoes(bool estado) 
+        {
+            btnBuscar.Enabled = estado;
+            btnExcluir.Enabled = estado;
+            btnSalvar.Enabled = estado;
         }
 
         public void excluirFornecedor()
@@ -1193,6 +1279,19 @@ namespace Pizzaria
             conn.Close();
 
             return true;
+        }
+
+        public string getDocumento()
+        {
+            string documento = "";
+
+            if (mtxtCNPJ.Visible)
+                documento = mtxtCNPJ.Text;
+            else
+                documento = mtxtCPF.Text;
+
+            return documento;
+
         }
 
         /*
@@ -1304,50 +1403,16 @@ namespace Pizzaria
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
+            cpf = getDocumento();
+
             //Vê se CPF ou CNPJ foi preenchido
             if(!validaBusca())
                 return;
 
-            string documento = "";
+            dtgvFornecedores.Columns.Clear();
 
-            if (
-                mtxtCNPJ.Text
-                .Replace(" ", "")
-                .Replace(".", "")
-                .Replace(".", "")
-                .Replace("_", "")
-                .Replace("/", "")
-                .Replace("-", "").Length != 0)
-                documento = mtxtCNPJ.Text;
-            else
-                documento = mtxtCPF.Text;
-
-            Buscar(documento);
-
-/*            strIncluir = "select * from Fornecedor where 'CPF_CNPJ' = '" + documento + "'";
-            DataTable conteudo = new DataTable();
-            conteudo = Buscar(strIncluir);*/
-
-
-
-//            txtRazaoSocial.Text = conteudo.Rows[0][1].ToString();
-           /* mtxt_cpf.Text = conteudo.Rows[0][2].ToString();
-            txt_endereco.Text = conteudo.Rows[0][3].ToString();
-            txt_complemento.Text = conteudo.Rows[0][4].ToString();
-            txt_numero.Text = conteudo.Rows[0][5].ToString();
-            mtxt_cep.Text = conteudo.Rows[0][6].ToString();
-            //Verificar logica para selecionar de acordo com o texto
-            //cb_uf.SelectedText.Text = dtgw_dados.CurrentRow.Cells[7].Value.ToString();
-            txt_cidade.Text = conteudo.Rows[0][8].ToString();
-            txt_email.Text = conteudo.Rows[0][9].ToString();
-            txt_bairro.Text = conteudo.Rows[0][10].ToString();
-            mtxt_celular.Text = conteudo.Rows[0][11].ToString();
-            mtxt_telefone.Text = conteudo.Rows[0][12].ToString();
-
-
-            gp_dadosfunc.Enabled = false;
-            groupBox3.Enabled = false;   */
-
+            dtgvFornecedores.DataSource = Buscar();
+            
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
@@ -1357,12 +1422,141 @@ namespace Pizzaria
 
         private void btnLimpar_Click(object sender, EventArgs e)
         {
+            preencherGrid();
+
             limparCampos();
+
+            estadoDosBotoes(true);
+        }
+
+        public void preencherCampos()
+        {
+            DataTable conteudo = new DataTable();
+
+            MaskedTextBox documento = new MaskedTextBox();
+
+            if (dtgvFornecedores.CurrentRow.Cells[1].Value.ToString().Length == 18)
+            {
+                rdCNPJ.Checked = true;
+
+                documento = mtxtCNPJ;
+            }
+
+            else
+            {
+                rdCPF.Checked = true;
+
+                documento = mtxtCPF;
+            }
+
+            for (int i = 1; i <= 17; i++)
+                switch (i)
+                {
+                    case 1:
+                        documento.Text = dtgvFornecedores.CurrentRow.Cells[i].Value.ToString();
+                        break;
+
+                    case 2:
+                        txtRazaoSocial.Text = dtgvFornecedores.CurrentRow.Cells[i].Value.ToString();
+                        break
+                            ;
+                    case 3:
+                        txtNomeFantasia.Text = dtgvFornecedores.CurrentRow.Cells[i].Value.ToString();
+                        break;
+
+                    case 4:
+                        txtBanco.Text = dtgvFornecedores.CurrentRow.Cells[i].Value.ToString();
+                        break;
+
+                    case 5:
+                        txtAgencia.Text = dtgvFornecedores.CurrentRow.Cells[i].Value.ToString();
+                        break;
+
+                    case 6:
+                        txtConta.Text = dtgvFornecedores.CurrentRow.Cells[i].Value.ToString();
+                        break;
+
+                    case 7:
+                        txtResponsavel.Text = dtgvFornecedores.CurrentRow.Cells[i].Value.ToString();
+                        break;
+
+                    case 8:
+                        mtxtCelular.Text = dtgvFornecedores.CurrentRow.Cells[i].Value.ToString();
+                        break;
+
+                    case 9:
+                        txtEmailResponsavel.Text = dtgvFornecedores.CurrentRow.Cells[i].Value.ToString();
+                        break;
+
+                    case 10:
+                        mtxtTelefoneDeContato.Text = dtgvFornecedores.CurrentRow.Cells[i].Value.ToString();
+                        break;
+
+                    case 11:
+                        txtNomeDaRua.Text = dtgvFornecedores.CurrentRow.Cells[i].Value.ToString();
+                        break;
+
+                    case 12:
+                        txtNumero.Text = dtgvFornecedores.CurrentRow.Cells[i].Value.ToString();
+                        break;
+
+                    case 13:
+                        mtxtCEP.Text = dtgvFornecedores.CurrentRow.Cells[i].Value.ToString();
+                        break;
+
+                    case 14:
+                        cbxUF.Text = dtgvFornecedores.CurrentRow.Cells[i].Value.ToString();
+                        break;
+
+                    case 15:
+                        txtCidade.Text = dtgvFornecedores.CurrentRow.Cells[i].Value.ToString();
+                        break;
+
+                    case 16:
+                        txtBairro.Text = dtgvFornecedores.CurrentRow.Cells[i].Value.ToString();
+                        break;
+
+                    case 17:
+                        txtComplemento.Text = dtgvFornecedores.CurrentRow.Cells[i].Value.ToString();
+                        break;
+
+                    default:
+                        mensagemDeErro("Ocorreu um erro no preenchimento automático da ficha do fornecedor.\n\nPor favor, entre em contato com o suporte técnico para que uma solução possa ser encontrada.");
+                        break;
+                }
         }
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
+            if (btnAlterar.Text == "Alterar")
+            {
+                preencherCampos();
 
+                cpf = getDocumento();
+
+                btnAlterar.Text = "Gravar";
+
+                estadoDosBotoes(false);
+            }
+            else 
+            {
+                atualizarFornecedor();
+
+                estadoDosBotoes(true);
+
+                btnAlterar.Text = "Alterar";
+
+                preencherGrid();    
+            }
+        }
+
+        private void dtgvFornecedores_SelectionChanged(object sender, EventArgs e)
+        {
+            limparCampos();
+
+            btnAlterar.Text = "Alterar";
+
+            estadoDosBotoes(true);
         }
     }
 }
