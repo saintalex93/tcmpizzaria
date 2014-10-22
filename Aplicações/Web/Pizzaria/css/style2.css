@@ -56,7 +56,7 @@ color: #128700;
 {
 height: auto;
 line-height: 150%;
-margin-top: 70px;
+margin-top: 60px;
 }
 #conteudo input#ContentPlaceHolder1_btnEnvia
 {
@@ -68,7 +68,7 @@ margin-left: 45%;
 height: 25px;
 }
 
-#conteudo #ContentPlaceHolder1_HyperLink1 
+#conteudo #ContentPlaceHolder1_HyperLink1 /* Ainda não é cadastrado? - CARDAPIO */
 {
 font-size: 12px;
 }
@@ -77,18 +77,17 @@ font-size: 12px;
 
 div#login 
 {
-position:absolute;
-top: 28%;
-left: 67%;
+/*top: 40%;
+left: 32%;*/
 background-color: rgba(255,0,30,0.5);
-height: 170px;
+height: 32px;
 padding: 5px;
 border: 2px solid #fff;
 }
 
 div#login a,#Label1,#Label2
 {
-color: #000;
+color: #fff;
 text-decoration: none;
 font-weight: bold;
 }
@@ -104,13 +103,16 @@ div#login #btnLogin,#btnLogout
 background-color: #c21b1b;
 border: 2px solid #c79292;
 border-radius: 5px;
-margin-top: 8px;
 margin-bottom: 6px;
 padding: 4px;
 box-shadow: 5px 4px 2px rgba(0,0,0,0.6);
 font-weight: bold;
 font-size: 14px;
 color: #fff;
+}
+div#login a
+{
+margin-left: 20px;
 }
 
 div#login a:hover
@@ -123,6 +125,8 @@ div#login span#lblLoginInc
 color: gold;
 font-weight:bold;
 float:initial;
+font-size: 13px;
+margin-left: 5px;
 }
 
 .erros 
@@ -226,8 +230,35 @@ width: 1000px;
 text-align: center;
 line-height: 300px;
 font-size: 100px;
+margin-bottom: 15px;
 }
 
+/* CSS MENU DO CLIENTE */
+
+nav#menu_gerencia
+{
+    width: 400px;
+}
+
+nav#menu_gerencia ul
+{
+    margin-top: 50px;
+    border: 1px solid #fff;
+    width: 150px;
+    height: 120px;
+    list-style: none;
+}
+
+nav#menu_gerencia li
+{
+    line-height: 240%;
+}
+nav#menu_gerencia li a
+{
+    color: #fff;
+    text-decoration : none;
+    font-size: 19px;
+}
 /* CSS DO MENU */
 
 nav#menu{
@@ -255,7 +286,7 @@ nav#menu li:hover{
 background-color: rgba(255, 255, 255, 0.7);
 text-shadow: 0px 5px 3px #000;
 }
-nav#menu li a 
+nav#menu li a
 {
 text-decoration: none;
 color: #fff;
@@ -277,7 +308,7 @@ text-align: center;
 text-align: center;
 /*border: 2px dashed purple;*/
 padding-bottom: 50px;
-margin-top: 50px;
+margin-top: 60px;
 color: #fff;
 }
 

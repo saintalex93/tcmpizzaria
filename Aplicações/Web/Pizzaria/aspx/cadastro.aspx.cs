@@ -9,9 +9,15 @@ using System.Data.SqlClient;
 
 public partial class aspx_cadastro : System.Web.UI.Page
 {
+    
     bool x = true;
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["logado"] != null)
+        {
+            Response.Redirect("index.aspx");
+        }
+
         /*Adicionando o atributo onblur e chamando a função aplicaMascara().
         Onblur é para quando o usuário tirar o foco do campo*/
         txtDtNasc.Attributes.Add("onblur", "aplicaMascara()");
@@ -169,7 +175,7 @@ public partial class aspx_cadastro : System.Web.UI.Page
             txtNome.Focus();
             lblvalidNome.Style.Add("display", "inline");
         }
-        if (txtTel.Text.Length != 10 && txtTel.Text.Length != 13)
+        else if (txtTel.Text.Length != 10 && txtTel.Text.Length != 13)
         {
             x = false;
             txtTel.Focus();
@@ -177,7 +183,7 @@ public partial class aspx_cadastro : System.Web.UI.Page
         }
 
         
-        if (txtCel.Text.Length != 0)
+        else if (txtCel.Text.Length != 0)
         {
             if (txtCel.Text.Length != 10 && txtCel.Text.Length != 11 && txtCel.Text.Length != 13 && txtCel.Text.Length != 15)
             {
@@ -187,69 +193,69 @@ public partial class aspx_cadastro : System.Web.UI.Page
             }
         }
         
-        if (txtEmail.Text.Length < 5)
+        else if (txtEmail.Text.Length < 5)
         {
             x = false;
             txtEmail.Focus();
             lblvalidEmail.Style.Add("display", "inline");
         }
         
-        if (txtCpf.Text.Length != 11 && txtCpf.Text.Length != 14)
+        else if (txtCpf.Text.Length != 11 && txtCpf.Text.Length != 14)
         {
             x = false;
             txtCpf.Focus();
             lblvalidCpf.Style.Add("display", "inline");
         }
         
-        if (txtDtNasc.Text.Length != 8 && txtDtNasc.Text.Length != 10)
+        else if (txtDtNasc.Text.Length != 8 && txtDtNasc.Text.Length != 10)
         {
             x = false;
             txtDtNasc.Focus();
             lblvalidDtNasc.Style.Add("display", "inline");
         }
-        
-        if (txtSenha.Text.Length < 5)
+
+        else if (txtSenha.Text.Length < 5)
         {
             x = false;
             txtSenha.Focus();
             lblvalidSenha.Style.Add("display", "inline");
         }
-        if (txtSenhaConfirm.Text != txtSenha.Text) 
+        else if (txtSenhaConfirm.Text != txtSenha.Text) 
         {
             x = false;
             txtSenhaConfirm.Focus();
             lblvalidSenhaConfirm.Style.Add("display", "inline");
         }
-        
-        if (txtCidade.Text.Length < 3)
+
+        else if (txtCidade.Text.Length < 3)
         {
             x = false;
             txtCidade.Focus();
             lblvalidCidade.Style.Add("display", "inline");
         }
 
-        if (txtRua.Text.Length < 1)
+        else if (txtRua.Text.Length < 1)
         {
             x = false;
             txtRua.Focus();
             lblvalidRua.Style.Add("display", "inline");
         }
 
-        if (txtNumCasa.Text.Length < 1)
+        else if (txtNumCasa.Text.Length < 1)
         {
             x = false;
             txtNumCasa.Focus();
             lblvalidNumCasa.Style.Add("display", "inline");
         }
 
-        if (txtBairro.Text.Length < 3)
+        else if (txtBairro.Text.Length < 3)
         {
             x = false;
             txtBairro.Focus();
             lblvalidBairro.Style.Add("display", "inline");
         }
 
-        if (txtCep.Text.Length != 8 && txtCep.Text.Length != 9)
+        else if (txtCep.Text.Length != 8 && txtCep.Text.Length != 9)
         {
             x = false;
             txtCep.Focus();

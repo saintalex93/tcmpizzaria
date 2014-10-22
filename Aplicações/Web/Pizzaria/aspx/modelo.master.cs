@@ -16,15 +16,16 @@ public partial class aspx_modelo : System.Web.UI.MasterPage
         btnLogout.Visible = false;
         if (Session["logado"] != null)
         {
-            Response.Write("Usuario Logado");
-
             Label1.Text = "Bem vindo";
+            Label1.Style.Add("margin-left","450px");
             txtEmail.Visible = false;
             Label2.Text = "";
             txtLogin_senha.Visible = false;
             btnLogin.Visible = false;
             btnLogout.Visible = true;
-            linkCadastro.Visible = false;
+            linkCadastro.Text = "Minha conta";
+            linkCadastro.NavigateUrl = "conta.aspx";
+            HyperLink1.Visible = false;
         }
     }
     protected void btnLogin_Click(object sender, EventArgs e)
