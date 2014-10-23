@@ -29,6 +29,13 @@
         private void InitializeComponent()
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.novoCadastroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.funcionarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.clienteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.empresaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.produtoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.insumoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aplicativosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cobrancaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.históricoDePedidosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,39 +57,19 @@
             this.sairToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel5 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
-            this.novoCadastroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.funcionarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.clienteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.empresaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.produtoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.insumoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tbp_Acesso = new System.Windows.Forms.TabControl();
-            this.tbp_alterarLogin = new System.Windows.Forms.TabPage();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.lbl_usuario = new System.Windows.Forms.Label();
-            this.lbl_Senha = new System.Windows.Forms.Label();
-            this.txt_usuario = new System.Windows.Forms.TextBox();
-            this.txt_senha = new System.Windows.Forms.TextBox();
-            this.btn_Acessa = new System.Windows.Forms.Button();
-            this.pnl_login = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
-            this.tbp_Acesso.SuspendLayout();
-            this.tbp_alterarLogin.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.pnl_login.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -102,6 +89,62 @@
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
+            // 
+            // novoCadastroToolStripMenuItem
+            // 
+            this.novoCadastroToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.novoCadastroToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.funcionarioToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.clienteToolStripMenuItem,
+            this.empresaToolStripMenuItem,
+            this.produtoToolStripMenuItem,
+            this.insumoToolStripMenuItem});
+            this.novoCadastroToolStripMenuItem.Image = global::Pizzaria.Properties.Resources._48px_Crystal_Clear_action_edit_add;
+            this.novoCadastroToolStripMenuItem.Name = "novoCadastroToolStripMenuItem";
+            this.novoCadastroToolStripMenuItem.Size = new System.Drawing.Size(98, 20);
+            this.novoCadastroToolStripMenuItem.Text = "&Novo Cadastro";
+            this.novoCadastroToolStripMenuItem.Click += new System.EventHandler(this.novoCadastroToolStripMenuItem_Click);
+            // 
+            // funcionarioToolStripMenuItem
+            // 
+            this.funcionarioToolStripMenuItem.Name = "funcionarioToolStripMenuItem";
+            this.funcionarioToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.funcionarioToolStripMenuItem.Text = "&Funcionario";
+            this.funcionarioToolStripMenuItem.Click += new System.EventHandler(this.funcionarioToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(134, 6);
+            // 
+            // clienteToolStripMenuItem
+            // 
+            this.clienteToolStripMenuItem.Name = "clienteToolStripMenuItem";
+            this.clienteToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.clienteToolStripMenuItem.Text = "&Cliente";
+            this.clienteToolStripMenuItem.Click += new System.EventHandler(this.clienteToolStripMenuItem_Click);
+            // 
+            // empresaToolStripMenuItem
+            // 
+            this.empresaToolStripMenuItem.Name = "empresaToolStripMenuItem";
+            this.empresaToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.empresaToolStripMenuItem.Text = "Fornecedor";
+            this.empresaToolStripMenuItem.Click += new System.EventHandler(this.empresaToolStripMenuItem_Click);
+            // 
+            // produtoToolStripMenuItem
+            // 
+            this.produtoToolStripMenuItem.Name = "produtoToolStripMenuItem";
+            this.produtoToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.produtoToolStripMenuItem.Text = "Produto";
+            this.produtoToolStripMenuItem.Click += new System.EventHandler(this.produtoToolStripMenuItem_Click);
+            // 
+            // insumoToolStripMenuItem
+            // 
+            this.insumoToolStripMenuItem.Name = "insumoToolStripMenuItem";
+            this.insumoToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.insumoToolStripMenuItem.Text = "Insumo";
+            this.insumoToolStripMenuItem.Click += new System.EventHandler(this.insumoToolStripMenuItem_Click);
             // 
             // aplicativosToolStripMenuItem
             // 
@@ -267,31 +310,6 @@
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Size = new System.Drawing.Size(6, 58);
             // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 58);
-            // 
-            // toolStripSeparator
-            // 
-            this.toolStripSeparator.Name = "toolStripSeparator";
-            this.toolStripSeparator.Size = new System.Drawing.Size(6, 58);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 58);
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 58);
-            // 
-            // toolStripSeparator6
-            // 
-            this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 58);
-            // 
             // toolStripLabel2
             // 
             this.toolStripLabel2.Image = global::Pizzaria.Properties.Resources.Untitled_2;
@@ -301,6 +319,11 @@
             this.toolStripLabel2.Text = "Pedido";
             this.toolStripLabel2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolStripLabel2.Click += new System.EventHandler(this.toolStripLabel2_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 58);
             // 
             // toolStripLabel4
             // 
@@ -312,6 +335,11 @@
             this.toolStripLabel4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolStripLabel4.Click += new System.EventHandler(this.toolStripLabel4_Click);
             // 
+            // toolStripSeparator
+            // 
+            this.toolStripSeparator.Name = "toolStripSeparator";
+            this.toolStripSeparator.Size = new System.Drawing.Size(6, 58);
+            // 
             // toolStripLabel5
             // 
             this.toolStripLabel5.Image = global::Pizzaria.Properties.Resources.Untitled_1;
@@ -320,6 +348,11 @@
             this.toolStripLabel5.Size = new System.Drawing.Size(48, 55);
             this.toolStripLabel5.Text = "Agenda";
             this.toolStripLabel5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 58);
             // 
             // toolStripLabel1
             // 
@@ -330,6 +363,11 @@
             this.toolStripLabel1.Text = "Caixa";
             this.toolStripLabel1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 58);
+            // 
             // toolStripLabel6
             // 
             this.toolStripLabel6.Image = global::Pizzaria.Properties.Resources.Logoff;
@@ -338,6 +376,11 @@
             this.toolStripLabel6.Size = new System.Drawing.Size(42, 55);
             this.toolStripLabel6.Text = "Logoff";
             this.toolStripLabel6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 58);
             // 
             // toolStripLabel3
             // 
@@ -349,156 +392,12 @@
             this.toolStripLabel3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolStripLabel3.Click += new System.EventHandler(this.toolStripLabel3_Click);
             // 
-            // novoCadastroToolStripMenuItem
-            // 
-            this.novoCadastroToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.novoCadastroToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.funcionarioToolStripMenuItem,
-            this.toolStripSeparator1,
-            this.clienteToolStripMenuItem,
-            this.empresaToolStripMenuItem,
-            this.produtoToolStripMenuItem,
-            this.insumoToolStripMenuItem});
-            this.novoCadastroToolStripMenuItem.Image = global::Pizzaria.Properties.Resources._48px_Crystal_Clear_action_edit_add;
-            this.novoCadastroToolStripMenuItem.Name = "novoCadastroToolStripMenuItem";
-            this.novoCadastroToolStripMenuItem.Size = new System.Drawing.Size(98, 20);
-            this.novoCadastroToolStripMenuItem.Text = "&Novo Cadastro";
-            this.novoCadastroToolStripMenuItem.Click += new System.EventHandler(this.novoCadastroToolStripMenuItem_Click);
-            // 
-            // funcionarioToolStripMenuItem
-            // 
-            this.funcionarioToolStripMenuItem.Name = "funcionarioToolStripMenuItem";
-            this.funcionarioToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
-            this.funcionarioToolStripMenuItem.Text = "&Funcionario";
-            this.funcionarioToolStripMenuItem.Click += new System.EventHandler(this.funcionarioToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(134, 6);
-            // 
-            // clienteToolStripMenuItem
-            // 
-            this.clienteToolStripMenuItem.Name = "clienteToolStripMenuItem";
-            this.clienteToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
-            this.clienteToolStripMenuItem.Text = "&Cliente";
-            this.clienteToolStripMenuItem.Click += new System.EventHandler(this.clienteToolStripMenuItem_Click);
-            // 
-            // empresaToolStripMenuItem
-            // 
-            this.empresaToolStripMenuItem.Name = "empresaToolStripMenuItem";
-            this.empresaToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
-            this.empresaToolStripMenuItem.Text = "Fornecedor";
-            this.empresaToolStripMenuItem.Click += new System.EventHandler(this.empresaToolStripMenuItem_Click);
-            // 
-            // produtoToolStripMenuItem
-            // 
-            this.produtoToolStripMenuItem.Name = "produtoToolStripMenuItem";
-            this.produtoToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
-            this.produtoToolStripMenuItem.Text = "Produto";
-            this.produtoToolStripMenuItem.Click += new System.EventHandler(this.produtoToolStripMenuItem_Click);
-            // 
-            // insumoToolStripMenuItem
-            // 
-            this.insumoToolStripMenuItem.Name = "insumoToolStripMenuItem";
-            this.insumoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.insumoToolStripMenuItem.Text = "Insumo";
-            this.insumoToolStripMenuItem.Click += new System.EventHandler(this.insumoToolStripMenuItem_Click);
-            // 
-            // tbp_Acesso
-            // 
-            this.tbp_Acesso.Controls.Add(this.tbp_alterarLogin);
-            this.tbp_Acesso.Location = new System.Drawing.Point(28, 26);
-            this.tbp_Acesso.Name = "tbp_Acesso";
-            this.tbp_Acesso.SelectedIndex = 0;
-            this.tbp_Acesso.Size = new System.Drawing.Size(432, 230);
-            this.tbp_Acesso.TabIndex = 0;
-            // 
-            // tbp_alterarLogin
-            // 
-            this.tbp_alterarLogin.Controls.Add(this.btn_Acessa);
-            this.tbp_alterarLogin.Controls.Add(this.txt_senha);
-            this.tbp_alterarLogin.Controls.Add(this.txt_usuario);
-            this.tbp_alterarLogin.Controls.Add(this.lbl_Senha);
-            this.tbp_alterarLogin.Controls.Add(this.lbl_usuario);
-            this.tbp_alterarLogin.Controls.Add(this.pictureBox1);
-            this.tbp_alterarLogin.Location = new System.Drawing.Point(4, 22);
-            this.tbp_alterarLogin.Name = "tbp_alterarLogin";
-            this.tbp_alterarLogin.Padding = new System.Windows.Forms.Padding(3);
-            this.tbp_alterarLogin.Size = new System.Drawing.Size(424, 204);
-            this.tbp_alterarLogin.TabIndex = 3;
-            this.tbp_alterarLogin.Text = "Acesso";
-            this.tbp_alterarLogin.UseVisualStyleBackColor = true;
-            this.tbp_alterarLogin.Click += new System.EventHandler(this.tbp_alterarLogin_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Pizzaria.Properties.Resources._48px_Crystal_Clear_kdm_user_male;
-            this.pictureBox1.Location = new System.Drawing.Point(30, 40);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(44, 50);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
-            // lbl_usuario
-            // 
-            this.lbl_usuario.AutoSize = true;
-            this.lbl_usuario.Location = new System.Drawing.Point(120, 40);
-            this.lbl_usuario.Name = "lbl_usuario";
-            this.lbl_usuario.Size = new System.Drawing.Size(43, 13);
-            this.lbl_usuario.TabIndex = 1;
-            this.lbl_usuario.Text = "Usuario";
-            // 
-            // lbl_Senha
-            // 
-            this.lbl_Senha.AutoSize = true;
-            this.lbl_Senha.Location = new System.Drawing.Point(123, 76);
-            this.lbl_Senha.Name = "lbl_Senha";
-            this.lbl_Senha.Size = new System.Drawing.Size(38, 13);
-            this.lbl_Senha.TabIndex = 2;
-            this.lbl_Senha.Text = "Senha";
-            // 
-            // txt_usuario
-            // 
-            this.txt_usuario.Location = new System.Drawing.Point(185, 32);
-            this.txt_usuario.Name = "txt_usuario";
-            this.txt_usuario.Size = new System.Drawing.Size(100, 20);
-            this.txt_usuario.TabIndex = 3;
-            // 
-            // txt_senha
-            // 
-            this.txt_senha.Location = new System.Drawing.Point(185, 69);
-            this.txt_senha.Name = "txt_senha";
-            this.txt_senha.PasswordChar = '*';
-            this.txt_senha.Size = new System.Drawing.Size(100, 20);
-            this.txt_senha.TabIndex = 4;
-            // 
-            // btn_Acessa
-            // 
-            this.btn_Acessa.Image = global::Pizzaria.Properties.Resources.Crystal_Clear_app_clean;
-            this.btn_Acessa.Location = new System.Drawing.Point(185, 120);
-            this.btn_Acessa.Name = "btn_Acessa";
-            this.btn_Acessa.Size = new System.Drawing.Size(100, 50);
-            this.btn_Acessa.TabIndex = 5;
-            this.btn_Acessa.UseVisualStyleBackColor = true;
-            // 
-            // pnl_login
-            // 
-            this.pnl_login.AutoScroll = true;
-            this.pnl_login.Controls.Add(this.tbp_Acesso);
-            this.pnl_login.Location = new System.Drawing.Point(621, 338);
-            this.pnl_login.Name = "pnl_login";
-            this.pnl_login.Size = new System.Drawing.Size(494, 289);
-            this.pnl_login.TabIndex = 1;
-            this.pnl_login.Paint += new System.Windows.Forms.PaintEventHandler(this.pnl_login_Paint);
-            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1476, 860);
             this.Controls.Add(this.toolStrip1);
-            this.Controls.Add(this.pnl_login);
             this.Controls.Add(this.menuStrip1);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
@@ -509,11 +408,6 @@
             this.menuStrip1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            this.tbp_Acesso.ResumeLayout(false);
-            this.tbp_alterarLogin.ResumeLayout(false);
-            this.tbp_alterarLogin.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.pnl_login.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -561,14 +455,5 @@
         private System.Windows.Forms.ToolStripMenuItem novoContatoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem usuáriosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem permissõesToolStripMenuItem;
-        private System.Windows.Forms.TabControl tbp_Acesso;
-        private System.Windows.Forms.TabPage tbp_alterarLogin;
-        private System.Windows.Forms.Button btn_Acessa;
-        private System.Windows.Forms.TextBox txt_senha;
-        private System.Windows.Forms.TextBox txt_usuario;
-        private System.Windows.Forms.Label lbl_Senha;
-        private System.Windows.Forms.Label lbl_usuario;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Panel pnl_login;
     }
 }
