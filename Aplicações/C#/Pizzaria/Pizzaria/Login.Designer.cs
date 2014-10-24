@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.pnl_login = new System.Windows.Forms.Panel();
+            this.btnConfiguracoes = new System.Windows.Forms.Button();
             this.tbp_Acesso = new System.Windows.Forms.TabControl();
             this.tbp_alterarLogin = new System.Windows.Forms.TabPage();
             this.btn_Acessa = new System.Windows.Forms.Button();
@@ -46,11 +47,22 @@
             // pnl_login
             // 
             this.pnl_login.AutoScroll = true;
+            this.pnl_login.Controls.Add(this.btnConfiguracoes);
             this.pnl_login.Controls.Add(this.tbp_Acesso);
             this.pnl_login.Location = new System.Drawing.Point(12, 12);
             this.pnl_login.Name = "pnl_login";
             this.pnl_login.Size = new System.Drawing.Size(494, 289);
             this.pnl_login.TabIndex = 2;
+            // 
+            // btnConfiguracoes
+            // 
+            this.btnConfiguracoes.Location = new System.Drawing.Point(405, 258);
+            this.btnConfiguracoes.Name = "btnConfiguracoes";
+            this.btnConfiguracoes.Size = new System.Drawing.Size(55, 23);
+            this.btnConfiguracoes.TabIndex = 1;
+            this.btnConfiguracoes.Text = "Config.";
+            this.btnConfiguracoes.UseVisualStyleBackColor = true;
+            this.btnConfiguracoes.Click += new System.EventHandler(this.btnRede_Click);
             // 
             // tbp_Acesso
             // 
@@ -159,6 +171,7 @@
         private System.Windows.Forms.Label lbl_Senha;
         private System.Windows.Forms.Label lbl_usuario;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button btnConfiguracoes;
 
     }
 }

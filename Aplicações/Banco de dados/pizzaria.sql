@@ -45,8 +45,8 @@ Nome_Func VARCHAR(40),
 CPF_Funcionario VARCHAR(15),
 Endereco_Funcionario VARCHAR(40),
 Complemento_Funcionario VARCHAR(40),
-Numero_Residencia INT,
-CEP_Funcionario VARCHAR(9),
+Numero_Residencia VARCHAR(6),
+CEP_Funcionario VARCHAR(10),
 Estado_Funcionario VARCHAR(2),
 Cidade_Funcionario VARCHAR(20),
 Email_Funcionario VARCHAR(40),
@@ -57,6 +57,7 @@ Cod_Permissao INT FOREIGN KEY REFERENCES Permissao(Cod_Permissao),
 data_Nasc VARCHAR(10),
 )
 go
+
 
 create table Insumo
 (
@@ -85,13 +86,6 @@ Cod_Categoria INT IDENTITY(1,1) PRIMARY KEY,
 Nome_Categoria VARCHAR(30)
 )
 go
-insert into Categoria (Nome_Categoria) 
-values
-('Bebida alcóolica'),
-('Bebida não alcóolica'),
-('Itens para cozinha'),
-('Ingredientes'),
-('Embalagens')
 
 create table Produto
 (
@@ -285,7 +279,4 @@ values
 ('Final de semana','Nos finais de semana deste mês(Novembro), as pizzas de Mussarela,Calabresa e Baiana terão seu preço reduzido a R$16,00.<br /> Aproveite !!',1,0),
 ('Cookie Promocional','Compras acima de R$50,00, você ganha dois deliciosos cookies de chocolate.',1,1)
 go
-
-
-
-select * from Categoria
+insert into FuncPermissao(Login_, Senha) values ('admin','1234')

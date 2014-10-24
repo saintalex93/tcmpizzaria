@@ -23,7 +23,10 @@ namespace Pizzaria
 
             try
             {
-            string conexao = "Data Source=Tuca\\SQLEXPRESS ;Initial Catalog=Pizzaria; Persist Security Info = True; User ID=sa; Password=peganomeupau";
+                string conexao = "";//"Data Source=Tuca\\SQLEXPRESS ;Initial Catalog=Pizzaria; Persist Security Info = True; User ID=sa; Password=peganomeupau";
+
+                conexao = Rede.DataContainer.conexaoGlobal;
+                
             SqlConnection add = new SqlConnection(conexao);
             SqlCommand comando = new SqlCommand("select count (*) from FuncPermissao where Login_=@Usuario and Senha=@senha", add);
 
@@ -91,7 +94,15 @@ namespace Pizzaria
 
         private void Login_Shown_1(object sender, EventArgs e)
         {
+            
+
             txt_usuario.Focus();
+        }
+
+        private void btnRede_Click(object sender, EventArgs e)
+        {
+            Rede rede = new Rede();
+            rede.Show();
         }
     }
 }

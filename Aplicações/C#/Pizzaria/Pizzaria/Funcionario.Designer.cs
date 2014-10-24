@@ -105,6 +105,7 @@
             // txt_Senha
             // 
             this.txt_Senha.Location = new System.Drawing.Point(285, 195);
+            this.txt_Senha.MaxLength = 20;
             this.txt_Senha.Name = "txt_Senha";
             this.txt_Senha.PasswordChar = '*';
             this.txt_Senha.Size = new System.Drawing.Size(100, 20);
@@ -113,6 +114,7 @@
             // txt_Usuario
             // 
             this.txt_Usuario.Location = new System.Drawing.Point(116, 192);
+            this.txt_Usuario.MaxLength = 20;
             this.txt_Usuario.Name = "txt_Usuario";
             this.txt_Usuario.Size = new System.Drawing.Size(111, 20);
             this.txt_Usuario.TabIndex = 16;
@@ -183,6 +185,7 @@
             // txt_email
             // 
             this.txt_email.Location = new System.Drawing.Point(116, 151);
+            this.txt_email.MaxLength = 40;
             this.txt_email.Name = "txt_email";
             this.txt_email.Size = new System.Drawing.Size(269, 20);
             this.txt_email.TabIndex = 7;
@@ -190,6 +193,7 @@
             // txt_nome
             // 
             this.txt_nome.Location = new System.Drawing.Point(116, 32);
+            this.txt_nome.MaxLength = 40;
             this.txt_nome.Name = "txt_nome";
             this.txt_nome.Size = new System.Drawing.Size(269, 20);
             this.txt_nome.TabIndex = 6;
@@ -329,6 +333,7 @@
             // txt_complemento
             // 
             this.txt_complemento.Location = new System.Drawing.Point(84, 168);
+            this.txt_complemento.MaxLength = 40;
             this.txt_complemento.Multiline = true;
             this.txt_complemento.Name = "txt_complemento";
             this.txt_complemento.Size = new System.Drawing.Size(500, 47);
@@ -337,6 +342,7 @@
             // txt_cidade
             // 
             this.txt_cidade.Location = new System.Drawing.Point(84, 125);
+            this.txt_cidade.MaxLength = 20;
             this.txt_cidade.Name = "txt_cidade";
             this.txt_cidade.Size = new System.Drawing.Size(338, 20);
             this.txt_cidade.TabIndex = 10;
@@ -344,6 +350,7 @@
             // txt_bairro
             // 
             this.txt_bairro.Location = new System.Drawing.Point(84, 78);
+            this.txt_bairro.MaxLength = 30;
             this.txt_bairro.Name = "txt_bairro";
             this.txt_bairro.Size = new System.Drawing.Size(338, 20);
             this.txt_bairro.TabIndex = 9;
@@ -351,6 +358,7 @@
             // txt_numero
             // 
             this.txt_numero.Location = new System.Drawing.Point(520, 39);
+            this.txt_numero.MaxLength = 5;
             this.txt_numero.Name = "txt_numero";
             this.txt_numero.Size = new System.Drawing.Size(64, 20);
             this.txt_numero.TabIndex = 8;
@@ -358,6 +366,7 @@
             // txt_endereco
             // 
             this.txt_endereco.Location = new System.Drawing.Point(84, 39);
+            this.txt_endereco.MaxLength = 40;
             this.txt_endereco.Name = "txt_endereco";
             this.txt_endereco.Size = new System.Drawing.Size(338, 20);
             this.txt_endereco.TabIndex = 7;
@@ -537,6 +546,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastramento de Funcionário";
             this.Load += new System.EventHandler(this.Funcionario_Load);
+            this.Shown += new System.EventHandler(this.Funcionario_Shown);
             this.gp_dadosfunc.ResumeLayout(false);
             this.gp_dadosfunc.PerformLayout();
             this.groupBox3.ResumeLayout(false);

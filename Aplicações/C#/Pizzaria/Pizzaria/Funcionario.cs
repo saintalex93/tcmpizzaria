@@ -60,6 +60,8 @@ namespace Pizzaria
         //String com informações de acesso pro BD
         string conexao = "Data Source=CASA-PC\\BPASERVER10 ;Initial Catalog=Pizzaria; Persist Security Info = True; User ID=sa; Password=AutoMateBPA10";
 
+        
+
         //Validar se e update ou insert
         Boolean valida = false;
         private void label15_Click(object sender, EventArgs e)
@@ -98,7 +100,7 @@ namespace Pizzaria
               }*/
         private void btn_salvar_Click_1(object sender, EventArgs e)
         {
-
+            conexao = Rede.DataContainer.conexaoGlobal;
 
 
             //Valida se todos os campos estao preenchidos corretamente    
@@ -143,7 +145,7 @@ namespace Pizzaria
                         strIncluir = "select * from Funcionario where CPF_Funcionario = '" + cpf + "'";
                         if (ValidaCPF(cpf))
                         {
-                            strIncluir = "insert into Funcionario (Nome,CPF_Funcionario,Endereco_Funcionario,Complemento_Funcionario,Numero_Residencia,CEP_Funcionario,Estado_Funcionario,Cidade_Funcionario ,Email_Funcionario ,Telefone_Funcionario,Celular_Funcionario ,Bairro_Funcionario, data_nasc) values ('" + nome + "','" + cpf + "','" + endereco + "','" + complemento + "','" + num_endereco + "','" + cep + "','" + uf + "','" + cidade + "','" + email + "','" + telefone + "','" + cel + "','" + bairro + "','" + data.ToString("yyyy/MM/dd") + "')";
+                            strIncluir = "insert into Funcionario (Nome_Func,CPF_Funcionario,Endereco_Funcionario,Complemento_Funcionario,Numero_Residencia,CEP_Funcionario,Estado_Funcionario,Cidade_Funcionario ,Email_Funcionario ,Telefone_Funcionario,Celular_Funcionario ,Bairro_Funcionario, data_nasc) values ('" + nome + "','" + cpf + "','" + endereco + "','" + complemento + "','" + num_endereco + "','" + cep + "','" + uf + "','" + cidade + "','" + email + "','" + telefone + "','" + cel + "','" + bairro + "','" + data.ToString("yyyy/MM/dd") + "')";
                             InsereFunc(strIncluir);
                             btn_salvar.Text = "Gravar";
                         }
@@ -859,6 +861,11 @@ namespace Pizzaria
         private void lbl_telefone_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void Funcionario_Shown(object sender, EventArgs e)
+        {
+            
         }
 
 

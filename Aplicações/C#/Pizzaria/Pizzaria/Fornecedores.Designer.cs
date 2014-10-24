@@ -596,6 +596,7 @@
             this.Name = "Fornecedores";
             this.Text = "Gerenciamento de Fornecedores";
             this.Load += new System.EventHandler(this.Fornecedores_Load);
+            this.Shown += new System.EventHandler(this.Fornecedores_Shown);
             this.grpDadosFornecedor.ResumeLayout(false);
             this.grpDadosFornecedor.PerformLayout();
             this.grpResponsável.ResumeLayout(false);

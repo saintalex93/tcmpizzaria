@@ -1558,5 +1558,10 @@ WHERE CustomerName='Alfreds Futterkiste';
 
             estadoDosBotoes(true);
         }
+
+        private void Fornecedores_Shown(object sender, EventArgs e)
+        {
+            conexao = Rede.DataContainer.conexaoGlobal;
+        }
     }
 }
