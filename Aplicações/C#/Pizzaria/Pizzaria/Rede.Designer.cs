@@ -38,8 +38,6 @@
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.btnOkay = new System.Windows.Forms.Button();
             this.btnSair = new System.Windows.Forms.Button();
-            this.rdLocalHost = new System.Windows.Forms.RadioButton();
-            this.rdCustom = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // label1
@@ -54,7 +52,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(36, 90);
+            this.label2.Location = new System.Drawing.Point(36, 37);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(43, 13);
             this.label2.TabIndex = 1;
@@ -63,7 +61,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(59, 116);
+            this.label3.Location = new System.Drawing.Point(59, 63);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(18, 13);
             this.label3.TabIndex = 2;
@@ -72,7 +70,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(24, 142);
+            this.label4.Location = new System.Drawing.Point(24, 89);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 13);
             this.label4.TabIndex = 3;
@@ -80,7 +78,7 @@
             // 
             // txtDataSource
             // 
-            this.txtDataSource.Location = new System.Drawing.Point(83, 61);
+            this.txtDataSource.Location = new System.Drawing.Point(83, 8);
             this.txtDataSource.Name = "txtDataSource";
             this.txtDataSource.Size = new System.Drawing.Size(100, 20);
             this.txtDataSource.TabIndex = 4;
@@ -88,21 +86,21 @@
             // 
             // txtCatalog
             // 
-            this.txtCatalog.Location = new System.Drawing.Point(83, 87);
+            this.txtCatalog.Location = new System.Drawing.Point(83, 34);
             this.txtCatalog.Name = "txtCatalog";
             this.txtCatalog.Size = new System.Drawing.Size(100, 20);
             this.txtCatalog.TabIndex = 5;
             // 
             // txtID
             // 
-            this.txtID.Location = new System.Drawing.Point(83, 113);
+            this.txtID.Location = new System.Drawing.Point(83, 60);
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(100, 20);
             this.txtID.TabIndex = 6;
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(83, 139);
+            this.txtPassword.Location = new System.Drawing.Point(83, 86);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(100, 20);
@@ -110,7 +108,7 @@
             // 
             // btnOkay
             // 
-            this.btnOkay.Location = new System.Drawing.Point(23, 165);
+            this.btnOkay.Location = new System.Drawing.Point(23, 112);
             this.btnOkay.Name = "btnOkay";
             this.btnOkay.Size = new System.Drawing.Size(75, 23);
             this.btnOkay.TabIndex = 8;
@@ -120,7 +118,7 @@
             // 
             // btnSair
             // 
-            this.btnSair.Location = new System.Drawing.Point(104, 165);
+            this.btnSair.Location = new System.Drawing.Point(104, 112);
             this.btnSair.Name = "btnSair";
             this.btnSair.Size = new System.Drawing.Size(75, 23);
             this.btnSair.TabIndex = 9;
@@ -128,37 +126,11 @@
             this.btnSair.UseVisualStyleBackColor = true;
             this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
             // 
-            // rdLocalHost
-            // 
-            this.rdLocalHost.AutoSize = true;
-            this.rdLocalHost.Location = new System.Drawing.Point(83, 9);
-            this.rdLocalHost.Name = "rdLocalHost";
-            this.rdLocalHost.Size = new System.Drawing.Size(71, 17);
-            this.rdLocalHost.TabIndex = 10;
-            this.rdLocalHost.TabStop = true;
-            this.rdLocalHost.Text = "Localhost";
-            this.rdLocalHost.UseVisualStyleBackColor = true;
-            this.rdLocalHost.CheckedChanged += new System.EventHandler(this.rdLocalHost_CheckedChanged);
-            // 
-            // rdCustom
-            // 
-            this.rdCustom.AutoSize = true;
-            this.rdCustom.Location = new System.Drawing.Point(83, 32);
-            this.rdCustom.Name = "rdCustom";
-            this.rdCustom.Size = new System.Drawing.Size(60, 17);
-            this.rdCustom.TabIndex = 11;
-            this.rdCustom.TabStop = true;
-            this.rdCustom.Text = "Custom";
-            this.rdCustom.UseVisualStyleBackColor = true;
-            this.rdCustom.CheckedChanged += new System.EventHandler(this.rdCustom_CheckedChanged);
-            // 
             // Rede
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(203, 224);
-            this.Controls.Add(this.rdCustom);
-            this.Controls.Add(this.rdLocalHost);
+            this.ClientSize = new System.Drawing.Size(203, 153);
             this.Controls.Add(this.btnSair);
             this.Controls.Add(this.btnOkay);
             this.Controls.Add(this.txtPassword);
@@ -190,7 +162,5 @@
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Button btnOkay;
         private System.Windows.Forms.Button btnSair;
-        private System.Windows.Forms.RadioButton rdLocalHost;
-        private System.Windows.Forms.RadioButton rdCustom;
     }
 }

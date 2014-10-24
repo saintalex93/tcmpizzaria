@@ -17,7 +17,10 @@ namespace Pizzaria
             InitializeComponent();
         }
 
-        string dataSourceString = "";
+        public static string dataSource= "Localhost";
+        public static string catalog= "";
+        public static string id= "";
+        public static string password= "";
 
         public static class DataContainer
         {
@@ -38,9 +41,12 @@ namespace Pizzaria
 
         public void button1_Click(object sender, EventArgs e)
         {
-            dataSourceString = txtDataSource.Text;// +"\\" + "SQLEXPRESS";
+            dataSource = txtDataSource.Text;
+            catalog = txtCatalog.Text;
+            id = txtID.Text;
+            password = txtPassword.Text;
 
-            DataContainer.conexaoGlobal = "Data Source=" + dataSourceString + " ;Initial Catalog="+ txtCatalog.Text +"; Persist Security Info = True; User ID=" + txtID.Text + "; Password=" + txtPassword.Text;
+            DataContainer.conexaoGlobal = "Data Source=" + dataSource + " ;Initial Catalog="+ catalog +"; Persist Security Info = True; User ID=" + id + "; Password=" + password;
 
             Dispose();
         }
@@ -52,21 +58,19 @@ namespace Pizzaria
 
         private void rdLocalHost_CheckedChanged(object sender, EventArgs e)
         {
-            rdCustom.Checked = false;
-            txtDataSource.Enabled = false;
-            dataSourceString = "Localhost";
         }
 
         private void rdCustom_CheckedChanged(object sender, EventArgs e)
         {
-            rdLocalHost.Checked = false;
-            txtDataSource.Enabled = true;
         }
 
         private void Rede_Shown(object sender, EventArgs e)
         {
-            rdLocalHost.Checked = true;
-            txtDataSource.Enabled = false;
+            txtDataSource.Text = dataSource;
+            txtCatalog.Text = catalog;
+            txtID.Text = id;
+            txtPassword.Text = password;
+
         }
     }
 }

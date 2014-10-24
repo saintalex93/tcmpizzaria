@@ -280,3 +280,6 @@ values
 ('Cookie Promocional','Compras acima de R$50,00, você ganha dois deliciosos cookies de chocolate.',1,1)
 go
 insert into FuncPermissao(Login_, Senha) values ('admin','1234')
+go
+insert into FuncPermissao(Login_, Senha) values ('Tuca','123456')
+select * from Fornecedor

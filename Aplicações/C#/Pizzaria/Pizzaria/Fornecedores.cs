@@ -51,96 +51,6 @@ namespace Pizzaria
             InitializeComponent();
         }
 
-        //        public void InsereFunc(string stringInc)
-        /*{
-            conn = new SqlConnection(conexao);
-            conn.Open();
-            try
-            {
-
-                SqlCommand sqlComm = new SqlCommand(stringInc, conn);
-
-                sqlComm.ExecuteNonQuery();
-                //Seleciona Cargo
-                DataTable dt = new DataTable();
-                try
-                {
-                    stringInc = "select cod_Permissao from Permissao where Cargo = '" + cargo + "'";
-                    sqlComm = new SqlCommand(stringInc, conn);
-
-                    sqlComm.ExecuteNonQuery();
-                    SqlDataAdapter da = new SqlDataAdapter();
-                    da.SelectCommand = sqlComm;
-                    da.Fill(dt);
-                    cod_permissao = dt.Rows[0][0].ToString();
-
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Falha ao Selecionar o Cargo");
-                }
-
-                //Cod Funcionario
-
-                dt = new DataTable();
-                try
-                {
-                    stringInc = "select cod_Funcionario from Funcionario where CPF_Funcionario = '" + cpf + "'";
-                    sqlComm = new SqlCommand(stringInc, conn);
-
-                    sqlComm.ExecuteNonQuery();
-                    SqlDataAdapter da = new SqlDataAdapter();
-                    da.SelectCommand = sqlComm;
-                    da.Fill(dt);
-                    cod_cliente = dt.Rows[0][0].ToString();
-
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Falha ao obter numero do Funcionario");
-                }
-
-                //insere tabela permissao funcionario
-
-                dt = new DataTable();
-                try
-                {
-                    stringInc = "insert into FuncPermissao (Login_,Senha,Cod_Funcionario,Cod_Permissao) values ('" + usuario + "','" + senha + "','" + cod_cliente + "','" + cod_permissao + "')";
-                    sqlComm = new SqlCommand(stringInc, conn);
-
-                    sqlComm.ExecuteNonQuery();
-
-                    stringInc = "update FUncPermissao set Login_ = '" + usuario + "',senha='" + senha + "',cod_Permissao = '" + cod_permissao + "' where cod_Funcionario ='" + cod_cliente + "'";
-                    sqlComm = new SqlCommand(stringInc, conn);
-                    sqlComm.ExecuteNonQuery();
-
-                    stringInc = "update Funcionario set cod_Permissao = '" + cod_permissao + "',Usuario_Funcionario='" + usuario + "' where cod_Funcionario ='" + cod_cliente + "'";
-                    sqlComm = new SqlCommand(stringInc, conn);
-                    sqlComm.ExecuteNonQuery();
-
-
-
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Falha tabela de permissoes de funcionario");
-                }
-
-
-                MessageBox.Show("Funcionario Inserido com sucesso");
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Falha ao Inserir Funcionario");
-
-            }
-            conn.Close();
-
-            preenchegrid();
-            Clear_Dados();
-        }
-        */
-
         /*        public void Clear_Dados()
                 {
 
@@ -700,9 +610,9 @@ namespace Pizzaria
             return true;
         }
 
-        private int verificarSeExiste(string strValida) 
+        private bool verificarSeExiste(string documento) 
         {
-            strValida = "select * from Fornecedor where CNPJ_CPF = '" + strValida + "'";
+            string strValida = "select * from Fornecedor where CNPJ_CPF = '" + documento + "'";
 
             SqlConnection conn = new SqlConnection(conexao);
             DataTable dt = new DataTable();
@@ -718,7 +628,8 @@ namespace Pizzaria
 
                 da.Fill(dt);
 
-//                if (dt.Rows.Count > 0)
+                if (dt.Rows.Count > 0)
+                    return false;
                 
             }
             catch (Exception)
@@ -726,7 +637,7 @@ namespace Pizzaria
                 MessageBox.Show("Falha ao consultar o documento do Fornecedor");
             }
 
-            return dt.Rows.Count;
+            return true;
 
             conn.Close();
         }
@@ -1094,6 +1005,8 @@ namespace Pizzaria
 
             string documento = "'";
 
+            string id = dtgvFornecedores.CurrentRow.Cells[0].Value.ToString();
+
             if (mtxtCPF.Text
                 .Replace(" ", "")
                 .Replace(".", "")
@@ -1113,23 +1026,6 @@ namespace Pizzaria
                 documento += mtxtCNPJ.Text;
 
             documento += "'";
-
-            /*            string CEP =
-                            mtxtCEP.Text
-                            .Replace(" ", "")
-                            .Replace(".", "")
-                            .Replace(".", "")
-                            .Replace("_", "")
-                            .Replace("/", "")
-                            .Replace("-", "");*/
-
-            /*UPDATE Customers
-SET 
-ContactName='Alfred Schmidt', 
-City='Hamburg'
-WHERE CustomerName='Alfreds Futterkiste';
-
-			*/
 
             strIncluir = "update Fornecedor set " +
                 "CNPJ_CPF = " + documento +
@@ -1166,7 +1062,7 @@ WHERE CustomerName='Alfreds Futterkiste';
                 "', Complemento = '" +
                 txtComplemento.Text +
 
-                "' WHERE CNPJ_CPF = '"+cpf+"'";
+                "' WHERE Cod_Fornecedor = '"+ id +"'";
 
             conn.Open();
             sqlComm = new SqlCommand(strIncluir, conn);
@@ -1231,9 +1127,12 @@ WHERE CustomerName='Alfreds Futterkiste';
             {
                 string documento = "";
 
+                string id = dtgvFornecedores.CurrentRow.Cells[0].Value.ToString();
+
                 documento = dtgvFornecedores.CurrentRow.Cells[1].Value.ToString();
 
-                string strExclui = "delete Fornecedor where CNPJ_CPF = '" + documento + "'";
+//                string strExclui = "delete Fornecedor where CNPJ_CPF = '" + documento + "'";
+                string strExclui = "delete Fornecedor where Cod_Fornecedor = '" + id + "'";
                 SqlCommand sqlComm = new SqlCommand(strExclui, conn);
                 sqlComm.ExecuteNonQuery();
 
@@ -1418,6 +1317,8 @@ WHERE CustomerName='Alfreds Futterkiste';
         private void btnExcluir_Click(object sender, EventArgs e)
         {
             excluirFornecedor();
+
+            preencherGrid();
         }
 
         private void btnLimpar_Click(object sender, EventArgs e)
@@ -1537,9 +1438,17 @@ WHERE CustomerName='Alfreds Futterkiste';
                 btnAlterar.Text = "Gravar";
 
                 estadoDosBotoes(false);
+
             }
             else 
             {
+                if (!verificarSeExiste(getDocumento())) 
+                {
+                    mensagemDeErro("Já existe um registro com esse documento. Por favor, certifique-se de que tudo está certo antes de prosseguir.");
+                    return;
+                }
+                    
+
                 atualizarFornecedor();
 
                 estadoDosBotoes(true);
