@@ -273,7 +273,6 @@
             this.Controls.Add(this.btn_inserir);
             this.Controls.Add(this.dtg_gravacao);
             this.Controls.Add(this.gpb_compras);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Compras";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Compras";
