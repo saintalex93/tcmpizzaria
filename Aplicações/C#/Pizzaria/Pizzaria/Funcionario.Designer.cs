@@ -140,10 +140,6 @@
             // cbox_Cargo
             // 
             this.cbox_Cargo.FormattingEnabled = true;
-            this.cbox_Cargo.Items.AddRange(new object[] {
-            "Administrador",
-            "Atendente",
-            "Gerente"});
             this.cbox_Cargo.Location = new System.Drawing.Point(530, 151);
             this.cbox_Cargo.Name = "cbox_Cargo";
             this.cbox_Cargo.Size = new System.Drawing.Size(107, 21);
