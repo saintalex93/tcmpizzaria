@@ -69,19 +69,54 @@ namespace Pizzaria
             lbProdutosPromocao.DisplayMember = dt.Columns[1].ColumnName;
             lbProdutosPromocao.ValueMember = dt.Columns[1].ColumnName;
             // 2. set DataSource
-            
+            conn.Close();
+        }
+
+        public double precoItem(string busca) 
+        {
+            SqlConnection conn = new SqlConnection(conexao);
+            conn.Open();
+
+            SqlCommand sqlComm = new SqlCommand(busca, conn);
+            sqlComm.ExecuteNonQuery();
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = sqlComm;
 
 
-/*            DataRowView dr = (DataRowView)selectedItem;
-            String result = dr["productname"].ToString;
-            MessageBox.Show(result + Environment.NewLine);
-            */
-            /*            }
-                        catch (Exception)
-                        {
-                            MessageBox.Show("Falha ao conectar ao Bano de Dados, Contate seu suporte");
-                        }
-                    */
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+//            tabela.DataSource = dt;
+
+           
+            conn.Close();
+        
+        return 0;
+        }
+
+        public void preencherGridView(string busca, DataGridView tabela)
+        {
+            SqlConnection conn = new SqlConnection(conexao);
+            conn.Open();
+
+            //            try
+            //          {
+            SqlCommand sqlComm = new SqlCommand(busca, conn);
+            sqlComm.ExecuteNonQuery();
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = sqlComm;
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            tabela.DataSource = dt;
+
+            /*            // 1. set DisplayMember and ValueMember
+                        lbBuscaProdutos.DisplayMember = dt.Columns[1].ColumnName;
+                        lbBuscaProdutos.ValueMember = dt.Columns[1].ColumnName;
+                        // 2. set DataSource
+                        lbBuscaProdutos.DataSource = dt;
+
+                        lbProdutosPromocao.DisplayMember = dt.Columns[1].ColumnName;
+                        lbProdutosPromocao.ValueMember = dt.Columns[1].ColumnName;
+                        // 2. set DataSource*/
             conn.Close();
         }
 
@@ -92,7 +127,7 @@ namespace Pizzaria
 
         public void criarSegundaTabela()
         {
-/*            List<int> visibleColumns = new List<int>();
+            List<int> visibleColumns = new List<int>();
             
             foreach (DataGridViewColumn col in dtgBuscaProdutos.Columns)
             {
@@ -127,7 +162,7 @@ namespace Pizzaria
                 rowIndex++;
             }
 
-//            dtgProdutosNaPromocao.Rows.Clear();
+            dtgProdutosNaPromocao.Rows.Clear();
 
             do
             {
@@ -140,11 +175,13 @@ namespace Pizzaria
                     catch (Exception) { }
                 }
             } while (dtgProdutosNaPromocao.Rows.Count > 1);
-        */}
+        }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             txtBuscaID.Text = "";
+
+//            preencherGridView("select cod_Produto, Nome_Produto, Valor_Venda from Produto where Nome_Produto LIKE ('%" + txtBuscaPalavraChave.Text + "%')", dtgBuscaProdutos);
 
             preencherListBox("select cod_Produto, Nome_Produto, Valor_Venda from Produto where Nome_Produto LIKE ('%" + txtBuscaPalavraChave.Text + "%')", lbBuscaProdutos);
         }
@@ -161,8 +198,8 @@ namespace Pizzaria
 /*            preencherGrid("select cod_Produto, Nome_Produto, Valor_Venda from Produto where Nome_Produto LIKE ('%a%')", dtgBuscaProdutos);
 
 
-
-            criarSegundaTabela();*/
+*/
+            criarSegundaTabela();
 
         }
 
@@ -185,25 +222,75 @@ namespace Pizzaria
         {
             string id = "";
 
-//            id = dtgBuscaProdutos.CurrentRow.Cells[0].Value.ToString();
+/*            id = dtgBuscaProdutos.CurrentRow.Cells[0].Value.ToString();
 
-//            dtgProdutosNaPromocao.Columns.Insert(0,)
+//            dtgProdutosNaPromocao.Columns.Insert(0,);
 
-//            preencherGrid("select cod_Produto, Nome_Produto, Valor_Venda from Produto where cod_Produto LIKE ('%" + txtBuscaID.Text + "%')", dtgProdutosNaPromocao);
+            preencherGrid("select cod_Produto, Nome_Produto, Valor_Venda from Produto where cod_Produto LIKE ('%" + txtBuscaID.Text + "%')", dtgProdutosNaPromocao);*/
             
 //            dtgProdutosNaPromocao.Rows.Add(dtgBuscaProdutos.CurrentRow);
+
+
 
             int testaSel = lbProdutosPromocao.FindString(lbBuscaProdutos.SelectedItem.ToString());
 
             if (testaSel == -1)
             {
                 lbProdutosPromocao.Items.Add(lbBuscaProdutos.SelectedItem);
+                
             }
-        }
 
+            ListBox x = lbProdutosPromocao;
+
+            double preço = 0;
+
+             foreach (var item in lbProdutosPromocao.SelectedItems) 
+                 preço += Convert.ToDouble(((DataRowView)item)["Valor_Venda"]);
+            
+
+                 //                 MessageBox.Show("ID = " + ((DataRowView)item)["people_id"].ToString());
+
+            string busca = "select Valor_Venda from Produto where Cod_Produto = ";
+
+
+/*            for (int i = 0; i < lbProdutosPromocao.Items.Count; i++)
+            {
+
+
+                ListViewItem selItem = lbProdutosPromocao;
+                
+  string txt = selItem.SubItems[2].Text;
+                Console.WriteLine("----TESTE----"+txt);
+            }
+            
+
+            for (int i = 0; i < lbProdutosPromocao.Items.Count; i++) 
+//                  preço += lbProdutosPromocao.SelectedItems.
+            if(lbProdutosPromocao.Items.Count > 0)
+                Console.WriteLine("-------------------" + lbProdutosPromocao.Items[0].ToString()+ "-------------------");
+     
+        */}
+            
         private void btnRemover_Click(object sender, EventArgs e)
         {
             lbProdutosPromocao.Items.RemoveAt(lbProdutosPromocao.SelectedIndex);
+        }
+
+        private void lbProdutosPromocao_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnVoltar_Click(object sender, EventArgs e)
+        {
+            Home home = new Home();
+            home.Show();
+            Dispose();
+        }
+
+        private void dtgProdutosNaPromocao_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
