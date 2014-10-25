@@ -164,9 +164,17 @@ Preco_Original DECIMAL(6,2),
 Preco_Promocao DECIMAL(6,2),
 Vigencia VARCHAR(10),
 sobe_promocao INT,
-usuario_cadastrado INT,
-Cod_Produto INT FOREIGN KEY REFERENCES Produto(Cod_Produto)
+usuario_cadastrado INT
 )
+go
+
+create table ProdutoPromocao
+(
+codPromoProd INT IDENTITY(1,1) PRIMARY KEY,
+Cod_Produto INT FOREIGN KEY REFERENCES Produto(Cod_Produto),
+Cod_Promocao INT FOREIGN KEY REFERENCES Promocao(Cod_Promocao)
+)
+
 go
 
 
@@ -282,4 +290,5 @@ go
 insert into FuncPermissao(Login_, Senha) values ('admin','1234')
 go
 insert into FuncPermissao(Login_, Senha) values ('Tuca','123456')
-select * from Fornecedor
+select * from produto
+

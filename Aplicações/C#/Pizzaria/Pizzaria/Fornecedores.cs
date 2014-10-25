@@ -15,7 +15,7 @@ namespace Pizzaria
     public partial class Fornecedores : Form
     {
         //String com informações de acesso pro BD
-        string conexao = "Data Source=Tuca\\SQLEXPRESS ;Initial Catalog=Pizzaria; Persist Security Info = True; User ID=sa; Password=peganomeupau";
+        string conexao = "";
 
         SqlCommand sqlComm;
 
@@ -762,7 +762,7 @@ namespace Pizzaria
                 mtxtCNPJ.Focus();
         }
 
-        public void mensagemDeErro(string erro)
+        public static void mensagemDeErro(string erro)
         {
             MessageBox.Show
                 (
