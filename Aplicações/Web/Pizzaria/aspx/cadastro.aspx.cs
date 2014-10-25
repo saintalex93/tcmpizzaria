@@ -9,7 +9,7 @@ using System.Data.SqlClient;
 
 public partial class aspx_cadastro : System.Web.UI.Page
 {
-    
+    int result = 0;
     bool x = true;
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -51,8 +51,6 @@ public partial class aspx_cadastro : System.Web.UI.Page
         }
         if (x == true)
         {
-            try
-            {
                 String nome = txtNome.Text.Trim();
                 String tel = txtTel.Text;
                 String cel = txtCel.Text;
@@ -69,34 +67,53 @@ public partial class aspx_cadastro : System.Web.UI.Page
                 String bairro = txtBairro.Text.Trim();
                 String cep = txtCep.Text;
                 String estado = DDLEstado.SelectedValue.ToString();
+            
+                conexao con2 = new conexao();
+                con2.conectar();
+               
+                con2.command.CommandText = "select * from Cliente where Email_Cliente=@email";
+                con2.command.Parameters.Add("@email", SqlDbType.VarChar).Value = email;
+                result = Convert.ToInt32(con2.command.ExecuteScalar());
+                con2.fechaConexao();
+                con2.command = null;
+                if (result != 0)
+                {
+                    lblresposta.Text = "Dados já existentes.";
+                }
+                else
+                {
+                    try
+                    {
 
                 conexao con = new conexao();
                 con.conectar();
-                con.command.CommandText = "insert into Cliente(Nome_Cliente, CPF_Cliente,Endereco_Cliente, Numero_Residencia, Numero_Apartamento, Bairro_Cliente, CEP_Cliente, Estado_Cliente, Cidade_Cliente, Complemento_Cliente, Telefone_Cliente, Celular_Cliente, Email_Cliente, Senha_Cliente, DataNascimento)" + "values(@nome, @cpf, @rua, @numcasa, @numapart, @bairro, @cep, @estado, @cidade, @complemento, @telefone, @celular, @email, @senha, @datanasc)";
-                con.command.Parameters.Add("@nome", SqlDbType.VarChar).Value = nome;
-                con.command.Parameters.Add("@cpf", SqlDbType.VarChar).Value = cpf;
-                con.command.Parameters.Add("@rua", SqlDbType.VarChar).Value = rua;
-                con.command.Parameters.Add("@numcasa", SqlDbType.Int).Value = numcasa;
-                con.command.Parameters.Add("@numapart", SqlDbType.Int).Value = numapart;
-                con.command.Parameters.Add("@bairro", SqlDbType.VarChar).Value = bairro;
-                con.command.Parameters.Add("@cep", SqlDbType.VarChar).Value = cep;
-                con.command.Parameters.Add("@estado", SqlDbType.VarChar).Value = estado;
-                con.command.Parameters.Add("@cidade", SqlDbType.VarChar).Value = cidade;
-                con.command.Parameters.Add("@complemento", SqlDbType.VarChar).Value = complemento;
-                con.command.Parameters.Add("@telefone", SqlDbType.VarChar).Value = tel;
-                con.command.Parameters.Add("@celular", SqlDbType.VarChar).Value = cel;
-                con.command.Parameters.Add("@email", SqlDbType.VarChar).Value = email;
-                con.command.Parameters.Add("@senha", SqlDbType.VarChar).Value = senha;
-                con.command.Parameters.Add("@datanasc", SqlDbType.VarChar).Value = datanasc;
-                con.command.ExecuteNonQuery();
-                con.fechaConexao();
-                String resposta = "Dados Cadastrados com sucesso.<br/>Você já pode se logar.";
-                lblresposta.Text = resposta;
+                    con.command.CommandText = "insert into Cliente(Nome_Cliente, CPF_Cliente,Endereco_Cliente, Numero_Residencia, Numero_Apartamento, Bairro_Cliente, CEP_Cliente, Estado_Cliente, Cidade_Cliente, Complemento_Cliente, Telefone_Cliente, Celular_Cliente, Email_Cliente, Senha_Cliente, DataNascimento)" + "values(@nome, @cpf, @rua, @numcasa, @numapart, @bairro, @cep, @estado, @cidade, @complemento, @telefone, @celular, @email, @senha, @datanasc)";
+                    con.command.Parameters.Add("@nome", SqlDbType.VarChar).Value = nome;
+                    con.command.Parameters.Add("@cpf", SqlDbType.VarChar).Value = cpf;
+                    con.command.Parameters.Add("@rua", SqlDbType.VarChar).Value = rua;
+                    con.command.Parameters.Add("@numcasa", SqlDbType.Int).Value = numcasa;
+                    con.command.Parameters.Add("@numapart", SqlDbType.Int).Value = numapart;
+                    con.command.Parameters.Add("@bairro", SqlDbType.VarChar).Value = bairro;
+                    con.command.Parameters.Add("@cep", SqlDbType.VarChar).Value = cep;
+                    con.command.Parameters.Add("@estado", SqlDbType.VarChar).Value = estado;
+                    con.command.Parameters.Add("@cidade", SqlDbType.VarChar).Value = cidade;
+                    con.command.Parameters.Add("@complemento", SqlDbType.VarChar).Value = complemento;
+                    con.command.Parameters.Add("@telefone", SqlDbType.VarChar).Value = tel;
+                    con.command.Parameters.Add("@celular", SqlDbType.VarChar).Value = cel;
+                    con.command.Parameters.Add("@email", SqlDbType.VarChar).Value = email;
+                    con.command.Parameters.Add("@senha", SqlDbType.VarChar).Value = senha;
+                    con.command.Parameters.Add("@datanasc", SqlDbType.VarChar).Value = datanasc;
+                    con.command.ExecuteNonQuery();
+                    con.fechaConexao();
+                    String resposta = "Dados Cadastrados com sucesso.<br/>Você já pode se logar.";
+                    lblresposta.Text = resposta;
+                }
+                catch (Exception ex)
+                {
+                    lblresposta.Text = "Dados incorretos.";
+                }
             }
-            catch (Exception ex)
-            {
-                lblresposta.Text = "Dados incorretos.";
-            }
+            
         }
             LimpaCamposAprovado();
         
