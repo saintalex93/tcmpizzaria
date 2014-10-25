@@ -311,3 +311,4 @@ C:\Users\Casa\Documents\TortoiseSVN\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\
 C:\Users\Casa\Documents\TortoiseSVN\Aplicações\c\Pizzaria\bin\Debug\Pizzaria.exe.config
 C:\Users\Casa\Documents\TortoiseSVN\Aplicações\c\Pizzaria\obj\Debug\Pizzaria.exe
 C:\Users\Casa\Documents\TortoiseSVN\Aplicações\c\Pizzaria\obj\Debug\Pizzaria.pdb
+C:\Users\Casa\Documents\TortoiseSVN\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Rede.resources

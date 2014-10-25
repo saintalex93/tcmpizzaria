@@ -112,10 +112,10 @@ namespace Pizzaria
                     case true:
                         cod_cliente = dtgv_gravacao.CurrentRow.Cells[0].Value.ToString();
 
-                        strIncluir = "update Funcionario set Nome = '" + nome + "',CPF_Funcionario = '" + cpf + "',Endereco_Funcionario = '" + endereco + "',Complemento_Funcionario ='" + complemento + "',Numero_Residencia = '" + num_endereco + "',CEP_Funcionario = '" + cep + "',Estado_Funcionario = '" + uf + "',Cidade_Funcionario = '" + cidade + "' ,Email_Funcionario = '" + email + "' ,Telefone_Funcionario = '" + telefone + "' ,Celular_Funcionario = '" + cel + "' ,Bairro_Funcionario = '" + bairro + "', data_nasc = '" + data.ToString("yyyy/mm/dd") + "' where Cod_Funcionario =  '" + cod_cliente + "" + "'";
+                        strIncluir = "update Funcionario set Nome_Func = '" + nome + "',CPF_Funcionario = '" + cpf + "',Endereco_Funcionario = '" + endereco + "',Complemento_Funcionario ='" + complemento + "',Numero_Residencia = '" + num_endereco + "',CEP_Funcionario = '" + cep + "',Estado_Funcionario = '" + uf + "',Cidade_Funcionario = '" + cidade + "' ,Email_Funcionario = '" + email + "' ,Telefone_Funcionario = '" + telefone + "' ,Celular_Funcionario = '" + cel + "' ,Bairro_Funcionario = '" + bairro + "', data_nasc = '" + data.ToString("yyyy/mm/dd") + "' where Cod_Funcionario =  '" + cod_cliente + "" + "'";
 
-                        if (ValidaCPF(cpf))
-                        {
+                      //  if (ValidaCPF(cpf))
+                     //   {
                             AtualizaFunc(strIncluir);
 
                             valida = false;
@@ -125,12 +125,12 @@ namespace Pizzaria
                             mtxt_cpf.Enabled = true;
                             btn_salvar.Text = "Gravar";
                             btn_Buscar.Enabled = true;
-                        }
+                      /*  }
                         else
                         {
                             MessageBox.Show("Este CPF ja Existe");
                             btn_salvar.Text = "Gravar";
-                        }
+                        }*/
 
                         break;
 
