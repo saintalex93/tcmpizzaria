@@ -20,7 +20,30 @@ namespace Pizzaria
         }
 
         string conexao = "Data Source=ALEX\\SQLEXPRESS ;Initial Catalog=Pizzaria; Persist Security Info = True; User ID=sa; Password=1234";
-        
+
+        public void preencherGrid(string busca, DataGridView tabela)
+        {
+            SqlConnection conn = new SqlConnection(conexao);
+            conn.Open();
+
+            //            try
+            //          {
+            SqlCommand sqlComm = new SqlCommand(busca, conn);
+            sqlComm.ExecuteNonQuery();
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = sqlComm;
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            tabela.DataSource = dt;
+            /*            }
+                        catch (Exception)
+                        {
+                            MessageBox.Show("Falha ao conectar ao Bano de Dados, Contate seu suporte");
+                        }
+                    */
+            conn.Close();
+        }
+
 
                 private void button3_Click(object sender, EventArgs e)
                 {
@@ -71,6 +94,16 @@ namespace Pizzaria
                 private void btn_alterar_Click(object sender, EventArgs e)
                 {
 
+                }
+
+                private void txt_nome_TextChanged(object sender, EventArgs e)
+                {
+
+                }
+
+                private void Pedidos_Shown(object sender, EventArgs e)
+                {
+                    conexao = Rede.DataContainer.conexaoGlobal;
                 }
     }
 }
