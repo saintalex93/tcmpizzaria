@@ -101,7 +101,7 @@ create table Pedido
 (
 Cod_Pedido INT IDENTITY(1,1) PRIMARY KEY,
 Data VARCHAR(10),
-Hora time,
+Hora VarChar(5),
 Cod_Funcionario INT FOREIGN KEY REFERENCES Funcionario(Cod_Funcionario),
 Cod_Cliente INT FOREIGN KEY REFERENCES Cliente(Cod_Cliente),
 )
@@ -283,7 +283,14 @@ values
 ('Pizza Baiana',null,20.00,1,1),('Pizza Mussarela',null,18.40,1,1),('Pizza Bacon',null,20.20,1,1),
 ('Pizza Americana',null,24.00,1,1),('Pizza Bauru',null,23.50,1,1),('Pizza Calabresa',null,18.00,1,1),
 ('Pizza Catupiry',null,23.00,1,1),('Pizza Camarão',null,28.70,1,1),('Pizza Alemã',null,25.20,1,1),
+('Pizza Havaiana Brotinho',null,13.70,0,2),('Pizza Baiana Brotinho',null,14.50,0,2),('Pizza Palmito Brotinho',null,15.00,0,2),('Pizza Peruana Brotinho',null,14.00,0,2),
+('Refrigerante','3 meses',7.00,0,3),('Cerveja','2 meses',9.40,0,3),('Vinho','6 meses',15.50,0,3),('Champagne','4 meses',17.00,0,3),
 ('Porção de Camarão',null,19.00,0,4),('Porção de Calabresa',null,18.00,0,4),('Porção de Provolone',null,17.00,0,4)
+go
+
+insert into Pedido(Cod_Cliente,Cod_Funcionario,Data,Hora)
+values
+(1,1,'10/05/2014','20:15'),(2,2,'22/07/2014','19:14'),(3,3,'12/08/2014','22:57'),(3,1,'04/10/2014','21:40')
 go
 
 insert into Fornecedor
@@ -303,11 +310,28 @@ usuario_cadastrado
 )
 values
 ('Final de semana','Nos finais de semana deste mês(Novembro), as pizzas de Mussarela,Calabresa e Baiana terão seu preço reduzido a R$16,00.<br /> Aproveite !!',1,0),
-('Cookie Promocional','Compras acima de R$50,00, você ganha dois deliciosos cookies de chocolate.',1,1)
+('Cookie Promocional','Compras acima de R$25,00, você ganha dois deliciosos cookies de chocolate.',1,0),
+('Compras acima de R$50,00','Ao gastar R$50,00 ou mais em nossa Pizzaria, você concorre a um Iphone 9 !!',1,1)
 go
 
 
-/* Coloca 3 ou 4 dados em cada tabela por favor.
-Melhorar os dados já existentes na tabela Fornecedor.
-Inserir mais 1 funcionario na tabela Funcionarios.
-Inserir dados nas tabelas Pedido,Insumo,categoria*/
+/* Deixar 3 ou mais dados em cada tabela por favor.
+
+TABELAS				  STATUS
+
+cliente				|   OK
+permissao			|   OK
+funcionario			|   OK
+insumo				|   OK
+funcpermissao		|   OK
+categoria			|   OK
+produto				|   OK
+pedido				|   OK
+fornecedor			|   Faltam melhoras
+insumo_fornecedor	|   Faltam dados
+produto_insumo		|   Faltam dados
+promocao 			|   OK
+produto_promocao	|	Faltam dados
+pedido_fornecedor	|   Faltam dados
+detalhe_pedido		|   Faltam dados
+*/
