@@ -50,6 +50,10 @@ color: #fff;
 .colunaheader 
 {
 color: #128700;
+text-align: center;
+font-weight: bold;
+font-family: 'Calisto MT';
+font-size: 29px;
 }
 
 #conteudo
@@ -71,6 +75,26 @@ height: 25px;
 #conteudo #ContentPlaceHolder1_HyperLink1 /* Ainda não é cadastrado? */
 {
 font-size: 12px;
+}
+
+div#texto_cadastro
+{
+   width: 380px;
+   height: 150px;
+   margin: 0px auto 40px auto;
+   border: 1px solid #fff;
+   padding: 15px;
+}
+div#texto_cadastro p
+{
+    color: #fff;
+    text-align: justify;
+}
+div#texto_cadastro a
+{
+    color: #128700;
+    text-align: justify;
+    text-decoration: none;
 }
 
 /* CSS DA DIV LOGIN */
@@ -115,7 +139,7 @@ color: #fff;
 }
 div#login a
 {
-margin-left: 15px;
+margin-left: 10px;
 }
 
 div#login a:hover
@@ -129,7 +153,7 @@ color: gold;
 font-weight:bold;
 float:initial;
 font-size: 13px;
-margin-left: 5px;
+margin-left: 15px;
 }
 
 .erros 
@@ -202,13 +226,17 @@ h2
 {
 text-decoration: underline;
 }
+h3 
+{
+    color: #fff;
+}
 
 #informacoes::before 
 {
 content: "";
 display: block;
 height: 1px;
-width: 970px;
+width: 1000px;
 background: -webkit-linear-gradient(right, transparent, white, transparent);
 background: -o-linear-gradient(right, transparent, white, transparent);
 background: -moz-linear-gradient(right, transparent, white, transparent);
@@ -394,11 +422,3 @@ height: auto;
 margin: 0 auto;
 width: 1000px;
 }
-/*div#linha_rodape
-{
-    content: "";
-    display: block;
-    width: 800px;
-    height: 1px;
-    background: linear-gradient(to right, transparent , black, transparent);
-}*/

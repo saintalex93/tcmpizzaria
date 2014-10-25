@@ -11,7 +11,16 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
         <h1>Cadastro</h1><br />
+    <div id="texto_cadastro">
+    <h3>O que eu ganho por me cadastrar?</h3>
 
+    <p>
+        Você poderá ver seus últimos pedidos,
+        na seção <a href="conta.aspx" title="Clique se for cadastrado !!">Minha Conta</a>,
+        e ainda participar de <a href="promocoes.aspx">promoções</a> 
+        exclusivas feitas para usuários cadastrados.
+    </p>
+        </div>
             <asp:Label ID="Label1" runat="server" Text="Campos obrigatórios são marcados com (*)" Font-Italic="True"></asp:Label>
 			    <fieldset id="formulario1" class = "grupoformulario" >
                         <legend style="margin-left: 5px;color:#fff;">Dados Pessoais</legend>

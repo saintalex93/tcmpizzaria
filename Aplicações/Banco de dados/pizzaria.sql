@@ -58,7 +58,6 @@ data_Nasc VARCHAR(10),
 )
 go
 
-
 create table Insumo
 (
 Cod_Insumo INT IDENTITY(1,1) PRIMARY KEY,
@@ -93,8 +92,6 @@ Cod_Produto INT IDENTITY(1,1) PRIMARY KEY,
 Nome_Produto VARCHAR(40),
 Valor_Venda DECIMAL(6,2),
 Validade VARCHAR(10),
-Qtd_Recomendavel INT,
-Qtd_Estoque INT,
 Sobe_Site INT,
 Cod_Categoria INT FOREIGN KEY REFERENCES Categoria(Cod_Categoria)
 )
@@ -171,7 +168,6 @@ Cod_Promocao INT FOREIGN KEY REFERENCES Promocao(Cod_Promocao)
 
 go
 
-
 create table PedidoFornecedor
 (
 Cod_PedidoF INT IDENTITY(1,1) PRIMARY KEY,
@@ -189,6 +185,8 @@ Cod_Produto INT FOREIGN KEY REFERENCES Produto(Cod_Produto),
 Cod_Pedido INT FOREIGN KEY REFERENCES Pedido(Cod_Pedido),
 )
 go
+
+-- INSERT'S
 
 insert into Cliente
 (
@@ -225,7 +223,9 @@ insert into Permissao
 Cargo
 )
 values
-('Administrador'),('Gerente'),('Atendente')
+('Administrador'),
+('Gerente'),
+('Atendente')
 go
 
 insert into Funcionario
@@ -244,18 +244,46 @@ Telefone_Funcionario,
 Celular_Funcionario
 )
 values
-('Maria do Carmo','128.589.519-87','Rua dos Funcionários',null,159,'12598-11','SP','São Paulo','Santa Cecília','maria_teste@hotmail.com','(11)4529-4196','(11)9-7988-4895')
+('Maria do Carmo','128.589.519-87','Rua dos Funcionários',null,159,'12598-11','SP','São Paulo','Santa Cecília','maria_teste@hotmail.com','(11)4529-4196','(11)9-7988-4895'),
+('Joana Figueiredo','932.571.495-28','Rua Coronel Justino','Bloco D',1050,'28984-79','SP','São Paulo','Suzano','joana.fig@terra.com.br','(11)7819-4898','(11)9-6187-8959'),
+('Carlos Silva','475.427.106-85','Rua Juba da Jujuba',null,420,'59579-14','SP','São Paulo','Vila Mariana','carlos_silva@gmail.com','(11)4198-8274','(11)9-9488-9774')
+
+insert into Insumo
+(
+Nome_Insumo,
+ValorDeCompra,
+QtdeRecomendavel,
+QtdeEmEstoque,
+Validade
+)
+values
+('Orégano',20.00,20,12,'5 meses'),
+('Queijo mussarela',35.00,30,19,'3 meses'),
+('Tomate',15.30,25,20,'2 meses')
+go
+
+insert into FuncPermissao(Login_, Senha) 
+values ('admin','1234'),('Tuca','123456')
+go
+
+insert into Categoria(Nome_Categoria)
+values
+('Pizza Grande'),('Pizza Brotinho'),('Bebidas'),('Porções')
+go
 
 insert into Produto
 (
 Nome_Produto,
+Validade,
 Valor_Venda,
-Sobe_Site
+Sobe_Site,
+Cod_Categoria
 )
 values
-('Pizza Baiana',20.00,1),('Pizza Mussarela',18.40,1),('Pizza Bacon',22.20,1),
-('Pizza Americana',24.00,1),('Pizza Bauru',23.50,1),('Pizza Calabresa',18.00,1),
-('Pizza Catupiry',23.00,1),('Pizza Camarão',28.70,1),('Pizza Alemã',25.20,1)
+('Pizza Baiana',null,20.00,1,1),('Pizza Mussarela',null,18.40,1,1),('Pizza Bacon',null,20.20,1,1),
+('Pizza Americana',null,24.00,1,1),('Pizza Bauru',null,23.50,1,1),('Pizza Calabresa',null,18.00,1,1),
+('Pizza Catupiry',null,23.00,1,1),('Pizza Camarão',null,28.70,1,1),('Pizza Alemã',null,25.20,1,1),
+('Porção de Camarão',null,19.00,0,4),('Porção de Calabresa',null,18.00,0,4),('Porção de Provolone',null,17.00,0,4)
 go
 
 insert into Fornecedor
@@ -264,13 +292,6 @@ CNPJ_CPF,
 Razao_Social
 )
 values(22222222222, 'Caixa de Queijo Ltda')
-go
-
-insert into permissao (cargo) 
-values 
-('Adiministrador'),
-('Gerente'),  
-('Atendente')
 go
 
 insert into Promocao
@@ -284,7 +305,9 @@ values
 ('Final de semana','Nos finais de semana deste mês(Novembro), as pizzas de Mussarela,Calabresa e Baiana terão seu preço reduzido a R$16,00.<br /> Aproveite !!',1,0),
 ('Cookie Promocional','Compras acima de R$50,00, você ganha dois deliciosos cookies de chocolate.',1,1)
 go
-insert into FuncPermissao(Login_, Senha) values ('admin','1234')
-go
-insert into FuncPermissao(Login_, Senha) values ('Tuca','123456')
-select * from cliente
+
+
+/* Coloca 3 ou 4 dados em cada tabela por favor.
+Melhorar os dados já existentes na tabela Fornecedor.
+Inserir mais 1 funcionario na tabela Funcionarios.
+Inserir dados nas tabelas Pedido,Insumo,categoria*/

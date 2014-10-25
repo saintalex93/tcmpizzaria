@@ -11,7 +11,10 @@ public partial class aspx_conta : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        Response.Write(Session["nome"]);
+        if (Session["logado"] == null) 
+        {
+            Response.Redirect("index.aspx");
+        }
         /*
         conexao con = new conexao();
         con.conectar();

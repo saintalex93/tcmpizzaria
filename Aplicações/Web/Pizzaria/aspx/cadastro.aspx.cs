@@ -71,14 +71,15 @@ public partial class aspx_cadastro : System.Web.UI.Page
                 conexao con2 = new conexao();
                 con2.conectar();
                
-                con2.command.CommandText = "select * from Cliente where Email_Cliente=@email";
+                con2.command.CommandText = "select * from Cliente where Email_Cliente=@email or CPF_Cliente=@cpf";
                 con2.command.Parameters.Add("@email", SqlDbType.VarChar).Value = email;
+                con2.command.Parameters.Add("@cpf", SqlDbType.VarChar).Value = cpf;
                 result = Convert.ToInt32(con2.command.ExecuteScalar());
                 con2.fechaConexao();
                 con2.command = null;
                 if (result != 0)
                 {
-                    lblresposta.Text = "Dados já existentes.";
+                    lblresposta.Text = "Email e/ou CPF já cadastrado(s).Insira outro Email ou CPF para se cadastrar.";
                 }
                 else
                 {
@@ -105,8 +106,8 @@ public partial class aspx_cadastro : System.Web.UI.Page
                     con.command.Parameters.Add("@datanasc", SqlDbType.VarChar).Value = datanasc;
                     con.command.ExecuteNonQuery();
                     con.fechaConexao();
-                    String resposta = "Dados Cadastrados com sucesso.<br/>Você já pode se logar.";
-                    lblresposta.Text = resposta;
+                String resposta = "Dados Cadastrados com sucesso.<br/>Você já pode se logar.";
+                lblresposta.Text = resposta;
                 }
                 catch (Exception ex)
                 {
