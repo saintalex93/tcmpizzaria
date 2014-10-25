@@ -15,7 +15,11 @@
         <div id = "tudo">
 		    <div id = "cabecalho">
 		
-
+                <div id="marca">
+                    <a href="index.aspx">
+                    <img src="../img/marca.png" />
+                        </a>
+                </div>
 		        <div id = "logo">
 			
 			        <img src="../img/banner-principal.png" />
@@ -53,12 +57,8 @@
         </asp:ContentPlaceHolder>
 
             </div>
-
+            
         <div id = "rodape">
-
-			<hr style = "display: block; height: 1px;
-            border: 0; border-top: 1px solid #fff;
-            margin: 1em 0; padding: 0;"/>
 		
 			    <div id = "informacoes">
 			

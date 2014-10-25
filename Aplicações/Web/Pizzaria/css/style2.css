@@ -84,7 +84,10 @@ height: 32px;
 padding: 5px;
 border: 2px solid #fff;
 }
-
+div#login #Label1 
+{
+margin-left: 10px;
+}
 div#login a,#Label1,#Label2
 {
 color: #fff;
@@ -94,7 +97,7 @@ font-weight: bold;
 
 div#login #txtEmail,#txtLogin_senha
 {
-margin-bottom: 6px;
+margin: 5px 5px 6px 0px;
 border-radius: 5px;
 }
 
@@ -103,7 +106,7 @@ div#login #btnLogin,#btnLogout
 background-color: #c21b1b;
 border: 2px solid #c79292;
 border-radius: 5px;
-margin-bottom: 6px;
+margin-bottom: 0px 0px 6px 0px;
 padding: 4px;
 box-shadow: 5px 4px 2px rgba(0,0,0,0.6);
 font-weight: bold;
@@ -112,7 +115,7 @@ color: #fff;
 }
 div#login a
 {
-margin-left: 20px;
+margin-left: 15px;
 }
 
 div#login a:hover
@@ -200,6 +203,19 @@ h2
 text-decoration: underline;
 }
 
+#informacoes::before 
+{
+content: "";
+display: block;
+height: 1px;
+width: 970px;
+background: -webkit-linear-gradient(right, transparent, white, transparent);
+background: -o-linear-gradient(right, transparent, white, transparent);
+background: -moz-linear-gradient(right, transparent, white, transparent);
+background: linear-gradient(to right, transparent, white, transparent);
+margin: 0px 0px 25px 0px;
+}
+
 #informacoes
 {
 font-weight: bold;
@@ -231,6 +247,18 @@ text-align: center;
 line-height: 300px;
 font-size: 100px;
 margin-bottom: 15px;
+}
+
+#marca 
+{
+position: absolute;
+left: 200px;
+top: 95px;  
+}
+#marca img 
+{
+width: 350px;
+height: 313px;
 }
 
 /* CSS MENU DO CLIENTE */
@@ -366,3 +394,11 @@ height: auto;
 margin: 0 auto;
 width: 1000px;
 }
+/*div#linha_rodape
+{
+    content: "";
+    display: block;
+    width: 800px;
+    height: 1px;
+    background: linear-gradient(to right, transparent , black, transparent);
+}*/
