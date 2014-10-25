@@ -107,7 +107,6 @@ Data VARCHAR(10),
 Hora time,
 Cod_Funcionario INT FOREIGN KEY REFERENCES Funcionario(Cod_Funcionario),
 Cod_Cliente INT FOREIGN KEY REFERENCES Cliente(Cod_Cliente),
-Cod_Produto INT FOREIGN KEY REFERENCES Produto (Cod_Produto),
 )
 
 go
@@ -135,11 +134,6 @@ Complemento VarChar (40),
 Cod_Produto INt Foreign Key References Pedido (Cod_Pedido),
 )
 go
-
-Insert into Fornecedor (CNPJ_CPF, Razao_Social, Nome_Fantasia, Nome_Banco, Agencia, Conta_Corrente, Responsavel, Celular_Responsavel, Email_Responsavel, Telefone_Comercial, Endereco_Fornecedor, Numero_Residencia, CEP_Fornecedor, Estado_Fornecedor, Cidade_Fornecedor, Bairro_Fornecedor,Complemento)
-values (12121212112, 'razao', 'fantasia', 0, 22222222, 33333333, 'nome', '(11) 98936-1878', 'email@email.com', '(11) 1111-1111', 'nome rua', 321, '015460100', 'SP', 'Cidade', 'Bairro', 'Complemento')
-
-select * from Fornecedor
 
 create table Insumo_Fornecedor
 (
@@ -196,8 +190,6 @@ Cod_Pedido INT FOREIGN KEY REFERENCES Pedido(Cod_Pedido),
 )
 go
 
---delete from Produto
-
 insert into Cliente
 (
 Nome_Cliente,
@@ -218,9 +210,14 @@ DataNascimento
 )
 values
 ('João da Cunha','123.456.789-14','Rua das Caviúnas',49,32,'Alphaville','78061-302','SP','Barueri','Edifício Pelicano','(11)4972-1976',null,'joao.cunha@gmail.com','joaocunha123','27/07/1981'),
+
 ('Maria Joaquina','814.198.872-68','Rua Canjeranas',574,null,'Jabaquara','04349-020','SP','São Paulo',null,'(11)3697-4567','(11)9-7419-9715','carrossel@sbt.com.br','cirilo123','04/10/1994'),
+
 ('Sandra Costa da Silva','496.527.352-98','Rua dos Bobos',9,727,'Jardins','18949-850','SP','São Paulo',null,'(11)5789-1240','(11)9-8752-6714','sandra@gmail.com','costa123','16/12/1977'),
-('Gabriel Andrade Yamotsu','155.157.758-61','Rua das Laranjeiras',1785,null,'Capão Redondo','54189-206','SP','São Paulo','Em frente ao Habibs','(11)4972-1546',null,'andrade@yahoo.com','andrade123','12/05/1985')
+
+('Gabriel Andrade Yamotsu','155.157.758-61','Rua das Laranjeiras',1785,null,'Capão Redondo','54189-206','SP','São Paulo','Em frente ao Habibs','(11)4972-1546',null,'andrade@yahoo.com','andrade123','12/05/1985'),
+
+('avulso','111.111.111-11','a',1,null,'a','1','aa','aaa','aaa','1',null,'a','a','a')
 go
 
 insert into Permissao
@@ -290,5 +287,4 @@ go
 insert into FuncPermissao(Login_, Senha) values ('admin','1234')
 go
 insert into FuncPermissao(Login_, Senha) values ('Tuca','123456')
-select * from produto
-
+select * from cliente
