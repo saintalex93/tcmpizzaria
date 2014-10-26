@@ -249,6 +249,16 @@ namespace Pizzaria
                     if (cmb_medida.SelectedIndex > 0)
                     {
                         medida = cmb_medida.SelectedItem.ToString();
+                        //Valida os campos de valores
+                        if (txt_vlrunitario.Text.Replace(",", "").Replace(".", "").Replace("_", "").Replace(" ", "").Replace("R$", "").Length == 0)
+                        {
+                            txt_vlrunitario.Text = "0";
+                        }
+                        if (txt_qdtcomprada.Text.Replace(",", "").Replace(".", "").Replace("_", "").Replace(" ", "").Replace("R$", "").Length == 0)
+                        {
+                            txt_qdtcomprada.Text = "0";
+                        }
+
                         //Valida campo valor unitario
                         if (Convert.ToInt32(txt_vlrunitario.Text.Replace(",", "").Replace(".", "").Replace("_", "").Replace(" ", "").Replace("R$", "")) > 0)
                         {
@@ -261,13 +271,45 @@ namespace Pizzaria
 
                                 // Obtem os valores de data
 
-                                datafabricacao = dtp_datafabricacao.Value;
-                                datavalidade = dtp_datavalidade.Value;
-                                datarecebimento = dtp_datarecebimento.Value;
-                                return true;
+                                //Valida Campo Data
+
+                               // if (dtp_datafabricacao.Value.Date.AddDays(-1) < DateTime.Today.ToLocalTime())
+                                if (dtp_datafabricacao.Value.Date < DateTime.Today.ToLocalTime())
+                                {
+                                    datafabricacao = dtp_datafabricacao.Value;
+                                    if (dtp_datavalidade.Value.Date > DateTime.Today.ToLocalTime())
+                                    {
 
 
+                                        datavalidade = dtp_datavalidade.Value;
+
+                                        if (dtp_datarecebimento.Value.Date > dtp_datafabricacao.Value.Date)
+                                        {
+                                            datarecebimento = dtp_datarecebimento.Value;
+                                            return true;
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("Data de Recebimento incorreta!");
+                                        }
+                                    }
+
+                                    else
+                                    {
+                                        MessageBox.Show("Data de Validade incorreta!");
+                                    }
+                                }
+
+
+
+                                else
+                                {
+                                    MessageBox.Show("Data de Fabricação incorreta!");
+                                }
+                                
+                               
                             }
+                               
                             else
                             {
                                 MessageBox.Show("Quantidade Incorreta!");
@@ -336,7 +378,12 @@ namespace Pizzaria
 
             //Insere dados
             conn = new SqlConnection(conexao);
-            strIncluir = "insert into Produto (Nome_Produto, Valor_venda,validade,qtd_Estoque,cod_categoria) values ('" + nome + "','" + valoruntd + "','" + datavalidade + "','" + qtd + "','" + dt.Rows[0][0].ToString() + "')";
+            strIncluir = "insert into insumo " + 
+                "(Nome_Insumo, Medida, ValorDeCompra,QtdeEmEstoque, "+
+                "Recebimento, Fabricacao,validade) values ('" 
+                + nome + "','" + medida + "','" + valoruntd.ToString().Replace(",",".") + "','" +
+                qtd + "','" + datarecebimento.ToString("dd/MM/yyyy") + "','" + datafabricacao.ToString("dd/MM/yyyy") +
+                "','" + datavalidade.ToString("dd/MM/yyyy") + "')";
             conn.Open();
             sqlComm = new SqlCommand(strIncluir, conn);
             sqlComm.ExecuteNonQuery();
@@ -350,7 +397,7 @@ namespace Pizzaria
             try
             {
                 SqlConnection conn = new SqlConnection(conexao);
-                string strIncluir = "select Nome_Produto,Valor_Venda,Validade,Qtd_Estoque from produto";
+                string strIncluir = "select * from insumo";
                 conn.Open();
                 SqlCommand sqlComm = new SqlCommand(strIncluir, conn);
 
@@ -373,8 +420,6 @@ namespace Pizzaria
 
 
         }
-        public string txt { get; set; }
-        public string dtp { get; set; }
         public void atualizarproduto(string cod_prod)
         {
 
@@ -439,6 +484,10 @@ namespace Pizzaria
             //cod_produto= dt.Rows[0][0].ToString();
             return dt.Rows[0][0].ToString();
         }
+
+
+        public string txt { get; set; }
+        public string dtp { get; set; }
     }
 
 }

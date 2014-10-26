@@ -146,7 +146,7 @@
             this.gpb_compras.Size = new System.Drawing.Size(695, 259);
             this.gpb_compras.TabIndex = 7;
             this.gpb_compras.TabStop = false;
-            this.gpb_compras.Text = "Cadastro de Produtos";
+            this.gpb_compras.Text = "Cadastro de Insumos";
             this.gpb_compras.Enter += new System.EventHandler(this.gpb_compras_Enter);
             // 
             // txt_vlrunitario

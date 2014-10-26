@@ -190,7 +190,7 @@ namespace Pizzaria
 
             //Insere dados
             conn = new SqlConnection(conexao);
-            strIncluir = "insert into Produto (Nome_Produto, Valor_venda,validade,cod_categoria,Sobe_Site ) values ('" + nome + "','" + valoruntd.ToString().Replace(",",".") + "','" + datavalidade.ToString("dd/MM/yyyy") + "','" + dt.Rows[0][0].ToString() + "','"+ site +"')";
+            strIncluir = "insert into Produto (Nome_Produto, Valor_venda,cod_categoria,Sobe_Site ) values ('" + nome + "','" + valoruntd.ToString().Replace(",",".") + "','" + dt.Rows[0][0].ToString() + "','"+ site +"')";
             conn.Open();
             sqlComm = new SqlCommand(strIncluir, conn);
             sqlComm.ExecuteNonQuery();
@@ -236,13 +236,8 @@ namespace Pizzaria
                         {
                             valoruntd = Convert.ToDouble(txt_vlrunitario.Text.Replace(" ", "").Replace(".", "").Replace("_", "").Replace(" ", "").Replace("R$", "")) / 100;
 
-                            //Valida Campo Data
-
-                            if (dtp_datavalidade.Value.Date.AddYears(10) <= DateTime.Today.ToLocalTime())
-                            {
-
-                                datavalidade = dtp_datavalidade.Value;
-                                if (chk_site.Enabled == true)
+                         
+                                if (chk_site.Checked == true)
                                 {
                                     site = 1;
                                     return true;
@@ -253,15 +248,7 @@ namespace Pizzaria
                                     return true;
                                 }
                                 //  MessageBox.Show(Convert.ToString(dtp_datanasc.Value.Date.AddYears(18)));
-                            }
-                            else
-                            {
-                                //  MessageBox.Show(Convert.ToString(dtp_datanasc.Value.Date.AddYears(18)));
-                                MessageBox.Show("Data de Nascimento Incorreta");
-                                return false;
-                                //cel = ""; 
-                            }
-                              
+                           
                 
                            
                         }
@@ -300,7 +287,7 @@ namespace Pizzaria
 
             //atualiza produto
             conn = new SqlConnection(conexao);
-            strIncluir = "update Produto set Nome_Produto ='" + nome + "',Valor_venda='" + valoruntd.ToString().Replace(",", ".") + "',validade ='" + datavalidade.ToString("dd/MM/yyyy") + "',qtd_Estoque= qtd_Estoque +" + qtd + ",cod_categoria ='" + dt.Rows[0][0].ToString() + "' where Cod_Produto = '" + cod_prod + "'";
+            strIncluir = "update Produto set Nome_Produto ='" + nome + "',Valor_venda='" + valoruntd.ToString().Replace(",", ".") + "',cod_categoria ='" + dt.Rows[0][0].ToString() + "', Sobe_Site = '" + site + "' where Cod_Produto = '" + cod_prod + "'";
             conn.Open();
             sqlComm = new SqlCommand(strIncluir, conn);
             sqlComm.ExecuteNonQuery();
@@ -377,7 +364,7 @@ namespace Pizzaria
         {
             txt_nome.Text = dtg_produtos.CurrentRow.Cells[0].Value.ToString();
             txt_vlrunitario.Text = dtg_produtos.CurrentRow.Cells[1].Value.ToString();
-            dtp_datavalidade.Value = Convert.ToDateTime(dtg_produtos.CurrentRow.Cells[2].Value.ToString());
+           
 
             gbp_produtos.Enabled = false;
             btn_alterar.Enabled = true;

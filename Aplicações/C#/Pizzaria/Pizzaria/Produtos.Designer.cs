@@ -29,13 +29,11 @@
         private void InitializeComponent()
         {
             this.gbp_produtos = new System.Windows.Forms.GroupBox();
-            this.dtp_datavalidade = new System.Windows.Forms.DateTimePicker();
             this.chk_site = new System.Windows.Forms.CheckBox();
             this.cmb_categoria = new System.Windows.Forms.ComboBox();
             this.txt_vlrunitario = new System.Windows.Forms.MaskedTextBox();
             this.txt_nome = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -52,13 +50,11 @@
             // 
             // gbp_produtos
             // 
-            this.gbp_produtos.Controls.Add(this.dtp_datavalidade);
             this.gbp_produtos.Controls.Add(this.chk_site);
             this.gbp_produtos.Controls.Add(this.cmb_categoria);
             this.gbp_produtos.Controls.Add(this.txt_vlrunitario);
             this.gbp_produtos.Controls.Add(this.txt_nome);
             this.gbp_produtos.Controls.Add(this.label5);
-            this.gbp_produtos.Controls.Add(this.label4);
             this.gbp_produtos.Controls.Add(this.label3);
             this.gbp_produtos.Controls.Add(this.label2);
             this.gbp_produtos.Controls.Add(this.label1);
@@ -69,19 +65,10 @@
             this.gbp_produtos.TabStop = false;
             this.gbp_produtos.Text = "Produtos";
             // 
-            // dtp_datavalidade
-            // 
-            this.dtp_datavalidade.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtp_datavalidade.Location = new System.Drawing.Point(472, 28);
-            this.dtp_datavalidade.Name = "dtp_datavalidade";
-            this.dtp_datavalidade.Size = new System.Drawing.Size(89, 20);
-            this.dtp_datavalidade.TabIndex = 10;
-            this.dtp_datavalidade.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
-            // 
             // chk_site
             // 
             this.chk_site.AutoSize = true;
-            this.chk_site.Location = new System.Drawing.Point(472, 74);
+            this.chk_site.Location = new System.Drawing.Point(385, 68);
             this.chk_site.Name = "chk_site";
             this.chk_site.Size = new System.Drawing.Size(43, 17);
             this.chk_site.TabIndex = 9;
@@ -93,14 +80,14 @@
             this.cmb_categoria.FormattingEnabled = true;
             this.cmb_categoria.Items.AddRange(new object[] {
             "Selecione.."});
-            this.cmb_categoria.Location = new System.Drawing.Point(140, 112);
+            this.cmb_categoria.Location = new System.Drawing.Point(385, 27);
             this.cmb_categoria.Name = "cmb_categoria";
             this.cmb_categoria.Size = new System.Drawing.Size(121, 21);
             this.cmb_categoria.TabIndex = 8;
             // 
             // txt_vlrunitario
             // 
-            this.txt_vlrunitario.Location = new System.Drawing.Point(140, 71);
+            this.txt_vlrunitario.Location = new System.Drawing.Point(140, 62);
             this.txt_vlrunitario.Mask = "$ 0000,00";
             this.txt_vlrunitario.Name = "txt_vlrunitario";
             this.txt_vlrunitario.Size = new System.Drawing.Size(100, 20);
@@ -116,25 +103,16 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(391, 74);
+            this.label5.Location = new System.Drawing.Point(315, 69);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(25, 13);
             this.label5.TabIndex = 4;
             this.label5.Text = "Site";
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(391, 31);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(48, 13);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Validade";
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(7, 115);
+            this.label3.Location = new System.Drawing.Point(288, 30);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(52, 13);
             this.label3.TabIndex = 2;
@@ -143,7 +121,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 74);
+            this.label2.Location = new System.Drawing.Point(7, 65);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(79, 13);
             this.label2.TabIndex = 1;
@@ -173,6 +151,7 @@
             this.dtg_produtos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtg_produtos.Location = new System.Drawing.Point(12, 307);
             this.dtg_produtos.Name = "dtg_produtos";
+            this.dtg_produtos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dtg_produtos.Size = new System.Drawing.Size(663, 150);
             this.dtg_produtos.TabIndex = 2;
             this.dtg_produtos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtg_produtos_CellDoubleClick);
@@ -256,7 +235,6 @@
 
         private System.Windows.Forms.GroupBox gbp_produtos;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
@@ -271,6 +249,5 @@
         private System.Windows.Forms.Button btn_cancelar;
         private System.Windows.Forms.Button btn_excluir;
         private System.Windows.Forms.Button btn_sair;
-        private System.Windows.Forms.DateTimePicker dtp_datavalidade;
     }
 }

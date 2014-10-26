@@ -282,7 +282,6 @@ C:\Users\Casa\Documents\TortoiseSVN\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\
 C:\Users\Casa\Documents\TortoiseSVN\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Compras.resources
 C:\Users\Casa\Documents\TortoiseSVN\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Funcionario.resources
 C:\Users\Casa\Documents\TortoiseSVN\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.CadastroCliente.resources
-C:\Users\Casa\Documents\TortoiseSVN\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Promocao.resources
 C:\Users\Casa\Documents\TortoiseSVN\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Properties.Resources.resources
 C:\Users\Casa\Documents\TortoiseSVN\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.csproj.GenerateResource.Cache
 C:\Users\Alex\Desktop\SVN-2014-10-19\SVN\C#\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe.config
@@ -316,3 +315,6 @@ E:\TCM\trunk\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Login.resource
 E:\TCM\trunk\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Produto.resources
 E:\TCM\trunk\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.GerenciarPromocao.resources
 E:\TCM\trunk\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Rede.resources
+C:\Users\Casa\Documents\TortoiseSVN\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.CadastrarPromocao.resources
+C:\Users\Casa\Documents\TortoiseSVN\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.GerenciarPromocao.resources
+C:\Users\Casa\Documents\TortoiseSVN\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.csprojResolveAssemblyReference.cache
