@@ -13,10 +13,10 @@
         <h1>Cadastro</h1><br />
     <div id="texto_cadastro">
     <h3>O que eu ganho por me cadastrar?</h3>
-
+        
     <p>
         Você poderá ver seus últimos pedidos,
-        na seção <a href="conta.aspx" title="Clique se for cadastrado !!">Minha Conta</a>,
+        na seção <a href="conta.aspx" title="Clique apenas se estiver logado !!">Minha Conta</a>,
         e ainda participar de <a href="promocoes.aspx">promoções</a> 
         exclusivas feitas para usuários cadastrados.
     </p>
