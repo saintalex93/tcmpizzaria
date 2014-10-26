@@ -373,19 +373,22 @@ values
 (199.00, '15/10/2014', 1,1)
 go
 
-/*
+
 insert into Detalhe_Pedido
 (
 cod_produto,
 cod_pedido
 )
 values
-(),
-(),
-(),
-()
-go
+(1,1),
+(1,2),
+(2,2),
+(3,3)
+/*
+select * from Detalhe_Pedido
 */
+
+go
 
 /* Deixar 3 ou mais dados em cada tabela por favor.
 
