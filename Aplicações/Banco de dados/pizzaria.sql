@@ -29,6 +29,7 @@ Email_Cliente VARCHAR(40),
 Senha_Cliente Varchar (15),
 DataNascimento Varchar(10)
 )
+
 go
 
 create table Permissao
@@ -105,6 +106,7 @@ create table Pedido
 Cod_Pedido INT IDENTITY(1,1) PRIMARY KEY,
 Data VARCHAR(10),
 Hora VarChar(5),
+Valor numeric (5,2),
 Cod_Funcionario INT FOREIGN KEY REFERENCES Funcionario(Cod_Funcionario),
 Cod_Cliente INT FOREIGN KEY REFERENCES Cliente(Cod_Cliente),
 )
@@ -187,6 +189,9 @@ Cod_Detalhe INT IDENTITY(1,1) PRIMARY KEY,
 Cod_Produto INT FOREIGN KEY REFERENCES Produto(Cod_Produto),
 Cod_Pedido INT FOREIGN KEY REFERENCES Pedido(Cod_Pedido),
 )
+/*
+select * from Detalhe_Pedido
+*/
 go
 
 -- INSERT'S
@@ -291,9 +296,9 @@ values
 ('Porção de Camarão',null,19.00,0,4),('Porção de Calabresa',null,18.00,0,4),('Porção de Provolone',null,17.00,0,4)
 go
 
-insert into Pedido(Cod_Cliente,Cod_Funcionario,Data,Hora)
+insert into Pedido(Cod_Cliente,Cod_Funcionario,Data,Hora,Valor)
 values
-(1,1,'10/05/2014','20:15'),(2,2,'22/07/2014','19:14'),(3,3,'12/08/2014','22:57'),(3,1,'04/10/2014','21:40')
+(1,1,'10/05/2014','20:15',31),(2,2,'22/07/2014','19:14',25.25),(3,3,'12/08/2014','22:57',38.89),(3,1,'04/10/2014','21:40',78.98)
 go
 
 insert into Fornecedor
