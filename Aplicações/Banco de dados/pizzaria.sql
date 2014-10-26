@@ -66,6 +66,9 @@ ValorDeCompra DECIMAL,
 QtdeRecomendavel INT,
 QtdeEmEstoque INT,
 Validade VARCHAR(10),
+Fabricacao VARCHAR(10),
+Recebimento VARCHAR(10),
+Medida VARCHAR(10),
 )
 go
 
