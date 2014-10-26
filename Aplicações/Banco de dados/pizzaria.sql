@@ -301,7 +301,11 @@ insert into Fornecedor
 CNPJ_CPF,
 Razao_Social
 )
-values(22222222222, 'Caixa de Queijo Ltda')
+values
+(22222222222, 'Caixa de Queijo Ltda'),
+(33333333333, 'Embalagens São Paulo EPP'),
+(11111111111, 'Na Lata - Enlatados em geral Ltda'),
+(44444444444, 'Viva Verde Hortaliças EPP')
 go
 
 insert into Promocao
@@ -317,6 +321,66 @@ values
 ('Compras acima de R$50,00','Ao gastar R$50,00 ou mais em nossa Pizzaria, você concorre a um Iphone 9 !!',1,1)
 go
 
+insert into insumo_fornecedor
+(
+Cod_Insumo,
+Cod_Fornecedor
+)
+values
+(2, 1),
+(3, 4),
+(1, 4)
+go
+
+insert into produto_insumo
+(
+Cod_Insumo,
+Cod_Produto
+)
+values
+(1, 2),
+(2, 1),
+(3, 5)
+go
+
+insert into ProdutoPromocao
+(
+Cod_Produto,
+Cod_Promocao
+)
+values
+(6, 1),
+(2, 1),
+(8, 2)
+go
+
+insert into PedidoFornecedor
+(
+Valor_venda,
+Data_venda,
+Cod_Fornecedor,
+Cod_Funcionario
+)
+values
+(170.00, '17/09/2014', 2,3),
+(235.00, '20/09/2014', 3,2),
+(150.00, '22/10/2014', 4,3),
+(199.00, '15/10/2014', 1,1)
+go
+
+/*
+insert into Detalhe_Pedido
+(
+cod_produto,
+cod_pedido
+)
+values
+(),
+(),
+(),
+()
+go
+*/
 
 /* Deixar 3 ou mais dados em cada tabela por favor.
 
@@ -330,11 +394,11 @@ funcpermissao		|   OK
 categoria			|   OK
 produto				|   OK
 pedido				|   OK
-fornecedor			|   Faltam melhoras
-insumo_fornecedor	|   Faltam dados
-produto_insumo		|   Faltam dados
+fornecedor			|   faltam dados
+insumo_fornecedor	|   OK
+produto_insumo		|   OK
 promocao 			|   OK
-produto_promocao	|	Faltam dados
-pedido_fornecedor	|   Faltam dados
+produto_promocao	|   OK
+pedido_fornecedor	|   OK
 detalhe_pedido		|   Faltam dados
 */
