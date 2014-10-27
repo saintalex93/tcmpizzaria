@@ -31,7 +31,6 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.novoCadastroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.funcionarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.clienteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.empresaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.produtoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,11 +43,6 @@
             this.fechamaentoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saldoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.estoqueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.comprasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saldoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.agendaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.contatosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.novoContatoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.administrativoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usuáriosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.permissõesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -74,7 +68,6 @@
             this.promoçõesToolStripMenuItem,
             this.caixaToolStripMenuItem,
             this.estoqueToolStripMenuItem,
-            this.agendaToolStripMenuItem,
             this.administrativoToolStripMenuItem,
             this.sairToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -89,7 +82,6 @@
             this.novoCadastroToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.novoCadastroToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.funcionarioToolStripMenuItem,
-            this.toolStripSeparator1,
             this.clienteToolStripMenuItem,
             this.empresaToolStripMenuItem,
             this.produtoToolStripMenuItem,
@@ -106,11 +98,6 @@
             this.funcionarioToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.funcionarioToolStripMenuItem.Text = "Funcionario";
             this.funcionarioToolStripMenuItem.Click += new System.EventHandler(this.funcionarioToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(134, 6);
             // 
             // clienteToolStripMenuItem
             // 
@@ -182,8 +169,8 @@
             // fechamaentoToolStripMenuItem
             // 
             this.fechamaentoToolStripMenuItem.Name = "fechamaentoToolStripMenuItem";
-            this.fechamaentoToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
-            this.fechamaentoToolStripMenuItem.Text = "Fechamaento";
+            this.fechamaentoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.fechamaentoToolStripMenuItem.Text = "Fechamento";
             // 
             // saldoToolStripMenuItem
             // 
@@ -193,46 +180,9 @@
             // 
             // estoqueToolStripMenuItem
             // 
-            this.estoqueToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.comprasToolStripMenuItem,
-            this.saldoToolStripMenuItem1});
             this.estoqueToolStripMenuItem.Name = "estoqueToolStripMenuItem";
             this.estoqueToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.estoqueToolStripMenuItem.Text = "Estoque";
-            // 
-            // comprasToolStripMenuItem
-            // 
-            this.comprasToolStripMenuItem.Name = "comprasToolStripMenuItem";
-            this.comprasToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
-            this.comprasToolStripMenuItem.Text = "Compras";
-            this.comprasToolStripMenuItem.Click += new System.EventHandler(this.comprasToolStripMenuItem_Click);
-            // 
-            // saldoToolStripMenuItem1
-            // 
-            this.saldoToolStripMenuItem1.Name = "saldoToolStripMenuItem1";
-            this.saldoToolStripMenuItem1.Size = new System.Drawing.Size(122, 22);
-            this.saldoToolStripMenuItem1.Text = "Saldo";
-            // 
-            // agendaToolStripMenuItem
-            // 
-            this.agendaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.contatosToolStripMenuItem,
-            this.novoContatoToolStripMenuItem});
-            this.agendaToolStripMenuItem.Name = "agendaToolStripMenuItem";
-            this.agendaToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
-            this.agendaToolStripMenuItem.Text = "Agenda";
-            // 
-            // contatosToolStripMenuItem
-            // 
-            this.contatosToolStripMenuItem.Name = "contatosToolStripMenuItem";
-            this.contatosToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
-            this.contatosToolStripMenuItem.Text = "Contatos";
-            // 
-            // novoContatoToolStripMenuItem
-            // 
-            this.novoContatoToolStripMenuItem.Name = "novoContatoToolStripMenuItem";
-            this.novoContatoToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
-            this.novoContatoToolStripMenuItem.Text = "Novo Contato";
             // 
             // administrativoToolStripMenuItem
             // 
@@ -367,7 +317,6 @@
         private System.Windows.Forms.ToolStripMenuItem funcionarioToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem clienteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem empresaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem aplicativosToolStripMenuItem;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
@@ -382,7 +331,6 @@
         private System.Windows.Forms.ToolStripMenuItem promoçõesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem caixaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem estoqueToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem agendaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem administrativoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sairToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
@@ -390,10 +338,6 @@
         private System.Windows.Forms.ToolStripMenuItem promoçõesAtivasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fechamaentoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saldoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem comprasToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem saldoToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem contatosToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem novoContatoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem usuáriosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem permissõesToolStripMenuItem;
     }
