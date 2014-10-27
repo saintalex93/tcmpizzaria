@@ -373,20 +373,26 @@ values
 (199.00, '15/10/2014', 1,1)
 go
 
-
 insert into Detalhe_Pedido
 (
-cod_produto,
-cod_pedido
+cod_pedido,
+cod_produto
+
 )
 values
 (1,1),
 (1,2),
+(1,2),
+(1,6),
+(1,5),
+(1,7),
+(1,7),
+(1,7),
+(1,8),
+(1,2),
+(1,2),
 (2,2),
 (3,3)
-/*
-select * from Detalhe_Pedido
-*/
 
 go
 

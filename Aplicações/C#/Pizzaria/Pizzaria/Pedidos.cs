@@ -120,30 +120,42 @@ namespace Pizzaria
 
         private void gridClientesEncontrados_DoubleClick(object sender, EventArgs e)
         {
-            int id = Convert.ToInt32(gridClientesEncontrados.CurrentRow.Cells[0].Value);
-
-            preencherGrid("select Cod_Pedido, Valor, Data, Hora from pedido where Cod_Cliente like ('%" + id + "%')", gridPedidosClientes);
-
-            for(int i =0 ; i < gridPedidosClientes.Columns.Count ; i++)
-                gridPedidosClientes.Columns[i].Width = 70;
+            
         }
 
         private void gridPedidosClientes_DoubleClick(object sender, EventArgs e)
         {
+
+        }
+
+        private void gridClientesEncontrados_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int id = Convert.ToInt32(gridClientesEncontrados.CurrentRow.Cells[0].Value);
+
+            preencherGrid("select Cod_Pedido, Valor, Data, Hora from pedido where Cod_Cliente like ('%" + id + "%')", gridPedidosClientes);
+
+            for (int i = 0; i < gridPedidosClientes.Columns.Count; i++)
+                gridPedidosClientes.Columns[i].Width = 70;
+        }
+
+        private void gridPedidosClientes_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
             int id = Convert.ToInt32(gridPedidosClientes.CurrentRow.Cells[0].Value);
 
-            preencherGrid("select Cod_Produto, Nome_Produto, Valor_Venda from produto where Cod_Produto like ('%" + id + "%')", gridProdutosConsumidos);
+            preencherGrid("select Cod_Produto as [ID Produto],  Nome_Produto as [Produto], Valor_Venda as [Preço] from produto where Cod_Produto IN (select Cod_Produto from Detalhe_Pedido where Cod_Pedido =" + id + ")", gridProdutosConsumidos);
 
-            gridProdutosConsumidos.Columns.Add("produtosConsumidosQuantidade", "Quantidade");
-
-            int quantidade = 0;
-
-
-
-            gridProdutosConsumidos.Rows[gridProdutosConsumidos.Rows.Count].Cells[3].Value = 0;
-
+            
             for (int i = 0; i < gridProdutosConsumidos.Columns.Count; i++)
-                gridPedidosClientes.Columns[i].Width = 70;
+                gridProdutosConsumidos.Columns[i].Width = 90;
+//            gridProdutosConsumidos.Columns[1].Width = 100;
+  //          gridProdutosConsumidos.Columns[2].Width = 50;
+        }
+
+        private void txt_palavrachave_TextChanged(object sender, EventArgs e)
+        {
+            txtIDProduto.Text = "";
+
+            preencherGrid("select Cod_Produto as [ID Produto],  Nome_Produto as [Produto], Valor_Venda as [Preço] from Produto where Nome_Produto like ('%" + txtPalavraChave.Text + "%')", gridResultadoBusca);
         }
     }
 }
