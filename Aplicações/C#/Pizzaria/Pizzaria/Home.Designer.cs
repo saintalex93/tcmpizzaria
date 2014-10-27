@@ -37,8 +37,6 @@
             this.produtoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.insumoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aplicativosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cobrancaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.históricoDePedidosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.promoçõesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cadastrarPromoçãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.promoçõesAtivasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -61,12 +59,8 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripLabel5 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -102,15 +96,15 @@
             this.insumoToolStripMenuItem});
             this.novoCadastroToolStripMenuItem.Image = global::Pizzaria.Properties.Resources._48px_Crystal_Clear_action_edit_add;
             this.novoCadastroToolStripMenuItem.Name = "novoCadastroToolStripMenuItem";
-            this.novoCadastroToolStripMenuItem.Size = new System.Drawing.Size(98, 20);
-            this.novoCadastroToolStripMenuItem.Text = "&Novo Cadastro";
+            this.novoCadastroToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
+            this.novoCadastroToolStripMenuItem.Text = "Cadastros";
             this.novoCadastroToolStripMenuItem.Click += new System.EventHandler(this.novoCadastroToolStripMenuItem_Click);
             // 
             // funcionarioToolStripMenuItem
             // 
             this.funcionarioToolStripMenuItem.Name = "funcionarioToolStripMenuItem";
-            this.funcionarioToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
-            this.funcionarioToolStripMenuItem.Text = "&Funcionario";
+            this.funcionarioToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.funcionarioToolStripMenuItem.Text = "Funcionario";
             this.funcionarioToolStripMenuItem.Click += new System.EventHandler(this.funcionarioToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
@@ -121,8 +115,8 @@
             // clienteToolStripMenuItem
             // 
             this.clienteToolStripMenuItem.Name = "clienteToolStripMenuItem";
-            this.clienteToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
-            this.clienteToolStripMenuItem.Text = "&Cliente";
+            this.clienteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.clienteToolStripMenuItem.Text = "Cliente";
             this.clienteToolStripMenuItem.Click += new System.EventHandler(this.clienteToolStripMenuItem_Click);
             // 
             // empresaToolStripMenuItem
@@ -148,25 +142,10 @@
             // 
             // aplicativosToolStripMenuItem
             // 
-            this.aplicativosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cobrancaToolStripMenuItem,
-            this.históricoDePedidosToolStripMenuItem});
             this.aplicativosToolStripMenuItem.Name = "aplicativosToolStripMenuItem";
             this.aplicativosToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.aplicativosToolStripMenuItem.Text = "Pedidos";
-            // 
-            // cobrancaToolStripMenuItem
-            // 
-            this.cobrancaToolStripMenuItem.Name = "cobrancaToolStripMenuItem";
-            this.cobrancaToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
-            this.cobrancaToolStripMenuItem.Text = "Novo Pedido";
-            this.cobrancaToolStripMenuItem.Click += new System.EventHandler(this.cobrancaToolStripMenuItem_Click);
-            // 
-            // históricoDePedidosToolStripMenuItem
-            // 
-            this.históricoDePedidosToolStripMenuItem.Name = "históricoDePedidosToolStripMenuItem";
-            this.históricoDePedidosToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
-            this.históricoDePedidosToolStripMenuItem.Text = "Histórico de Pedidos";
+            this.aplicativosToolStripMenuItem.Click += new System.EventHandler(this.aplicativosToolStripMenuItem_Click);
             // 
             // promoçõesToolStripMenuItem
             // 
@@ -291,12 +270,8 @@
             this.toolStripSeparator2,
             this.toolStripLabel4,
             this.toolStripSeparator,
-            this.toolStripLabel5,
-            this.toolStripSeparator3,
             this.toolStripLabel1,
             this.toolStripSeparator5,
-            this.toolStripLabel6,
-            this.toolStripSeparator6,
             this.toolStripLabel3});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
@@ -340,20 +315,6 @@
             this.toolStripSeparator.Name = "toolStripSeparator";
             this.toolStripSeparator.Size = new System.Drawing.Size(6, 58);
             // 
-            // toolStripLabel5
-            // 
-            this.toolStripLabel5.Image = global::Pizzaria.Properties.Resources.Untitled_1;
-            this.toolStripLabel5.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripLabel5.Name = "toolStripLabel5";
-            this.toolStripLabel5.Size = new System.Drawing.Size(48, 55);
-            this.toolStripLabel5.Text = "Agenda";
-            this.toolStripLabel5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 58);
-            // 
             // toolStripLabel1
             // 
             this.toolStripLabel1.Image = global::Pizzaria.Properties.Resources.Caixas;
@@ -367,20 +328,6 @@
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(6, 58);
-            // 
-            // toolStripLabel6
-            // 
-            this.toolStripLabel6.Image = global::Pizzaria.Properties.Resources.Logoff;
-            this.toolStripLabel6.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripLabel6.Name = "toolStripLabel6";
-            this.toolStripLabel6.Size = new System.Drawing.Size(42, 55);
-            this.toolStripLabel6.Text = "Logoff";
-            this.toolStripLabel6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
-            // toolStripSeparator6
-            // 
-            this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 58);
             // 
             // toolStripLabel3
             // 
@@ -422,18 +369,14 @@
         private System.Windows.Forms.ToolStripMenuItem empresaToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem aplicativosToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem cobrancaToolStripMenuItem;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripLabel toolStripLabel2;
         private System.Windows.Forms.ToolStripLabel toolStripLabel4;
         private System.Windows.Forms.ToolStripLabel toolStripLabel3;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel5;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel6;
         private System.Windows.Forms.ToolStripMenuItem produtoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem insumoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem promoçõesToolStripMenuItem;
@@ -443,8 +386,6 @@
         private System.Windows.Forms.ToolStripMenuItem administrativoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sairToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
-        private System.Windows.Forms.ToolStripMenuItem históricoDePedidosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cadastrarPromoçãoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem promoçõesAtivasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fechamaentoToolStripMenuItem;

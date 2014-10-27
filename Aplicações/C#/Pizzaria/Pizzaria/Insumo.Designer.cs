@@ -35,6 +35,9 @@
             this.btn_inserir = new System.Windows.Forms.Button();
             this.dtg_gravacao = new System.Windows.Forms.DataGridView();
             this.gpb_compras = new System.Windows.Forms.GroupBox();
+            this.txtbox_Recomendada = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cbox_Fornecedores = new System.Windows.Forms.ComboBox();
             this.txt_vlrunitario = new System.Windows.Forms.MaskedTextBox();
             this.cmb_medida = new System.Windows.Forms.ComboBox();
             this.cmb_categoria = new System.Windows.Forms.ComboBox();
@@ -53,9 +56,6 @@
             this.lbl_categoria = new System.Windows.Forms.Label();
             this.lbl_nome = new System.Windows.Forms.Label();
             this.btn_cancelar = new System.Windows.Forms.Button();
-            this.cbox_Fornecedores = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtbox_Recomendada = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dtg_gravacao)).BeginInit();
             this.gpb_compras.SuspendLayout();
             this.SuspendLayout();
@@ -151,6 +151,32 @@
             this.gpb_compras.TabStop = false;
             this.gpb_compras.Text = "Cadastro de Insumos";
             this.gpb_compras.Enter += new System.EventHandler(this.gpb_compras_Enter);
+            // 
+            // txtbox_Recomendada
+            // 
+            this.txtbox_Recomendada.Location = new System.Drawing.Point(160, 146);
+            this.txtbox_Recomendada.Name = "txtbox_Recomendada";
+            this.txtbox_Recomendada.Size = new System.Drawing.Size(100, 20);
+            this.txtbox_Recomendada.TabIndex = 21;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(22, 149);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(97, 13);
+            this.label1.TabIndex = 20;
+            this.label1.Text = "Qtd Recomendada";
+            // 
+            // cbox_Fornecedores
+            // 
+            this.cbox_Fornecedores.FormattingEnabled = true;
+            this.cbox_Fornecedores.Items.AddRange(new object[] {
+            "Selecione..."});
+            this.cbox_Fornecedores.Location = new System.Drawing.Point(160, 226);
+            this.cbox_Fornecedores.Name = "cbox_Fornecedores";
+            this.cbox_Fornecedores.Size = new System.Drawing.Size(121, 21);
+            this.cbox_Fornecedores.TabIndex = 19;
             // 
             // txt_vlrunitario
             // 
@@ -318,32 +344,6 @@
             this.btn_cancelar.UseVisualStyleBackColor = true;
             this.btn_cancelar.Click += new System.EventHandler(this.btn_cancelar_Click);
             // 
-            // cbox_Fornecedores
-            // 
-            this.cbox_Fornecedores.FormattingEnabled = true;
-            this.cbox_Fornecedores.Items.AddRange(new object[] {
-            "Selecione..."});
-            this.cbox_Fornecedores.Location = new System.Drawing.Point(160, 226);
-            this.cbox_Fornecedores.Name = "cbox_Fornecedores";
-            this.cbox_Fornecedores.Size = new System.Drawing.Size(121, 21);
-            this.cbox_Fornecedores.TabIndex = 19;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(22, 149);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(97, 13);
-            this.label1.TabIndex = 20;
-            this.label1.Text = "Qtd Recomendada";
-            // 
-            // txtbox_Recomendada
-            // 
-            this.txtbox_Recomendada.Location = new System.Drawing.Point(160, 146);
-            this.txtbox_Recomendada.Name = "txtbox_Recomendada";
-            this.txtbox_Recomendada.Size = new System.Drawing.Size(100, 20);
-            this.txtbox_Recomendada.TabIndex = 21;
-            // 
             // Insumo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -357,7 +357,6 @@
             this.Controls.Add(this.btn_inserir);
             this.Controls.Add(this.dtg_gravacao);
             this.Controls.Add(this.gpb_compras);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Insumo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Produtos";

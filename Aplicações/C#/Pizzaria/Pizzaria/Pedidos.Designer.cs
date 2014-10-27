@@ -29,6 +29,13 @@
         private void InitializeComponent()
         {
             this.gpb_detalhamento = new System.Windows.Forms.GroupBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.lbl_saldo = new System.Windows.Forms.Label();
+            this.lbl_ajuste = new System.Windows.Forms.Label();
+            this.lbl_total = new System.Windows.Forms.Label();
+            this.txt_ajuste = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtIDProduto = new System.Windows.Forms.TextBox();
             this.txtPalavraChave = new System.Windows.Forms.TextBox();
@@ -39,10 +46,6 @@
             this.btn_inserir = new System.Windows.Forms.Button();
             this.btn_remover = new System.Windows.Forms.Button();
             this.gridProdutosConsumidos = new System.Windows.Forms.DataGridView();
-            this.txt_ajuste = new System.Windows.Forms.TextBox();
-            this.lbl_ajuste = new System.Windows.Forms.Label();
-            this.lbl_total = new System.Windows.Forms.Label();
-            this.lbl_saldo = new System.Windows.Forms.Label();
             this.gpb_dadoscliente = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.gridPedidosClientes = new System.Windows.Forms.DataGridView();
@@ -53,16 +56,13 @@
             this.lbl_cpf = new System.Windows.Forms.Label();
             this.lbl_nome = new System.Windows.Forms.Label();
             this.btn_sair = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.gpb_detalhamento.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridProdutosEncontrados)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridProdutosConsumidos)).BeginInit();
             this.gpb_dadoscliente.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridPedidosClientes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridClientesEncontrados)).BeginInit();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // gpb_detalhamento
@@ -84,6 +84,73 @@
             this.gpb_detalhamento.TabIndex = 0;
             this.gpb_detalhamento.TabStop = false;
             this.gpb_detalhamento.Text = "Detalhamento do Pedido";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.textBox2);
+            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.lbl_saldo);
+            this.groupBox1.Controls.Add(this.lbl_ajuste);
+            this.groupBox1.Controls.Add(this.lbl_total);
+            this.groupBox1.Controls.Add(this.txt_ajuste);
+            this.groupBox1.Location = new System.Drawing.Point(12, 380);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(350, 48);
+            this.groupBox1.TabIndex = 22;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Valores";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Enabled = false;
+            this.textBox2.Location = new System.Drawing.Point(288, 19);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(40, 20);
+            this.textBox2.TabIndex = 20;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Enabled = false;
+            this.textBox1.Location = new System.Drawing.Point(71, 19);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(40, 20);
+            this.textBox1.TabIndex = 19;
+            // 
+            // lbl_saldo
+            // 
+            this.lbl_saldo.AutoSize = true;
+            this.lbl_saldo.Location = new System.Drawing.Point(8, 22);
+            this.lbl_saldo.Name = "lbl_saldo";
+            this.lbl_saldo.Size = new System.Drawing.Size(57, 13);
+            this.lbl_saldo.TabIndex = 13;
+            this.lbl_saldo.Text = "Saldo - R$";
+            // 
+            // lbl_ajuste
+            // 
+            this.lbl_ajuste.AutoSize = true;
+            this.lbl_ajuste.Location = new System.Drawing.Point(117, 22);
+            this.lbl_ajuste.Name = "lbl_ajuste";
+            this.lbl_ajuste.Size = new System.Drawing.Size(59, 13);
+            this.lbl_ajuste.TabIndex = 15;
+            this.lbl_ajuste.Text = "Ajuste - R$";
+            // 
+            // lbl_total
+            // 
+            this.lbl_total.AutoSize = true;
+            this.lbl_total.Location = new System.Drawing.Point(228, 22);
+            this.lbl_total.Name = "lbl_total";
+            this.lbl_total.Size = new System.Drawing.Size(54, 13);
+            this.lbl_total.TabIndex = 14;
+            this.lbl_total.Text = "Total - R$";
+            // 
+            // txt_ajuste
+            // 
+            this.txt_ajuste.Location = new System.Drawing.Point(182, 19);
+            this.txt_ajuste.Name = "txt_ajuste";
+            this.txt_ajuste.Size = new System.Drawing.Size(40, 20);
+            this.txt_ajuste.TabIndex = 18;
             // 
             // label1
             // 
@@ -175,40 +242,6 @@
             this.gridProdutosConsumidos.Name = "gridProdutosConsumidos";
             this.gridProdutosConsumidos.Size = new System.Drawing.Size(355, 167);
             this.gridProdutosConsumidos.TabIndex = 8;
-            // 
-            // txt_ajuste
-            // 
-            this.txt_ajuste.Location = new System.Drawing.Point(182, 19);
-            this.txt_ajuste.Name = "txt_ajuste";
-            this.txt_ajuste.Size = new System.Drawing.Size(40, 20);
-            this.txt_ajuste.TabIndex = 18;
-            // 
-            // lbl_ajuste
-            // 
-            this.lbl_ajuste.AutoSize = true;
-            this.lbl_ajuste.Location = new System.Drawing.Point(117, 22);
-            this.lbl_ajuste.Name = "lbl_ajuste";
-            this.lbl_ajuste.Size = new System.Drawing.Size(59, 13);
-            this.lbl_ajuste.TabIndex = 15;
-            this.lbl_ajuste.Text = "Ajuste - R$";
-            // 
-            // lbl_total
-            // 
-            this.lbl_total.AutoSize = true;
-            this.lbl_total.Location = new System.Drawing.Point(228, 22);
-            this.lbl_total.Name = "lbl_total";
-            this.lbl_total.Size = new System.Drawing.Size(54, 13);
-            this.lbl_total.TabIndex = 14;
-            this.lbl_total.Text = "Total - R$";
-            // 
-            // lbl_saldo
-            // 
-            this.lbl_saldo.AutoSize = true;
-            this.lbl_saldo.Location = new System.Drawing.Point(8, 22);
-            this.lbl_saldo.Name = "lbl_saldo";
-            this.lbl_saldo.Size = new System.Drawing.Size(57, 13);
-            this.lbl_saldo.TabIndex = 13;
-            this.lbl_saldo.Text = "Saldo - R$";
             // 
             // gpb_dadoscliente
             // 
@@ -307,42 +340,9 @@
             this.btn_sair.Name = "btn_sair";
             this.btn_sair.Size = new System.Drawing.Size(75, 23);
             this.btn_sair.TabIndex = 21;
-            this.btn_sair.Text = "Sair";
+            this.btn_sair.Text = "Voltar";
             this.btn_sair.UseVisualStyleBackColor = true;
             this.btn_sair.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Controls.Add(this.lbl_saldo);
-            this.groupBox1.Controls.Add(this.lbl_ajuste);
-            this.groupBox1.Controls.Add(this.lbl_total);
-            this.groupBox1.Controls.Add(this.txt_ajuste);
-            this.groupBox1.Location = new System.Drawing.Point(12, 380);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(350, 48);
-            this.groupBox1.TabIndex = 22;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Valores";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Enabled = false;
-            this.textBox2.Location = new System.Drawing.Point(288, 19);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(40, 20);
-            this.textBox2.TabIndex = 20;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(71, 19);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(40, 20);
-            this.textBox1.TabIndex = 19;
             // 
             // Pedidos
             // 
@@ -359,14 +359,14 @@
             this.Shown += new System.EventHandler(this.Pedidos_Shown);
             this.gpb_detalhamento.ResumeLayout(false);
             this.gpb_detalhamento.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridProdutosEncontrados)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridProdutosConsumidos)).EndInit();
             this.gpb_dadoscliente.ResumeLayout(false);
             this.gpb_dadoscliente.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridPedidosClientes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridClientesEncontrados)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }

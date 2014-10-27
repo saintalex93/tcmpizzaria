@@ -43,9 +43,11 @@ namespace Pizzaria
         }
 
         private void button3_Click(object sender, EventArgs e)
-                {
-                    Close();
-                }
+        {
+            Home home = new Home();
+            home.Show();
+            Close();
+        }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {

@@ -26,7 +26,7 @@ namespace Pizzaria
             btn_excluir.Enabled = false;
             btn_gravar.Enabled = false;
             preenchefornecedores();
-
+            
 
 
         }

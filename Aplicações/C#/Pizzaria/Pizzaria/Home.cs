@@ -149,18 +149,9 @@ namespace Pizzaria
 
         private void toolStripLabel2_Click(object sender, EventArgs e)
         {
-            while (Home.ActiveForm.MdiChildren.Length > 0)
-            {
-                Home.ActiveForm.ActiveMdiChild.Close();
-
-
-
-
-            }
-            Pedidos Ped = new Pedidos();
-            Ped.MdiParent = this;
-            Ped.Show();
-          
+            Pedidos pedido = new Pedidos();
+            pedido.Show();
+            this.Hide();
         }
 
         private void toolStripLabel4_Click(object sender, EventArgs e)
@@ -228,18 +219,24 @@ namespace Pizzaria
         private void insumoToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            while (Home.ActiveForm.MdiChildren.Length > 0)
-            {
-                Home.ActiveForm.ActiveMdiChild.Close();
+//            while (Home.ActiveForm.MdiChildren.Length > 0)
+  //          {
+    //            Home.ActiveForm.ActiveMdiChild.Close();
 
 
 
 
-            }
-            Insumo Insu = new Insumo();
-            Insu.MdiParent = this;
-            Insu.Show();
+      //      }
+            Insumo insumo = new Insumo();
+            insumo.Show();
           
+        }
+
+        private void aplicativosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Pedidos pedidos = new Pedidos();
+            pedidos.Show();
+            this.Hide();
         }
 
     }
