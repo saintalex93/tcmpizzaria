@@ -25,7 +25,7 @@ namespace Pizzaria
             btn_alterar.Enabled = false;
             btn_excluir.Enabled = false;
             btn_gravar.Enabled = false;
-
+            preenchefornecedores();
 
 
 
@@ -37,7 +37,7 @@ namespace Pizzaria
         DateTime datavalidade, datarecebimento, datafabricacao;
         double valoruntd = 0;
         Boolean valida = false;
-        int qtd = 0;
+        int qtd = 0,cod_categoria= 0;
 
         //conexao DB
        // string conexao = "Data Source=ALEX\\SQLEXPRESS ;Initial Catalog=Pizzaria; Persist Security Info = True; User ID=sa; Password=1234";
@@ -98,10 +98,11 @@ namespace Pizzaria
             {
                 if (Validaexistente())
                 {
-                    strsql = "select cod_Produto from Produto where Nome_Produto = '" + dtg_gravacao.CurrentRow.Cells[0].Value.ToString() + "'";
+                    //Nome procurado não existe
+                  //  strsql = "select cod_Insumo from Insumo where Nome_Insumo = '" + dtg_gravacao.CurrentRow.Cells[0].Value.ToString() + "'";
                     //obtem cod do produto antes de alterar
-                    cod_produto = ValidaUpdate(strsql);
-                    atualizarproduto(cod_produto);
+                 //   cod_produto = ValidaUpdate(strsql);
+                    atualizarproduto(dtg_gravacao.CurrentRow.Cells[0].Value.ToString());
                     dtg_gravacao.Enabled = true;
                     btn_excluir.Enabled = false;
                     btn_gravar.Enabled = false;
@@ -113,13 +114,13 @@ namespace Pizzaria
                 else
                 {
 
-                    strsql = "select cod_Produto from Produto where Nome_Produto = '" + dtg_gravacao.CurrentRow.Cells[0].Value.ToString() + "'";
+                 //   strsql = "select cod_Insumo from Insumo where Nome_Insumo = '" + dtg_gravacao.CurrentRow.Cells[0].Value.ToString() + "'";
                     //obtem cod do produto antes de alterar
-                    cod_produto = ValidaUpdate(strsql);
+                //    cod_produto = ValidaUpdate(strsql);
                     strsql = "select cod_Produto from Produto where Nome_Produto = '" + nome + "'";
-                    if (cod_produto == ValidaUpdate(strsql))
+                    if (cod_produto == dtg_gravacao.CurrentRow.Cells[0].Value.ToString())
                     {
-                        atualizarproduto(cod_produto);
+                        atualizarproduto(dtg_gravacao.CurrentRow.Cells[0].Value.ToString());
                         dtg_gravacao.Enabled = true;
                         btn_excluir.Enabled = false;
                         btn_gravar.Enabled = false;
@@ -140,14 +141,16 @@ namespace Pizzaria
         private void dtg_gravacao_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
 
-            txt_nome.Text = dtg_gravacao.CurrentRow.Cells[0].Value.ToString();
-            txt_vlrunitario.Text = dtg_gravacao.CurrentRow.Cells[1].Value.ToString();
-            dtp_datavalidade.Value = Convert.ToDateTime(dtg_gravacao.CurrentRow.Cells[2].Value.ToString());
+            txt_nome.Text = dtg_gravacao.CurrentRow.Cells[1].Value.ToString();
+            txt_vlrunitario.Text = dtg_gravacao.CurrentRow.Cells[2].Value.ToString();
+            dtp_datavalidade.Value = Convert.ToDateTime(dtg_gravacao.CurrentRow.Cells[5].Value.ToString());
+            dtp_datafabricacao.Value = Convert.ToDateTime(dtg_gravacao.CurrentRow.Cells[6].Value.ToString());
+            dtp_datarecebimento.Value = Convert.ToDateTime(dtg_gravacao.CurrentRow.Cells[7].Value.ToString());
             txt_qdtcomprada.Text = dtg_gravacao.CurrentRow.Cells[3].Value.ToString();
             gpb_compras.Enabled = false;
             btn_alterar.Enabled = true;
             btn_inserir.Enabled = false;
-
+            dtg_gravacao.Enabled = false;
 
         }
         private void btn_alterar_Click(object sender, EventArgs e)
@@ -156,7 +159,7 @@ namespace Pizzaria
 
             //valida = true;
             //btn_gravar.Text = "Atualizar";
-            dtg_gravacao.Enabled = false;
+            
             btn_excluir.Enabled = true;
             gpb_compras.Enabled = true;
             btn_cancelar.Enabled = true;
@@ -169,7 +172,8 @@ namespace Pizzaria
             btn_excluir.Enabled = false;
             btn_gravar.Enabled = false;
             btn_inserir.Enabled = true;
-
+            gpb_compras.Enabled = true;
+            btn_alterar.Enabled = false;
         }
         private void txt_vlrunitario_TextChanged(object sender, EventArgs e)
         {
@@ -226,9 +230,9 @@ namespace Pizzaria
             da.Fill(dt);
 
 
-            for (int i = 1; i > dt.Rows.Count; i++)
+            for (int i = 1; i < dt.Rows.Count; i++)
             {
-                // Dando erro    cmb_categoria.Items.Add((dt.Rows[i][1].ToString()));
+               cmb_categoria.Items.Add((dt.Rows[i][0].ToString()));
 
             }
 
@@ -258,6 +262,10 @@ namespace Pizzaria
                         {
                             txt_qdtcomprada.Text = "0";
                         }
+                        if (txtbox_Recomendada.Text.Replace(",", "").Replace(".", "").Replace("_", "").Replace(" ", "").Replace("R$", "").Length == 0)
+                        {
+                            txtbox_Recomendada.Text = "0";
+                        }
 
                         //Valida campo valor unitario
                         if (Convert.ToInt32(txt_vlrunitario.Text.Replace(",", "").Replace(".", "").Replace("_", "").Replace(" ", "").Replace("R$", "")) > 0)
@@ -286,7 +294,24 @@ namespace Pizzaria
                                         if (dtp_datarecebimento.Value.Date > dtp_datafabricacao.Value.Date)
                                         {
                                             datarecebimento = dtp_datarecebimento.Value;
-                                            return true;
+
+                                            if (cbox_Fornecedores.SelectedIndex > 0)
+                                            {
+                                                if (Convert.ToInt32(txt_qdtcomprada.Text.Replace(",", "").Replace(".", "")) > 0)
+                                                {
+                                                return true;    
+                                                }
+                                                
+                                                   else
+
+                                                {
+                                                MessageBox.Show("Quantidade Recomendada incorreta!");
+                                                }
+                                            }
+                                            else
+                                            {
+                                                MessageBox.Show("Fornecedor incorreto!");
+                                            }
                                         }
                                         else
                                         {
@@ -341,7 +366,7 @@ namespace Pizzaria
         {
 
             SqlConnection conn = new SqlConnection(conexao);
-            string strIncluir = "select * from Produto where Nome_Produto = '" + nome + "'";
+            string strIncluir = "select * from insumo where Nome_insumo = '" + nome + "'";
             conn.Open();
             SqlCommand sqlComm = new SqlCommand(strIncluir, conn);
 
@@ -365,29 +390,73 @@ namespace Pizzaria
 
 
             //seleciona categoria
+            try
+            {
+                SqlConnection conn = new SqlConnection(conexao);
+                string strIncluir = "select cod_Categoria from Categoria where Nome_Categoria = '" + categoria + "'";
+                conn.Open();
+                SqlCommand sqlComm = new SqlCommand(strIncluir, conn);
 
-            SqlConnection conn = new SqlConnection(conexao);
-            string strIncluir = "select cod_Categoria from Categoria where Nome_Categoria = '" + categoria + "'";
-            conn.Open();
-            SqlCommand sqlComm = new SqlCommand(strIncluir, conn);
+                SqlDataAdapter da = new SqlDataAdapter();
+                DataTable dt = new DataTable();
+                da.SelectCommand = sqlComm;
+                da.Fill(dt);
+                cod_categoria = Convert.ToInt32(dt.Rows[0][0].ToString());
+                conn.Close();
+                //Insere dados
+                conn = new SqlConnection(conexao);
+                strIncluir = "insert into insumo " +
+                    "(Nome_Insumo, Medida, ValorDeCompra,QtdeEmEstoque, " +
+                    "Recebimento, Fabricacao,validade,Cod_Categoria,QtdeRecomendavel) values ('"
+                    + nome + "','" + medida + "','" + valoruntd.ToString().Replace(",", ".") + "','" +
+                    qtd + "','" + datarecebimento.ToString("dd/MM/yyyy") + "','" + datafabricacao.ToString("dd/MM/yyyy") +
+                    "','" + datavalidade.ToString("dd/MM/yyyy") + "','" + cod_categoria + "','" + txtbox_Recomendada.Text.ToString() +"')";
+                conn.Open();
+                sqlComm = new SqlCommand(strIncluir, conn);
+                sqlComm.ExecuteNonQuery();
+                
 
-            SqlDataAdapter da = new SqlDataAdapter();
-            DataTable dt = new DataTable();
-            da.SelectCommand = sqlComm;
-            da.Fill(dt);
+                try
+                {
+                    conn.Close();
+                    //Recupera cod do insumo
+                    conn = new SqlConnection(conexao);
+                    strIncluir = "select cod_insumo from Insumo where nome_Insumo = '" + nome + "'";
+                    conn.Open();
+                    sqlComm = new SqlCommand(strIncluir, conn);
 
-            //Insere dados
-            conn = new SqlConnection(conexao);
-            strIncluir = "insert into insumo " + 
-                "(Nome_Insumo, Medida, ValorDeCompra,QtdeEmEstoque, "+
-                "Recebimento, Fabricacao,validade) values ('" 
-                + nome + "','" + medida + "','" + valoruntd.ToString().Replace(",",".") + "','" +
-                qtd + "','" + datarecebimento.ToString("dd/MM/yyyy") + "','" + datafabricacao.ToString("dd/MM/yyyy") +
-                "','" + datavalidade.ToString("dd/MM/yyyy") + "')";
-            conn.Open();
-            sqlComm = new SqlCommand(strIncluir, conn);
-            sqlComm.ExecuteNonQuery();
+                       da = new SqlDataAdapter();
+                       dt = new DataTable();
+                    da.SelectCommand = sqlComm;
+                    da.Fill(dt);
 
+                    //Atualiza Insumo_Fornecedor
+                    conn = new SqlConnection(conexao);
+                    strIncluir = "insert into Insumo_Fornecedor " +
+                    " select insu.Cod_Insumo,forne.Cod_Fornecedor " +
+                    " from Insumo insu, Fornecedor forne where " +
+                    " insu.Nome_Insumo = '" + nome + "' and forne.Razao_Social = '" + cbox_Fornecedores.SelectedItem.ToString() + "'";
+                    conn.Open();
+                    sqlComm = new SqlCommand(strIncluir, conn);
+                    sqlComm.ExecuteNonQuery();
+                    conn.Close();
+
+
+                }
+                catch(Exception)
+                {
+                    MessageBox.Show("Falha ao inserir Insumo!");
+                    conn.Close();
+                }
+
+
+
+            }
+            catch(Exception)
+            {
+                MessageBox.Show("Falha ao inserir Insumo!");
+                conn.Close();
+            }
 
 
         }
@@ -438,7 +507,14 @@ namespace Pizzaria
 
             //atualiza produto
             conn = new SqlConnection(conexao);
-            strIncluir = "update Produto set Nome_Produto ='" + nome + "',Valor_venda='" + valoruntd.ToString().Replace(",", ".") + "',validade ='" + datavalidade + "',qtd_Estoque= qtd_Estoque +" + qtd + ",cod_categoria ='" + dt.Rows[0][0].ToString() + "' where Cod_Produto = '" + cod_prod + "'";
+            strIncluir = "update Insumo set Nome_Insumo ='" + nome + 
+                "',ValorDeCompra='" + valoruntd.ToString().Replace(",", ".") + 
+                "',QtdeRecomendavel = '"+ txtbox_Recomendada.Text.ToString() +"',validade ='" + 
+                datavalidade + "',qtdeemEstoque= qtdeemEstoque +" + qtd + 
+                ",cod_categoria ='" + dt.Rows[0][0].ToString() + "',Fabricacao = '"+ datafabricacao +
+                "',Recebimento = '"+ datarecebimento +"', medida ='"+ medida + "' where Cod_Insumo = '" + 
+                cod_prod + "'";
+
             conn.Open();
             sqlComm = new SqlCommand(strIncluir, conn);
             sqlComm.ExecuteNonQuery();
@@ -482,9 +558,43 @@ namespace Pizzaria
             da.SelectCommand = sqlComm;
             da.Fill(dt);
             //cod_produto= dt.Rows[0][0].ToString();
+            conn.Close();
             return dt.Rows[0][0].ToString();
         }
+        public void preenchefornecedores()
+        {
 
+            try
+            {
+                SqlConnection conn = new SqlConnection(conexao);
+                string strIncluir = "select Razao_Social from Fornecedor";
+                conn.Open();
+                SqlCommand sqlComm = new SqlCommand(strIncluir, conn);
+
+                DataTable dt = new DataTable();
+
+                SqlDataAdapter da = new SqlDataAdapter();
+                da.SelectCommand = sqlComm;
+
+
+                da.Fill(dt);
+
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                     cbox_Fornecedores.Items.Add((dt.Rows[i][0].ToString()));
+
+                }
+
+                conn.Close();
+
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Falha ao preencher Lista de fornecedores");
+            }
+        }
 
         public string txt { get; set; }
         public string dtp { get; set; }

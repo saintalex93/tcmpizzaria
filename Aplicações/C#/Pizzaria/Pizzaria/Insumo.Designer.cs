@@ -42,7 +42,6 @@
             this.dtp_datavalidade = new System.Windows.Forms.DateTimePicker();
             this.dtp_datarecebimento = new System.Windows.Forms.DateTimePicker();
             this.txt_qdtcomprada = new System.Windows.Forms.TextBox();
-            this.txt_fornecedor = new System.Windows.Forms.TextBox();
             this.txt_nome = new System.Windows.Forms.TextBox();
             this.lbl_fornecedor = new System.Windows.Forms.Label();
             this.lbl_datafabricacao = new System.Windows.Forms.Label();
@@ -54,6 +53,9 @@
             this.lbl_categoria = new System.Windows.Forms.Label();
             this.lbl_nome = new System.Windows.Forms.Label();
             this.btn_cancelar = new System.Windows.Forms.Button();
+            this.cbox_Fornecedores = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtbox_Recomendada = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dtg_gravacao)).BeginInit();
             this.gpb_compras.SuspendLayout();
             this.SuspendLayout();
@@ -118,11 +120,13 @@
             this.dtg_gravacao.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dtg_gravacao.Size = new System.Drawing.Size(695, 150);
             this.dtg_gravacao.TabIndex = 8;
-            this.dtg_gravacao.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtg_gravacao_CellContentClick);
             this.dtg_gravacao.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtg_gravacao_CellDoubleClick);
             // 
             // gpb_compras
             // 
+            this.gpb_compras.Controls.Add(this.txtbox_Recomendada);
+            this.gpb_compras.Controls.Add(this.label1);
+            this.gpb_compras.Controls.Add(this.cbox_Fornecedores);
             this.gpb_compras.Controls.Add(this.txt_vlrunitario);
             this.gpb_compras.Controls.Add(this.cmb_medida);
             this.gpb_compras.Controls.Add(this.cmb_categoria);
@@ -130,7 +134,6 @@
             this.gpb_compras.Controls.Add(this.dtp_datavalidade);
             this.gpb_compras.Controls.Add(this.dtp_datarecebimento);
             this.gpb_compras.Controls.Add(this.txt_qdtcomprada);
-            this.gpb_compras.Controls.Add(this.txt_fornecedor);
             this.gpb_compras.Controls.Add(this.txt_nome);
             this.gpb_compras.Controls.Add(this.lbl_fornecedor);
             this.gpb_compras.Controls.Add(this.lbl_datafabricacao);
@@ -151,7 +154,7 @@
             // 
             // txt_vlrunitario
             // 
-            this.txt_vlrunitario.Location = new System.Drawing.Point(150, 109);
+            this.txt_vlrunitario.Location = new System.Drawing.Point(160, 109);
             this.txt_vlrunitario.Mask = "$ 0000,00";
             this.txt_vlrunitario.Name = "txt_vlrunitario";
             this.txt_vlrunitario.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -169,7 +172,7 @@
             "Caixa",
             "Fardo",
             "Kilograma"});
-            this.cmb_medida.Location = new System.Drawing.Point(515, 72);
+            this.cmb_medida.Location = new System.Drawing.Point(539, 75);
             this.cmb_medida.Name = "cmb_medida";
             this.cmb_medida.Size = new System.Drawing.Size(100, 21);
             this.cmb_medida.TabIndex = 17;
@@ -178,13 +181,8 @@
             // 
             this.cmb_categoria.FormattingEnabled = true;
             this.cmb_categoria.Items.AddRange(new object[] {
-            "Selecione...",
-            "Bebida alcóolica",
-            "Bebida não alcóolica",
-            "Itens para cozinha",
-            "Ingredientes",
-            "Embalagens"});
-            this.cmb_categoria.Location = new System.Drawing.Point(150, 72);
+            "Selecione..."});
+            this.cmb_categoria.Location = new System.Drawing.Point(160, 72);
             this.cmb_categoria.Name = "cmb_categoria";
             this.cmb_categoria.Size = new System.Drawing.Size(121, 21);
             this.cmb_categoria.TabIndex = 16;
@@ -192,7 +190,7 @@
             // dtp_datafabricacao
             // 
             this.dtp_datafabricacao.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtp_datafabricacao.Location = new System.Drawing.Point(515, 146);
+            this.dtp_datafabricacao.Location = new System.Drawing.Point(160, 188);
             this.dtp_datafabricacao.Name = "dtp_datafabricacao";
             this.dtp_datafabricacao.Size = new System.Drawing.Size(100, 20);
             this.dtp_datafabricacao.TabIndex = 15;
@@ -201,7 +199,7 @@
             // dtp_datavalidade
             // 
             this.dtp_datavalidade.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtp_datavalidade.Location = new System.Drawing.Point(150, 187);
+            this.dtp_datavalidade.Location = new System.Drawing.Point(539, 187);
             this.dtp_datavalidade.Name = "dtp_datavalidade";
             this.dtp_datavalidade.Size = new System.Drawing.Size(96, 20);
             this.dtp_datavalidade.TabIndex = 14;
@@ -209,28 +207,21 @@
             // dtp_datarecebimento
             // 
             this.dtp_datarecebimento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtp_datarecebimento.Location = new System.Drawing.Point(150, 146);
+            this.dtp_datarecebimento.Location = new System.Drawing.Point(539, 149);
             this.dtp_datarecebimento.Name = "dtp_datarecebimento";
             this.dtp_datarecebimento.Size = new System.Drawing.Size(96, 20);
             this.dtp_datarecebimento.TabIndex = 13;
             // 
             // txt_qdtcomprada
             // 
-            this.txt_qdtcomprada.Location = new System.Drawing.Point(515, 109);
+            this.txt_qdtcomprada.Location = new System.Drawing.Point(539, 109);
             this.txt_qdtcomprada.Name = "txt_qdtcomprada";
             this.txt_qdtcomprada.Size = new System.Drawing.Size(100, 20);
             this.txt_qdtcomprada.TabIndex = 12;
             // 
-            // txt_fornecedor
-            // 
-            this.txt_fornecedor.Location = new System.Drawing.Point(515, 190);
-            this.txt_fornecedor.Name = "txt_fornecedor";
-            this.txt_fornecedor.Size = new System.Drawing.Size(100, 20);
-            this.txt_fornecedor.TabIndex = 11;
-            // 
             // txt_nome
             // 
-            this.txt_nome.Location = new System.Drawing.Point(150, 34);
+            this.txt_nome.Location = new System.Drawing.Point(160, 34);
             this.txt_nome.Name = "txt_nome";
             this.txt_nome.Size = new System.Drawing.Size(359, 20);
             this.txt_nome.TabIndex = 9;
@@ -239,7 +230,7 @@
             // lbl_fornecedor
             // 
             this.lbl_fornecedor.AutoSize = true;
-            this.lbl_fornecedor.Location = new System.Drawing.Point(408, 193);
+            this.lbl_fornecedor.Location = new System.Drawing.Point(19, 229);
             this.lbl_fornecedor.Name = "lbl_fornecedor";
             this.lbl_fornecedor.Size = new System.Drawing.Size(61, 13);
             this.lbl_fornecedor.TabIndex = 8;
@@ -248,7 +239,7 @@
             // lbl_datafabricacao
             // 
             this.lbl_datafabricacao.AutoSize = true;
-            this.lbl_datafabricacao.Location = new System.Drawing.Point(408, 152);
+            this.lbl_datafabricacao.Location = new System.Drawing.Point(19, 194);
             this.lbl_datafabricacao.Name = "lbl_datafabricacao";
             this.lbl_datafabricacao.Size = new System.Drawing.Size(101, 13);
             this.lbl_datafabricacao.TabIndex = 7;
@@ -275,7 +266,7 @@
             // lbl_validade
             // 
             this.lbl_validade.AutoSize = true;
-            this.lbl_validade.Location = new System.Drawing.Point(19, 193);
+            this.lbl_validade.Location = new System.Drawing.Point(408, 193);
             this.lbl_validade.Name = "lbl_validade";
             this.lbl_validade.Size = new System.Drawing.Size(89, 13);
             this.lbl_validade.TabIndex = 4;
@@ -284,7 +275,7 @@
             // lbl_datarecebimento
             // 
             this.lbl_datarecebimento.AutoSize = true;
-            this.lbl_datarecebimento.Location = new System.Drawing.Point(19, 152);
+            this.lbl_datarecebimento.Location = new System.Drawing.Point(408, 155);
             this.lbl_datarecebimento.Name = "lbl_datarecebimento";
             this.lbl_datarecebimento.Size = new System.Drawing.Size(111, 13);
             this.lbl_datarecebimento.TabIndex = 3;
@@ -327,6 +318,32 @@
             this.btn_cancelar.UseVisualStyleBackColor = true;
             this.btn_cancelar.Click += new System.EventHandler(this.btn_cancelar_Click);
             // 
+            // cbox_Fornecedores
+            // 
+            this.cbox_Fornecedores.FormattingEnabled = true;
+            this.cbox_Fornecedores.Items.AddRange(new object[] {
+            "Selecione..."});
+            this.cbox_Fornecedores.Location = new System.Drawing.Point(160, 226);
+            this.cbox_Fornecedores.Name = "cbox_Fornecedores";
+            this.cbox_Fornecedores.Size = new System.Drawing.Size(121, 21);
+            this.cbox_Fornecedores.TabIndex = 19;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(22, 149);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(97, 13);
+            this.label1.TabIndex = 20;
+            this.label1.Text = "Qtd Recomendada";
+            // 
+            // txtbox_Recomendada
+            // 
+            this.txtbox_Recomendada.Location = new System.Drawing.Point(160, 146);
+            this.txtbox_Recomendada.Name = "txtbox_Recomendada";
+            this.txtbox_Recomendada.Size = new System.Drawing.Size(100, 20);
+            this.txtbox_Recomendada.TabIndex = 21;
+            // 
             // Insumo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -367,7 +384,6 @@
         private System.Windows.Forms.DateTimePicker dtp_datavalidade;
         private System.Windows.Forms.DateTimePicker dtp_datarecebimento;
         private System.Windows.Forms.TextBox txt_qdtcomprada;
-        private System.Windows.Forms.TextBox txt_fornecedor;
         private System.Windows.Forms.TextBox txt_nome;
         private System.Windows.Forms.Label lbl_fornecedor;
         private System.Windows.Forms.Label lbl_datafabricacao;
@@ -380,6 +396,9 @@
         private System.Windows.Forms.Label lbl_nome;
         private System.Windows.Forms.Button btn_cancelar;
         private System.Windows.Forms.MaskedTextBox txt_vlrunitario;
+        private System.Windows.Forms.ComboBox cbox_Fornecedores;
+        private System.Windows.Forms.TextBox txtbox_Recomendada;
+        private System.Windows.Forms.Label label1;
 
     }
 }
