@@ -35,7 +35,13 @@ namespace Pizzaria
             tabela.DataSource = dt;
             conn.Close();
         }
-        
+
+        public void limparGrid(DataGridView tabela)
+        {
+            tabela.DataSource = null;
+            tabela.Rows.Clear();
+        }
+
         private void button3_Click(object sender, EventArgs e)
                 {
                     Close();
@@ -92,6 +98,17 @@ namespace Pizzaria
             txtCPF.Text = "";
 
             preencherGrid("select Cod_Cliente, Nome_Cliente ,CPF_Cliente from cliente where Nome_Cliente like ('%" + txtNome.Text + "%')", gridClientesEncontrados);
+
+            txtCPF.Clear();
+            limparGrid(gridPedidosClientes);
+            txtPalavraChave.Clear();
+            txtPalavraChave.Enabled = false;
+            txtIDProduto.Clear();
+            txtIDProduto.Enabled = false;
+            btn_inserir.Enabled = false;
+            limparGrid(gridProdutosEncontrados);
+            limparGrid(gridProdutosConsumidos);
+            btn_remover.Enabled = false;
         }
 
         private void Pedidos_Shown(object sender, EventArgs e)
@@ -111,6 +128,14 @@ namespace Pizzaria
             string cpf = txtCPF.Text.Replace("-", "").Replace(".", "").Replace(" ","");
 
             preencherGrid("select Cod_Cliente, Nome_Cliente ,CPF_Cliente from cliente where CPF_Cliente like ('%" + cpf + "%')", gridClientesEncontrados);
+
+            txtNome.Clear();
+            txtPalavraChave.Clear();
+            txtIDProduto.Clear();
+            btn_inserir.Enabled = false;
+            limparGrid(gridProdutosEncontrados);
+            limparGrid(gridProdutosConsumidos);
+            btn_remover.Enabled = false;
         }
 
         private void txtCPFTeste_TextChanged(object sender, EventArgs e)
@@ -132,10 +157,18 @@ namespace Pizzaria
         {
             int id = Convert.ToInt32(gridClientesEncontrados.CurrentRow.Cells[0].Value);
 
-            preencherGrid("select Cod_Pedido, Valor, Data, Hora from pedido where Cod_Cliente like ('%" + id + "%')", gridPedidosClientes);
+            preencherGrid("select Cod_Pedido, Data, Hora from pedido where Cod_Cliente like ('%" + id + "%')", gridPedidosClientes);
 
             for (int i = 0; i < gridPedidosClientes.Columns.Count; i++)
                 gridPedidosClientes.Columns[i].Width = 70;
+
+            txtPalavraChave.Clear();
+            txtIDProduto.Clear();
+            btn_inserir.Enabled = false;
+            limparGrid(gridProdutosEncontrados);
+            limparGrid(gridProdutosConsumidos);
+            btn_remover.Enabled = false;
+            
         }
 
         private void gridPedidosClientes_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -147,15 +180,65 @@ namespace Pizzaria
             
             for (int i = 0; i < gridProdutosConsumidos.Columns.Count; i++)
                 gridProdutosConsumidos.Columns[i].Width = 90;
-//            gridProdutosConsumidos.Columns[1].Width = 100;
-  //          gridProdutosConsumidos.Columns[2].Width = 50;
+
+            txtPalavraChave.Clear();
+            txtIDProduto.Clear();
+            txtPalavraChave.Enabled = true;
+            txtIDProduto.Enabled = true;
+            btn_inserir.Enabled = false;
+            limparGrid(gridProdutosEncontrados);
+            btn_remover.Enabled = false;
         }
 
         private void txt_palavrachave_TextChanged(object sender, EventArgs e)
         {
-            txtIDProduto.Text = "";
+            txtIDProduto.Clear();
 
-            preencherGrid("select Cod_Produto as [ID Produto],  Nome_Produto as [Produto], Valor_Venda as [Preço] from Produto where Nome_Produto like ('%" + txtPalavraChave.Text + "%')", gridResultadoBusca);
+            preencherGrid("select Cod_Produto as [ID Produto],  Nome_Produto as [Produto], Valor_Venda as [Preço] from Produto where Nome_Produto like ('%" + txtPalavraChave.Text + "%')", gridProdutosEncontrados);
+
+            txtIDProduto.Clear();
+            btn_inserir.Enabled = true;
+            btn_remover.Enabled = true;
+        }
+
+        private void txtIDProduto_TextChanged(object sender, EventArgs e)
+        {
+            txtPalavraChave.Clear();
+
+            for (int i = 0; i < txtIDProduto.Text.Length; i++)
+                if (!char.IsNumber(txtIDProduto.Text[0]))
+                {
+                    Fornecedores.mensagemDeErro("É permitido apenas o uso de números no campo \"Busca por ID\".");
+                    txtIDProduto.Clear();
+                    txtIDProduto.Focus();
+                }
+
+            preencherGrid("select Cod_Produto as [ID Produto],  Nome_Produto as [Produto], Valor_Venda as [Preço] from Produto where Cod_Produto like ('%" + txtIDProduto.Text + "%')", gridProdutosEncontrados);
+
+            txtPalavraChave.Clear();
+            btn_inserir.Enabled = true;
+            btn_remover.Enabled = true;
+        }
+
+        private void btn_inserir_Click(object sender, EventArgs e)
+        {
+            string idProduto, idPedido = "";
+
+            idPedido = gridPedidosClientes.CurrentRow.Cells[0].Value.ToString();
+            idProduto = gridProdutosEncontrados.CurrentRow.Cells[0].Value.ToString();
+
+            preencherGrid("insert into Detalhe_Pedido(Cod_pedido, Cod_Produto) values(" + idPedido + ", "+ idProduto +")", gridProdutosConsumidos);
+
+            preencherGrid("select Cod_Produto as [ID Produto],  Nome_Produto as [Produto], Valor_Venda as [Preço] from produto where Cod_Produto IN (select Cod_Produto from Detalhe_Pedido where Cod_Pedido =" + gridPedidosClientes.CurrentRow.Cells[0].Value + ")", gridProdutosConsumidos);
+
+//            gridProdutosEncontrados.selected
+
+//            preencherGrid("select Cod_Pedido, Valor, Data, Hora from pedido where Cod_Cliente like ('%" + Convert.ToInt32(gridClientesEncontrados.CurrentRow.Cells[0].Value) + "%')", gridPedidosClientes);
+        }
+
+        private void gridProdutosEncontrados_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

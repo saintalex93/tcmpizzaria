@@ -34,8 +34,9 @@
             this.txtPalavraChave = new System.Windows.Forms.TextBox();
             this.lbl_idproduto = new System.Windows.Forms.Label();
             this.lbl_palavrachave = new System.Windows.Forms.Label();
-            this.gridResultadoBusca = new System.Windows.Forms.DataGridView();
+            this.gridProdutosEncontrados = new System.Windows.Forms.DataGridView();
             this.lbl_resultado = new System.Windows.Forms.Label();
+            this.btn_inserir = new System.Windows.Forms.Button();
             this.btn_remover = new System.Windows.Forms.Button();
             this.gridProdutosConsumidos = new System.Windows.Forms.DataGridView();
             this.txt_ajuste = new System.Windows.Forms.TextBox();
@@ -55,9 +56,8 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.btn_inserir = new System.Windows.Forms.Button();
             this.gpb_detalhamento.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridResultadoBusca)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridProdutosEncontrados)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridProdutosConsumidos)).BeginInit();
             this.gpb_dadoscliente.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridPedidosClientes)).BeginInit();
@@ -67,19 +67,20 @@
             // 
             // gpb_detalhamento
             // 
+            this.gpb_detalhamento.Controls.Add(this.groupBox1);
             this.gpb_detalhamento.Controls.Add(this.label1);
             this.gpb_detalhamento.Controls.Add(this.txtIDProduto);
             this.gpb_detalhamento.Controls.Add(this.txtPalavraChave);
             this.gpb_detalhamento.Controls.Add(this.lbl_idproduto);
             this.gpb_detalhamento.Controls.Add(this.lbl_palavrachave);
-            this.gpb_detalhamento.Controls.Add(this.gridResultadoBusca);
+            this.gpb_detalhamento.Controls.Add(this.gridProdutosEncontrados);
             this.gpb_detalhamento.Controls.Add(this.lbl_resultado);
             this.gpb_detalhamento.Controls.Add(this.btn_inserir);
             this.gpb_detalhamento.Controls.Add(this.btn_remover);
             this.gpb_detalhamento.Controls.Add(this.gridProdutosConsumidos);
             this.gpb_detalhamento.Location = new System.Drawing.Point(381, 12);
             this.gpb_detalhamento.Name = "gpb_detalhamento";
-            this.gpb_detalhamento.Size = new System.Drawing.Size(373, 428);
+            this.gpb_detalhamento.Size = new System.Drawing.Size(373, 470);
             this.gpb_detalhamento.TabIndex = 0;
             this.gpb_detalhamento.TabStop = false;
             this.gpb_detalhamento.Text = "Detalhamento do Pedido";
@@ -87,21 +88,24 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 253);
+            this.label1.Location = new System.Drawing.Point(9, 188);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(109, 13);
+            this.label1.Size = new System.Drawing.Size(108, 13);
             this.label1.TabIndex = 13;
-            this.label1.Text = "Produtos Consumidos";
+            this.label1.Text = "Produtos consumidos";
             // 
             // txtIDProduto
             // 
+            this.txtIDProduto.Enabled = false;
             this.txtIDProduto.Location = new System.Drawing.Point(262, 26);
             this.txtIDProduto.Name = "txtIDProduto";
             this.txtIDProduto.Size = new System.Drawing.Size(100, 20);
             this.txtIDProduto.TabIndex = 3;
+            this.txtIDProduto.TextChanged += new System.EventHandler(this.txtIDProduto_TextChanged);
             // 
             // txtPalavraChave
             // 
+            this.txtPalavraChave.Enabled = false;
             this.txtPalavraChave.Location = new System.Drawing.Point(92, 26);
             this.txtPalavraChave.Name = "txtPalavraChave";
             this.txtPalavraChave.Size = new System.Drawing.Size(100, 20);
@@ -126,26 +130,38 @@
             this.lbl_palavrachave.TabIndex = 0;
             this.lbl_palavrachave.Text = "Palavra Chave";
             // 
-            // gridResultadoBusca
+            // gridProdutosEncontrados
             // 
-            this.gridResultadoBusca.Location = new System.Drawing.Point(12, 65);
-            this.gridResultadoBusca.Name = "gridResultadoBusca";
-            this.gridResultadoBusca.Size = new System.Drawing.Size(350, 152);
-            this.gridResultadoBusca.TabIndex = 3;
-            this.gridResultadoBusca.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.gridProdutosEncontrados.Location = new System.Drawing.Point(12, 66);
+            this.gridProdutosEncontrados.Name = "gridProdutosEncontrados";
+            this.gridProdutosEncontrados.Size = new System.Drawing.Size(355, 106);
+            this.gridProdutosEncontrados.TabIndex = 3;
+            this.gridProdutosEncontrados.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridProdutosEncontrados_CellClick);
+            this.gridProdutosEncontrados.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // lbl_resultado
             // 
             this.lbl_resultado.AutoSize = true;
-            this.lbl_resultado.Location = new System.Drawing.Point(9, 48);
+            this.lbl_resultado.Location = new System.Drawing.Point(9, 49);
             this.lbl_resultado.Name = "lbl_resultado";
-            this.lbl_resultado.Size = new System.Drawing.Size(102, 13);
+            this.lbl_resultado.Size = new System.Drawing.Size(111, 13);
             this.lbl_resultado.TabIndex = 2;
-            this.lbl_resultado.Text = "Resultado da busca";
+            this.lbl_resultado.Text = "Produtos encontrados";
+            // 
+            // btn_inserir
+            // 
+            this.btn_inserir.Enabled = false;
+            this.btn_inserir.Location = new System.Drawing.Point(292, 178);
+            this.btn_inserir.Name = "btn_inserir";
+            this.btn_inserir.Size = new System.Drawing.Size(75, 23);
+            this.btn_inserir.TabIndex = 6;
+            this.btn_inserir.Text = "Inserir";
+            this.btn_inserir.UseVisualStyleBackColor = true;
+            this.btn_inserir.Click += new System.EventHandler(this.btn_inserir_Click);
             // 
             // btn_remover
             // 
-            this.btn_remover.Location = new System.Drawing.Point(292, 396);
+            this.btn_remover.Location = new System.Drawing.Point(292, 434);
             this.btn_remover.Name = "btn_remover";
             this.btn_remover.Size = new System.Drawing.Size(75, 23);
             this.btn_remover.TabIndex = 11;
@@ -155,22 +171,22 @@
             // gridProdutosConsumidos
             // 
             this.gridProdutosConsumidos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridProdutosConsumidos.Location = new System.Drawing.Point(12, 269);
+            this.gridProdutosConsumidos.Location = new System.Drawing.Point(12, 207);
             this.gridProdutosConsumidos.Name = "gridProdutosConsumidos";
-            this.gridProdutosConsumidos.Size = new System.Drawing.Size(355, 121);
+            this.gridProdutosConsumidos.Size = new System.Drawing.Size(355, 167);
             this.gridProdutosConsumidos.TabIndex = 8;
             // 
             // txt_ajuste
             // 
-            this.txt_ajuste.Location = new System.Drawing.Point(252, 19);
+            this.txt_ajuste.Location = new System.Drawing.Point(182, 19);
             this.txt_ajuste.Name = "txt_ajuste";
-            this.txt_ajuste.Size = new System.Drawing.Size(100, 20);
+            this.txt_ajuste.Size = new System.Drawing.Size(40, 20);
             this.txt_ajuste.TabIndex = 18;
             // 
             // lbl_ajuste
             // 
             this.lbl_ajuste.AutoSize = true;
-            this.lbl_ajuste.Location = new System.Drawing.Point(187, 22);
+            this.lbl_ajuste.Location = new System.Drawing.Point(117, 22);
             this.lbl_ajuste.Name = "lbl_ajuste";
             this.lbl_ajuste.Size = new System.Drawing.Size(59, 13);
             this.lbl_ajuste.TabIndex = 15;
@@ -179,7 +195,7 @@
             // lbl_total
             // 
             this.lbl_total.AutoSize = true;
-            this.lbl_total.Location = new System.Drawing.Point(358, 22);
+            this.lbl_total.Location = new System.Drawing.Point(228, 22);
             this.lbl_total.Name = "lbl_total";
             this.lbl_total.Size = new System.Drawing.Size(54, 13);
             this.lbl_total.TabIndex = 14;
@@ -287,7 +303,7 @@
             // 
             // btn_sair
             // 
-            this.btn_sair.Location = new System.Drawing.Point(336, 500);
+            this.btn_sair.Location = new System.Drawing.Point(679, 488);
             this.btn_sair.Name = "btn_sair";
             this.btn_sair.Size = new System.Drawing.Size(75, 23);
             this.btn_sair.TabIndex = 21;
@@ -303,9 +319,9 @@
             this.groupBox1.Controls.Add(this.lbl_ajuste);
             this.groupBox1.Controls.Add(this.lbl_total);
             this.groupBox1.Controls.Add(this.txt_ajuste);
-            this.groupBox1.Location = new System.Drawing.Point(110, 446);
+            this.groupBox1.Location = new System.Drawing.Point(12, 380);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(527, 48);
+            this.groupBox1.Size = new System.Drawing.Size(350, 48);
             this.groupBox1.TabIndex = 22;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Valores";
@@ -313,10 +329,10 @@
             // textBox2
             // 
             this.textBox2.Enabled = false;
-            this.textBox2.Location = new System.Drawing.Point(418, 19);
+            this.textBox2.Location = new System.Drawing.Point(288, 19);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
+            this.textBox2.Size = new System.Drawing.Size(40, 20);
             this.textBox2.TabIndex = 20;
             // 
             // textBox1
@@ -325,24 +341,14 @@
             this.textBox1.Location = new System.Drawing.Point(71, 19);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.Size = new System.Drawing.Size(40, 20);
             this.textBox1.TabIndex = 19;
-            // 
-            // btn_inserir
-            // 
-            this.btn_inserir.Location = new System.Drawing.Point(292, 223);
-            this.btn_inserir.Name = "btn_inserir";
-            this.btn_inserir.Size = new System.Drawing.Size(75, 23);
-            this.btn_inserir.TabIndex = 6;
-            this.btn_inserir.Text = "Inserir";
-            this.btn_inserir.UseVisualStyleBackColor = true;
             // 
             // Pedidos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(762, 569);
-            this.Controls.Add(this.groupBox1);
+            this.ClientSize = new System.Drawing.Size(762, 523);
             this.Controls.Add(this.btn_sair);
             this.Controls.Add(this.gpb_dadoscliente);
             this.Controls.Add(this.gpb_detalhamento);
@@ -353,7 +359,7 @@
             this.Shown += new System.EventHandler(this.Pedidos_Shown);
             this.gpb_detalhamento.ResumeLayout(false);
             this.gpb_detalhamento.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridResultadoBusca)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridProdutosEncontrados)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridProdutosConsumidos)).EndInit();
             this.gpb_dadoscliente.ResumeLayout(false);
             this.gpb_dadoscliente.PerformLayout();
@@ -378,7 +384,7 @@
         private System.Windows.Forms.Label lbl_cpf;
         private System.Windows.Forms.Label lbl_nome;
         private System.Windows.Forms.Label lbl_resultado;
-        private System.Windows.Forms.DataGridView gridResultadoBusca;
+        private System.Windows.Forms.DataGridView gridProdutosEncontrados;
         private System.Windows.Forms.DataGridView gridProdutosConsumidos;
         private System.Windows.Forms.Button btn_remover;
         private System.Windows.Forms.Label lbl_saldo;
