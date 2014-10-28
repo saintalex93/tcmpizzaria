@@ -6,6 +6,7 @@
     <link rel="icon" type="image/png" href="../img/marca.ico" />
 
     <script type="text/javascript" src="../js/valida.js"></script>
+    <script type="text/javascript" src="../js/reload.js"></script>
 
 </asp:Content>
 

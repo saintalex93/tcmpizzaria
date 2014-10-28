@@ -174,7 +174,7 @@ margin-bottom: 15px;
 fieldset#formulario1
 {
 margin: 15px auto;
-padding: 10px 0px 10px 10px; 
+padding: 10px 0px 10px 10px;
 height: auto;
 width: 430px;
 border: 1px solid white;
@@ -196,7 +196,7 @@ font-weight : bold;
 .grupoformulario2
 {
 margin: 15px auto;
-padding: 10px 0px 10px 10px; 
+padding: 10px 0px 10px 10px;
 height: auto;
 width: 430px;
 border: 1px solid white;
@@ -231,7 +231,7 @@ h3
     color: #fff;
 }
 
-#informacoes::before 
+#informacoes::before /* LINHA DIVISÓRIA DO RODAPÉ */
 {
 content: "";
 display: block;
@@ -269,24 +269,25 @@ width: 70%;
 
 #logo
 {
-height: 400px;
+height: 350px;
 width: 1000px;
 text-align: center;
 line-height: 300px;
 font-size: 100px;
-margin-bottom: 15px;
+margin: 2px 0px 30px 0px;
 }
 
+/* LOGO COM MASCOTE E TRIGO */
 #marca 
 {
 position: absolute;
 left: 200px;
-top: 95px;  
+top: 70px;  
 }
 #marca img 
 {
-width: 350px;
-height: 313px;
+width: 300px;
+height: 268px;
 }
 
 /* CSS MENU DO CLIENTE */

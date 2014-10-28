@@ -7,6 +7,7 @@
     <title>Giovanelli's Pizzaria</title>
     <asp:ContentPlaceHolder id="head" runat="server">
         <link rel="stylesheet" type="text/css" href="../css/style2.css" />
+        <script type="text/javascript" src="../js/reload.js"></script>
     </asp:ContentPlaceHolder>
 </head>
 <body>
@@ -32,7 +33,7 @@
                 <asp:TextBox ID="txtEmail" runat="server" Width="180px"></asp:TextBox>
                 <asp:Label ID="Label2" runat="server" Text="Senha"></asp:Label>
                 <asp:TextBox ID="txtLogin_senha" runat="server" TextMode="Password"></asp:TextBox>
-                <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click" />
+                <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click" OnClientClick="return reload();" />
                 <asp:Button ID="btnLogout" runat="server" Text="Logout" OnClick="btnLogout_Click" />
                 <asp:Label ID="lblLoginInc" runat="server"></asp:Label>
                 <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/aspx/cadastro.aspx">Ainda não é cadastrado?</asp:HyperLink>

@@ -15,7 +15,7 @@ public partial class aspx_cadastro : System.Web.UI.Page
     {
         if (Session["logado"] != null)
         {
-            Response.Redirect("index.aspx");
+            Response.End();
         }
 
         /*Adicionando o atributo onblur e chamando a função aplicaMascara().
@@ -191,12 +191,14 @@ public partial class aspx_cadastro : System.Web.UI.Page
         {
             x = false;
             txtNome.Focus();
+            LimparValid();
             lblvalidNome.Style.Add("display", "inline");
         }
         else if (txtTel.Text.Length != 10 && txtTel.Text.Length != 13)
         {
             x = false;
             txtTel.Focus();
+            LimparValid();
             lblvalidTel.Style.Add("display", "inline");
         }
 

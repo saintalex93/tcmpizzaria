@@ -5,6 +5,7 @@
     <link rel="icon" type="image/png" href="../img/marca.ico" />
 
     <script type="text/javascript" src="../js/login.js"></script>
+    <script type="text/javascript" src="../js/reload.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
