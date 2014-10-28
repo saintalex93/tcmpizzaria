@@ -58,7 +58,51 @@ Cod_Permissao INT FOREIGN KEY REFERENCES Permissao(Cod_Permissao),
 data_Nasc VARCHAR(10),
 )
 go
+/*
+select Cod_Produto as [ID Produto],  Nome_Produto as [Produto], Valor_Venda as [Preço]
+from produto
+where Cod_Produto
+order by cod_produto IN 
+	(
+	select Cod_Produto 
+	from Detalhe_Pedido 
+	where Cod_Pedido = 1 
+	)
 
+	select Produto.Cod_Produto as [ID Produto],  
+	   Produto.Nome_Produto as [Produto], 
+	   Produto.Valor_Venda as [Preço]
+from Pedido
+inner join Detalhe_Pedido
+on Pedido.Cod_Pedido = Detalhe_Pedido.Cod_Pedido
+inner join Produto
+on Detalhe_Pedido.Cod_Produto = Produto.Cod_Produto
+where Pedido.Cod_Pedido = 3;
+
+select *,
+	(
+		select *
+		from produto where Cod_Pedido = 1
+	)
+	from detalhe_pedido where cod_pedido = 1
+		
+	)
+
+Cod_Produto as [ID Produto],  Nome_Produto as [Produto], Valor_Venda as [Preço] 
+from produto
+where Cod_Produto IN 
+	(
+	select Cod_Produto 
+	from Detalhe_Pedido 
+	where Cod_Pedido = 1 
+	)
+
+
+
+select * from Detalhe_Pedido where Cod_Pedido in (select Cod_Produto from produto where Cod_Produto = 1)
+
+
+*/
 create table Insumo
 (
 Cod_Insumo INT IDENTITY(1,1) PRIMARY KEY,
@@ -189,6 +233,12 @@ Cod_Produto INT FOREIGN KEY REFERENCES Produto(Cod_Produto),
 Cod_Pedido INT FOREIGN KEY REFERENCES Pedido(Cod_Pedido),
 )
 /*
+select * from Detalhe_Pedido 
+
+select Cod_Produto as [ID Produto],  Nome_Produto as [Produto], Valor_Venda as [Preço], (select count(Cod_Pedido)from detalhe_pedido where cod_produto = 3)  as Quantidade  from produto where Cod_Produto IN (select Cod_Produto from Detalhe_Pedido where Cod_Pedido = 3)
+
+select Cod_Produto from produto where Cod_Produto IN (select Cod_Produto as [ID Produto],  Nome_Produto as [Produto], Valor_Venda as [Preço] from Detalhe_Pedido where Cod_Pedido = 3)
+
 select * from Detalhe_Pedido
 */
 go
@@ -376,7 +426,6 @@ insert into Detalhe_Pedido
 (
 cod_pedido,
 cod_produto
-
 )
 values
 (1,1),

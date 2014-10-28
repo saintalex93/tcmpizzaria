@@ -19,7 +19,7 @@ namespace Pizzaria
             InitializeComponent();
         }
 
-        string conexao = "Data Source=Tuca\\SQLEXPRESS; Initial Catalog=Pizzaria; Persist Security Info = True; User ID=sa; Password=peganomeupau";
+        string conexao = "";
 
         public void preencherGrid(string busca, DataGridView tabela)
         {
@@ -27,7 +27,7 @@ namespace Pizzaria
             SqlConnection conn = new SqlConnection(conexao);
             conn.Open();
             SqlCommand sqlComm = new SqlCommand(busca, conn);
-            sqlComm.ExecuteNonQuery();
+//            sqlComm.ExecuteNonQuery();
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = sqlComm;
             DataTable dt = new DataTable();
@@ -40,6 +40,39 @@ namespace Pizzaria
         {
             tabela.DataSource = null;
             tabela.Rows.Clear();
+        }
+
+        public void atualizarGridProdutosConsumidos() 
+        {
+            preencherGrid("select Cod_Detalhe as [Nº Pedido], Produto.Cod_Produto as [ID Produto], Produto.Nome_Produto as [Produto], Produto.Valor_Venda as [Preço] from Pedido inner join Detalhe_Pedido on Pedido.Cod_Pedido = Detalhe_Pedido.Cod_Pedido inner join Produto on Detalhe_Pedido.Cod_Produto = Produto.Cod_Produto where Detalhe_Pedido.Cod_Pedido =" + gridPedidosClientes.CurrentRow.Cells[0].Value.ToString(), gridProdutosConsumidos);
+        }
+
+        public void atualizarSaldo() 
+        {
+        
+//        select sum (Produto.Valor_Venda) as [Preço] from Pedido inner join Detalhe_Pedido on Pedido.Cod_Pedido = Detalhe_Pedido.Cod_Pedido inner join Produto on Detalhe_Pedido.Cod_Produto = Produto.Cod_Produto where Detalhe_Pedido.Cod_Pedido = 1
+
+        }
+
+        public void calcularSaldo() 
+        {
+            double saldo = 0;
+            double ajuste = 0;
+            double total = 0;
+
+            for (int x = 0; x < gridProdutosConsumidos.Rows.Count; x++)
+            {
+                saldo += Convert.ToDouble(gridProdutosConsumidos.Rows[x].Cells[3].Value);
+            }
+
+            txtSaldo.Text = saldo.ToString();
+
+            if(txtAjuste.Text != "")
+                ajuste = Convert.ToDouble(txtAjuste.Text);
+
+            total = saldo - ajuste;
+
+            txtTotal.Text = total.ToString();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -177,11 +210,10 @@ namespace Pizzaria
         {
             int id = Convert.ToInt32(gridPedidosClientes.CurrentRow.Cells[0].Value);
 
-            preencherGrid("select Cod_Produto as [ID Produto],  Nome_Produto as [Produto], Valor_Venda as [Preço] from produto where Cod_Produto IN (select Cod_Produto from Detalhe_Pedido where Cod_Pedido =" + id + ")", gridProdutosConsumidos);
-
+            atualizarGridProdutosConsumidos();
             
             for (int i = 0; i < gridProdutosConsumidos.Columns.Count; i++)
-                gridProdutosConsumidos.Columns[i].Width = 90;
+                gridProdutosConsumidos.Columns[i].Width = 85;
 
             txtPalavraChave.Clear();
             txtIDProduto.Clear();
@@ -189,7 +221,10 @@ namespace Pizzaria
             txtIDProduto.Enabled = true;
             btn_inserir.Enabled = false;
             limparGrid(gridProdutosEncontrados);
-            btn_remover.Enabled = false;
+            btn_remover.Enabled = true;
+
+            calcularSaldo();
+
         }
 
         private void txt_palavrachave_TextChanged(object sender, EventArgs e)
@@ -224,23 +259,31 @@ namespace Pizzaria
 
         private void btn_inserir_Click(object sender, EventArgs e)
         {
-            string idProduto, idPedido = "";
+            string idProduto = "";
+            string idPedido = "";
 
             idPedido = gridPedidosClientes.CurrentRow.Cells[0].Value.ToString();
             idProduto = gridProdutosEncontrados.CurrentRow.Cells[0].Value.ToString();
 
             preencherGrid("insert into Detalhe_Pedido(Cod_pedido, Cod_Produto) values(" + idPedido + ", "+ idProduto +")", gridProdutosConsumidos);
 
-            preencherGrid("select Cod_Produto as [ID Produto],  Nome_Produto as [Produto], Valor_Venda as [Preço] from produto where Cod_Produto IN (select Cod_Produto from Detalhe_Pedido where Cod_Pedido =" + gridPedidosClientes.CurrentRow.Cells[0].Value + ")", gridProdutosConsumidos);
-
-//            gridProdutosEncontrados.selected
-
-//            preencherGrid("select Cod_Pedido, Valor, Data, Hora from pedido where Cod_Cliente like ('%" + Convert.ToInt32(gridClientesEncontrados.CurrentRow.Cells[0].Value) + "%')", gridPedidosClientes);
+            atualizarGridProdutosConsumidos();
         }
 
         private void gridProdutosEncontrados_CellClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void btn_remover_Click(object sender, EventArgs e)
+        {
+            string id = "";
+
+            id = gridProdutosConsumidos.CurrentRow.Cells[0].Value.ToString();
+
+            preencherGrid("delete from Detalhe_Pedido where Cod_Detalhe = " + id, gridProdutosConsumidos);
+
+            atualizarGridProdutosConsumidos();
         }
     }
 }

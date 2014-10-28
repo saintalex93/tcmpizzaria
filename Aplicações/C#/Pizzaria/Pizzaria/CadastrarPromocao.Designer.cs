@@ -30,8 +30,11 @@
         {
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.dtgProdutosNaPromocao = new System.Windows.Forms.DataGridView();
             this.lblPreço = new System.Windows.Forms.Label();
             this.lbProdutosPromocao = new System.Windows.Forms.ListBox();
+            this.dtgBuscaProdutos = new System.Windows.Forms.DataGridView();
             this.lbBuscaProdutos = new System.Windows.Forms.ListBox();
             this.btnRemover = new System.Windows.Forms.Button();
             this.btnAdicionar = new System.Windows.Forms.Button();
@@ -39,8 +42,6 @@
             this.txtBuscaPalavraChave = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.dtgProdutosNaPromocao = new System.Windows.Forms.DataGridView();
-            this.dtgBuscaProdutos = new System.Windows.Forms.DataGridView();
             this.label4 = new System.Windows.Forms.Label();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
@@ -48,7 +49,6 @@
             this.txtNovoPreco = new System.Windows.Forms.TextBox();
             this.btnCadastrar = new System.Windows.Forms.Button();
             this.btnVoltar = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgProdutosNaPromocao)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgBuscaProdutos)).BeginInit();
@@ -85,6 +85,24 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Busca de produtos";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(27, 123);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(102, 13);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "Resultado da busca";
+            // 
+            // dtgProdutosNaPromocao
+            // 
+            this.dtgProdutosNaPromocao.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgProdutosNaPromocao.Location = new System.Drawing.Point(516, 207);
+            this.dtgProdutosNaPromocao.Name = "dtgProdutosNaPromocao";
+            this.dtgProdutosNaPromocao.Size = new System.Drawing.Size(273, 150);
+            this.dtgProdutosNaPromocao.TabIndex = 7;
+            this.dtgProdutosNaPromocao.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgProdutosNaPromocao_CellContentClick);
+            // 
             // lblPreço
             // 
             this.lblPreço.AutoSize = true;
@@ -103,6 +121,14 @@
             this.lbProdutosPromocao.Size = new System.Drawing.Size(111, 160);
             this.lbProdutosPromocao.TabIndex = 8;
             this.lbProdutosPromocao.SelectedIndexChanged += new System.EventHandler(this.lbProdutosPromocao_SelectedIndexChanged);
+            // 
+            // dtgBuscaProdutos
+            // 
+            this.dtgBuscaProdutos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgBuscaProdutos.Location = new System.Drawing.Point(516, 25);
+            this.dtgBuscaProdutos.Name = "dtgBuscaProdutos";
+            this.dtgBuscaProdutos.Size = new System.Drawing.Size(234, 150);
+            this.dtgBuscaProdutos.TabIndex = 4;
             // 
             // lbBuscaProdutos
             // 
@@ -166,23 +192,6 @@
             this.label1.Size = new System.Drawing.Size(146, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Buscar pelo nome do produto";
-            // 
-            // dtgProdutosNaPromocao
-            // 
-            this.dtgProdutosNaPromocao.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgProdutosNaPromocao.Location = new System.Drawing.Point(516, 207);
-            this.dtgProdutosNaPromocao.Name = "dtgProdutosNaPromocao";
-            this.dtgProdutosNaPromocao.Size = new System.Drawing.Size(273, 150);
-            this.dtgProdutosNaPromocao.TabIndex = 7;
-            this.dtgProdutosNaPromocao.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgProdutosNaPromocao_CellContentClick);
-            // 
-            // dtgBuscaProdutos
-            // 
-            this.dtgBuscaProdutos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgBuscaProdutos.Location = new System.Drawing.Point(516, 25);
-            this.dtgBuscaProdutos.Name = "dtgBuscaProdutos";
-            this.dtgBuscaProdutos.Size = new System.Drawing.Size(234, 150);
-            this.dtgBuscaProdutos.TabIndex = 4;
             // 
             // label4
             // 
@@ -250,15 +259,6 @@
             this.btnVoltar.UseVisualStyleBackColor = true;
             this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(27, 123);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(102, 13);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "Resultado da busca";
-            // 
             // CadastrarPromocao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -273,7 +273,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.groupBox1);
             this.Name = "CadastrarPromocao";
-            this.Text = "CadastrarPromocao";
+            this.Text = "\\";
             this.Shown += new System.EventHandler(this.CadastrarPromocao_Shown);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

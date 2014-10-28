@@ -30,12 +30,12 @@
         {
             this.gpb_detalhamento = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtTotal = new System.Windows.Forms.TextBox();
+            this.txtSaldo = new System.Windows.Forms.TextBox();
             this.lbl_saldo = new System.Windows.Forms.Label();
             this.lbl_ajuste = new System.Windows.Forms.Label();
             this.lbl_total = new System.Windows.Forms.Label();
-            this.txt_ajuste = new System.Windows.Forms.TextBox();
+            this.txtAjuste = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtIDProduto = new System.Windows.Forms.TextBox();
             this.txtPalavraChave = new System.Windows.Forms.TextBox();
@@ -87,12 +87,12 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.txtTotal);
+            this.groupBox1.Controls.Add(this.txtSaldo);
             this.groupBox1.Controls.Add(this.lbl_saldo);
             this.groupBox1.Controls.Add(this.lbl_ajuste);
             this.groupBox1.Controls.Add(this.lbl_total);
-            this.groupBox1.Controls.Add(this.txt_ajuste);
+            this.groupBox1.Controls.Add(this.txtAjuste);
             this.groupBox1.Location = new System.Drawing.Point(12, 380);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(350, 48);
@@ -100,23 +100,23 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Valores";
             // 
-            // textBox2
+            // txtTotal
             // 
-            this.textBox2.Enabled = false;
-            this.textBox2.Location = new System.Drawing.Point(288, 19);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(40, 20);
-            this.textBox2.TabIndex = 20;
+            this.txtTotal.Enabled = false;
+            this.txtTotal.Location = new System.Drawing.Point(288, 19);
+            this.txtTotal.Name = "txtTotal";
+            this.txtTotal.ReadOnly = true;
+            this.txtTotal.Size = new System.Drawing.Size(40, 20);
+            this.txtTotal.TabIndex = 20;
             // 
-            // textBox1
+            // txtSaldo
             // 
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(71, 19);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(40, 20);
-            this.textBox1.TabIndex = 19;
+            this.txtSaldo.Enabled = false;
+            this.txtSaldo.Location = new System.Drawing.Point(71, 19);
+            this.txtSaldo.Name = "txtSaldo";
+            this.txtSaldo.ReadOnly = true;
+            this.txtSaldo.Size = new System.Drawing.Size(40, 20);
+            this.txtSaldo.TabIndex = 19;
             // 
             // lbl_saldo
             // 
@@ -145,12 +145,12 @@
             this.lbl_total.TabIndex = 14;
             this.lbl_total.Text = "Total - R$";
             // 
-            // txt_ajuste
+            // txtAjuste
             // 
-            this.txt_ajuste.Location = new System.Drawing.Point(182, 19);
-            this.txt_ajuste.Name = "txt_ajuste";
-            this.txt_ajuste.Size = new System.Drawing.Size(40, 20);
-            this.txt_ajuste.TabIndex = 18;
+            this.txtAjuste.Location = new System.Drawing.Point(182, 19);
+            this.txtAjuste.Name = "txtAjuste";
+            this.txtAjuste.Size = new System.Drawing.Size(40, 20);
+            this.txtAjuste.TabIndex = 18;
             // 
             // label1
             // 
@@ -201,6 +201,7 @@
             // 
             this.gridProdutosEncontrados.Location = new System.Drawing.Point(12, 66);
             this.gridProdutosEncontrados.Name = "gridProdutosEncontrados";
+            this.gridProdutosEncontrados.ReadOnly = true;
             this.gridProdutosEncontrados.Size = new System.Drawing.Size(355, 106);
             this.gridProdutosEncontrados.TabIndex = 3;
             this.gridProdutosEncontrados.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridProdutosEncontrados_CellClick);
@@ -234,12 +235,14 @@
             this.btn_remover.TabIndex = 11;
             this.btn_remover.Text = "Remover";
             this.btn_remover.UseVisualStyleBackColor = true;
+            this.btn_remover.Click += new System.EventHandler(this.btn_remover_Click);
             // 
             // gridProdutosConsumidos
             // 
             this.gridProdutosConsumidos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridProdutosConsumidos.Location = new System.Drawing.Point(12, 207);
             this.gridProdutosConsumidos.Name = "gridProdutosConsumidos";
+            this.gridProdutosConsumidos.ReadOnly = true;
             this.gridProdutosConsumidos.Size = new System.Drawing.Size(355, 167);
             this.gridProdutosConsumidos.TabIndex = 8;
             // 
@@ -274,6 +277,7 @@
             this.gridPedidosClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridPedidosClientes.Location = new System.Drawing.Point(11, 269);
             this.gridPedidosClientes.Name = "gridPedidosClientes";
+            this.gridPedidosClientes.ReadOnly = true;
             this.gridPedidosClientes.Size = new System.Drawing.Size(346, 150);
             this.gridPedidosClientes.TabIndex = 24;
             this.gridPedidosClientes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridPedidosClientes_CellClick);
@@ -293,6 +297,7 @@
             this.gridClientesEncontrados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridClientesEncontrados.Location = new System.Drawing.Point(10, 64);
             this.gridClientesEncontrados.Name = "gridClientesEncontrados";
+            this.gridClientesEncontrados.ReadOnly = true;
             this.gridClientesEncontrados.Size = new System.Drawing.Size(347, 182);
             this.gridClientesEncontrados.TabIndex = 22;
             this.gridClientesEncontrados.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridClientesEncontrados_CellClick);
@@ -390,7 +395,7 @@
         private System.Windows.Forms.Label lbl_saldo;
         private System.Windows.Forms.Label lbl_total;
         private System.Windows.Forms.Label lbl_ajuste;
-        private System.Windows.Forms.TextBox txt_ajuste;
+        private System.Windows.Forms.TextBox txtAjuste;
         private System.Windows.Forms.Button btn_sair;
         private System.Windows.Forms.DataGridView gridClientesEncontrados;
         private System.Windows.Forms.Label label1;
@@ -398,8 +403,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtTotal;
+        private System.Windows.Forms.TextBox txtSaldo;
         private System.Windows.Forms.Button btn_inserir;
     }
 }
