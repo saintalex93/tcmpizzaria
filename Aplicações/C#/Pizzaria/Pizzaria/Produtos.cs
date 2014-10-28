@@ -129,9 +129,9 @@ namespace Pizzaria
         }
         private void btn_excluir_Click(object sender, EventArgs e)
         {
-            strsql = "select cod_Produto from Produto where Nome_Produto = '" + dtg_produtos.CurrentRow.Cells[0].Value.ToString() + "'";
+           // strsql = "select cod_Produto from Produto where Nome_Produto = '" + dtg_produtos.CurrentRow.Cells[0].Value.ToString() + "'";
             //obtem cod do produto antes de alterar
-            cod_produto = ValidaUpdate(strsql);
+            cod_produto = dtg_produtos.CurrentRow.Cells[0].Value.ToString();
 
             excluiprod(cod_produto);
 
@@ -329,7 +329,7 @@ namespace Pizzaria
             try
             {
                 SqlConnection conn = new SqlConnection(conexao);
-                string strIncluir = "delete Produto where cod_Produto = '" + produto + "'";
+                string strIncluir = "delete Produto where Nome_Produto = '" + produto + "'";
                 conn.Open();
                 SqlCommand sqlComm = new SqlCommand(strIncluir, conn);
                 sqlComm.ExecuteNonQuery();

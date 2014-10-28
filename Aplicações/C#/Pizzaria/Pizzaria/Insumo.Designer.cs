@@ -44,11 +44,9 @@
             this.dtp_datafabricacao = new System.Windows.Forms.DateTimePicker();
             this.dtp_datavalidade = new System.Windows.Forms.DateTimePicker();
             this.dtp_datarecebimento = new System.Windows.Forms.DateTimePicker();
-            this.txt_qdtcomprada = new System.Windows.Forms.TextBox();
             this.txt_nome = new System.Windows.Forms.TextBox();
             this.lbl_fornecedor = new System.Windows.Forms.Label();
             this.lbl_datafabricacao = new System.Windows.Forms.Label();
-            this.lbl_qtdcomprada = new System.Windows.Forms.Label();
             this.lbl_medida = new System.Windows.Forms.Label();
             this.lbl_validade = new System.Windows.Forms.Label();
             this.lbl_datarecebimento = new System.Windows.Forms.Label();
@@ -133,11 +131,9 @@
             this.gpb_compras.Controls.Add(this.dtp_datafabricacao);
             this.gpb_compras.Controls.Add(this.dtp_datavalidade);
             this.gpb_compras.Controls.Add(this.dtp_datarecebimento);
-            this.gpb_compras.Controls.Add(this.txt_qdtcomprada);
             this.gpb_compras.Controls.Add(this.txt_nome);
             this.gpb_compras.Controls.Add(this.lbl_fornecedor);
             this.gpb_compras.Controls.Add(this.lbl_datafabricacao);
-            this.gpb_compras.Controls.Add(this.lbl_qtdcomprada);
             this.gpb_compras.Controls.Add(this.lbl_medida);
             this.gpb_compras.Controls.Add(this.lbl_validade);
             this.gpb_compras.Controls.Add(this.lbl_datarecebimento);
@@ -238,13 +234,6 @@
             this.dtp_datarecebimento.Size = new System.Drawing.Size(96, 20);
             this.dtp_datarecebimento.TabIndex = 13;
             // 
-            // txt_qdtcomprada
-            // 
-            this.txt_qdtcomprada.Location = new System.Drawing.Point(539, 109);
-            this.txt_qdtcomprada.Name = "txt_qdtcomprada";
-            this.txt_qdtcomprada.Size = new System.Drawing.Size(100, 20);
-            this.txt_qdtcomprada.TabIndex = 12;
-            // 
             // txt_nome
             // 
             this.txt_nome.Location = new System.Drawing.Point(160, 34);
@@ -270,15 +259,6 @@
             this.lbl_datafabricacao.Size = new System.Drawing.Size(101, 13);
             this.lbl_datafabricacao.TabIndex = 7;
             this.lbl_datafabricacao.Text = "Data de Fabricação";
-            // 
-            // lbl_qtdcomprada
-            // 
-            this.lbl_qtdcomprada.AutoSize = true;
-            this.lbl_qtdcomprada.Location = new System.Drawing.Point(408, 112);
-            this.lbl_qtdcomprada.Name = "lbl_qtdcomprada";
-            this.lbl_qtdcomprada.Size = new System.Drawing.Size(75, 13);
-            this.lbl_qtdcomprada.TabIndex = 6;
-            this.lbl_qtdcomprada.Text = "Qdt Comprada";
             // 
             // lbl_medida
             // 
@@ -382,11 +362,9 @@
         private System.Windows.Forms.DateTimePicker dtp_datafabricacao;
         private System.Windows.Forms.DateTimePicker dtp_datavalidade;
         private System.Windows.Forms.DateTimePicker dtp_datarecebimento;
-        private System.Windows.Forms.TextBox txt_qdtcomprada;
         private System.Windows.Forms.TextBox txt_nome;
         private System.Windows.Forms.Label lbl_fornecedor;
         private System.Windows.Forms.Label lbl_datafabricacao;
-        private System.Windows.Forms.Label lbl_qtdcomprada;
         private System.Windows.Forms.Label lbl_medida;
         private System.Windows.Forms.Label lbl_validade;
         private System.Windows.Forms.Label lbl_datarecebimento;
