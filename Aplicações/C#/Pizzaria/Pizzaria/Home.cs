@@ -30,44 +30,16 @@ namespace Pizzaria
 
         private void funcionarioToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-
-            while (Home.ActiveForm.MdiChildren.Length > 0)
-            {
-                Home.ActiveForm.ActiveMdiChild.Close();
-
-
-
-
-            }
-       
             Funcionario Func = new Funcionario();
-            Func.MdiParent = this; //Abrir Novo Formulário Pai
-            Func.Show(); // Referenciando Objetos para  Navegaçã
-
+            Func.Show();
+            this.Hide();
         }
 
         private void clienteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-
-            while (Home.ActiveForm.MdiChildren.Length > 0)
-            {
-                Home.ActiveForm.ActiveMdiChild.Close();
-
-
-
-
-            }
-
-
             CadastroCliente frm2 = new CadastroCliente();
-            frm2.MdiParent = this;
             frm2.Show();
-          
-
-
-
+            this.Hide();
         }
 
         private void sairToolStripMenuItem_Click(object sender, EventArgs e)
@@ -82,69 +54,34 @@ namespace Pizzaria
 
         private void cobrancaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            while (Home.ActiveForm.MdiChildren.Length > 0)
-            {
-                Home.ActiveForm.ActiveMdiChild.Close();
-
-
-
-
-            }
             Pedidos Pedid = new Pedidos();
-            Pedid.MdiParent = this;
             Pedid.Show();
-          
-
-           
+            this.Hide();
         }
 
         private void pessoaJurídicaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-
-          
-          
         }
 
         private void produtoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-
-            while (Home.ActiveForm.MdiChildren.Length > 0)
-            {
-                Home.ActiveForm.ActiveMdiChild.Close();
-
-
-
-
-            }
             Produto Prod = new Produto();
-            Prod.MdiParent = this;
             Prod.Show();
-          
+            this.Hide();
         }
 
         private void comprasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            while (Home.ActiveForm.MdiChildren.Length > 0)
-            {
-                Home.ActiveForm.ActiveMdiChild.Close();
-
-
-
-
-            }
             Compras Comp = new Compras();
-            Comp.MdiParent = this;
             Comp.Show();
-          
+            this.Hide();
         }
 
         private void cadastrarPromoçãoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CadastrarPromocao cadastrarPromocao = new CadastrarPromocao();
             cadastrarPromocao.Show();
-            Dispose();
+            this.Hide();
         }
 
         private void toolStripLabel2_Click(object sender, EventArgs e)
@@ -175,10 +112,10 @@ namespace Pizzaria
             Promo.Show();
              */
             //Maximiza a tela
-            Screen tela = Screen.FromPoint(this.Location);
+/*            Screen tela = Screen.FromPoint(this.Location);
             this.Size = tela.WorkingArea.Size;
             this.Location = Point.Empty;
-        
+  */      
         }
  
         private void pnl_login_Paint(object sender, PaintEventArgs e)
@@ -188,27 +125,20 @@ namespace Pizzaria
 
         private void promoçõesAtivasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            while (Home.ActiveForm.MdiChildren.Length > 0)
-                Home.ActiveForm.ActiveMdiChild.Close();
-
             GerenciarPromocao Promo = new GerenciarPromocao();
-            Promo.MdiParent = this;
             Promo.Show();
+            this.Hide();
         }
 
         public void empresaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            fecharJanelasFilhas();
-
             Fornecedores For = new Fornecedores();
-            For.MdiParent = this;
             For.Show();
+            this.Hide();
         }
 
         public static void fecharJanelasFilhas() 
         {
-            while (Home.ActiveForm.MdiChildren.Length > 0)
-                Home.ActiveForm.ActiveMdiChild.Close();
         }
 
         private void tbp_alterarLogin_Click(object sender, EventArgs e)
@@ -218,15 +148,6 @@ namespace Pizzaria
 
         private void insumoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-//            while (Home.ActiveForm.MdiChildren.Length > 0)
-  //          {
-    //            Home.ActiveForm.ActiveMdiChild.Close();
-
-
-
-
-      //      }
             Insumo insumo = new Insumo();
             insumo.Show();
           
