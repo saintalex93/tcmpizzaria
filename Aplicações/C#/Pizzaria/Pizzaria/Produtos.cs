@@ -149,7 +149,7 @@ namespace Pizzaria
             try
             {
                 SqlConnection conn = new SqlConnection(conexao);
-                string strIncluir = "select Nome_Produto,Valor_Venda,Validade, cod_Categoria, sobe_site from produto";
+                string strIncluir = "select Nome_Produto,Valor_Venda,cod_Categoria, sobe_site from produto";
                 conn.Open();
                 SqlCommand sqlComm = new SqlCommand(strIncluir, conn);
 
@@ -160,13 +160,14 @@ namespace Pizzaria
 
 
                 da.Fill(dt);
-
+                conn.Close();
                 dtg_produtos.DataSource = dt;
 
 
             }
             catch (Exception)
             {
+                conn.Close();
                 MessageBox.Show("Falha ao preencher tabela com produtos cadastrados");
             }
 
@@ -328,14 +329,49 @@ namespace Pizzaria
         {
             try
             {
+
                 SqlConnection conn = new SqlConnection(conexao);
-                string strIncluir = "delete Produto where Nome_Produto = '" + produto + "'";
+                string strIncluir = "select cod_Produto from Produto where Nome_Produto = '" + produto + "'";
                 conn.Open();
                 SqlCommand sqlComm = new SqlCommand(strIncluir, conn);
+
+                SqlDataAdapter da = new SqlDataAdapter();
+                DataTable dt = new DataTable();
+                da.SelectCommand = sqlComm;
+                da.Fill(dt);
+
+                conn = new SqlConnection(conexao);
+                strIncluir = "delete Produto_Insumo where cod_produto = '" + dt.Rows[0][0].ToString() + "'";
+
+                sqlComm = new SqlCommand(strIncluir, conn);
+                conn.Open();
                 sqlComm.ExecuteNonQuery();
+
+                conn = new SqlConnection(conexao);
+                strIncluir = "delete ProdutoPromocao where cod_produto = '" + dt.Rows[0][0].ToString() + "'";
+
+                sqlComm = new SqlCommand(strIncluir, conn);
+                conn.Open();
+                sqlComm.ExecuteNonQuery();
+
+                conn = new SqlConnection(conexao);
+                strIncluir = "delete Detalhe_Pedido where cod_produto = '" + dt.Rows[0][0].ToString() + "'";
+
+                sqlComm = new SqlCommand(strIncluir, conn);
+                conn.Open();
+                sqlComm.ExecuteNonQuery();
+
+                conn = new SqlConnection(conexao);
+                strIncluir = "delete Produto where Nome_Produto = '" + produto + "'";
+                
+                sqlComm = new SqlCommand(strIncluir, conn);
+                conn.Open();
+                sqlComm.ExecuteNonQuery();
+                conn.Close();
             }
             catch (Exception)
             {
+               
                 MessageBox.Show("Falha ao excluir arquivo");
             }
         }
