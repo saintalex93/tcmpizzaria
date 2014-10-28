@@ -68,6 +68,7 @@ QtdeRecomendavel INT,
 QtdeEmEstoque INT,
 Fabricacao VARCHAR(10),
 Recebimento VARCHAR(10),
+Validade VarChar(10),
 Medida VARCHAR(10),
 )
 go
@@ -94,7 +95,6 @@ create table Produto
 Cod_Produto INT IDENTITY(1,1) PRIMARY KEY,
 Nome_Produto VARCHAR(40),
 Valor_Venda DECIMAL(6,2),
-Validade VARCHAR(10),
 Sobe_Site INT,
 Cod_Categoria INT FOREIGN KEY REFERENCES Categoria(Cod_Categoria)
 )
@@ -282,18 +282,17 @@ go
 insert into Produto
 (
 Nome_Produto,
-Validade,
 Valor_Venda,
 Sobe_Site,
 Cod_Categoria
 )
 values
-('Pizza Baiana',null,20.00,1,1),('Pizza Mussarela',null,18.40,1,1),('Pizza Bacon',null,20.20,1,1),
-('Pizza Americana',null,24.00,1,1),('Pizza Bauru',null,23.50,1,1),('Pizza Calabresa',null,18.00,1,1),
-('Pizza Catupiry',null,23.00,1,1),('Pizza Camarão',null,28.70,1,1),('Pizza Alemã',null,25.20,1,1),
-('Pizza Havaiana Brotinho',null,13.70,0,2),('Pizza Baiana Brotinho',null,14.50,0,2),('Pizza Palmito Brotinho',null,15.00,0,2),('Pizza Peruana Brotinho',null,14.00,0,2),
-('Refrigerante','3 meses',7.00,0,3),('Cerveja','2 meses',9.40,0,3),('Vinho','6 meses',15.50,0,3),('Champagne','4 meses',17.00,0,3),
-('Porção de Camarão',null,19.00,0,4),('Porção de Calabresa',null,18.00,0,4),('Porção de Provolone',null,17.00,0,4)
+('Pizza Baiana',20.00,1,1),('Pizza Mussarela',18.40,1,1),('Pizza Bacon',20.20,1,1),
+('Pizza Americana',24.00,1,1),('Pizza Bauru',23.50,1,1),('Pizza Calabresa',18.00,1,1),
+('Pizza Catupiry',23.00,1,1),('Pizza Camarão',28.70,1,1),('Pizza Alemã',25.20,1,1),
+('Pizza Havaiana Brotinho',13.70,0,2),('Pizza Baiana Brotinho',14.50,0,2),('Pizza Palmito Brotinho',15.00,0,2),('Pizza Peruana Brotinho',14.00,0,2),
+('Refrigerante',7.00,0,3),('Cerveja',9.40,0,3),('Vinho',15.50,0,3),('Champagne',17.00,0,3),
+('Porção de Camarão',19.00,0,4),('Porção de Calabresa',18.00,0,4),('Porção de Provolone',17.00,0,4)
 go
 
 insert into Pedido(Cod_Cliente,Cod_Funcionario,Data,Hora,Valor)
@@ -397,6 +396,7 @@ values
 go
 
 Select * from Produto
+Select * from Insumo
 
 /* Deixar 3 ou mais dados em cada tabela por favor.
 
