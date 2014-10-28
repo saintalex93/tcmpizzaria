@@ -66,7 +66,6 @@ Nome_Insumo VARCHAR(20),
 ValorDeCompra DECIMAL,
 QtdeRecomendavel INT,
 QtdeEmEstoque INT,
-Validade VARCHAR(10),
 Fabricacao VARCHAR(10),
 Recebimento VARCHAR(10),
 Medida VARCHAR(10),
@@ -263,13 +262,12 @@ insert into Insumo
 Nome_Insumo,
 ValorDeCompra,
 QtdeRecomendavel,
-QtdeEmEstoque,
-Validade
+QtdeEmEstoque
 )
 values
-('Orégano',20.00,20,12,'5 meses'),
-('Queijo mussarela',35.00,30,19,'3 meses'),
-('Tomate',15.30,25,20,'2 meses')
+('Orégano',20.00,20,12),
+('Queijo mussarela',35.00,30,19),
+('Tomate',15.30,25,20)
 go
 
 insert into FuncPermissao(Login_, Senha) 
@@ -397,6 +395,8 @@ values
 (3,3)
 
 go
+
+Select * from Produto
 
 /* Deixar 3 ou mais dados em cada tabela por favor.
 
