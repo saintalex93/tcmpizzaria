@@ -24,7 +24,8 @@ namespace Pizzaria
 
         public void preencherGrid(string busca, DataGridView tabela)
         {
-            conexao = "Data Source=Tuca\\SQLEXPRESS; Initial Catalog=Pizzaria; Persist Security Info = True; User ID=sa; Password=peganomeupau";
+            conexao = "Data Source=localhost; Initial Catalog=Pizzaria; Persist Security Info = True; User ID=SA; Password=123456";
+            //conexao = "Data Source=Tuca\\SQLEXPRESS; Initial Catalog=Pizzaria; Persist Security Info = True; User ID=sa; Password=peganomeupau";
             SqlConnection conn = new SqlConnection(conexao);
             conn.Open();
             SqlCommand sqlComm = new SqlCommand(busca, conn);

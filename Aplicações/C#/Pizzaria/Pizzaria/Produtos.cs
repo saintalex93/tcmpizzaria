@@ -26,9 +26,14 @@ namespace Pizzaria
         int qtd = 0, site = 0;
 
         //conexao DB
+        //ALEX
         // string conexao = "Data Source=ALEX\\SQLEXPRESS ;Initial Catalog=Pizzaria; Persist Security Info = True; User ID=sa; Password=1234";
+
+        //EMERSON
         string conexao = "Data Source=CASA-PC\\BPASERVER10 ;Initial Catalog=Pizzaria; Persist Security Info = True; User ID=sa; Password=AutoMateBPA10";
 
+        //RAPHA
+        //string conexao = "Data Source=localhost ;Initial Catalog=Pizzaria; Persist Security Info = True; User ID=SA; Password=123456";
         
         private void Insumo_Load(object sender, EventArgs e)
         {
@@ -68,7 +73,7 @@ namespace Pizzaria
                     strsql = "select cod_Produto from Produto where Nome_Produto = '" + dtg_produtos.CurrentRow.Cells[0].Value.ToString() + "'";
                     //obtem cod do produto antes de alterar
                     cod_produto = ValidaUpdate(strsql);
-                    atualizarproduto(cod_produto);
+                    //atualizarproduto(cod_produto);
                     dtg_produtos.Enabled = true;
                     btn_excluir.Enabled = false;
                     btn_atualizar.Enabled = false;
@@ -86,7 +91,7 @@ namespace Pizzaria
                     strsql = "select cod_Produto from Produto where Nome_Produto = '" + nome + "'";
                     if (cod_produto == ValidaUpdate(strsql))
                     {
-                        atualizarproduto(cod_produto);
+                        //atualizarproduto(cod_produto);
                         dtg_produtos.Enabled = true;
                         btn_excluir.Enabled = false;
                         btn_atualizar.Enabled = false;
@@ -191,7 +196,7 @@ namespace Pizzaria
 
             //Insere dados
             conn = new SqlConnection(conexao);
-            strIncluir = "insert into Produto (Nome_Produto, Valor_venda,cod_categoria,Sobe_Site ) values ('" + nome + "','" + valoruntd.ToString().Replace(",",".") + "','" + dt.Rows[0][0].ToString() + "','"+ site +"')";
+            strIncluir = "insert into Produto (Nome_Produto, Valor_venda,Sobe_Site ) values ('" + nome + "','" + valoruntd.ToString().Replace(",",".") + "','"+ site +"')";
             conn.Open();
             sqlComm = new SqlCommand(strIncluir, conn);
             sqlComm.ExecuteNonQuery();
@@ -229,9 +234,9 @@ namespace Pizzaria
             {
                 nome = txt_nome.Text;
                 //Valida categoria
-                if (cmb_categoria.SelectedIndex > 0)
+                /*if (cmb_categoria.SelectedIndex > 0)
                 {
-                    categoria = cmb_categoria.SelectedItem.ToString();
+                    categoria = cmb_categoria.SelectedItem.ToString();*/
                    // Valida valor
                         if (Convert.ToInt32(txt_vlrunitario.Text.Replace(",", "").Replace(".", "").Replace("_", "").Replace(" ", "").Replace("R$", "")) > 0)
                         {
@@ -250,15 +255,15 @@ namespace Pizzaria
                                 }
                                 //  MessageBox.Show(Convert.ToString(dtp_datanasc.Value.Date.AddYears(18)));
                            
-                
+                        
                            
                         }
-                        else
+                        /*else
                         {
                             MessageBox.Show("Valor Unitario Incorreta!");
-                        }
+                        }*/
                 
-                }
+                
                 else
                 {
                     MessageBox.Show("Categoria Incorreta!");
@@ -270,7 +275,7 @@ namespace Pizzaria
             }
             return false;
         }
-        public void atualizarproduto(string cod_prod)
+        /*public void atualizarproduto(string cod_prod)
         {
 
 
@@ -298,7 +303,7 @@ namespace Pizzaria
 
 
 
-        }
+        }*/
         public void PreencheCatego()
         {
 

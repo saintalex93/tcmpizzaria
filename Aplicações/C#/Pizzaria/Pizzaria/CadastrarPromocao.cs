@@ -314,5 +314,10 @@ namespace Pizzaria
         {
             txtNovoPreco.BackColor = Color.Aquamarine;
         }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }
