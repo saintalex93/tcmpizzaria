@@ -37,23 +37,37 @@ height: 400px;
 line-height: 400px;
 }
 
-.ce 
+.ce
 {
 background-color: #fff;
 color: #ae0101;
+border-color: #d7c500;
+}
+.ce_ingred
+{
+    background-color: #fff;
+color: #4e0202;
+border-color: #d7c500;
+    font-size: 16px;
 }
 .cd 
 {
-color: #fff;
+color: #000;
+background-color: #fff;
+border-color: #d7c500;
 }
 
-.colunaheader 
+
+.colunaheader
 {
-color: #128700;
+color: black;
 text-align: center;
 font-weight: bold;
 font-family: 'Calisto MT';
-font-size: 29px;
+font-size: 30px;
+text-shadow: 2px 2px 13px #000;
+border-color: #ae0101;
+background-image: linear-gradient(to right, #128700, #fff, #ae0101);
 }
 
 #conteudo
@@ -99,7 +113,7 @@ div#texto_cadastro a
 
 /* CSS DA DIV LOGIN */
 
-div#login 
+.login
 {
 /*top: 40%;
 left: 32%;*/
@@ -108,24 +122,44 @@ height: 32px;
 padding: 5px;
 border: 2px solid #fff;
 }
-div#login #Label1 
+.login #Label1
 {
 margin-left: 10px;
 }
-div#login a,#Label1,#Label2
+.login a,#Label1,#Label2
 {
 color: #fff;
 text-decoration: none;
 font-weight: bold;
 }
 
-div#login #txtEmail,#txtLogin_senha
+.login #txtEmail,#txtLogin_senha
 {
 margin: 5px 5px 6px 0px;
 border-radius: 5px;
 }
 
-div#login #btnLogin,#btnLogout
+.login a
+{
+margin-left: 10px;
+}
+
+.login a:hover
+{
+color: #4c9c05;
+}
+
+.login span#lblLoginInc
+{
+color: gold;
+font-weight:bold;
+float:initial;
+font-size: 13px;
+margin-left: 15px;
+}
+
+/* CSS DO BOTAO LOGIN */
+.button
 {
 background-color: #c21b1b;
 border: 2px solid #c79292;
@@ -137,17 +171,56 @@ font-weight: bold;
 font-size: 14px;
 color: #fff;
 }
-div#login a
+
+/* CSS DA DIV LOGOUT */
+
+.logout
+{
+background-color: rgba(255,0,30,0.5);
+height: 32px;
+padding: 5px;
+border: 2px solid #fff;
+}
+.logout #lblBemvindo
+{
+margin-left: 400px;
+}
+.login a,#Label1,#Label2
+{
+color: #fff;
+text-decoration: none;
+font-weight: bold;
+}
+
+.login #txtEmail,#txtLogin_senha
+{
+margin: 5px 5px 6px 0px;
+border-radius: 5px;
+}
+
+.login #btnLogin,#btnLogout
+{
+background-color: #c21b1b;
+border: 2px solid #c79292;
+border-radius: 5px;
+margin-bottom: 0px 0px 6px 0px;
+padding: 4px;
+box-shadow: 5px 4px 2px rgba(0,0,0,0.6);
+font-weight: bold;
+font-size: 14px;
+color: #fff;
+}
+.login a
 {
 margin-left: 10px;
 }
 
-div#login a:hover
+.login a:hover
 {
 color: #4c9c05;
 }
 
-div#login span#lblLoginInc
+.login span#lblLoginInc
 {
 color: gold;
 font-weight:bold;
@@ -384,7 +457,7 @@ margin-left: 210px;
 
 table#ContentPlaceHolder1_DataGrid1 
 {
-margin-left: 32%;
+margin: auto;
 border: 2px solid gold;
 }
 
@@ -400,6 +473,7 @@ table#ContentPlaceHolder1_DataGrid1 caption
 font-size: 50px;
 margin-bottom: 50px;
 color: #fff;
+font-family: 'Calisto MT';
 }
 
 
@@ -410,6 +484,7 @@ table#ContentPlaceHolder1_TabelaPromocao caption
 font-size: 50px;
 margin-bottom: 50px;
 color: #fff;
+font-family: 'Calisto MT';
 }
 
 table#ContentPlaceHolder1_TabelaPromocao 
@@ -422,4 +497,19 @@ border: 2px solid gold;
 height: auto;
 margin: 0 auto;
 width: 1000px;
+}
+
+#logue 
+{
+    width: 150px;
+    height: 150px;
+    margin: 10px auto auto auto;
+}
+span#bemvindo 
+{
+    color: #fff;
+}
+span#bemvindo #lblBemvindo 
+{
+    font-weight:bold;
 }

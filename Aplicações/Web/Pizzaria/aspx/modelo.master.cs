@@ -9,87 +9,92 @@ using System.Data.SqlClient;
 
 public partial class aspx_modelo : System.Web.UI.MasterPage
 {
-    int qtde;
+    //int qtde;
+    string nome;
+    bool x = true;
     
     protected void Page_Load(object sender, EventArgs e)
     {
-        btnLogout.Visible = false;
-        if (Session["logado"] != null)
+        if (Session["nome"] != null)
         {
-            Label1.Text = "Bem vindo";
-            Label1.Style.Add("margin-left","450px");
-            txtEmail.Visible = false;
-            Label2.Text = "";
-            txtLogin_senha.Visible = false;
-            btnLogin.Visible = false;
-            btnLogout.Visible = true;
-            linkCadastro.Text = "Minha conta";
-            linkCadastro.NavigateUrl = "conta.aspx";
-            HyperLink1.Visible = false;
+            pnl.Visible = false;
+            pnl_logout.Visible = true;
+            lblNomeUsuario.Text = Session["nome"].ToString();
         }
     }
     protected void btnLogin_Click(object sender, EventArgs e)
     {
-        try
+        validacao();
+        if (x == true)
         {
-            
-            String sql;
-            DataSet dt = new DataSet();
-            SqlDataAdapter dAdapter = new SqlDataAdapter();
-
-            String email = txtEmail.Text.Trim();
-            String senha = txtLogin_senha.Text.Trim();
-
-            conexao con = new conexao();
-            con.conectar();
-
-            sql = "select count(*) as qtde from Cliente where Email_Cliente=@email and Senha_Cliente=@senha";
-            con.command.Parameters.Add("@email", SqlDbType.VarChar).Value = email;
-            con.command.Parameters.Add("@senha", SqlDbType.VarChar).Value = senha;
-            con.command.CommandText = sql;
-            dAdapter.SelectCommand = con.command;
-            dAdapter.Fill(dt);
-            con.fechaConexao();
-            qtde = Convert.ToInt32(dt.Tables[0].DefaultView[0].Row["qtde"]);
-            if (qtde == 1)
+            try
             {
-                Session["logado"] = 1;
-                Response.Redirect("index.aspx");
-                lblLoginInc.Text = "Logado com sucesso !!";
-                btnLogin.Visible = false;
-                btnLogout.Visible = true;
+                String sql;
+                DataSet dt = new DataSet();
 
-                Label1.Text = "Bem vindo";
-                txtEmail.Visible = false;
-                Label2.Text = "";
-                txtLogin_senha.Visible = false;
+                SqlDataAdapter dAdapter = new SqlDataAdapter();
+
+                String email = txtEmail.Text.Trim();
+                String senha = txtLogin_senha.Text.Trim();
+
+                conexao con = new conexao();
+                con.conectar();
+
+                sql = "select Nome_Cliente from Cliente where Email_Cliente=@email and Senha_Cliente=@senha";
+                con.command.Parameters.Add("@email", SqlDbType.VarChar).Value = email;
+                con.command.Parameters.Add("@senha", SqlDbType.VarChar).Value = senha;
+                con.command.CommandText = sql;
+                dAdapter.SelectCommand = con.command;
+                dAdapter.Fill(dt);
+                con.fechaConexao();
+
+                nome = dt.Tables[0].DefaultView[0].Row["Nome_Cliente"].ToString();
+                if (nome != null)
+                {
+                    Session["nome"] = nome;
+                    lblNomeUsuario.Text = Session["nome"].ToString();
+                    pnl.Visible = false;
+                    pnl_logout.Visible = true;
+                }
+                else
+                {
+                    Session.Abandon();
+                    lblLoginInc.Text = "Login e/ou Senha incorreto(s)";
+                }
+
             }
-            else 
+            catch (Exception ex)
             {
-                Session.Abandon();
-                lblLoginInc.Text = "Login e/ou Senha incorreto(s)";
+                lblLoginInc.Text = "Dados incorretos.Tente novamente.";
             }
-        }
-        catch (Exception ex)
-        {
-            lblLoginInc.Text = "Dados incorretos.Tente novamente.";
         }
     }
 
     protected void btnLogout_Click(object sender, EventArgs e)
     {
         Session.Abandon();
-        Response.Redirect("index.aspx");
-        Label1.Text = "Login"; 
-        txtEmail.Visible = true;
-        Label2.Text = "Senha";
-        txtLogin_senha.Visible = true;
-        Session.Abandon();
-        btnLogin.Visible = true;
-        btnLogout.Visible = false;
+
+        pnl.Visible = true;
+        pnl_logout.Visible = false;
+
         lblLoginInc.Text = "";
         txtEmail.Text = "";
         txtLogin_senha.Text = "";
     }
 
+    protected void validacao() 
+    {
+        if (txtEmail.Text.Length < 7) 
+        {
+            x = false;
+            txtEmail.Focus();
+            x = true;
+        }
+        else if (txtLogin_senha.Text.Length < 6) 
+        {
+            x = false;
+            txtLogin_senha.Focus();
+            x = true;
+        }
+    }
 }

@@ -4,7 +4,6 @@
     <link rel="stylesheet" type="text/css" href="../css/style2.css" />
     <link rel="icon" type="image/png" href="../img/marca.ico" />
 
-    <script type="text/javascript" src="../js/login.js"></script>
     <script type="text/javascript" src="../js/reload.js"></script>
 </asp:Content>
 
@@ -18,6 +17,8 @@
 
                 <ItemStyle CssClass="ce"></ItemStyle>
             </asp:BoundColumn>
+
+            <asp:BoundColumn DataField="Ingred_Prod" HeaderText="Ingredientes" ReadOnly="True" ItemStyle-CssClass="ce_ingred" HeaderStyle-CssClass="colunaheader"></asp:BoundColumn>
 
             <asp:BoundColumn DataField="Valor_Venda" HeaderText="Preço" HeaderStyle-CssClass="colunaheader" ReadOnly="True" ItemStyle-CssClass="cd">
                 <HeaderStyle CssClass="colunaheader"></HeaderStyle>

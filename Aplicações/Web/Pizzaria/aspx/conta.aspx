@@ -6,6 +6,8 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     
+    <asp:Label ID="Label1" runat="server" Text="Label" Visible="False"></asp:Label>
+    
     <nav id="menu_gerencia">
         <ul>
             <li><asp:HyperLink ID="altera_dados" runat="server" NavigateUrl="altera_conta.aspx"> Alterar dados</asp:HyperLink></li>

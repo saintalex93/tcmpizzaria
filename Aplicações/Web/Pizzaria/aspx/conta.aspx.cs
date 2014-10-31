@@ -13,7 +13,8 @@ public partial class aspx_conta : System.Web.UI.Page
     {
         if (Session["logado"] == null) 
         {
-            Response.Redirect("index.aspx");
+            Label1.Visible = true;
+            Response.End();
         }
         /*
         conexao con = new conexao();

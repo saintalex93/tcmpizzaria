@@ -45,10 +45,6 @@ public partial class aspx_cadastro : System.Web.UI.Page
     protected void btnEnvia_Click(object sender, EventArgs e)
     {
         validacao();
-        if (x == false) 
-        {
-            txtNome.Focus();
-        }
         if (x == true)
         {
                 String nome = txtNome.Text.Trim();
@@ -79,7 +75,7 @@ public partial class aspx_cadastro : System.Web.UI.Page
                 con2.command = null;
                 if (result != 0)
                 {
-                    lblresposta.Text = "Email e/ou CPF já cadastrado(s).Insira outro Email ou CPF para se cadastrar.";
+                    Response.Write("<script>alert('Email e/ou CPF já cadastrado(s).\\nInsira outro Email ou CPF para se cadastrar.')</script>");
                 }
                 else
                 {
@@ -106,12 +102,25 @@ public partial class aspx_cadastro : System.Web.UI.Page
                     con.command.Parameters.Add("@datanasc", SqlDbType.VarChar).Value = datanasc;
                     con.command.ExecuteNonQuery();
                     con.fechaConexao();
-                String resposta = "Dados Cadastrados com sucesso.<br/>Você já pode se logar.";
-                lblresposta.Text = resposta;
+                    try
+                    {
+                        Response.Write("<script>alert('Dados Cadastrados com sucesso.\\nVocê já pode se logar.')</script>");
+                    }
+                    catch (Exception exx)
+                    {
+                        lblresposta.Text = "Dados Cadastrados com sucesso.Você já pode se logar.";
+                    }
                 }
                 catch (Exception ex)
                 {
-                    lblresposta.Text = "Dados incorretos.";
+                    try
+                    {
+                        Response.Write("<script language=javascript>alert('Dados Incorretos.')</script>");
+                    }
+                    catch (Exception exx)
+                    {
+                        lblresposta.Text = "Dados Incorretos.";
+                    }
                 }
             }
             
@@ -191,15 +200,11 @@ public partial class aspx_cadastro : System.Web.UI.Page
         {
             x = false;
             txtNome.Focus();
-            LimparValid();
-            lblvalidNome.Style.Add("display", "inline");
         }
         else if (txtTel.Text.Length != 10 && txtTel.Text.Length != 13)
         {
             x = false;
             txtTel.Focus();
-            LimparValid();
-            lblvalidTel.Style.Add("display", "inline");
         }
 
         
@@ -209,7 +214,6 @@ public partial class aspx_cadastro : System.Web.UI.Page
             {
                 x = false;
                 txtCel.Focus();
-                lblvalidCel.Style.Add("display", "inline");
             }
         }
         
@@ -217,88 +221,60 @@ public partial class aspx_cadastro : System.Web.UI.Page
         {
             x = false;
             txtEmail.Focus();
-            lblvalidEmail.Style.Add("display", "inline");
         }
         
         else if (txtCpf.Text.Length != 11 && txtCpf.Text.Length != 14)
         {
             x = false;
             txtCpf.Focus();
-            lblvalidCpf.Style.Add("display", "inline");
         }
         
         else if (txtDtNasc.Text.Length != 8 && txtDtNasc.Text.Length != 10)
         {
             x = false;
             txtDtNasc.Focus();
-            lblvalidDtNasc.Style.Add("display", "inline");
         }
 
         else if (txtSenha.Text.Length < 5)
         {
             x = false;
             txtSenha.Focus();
-            lblvalidSenha.Style.Add("display", "inline");
         }
         else if (txtSenhaConfirm.Text != txtSenha.Text) 
         {
             x = false;
             txtSenhaConfirm.Focus();
-            lblvalidSenhaConfirm.Style.Add("display", "inline");
         }
 
         else if (txtCidade.Text.Length < 3)
         {
             x = false;
             txtCidade.Focus();
-            lblvalidCidade.Style.Add("display", "inline");
         }
 
         else if (txtRua.Text.Length < 1)
         {
             x = false;
             txtRua.Focus();
-            lblvalidRua.Style.Add("display", "inline");
         }
 
         else if (txtNumCasa.Text.Length < 1)
         {
             x = false;
             txtNumCasa.Focus();
-            lblvalidNumCasa.Style.Add("display", "inline");
         }
 
         else if (txtBairro.Text.Length < 3)
         {
             x = false;
             txtBairro.Focus();
-            lblvalidBairro.Style.Add("display", "inline");
         }
 
         else if (txtCep.Text.Length != 8 && txtCep.Text.Length != 9)
         {
             x = false;
             txtCep.Focus();
-            lblvalidCep.Style.Add("display", "inline");
         }
-    }
-    protected void LimparValid()
-    {
-        lblvalidNome.Style.Add("display", "none");
-        lblvalidTel.Style.Add("display", "none");
-        lblvalidCel.Style.Add("display", "none");
-        lblvalidEmail.Style.Add("display", "none");
-        lblvalidCpf.Style.Add("display", "none");
-        lblvalidDtNasc.Style.Add("display", "none");
-        lblvalidSenha.Style.Add("display", "none");
-        lblvalidSenhaConfirm.Style.Add("display", "none");
-
-        lblvalidCidade.Style.Add("display", "none");
-        lblvalidRua.Style.Add("display", "none");
-        lblvalidNumCasa.Style.Add("display", "none");
-        lblvalidBairro.Style.Add("display", "none");
-        lblvalidCep.Style.Add("display", "none");
-
     }
     
 }
