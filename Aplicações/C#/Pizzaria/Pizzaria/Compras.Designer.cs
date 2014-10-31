@@ -86,6 +86,8 @@
             this.cmb_categoria.Name = "cmb_categoria";
             this.cmb_categoria.Size = new System.Drawing.Size(121, 21);
             this.cmb_categoria.TabIndex = 16;
+            this.cmb_categoria.Enter += new System.EventHandler(this.cmb_categoria_Enter);
+            this.cmb_categoria.Leave += new System.EventHandler(this.cmb_categoria_Leave);
             // 
             // txt_qdtcomprada
             // 
@@ -94,6 +96,8 @@
             this.txt_qdtcomprada.Size = new System.Drawing.Size(100, 20);
             this.txt_qdtcomprada.TabIndex = 12;
             this.txt_qdtcomprada.TextChanged += new System.EventHandler(this.txt_qdtcomprada_TextChanged);
+            this.txt_qdtcomprada.Enter += new System.EventHandler(this.txt_qdtcomprada_Enter);
+            this.txt_qdtcomprada.Leave += new System.EventHandler(this.txt_qdtcomprada_Leave);
             // 
             // txt_vlrunitario
             // 
@@ -101,6 +105,8 @@
             this.txt_vlrunitario.Name = "txt_vlrunitario";
             this.txt_vlrunitario.Size = new System.Drawing.Size(121, 20);
             this.txt_vlrunitario.TabIndex = 10;
+            this.txt_vlrunitario.Enter += new System.EventHandler(this.txt_vlrunitario_Enter);
+            this.txt_vlrunitario.Leave += new System.EventHandler(this.txt_vlrunitario_Leave);
             // 
             // txt_nome
             // 
@@ -108,6 +114,8 @@
             this.txt_nome.Name = "txt_nome";
             this.txt_nome.Size = new System.Drawing.Size(359, 20);
             this.txt_nome.TabIndex = 9;
+            this.txt_nome.Enter += new System.EventHandler(this.txt_nome_Enter);
+            this.txt_nome.Leave += new System.EventHandler(this.txt_nome_Leave);
             // 
             // lbl_qtdcomprada
             // 
@@ -212,6 +220,8 @@
             this.dtp_datarecebimento.Name = "dtp_datarecebimento";
             this.dtp_datarecebimento.Size = new System.Drawing.Size(96, 20);
             this.dtp_datarecebimento.TabIndex = 15;
+            this.dtp_datarecebimento.Enter += new System.EventHandler(this.dtp_datarecebimento_Enter);
+            this.dtp_datarecebimento.Leave += new System.EventHandler(this.dtp_datarecebimento_Leave);
             // 
             // lbl_datarecebimento
             // 
@@ -238,6 +248,8 @@
             this.cb_fornecedores.Name = "cb_fornecedores";
             this.cb_fornecedores.Size = new System.Drawing.Size(121, 21);
             this.cb_fornecedores.TabIndex = 17;
+            this.cb_fornecedores.Enter += new System.EventHandler(this.cb_fornecedores_Enter);
+            this.cb_fornecedores.Leave += new System.EventHandler(this.cb_fornecedores_Leave);
             // 
             // lbl_total
             // 
@@ -254,6 +266,8 @@
             this.lbl_totalnota.Name = "lbl_totalnota";
             this.lbl_totalnota.Size = new System.Drawing.Size(121, 20);
             this.lbl_totalnota.TabIndex = 19;
+            this.lbl_totalnota.Enter += new System.EventHandler(this.lbl_totalnota_Enter);
+            this.lbl_totalnota.Leave += new System.EventHandler(this.lbl_totalnota_Leave);
             // 
             // Compras
             // 

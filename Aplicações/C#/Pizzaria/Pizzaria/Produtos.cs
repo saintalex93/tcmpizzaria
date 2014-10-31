@@ -408,6 +408,36 @@ namespace Pizzaria
 
         }
 
+        private void txt_nome_Enter(object sender, EventArgs e)
+        {
+            txt_nome.BackColor = Color.Aquamarine;
+        }
+
+        private void txt_nome_Leave(object sender, EventArgs e)
+        {
+            txt_nome.BackColor = Color.White;
+        }
+
+        private void cmb_categoria_Leave(object sender, EventArgs e)
+        {
+            cmb_categoria.BackColor = Color.White;
+        }
+
+        private void cmb_categoria_Enter(object sender, EventArgs e)
+        {
+            cmb_categoria.BackColor = Color.Aquamarine;
+        }
+
+        private void txt_vlrunitario_Enter(object sender, EventArgs e)
+        {
+            txt_vlrunitario.BackColor = Color.Aquamarine;
+        }
+
+        private void txt_vlrunitario_Leave(object sender, EventArgs e)
+        {
+            txt_vlrunitario.BackColor = Color.White;
+        }
+
 
     }
 

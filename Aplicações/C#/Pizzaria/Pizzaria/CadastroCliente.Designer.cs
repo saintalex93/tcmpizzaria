@@ -134,6 +134,7 @@
             this.txt_nome.Name = "txt_nome";
             this.txt_nome.Size = new System.Drawing.Size(310, 20);
             this.txt_nome.TabIndex = 6;
+            this.txt_nome.Leave += new System.EventHandler(this.txt_nome_Leave);
             // 
             // lbl_cpf
             // 

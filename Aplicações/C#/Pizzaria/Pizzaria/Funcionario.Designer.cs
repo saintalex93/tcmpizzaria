@@ -110,6 +110,8 @@
             this.txt_Senha.PasswordChar = '*';
             this.txt_Senha.Size = new System.Drawing.Size(100, 20);
             this.txt_Senha.TabIndex = 17;
+            this.txt_Senha.Enter += new System.EventHandler(this.txt_Senha_Enter);
+            this.txt_Senha.Leave += new System.EventHandler(this.txt_Senha_Leave);
             // 
             // txt_Usuario
             // 
@@ -118,6 +120,8 @@
             this.txt_Usuario.Name = "txt_Usuario";
             this.txt_Usuario.Size = new System.Drawing.Size(111, 20);
             this.txt_Usuario.TabIndex = 16;
+            this.txt_Usuario.Enter += new System.EventHandler(this.txt_Usuario_Enter);
+            this.txt_Usuario.Leave += new System.EventHandler(this.txt_Usuario_Leave);
             // 
             // Lbl_Senha
             // 
@@ -145,6 +149,8 @@
             this.cbox_Cargo.Size = new System.Drawing.Size(107, 21);
             this.cbox_Cargo.TabIndex = 13;
             this.cbox_Cargo.TabStop = false;
+            this.cbox_Cargo.Enter += new System.EventHandler(this.cbox_Cargo_Enter);
+            this.cbox_Cargo.Leave += new System.EventHandler(this.cbox_Cargo_Leave);
             // 
             // dtp_datanasc
             // 
@@ -153,6 +159,8 @@
             this.dtp_datanasc.Name = "dtp_datanasc";
             this.dtp_datanasc.Size = new System.Drawing.Size(95, 20);
             this.dtp_datanasc.TabIndex = 12;
+            this.dtp_datanasc.Enter += new System.EventHandler(this.dtp_datanasc_Enter);
+            this.dtp_datanasc.Leave += new System.EventHandler(this.dtp_datanasc_Leave);
             // 
             // mtxt_cpf
             // 
@@ -161,6 +169,8 @@
             this.mtxt_cpf.Name = "mtxt_cpf";
             this.mtxt_cpf.Size = new System.Drawing.Size(100, 20);
             this.mtxt_cpf.TabIndex = 11;
+            this.mtxt_cpf.Enter += new System.EventHandler(this.mtxt_cpf_Enter);
+            this.mtxt_cpf.Leave += new System.EventHandler(this.mtxt_cpf_Leave);
             // 
             // mtxt_telefone
             // 
@@ -169,6 +179,8 @@
             this.mtxt_telefone.Name = "mtxt_telefone";
             this.mtxt_telefone.Size = new System.Drawing.Size(100, 20);
             this.mtxt_telefone.TabIndex = 10;
+            this.mtxt_telefone.Enter += new System.EventHandler(this.mtxt_telefone_Enter);
+            this.mtxt_telefone.Leave += new System.EventHandler(this.mtxt_telefone_Leave);
             // 
             // mtxt_celular
             // 
@@ -177,6 +189,8 @@
             this.mtxt_celular.Name = "mtxt_celular";
             this.mtxt_celular.Size = new System.Drawing.Size(100, 20);
             this.mtxt_celular.TabIndex = 9;
+            this.mtxt_celular.Enter += new System.EventHandler(this.mtxt_celular_Enter);
+            this.mtxt_celular.Leave += new System.EventHandler(this.mtxt_celular_Leave);
             // 
             // txt_email
             // 
@@ -185,6 +199,8 @@
             this.txt_email.Name = "txt_email";
             this.txt_email.Size = new System.Drawing.Size(269, 20);
             this.txt_email.TabIndex = 7;
+            this.txt_email.Enter += new System.EventHandler(this.txt_email_Enter);
+            this.txt_email.Leave += new System.EventHandler(this.txt_email_Leave);
             // 
             // txt_nome
             // 
@@ -193,6 +209,8 @@
             this.txt_nome.Name = "txt_nome";
             this.txt_nome.Size = new System.Drawing.Size(269, 20);
             this.txt_nome.TabIndex = 6;
+            this.txt_nome.Enter += new System.EventHandler(this.txt_nome_Enter);
+            this.txt_nome.Leave += new System.EventHandler(this.txt_nome_Leave);
             // 
             // lbl_nome
             // 
@@ -317,6 +335,8 @@
             this.cb_uf.Name = "cb_uf";
             this.cb_uf.Size = new System.Drawing.Size(64, 21);
             this.cb_uf.TabIndex = 13;
+            this.cb_uf.Enter += new System.EventHandler(this.cb_uf_Enter);
+            this.cb_uf.Leave += new System.EventHandler(this.cb_uf_Leave);
             // 
             // mtxt_cep
             // 
@@ -325,6 +345,8 @@
             this.mtxt_cep.Name = "mtxt_cep";
             this.mtxt_cep.Size = new System.Drawing.Size(64, 20);
             this.mtxt_cep.TabIndex = 12;
+            this.mtxt_cep.Enter += new System.EventHandler(this.mtxt_cep_Enter);
+            this.mtxt_cep.Leave += new System.EventHandler(this.mtxt_cep_Leave);
             // 
             // txt_complemento
             // 
@@ -334,6 +356,8 @@
             this.txt_complemento.Name = "txt_complemento";
             this.txt_complemento.Size = new System.Drawing.Size(500, 47);
             this.txt_complemento.TabIndex = 11;
+            this.txt_complemento.Enter += new System.EventHandler(this.txt_complemento_Enter);
+            this.txt_complemento.Leave += new System.EventHandler(this.txt_complemento_Leave);
             // 
             // txt_cidade
             // 
@@ -342,6 +366,8 @@
             this.txt_cidade.Name = "txt_cidade";
             this.txt_cidade.Size = new System.Drawing.Size(338, 20);
             this.txt_cidade.TabIndex = 10;
+            this.txt_cidade.Enter += new System.EventHandler(this.txt_cidade_Enter);
+            this.txt_cidade.Leave += new System.EventHandler(this.txt_cidade_Leave);
             // 
             // txt_bairro
             // 
@@ -350,6 +376,8 @@
             this.txt_bairro.Name = "txt_bairro";
             this.txt_bairro.Size = new System.Drawing.Size(338, 20);
             this.txt_bairro.TabIndex = 9;
+            this.txt_bairro.Enter += new System.EventHandler(this.txt_bairro_Enter);
+            this.txt_bairro.Leave += new System.EventHandler(this.txt_bairro_Leave);
             // 
             // txt_numero
             // 
@@ -358,6 +386,8 @@
             this.txt_numero.Name = "txt_numero";
             this.txt_numero.Size = new System.Drawing.Size(64, 20);
             this.txt_numero.TabIndex = 8;
+            this.txt_numero.Enter += new System.EventHandler(this.txt_numero_Enter);
+            this.txt_numero.Leave += new System.EventHandler(this.txt_numero_Leave);
             // 
             // txt_endereco
             // 
@@ -366,6 +396,8 @@
             this.txt_endereco.Name = "txt_endereco";
             this.txt_endereco.Size = new System.Drawing.Size(338, 20);
             this.txt_endereco.TabIndex = 7;
+            this.txt_endereco.Enter += new System.EventHandler(this.txt_endereco_Enter);
+            this.txt_endereco.Leave += new System.EventHandler(this.txt_endereco_Leave);
             // 
             // lbl_uf
             // 

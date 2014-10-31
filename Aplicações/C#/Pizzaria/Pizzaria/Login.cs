@@ -104,5 +104,30 @@ namespace Pizzaria
             Rede rede = new Rede();
             rede.Show();
         }
+
+        private void txt_usuario_Enter(object sender, EventArgs e)
+        {
+            txt_usuario.BackColor = Color.Aquamarine;
+        }
+
+        private void txt_usuario_Leave(object sender, EventArgs e)
+        {
+            txt_usuario.BackColor = Color.White;
+        }
+
+        private void txt_senha_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_senha_Leave(object sender, EventArgs e)
+        {
+            txt_senha.BackColor = Color.White;
+        }
+
+        private void txt_senha_Enter(object sender, EventArgs e)
+        {
+            txt_senha.BackColor = Color.Aquamarine;
+        }
     }
 }

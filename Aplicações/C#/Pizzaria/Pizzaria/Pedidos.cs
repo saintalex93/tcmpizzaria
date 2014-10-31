@@ -67,8 +67,7 @@ namespace Pizzaria
 
             txtSaldo.Text = saldo.ToString();
 
-            if(txtAjuste.Text != "")
-                ajuste = Convert.ToDouble(txtAjuste.Text);
+//            ajuste = Convert.ToDouble(txtAjuste.Text/*.Replace("_", "").Replace(",", ".")*/);
 
             total = saldo - ajuste;
 
@@ -94,28 +93,6 @@ namespace Pizzaria
 
         private void btn_confirmar_Click(object sender, EventArgs e)
         {
-                    
-
-            /*
-
-            SqlConnection conn = new SqlConnection(conexao);
-            string strIncluir = "insert into tb_Cadastro values('" + txt_nome.Text + "', '" + dtp_datanasc.Text + "', '" + mtxt_cpf.Text + "', '" + mtxt_rg.Text + "', '" + txt_mensagem.Text + "')";
-            conn.Open();
-            SqlCommand comando = new SqlCommand(strIncluir, conn);
-
-            int retorno = (int)comando.ExecuteNonQuery();
-
-            if (retorno > 0)
-            {
-
-                MessageBox.Show("Gravação realizada com sucesso!");
-            }
-
-            else
-            {
-                MessageBox.Show("Erro na gavação, verifique");
-
-            }*/
         }
 
         private void gpb_detalhamento_Enter(object sender, EventArgs e)
@@ -243,7 +220,7 @@ namespace Pizzaria
             txtPalavraChave.Clear();
 
             for (int i = 0; i < txtIDProduto.Text.Length; i++)
-                if (!char.IsNumber(txtIDProduto.Text[0]))
+                if (!char.IsNumber(txtIDProduto.Text[i]))
                 {
                     Fornecedores.mensagemDeErro("É permitido apenas o uso de números no campo \"Busca por ID\".");
                     txtIDProduto.Clear();
@@ -285,5 +262,135 @@ namespace Pizzaria
 
             atualizarGridProdutosConsumidos();
         }
+
+        private void txtNome_Enter(object sender, EventArgs e)
+        {
+            txtNome.BackColor = Color.Aquamarine;
+        }
+
+        private void txtNome_Leave(object sender, EventArgs e)
+        {
+            txtNome.BackColor = Color.White;
+        }
+
+        private void txtCPF_Enter(object sender, EventArgs e)
+        {
+            txtCPF.BackColor = Color.Aquamarine;
+        }
+
+        private void txtCPF_Leave(object sender, EventArgs e)
+        {
+            txtCPF.BackColor = Color.White;
+        }
+
+        private void txtPalavraChave_Enter(object sender, EventArgs e)
+        {
+            txtPalavraChave.BackColor = Color.Aquamarine;
+        }
+
+        private void txtPalavraChave_Leave(object sender, EventArgs e)
+        {
+            txtPalavraChave.BackColor = Color.White;
+        }
+
+        private void txtIDProduto_Enter(object sender, EventArgs e)
+        {
+            txtIDProduto.BackColor = Color.Aquamarine;
+        }
+
+        private void txtIDProduto_Leave(object sender, EventArgs e)
+        {
+            txtIDProduto.BackColor = Color.White;
+        }
+
+        private void txtAjuste_Enter(object sender, EventArgs e)
+        {
+//            txtAjuste.BackColor = Color.Aquamarine;
+        }
+
+        private void txtAjuste_Leave(object sender, EventArgs e)
+        {
+            txtAjuste.BackColor = Color.White;
+
+            if (txtSaldo.Text != "")
+            {
+
+                string strAjuste = txtAjuste.Text.Replace(".","");
+
+                for (int i = 0; i < strAjuste.Length; i++)
+                    if (!char.IsNumber(strAjuste[i]))
+                    {
+                        Fornecedores.mensagemDeErro("É permitido apenas o uso de números no campo \"Ajuste\".");
+                        txtAjuste.Clear();
+                        txtAjuste.Focus();
+                    }
+
+                strAjuste = strAjuste.Insert(strAjuste.Length - 2, ".");
+
+            }
+            else
+            {
+                Fornecedores.mensagemDeErro("Este pedido ainda não possui nenhum produto.\n\nAntes de adicionar algum ajuste, tenha certeza que o pedido tenha algo a ser ajustado.");
+
+                txtSaldo.Text = "0";
+                txtAjuste.Clear();
+                txtSaldo.Clear();
+            }
+        }
+
+        private void txtAjuste_TextChanged(object sender, EventArgs e)
+        {
+
+                
+            
+
+
+        }
+
+/*        private void mtxtAjuste_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void mtxtAjuste_Leave(object sender, EventArgs e)
+        {
+            double saldo = 0;
+            double ajuste = 0;
+            double total = 0;
+
+            Double.TryParse(txtSaldo.Text, out saldo);
+            Double.TryParse(mtxtAjuste.Text, out ajuste);
+            Double.TryParse(txtTotal.Text, out total);
+
+            if (ajuste > saldo)
+            {
+                ajuste = saldo;
+                mtxtAjuste.Text = Convert.ToString(ajuste);
+                mtxtAjuste.Text.PadLeft(6);
+
+            
+            }
+
+            total = saldo - ajuste;
+
+            txtTotal.Text = total.ToString();
+
+            SqlConnection conn = new SqlConnection(conexao);
+            conn.Open();
+            SqlCommand sqlComm = new SqlCommand("update Pedido set Ajuste =" + mtxtAjuste.Text + "where cod_Pedido =" + gridPedidosClientes.CurrentRow.Cells[0].Value.ToString(), conn);
+            sqlComm.ExecuteNonQuery();
+        }*/
+
+        /*
+        UPDATE table_name
+        SET column1=value1,column2=value2,...
+        WHERE some_column=some_value;
+         */
+
+
+       
+        
+
+
     }
 }

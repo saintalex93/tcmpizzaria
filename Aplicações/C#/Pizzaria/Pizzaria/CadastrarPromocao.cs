@@ -284,5 +284,35 @@ namespace Pizzaria
         {
 
         }
+
+        private void txtBuscaPalavraChave_Leave(object sender, EventArgs e)
+        {
+            txtBuscaPalavraChave.BackColor = Color.White;
+        }
+
+        private void txtBuscaPalavraChave_Enter(object sender, EventArgs e)
+        {
+            txtBuscaPalavraChave.BackColor = Color.Aquamarine;
+        }
+
+        private void txtBuscaID_Leave(object sender, EventArgs e)
+        {
+            txtBuscaID.BackColor = Color.White;
+        }
+
+        private void txtBuscaID_Enter(object sender, EventArgs e)
+        {
+            txtBuscaID.BackColor = Color.Aquamarine;
+        }
+
+        private void txtNovoPreco_Leave(object sender, EventArgs e)
+        {
+            txtNovoPreco.BackColor = Color.White;
+        }
+
+        private void txtNovoPreco_Enter(object sender, EventArgs e)
+        {
+            txtNovoPreco.BackColor = Color.Aquamarine;
+        }
     }
 }

@@ -165,6 +165,8 @@
             this.txtBuscaID.Size = new System.Drawing.Size(100, 20);
             this.txtBuscaID.TabIndex = 3;
             this.txtBuscaID.TextChanged += new System.EventHandler(this.txtBuscaID_TextChanged);
+            this.txtBuscaID.Enter += new System.EventHandler(this.txtBuscaID_Enter);
+            this.txtBuscaID.Leave += new System.EventHandler(this.txtBuscaID_Leave);
             // 
             // txtBuscaPalavraChave
             // 
@@ -173,7 +175,9 @@
             this.txtBuscaPalavraChave.Size = new System.Drawing.Size(100, 20);
             this.txtBuscaPalavraChave.TabIndex = 2;
             this.txtBuscaPalavraChave.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.txtBuscaPalavraChave.Enter += new System.EventHandler(this.txtBuscaPalavraChave_Enter);
             this.txtBuscaPalavraChave.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
+            this.txtBuscaPalavraChave.Leave += new System.EventHandler(this.txtBuscaPalavraChave_Leave);
             // 
             // label3
             // 
@@ -239,6 +243,8 @@
             this.txtNovoPreco.Name = "txtNovoPreco";
             this.txtNovoPreco.Size = new System.Drawing.Size(100, 20);
             this.txtNovoPreco.TabIndex = 9;
+            this.txtNovoPreco.Enter += new System.EventHandler(this.txtNovoPreco_Enter);
+            this.txtNovoPreco.Leave += new System.EventHandler(this.txtNovoPreco_Leave);
             // 
             // btnCadastrar
             // 
@@ -273,6 +279,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.groupBox1);
             this.Name = "CadastrarPromocao";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "\\";
             this.Shown += new System.EventHandler(this.CadastrarPromocao_Shown);
             this.groupBox1.ResumeLayout(false);

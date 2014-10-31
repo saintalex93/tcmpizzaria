@@ -142,6 +142,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "Rede";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Configurações";
             this.Load += new System.EventHandler(this.Rede_Shown);
             this.Shown += new System.EventHandler(this.Rede_Shown);

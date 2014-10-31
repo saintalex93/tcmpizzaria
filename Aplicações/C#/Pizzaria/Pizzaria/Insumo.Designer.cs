@@ -154,6 +154,8 @@
             this.txtbox_Recomendada.Name = "txtbox_Recomendada";
             this.txtbox_Recomendada.Size = new System.Drawing.Size(100, 20);
             this.txtbox_Recomendada.TabIndex = 21;
+            this.txtbox_Recomendada.Enter += new System.EventHandler(this.txtbox_Recomendada_Enter);
+            this.txtbox_Recomendada.Leave += new System.EventHandler(this.txtbox_Recomendada_Leave);
             // 
             // label1
             // 
@@ -173,6 +175,8 @@
             this.cbox_Fornecedores.Name = "cbox_Fornecedores";
             this.cbox_Fornecedores.Size = new System.Drawing.Size(121, 21);
             this.cbox_Fornecedores.TabIndex = 19;
+            this.cbox_Fornecedores.Enter += new System.EventHandler(this.cbox_Fornecedores_Enter);
+            this.cbox_Fornecedores.Leave += new System.EventHandler(this.cbox_Fornecedores_Leave);
             // 
             // txt_vlrunitario
             // 
@@ -183,6 +187,8 @@
             this.txt_vlrunitario.Size = new System.Drawing.Size(100, 20);
             this.txt_vlrunitario.TabIndex = 18;
             this.txt_vlrunitario.TextChanged += new System.EventHandler(this.txt_vlrunitario_TextChanged);
+            this.txt_vlrunitario.Enter += new System.EventHandler(this.txt_vlrunitario_Enter);
+            this.txt_vlrunitario.Leave += new System.EventHandler(this.txt_vlrunitario_Leave);
             // 
             // cmb_medida
             // 
@@ -198,6 +204,8 @@
             this.cmb_medida.Name = "cmb_medida";
             this.cmb_medida.Size = new System.Drawing.Size(100, 21);
             this.cmb_medida.TabIndex = 17;
+            this.cmb_medida.Enter += new System.EventHandler(this.cmb_medida_Enter);
+            this.cmb_medida.Leave += new System.EventHandler(this.cmb_medida_Leave);
             // 
             // cmb_categoria
             // 
@@ -208,6 +216,8 @@
             this.cmb_categoria.Name = "cmb_categoria";
             this.cmb_categoria.Size = new System.Drawing.Size(121, 21);
             this.cmb_categoria.TabIndex = 16;
+            this.cmb_categoria.Enter += new System.EventHandler(this.cmb_categoria_Enter);
+            this.cmb_categoria.Leave += new System.EventHandler(this.cmb_categoria_Leave);
             // 
             // dtp_datafabricacao
             // 
@@ -217,6 +227,8 @@
             this.dtp_datafabricacao.Size = new System.Drawing.Size(100, 20);
             this.dtp_datafabricacao.TabIndex = 15;
             this.dtp_datafabricacao.ValueChanged += new System.EventHandler(this.dtp_datafabricacao_ValueChanged);
+            this.dtp_datafabricacao.Enter += new System.EventHandler(this.dtp_datafabricacao_Enter);
+            this.dtp_datafabricacao.Leave += new System.EventHandler(this.dtp_datafabricacao_Leave);
             // 
             // dtp_datavalidade
             // 
@@ -225,6 +237,8 @@
             this.dtp_datavalidade.Name = "dtp_datavalidade";
             this.dtp_datavalidade.Size = new System.Drawing.Size(96, 20);
             this.dtp_datavalidade.TabIndex = 14;
+            this.dtp_datavalidade.Enter += new System.EventHandler(this.dtp_datavalidade_Enter);
+            this.dtp_datavalidade.Leave += new System.EventHandler(this.dtp_datavalidade_Leave);
             // 
             // dtp_datarecebimento
             // 
@@ -233,6 +247,8 @@
             this.dtp_datarecebimento.Name = "dtp_datarecebimento";
             this.dtp_datarecebimento.Size = new System.Drawing.Size(96, 20);
             this.dtp_datarecebimento.TabIndex = 13;
+            this.dtp_datarecebimento.Enter += new System.EventHandler(this.dtp_datarecebimento_Enter);
+            this.dtp_datarecebimento.Leave += new System.EventHandler(this.dtp_datarecebimento_Leave);
             // 
             // txt_nome
             // 
@@ -241,6 +257,8 @@
             this.txt_nome.Size = new System.Drawing.Size(359, 20);
             this.txt_nome.TabIndex = 9;
             this.txt_nome.TextChanged += new System.EventHandler(this.txt_nome_TextChanged);
+            this.txt_nome.Enter += new System.EventHandler(this.txt_nome_Enter);
+            this.txt_nome.Leave += new System.EventHandler(this.txt_nome_Leave);
             // 
             // lbl_fornecedor
             // 

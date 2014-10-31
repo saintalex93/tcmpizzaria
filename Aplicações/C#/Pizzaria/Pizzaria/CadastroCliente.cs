@@ -516,6 +516,11 @@ namespace Pizzaria
           
         }
 
+        private void txt_nome_Leave(object sender, EventArgs e)
+        {
+
+        }
+
     }
 
 

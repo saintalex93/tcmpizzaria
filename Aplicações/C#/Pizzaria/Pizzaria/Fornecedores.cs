@@ -15,7 +15,8 @@ namespace Pizzaria
     public partial class Fornecedores : Form
     {
         //String com informações de acesso pro BD
-        string conexao = "";
+        string conexao = "Data Source=LAB02T-15 ;Initial Catalog=Pizzaria; Persist Security Info = True; User ID=aluno; Password=etesp";
+       
 
         SqlCommand sqlComm;
 
@@ -1471,6 +1472,176 @@ namespace Pizzaria
         private void Fornecedores_Shown(object sender, EventArgs e)
         {
             conexao = Rede.DataContainer.conexaoGlobal;
+        }
+
+        private void txtRazaoSocial_Leave(object sender, EventArgs e)
+        {
+            txtRazaoSocial.BackColor = Color.White;
+        }
+
+        private void txtRazaoSocial_Enter(object sender, EventArgs e)
+        {
+            txtRazaoSocial.BackColor = Color.Aquamarine;
+        }
+
+        private void txtNomeFantasia_Leave(object sender, EventArgs e)
+        {
+            txtNomeFantasia.BackColor = Color.White;
+        }
+
+        private void txtNomeFantasia_Enter(object sender, EventArgs e)
+        {
+            txtNomeFantasia.BackColor = Color.Aquamarine;
+        }
+
+        private void mtxtTelefoneDeContato_Leave(object sender, EventArgs e)
+        {
+            mtxtTelefoneDeContato.BackColor = Color.White;
+        }
+
+        private void mtxtTelefoneDeContato_Enter(object sender, EventArgs e)
+        {
+            mtxtTelefoneDeContato.BackColor = Color.Aquamarine;
+        }
+
+        private void mtxtCNPJ_Leave(object sender, EventArgs e)
+        {
+            mtxtCNPJ.BackColor = Color.White;
+        }
+
+        private void mtxtCNPJ_Enter(object sender, EventArgs e)
+        {
+            mtxtCNPJ.BackColor = Color.Aquamarine;
+        }
+
+        private void txtResponsavel_Leave(object sender, EventArgs e)
+        {
+            txtResponsavel.BackColor = Color.White;
+        }
+
+        private void txtResponsavel_Enter(object sender, EventArgs e)
+        {
+            txtResponsavel.BackColor = Color.Aquamarine;
+        }
+
+        private void txtEmailResponsavel_Leave(object sender, EventArgs e)
+        {
+            txtEmailResponsavel.BackColor = Color.White;
+        }
+
+        private void txtEmailResponsavel_Enter(object sender, EventArgs e)
+        {
+            txtEmailResponsavel.BackColor = Color.Aquamarine;
+        }
+
+        private void mtxtCelular_Leave(object sender, EventArgs e)
+        {
+            mtxtCelular.BackColor = Color.White;
+        }
+
+        private void mtxtCelular_Enter(object sender, EventArgs e)
+        {
+            mtxtCelular.BackColor = Color.Aquamarine;
+        }
+
+        private void txtBanco_Enter(object sender, EventArgs e)
+        {
+            txtBanco.BackColor = Color.Aquamarine;
+        }
+
+        private void txtBanco_Leave(object sender, EventArgs e)
+        {
+            txtBanco.BackColor = Color.White;
+        }
+
+        private void txtAgencia_Leave(object sender, EventArgs e)
+        {
+            txtAgencia.BackColor = Color.White;
+        }
+
+        private void txtAgencia_Enter(object sender, EventArgs e)
+        {
+            txtAgencia.BackColor = Color.Aquamarine;
+        }
+
+        private void txtConta_Leave(object sender, EventArgs e)
+        {
+            txtConta.BackColor = Color.White;
+        }
+
+        private void txtConta_Enter(object sender, EventArgs e)
+        {
+            txtConta.BackColor = Color.Aquamarine;
+        }
+
+        private void txtNomeDaRua_Leave(object sender, EventArgs e)
+        {
+            txtNomeDaRua.BackColor = Color.White;
+        }
+
+        private void txtNomeDaRua_Enter(object sender, EventArgs e)
+        {
+            txtNomeDaRua.BackColor = Color.Aquamarine;
+        }
+
+        private void txtNumero_Leave(object sender, EventArgs e)
+        {
+            txtNumero.BackColor = Color.White;
+        }
+
+        private void txtNumero_Enter(object sender, EventArgs e)
+        {
+            txtNumero.BackColor = Color.Aquamarine;
+        }
+
+        private void mtxtCEP_Leave(object sender, EventArgs e)
+        {
+            mtxtCEP.BackColor = Color.White;
+        }
+
+        private void mtxtCEP_Enter(object sender, EventArgs e)
+        {
+            mtxtCEP.BackColor = Color.Aquamarine;
+        }
+
+        private void txtBairro_Leave(object sender, EventArgs e)
+        {
+            txtBairro.BackColor = Color.White;
+        }
+
+        private void txtBairro_Enter(object sender, EventArgs e)
+        {
+            txtBairro.BackColor = Color.Aquamarine;
+        }
+
+        private void cbxUF_Leave(object sender, EventArgs e)
+        {
+            cbxUF.BackColor = Color.White;
+        }
+
+        private void cbxUF_Enter(object sender, EventArgs e)
+        {
+            cbxUF.BackColor = Color.Aquamarine;
+        }
+
+        private void txtCidade_Leave(object sender, EventArgs e)
+        {
+            txtCidade.BackColor = Color.White;
+        }
+
+        private void txtCidade_Enter(object sender, EventArgs e)
+        {
+            txtCidade.BackColor = Color.Aquamarine;
+        }
+
+        private void txtComplemento_Leave(object sender, EventArgs e)
+        {
+            txtComplemento.BackColor = Color.White;
+        }
+
+        private void txtComplemento_Enter(object sender, EventArgs e)
+        {
+            txtComplemento.BackColor = Color.Aquamarine;
         }
     }
 }

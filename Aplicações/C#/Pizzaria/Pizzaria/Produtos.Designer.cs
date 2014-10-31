@@ -84,6 +84,8 @@
             this.cmb_categoria.Name = "cmb_categoria";
             this.cmb_categoria.Size = new System.Drawing.Size(121, 21);
             this.cmb_categoria.TabIndex = 8;
+            this.cmb_categoria.Enter += new System.EventHandler(this.cmb_categoria_Enter);
+            this.cmb_categoria.Leave += new System.EventHandler(this.cmb_categoria_Leave);
             // 
             // txt_vlrunitario
             // 
@@ -92,6 +94,8 @@
             this.txt_vlrunitario.Name = "txt_vlrunitario";
             this.txt_vlrunitario.Size = new System.Drawing.Size(100, 20);
             this.txt_vlrunitario.TabIndex = 6;
+            this.txt_vlrunitario.Enter += new System.EventHandler(this.txt_vlrunitario_Enter);
+            this.txt_vlrunitario.Leave += new System.EventHandler(this.txt_vlrunitario_Leave);
             // 
             // txt_nome
             // 
@@ -99,6 +103,8 @@
             this.txt_nome.Name = "txt_nome";
             this.txt_nome.Size = new System.Drawing.Size(100, 20);
             this.txt_nome.TabIndex = 5;
+            this.txt_nome.Enter += new System.EventHandler(this.txt_nome_Enter);
+            this.txt_nome.Leave += new System.EventHandler(this.txt_nome_Leave);
             // 
             // label5
             // 

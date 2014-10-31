@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             this.pnl_login = new System.Windows.Forms.Panel();
             this.btnConfiguracoes = new System.Windows.Forms.Button();
             this.tbp_Acesso = new System.Windows.Forms.TabControl();
@@ -46,32 +47,24 @@
             // 
             // pnl_login
             // 
-            this.pnl_login.AutoScroll = true;
+            resources.ApplyResources(this.pnl_login, "pnl_login");
             this.pnl_login.Controls.Add(this.btnConfiguracoes);
             this.pnl_login.Controls.Add(this.tbp_Acesso);
-            this.pnl_login.Location = new System.Drawing.Point(12, 12);
             this.pnl_login.Name = "pnl_login";
-            this.pnl_login.Size = new System.Drawing.Size(494, 289);
-            this.pnl_login.TabIndex = 2;
             // 
             // btnConfiguracoes
             // 
-            this.btnConfiguracoes.Location = new System.Drawing.Point(405, 258);
+            resources.ApplyResources(this.btnConfiguracoes, "btnConfiguracoes");
             this.btnConfiguracoes.Name = "btnConfiguracoes";
-            this.btnConfiguracoes.Size = new System.Drawing.Size(55, 23);
-            this.btnConfiguracoes.TabIndex = 1;
-            this.btnConfiguracoes.Text = "Config.";
             this.btnConfiguracoes.UseVisualStyleBackColor = true;
             this.btnConfiguracoes.Click += new System.EventHandler(this.btnRede_Click);
             // 
             // tbp_Acesso
             // 
             this.tbp_Acesso.Controls.Add(this.tbp_alterarLogin);
-            this.tbp_Acesso.Location = new System.Drawing.Point(28, 26);
+            resources.ApplyResources(this.tbp_Acesso, "tbp_Acesso");
             this.tbp_Acesso.Name = "tbp_Acesso";
             this.tbp_Acesso.SelectedIndex = 0;
-            this.tbp_Acesso.Size = new System.Drawing.Size(432, 230);
-            this.tbp_Acesso.TabIndex = 0;
             // 
             // tbp_alterarLogin
             // 
@@ -81,74 +74,56 @@
             this.tbp_alterarLogin.Controls.Add(this.lbl_Senha);
             this.tbp_alterarLogin.Controls.Add(this.lbl_usuario);
             this.tbp_alterarLogin.Controls.Add(this.pictureBox1);
-            this.tbp_alterarLogin.Location = new System.Drawing.Point(4, 22);
+            resources.ApplyResources(this.tbp_alterarLogin, "tbp_alterarLogin");
             this.tbp_alterarLogin.Name = "tbp_alterarLogin";
-            this.tbp_alterarLogin.Padding = new System.Windows.Forms.Padding(3);
-            this.tbp_alterarLogin.Size = new System.Drawing.Size(424, 204);
-            this.tbp_alterarLogin.TabIndex = 3;
-            this.tbp_alterarLogin.Text = "Acesso";
             this.tbp_alterarLogin.UseVisualStyleBackColor = true;
             // 
             // btn_Acessa
             // 
             this.btn_Acessa.Image = global::Pizzaria.Properties.Resources.Crystal_Clear_app_clean;
-            this.btn_Acessa.Location = new System.Drawing.Point(185, 120);
+            resources.ApplyResources(this.btn_Acessa, "btn_Acessa");
             this.btn_Acessa.Name = "btn_Acessa";
-            this.btn_Acessa.Size = new System.Drawing.Size(100, 50);
-            this.btn_Acessa.TabIndex = 5;
             this.btn_Acessa.UseVisualStyleBackColor = true;
             this.btn_Acessa.Click += new System.EventHandler(this.btn_Acessa_Click);
             // 
             // txt_senha
             // 
-            this.txt_senha.Location = new System.Drawing.Point(185, 69);
+            resources.ApplyResources(this.txt_senha, "txt_senha");
             this.txt_senha.Name = "txt_senha";
-            this.txt_senha.PasswordChar = '*';
-            this.txt_senha.Size = new System.Drawing.Size(100, 20);
-            this.txt_senha.TabIndex = 4;
+            this.txt_senha.TextChanged += new System.EventHandler(this.txt_senha_TextChanged);
+            this.txt_senha.Enter += new System.EventHandler(this.txt_senha_Enter);
+            this.txt_senha.Leave += new System.EventHandler(this.txt_senha_Leave);
             // 
             // txt_usuario
             // 
-            this.txt_usuario.Location = new System.Drawing.Point(185, 32);
+            resources.ApplyResources(this.txt_usuario, "txt_usuario");
             this.txt_usuario.Name = "txt_usuario";
-            this.txt_usuario.Size = new System.Drawing.Size(100, 20);
-            this.txt_usuario.TabIndex = 3;
+            this.txt_usuario.Enter += new System.EventHandler(this.txt_usuario_Enter);
+            this.txt_usuario.Leave += new System.EventHandler(this.txt_usuario_Leave);
             // 
             // lbl_Senha
             // 
-            this.lbl_Senha.AutoSize = true;
-            this.lbl_Senha.Location = new System.Drawing.Point(123, 76);
+            resources.ApplyResources(this.lbl_Senha, "lbl_Senha");
             this.lbl_Senha.Name = "lbl_Senha";
-            this.lbl_Senha.Size = new System.Drawing.Size(38, 13);
-            this.lbl_Senha.TabIndex = 2;
-            this.lbl_Senha.Text = "Senha";
             // 
             // lbl_usuario
             // 
-            this.lbl_usuario.AutoSize = true;
-            this.lbl_usuario.Location = new System.Drawing.Point(120, 40);
+            resources.ApplyResources(this.lbl_usuario, "lbl_usuario");
             this.lbl_usuario.Name = "lbl_usuario";
-            this.lbl_usuario.Size = new System.Drawing.Size(43, 13);
-            this.lbl_usuario.TabIndex = 1;
-            this.lbl_usuario.Text = "Usuario";
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Pizzaria.Properties.Resources._48px_Crystal_Clear_kdm_user_male;
-            this.pictureBox1.Location = new System.Drawing.Point(30, 40);
+            resources.ApplyResources(this.pictureBox1, "pictureBox1");
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(44, 50);
-            this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
             // Login
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(516, 313);
             this.Controls.Add(this.pnl_login);
             this.Name = "Login";
-            this.Text = "Login";
             this.Load += new System.EventHandler(this.Login_Load_1);
             this.Shown += new System.EventHandler(this.Login_Shown_1);
             this.pnl_login.ResumeLayout(false);

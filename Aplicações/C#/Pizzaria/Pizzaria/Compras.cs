@@ -106,5 +106,75 @@ namespace Pizzaria
          {
 
          }
+
+         private void txt_nome_Leave(object sender, EventArgs e)
+         {
+             txt_nome.BackColor = Color.White;
+         }
+
+         private void txt_nome_Enter(object sender, EventArgs e)
+         {
+             txt_nome.BackColor = Color.Aquamarine;
+         }
+
+         private void cmb_categoria_Leave(object sender, EventArgs e)
+         {
+             cmb_categoria.BackColor = Color.White;
+         }
+
+         private void cmb_categoria_Enter(object sender, EventArgs e)
+         {
+             cmb_categoria.BackColor = Color.Aquamarine;
+         }
+
+         private void txt_qdtcomprada_Leave(object sender, EventArgs e)
+         {
+             txt_qdtcomprada.BackColor = Color.White;
+         }
+
+         private void txt_qdtcomprada_Enter(object sender, EventArgs e)
+         {
+             txt_qdtcomprada.BackColor = Color.Aquamarine;
+         }
+
+         private void txt_vlrunitario_Leave(object sender, EventArgs e)
+         {
+             txt_vlrunitario.BackColor = Color.White;
+         }
+
+         private void txt_vlrunitario_Enter(object sender, EventArgs e)
+         {
+             txt_vlrunitario.BackColor = Color.Aquamarine;
+         }
+
+         private void cb_fornecedores_Leave(object sender, EventArgs e)
+         {
+             cb_fornecedores.BackColor = Color.White;
+         }
+
+         private void cb_fornecedores_Enter(object sender, EventArgs e)
+         {
+             cb_fornecedores.BackColor = Color.Aquamarine;
+         }
+
+         private void lbl_totalnota_Leave(object sender, EventArgs e)
+         {
+             lbl_total.BackColor = Color.White;
+         }
+
+         private void lbl_totalnota_Enter(object sender, EventArgs e)
+         {
+             lbl_total.BackColor = Color.Aquamarine;
+         }
+
+         private void dtp_datarecebimento_Enter(object sender, EventArgs e)
+         {
+             dtp_datarecebimento.BackColor = Color.Aquamarine;
+         }
+
+         private void dtp_datarecebimento_Leave(object sender, EventArgs e)
+         {
+             dtp_datarecebimento.BackColor = Color.White;
+         }
     }
 }

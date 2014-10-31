@@ -868,6 +868,167 @@ namespace Pizzaria
             
         }
 
+        private void txt_nome_Leave(object sender, EventArgs e)
+        {
+            txt_nome.BackColor = Color.White;
+        }
+
+        private void txt_nome_Enter(object sender, EventArgs e)
+        {
+            txt_nome.BackColor = Color.Aquamarine;
+        }
+
+        private void mtxt_cpf_Leave(object sender, EventArgs e)
+        {
+            mtxt_cpf.BackColor = Color.White;
+        }
+
+        private void mtxt_cpf_Enter(object sender, EventArgs e)
+        {
+            mtxt_cpf.BackColor = Color.Aquamarine;
+        }
+
+        private void dtp_datanasc_Leave(object sender, EventArgs e)
+        {
+            dtp_datanasc.BackColor = Color.White;
+        }
+
+        private void dtp_datanasc_Enter(object sender, EventArgs e)
+        {
+            dtp_datanasc.BackColor = Color.Aquamarine;
+        }
+
+        private void mtxt_telefone_Enter(object sender, EventArgs e)
+        {
+            mtxt_telefone.BackColor = Color.Aquamarine;
+        }
+
+        private void mtxt_telefone_Leave(object sender, EventArgs e)
+        {
+            mtxt_telefone.BackColor = Color.White;
+        }
+
+        private void mtxt_celular_Leave(object sender, EventArgs e)
+        {
+            mtxt_celular.BackColor = Color.White;
+        }
+
+        private void mtxt_celular_Enter(object sender, EventArgs e)
+        {
+            mtxt_celular.BackColor = Color.Aquamarine;
+        }
+
+        private void txt_email_Enter(object sender, EventArgs e)
+        {
+            txt_email.BackColor = Color.Aquamarine;
+        }
+
+        private void txt_email_Leave(object sender, EventArgs e)
+        {
+            txt_email.BackColor = Color.White;
+        }
+
+        private void cbox_Cargo_Leave(object sender, EventArgs e)
+        {
+            cbox_Cargo.BackColor = Color.White;
+        }
+
+        private void cbox_Cargo_Enter(object sender, EventArgs e)
+        {
+            cbox_Cargo.BackColor = Color.Aquamarine;
+        }
+
+        private void txt_Usuario_Leave(object sender, EventArgs e)
+        {
+            txt_Usuario.BackColor = Color.White;
+        }
+
+        private void txt_Usuario_Enter(object sender, EventArgs e)
+        {
+            txt_Usuario.BackColor = Color.Aquamarine;
+        }
+
+        private void txt_Senha_Leave(object sender, EventArgs e)
+        {
+            txt_Senha.BackColor = Color.White;
+        }
+
+        private void txt_Senha_Enter(object sender, EventArgs e)
+        {
+            txt_Senha.BackColor = Color.Aquamarine;
+        }
+
+        private void txt_endereco_Leave(object sender, EventArgs e)
+        {
+            txt_endereco.BackColor = Color.White;
+        }
+
+        private void txt_endereco_Enter(object sender, EventArgs e)
+        {
+            txt_endereco.BackColor = Color.Aquamarine;
+        }
+
+        private void txt_numero_Leave(object sender, EventArgs e)
+        {
+            txt_numero.BackColor = Color.White;
+        }
+
+        private void txt_numero_Enter(object sender, EventArgs e)
+        {
+            txt_numero.BackColor = Color.Aquamarine;
+        }
+
+        private void txt_bairro_Leave(object sender, EventArgs e)
+        {
+            txt_bairro.BackColor = Color.White;
+        }
+
+        private void txt_bairro_Enter(object sender, EventArgs e)
+        {
+            txt_bairro.BackColor = Color.Aquamarine;
+        }
+
+        private void mtxt_cep_Leave(object sender, EventArgs e)
+        {
+            mtxt_cep.BackColor = Color.White;
+        }
+
+        private void mtxt_cep_Enter(object sender, EventArgs e)
+        {
+            mtxt_cep.BackColor = Color.Aquamarine;
+        }
+
+        private void txt_cidade_Leave(object sender, EventArgs e)
+        {
+            txt_cidade.BackColor = Color.White;
+        }
+
+        private void txt_cidade_Enter(object sender, EventArgs e)
+        {
+            txt_cidade.BackColor = Color.Aquamarine;
+        }
+
+        private void cb_uf_Enter(object sender, EventArgs e)
+        {
+            cb_uf.BackColor = Color.Aquamarine;
+        }
+
+        private void cb_uf_Leave(object sender, EventArgs e)
+        {
+            cb_uf.BackColor = Color.White;
+        }
+
+        private void txt_complemento_Leave(object sender, EventArgs e)
+        {
+            txt_complemento.BackColor = Color.White;
+        }
+
+        private void txt_complemento_Enter(object sender, EventArgs e)
+        {
+            txt_complemento.BackColor = Color.Aquamarine;
+        }
+
+
 
 
 

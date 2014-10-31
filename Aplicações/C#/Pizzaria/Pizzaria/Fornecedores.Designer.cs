@@ -126,6 +126,8 @@
             this.mtxtCelular.Name = "mtxtCelular";
             this.mtxtCelular.Size = new System.Drawing.Size(100, 20);
             this.mtxtCelular.TabIndex = 8;
+            this.mtxtCelular.Enter += new System.EventHandler(this.mtxtCelular_Enter);
+            this.mtxtCelular.Leave += new System.EventHandler(this.mtxtCelular_Leave);
             // 
             // label3
             // 
@@ -152,6 +154,8 @@
             this.txtResponsavel.Name = "txtResponsavel";
             this.txtResponsavel.Size = new System.Drawing.Size(242, 20);
             this.txtResponsavel.TabIndex = 6;
+            this.txtResponsavel.Enter += new System.EventHandler(this.txtResponsavel_Enter);
+            this.txtResponsavel.Leave += new System.EventHandler(this.txtResponsavel_Leave);
             // 
             // label4
             // 
@@ -169,6 +173,8 @@
             this.txtEmailResponsavel.Name = "txtEmailResponsavel";
             this.txtEmailResponsavel.Size = new System.Drawing.Size(204, 20);
             this.txtEmailResponsavel.TabIndex = 7;
+            this.txtEmailResponsavel.Enter += new System.EventHandler(this.txtEmailResponsavel_Enter);
+            this.txtEmailResponsavel.Leave += new System.EventHandler(this.txtEmailResponsavel_Leave);
             // 
             // mtxtTelefoneDeContato
             // 
@@ -177,6 +183,8 @@
             this.mtxtTelefoneDeContato.Name = "mtxtTelefoneDeContato";
             this.mtxtTelefoneDeContato.Size = new System.Drawing.Size(100, 20);
             this.mtxtTelefoneDeContato.TabIndex = 3;
+            this.mtxtTelefoneDeContato.Enter += new System.EventHandler(this.mtxtTelefoneDeContato_Enter);
+            this.mtxtTelefoneDeContato.Leave += new System.EventHandler(this.mtxtTelefoneDeContato_Leave);
             // 
             // label13
             // 
@@ -196,6 +204,8 @@
             this.mtxtCNPJ.Size = new System.Drawing.Size(105, 20);
             this.mtxtCNPJ.TabIndex = 13;
             this.mtxtCNPJ.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.mtxtCNPJ_MaskInputRejected);
+            this.mtxtCNPJ.Enter += new System.EventHandler(this.mtxtCNPJ_Enter);
+            this.mtxtCNPJ.Leave += new System.EventHandler(this.mtxtCNPJ_Leave);
             // 
             // mtxtCPF
             // 
@@ -246,6 +256,8 @@
             this.txtNomeFantasia.Name = "txtNomeFantasia";
             this.txtNomeFantasia.Size = new System.Drawing.Size(242, 20);
             this.txtNomeFantasia.TabIndex = 2;
+            this.txtNomeFantasia.Enter += new System.EventHandler(this.txtNomeFantasia_Enter);
+            this.txtNomeFantasia.Leave += new System.EventHandler(this.txtNomeFantasia_Leave);
             // 
             // txtRazaoSocial
             // 
@@ -254,6 +266,8 @@
             this.txtRazaoSocial.Name = "txtRazaoSocial";
             this.txtRazaoSocial.Size = new System.Drawing.Size(242, 20);
             this.txtRazaoSocial.TabIndex = 1;
+            this.txtRazaoSocial.Enter += new System.EventHandler(this.txtRazaoSocial_Enter);
+            this.txtRazaoSocial.Leave += new System.EventHandler(this.txtRazaoSocial_Leave);
             // 
             // label2
             // 
@@ -295,6 +309,8 @@
             this.txtConta.Name = "txtConta";
             this.txtConta.Size = new System.Drawing.Size(56, 20);
             this.txtConta.TabIndex = 10;
+            this.txtConta.Enter += new System.EventHandler(this.txtConta_Enter);
+            this.txtConta.Leave += new System.EventHandler(this.txtConta_Leave);
             // 
             // txtAgencia
             // 
@@ -303,6 +319,8 @@
             this.txtAgencia.Name = "txtAgencia";
             this.txtAgencia.Size = new System.Drawing.Size(56, 20);
             this.txtAgencia.TabIndex = 9;
+            this.txtAgencia.Enter += new System.EventHandler(this.txtAgencia_Enter);
+            this.txtAgencia.Leave += new System.EventHandler(this.txtAgencia_Leave);
             // 
             // txtBanco
             // 
@@ -312,6 +330,8 @@
             this.txtBanco.Size = new System.Drawing.Size(38, 20);
             this.txtBanco.TabIndex = 8;
             this.txtBanco.TextChanged += new System.EventHandler(this.txtBanco_TextChanged);
+            this.txtBanco.Enter += new System.EventHandler(this.txtBanco_Enter);
+            this.txtBanco.Leave += new System.EventHandler(this.txtBanco_Leave);
             // 
             // label7
             // 
@@ -369,6 +389,8 @@
             this.txtComplemento.Name = "txtComplemento";
             this.txtComplemento.Size = new System.Drawing.Size(123, 20);
             this.txtComplemento.TabIndex = 18;
+            this.txtComplemento.Enter += new System.EventHandler(this.txtComplemento_Enter);
+            this.txtComplemento.Leave += new System.EventHandler(this.txtComplemento_Leave);
             // 
             // label16
             // 
@@ -386,6 +408,8 @@
             this.txtCidade.Name = "txtCidade";
             this.txtCidade.Size = new System.Drawing.Size(123, 20);
             this.txtCidade.TabIndex = 16;
+            this.txtCidade.Enter += new System.EventHandler(this.txtCidade_Enter);
+            this.txtCidade.Leave += new System.EventHandler(this.txtCidade_Leave);
             // 
             // label15
             // 
@@ -441,6 +465,8 @@
             this.cbxUF.Name = "cbxUF";
             this.cbxUF.Size = new System.Drawing.Size(59, 21);
             this.cbxUF.TabIndex = 17;
+            this.cbxUF.Enter += new System.EventHandler(this.cbxUF_Enter);
+            this.cbxUF.Leave += new System.EventHandler(this.cbxUF_Leave);
             // 
             // mtxtCEP
             // 
@@ -449,6 +475,8 @@
             this.mtxtCEP.Name = "mtxtCEP";
             this.mtxtCEP.Size = new System.Drawing.Size(59, 20);
             this.mtxtCEP.TabIndex = 15;
+            this.mtxtCEP.Enter += new System.EventHandler(this.mtxtCEP_Enter);
+            this.mtxtCEP.Leave += new System.EventHandler(this.mtxtCEP_Leave);
             // 
             // txtBairro
             // 
@@ -456,6 +484,8 @@
             this.txtBairro.Name = "txtBairro";
             this.txtBairro.Size = new System.Drawing.Size(123, 20);
             this.txtBairro.TabIndex = 14;
+            this.txtBairro.Enter += new System.EventHandler(this.txtBairro_Enter);
+            this.txtBairro.Leave += new System.EventHandler(this.txtBairro_Leave);
             // 
             // txtNumero
             // 
@@ -464,6 +494,8 @@
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.Size = new System.Drawing.Size(52, 20);
             this.txtNumero.TabIndex = 12;
+            this.txtNumero.Enter += new System.EventHandler(this.txtNumero_Enter);
+            this.txtNumero.Leave += new System.EventHandler(this.txtNumero_Leave);
             // 
             // txtNomeDaRua
             // 
@@ -472,6 +504,8 @@
             this.txtNomeDaRua.Name = "txtNomeDaRua";
             this.txtNomeDaRua.Size = new System.Drawing.Size(237, 20);
             this.txtNomeDaRua.TabIndex = 11;
+            this.txtNomeDaRua.Enter += new System.EventHandler(this.txtNomeDaRua_Enter);
+            this.txtNomeDaRua.Leave += new System.EventHandler(this.txtNomeDaRua_Leave);
             // 
             // label11
             // 
@@ -594,6 +628,7 @@
             this.Controls.Add(this.grpDadosBancarios);
             this.Controls.Add(this.grpDadosFornecedor);
             this.Name = "Fornecedores";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gerenciamento de Fornecedores";
             this.Load += new System.EventHandler(this.Fornecedores_Load);
             this.Shown += new System.EventHandler(this.Fornecedores_Shown);

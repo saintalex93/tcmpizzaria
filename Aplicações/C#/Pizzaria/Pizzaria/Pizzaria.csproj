@@ -51,12 +51,6 @@
     <Compile Include="CadastrarPromocao.Designer.cs">
       <DependentUpon>CadastrarPromocao.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Fornecedores.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -216,6 +210,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\exit3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\marca.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
