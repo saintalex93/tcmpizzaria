@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Globalization;
 
 
 namespace Pizzaria
@@ -180,6 +181,9 @@ namespace Pizzaria
             limparGrid(gridProdutosEncontrados);
             limparGrid(gridProdutosConsumidos);
             btn_remover.Enabled = false;
+
+            btnRemoverPedido.Enabled = true;
+            btnNovoPedido.Enabled = true;
             
         }
 
@@ -245,6 +249,11 @@ namespace Pizzaria
             preencherGrid("insert into Detalhe_Pedido(Cod_pedido, Cod_Produto) values(" + idPedido + ", "+ idProduto +")", gridProdutosConsumidos);
 
             atualizarGridProdutosConsumidos();
+
+            for (int i = 0; i < gridProdutosConsumidos.Columns.Count; i++)
+                gridProdutosConsumidos.Columns[i].Width = 85;
+
+            calcularSaldo();
         }
 
         private void gridProdutosEncontrados_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -261,6 +270,11 @@ namespace Pizzaria
             preencherGrid("delete from Detalhe_Pedido where Cod_Detalhe = " + id, gridProdutosConsumidos);
 
             atualizarGridProdutosConsumidos();
+
+            for (int i = 0; i < gridProdutosConsumidos.Columns.Count; i++)
+                gridProdutosConsumidos.Columns[i].Width = 85;
+
+            calcularSaldo();
         }
 
         private void txtNome_Enter(object sender, EventArgs e)
@@ -307,90 +321,99 @@ namespace Pizzaria
         {
 //            txtAjuste.BackColor = Color.Aquamarine;
         }
-
+        
         private void txtAjuste_Leave(object sender, EventArgs e)
         {
+            if (txtAjuste.Text == "")
+                btnGravarAjuste.Enabled = false;
+        }
+        
+        private void mtxtAjuste_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtAjuste_Leave_1(object sender, EventArgs e)
+        {
             txtAjuste.BackColor = Color.White;
+        }
 
-            if (txtSaldo.Text != "")
+        private void btnGravarAjuste_Click(object sender, EventArgs e)
+        {
+            if (txtAjuste.Text.Contains(".")) 
             {
-
-                string strAjuste = txtAjuste.Text.Replace(".","");
-
-                for (int i = 0; i < strAjuste.Length; i++)
-                    if (!char.IsNumber(strAjuste[i]))
-                    {
-                        Fornecedores.mensagemDeErro("É permitido apenas o uso de números no campo \"Ajuste\".");
-                        txtAjuste.Clear();
-                        txtAjuste.Focus();
-                    }
-
-                strAjuste = strAjuste.Insert(strAjuste.Length - 2, ".");
-
+                Fornecedores.mensagemDeErro("Por favor, use vírgula (,) no lugar de ponto (.).");
+                return;
             }
-            else
+                
+
+            decimal decSaldo = 0;
+            decimal decAjuste = 0;
+            decimal decTotal = 0;
+
+            decSaldo = Convert.ToDecimal(txtSaldo.Text);
+            decAjuste = Convert.ToDecimal(txtAjuste.Text);
+
+            if (decAjuste > decSaldo)
+                decAjuste = decSaldo;
+            
+            decTotal = decSaldo - decAjuste;
+
+            txtAjuste.Text = decAjuste.ToString();
+            txtTotal.Text = decTotal.ToString();
+
+            SqlConnection conn = new SqlConnection(conexao);
+            conn.Open();
+            SqlCommand sqlComm = new SqlCommand("update Pedido set Ajuste = " + decAjuste.ToString().Replace(",", ".") + ", Valor = "+decSaldo.ToString().Replace(",", ".")+ " where cod_Pedido =" + gridPedidosClientes.CurrentRow.Cells[0].Value.ToString(), conn);
+            sqlComm.ExecuteNonQuery();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DialogResult decisao = MessageBox.Show("Tem certeza que deseja remover esse pedido?", "Remover Pedido", MessageBoxButtons.YesNo);
+            if (decisao == DialogResult.Yes)
             {
-                Fornecedores.mensagemDeErro("Este pedido ainda não possui nenhum produto.\n\nAntes de adicionar algum ajuste, tenha certeza que o pedido tenha algo a ser ajustado.");
+                int idCliente = Convert.ToInt32(gridClientesEncontrados.CurrentRow.Cells[0].Value);
+                int idPedido = Convert.ToInt32(gridPedidosClientes.CurrentRow.Cells[0].Value);
 
-                txtSaldo.Text = "0";
-                txtAjuste.Clear();
-                txtSaldo.Clear();
+                preencherGrid("DELETE FROM detalhe_pedido where Cod_Pedido =" + idPedido, gridPedidosClientes);
+
+                preencherGrid("DELETE FROM pedido where Cod_Pedido =" + idPedido, gridPedidosClientes);
+
+                preencherGrid("select Cod_Pedido, Data, Hora from pedido where Cod_Cliente like ('%" + idCliente + "%')", gridPedidosClientes);
+
+                for (int i = 0; i < gridPedidosClientes.Columns.Count; i++)
+                    gridPedidosClientes.Columns[i].Width = 70;
             }
+            else if (decisao == DialogResult.No)
+            {
+                return;
+            }
+        }
+
+        private void txtNovoPedido_Click(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt32(gridClientesEncontrados.CurrentRow.Cells[0].Value);
+
+            DateTime hoje = DateTime.Today;
+            DateTime agora = DateTime.Now;
+            
+            preencherGrid("insert into Pedido(Cod_Cliente, Data, Hora, Valor) values ("+
+                gridClientesEncontrados.CurrentRow.Cells[0].Value + ", '" +
+                hoje.ToString("dd/MM/yyyy") + "', '"+
+                agora.ToString("HH:mm") + "', " +
+                "0)", gridPedidosClientes);
+
+            preencherGrid("select Cod_Pedido, Data, Hora from pedido where Cod_Cliente like ('%" + id + "%')", gridPedidosClientes);
+
+            for (int i = 0; i < gridPedidosClientes.Columns.Count; i++)
+                gridPedidosClientes.Columns[i].Width = 70;
         }
 
         private void txtAjuste_TextChanged(object sender, EventArgs e)
         {
-
-                
-            
-
-
+            if(txtSaldo.Text != "")
+                btnGravarAjuste.Enabled = true;
         }
-
-/*        private void mtxtAjuste_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void mtxtAjuste_Leave(object sender, EventArgs e)
-        {
-            double saldo = 0;
-            double ajuste = 0;
-            double total = 0;
-
-            Double.TryParse(txtSaldo.Text, out saldo);
-            Double.TryParse(mtxtAjuste.Text, out ajuste);
-            Double.TryParse(txtTotal.Text, out total);
-
-            if (ajuste > saldo)
-            {
-                ajuste = saldo;
-                mtxtAjuste.Text = Convert.ToString(ajuste);
-                mtxtAjuste.Text.PadLeft(6);
-
-            
-            }
-
-            total = saldo - ajuste;
-
-            txtTotal.Text = total.ToString();
-
-            SqlConnection conn = new SqlConnection(conexao);
-            conn.Open();
-            SqlCommand sqlComm = new SqlCommand("update Pedido set Ajuste =" + mtxtAjuste.Text + "where cod_Pedido =" + gridPedidosClientes.CurrentRow.Cells[0].Value.ToString(), conn);
-            sqlComm.ExecuteNonQuery();
-        }*/
-
-        /*
-        UPDATE table_name
-        SET column1=value1,column2=value2,...
-        WHERE some_column=some_value;
-         */
-
-
-       
-        
-
-
     }
 }
