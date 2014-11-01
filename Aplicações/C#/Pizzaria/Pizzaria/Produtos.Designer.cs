@@ -1,6 +1,6 @@
 ﻿namespace Pizzaria
 {
-    partial class Produto
+    partial class Produtos
     {
         /// <summary>
         /// Required designer variable.
@@ -212,7 +212,7 @@
             this.btn_sair.UseVisualStyleBackColor = true;
             this.btn_sair.Click += new System.EventHandler(this.btn_sair_Click);
             // 
-            // Produto
+            // Produtos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -225,8 +225,7 @@
             this.Controls.Add(this.dtg_produtos);
             this.Controls.Add(this.btn_inserir);
             this.Controls.Add(this.gbp_produtos);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Produto";
+            this.Name = "Produtos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Insumo";
             this.Load += new System.EventHandler(this.Insumo_Load);

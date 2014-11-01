@@ -173,8 +173,8 @@ namespace Pizzaria
 
             preencherGrid("select Cod_Pedido, Data, Hora from pedido where Cod_Cliente like ('%" + id + "%')", gridPedidosClientes);
 
-            for (int i = 0; i < gridPedidosClientes.Columns.Count; i++)
-                gridPedidosClientes.Columns[i].Width = 70;
+//            for (int i = 0; i < gridPedidosClientes.Columns.Count; i++)
+  //              gridPedidosClientes.Columns[i].Width = 70;
 
             txtPalavraChave.Clear();
             txtIDProduto.Clear();
@@ -194,8 +194,8 @@ namespace Pizzaria
 
             atualizarGridProdutosConsumidos();
             
-            for (int i = 0; i < gridProdutosConsumidos.Columns.Count; i++)
-                gridProdutosConsumidos.Columns[i].Width = 85;
+//            for (int i = 0; i < gridProdutosConsumidos.Columns.Count; i++)
+  //              gridProdutosConsumidos.Columns[i].Width = 85;
 
             txtPalavraChave.Clear();
             txtIDProduto.Clear();
@@ -251,8 +251,10 @@ namespace Pizzaria
 
             atualizarGridProdutosConsumidos();
 
-            for (int i = 0; i < gridProdutosConsumidos.Columns.Count; i++)
-                gridProdutosConsumidos.Columns[i].Width = 85;
+//            for (int i = 0; i < gridProdutosConsumidos.Columns.Count; i++)
+  
+            
+//            gridProdutosConsumidos.Columns[i].Width = 85;
 
             calcularSaldo();
         }
@@ -272,8 +274,8 @@ namespace Pizzaria
 
             atualizarGridProdutosConsumidos();
 
-            for (int i = 0; i < gridProdutosConsumidos.Columns.Count; i++)
-                gridProdutosConsumidos.Columns[i].Width = 85;
+//            for (int i = 0; i < gridProdutosConsumidos.Columns.Count; i++)
+  //              gridProdutosConsumidos.Columns[i].Width = 85;
 
             calcularSaldo();
         }
@@ -383,8 +385,8 @@ namespace Pizzaria
 
                 preencherGrid("select Cod_Pedido, Data, Hora from pedido where Cod_Cliente like ('%" + idCliente + "%')", gridPedidosClientes);
 
-                for (int i = 0; i < gridPedidosClientes.Columns.Count; i++)
-                    gridPedidosClientes.Columns[i].Width = 70;
+//                for (int i = 0; i < gridPedidosClientes.Columns.Count; i++)
+  //                  gridPedidosClientes.Columns[i].Width = 70;
             }
             else if (decisao == DialogResult.No)
             {
@@ -407,8 +409,8 @@ namespace Pizzaria
 
             preencherGrid("select Cod_Pedido, Data, Hora from pedido where Cod_Cliente like ('%" + id + "%')", gridPedidosClientes);
 
-            for (int i = 0; i < gridPedidosClientes.Columns.Count; i++)
-                gridPedidosClientes.Columns[i].Width = 70;
+//            for (int i = 0; i < gridPedidosClientes.Columns.Count; i++)
+  //              gridPedidosClientes.Columns[i].Width = 70;
         }
 
         private void txtAjuste_TextChanged(object sender, EventArgs e)

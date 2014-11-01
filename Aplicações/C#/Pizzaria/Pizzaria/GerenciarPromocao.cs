@@ -21,5 +21,15 @@ namespace Pizzaria
         {
 
         }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+//            int id = Convert.ToInt32(gridClientesEncontrados.CurrentRow.Cells[0].Value);
+
+//            preencherGrid("select Cod_Pedido, Data, Hora from pedido where Cod_Cliente like ('%" + id + "%')", gridPedidosClientes);
+
+//            for (int i = 0; i < gridPedidosClientes.Columns.Count; i++)
+  //              gridPedidosClientes.Columns[i].Width = 70;
+        }
     }
 }

@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace Pizzaria
 {
-    public partial class Produto : Form
+    public partial class Produtos : Form
     {
-        public Produto()
+        public Produtos()
         {
             InitializeComponent();
         }

@@ -30,6 +30,7 @@
         {
             this.gpb_detalhamento = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnGravarAjuste = new System.Windows.Forms.Button();
             this.txtAjuste = new System.Windows.Forms.TextBox();
             this.txtTotal = new System.Windows.Forms.TextBox();
             this.txtSaldo = new System.Windows.Forms.TextBox();
@@ -58,7 +59,6 @@
             this.lbl_cpf = new System.Windows.Forms.Label();
             this.lbl_nome = new System.Windows.Forms.Label();
             this.btn_sair = new System.Windows.Forms.Button();
-            this.btnGravarAjuste = new System.Windows.Forms.Button();
             this.gpb_detalhamento.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridProdutosEncontrados)).BeginInit();
@@ -103,6 +103,17 @@
             this.groupBox1.TabIndex = 22;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Valores";
+            // 
+            // btnGravarAjuste
+            // 
+            this.btnGravarAjuste.Enabled = false;
+            this.btnGravarAjuste.Location = new System.Drawing.Point(109, 45);
+            this.btnGravarAjuste.Name = "btnGravarAjuste";
+            this.btnGravarAjuste.Size = new System.Drawing.Size(113, 23);
+            this.btnGravarAjuste.TabIndex = 22;
+            this.btnGravarAjuste.Text = "Processar ajuste";
+            this.btnGravarAjuste.UseVisualStyleBackColor = true;
+            this.btnGravarAjuste.Click += new System.EventHandler(this.btnGravarAjuste_Click);
             // 
             // txtAjuste
             // 
@@ -209,6 +220,8 @@
             // 
             // gridProdutosEncontrados
             // 
+            this.gridProdutosEncontrados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.gridProdutosEncontrados.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.gridProdutosEncontrados.Location = new System.Drawing.Point(12, 66);
             this.gridProdutosEncontrados.Name = "gridProdutosEncontrados";
             this.gridProdutosEncontrados.ReadOnly = true;
@@ -250,6 +263,8 @@
             // 
             // gridProdutosConsumidos
             // 
+            this.gridProdutosConsumidos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.gridProdutosConsumidos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.gridProdutosConsumidos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridProdutosConsumidos.Location = new System.Drawing.Point(12, 207);
             this.gridProdutosConsumidos.Name = "gridProdutosConsumidos";
@@ -309,6 +324,8 @@
             // 
             // gridPedidosClientes
             // 
+            this.gridPedidosClientes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.gridPedidosClientes.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.gridPedidosClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridPedidosClientes.Location = new System.Drawing.Point(11, 269);
             this.gridPedidosClientes.Name = "gridPedidosClientes";
@@ -329,6 +346,8 @@
             // 
             // gridClientesEncontrados
             // 
+            this.gridClientesEncontrados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.gridClientesEncontrados.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.gridClientesEncontrados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridClientesEncontrados.Location = new System.Drawing.Point(10, 64);
             this.gridClientesEncontrados.Name = "gridClientesEncontrados";
@@ -387,17 +406,6 @@
             this.btn_sair.Text = "Voltar";
             this.btn_sair.UseVisualStyleBackColor = true;
             this.btn_sair.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // btnGravarAjuste
-            // 
-            this.btnGravarAjuste.Enabled = false;
-            this.btnGravarAjuste.Location = new System.Drawing.Point(109, 45);
-            this.btnGravarAjuste.Name = "btnGravarAjuste";
-            this.btnGravarAjuste.Size = new System.Drawing.Size(113, 23);
-            this.btnGravarAjuste.TabIndex = 22;
-            this.btnGravarAjuste.Text = "Processar ajuste";
-            this.btnGravarAjuste.UseVisualStyleBackColor = true;
-            this.btnGravarAjuste.Click += new System.EventHandler(this.btnGravarAjuste_Click);
             // 
             // Pedidos
             // 

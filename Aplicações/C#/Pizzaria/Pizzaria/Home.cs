@@ -65,7 +65,7 @@ namespace Pizzaria
 
         private void produtoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Produto Prod = new Produto();
+            Produtos Prod = new Produtos();
             Prod.Show();
             this.Hide();
         }
