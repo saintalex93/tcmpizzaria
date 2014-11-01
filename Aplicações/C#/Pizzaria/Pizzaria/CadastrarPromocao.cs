@@ -28,39 +28,11 @@ namespace Pizzaria
             SqlConnection conn = new SqlConnection(conexao);
             conn.Open();
             SqlCommand sqlComm = new SqlCommand(busca, conn);
-            sqlComm.ExecuteNonQuery();
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = sqlComm;
             DataTable dt = new DataTable();
             da.Fill(dt);
             tabela.DataSource = dt;
-            conn.Close();
-        }
-
-        public void preencherListBox(string busca, ListBox tabela)
-        {
-            SqlConnection conn = new SqlConnection(conexao);
-            conn.Open();
-
-            //            try
-            //          {
-            SqlCommand sqlComm = new SqlCommand(busca, conn);
-            sqlComm.ExecuteNonQuery();
-            SqlDataAdapter da = new SqlDataAdapter();
-            da.SelectCommand = sqlComm;
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            tabela.DataSource = dt;
-
-            // 1. set DisplayMember and ValueMember
-            lbBuscaProdutos.DisplayMember = dt.Columns[1].ColumnName;
-            lbBuscaProdutos.ValueMember = dt.Columns[1].ColumnName;
-            // 2. set DataSource
-            lbBuscaProdutos.DataSource = dt;
-
-            lbProdutosPromocao.DisplayMember = dt.Columns[1].ColumnName;
-            lbProdutosPromocao.ValueMember = dt.Columns[1].ColumnName;
-            // 2. set DataSource
             conn.Close();
         }
 
@@ -85,7 +57,7 @@ namespace Pizzaria
         return 0;
         }
 
-        public void preencherGridView(string busca, DataGridView tabela)
+/*        public void preencherGridView(string busca, DataGridView tabela)
         {
             SqlConnection conn = new SqlConnection(conexao);
             conn.Open();
@@ -109,9 +81,9 @@ namespace Pizzaria
                         lbProdutosPromocao.DisplayMember = dt.Columns[1].ColumnName;
                         lbProdutosPromocao.ValueMember = dt.Columns[1].ColumnName;
                         // 2. set DataSource*/
-            conn.Close();
-        }
-
+//            conn.Close();
+  //      }
+    
         public void mensagemDeErro(string mensagem) 
         {
             Fornecedores.mensagemDeErro(mensagem);
@@ -121,11 +93,11 @@ namespace Pizzaria
         {
             List<int> visibleColumns = new List<int>();
             
-            foreach (DataGridViewColumn col in dtgBuscaProdutos.Columns)
+            foreach (DataGridViewColumn col in gridBuscaProdutos.Columns)
             {
                 if (col.Visible)
                 {
-                    dtgProdutosNaPromocao.Columns.Add((DataGridViewColumn)col.Clone());
+                    gridProdutosNaPromocao.Columns.Add((DataGridViewColumn)col.Clone());
 
                     visibleColumns.Add(col.Index);
                 }
@@ -135,47 +107,163 @@ namespace Pizzaria
             // Set a counter for the current row index for the second DataGridView
             int rowIndex = 0;
             
-            DataTable DT = (DataTable)dtgProdutosNaPromocao.DataSource;
+            DataTable DT = (DataTable)gridProdutosNaPromocao.DataSource;
 
-            foreach (DataGridViewRow row in dtgBuscaProdutos.Rows)
+            foreach (DataGridViewRow row in gridBuscaProdutos.Rows)
             {
                 // Add a new row to the DataGridView
-                dtgProdutosNaPromocao.Rows.Add();
+                gridProdutosNaPromocao.Rows.Add();
                 
                 // Loop through the visible columns
                 for (int i = 0; i < visibleColumns.Count; i++)
                 {
                     // Use the index of the for loop for the column in the target data grid
                     // Use the index value from the List<T> for the cell of the source target data grid
-                    dtgProdutosNaPromocao.Rows[rowIndex].Cells[i].Value = row.Cells[visibleColumns[i]].Value;
+                    gridProdutosNaPromocao.Rows[rowIndex].Cells[i].Value = row.Cells[visibleColumns[i]].Value;
                 }
                 
                 // Increment the rowIndex
                 rowIndex++;
             }
 
-            dtgProdutosNaPromocao.Rows.Clear();
+            gridProdutosNaPromocao.Rows.Clear();
 
             do
             {
-                foreach (DataGridViewRow row in dtgProdutosNaPromocao.Rows)
+                foreach (DataGridViewRow row in gridProdutosNaPromocao.Rows)
                 {
                     try
                     {
-                        dtgProdutosNaPromocao.Rows.Remove(row);
+                        gridProdutosNaPromocao.Rows.Remove(row);
                     }
                     catch (Exception) { }
                 }
-            } while (dtgProdutosNaPromocao.Rows.Count > 1);
+            } while (gridProdutosNaPromocao.Rows.Count > 1);
         }
+
+        public void formatarColunasDoGridDeBuscaDeProdutos() 
+        {
+            gridBuscaProdutos.Columns[0].Width = 20;
+            gridBuscaProdutos.Columns[1].Width = 150;
+            gridBuscaProdutos.Columns[2].Width = 50;
+        }
+
+        public void atualizarPromocoesEncontradas() 
+        {
+            preencherGrid("select Cod_Promocao as [ID], Nome_Promocao as [Título], Preco_Original [Preço Original], Preco_Promocao as [Preço Promocional], Vigencia as [Vigência], Descricao as [Descrição] from Promocao", gridPromocoesEncontradas);
+        }
+
+        public bool validaTitulo() 
+        {
+            bool resultado = true;
+
+            if(txtTituloPromocao.Text.Length == 0)
+            {
+                Fornecedores.mensagemDeErro("Por favor, adicione um título para a Promoção.");
+
+                resultado = false;
+            }
+
+            return resultado;
+        }
+
+        public bool validaVigencia() 
+        {
+            bool resultado = true;
+
+            if (!dataPrazo.Checked)
+            {
+                Fornecedores.mensagemDeErro("Por favor, escolha uma data para a validade da Promoção.");
+
+                resultado = false;
+            }
+
+            if(dataPrazo.Value < DateTime.Today)
+            {
+                Fornecedores.mensagemDeErro("Infelizmente, não é possível escolher uma data passada para a Promoção.\n\nPor favor, escolha uma data futura.");
+
+                resultado = false;
+            }
+
+                return resultado;
+        }
+
+        public bool validaDescricao() 
+        {
+            bool resultado = true;
+
+            if (txtDescricaoPromocao.Text.Length == 0)
+            {
+                Fornecedores.mensagemDeErro("Por favor, coloque uma descrição que liste os produtos que estarão na Promoção.");
+
+                resultado = false;
+            }
+
+            return resultado;
+        }
+
+        public bool validaPrecoOriginal() 
+        {
+            bool resultado = true;
+
+            if (txtSaldo.Text.Length == 0)
+            {
+                Fornecedores.mensagemDeErro("Por favor, antes de adicionar uma Promoção ao banco, é preciso adicionar produtos a ela.");
+
+                txtBuscaPalavraChave.Focus();
+
+                resultado = false;
+            }
+
+            return resultado;
+        
+        }
+
+        public bool validaNovoPreco()
+        {
+            bool resultado = true;
+
+            if (txtNovoPreco.Text.Length == 0)
+            {
+                Fornecedores.mensagemDeErro("Não é permitido criar uma nova Promoção sem antes estabelecer um novo preço promocional.");
+
+                txtNovoPreco.Focus();
+
+                resultado = false;
+            }
+
+            return resultado;
+
+        }
+
+        public bool validaCampos() 
+        {
+            bool resultado = true;
+
+            if (!validaTitulo())
+                return false;
+
+            if (!validaVigencia())
+                return false;
+
+/*            if (!validaPrecoOriginal())
+                return false;
+
+            if (!validaNovoPreco())
+                return false;
+            */
+            return resultado;
+        }
+
+        //------ Eventos de controles
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            txtBuscaID.Text = "";
+            txtBuscaProdutoPorID.Text = "";
 
-//            preencherGridView("select cod_Produto, Nome_Produto, Valor_Venda from Produto where Nome_Produto LIKE ('%" + txtBuscaPalavraChave.Text + "%')", dtgBuscaProdutos);
+            preencherGrid("select cod_Produto as [ID], Nome_Produto as [Produto], Valor_Venda as [Preço] from Produto where Nome_Produto LIKE ('%" + txtBuscaPalavraChave.Text + "%')", gridBuscaProdutos);
 
-            preencherListBox("select cod_Produto, Nome_Produto, Valor_Venda from Produto where Nome_Produto LIKE ('%" + txtBuscaPalavraChave.Text + "%')", lbBuscaProdutos);
+            formatarColunasDoGridDeBuscaDeProdutos();
         }
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
@@ -195,77 +283,18 @@ namespace Pizzaria
 
         }
 
-        private void txtBuscaID_TextChanged(object sender, EventArgs e)
-        {
-            txtBuscaPalavraChave.Text = "";
-
-            for (int i = 0; i < txtBuscaID.Text.Length; i++)
-                if (!char.IsNumber(txtBuscaID.Text[0]))
-                {
-                    mensagemDeErro("É permitido apenas o uso de números no campo \"Busca por ID\".");
-                    txtBuscaID.Clear();
-                    txtBuscaID.Focus();
-                }
-
-            preencherListBox("select cod_Produto, Nome_Produto, Valor_Venda from Produto where Cod_Produto LIKE ('%" + txtBuscaID.Text + "%')", lbBuscaProdutos);
-        }
-
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
-            string id = "";
+            preencherGrid("insert into ProdutoPromocao (Cod_Produto, Cod_Promocao) values (" + gridBuscaProdutos.CurrentRow.Cells[0].Value.ToString() + ", " + gridPromocoesEncontradas.CurrentRow.Cells[0].Value.ToString() + ")", gridProdutosNaPromocao);
 
-/*            id = dtgBuscaProdutos.CurrentRow.Cells[0].Value.ToString();
+            atualizarPromocoesEncontradas();
 
-//            dtgProdutosNaPromocao.Columns.Insert(0,);
-
-            preencherGrid("select cod_Produto, Nome_Produto, Valor_Venda from Produto where cod_Produto LIKE ('%" + txtBuscaID.Text + "%')", dtgProdutosNaPromocao);*/
-            
-//            dtgProdutosNaPromocao.Rows.Add(dtgBuscaProdutos.CurrentRow);
-
-
-
-            int testaSel = lbProdutosPromocao.FindString(lbBuscaProdutos.SelectedItem.ToString());
-
-            if (testaSel == -1)
-            {
-                lbProdutosPromocao.Items.Add(lbBuscaProdutos.SelectedItem);
-                
-            }
-
-            ListBox x = lbProdutosPromocao;
-
-            double preço = 0;
-
-             foreach (var item in lbProdutosPromocao.SelectedItems) 
-                 preço += Convert.ToDouble(((DataRowView)item)["Valor_Venda"]);
-            
-
-                 //                 MessageBox.Show("ID = " + ((DataRowView)item)["people_id"].ToString());
-
-            string busca = "select Valor_Venda from Produto where Cod_Produto = ";
-
-
-/*            for (int i = 0; i < lbProdutosPromocao.Items.Count; i++)
-            {
-
-
-                ListViewItem selItem = lbProdutosPromocao;
-                
-  string txt = selItem.SubItems[2].Text;
-                Console.WriteLine("----TESTE----"+txt);
-            }
-            
-
-            for (int i = 0; i < lbProdutosPromocao.Items.Count; i++) 
-//                  preço += lbProdutosPromocao.SelectedItems.
-            if(lbProdutosPromocao.Items.Count > 0)
-                Console.WriteLine("-------------------" + lbProdutosPromocao.Items[0].ToString()+ "-------------------");
-     
-        */}
+            preencherGrid("select codPromoProd as [ID], Produto.Cod_Produto as [ID Produto], Produto.Nome_Produto as [Produto], Produto.Valor_Venda as [Preço] from Pedido inner join ProdutoPromocao on Pedido.Cod_Pedido = ProdutoPromocao.Cod_Promocao inner join Produto on ProdutoPromocao.Cod_Produto = Produto.Cod_Produto where ProdutoPromocao.Cod_Promocao = " + gridPromocoesEncontradas.CurrentRow.Cells[0].Value.ToString(), gridProdutosNaPromocao);
+        }
             
         private void btnRemover_Click(object sender, EventArgs e)
         {
-            lbProdutosPromocao.Items.RemoveAt(lbProdutosPromocao.SelectedIndex);
+//            lbProdutosPromocao.Items.RemoveAt(lbProdutosPromocao.SelectedIndex);
         }
 
         private void lbProdutosPromocao_SelectedIndexChanged(object sender, EventArgs e)
@@ -297,12 +326,12 @@ namespace Pizzaria
 
         private void txtBuscaID_Leave(object sender, EventArgs e)
         {
-            txtBuscaID.BackColor = Color.White;
+            txtBuscaProdutoPorID.BackColor = Color.White;
         }
 
         private void txtBuscaID_Enter(object sender, EventArgs e)
         {
-            txtBuscaID.BackColor = Color.Aquamarine;
+            txtBuscaProdutoPorID.BackColor = Color.Aquamarine;
         }
 
         private void txtNovoPreco_Leave(object sender, EventArgs e)
@@ -315,9 +344,177 @@ namespace Pizzaria
             txtNovoPreco.BackColor = Color.Aquamarine;
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
+        private void gridBuscaProdutos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void textBox1_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void gridPromocoesEncontradas_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnCriarPromocoes_Click(object sender, EventArgs e)
+        {
+            if (!validaCampos())
+                return;
+
+            string
+                tituloPromocao = txtTituloPromocao.Text,
+                descricaoPromocao = txtDescricaoPromocao.Text,
+                precoOriginal = txtSaldo.Text,
+                precoPromocao = txtNovoPreco.Text,
+                vigencia = dataPrazo.Value.ToString("dd/MM/yyyy"),
+                visivelNoSite = "",
+                paraCadastrados = "";
+
+            if (rdAcessoCadastrados.Checked)
+                paraCadastrados = "1";
+            else
+                paraCadastrados = "0";
+
+            if (rdVisivelNoSite.Checked)
+                visivelNoSite = "1";
+            else
+                visivelNoSite = "0";
+
+            preencherGrid("insert into promocao (Nome_Promocao, Descricao, Vigencia, sobe_promocao, usuario_cadastrado) values("+ 
+                "'"+tituloPromocao+"', "+
+                "'" + descricaoPromocao + "', " +
+                "'" + vigencia + "', " +
+                "" + visivelNoSite + ", " +
+                "" + paraCadastrados +")", gridProdutosNaPromocao);
+
+            preencherGrid("select Cod_Promocao as [ID], Nome_Promocao as [Título], Descricao as [Descrição], Preco_Original as [Preço Original], Preco_Promocao as [Preço Promocional] from Promocao where Nome_Promocao = '" + txtTituloPromocao.Text + "'", gridPromocoesEncontradas);
+        }
+
+        private void dataPrazo_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtTituloPromocao_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtBuscaPorID_TextChanged(object sender, EventArgs e)
+        {
+            txtBuscaPorTitulo.Text = "";
+
+            for (int i = 0; i < txtBuscaPromocaoPorID.Text.Length; i++)
+                if (!char.IsNumber(txtBuscaPromocaoPorID.Text[i]))
+                {
+                    Fornecedores.mensagemDeErro("É permitido apenas o uso de números no campo \"Busca por ID\".");
+                    txtBuscaPromocaoPorID.Clear();
+                    txtBuscaPromocaoPorID.Focus();
+                }
+
+            preencherGrid("select Cod_Promocao as [ID], Nome_Promocao as [Título], Preco_Original [Preço Original], Preco_Promocao as [Preço Promocional], Vigencia as [Vigência], Descricao as [Descrição] from Promocao where Cod_Promocao = " + txtBuscaPromocaoPorID.Text, gridPromocoesEncontradas);
+
+        }
+
+        private void txtNovoPreco_TextChanged(object sender, EventArgs e)
+        {
+/*            for (int i = 0; i < txtNovoPreco.Text.Length; i++)
+                if (!char.IsNumber(txtNovoPreco.Text[i]))
+                {
+                    Fornecedores.mensagemDeErro("É permitido apenas o uso de números no campo \"Novo Preço\".");
+                    txtNovoPreco.Clear();
+                    txtNovoPreco.Focus();
+                }*/
+        }
+
+        private void txtBuscaPorTitulo_TextChanged(object sender, EventArgs e)
+        {
+            txtBuscaPromocaoPorID.Text = "";
+
+            preencherGrid("select Cod_Promocao as [ID], Nome_Promocao as [Título], Preco_Original [Preço Original], Preco_Promocao as [Preço Promocional], Vigencia as [Vigência], Descricao as [Descrição] from Promocao where Nome_Promocao like ('%" + txtBuscaPorTitulo.Text + "%')", gridPromocoesEncontradas);
+        }
+
+        private void btnRemoverPromocao_Click(object sender, EventArgs e)
+        {
+            DialogResult decisao = MessageBox.Show("Tem certeza que deseja remover essa Promoção do banco?", "Remover Promoção", MessageBoxButtons.YesNo);
+
+            if (decisao == DialogResult.Yes)
+            {
+                int idPromocao = (int)gridPromocoesEncontradas.CurrentRow.Cells[0].Value;
+
+                preencherGrid("delete from ProdutoPromocao where cod_Promocao = " + idPromocao, gridPromocoesEncontradas);
+
+                preencherGrid("delete from Promocao where cod_Promocao = " + idPromocao, gridPromocoesEncontradas);
+
+                atualizarPromocoesEncontradas();
+            }
+        }
+
+        private void btnAlterar_Click(object sender, EventArgs e)
+        {
+            if (btnAlterar.Text == "Alterar")
+            {
+                txtTituloPromocao.Text = gridPromocoesEncontradas.CurrentRow.Cells[1].Value.ToString();
+                txtSaldo.Text = gridPromocoesEncontradas.CurrentRow.Cells[2].Value.ToString();
+                txtNovoPreco.Text = gridPromocoesEncontradas.CurrentRow.Cells[3].Value.ToString();
+
+                string dia = "";
+                string mes = "";
+                string ano = "";
+                int sessao = 0;
+
+                string valor = gridPromocoesEncontradas.CurrentRow.Cells[3].Value.ToString();
+
+                for (int i = 0; i < gridPromocoesEncontradas.CurrentRow.Cells[3].Value.ToString().Length; i++)
+                    if (dataPrazo.Value.ToString()[i].ToString() == "/")
+                        sessao++;
+                    else
+
+
+                        switch (sessao) 
+                        {
+                            case 0:
+                                dia += gridPromocoesEncontradas.CurrentRow.Cells[3].Value.ToString();
+                                break;
+
+                            case 1:
+                                mes += dataPrazo.Value.ToString()[i].ToString();
+                                break;
+
+                            case 2:
+                                ano += dataPrazo.Value.ToString()[i].ToString();
+                                break;
+
+                            default:
+                                mensagemDeErro("Aconteceu algo de errado na alteração das Promoções. Informe seu suporte para que o problema possa ser avaliado.");
+                                break;
+
+                    }
+
+                //ano = ano.Remove(4);
+
+                dataPrazo.Value = new DateTime(Convert.ToInt32(ano), Convert.ToInt32(mes), Convert.ToInt32(dia));
+
+//                .Value = (System.DateTime)gridPromocoesEncontradas.CurrentRow.Cells[4].Value;
+                txtDescricaoPromocao.Text = gridPromocoesEncontradas.CurrentRow.Cells[5].Value.ToString();
+            }
         }
     }
 }
