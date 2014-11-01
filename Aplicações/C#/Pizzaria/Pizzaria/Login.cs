@@ -20,37 +20,18 @@ namespace Pizzaria
 
         private void btn_Acessa_Click(object sender, EventArgs e)
         {
-
             try
             {
-                string conexao = "";//"Data Source=Tuca\\SQLEXPRESS ;Initial Catalog=Pizzaria; Persist Security Info = True; User ID=sa; Password=peganomeupau";
-
-                conexao = Rede.DataContainer.conexaoGlobal;
-                
-            SqlConnection add = new SqlConnection(conexao);
-            SqlCommand comando = new SqlCommand("select count (*) from FuncPermissao where Login_=@Usuario and Senha=@senha", add);
-
-            comando.Parameters.Add("@Usuario", SqlDbType.VarChar).Value = txt_usuario.Text;
-            comando.Parameters.Add("@senha", SqlDbType.VarChar).Value = txt_senha.Text;
-
-
-
-                add.Open();
-                int i = (int)comando.ExecuteScalar();
-
-                if (i > 0)
+                //istancia a classe Connection para acessar o banco com o parametros senha e usuario
+                //e em seguinda verificar o nivel de acesso caso a autenticação esteja correta
+                //tendo o nivel de acesso define o valor do mesmo na classe niveldeacesso, onde fica armazenado.
+                Connection conec = new Connection();
+                if (conec.Permisso(txt_usuario.Text, txt_senha.Text))
                 {
-
-                    MessageBox.Show
-                    (
-                    "Login efetuado com sucesso.\n\nBem-vindo ao Pizza System, Sr/a " + txt_usuario.Text + "!",
-                    "Erro no cadastro de Fornecedores",
-                    MessageBoxButtons.OK
-                    );
-
                     Home home = new Home();
                     home.Show();
                     this.Visible = false;
+
                 }
                 else
                 {
@@ -62,7 +43,7 @@ namespace Pizzaria
                     MessageBoxIcon.Warning
                     );
                 }
-                add.Close();
+
             }
             catch (SqlException ee)
             {

@@ -45,12 +45,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Acesso.cs" />
     <Compile Include="CadastrarPromocao.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CadastrarPromocao.Designer.cs">
       <DependentUpon>CadastrarPromocao.cs</DependentUpon>
     </Compile>
+    <Compile Include="Connection.cs" />
     <Compile Include="Fornecedores.cs">
       <SubType>Form</SubType>
     </Compile>

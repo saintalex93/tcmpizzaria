@@ -103,19 +103,23 @@ namespace Pizzaria
 
         private void Home_Load(object sender, EventArgs e)
         {
-            /* Formulário Login 
-             * 
-            while (Login.ActiveForm.MdiChildren.Length > 0)
-                Login.ActiveForm.ActiveMdiChild.Close();
-            Login Promo = new Login();
-            Promo.MdiParent = this;
-            Promo.Show();
-             */
-            //Maximiza a tela
-/*            Screen tela = Screen.FromPoint(this.Location);
-            this.Size = tela.WorkingArea.Size;
-            this.Location = Point.Empty;
-  */      
+         if (Acesso.PermissAcesso.ToString() == "1")
+            {
+                
+            }
+            if (Acesso.PermissAcesso.ToString() == "1")
+            {
+                aplicativosToolStripMenuItem.Enabled = false;
+            }
+            if (Acesso.PermissAcesso.ToString() == "3")
+            {
+                novoCadastroToolStripMenuItem.Visible = false;
+                aplicativosToolStripMenuItem.Enabled = false;
+                promoçõesAtivasToolStripMenuItem.Enabled = false;
+                fechamaentoToolStripMenuItem.Enabled = false;
+                administrativoToolStripMenuItem.Enabled = false;
+            }
+       
         }
  
         private void pnl_login_Paint(object sender, PaintEventArgs e)

@@ -46,7 +46,7 @@ namespace Pizzaria
             id = txtID.Text;
             password = txtPassword.Text;
 
-            DataContainer.conexaoGlobal = "Data Source=" + dataSource + " ;Initial Catalog="+ catalog +"; Persist Security Info = True; User ID=" + id + "; Password=" + password;
+            Acesso.Conexao = "Data Source=" + dataSource + " ;Initial Catalog=" + catalog + "; Persist Security Info = True; User ID=" + id + "; Password=" + password;
 
             Dispose();
         }
