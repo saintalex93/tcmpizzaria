@@ -40,15 +40,15 @@ line-height: 400px;
 .ce
 {
 background-color: #fff;
-color: #ae0101;
+color: #6e0000;
 border-color: #d7c500;
 }
 .ce_ingred
 {
-    background-color: #fff;
+background-color: #fff;
 color: #4e0202;
 border-color: #d7c500;
-    font-size: 16px;
+font-size: 16px;
 }
 .cd 
 {
@@ -96,7 +96,9 @@ div#texto_cadastro
    width: 380px;
    height: 150px;
    margin: 0px auto 40px auto;
-   border: 1px solid #fff;
+   border: 3px double #fff;
+   border-radius: 8px;
+   border-color: #6f0000;
    padding: 15px;
 }
 div#texto_cadastro p
@@ -180,10 +182,6 @@ background-color: rgba(255,0,30,0.5);
 height: 32px;
 padding: 5px;
 border: 2px solid #fff;
-}
-.logout #lblBemvindo
-{
-margin-left: 400px;
 }
 .login a,#Label1,#Label2
 {
@@ -367,16 +365,16 @@ height: 268px;
 
 nav#menu_gerencia
 {
-    width: 400px;
+width: 400px;
 }
 
 nav#menu_gerencia ul
 {
-    margin-top: 50px;
-    border: 1px solid #fff;
-    width: 150px;
-    height: 120px;
-    list-style: none;
+margin-top: 50px;
+border: 1px solid #fff;
+width: 150px;
+height: 120px;
+list-style: none;
 }
 
 nav#menu_gerencia li
@@ -508,6 +506,7 @@ width: 1000px;
 span#bemvindo 
 {
     color: #fff;
+    margin: 0px 150px 0px 150px;
 }
 span#bemvindo #lblBemvindo 
 {

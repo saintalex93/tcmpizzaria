@@ -9,7 +9,6 @@ using System.Data.SqlClient;
 
 public partial class aspx_modelo : System.Web.UI.MasterPage
 {
-    //int qtde;
     string nome;
     bool x = true;
     

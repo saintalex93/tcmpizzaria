@@ -31,11 +31,9 @@ function validaCadastro()
 
     var complemento = document.getElementById("ContentPlaceHolder1_txtComplemento").value;
 
-    var num_casa = document.getElementById("ContentPlaceHolder1_txtNumCasa").value;
+    var num_casa = document.getElementById("ContentPlaceHolder1_txtNumCasa").value
 
     var num_apart = document.getElementById("ContentPlaceHolder1_txtNumApart").value;
-    var num_apart_exp = /\d*/;
-    var num_apart_exp2 = /\d+/;
 
     var cep = document.getElementById("ContentPlaceHolder1_txtCep").value;
     var cep_exp = /\d{5}\d{3}/;
@@ -50,7 +48,7 @@ function validaCadastro()
             //VALIDAÇÃO DO NOME
     
             if (nome.search(nome_exp) || nome.length < 3) {
-                alert("Insira um nome");
+                alert("Seu nome deve conter 3 letras ou mais");
                 ContentPlaceHolder1_txtNome.focus();
                 return false;
             }
@@ -331,17 +329,8 @@ function validaCadastro()
         }
 
 
-        //2º PARTE DO FORMULÁRIO
+    //2º PARTE DO FORMULÁRIO
 
-
-
-        //VALIDAÇÃO DO ESTADO
-        if (estado == "Escolha")
-        {
-            alert("Selecione um estado");
-            ContentPlaceHolder1_DDLEstado.focus();
-            return false;
-        }
 
         //VALIDAÇÃO DA CIDADE
         if (cidade.length < 3)
@@ -372,12 +361,11 @@ function validaCadastro()
             return false;
         }
 
-        //VALIDAÇÃO DO NÚMERO DO APARTAMENTO
-        if (num_apart.length != 0)
+        if(numapart.length != 0)
         {
             if (isNaN(num_apart))
             {
-                alert("Número de apartamento inválido.\nInsira apenas números.");
+                alert("Número de endereço inválido.\nInsira apenas números");
                 ContentPlaceHolder1_txtNumApart.focus();
                 return false;
             }

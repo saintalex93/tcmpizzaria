@@ -13,9 +13,10 @@ public partial class aspx_cadastro : System.Web.UI.Page
     bool x = true;
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["logado"] != null)
+        if (Session["nome"] != null)
         {
-            Response.End();
+            Response.Write("<script>alert('Você deve deslogar para cadastrar uma nova conta !!!')</script>");
+            Response.Write("<script>window.history.go(-1)</script>");
         }
 
         /*Adicionando o atributo onblur e chamando a função aplicaMascara().

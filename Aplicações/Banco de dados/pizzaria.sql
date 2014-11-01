@@ -339,9 +339,9 @@ Sobe_Site,
 Cod_Categoria
 )
 values
-('Pizza Baiana',20.00,'Queijo Mussarela, Calabresa Moída, Ovos, Cebola e Pimenta',1,1),('Pizza Mussarela',18.40,'Queijo Mussarela, ',1,1),('Pizza Bacon',20.20,'Queijo Mussarela, Ovos e Bacon',1,1),
-('Pizza Americana',24.00,'Queijo Mussarela, Lombo, Champignon e Palmito',1,1),('Pizza Bauru',23.50,'Queijo Mussarela, Presunto e Tomate',1,1),('Pizza Calabresa',18.00,'Queijo Mussarela, Calabresa e Cebola ',1,1),
-('Pizza Catupiry',23.00,'Queijo Mussarela e Catupiry',1,1),('Pizza Três Queijos',24.70,'Queijo Mussarela, Catupiry e Provolone',1,1),('Pizza Alemã',25.20,'Queijo Mussarela, Calabresa Moída e Parmesão ',1,1),
+('Pizza Baiana',20.00,'Queijo Mussarela, Calabresa Moída, Ovos, Cebola e Pimenta.',1,1),('Pizza Mussarela',18.40,'Queijo Mussarela e Cebola.',1,1),('Pizza Bacon',20.20,'Queijo Mussarela, Ovos e Bacon.',1,1),
+('Pizza Americana',24.00,'Queijo Mussarela, Lombo, Champignon e Palmito.',1,1),('Pizza Bauru',23.50,'Queijo Mussarela, Presunto e Tomate.',1,1),('Pizza Calabresa',18.00,'Queijo Mussarela, Calabresa e Cebola.',1,1),
+('Pizza Catupiry',23.00,'Queijo Mussarela e Catupiry.',1,1),('Pizza Três Queijos',24.70,'Queijo Mussarela, Catupiry e Provolone',1,1),('Pizza Alemã',25.20,'Queijo Mussarela, Calabresa Moída e Parmesão.',1,1),
 ('Pizza Havaiana Brotinho',13.70,'Queijo Mussarela, ',0,2),('Pizza Baiana Brotinho',14.50,'Queijo Mussarela, ',0,2),('Pizza Palmito Brotinho',15.00,'Queijo Mussarela, ',0,2),('Pizza Peruana Brotinho',14.00,'Queijo Mussarela, ',0,2),
 ('Refrigerante',7.00,null,0,3),('Cerveja',9.40,null,0,3),('Vinho',15.50,null,0,3),('Champagne',17.00,null,0,3),
 ('Porção de Camarão',19.00,'Porção de Camarão, acompanhada de cebola',0,4),('Porção de Calabresa',18.00,'Porção de Calabresa, acompanhada de cebola',0,4),('Porção de Provolone',17.00,'Porção de Provolone, acompanhada de cebola',0,4)
