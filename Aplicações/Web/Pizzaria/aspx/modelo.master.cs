@@ -26,20 +26,25 @@ public partial class aspx_modelo : System.Web.UI.MasterPage
     }
     protected void btnLogin_Click(object sender, EventArgs e)
     {
+        //Chamando o método de validação que torna os campos txtEmail e txtSenha obrigatórios.
         validacao();
+        //Verifico se a variável global x é true.Se for, ele passou pela validação dos campos obrigatórios.
         if (x == true)
         {
             try
             {
+                //Criação dos DataAdapter's e dos DataSet's
                 DataSet dt = new DataSet();
                 SqlDataAdapter dAdapter = new SqlDataAdapter();
 
                 SqlDataAdapter dAdapter2 = new SqlDataAdapter();
                 DataSet dt2 = new DataSet();
 
+                //Declaração da variáveis que recuperam o login e senha digitados
                 String email = txtEmail.Text.Trim();
                 String senha = txtLogin_senha.Text.Trim();
 
+                //Conexão que vai recuperar o CÓDIGO do cliente pelo email e senha digitados.
                 conexao con = new conexao();
                 con.conectar();
 
@@ -51,6 +56,8 @@ public partial class aspx_modelo : System.Web.UI.MasterPage
                 dAdapter.Fill(dt);
                 con.fechaConexao();
 
+                //Conexão que vai recuperar o NOME do cliente pelo email e senha digitados.
+
                 conexao con2 = new conexao();
                 con2.conectar();
 
@@ -61,8 +68,16 @@ public partial class aspx_modelo : System.Web.UI.MasterPage
                 dAdapter2.Fill(dt2);
                 con2.fechaConexao();
 
+                //Pegando as informações do DataSet e jogando em variáveis.
+
                 nome = dt2.Tables[0].DefaultView[0].Row["Nome_Cliente"].ToString();
                 codcliente = Convert.ToInt32(dt.Tables[0].DefaultView[0].Row["Cod_Cliente"]);
+
+                /*Verificando se o nome não é nulo. 
+                Se não for, duas sessões são criadas, 
+                uma com nome dele para mostrar depois,
+                e outra com ID dele, para manipulação de dados. */
+
                 if (nome != null)
                 {
                     Session["nome"] = nome;
@@ -100,16 +115,16 @@ public partial class aspx_modelo : System.Web.UI.MasterPage
 
     protected void validacao() 
     {
-        if (txtEmail.Text.Length < 5) 
+        if (txtEmail.Text.Length < 1) 
         {
             x = false;
-            Response.Write("<script>alert('Email curto demais !!')</script>");
+            Response.Write("<script>alert('Email não foi preenchido corretamente !!')</script>");
             txtEmail.Focus();
         }
         else if (txtLogin_senha.Text.Length < 6)
         {
             x = false;
-            Response.Write("<script>alert('Senha curta demais !!')</script>");
+            Response.Write("<script>alert('Senha não foi preenchida corretamente !!')</script>");
             txtLogin_senha.Focus();
         }
     }

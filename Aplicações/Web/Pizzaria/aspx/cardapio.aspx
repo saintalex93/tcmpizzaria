@@ -20,7 +20,7 @@
 
             </asp:BoundColumn>
 
-            <asp:BoundColumn DataField="Valor_Venda" HeaderText="Preço" HeaderStyle-CssClass="colunaheader" ReadOnly="True" ItemStyle-CssClass="cd">
+            <asp:BoundColumn DataField="Valor_Venda" HeaderText="Preço" HeaderStyle-CssClass="colunaheader" ReadOnly="True" ItemStyle-CssClass="cd" DataFormatString="{0:c}">
                 <HeaderStyle CssClass="colunaheader"></HeaderStyle>
 
                 <ItemStyle CssClass="cd"></ItemStyle>

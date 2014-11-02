@@ -78,12 +78,7 @@ margin-top: 60px;
 }
 #conteudo input#ContentPlaceHolder1_btnEnvia
 {
-height: 25px;
 margin-left: 45%;
-}
-#conteudo input#ContentPlaceHolder1_btnLimpa
-{
-height: 25px;
 }
 
 #conteudo #ContentPlaceHolder1_HyperLink1 /* Ainda não é cadastrado? */
@@ -463,4 +458,9 @@ span#bemvindo
 span#bemvindo #lblBemvindo 
 {
     font-weight:bold;
+}
+input#ContentPlaceHolder1_Preenche 
+{
+    background-color: rgba(255,255,255,0);
+    border-color: rgba(255,255,255,0);
 }

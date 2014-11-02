@@ -12,8 +12,8 @@
     <asp:DataGrid ID="datagPedidos" runat="server" AutoGenerateColumns="False" Caption="Meus Pedidos" HeaderStyle-CssClass="colunaheader">
 
         <Columns>
-            <asp:BoundColumn DataField="Data" HeaderText="Data do Pedido" ReadOnly="True" HeaderStyle-CssClass="colunaheader" ItemStyle-CssClass="ce"></asp:BoundColumn>
-            <asp:BoundColumn DataField="Valor" HeaderText="Valor Total do Pedido" ReadOnly="True" HeaderStyle-CssClass="colunaheader" ItemStyle-CssClass="ce"></asp:BoundColumn>
+            <asp:BoundColumn DataField="Data" HeaderText="Data do Pedido" ReadOnly="True" HeaderStyle-CssClass="colunaheader" ItemStyle-CssClass="ce" DataFormatString="{0:dd/MM/yyyy}"></asp:BoundColumn>
+            <asp:BoundColumn DataField="Valor" HeaderText="Valor Total" ReadOnly="True" HeaderStyle-CssClass="colunaheader" ItemStyle-CssClass="ce" DataFormatString="{0:c}"></asp:BoundColumn>
         </Columns>
 <HeaderStyle CssClass="colunaheader"></HeaderStyle>
         
