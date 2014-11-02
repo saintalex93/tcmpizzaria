@@ -60,12 +60,12 @@ border-color: #d7c500;
 
 .colunaheader
 {
-color: black;
+color: #010101;
 text-align: center;
 font-weight: bold;
 font-family: 'Calisto MT';
 font-size: 30px;
-text-shadow: 2px 2px 13px #000;
+text-shadow: 1px 0px 12px #fff;
 border-color: #ae0101;
 background-image: linear-gradient(to right, #128700, #fff, #ae0101);
 }
@@ -93,11 +93,12 @@ font-size: 12px;
 
 div#texto_cadastro
 {
-   width: 380px;
+   width: 315px;
    height: 150px;
    margin: 0px auto 40px auto;
    border: 3px double #fff;
    border-radius: 8px;
+   line-height: 160%;
    border-color: #6f0000;
    padding: 15px;
 }
@@ -105,6 +106,10 @@ div#texto_cadastro p
 {
     color: #fff;
     text-align: justify;
+}
+div#texto_cadastro h3 
+{
+    margin: 0;
 }
 div#texto_cadastro a
 {
@@ -160,7 +165,7 @@ font-size: 13px;
 margin-left: 15px;
 }
 
-/* CSS DO BOTAO LOGIN */
+/* CSS DO BOTAO LOGIN e LOGOUT */
 .button
 {
 background-color: #c21b1b;
@@ -182,49 +187,6 @@ background-color: rgba(255,0,30,0.5);
 height: 32px;
 padding: 5px;
 border: 2px solid #fff;
-}
-.login a,#Label1,#Label2
-{
-color: #fff;
-text-decoration: none;
-font-weight: bold;
-}
-
-.login #txtEmail,#txtLogin_senha
-{
-margin: 5px 5px 6px 0px;
-border-radius: 5px;
-}
-
-.login #btnLogin,#btnLogout
-{
-background-color: #c21b1b;
-border: 2px solid #c79292;
-border-radius: 5px;
-margin-bottom: 0px 0px 6px 0px;
-padding: 4px;
-box-shadow: 5px 4px 2px rgba(0,0,0,0.6);
-font-weight: bold;
-font-size: 14px;
-color: #fff;
-}
-.login a
-{
-margin-left: 10px;
-}
-
-.login a:hover
-{
-color: #4c9c05;
-}
-
-.login span#lblLoginInc
-{
-color: gold;
-font-weight:bold;
-float:initial;
-font-size: 13px;
-margin-left: 15px;
 }
 
 .erros 
@@ -453,37 +415,27 @@ margin-left: 210px;
 
 /* CSS DO CARDÁPIO */
 
-table#ContentPlaceHolder1_DataGrid1 
+table#ContentPlaceHolder1_DataGrid1,table#ContentPlaceHolder1_datagPedidos  
 {
 margin: auto;
 border: 2px solid gold;
 }
 
-table#ContentPlaceHolder1_DataGrid1 tr, td
+table#ContentPlaceHolder1_DataGrid1,table#ContentPlaceHolder1_datagPedidos tr, td
 {
 font-size: 25px;
 padding : 20px;
 background-color: #000;
 }
 
-table#ContentPlaceHolder1_DataGrid1 caption
+table#ContentPlaceHolder1_DataGrid1 caption,table#ContentPlaceHolder1_datagPedidos caption,table#ContentPlaceHolder1_TabelaPromocao caption
 {
 font-size: 50px;
 margin-bottom: 50px;
 color: #fff;
 font-family: 'Calisto MT';
 }
-
-
 /* TABELA DE PROMOÇÕES */
-
-table#ContentPlaceHolder1_TabelaPromocao caption 
-{
-font-size: 50px;
-margin-bottom: 50px;
-color: #fff;
-font-family: 'Calisto MT';
-}
 
 table#ContentPlaceHolder1_TabelaPromocao 
 {

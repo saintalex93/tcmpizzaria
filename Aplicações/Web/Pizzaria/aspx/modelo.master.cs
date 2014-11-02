@@ -10,12 +10,15 @@ using System.Data.SqlClient;
 public partial class aspx_modelo : System.Web.UI.MasterPage
 {
     string nome;
+    int codcliente;
     bool x = true;
     
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["nome"] != null)
         {
+            linkCadastro.NavigateUrl = "pedidos.aspx";
+            linkCadastro.Text = "Meus pedidos";
             pnl.Visible = false;
             pnl_logout.Visible = true;
             lblNomeUsuario.Text = Session["nome"].ToString();
@@ -28,10 +31,11 @@ public partial class aspx_modelo : System.Web.UI.MasterPage
         {
             try
             {
-                String sql;
                 DataSet dt = new DataSet();
-
                 SqlDataAdapter dAdapter = new SqlDataAdapter();
+
+                SqlDataAdapter dAdapter2 = new SqlDataAdapter();
+                DataSet dt2 = new DataSet();
 
                 String email = txtEmail.Text.Trim();
                 String senha = txtLogin_senha.Text.Trim();
@@ -39,21 +43,34 @@ public partial class aspx_modelo : System.Web.UI.MasterPage
                 conexao con = new conexao();
                 con.conectar();
 
-                sql = "select Nome_Cliente from Cliente where Email_Cliente=@email and Senha_Cliente=@senha";
                 con.command.Parameters.Add("@email", SqlDbType.VarChar).Value = email;
                 con.command.Parameters.Add("@senha", SqlDbType.VarChar).Value = senha;
-                con.command.CommandText = sql;
+                
+                con.command.CommandText = "select Cod_Cliente from Cliente where Email_Cliente=@email and Senha_Cliente=@senha";
                 dAdapter.SelectCommand = con.command;
                 dAdapter.Fill(dt);
                 con.fechaConexao();
 
-                nome = dt.Tables[0].DefaultView[0].Row["Nome_Cliente"].ToString();
+                conexao con2 = new conexao();
+                con2.conectar();
+
+                con2.command.Parameters.Add("@email", SqlDbType.VarChar).Value = email;
+                con2.command.Parameters.Add("@senha", SqlDbType.VarChar).Value = senha;
+                con2.command.CommandText = "select Nome_Cliente from Cliente where Email_Cliente=@email and Senha_Cliente=@senha";
+                dAdapter2.SelectCommand = con2.command;
+                dAdapter2.Fill(dt2);
+                con2.fechaConexao();
+
+                nome = dt2.Tables[0].DefaultView[0].Row["Nome_Cliente"].ToString();
+                codcliente = Convert.ToInt32(dt.Tables[0].DefaultView[0].Row["Cod_Cliente"]);
                 if (nome != null)
                 {
                     Session["nome"] = nome;
+                    Session["cod"] = codcliente;
                     lblNomeUsuario.Text = Session["nome"].ToString();
                     pnl.Visible = false;
                     pnl_logout.Visible = true;
+                    Response.Redirect("index.aspx");
                 }
                 else
                 {
@@ -72,28 +89,28 @@ public partial class aspx_modelo : System.Web.UI.MasterPage
     protected void btnLogout_Click(object sender, EventArgs e)
     {
         Session.Abandon();
-
         pnl.Visible = true;
         pnl_logout.Visible = false;
 
         lblLoginInc.Text = "";
         txtEmail.Text = "";
         txtLogin_senha.Text = "";
+        Response.Redirect("index.aspx");
     }
 
     protected void validacao() 
     {
-        if (txtEmail.Text.Length < 7) 
+        if (txtEmail.Text.Length < 5) 
         {
             x = false;
+            Response.Write("<script>alert('Email curto demais !!')</script>");
             txtEmail.Focus();
-            x = true;
         }
-        else if (txtLogin_senha.Text.Length < 6) 
+        else if (txtLogin_senha.Text.Length < 6)
         {
             x = false;
+            Response.Write("<script>alert('Senha curta demais !!')</script>");
             txtLogin_senha.Focus();
-            x = true;
         }
     }
 }

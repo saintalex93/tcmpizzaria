@@ -3,8 +3,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <link rel="stylesheet" type="text/css" href="../css/style2.css" />
     <link rel="icon" type="image/png" href="../img/marca.ico" />
-
-    <script type="text/javascript" src="../js/reload.js"></script>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
@@ -12,18 +10,20 @@
     <asp:DataGrid ID="DataGrid1" runat="server" AutoGenerateColumns="False" Caption="Cardápio">
         <Columns>
 
-            <asp:BoundColumn DataField="Nome_Produto" HeaderText="Sabores" ReadOnly="True" ItemStyle-CssClass="ce" HeaderStyle-CssClass="colunaheader">
+            <asp:BoundColumn DataField="Nome_Produto" HeaderText="Sabores de Pizzas" ReadOnly="True" ItemStyle-CssClass="ce" HeaderStyle-CssClass="colunaheader">
                 <HeaderStyle CssClass="colunaheader"></HeaderStyle>
 
                 <ItemStyle CssClass="ce"></ItemStyle>
             </asp:BoundColumn>
 
-            <asp:BoundColumn DataField="Ingred_Prod" HeaderText="Ingredientes" ReadOnly="True" ItemStyle-CssClass="ce_ingred" HeaderStyle-CssClass="colunaheader"></asp:BoundColumn>
+            <asp:BoundColumn DataField="Ingred_Prod" HeaderText="Ingredientes" ReadOnly="True" ItemStyle-CssClass="ce_ingred" HeaderStyle-CssClass="colunaheader">
+
+            </asp:BoundColumn>
 
             <asp:BoundColumn DataField="Valor_Venda" HeaderText="Preço" HeaderStyle-CssClass="colunaheader" ReadOnly="True" ItemStyle-CssClass="cd">
                 <HeaderStyle CssClass="colunaheader"></HeaderStyle>
 
-<ItemStyle CssClass="cd"></ItemStyle>
+                <ItemStyle CssClass="cd"></ItemStyle>
             </asp:BoundColumn>
 
         </Columns>

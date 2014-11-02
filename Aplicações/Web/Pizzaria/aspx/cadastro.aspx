@@ -13,22 +13,23 @@
         <h1>Cadastro</h1><br />
     <div id="texto_cadastro">
     <h3>O que eu ganho por me cadastrar?</h3>
-        
+        <br />
     <p>
-        Você poderá ver seus últimos pedidos,
-        na seção <a href="conta.aspx" title="Clique apenas se estiver logado !!">Minha Conta</a>,
+        Você poderá ver seus pedidos,
+        na seção <a href="pedidos.aspx" title="Clique apenas se estiver logado !!">Meus Pedidos</a>,
         e ainda participar de <a href="promocoes.aspx">promoções</a> 
         exclusivas feitas para usuários cadastrados.
     </p>
         </div>
-            <asp:Label ID="Label1" runat="server" Text="Campos obrigatórios são marcados com (*)" Font-Italic="True"></asp:Label>
+            <asp:Label ID="Label1" runat="server" Text="Campos obrigatórios são marcados com *" Font-Italic="True"></asp:Label>
 			    <fieldset id="formulario1" class = "grupoformulario" >
                         <legend style="margin-left: 5px;color:#fff;">Dados Pessoais</legend>
                           
-                            <asp:Label ID="lblNome" runat="server" Text="Nome Completo *" style="margin-left: 36px;" CssClass="spans" ></asp:Label>
+                            <asp:Label ID="lblNome" runat="server" Text="Nome *" style="margin-left: 36px;" CssClass="spans" ></asp:Label>
                             <asp:TextBox ID="txtNome" name="nome" runat="server" MaxLength="70" Width="220px"></asp:TextBox>
 
-                            <asp:RequiredFieldValidator ID="requiredNome" runat="server" ErrorMessage="Nome precisa conter no mínimo 3 letras *" CssClass="erros" Display="Dynamic" ControlToValidate="txtNome" ValidationGroup="Grupo1"></asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ID="requiredNome" runat="server" ErrorMessage="Nome é obrigatório *" CssClass="erros" Display="Dynamic" ControlToValidate="txtNome" ValidationGroup="Grupo1"></asp:RequiredFieldValidator>
+                            <asp:RangeValidator ID="rangevalidaNome" runat="server" ErrorMessage="Nome precisa conter no mínimo 3 letras *" MinimumValue="3" Display="Dynamic" CssClass="erros" ControlToValidate="txtNome" MaximumValue="70" ValidationGroup="Grupo1"></asp:RangeValidator>
                         <br />
                             <asp:Label ID="lblTel" runat="server" Text="Telefone *" style="margin-left: 90px;" CssClass="spans"></asp:Label>
                             <asp:TextBox ID="txtTel" runat="server" MaxLength="10" Width="146px"></asp:TextBox>
@@ -63,8 +64,7 @@
                             <asp:Label ID="lblSenhaConfirm" runat="server" Text="Confirmar Senha" style="margin-left: 41px" CssClass="spans"></asp:Label>
                             <asp:TextBox ID="txtSenhaConfirm" runat="server" Width="146px" TextMode="Password" MaxLength="20"></asp:TextBox>
 
-                            <asp:CompareValidator ID="compareSenha" runat="server" ErrorMessage="Suas senhas não são iguais *" ControlToCompare="txtSenha" ControlToValidate="txtSenhaConfirm" ValidationGroup="Grupo1"></asp:CompareValidator>
-                    
+                            <asp:CompareValidator ID="compareSenha" runat="server" ErrorMessage="Suas senhas não são iguais *" ControlToCompare="txtSenha" ControlToValidate="txtSenhaConfirm" ValidationGroup="Grupo1" Display="Dynamic"></asp:CompareValidator>
                 </fieldset>
 
                     <br />
