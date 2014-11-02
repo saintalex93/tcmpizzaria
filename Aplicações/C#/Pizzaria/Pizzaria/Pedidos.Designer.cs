@@ -365,7 +365,6 @@
             this.txtCPF.Name = "txtCPF";
             this.txtCPF.Size = new System.Drawing.Size(87, 20);
             this.txtCPF.TabIndex = 3;
-            this.txtCPF.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.txtCPF_MaskInputRejected);
             this.txtCPF.TextChanged += new System.EventHandler(this.txtCPF_TextChanged);
             this.txtCPF.Enter += new System.EventHandler(this.txtCPF_Enter);
             this.txtCPF.Leave += new System.EventHandler(this.txtCPF_Leave);

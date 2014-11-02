@@ -24,8 +24,8 @@ namespace Pizzaria
 
         public void preencherGrid(string busca, DataGridView tabela)
         {
-            conexao = "Data Source=localhost; Initial Catalog=Pizzaria; Persist Security Info = True; User ID=SA; Password=123456";
-            //conexao = "Data Source=Tuca\\SQLEXPRESS; Initial Catalog=Pizzaria; Persist Security Info = True; User ID=sa; Password=peganomeupau";
+            //conexao = "Data Source=localhost; Initial Catalog=Pizzaria; Persist Security Info = True; User ID=SA; Password=peganomeupau";
+            conexao = "Data Source=Tuca\\SQLEXPRESS; Initial Catalog=Pizzaria; Persist Security Info = True; User ID=sa; Password=peganomeupau";
             SqlConnection conn = new SqlConnection(conexao);
             conn.Open();
             SqlCommand sqlComm = new SqlCommand(busca, conn);
@@ -131,18 +131,32 @@ namespace Pizzaria
             conexao = Rede.DataContainer.conexaoGlobal;
         }
 
-        private void txtCPF_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
-        {
-            
-        }
-
         private void txtCPF_TextChanged(object sender, EventArgs e)
         {
             txtNome.Text = "";
 
-            string cpf = txtCPF.Text.Replace("-", "").Replace(".", "").Replace(" ","");
+            string cpfOriginal = txtCPF.Text/*.Replace(" ", "").Replace(".", "").Replace(" ","")*/;
+            string cpfCorrigido = "";
+            bool primeiroNumeroDoStringEncontardo = false;
+            int i = 0;
 
-            preencherGrid("select Cod_Cliente, Nome_Cliente ,CPF_Cliente from cliente where CPF_Cliente like ('%" + cpf + "%')", gridClientesEncontrados);
+            if (txtCPF.Text != "   .   .   -")
+            {
+                while (!primeiroNumeroDoStringEncontardo)
+                {
+                    if (char.IsNumber(cpfOriginal[i]))
+                        break;
+                    i++;
+                }
+               
+                for (int j = i; j < cpfOriginal.Length; j++)
+                    if (cpfOriginal[j].ToString() != " ")
+                        cpfCorrigido += cpfOriginal[j].ToString();
+                    else
+                        break;
+            }
+               
+            preencherGrid("select Cod_Cliente, Nome_Cliente ,CPF_Cliente from cliente where CPF_Cliente like ('%" + cpfCorrigido + "%')", gridClientesEncontrados);
 
             txtNome.Clear();
             txtPalavraChave.Clear();
