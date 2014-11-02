@@ -27,9 +27,6 @@ namespace Pizzaria
             btn_alterar.Enabled = false;
             btn_excluir.Enabled = false;
 
-            preenchegrid();
-            preenchecargo();
-
         }
 
         SqlConnection conn;
@@ -68,9 +65,13 @@ namespace Pizzaria
         {
 
         }
+
+        public Form FormHome { get; set; }
+
         private void btn_sair_Click(object sender, EventArgs e)
         {
-            Close();
+            this.FormHome.Show();
+            Dispose();
         }
 
 

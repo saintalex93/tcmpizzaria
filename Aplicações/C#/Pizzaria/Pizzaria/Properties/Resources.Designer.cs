@@ -183,6 +183,26 @@ namespace Pizzaria.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Gerenciamento {
+            get {
+                object obj = ResourceManager.GetObject("Gerenciamento", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Gerenciamento_mini {
+            get {
+                object obj = ResourceManager.GetObject("Gerenciamento_mini", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Logoff {
             get {
                 object obj = ResourceManager.GetObject("Logoff", resourceCulture);

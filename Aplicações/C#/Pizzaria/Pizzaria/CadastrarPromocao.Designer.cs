@@ -46,6 +46,8 @@
             this.btnRemoverProduto = new System.Windows.Forms.Button();
             this.btnVoltar = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.ckVisivelNoSite = new System.Windows.Forms.CheckBox();
+            this.ckAcessoCadastrado = new System.Windows.Forms.CheckBox();
             this.dataPrazo = new System.Windows.Forms.DateTimePicker();
             this.btnCriarPromocoes = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
@@ -63,8 +65,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.ckAcessoCadastrado = new System.Windows.Forms.CheckBox();
-            this.ckVisivelNoSite = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridBuscaProdutos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridProdutosNaPromocao)).BeginInit();
@@ -234,12 +234,13 @@
             // 
             // btnVoltar
             // 
-            this.btnVoltar.Location = new System.Drawing.Point(12, 612);
+            this.btnVoltar.Location = new System.Drawing.Point(538, 612);
             this.btnVoltar.Name = "btnVoltar";
             this.btnVoltar.Size = new System.Drawing.Size(75, 23);
             this.btnVoltar.TabIndex = 11;
             this.btnVoltar.Text = "Voltar";
             this.btnVoltar.UseVisualStyleBackColor = true;
+            this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click_1);
             // 
             // groupBox2
             // 
@@ -258,6 +259,28 @@
             this.groupBox2.TabIndex = 12;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Dados da Promoção";
+            // 
+            // ckVisivelNoSite
+            // 
+            this.ckVisivelNoSite.AutoSize = true;
+            this.ckVisivelNoSite.Location = new System.Drawing.Point(354, 26);
+            this.ckVisivelNoSite.Name = "ckVisivelNoSite";
+            this.ckVisivelNoSite.Size = new System.Drawing.Size(223, 17);
+            this.ckVisivelNoSite.TabIndex = 9;
+            this.ckVisivelNoSite.Text = "Visível apenas para usuários cadastrados";
+            this.ckVisivelNoSite.UseVisualStyleBackColor = true;
+            this.ckVisivelNoSite.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
+            // 
+            // ckAcessoCadastrado
+            // 
+            this.ckAcessoCadastrado.AutoSize = true;
+            this.ckAcessoCadastrado.Location = new System.Drawing.Point(474, 47);
+            this.ckAcessoCadastrado.Name = "ckAcessoCadastrado";
+            this.ckAcessoCadastrado.Size = new System.Drawing.Size(103, 17);
+            this.ckAcessoCadastrado.TabIndex = 8;
+            this.ckAcessoCadastrado.Text = "Sobe para o site";
+            this.ckAcessoCadastrado.UseVisualStyleBackColor = true;
+            this.ckAcessoCadastrado.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // dataPrazo
             // 
@@ -433,28 +456,6 @@
             this.groupBox5.TabIndex = 14;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Buscar Promoções";
-            // 
-            // ckAcessoCadastrado
-            // 
-            this.ckAcessoCadastrado.AutoSize = true;
-            this.ckAcessoCadastrado.Location = new System.Drawing.Point(474, 47);
-            this.ckAcessoCadastrado.Name = "ckAcessoCadastrado";
-            this.ckAcessoCadastrado.Size = new System.Drawing.Size(103, 17);
-            this.ckAcessoCadastrado.TabIndex = 8;
-            this.ckAcessoCadastrado.Text = "Sobe para o site";
-            this.ckAcessoCadastrado.UseVisualStyleBackColor = true;
-            this.ckAcessoCadastrado.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-            // 
-            // ckVisivelNoSite
-            // 
-            this.ckVisivelNoSite.AutoSize = true;
-            this.ckVisivelNoSite.Location = new System.Drawing.Point(354, 26);
-            this.ckVisivelNoSite.Name = "ckVisivelNoSite";
-            this.ckVisivelNoSite.Size = new System.Drawing.Size(223, 17);
-            this.ckVisivelNoSite.TabIndex = 9;
-            this.ckVisivelNoSite.Text = "Visível apenas para usuários cadastrados";
-            this.ckVisivelNoSite.UseVisualStyleBackColor = true;
-            this.ckVisivelNoSite.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
             // CadastrarPromocao
             // 

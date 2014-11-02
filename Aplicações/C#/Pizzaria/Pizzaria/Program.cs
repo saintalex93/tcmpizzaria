@@ -17,7 +17,7 @@ namespace Pizzaria
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Home());
-           // Application.Run(new Pedidos());
+//            Application.Run(new CadastrarPromocao());
         }
     }
 }

@@ -25,6 +25,8 @@ namespace Pizzaria
         Boolean valida = false;
         int qtd = 0, site = 0;
 
+        public Form FormHome { get; set; }
+
         //conexao DB
         //ALEX
         // string conexao = "Data Source=ALEX\\SQLEXPRESS ;Initial Catalog=Pizzaria; Persist Security Info = True; User ID=sa; Password=1234";
@@ -37,8 +39,6 @@ namespace Pizzaria
         
         private void Insumo_Load(object sender, EventArgs e)
         {
-            PreencheCatego();
-            preenchegrid();
             btn_alterar.Enabled = false;
             btn_excluir.Enabled = false;
             btn_atualizar.Enabled = false;
@@ -51,8 +51,10 @@ namespace Pizzaria
         }
         private void btn_sair_Click(object sender, EventArgs e)
         {
-            Close();
+            this.FormHome.Show();
+            Dispose();
         }
+
         private void btn_altera_Click(object sender, EventArgs e)
         {
 

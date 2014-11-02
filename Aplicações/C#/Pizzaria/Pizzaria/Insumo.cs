@@ -18,17 +18,13 @@ namespace Pizzaria
             InitializeComponent();
         }
 
+        public Form FormHome { get; set; }
+
         private void Produtos_Load(object sender, EventArgs e)
         {
-            PreencheCatego();
-            preenchegrid();
             btn_alterar.Enabled = false;
             btn_excluir.Enabled = false;
             btn_gravar.Enabled = false;
-            preenchefornecedores();
-            
-
-
         }
 
 
@@ -51,7 +47,8 @@ namespace Pizzaria
         }
         private void btn_sair_Click(object sender, EventArgs e)
         {
-            Close();
+            this.FormHome.Show();
+            Dispose();
 
         }
         private void btn_gravar_Click(object sender, EventArgs e)

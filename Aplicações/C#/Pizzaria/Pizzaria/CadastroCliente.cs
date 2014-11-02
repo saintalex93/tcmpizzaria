@@ -21,6 +21,8 @@ namespace Pizzaria
             InitializeComponent();
         }
 
+        public Form FormHome { get; set; }
+
         //Variaveis de dados
         SqlConnection conn;
         string cod_cliente, nome = "", cep="",email = "", endereco = "", bairro = "", cidade = "", uf = "", complemento = "", telefone = "", cel = "", cpf = "",strIncluir = "";
@@ -36,7 +38,8 @@ namespace Pizzaria
 
         private void btn_sair_Click(object sender, EventArgs e)
         {
-            Close();
+            this.FormHome.Show();
+            Dispose();
         }
 
         private void label6_Click(object sender, EventArgs e)

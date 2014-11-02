@@ -18,6 +18,16 @@ namespace Pizzaria
             
         }
 
+        public Form FormHome { get; set; }
+
+        public void abrirPedidos() 
+        {
+            Pedidos pedidos = new Pedidos();
+            pedidos.FormHome = this;
+            this.Visible = false;
+            pedidos.Show();
+        }
+
         private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
@@ -30,16 +40,18 @@ namespace Pizzaria
 
         private void funcionarioToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Funcionario Func = new Funcionario();
-            Func.Show();
-            this.Hide();
+            Funcionario funcionario = new Funcionario();
+            funcionario.FormHome = this;
+            this.Visible = false;
+            funcionario.Show();
         }
 
         private void clienteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CadastroCliente frm2 = new CadastroCliente();
-            frm2.Show();
-            this.Hide();
+            CadastroCliente cadastroCliente = new CadastroCliente();
+            cadastroCliente.FormHome = this;
+            this.Visible = false;
+            cadastroCliente.Show();
         }
 
         private void sairToolStripMenuItem_Click(object sender, EventArgs e)
@@ -49,7 +61,7 @@ namespace Pizzaria
 
         private void toolStripLabel3_Click(object sender, EventArgs e)
         {
-            Close();
+            Application.Exit();
         }
 
         private void cobrancaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -65,9 +77,10 @@ namespace Pizzaria
 
         private void produtoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Produtos Prod = new Produtos();
-            Prod.Show();
-            this.Hide();
+            Produtos produtos = new Produtos();
+            produtos.FormHome = this;
+            this.Visible = false;
+            produtos.Show();
         }
 
         private void comprasToolStripMenuItem_Click(object sender, EventArgs e)
@@ -79,16 +92,12 @@ namespace Pizzaria
 
         private void cadastrarPromoçãoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CadastrarPromocao cadastrarPromocao = new CadastrarPromocao();
-            cadastrarPromocao.Show();
-            this.Hide();
+            
         }
 
         private void toolStripLabel2_Click(object sender, EventArgs e)
         {
-            Pedidos pedido = new Pedidos();
-            pedido.Show();
-            this.Hide();
+            abrirPedidos();
         }
 
         private void toolStripLabel4_Click(object sender, EventArgs e)
@@ -109,15 +118,15 @@ namespace Pizzaria
             }
             if (Acesso.PermissAcesso.ToString() == "1")
             {
-                aplicativosToolStripMenuItem.Enabled = false;
+  //              aplicativosToolStripMenuItem.Enabled = false;
             }
             if (Acesso.PermissAcesso.ToString() == "3")
             {
-                novoCadastroToolStripMenuItem.Visible = false;
-                aplicativosToolStripMenuItem.Enabled = false;
-                promoçõesAtivasToolStripMenuItem.Enabled = false;
-                fechamaentoToolStripMenuItem.Enabled = false;
-                administrativoToolStripMenuItem.Enabled = false;
+//                novoCadastroToolStripMenuItem.Visible = false;
+//                aplicativosToolStripMenuItem.Enabled = false;
+//                promoçõesAtivasToolStripMenuItem.Enabled = false;
+//                fechamaentoToolStripMenuItem.Enabled = false;
+  //              administrativoToolStripMenuItem.Enabled = false;
             }
        
         }
@@ -136,9 +145,10 @@ namespace Pizzaria
 
         public void empresaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Fornecedores For = new Fornecedores();
-            For.Show();
-            this.Hide();
+            Fornecedores fornecedores = new Fornecedores();
+            fornecedores.FormHome = this;
+            this.Visible = false;
+            fornecedores.Show();
         }
 
         public static void fecharJanelasFilhas() 
@@ -153,16 +163,38 @@ namespace Pizzaria
         private void insumoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Insumo insumo = new Insumo();
+            insumo.FormHome = this;
+            this.Visible = false;
             insumo.Show();
-          
         }
 
         private void aplicativosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Pedidos pedidos = new Pedidos();
-            pedidos.Show();
-            this.Hide();
+            abrirPedidos();
         }
+
+        private void promoçõesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CadastrarPromocao cadastrarPromocao = new CadastrarPromocao();
+            cadastrarPromocao.FormHome = this;
+            this.Visible = false;
+            cadastrarPromocao.Show();
+        }
+
+        private void pedidosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            abrirPedidos();
+        }
+
+        private void promoçõesToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            CadastrarPromocao cadastrarPromocao = new CadastrarPromocao();
+            cadastrarPromocao.FormHome = this;
+            this.Visible = false;
+            cadastrarPromocao.Show();
+        }
+
+
 
     }
 }

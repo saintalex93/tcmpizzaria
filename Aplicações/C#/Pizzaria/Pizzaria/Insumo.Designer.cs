@@ -64,7 +64,7 @@
             this.btn_sair.Name = "btn_sair";
             this.btn_sair.Size = new System.Drawing.Size(75, 23);
             this.btn_sair.TabIndex = 13;
-            this.btn_sair.Text = "Sair";
+            this.btn_sair.Text = "Voltar";
             this.btn_sair.UseVisualStyleBackColor = true;
             this.btn_sair.Click += new System.EventHandler(this.btn_sair_Click);
             // 
@@ -357,7 +357,7 @@
             this.Controls.Add(this.gpb_compras);
             this.Name = "Insumo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Produtos";
+            this.Text = "Insumos";
             this.Load += new System.EventHandler(this.Produtos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dtg_gravacao)).EndInit();
             this.gpb_compras.ResumeLayout(false);

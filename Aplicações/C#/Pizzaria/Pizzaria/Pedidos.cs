@@ -76,11 +76,12 @@ namespace Pizzaria
             txtTotal.Text = total.ToString();
         }
 
+        public Form FormHome { get; set; }
+
         private void button3_Click(object sender, EventArgs e)
         {
-            Home home = new Home();
-            home.Show();
-            Close();
+            this.FormHome.Show();
+            Dispose();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)

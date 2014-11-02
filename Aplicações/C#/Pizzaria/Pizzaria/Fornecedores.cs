@@ -25,6 +25,8 @@ namespace Pizzaria
 
         SqlConnection conn;
 
+        public Form FormHome { get; set; }
+
         //
         string
             cod_permissao = "",
@@ -1230,7 +1232,8 @@ namespace Pizzaria
 
         private void btnVoltar_Click(object sender, EventArgs e)
         {
-            Close();
+            this.FormHome.Show();
+            Dispose();
         }
 
         private void mtxtCNPJ_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
@@ -1297,8 +1300,6 @@ namespace Pizzaria
         private void Fornecedores_Load(object sender, EventArgs e)
         {
             rdCNPJ.Checked = true;
-
-            preencherGrid();
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)

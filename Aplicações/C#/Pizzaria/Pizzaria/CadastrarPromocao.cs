@@ -22,6 +22,8 @@ namespace Pizzaria
 
         string strBusca = "";
 
+        public Form FormHome { get; set; }
+
         public void preencherGrid(string busca, DataGridView tabela)
         {
 
@@ -684,6 +686,12 @@ namespace Pizzaria
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnVoltar_Click_1(object sender, EventArgs e)
+        {
+            this.FormHome.Show();
+            Dispose();
         }
     }
 }

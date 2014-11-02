@@ -399,7 +399,7 @@
             // 
             // btn_sair
             // 
-            this.btn_sair.Location = new System.Drawing.Point(12, 488);
+            this.btn_sair.Location = new System.Drawing.Point(679, 517);
             this.btn_sair.Name = "btn_sair";
             this.btn_sair.Size = new System.Drawing.Size(75, 23);
             this.btn_sair.TabIndex = 21;
@@ -411,7 +411,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(762, 523);
+            this.ClientSize = new System.Drawing.Size(762, 550);
             this.Controls.Add(this.btn_sair);
             this.Controls.Add(this.gpb_dadoscliente);
             this.Controls.Add(this.gpb_detalhamento);
