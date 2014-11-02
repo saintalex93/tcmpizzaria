@@ -355,7 +355,23 @@ go
 insert into Fornecedor
 (
 CNPJ_CPF,
-Razao_Social
+Razao_Social,
+Nome_Fantasia,
+Nome_Banco,
+Agencia,
+Conta_Corrente,
+Responsavel,
+Celular_Responsavel,
+Email_Responsavel,
+Telefone_Comercial,
+Endereco_Fornecedor,
+Numero_Residencia,
+CEP_Fornecedor,
+Estado_Fornecedor,
+Cidade_Fornecedor,
+Bairro_Fornecedor,
+Complemento,
+Cod_Produto /*ESSE VALOR É INTEIRO*/
 )
 values
 (22222222222, 'Caixa de Queijo Ltda'),
