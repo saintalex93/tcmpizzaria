@@ -32,23 +32,20 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label6 = new System.Windows.Forms.Label();
             this.gridBuscaProdutos = new System.Windows.Forms.DataGridView();
-            this.btnAdicionar = new System.Windows.Forms.Button();
+            this.btnAdicionarProduto = new System.Windows.Forms.Button();
             this.txtBuscaProdutoPorID = new System.Windows.Forms.TextBox();
             this.txtBuscaPalavraChave = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtSaldo = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnProcessarNovoPreco = new System.Windows.Forms.Button();
             this.txtNovoPreco = new System.Windows.Forms.TextBox();
             this.gridProdutosNaPromocao = new System.Windows.Forms.DataGridView();
             this.lblPreço = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.btnRemoverProduto = new System.Windows.Forms.Button();
-            this.rdAcessoCadastrados = new System.Windows.Forms.RadioButton();
-            this.rdVisivelNoSite = new System.Windows.Forms.RadioButton();
             this.btnVoltar = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dataPrazo = new System.Windows.Forms.DateTimePicker();
             this.btnCriarPromocoes = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
@@ -66,11 +63,12 @@
             this.label9 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.ckAcessoCadastrado = new System.Windows.Forms.CheckBox();
+            this.ckVisivelNoSite = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridBuscaProdutos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridProdutosNaPromocao)).BeginInit();
             this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridPromocoesEncontradas)).BeginInit();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -89,7 +87,7 @@
             // 
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.gridBuscaProdutos);
-            this.groupBox1.Controls.Add(this.btnAdicionar);
+            this.groupBox1.Controls.Add(this.btnAdicionarProduto);
             this.groupBox1.Controls.Add(this.txtBuscaProdutoPorID);
             this.groupBox1.Controls.Add(this.txtBuscaPalavraChave);
             this.groupBox1.Controls.Add(this.label3);
@@ -100,7 +98,6 @@
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Busca de Produtos";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // label6
             // 
@@ -113,6 +110,8 @@
             // 
             // gridBuscaProdutos
             // 
+            this.gridBuscaProdutos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
+            this.gridBuscaProdutos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             this.gridBuscaProdutos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridBuscaProdutos.Location = new System.Drawing.Point(11, 74);
             this.gridBuscaProdutos.Name = "gridBuscaProdutos";
@@ -120,15 +119,16 @@
             this.gridBuscaProdutos.Size = new System.Drawing.Size(282, 150);
             this.gridBuscaProdutos.TabIndex = 4;
             // 
-            // btnAdicionar
+            // btnAdicionarProduto
             // 
-            this.btnAdicionar.Location = new System.Drawing.Point(191, 230);
-            this.btnAdicionar.Name = "btnAdicionar";
-            this.btnAdicionar.Size = new System.Drawing.Size(102, 23);
-            this.btnAdicionar.TabIndex = 5;
-            this.btnAdicionar.Text = "Adicionar produto";
-            this.btnAdicionar.UseVisualStyleBackColor = true;
-            this.btnAdicionar.Click += new System.EventHandler(this.btnAdicionar_Click);
+            this.btnAdicionarProduto.Enabled = false;
+            this.btnAdicionarProduto.Location = new System.Drawing.Point(191, 230);
+            this.btnAdicionarProduto.Name = "btnAdicionarProduto";
+            this.btnAdicionarProduto.Size = new System.Drawing.Size(102, 23);
+            this.btnAdicionarProduto.TabIndex = 5;
+            this.btnAdicionarProduto.Text = "Adicionar produto";
+            this.btnAdicionarProduto.UseVisualStyleBackColor = true;
+            this.btnAdicionarProduto.Click += new System.EventHandler(this.btnAdicionar_Click);
             // 
             // txtBuscaProdutoPorID
             // 
@@ -136,6 +136,7 @@
             this.txtBuscaProdutoPorID.Name = "txtBuscaProdutoPorID";
             this.txtBuscaProdutoPorID.Size = new System.Drawing.Size(71, 20);
             this.txtBuscaProdutoPorID.TabIndex = 3;
+            this.txtBuscaProdutoPorID.TextChanged += new System.EventHandler(this.txtBuscaProdutoPorID_TextChanged);
             // 
             // txtBuscaPalavraChave
             // 
@@ -172,14 +173,15 @@
             this.txtSaldo.Size = new System.Drawing.Size(69, 20);
             this.txtSaldo.TabIndex = 12;
             // 
-            // button1
+            // btnProcessarNovoPreco
             // 
-            this.button1.Location = new System.Drawing.Point(14, 229);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(122, 23);
-            this.button1.TabIndex = 11;
-            this.button1.Text = "Processar novo preço";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnProcessarNovoPreco.Enabled = false;
+            this.btnProcessarNovoPreco.Location = new System.Drawing.Point(14, 229);
+            this.btnProcessarNovoPreco.Name = "btnProcessarNovoPreco";
+            this.btnProcessarNovoPreco.Size = new System.Drawing.Size(122, 23);
+            this.btnProcessarNovoPreco.TabIndex = 11;
+            this.btnProcessarNovoPreco.Text = "Processar novo preço";
+            this.btnProcessarNovoPreco.UseVisualStyleBackColor = true;
             // 
             // txtNovoPreco
             // 
@@ -191,8 +193,8 @@
             // 
             // gridProdutosNaPromocao
             // 
-            this.gridProdutosNaPromocao.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.gridProdutosNaPromocao.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.gridProdutosNaPromocao.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
+            this.gridProdutosNaPromocao.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             this.gridProdutosNaPromocao.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridProdutosNaPromocao.Location = new System.Drawing.Point(14, 34);
             this.gridProdutosNaPromocao.Name = "gridProdutosNaPromocao";
@@ -221,34 +223,14 @@
             // 
             // btnRemoverProduto
             // 
+            this.btnRemoverProduto.Enabled = false;
             this.btnRemoverProduto.Location = new System.Drawing.Point(189, 190);
             this.btnRemoverProduto.Name = "btnRemoverProduto";
             this.btnRemoverProduto.Size = new System.Drawing.Size(98, 23);
             this.btnRemoverProduto.TabIndex = 6;
             this.btnRemoverProduto.Text = "Remover produto";
             this.btnRemoverProduto.UseVisualStyleBackColor = true;
-            // 
-            // rdAcessoCadastrados
-            // 
-            this.rdAcessoCadastrados.AutoSize = true;
-            this.rdAcessoCadastrados.Location = new System.Drawing.Point(10, 19);
-            this.rdAcessoCadastrados.Name = "rdAcessoCadastrados";
-            this.rdAcessoCadastrados.Size = new System.Drawing.Size(170, 17);
-            this.rdAcessoCadastrados.TabIndex = 6;
-            this.rdAcessoCadastrados.TabStop = true;
-            this.rdAcessoCadastrados.Text = "Somente usuários cadastrados";
-            this.rdAcessoCadastrados.UseVisualStyleBackColor = true;
-            // 
-            // rdVisivelNoSite
-            // 
-            this.rdVisivelNoSite.AutoSize = true;
-            this.rdVisivelNoSite.Location = new System.Drawing.Point(10, 42);
-            this.rdVisivelNoSite.Name = "rdVisivelNoSite";
-            this.rdVisivelNoSite.Size = new System.Drawing.Size(91, 17);
-            this.rdVisivelNoSite.TabIndex = 7;
-            this.rdVisivelNoSite.TabStop = true;
-            this.rdVisivelNoSite.Text = "Visível no site";
-            this.rdVisivelNoSite.UseVisualStyleBackColor = true;
+            this.btnRemoverProduto.Click += new System.EventHandler(this.btnRemoverProduto_Click);
             // 
             // btnVoltar
             // 
@@ -261,7 +243,8 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.groupBox3);
+            this.groupBox2.Controls.Add(this.ckVisivelNoSite);
+            this.groupBox2.Controls.Add(this.ckAcessoCadastrado);
             this.groupBox2.Controls.Add(this.dataPrazo);
             this.groupBox2.Controls.Add(this.btnCriarPromocoes);
             this.groupBox2.Controls.Add(this.label11);
@@ -276,22 +259,11 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Dados da Promoção";
             // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.rdAcessoCadastrados);
-            this.groupBox3.Controls.Add(this.rdVisivelNoSite);
-            this.groupBox3.Location = new System.Drawing.Point(414, 19);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(185, 65);
-            this.groupBox3.TabIndex = 8;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Opções para o Site";
-            // 
             // dataPrazo
             // 
             this.dataPrazo.Checked = false;
             this.dataPrazo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dataPrazo.Location = new System.Drawing.Point(216, 19);
+            this.dataPrazo.Location = new System.Drawing.Point(241, 25);
             this.dataPrazo.Name = "dataPrazo";
             this.dataPrazo.Size = new System.Drawing.Size(100, 20);
             this.dataPrazo.TabIndex = 6;
@@ -299,7 +271,7 @@
             // 
             // btnCriarPromocoes
             // 
-            this.btnCriarPromocoes.Location = new System.Drawing.Point(414, 90);
+            this.btnCriarPromocoes.Location = new System.Drawing.Point(465, 75);
             this.btnCriarPromocoes.Name = "btnCriarPromocoes";
             this.btnCriarPromocoes.Size = new System.Drawing.Size(112, 36);
             this.btnCriarPromocoes.TabIndex = 4;
@@ -310,7 +282,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(162, 22);
+            this.label11.Location = new System.Drawing.Point(187, 28);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(48, 13);
             this.label11.TabIndex = 5;
@@ -318,7 +290,7 @@
             // 
             // txtDescricaoPromocao
             // 
-            this.txtDescricaoPromocao.Location = new System.Drawing.Point(10, 58);
+            this.txtDescricaoPromocao.Location = new System.Drawing.Point(35, 64);
             this.txtDescricaoPromocao.Multiline = true;
             this.txtDescricaoPromocao.Name = "txtDescricaoPromocao";
             this.txtDescricaoPromocao.Size = new System.Drawing.Size(379, 47);
@@ -326,7 +298,7 @@
             // 
             // txtTituloPromocao
             // 
-            this.txtTituloPromocao.Location = new System.Drawing.Point(49, 19);
+            this.txtTituloPromocao.Location = new System.Drawing.Point(74, 25);
             this.txtTituloPromocao.Name = "txtTituloPromocao";
             this.txtTituloPromocao.Size = new System.Drawing.Size(100, 20);
             this.txtTituloPromocao.TabIndex = 2;
@@ -335,7 +307,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(10, 42);
+            this.label8.Location = new System.Drawing.Point(35, 48);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(55, 13);
             this.label8.TabIndex = 1;
@@ -344,7 +316,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(8, 22);
+            this.label7.Location = new System.Drawing.Point(33, 28);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(35, 13);
             this.label7.TabIndex = 0;
@@ -383,8 +355,8 @@
             // 
             this.gridPromocoesEncontradas.AllowUserToAddRows = false;
             this.gridPromocoesEncontradas.AllowUserToDeleteRows = false;
-            this.gridPromocoesEncontradas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.gridPromocoesEncontradas.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllHeaders;
+            this.gridPromocoesEncontradas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
+            this.gridPromocoesEncontradas.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             this.gridPromocoesEncontradas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridPromocoesEncontradas.Location = new System.Drawing.Point(6, 39);
             this.gridPromocoesEncontradas.Name = "gridPromocoesEncontradas";
@@ -392,6 +364,7 @@
             this.gridPromocoesEncontradas.RowTemplate.Height = 50;
             this.gridPromocoesEncontradas.Size = new System.Drawing.Size(586, 114);
             this.gridPromocoesEncontradas.TabIndex = 4;
+            this.gridPromocoesEncontradas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridPromocoesEncontradas_CellContentClick);
             // 
             // txtBuscaPromocaoPorID
             // 
@@ -433,7 +406,7 @@
             this.groupBox4.Controls.Add(this.txtSaldo);
             this.groupBox4.Controls.Add(this.label5);
             this.groupBox4.Controls.Add(this.btnRemoverProduto);
-            this.groupBox4.Controls.Add(this.button1);
+            this.groupBox4.Controls.Add(this.btnProcessarNovoPreco);
             this.groupBox4.Controls.Add(this.lblPreço);
             this.groupBox4.Controls.Add(this.label2);
             this.groupBox4.Controls.Add(this.txtNovoPreco);
@@ -461,6 +434,28 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Buscar Promoções";
             // 
+            // ckAcessoCadastrado
+            // 
+            this.ckAcessoCadastrado.AutoSize = true;
+            this.ckAcessoCadastrado.Location = new System.Drawing.Point(474, 47);
+            this.ckAcessoCadastrado.Name = "ckAcessoCadastrado";
+            this.ckAcessoCadastrado.Size = new System.Drawing.Size(103, 17);
+            this.ckAcessoCadastrado.TabIndex = 8;
+            this.ckAcessoCadastrado.Text = "Sobe para o site";
+            this.ckAcessoCadastrado.UseVisualStyleBackColor = true;
+            this.ckAcessoCadastrado.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // ckVisivelNoSite
+            // 
+            this.ckVisivelNoSite.AutoSize = true;
+            this.ckVisivelNoSite.Location = new System.Drawing.Point(354, 26);
+            this.ckVisivelNoSite.Name = "ckVisivelNoSite";
+            this.ckVisivelNoSite.Size = new System.Drawing.Size(223, 17);
+            this.ckVisivelNoSite.TabIndex = 9;
+            this.ckVisivelNoSite.Text = "Visível apenas para usuários cadastrados";
+            this.ckVisivelNoSite.UseVisualStyleBackColor = true;
+            this.ckVisivelNoSite.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
+            // 
             // CadastrarPromocao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -481,8 +476,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridProdutosNaPromocao)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridPromocoesEncontradas)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
@@ -503,10 +496,8 @@
         private System.Windows.Forms.DataGridView gridBuscaProdutos;
         private System.Windows.Forms.DataGridView gridProdutosNaPromocao;
         private System.Windows.Forms.Button btnRemoverProduto;
-        private System.Windows.Forms.Button btnAdicionar;
+        private System.Windows.Forms.Button btnAdicionarProduto;
         private System.Windows.Forms.Label lblPreço;
-        private System.Windows.Forms.RadioButton rdAcessoCadastrados;
-        private System.Windows.Forms.RadioButton rdVisivelNoSite;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtNovoPreco;
         private System.Windows.Forms.Button btnVoltar;
@@ -524,14 +515,15 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.DateTimePicker dataPrazo;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button btnRemoverPromocao;
         private System.Windows.Forms.Button btnAlterar;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnProcessarNovoPreco;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtSaldo;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.CheckBox ckVisivelNoSite;
+        private System.Windows.Forms.CheckBox ckAcessoCadastrado;
 
     }
 }
