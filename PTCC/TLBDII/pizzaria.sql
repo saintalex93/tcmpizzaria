@@ -126,7 +126,6 @@ Cod_Funcionario INT FOREIGN KEY REFERENCES Funcionario(Cod_Funcionario),
 Cod_Permissao INT FOREIGN KEY REFERENCES Permissao(Cod_Permissao)
 )
 
-
 go
 
 create table Produto
@@ -172,7 +171,6 @@ Estado_Fornecedor VarChar (2),
 Cidade_Fornecedor VarChar (20),
 Bairro_Fornecedor VarChar (30),
 Complemento VarChar (40),
-
 )
 go
 
@@ -346,19 +344,46 @@ go
 
 insert into Pedido(Cod_Cliente,Cod_Funcionario,Data,Hora,Valor)
 values
-(1,1,'10/05/2014','20:15',31),(2,2,'22/07/2014','19:14',25.25),(3,3,'12/08/2014','22:57',38.89),(3,1,'04/10/2014','21:40',78.98)
+(1,1,'10/05/2014','20:15',31.00),
+(2,2,'22/07/2014','19:14',25.25),
+(3,3,'12/08/2014','22:57',38.89),
+(3,1,'04/10/2014','21:40',78.98),
+(5,2,'02/07/2014','21:15',42.30),
+(5,3,'05/02/2014','20:22',67.90),
+(5,2,'15/06/2014','22:57',84.20),
+(4,1,'29/04/2014','18:49',76.00),
+(2,3,'30/02/2014','19:16',58.20)
 go
+
 
 insert into Fornecedor
 (
 CNPJ_CPF,
-Razao_Social
+Razao_Social,
+Nome_Fantasia,
+Nome_Banco,
+Agencia,
+Conta_Corrente,
+Responsavel,
+Celular_Responsavel,
+Email_Responsavel,
+Telefone_Comercial,
+Endereco_Fornecedor,
+Numero_Residencia,
+CEP_Fornecedor,
+Estado_Fornecedor,
+Cidade_Fornecedor,
+Bairro_Fornecedor,
+Complemento
 )
 values
-(22222222222, 'Caixa de Queijo Ltda'),
-(33333333333, 'Embalagens São Paulo EPP'),
-(11111111111, 'Na Lata - Enlatados em geral Ltda'),
-(44444444444, 'Viva Verde Hortaliças EPP')
+('222-222-222-22', 'Caixa de Queijo Ltda', 'Queijo in Box', 'Itaú', '0000', '1111-0', 'John Cheese', '91111-1111', 'jc_queijos@jc.com', '(11)2222-3333', 'Rua dos Tupinambás', '456', '01234-000', 'SP', 'São Paulo', 'Jardim Mundial', '6º Andar'),
+
+('333-333-333-33', 'Embalagens São Paulo EPP', 'SP Embalagens', 'Banco do Brasil', '1234', '4321-5', 'Josué Alvarenga', '95555-6666', 'embalagens@sp.com.br', '(11)1111-9999', 'Avenida Cascatinhas', '881', '09876-123', 'SP', 'Suzano', 'Vila Emerson', 'Sobreloja'),
+
+('111-111-111-11', 'Na Lata - Enlatados em geral Ltda', 'Na Lata!', 'Bradesco', '0055', '055678-2', 'Clóvis Ribeiro', '98888-4444', 'enlatados@clovis.com', '(13)3456-7890', 'Avenida da Orla', '200', '02345-987', 'SP', 'Santos', 'Paquetá', 'Zona Portuária'),
+
+('444-444-444-44', 'Hortaliças Hortolândia EPP', 'Viva Verde Hortaliças', 'Santander', '9966', '013568-7', 'Romualdo Nunes', '97777-5501', 'rn@vivaverde.com.br', '(11)2233-5678', 'Rua do Chá', '56', '03456-321', 'SP', 'São Paulo', 'Ceasa', 'Box 100')
 go
 
 insert into Promocao
@@ -395,10 +420,6 @@ values
 (2, 1),
 (3, 5)
 go
-
-
-
-
 
 insert into ProdutoPromocao
 (
