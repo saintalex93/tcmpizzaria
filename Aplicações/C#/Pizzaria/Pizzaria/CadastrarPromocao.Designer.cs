@@ -137,6 +137,8 @@
             this.txtBuscaProdutoPorID.Size = new System.Drawing.Size(71, 20);
             this.txtBuscaProdutoPorID.TabIndex = 3;
             this.txtBuscaProdutoPorID.TextChanged += new System.EventHandler(this.txtBuscaProdutoPorID_TextChanged);
+            this.txtBuscaProdutoPorID.Enter += new System.EventHandler(this.txtBuscaProdutoPorID_Enter);
+            this.txtBuscaProdutoPorID.Leave += new System.EventHandler(this.txtBuscaProdutoPorID_Leave);
             // 
             // txtBuscaPalavraChave
             // 
@@ -145,7 +147,9 @@
             this.txtBuscaPalavraChave.Size = new System.Drawing.Size(100, 20);
             this.txtBuscaPalavraChave.TabIndex = 2;
             this.txtBuscaPalavraChave.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.txtBuscaPalavraChave.Enter += new System.EventHandler(this.txtBuscaPalavraChave_Enter_1);
             this.txtBuscaPalavraChave.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
+            this.txtBuscaPalavraChave.Leave += new System.EventHandler(this.txtBuscaPalavraChave_Leave_1);
             // 
             // label3
             // 
@@ -172,6 +176,8 @@
             this.txtSaldo.Name = "txtSaldo";
             this.txtSaldo.Size = new System.Drawing.Size(69, 20);
             this.txtSaldo.TabIndex = 12;
+            this.txtSaldo.Enter += new System.EventHandler(this.txtSaldo_Enter);
+            this.txtSaldo.Leave += new System.EventHandler(this.txtSaldo_Leave);
             // 
             // btnProcessarNovoPreco
             // 
@@ -190,6 +196,8 @@
             this.txtNovoPreco.Size = new System.Drawing.Size(69, 20);
             this.txtNovoPreco.TabIndex = 9;
             this.txtNovoPreco.TextChanged += new System.EventHandler(this.txtNovoPreco_TextChanged);
+            this.txtNovoPreco.Enter += new System.EventHandler(this.txtNovoPreco_Enter_1);
+            this.txtNovoPreco.Leave += new System.EventHandler(this.txtNovoPreco_Leave_1);
             // 
             // gridProdutosNaPromocao
             // 
@@ -318,6 +326,8 @@
             this.txtDescricaoPromocao.Name = "txtDescricaoPromocao";
             this.txtDescricaoPromocao.Size = new System.Drawing.Size(379, 47);
             this.txtDescricaoPromocao.TabIndex = 3;
+            this.txtDescricaoPromocao.Enter += new System.EventHandler(this.txtDescricaoPromocao_Enter);
+            this.txtDescricaoPromocao.Leave += new System.EventHandler(this.txtDescricaoPromocao_Leave);
             // 
             // txtTituloPromocao
             // 
@@ -326,6 +336,8 @@
             this.txtTituloPromocao.Size = new System.Drawing.Size(100, 20);
             this.txtTituloPromocao.TabIndex = 2;
             this.txtTituloPromocao.TextChanged += new System.EventHandler(this.txtTituloPromocao_TextChanged);
+            this.txtTituloPromocao.Enter += new System.EventHandler(this.txtTituloPromocao_Enter);
+            this.txtTituloPromocao.Leave += new System.EventHandler(this.txtTituloPromocao_Leave);
             // 
             // label8
             // 
@@ -396,6 +408,8 @@
             this.txtBuscaPromocaoPorID.Size = new System.Drawing.Size(39, 20);
             this.txtBuscaPromocaoPorID.TabIndex = 3;
             this.txtBuscaPromocaoPorID.TextChanged += new System.EventHandler(this.txtBuscaPorID_TextChanged);
+            this.txtBuscaPromocaoPorID.Enter += new System.EventHandler(this.txtBuscaPromocaoPorID_Enter);
+            this.txtBuscaPromocaoPorID.Leave += new System.EventHandler(this.txtBuscaPromocaoPorID_Leave);
             // 
             // label10
             // 
@@ -413,6 +427,8 @@
             this.txtBuscaPorTitulo.Size = new System.Drawing.Size(100, 20);
             this.txtBuscaPorTitulo.TabIndex = 1;
             this.txtBuscaPorTitulo.TextChanged += new System.EventHandler(this.txtBuscaPorTitulo_TextChanged);
+            this.txtBuscaPorTitulo.Enter += new System.EventHandler(this.txtBuscaPorTitulo_Enter);
+            this.txtBuscaPorTitulo.Leave += new System.EventHandler(this.txtBuscaPorTitulo_Leave);
             // 
             // label9
             // 

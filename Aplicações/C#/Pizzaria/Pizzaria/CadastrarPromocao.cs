@@ -693,5 +693,85 @@ namespace Pizzaria
             this.FormHome.Show();
             Dispose();
         }
+
+        private void txtTituloPromocao_Enter(object sender, EventArgs e)
+        {
+            txtTituloPromocao.BackColor = Color.Aquamarine;
+        }
+
+        private void txtTituloPromocao_Leave(object sender, EventArgs e)
+        {
+            txtTituloPromocao.BackColor = Color.White;
+        }
+
+        private void txtDescricaoPromocao_Enter(object sender, EventArgs e)
+        {
+            txtDescricaoPromocao.BackColor = Color.Aquamarine;
+        }
+
+        private void txtDescricaoPromocao_Leave(object sender, EventArgs e)
+        {
+            txtDescricaoPromocao.BackColor = Color.White;
+        }
+
+        private void txtBuscaPorTitulo_Enter(object sender, EventArgs e)
+        {
+            txtBuscaPorTitulo.BackColor = Color.Aquamarine;
+        }
+
+        private void txtBuscaPorTitulo_Leave(object sender, EventArgs e)
+        {
+            txtBuscaPorTitulo.BackColor = Color.White;
+        }
+
+        private void txtBuscaPromocaoPorID_Enter(object sender, EventArgs e)
+        {
+            txtBuscaPromocaoPorID.BackColor = Color.Aquamarine;
+        }
+
+        private void txtBuscaPromocaoPorID_Leave(object sender, EventArgs e)
+        {
+            txtBuscaPromocaoPorID.BackColor = Color.White;
+        }
+
+        private void txtBuscaPalavraChave_Enter_1(object sender, EventArgs e)
+        {
+            txtBuscaPalavraChave.BackColor = Color.Aquamarine;
+        }
+
+        private void txtBuscaPalavraChave_Leave_1(object sender, EventArgs e)
+        {
+            txtBuscaPalavraChave.BackColor = Color.White;
+        }
+
+        private void txtBuscaProdutoPorID_Enter(object sender, EventArgs e)
+        {
+            txtBuscaProdutoPorID.BackColor = Color.Aquamarine;
+        }
+
+        private void txtBuscaProdutoPorID_Leave(object sender, EventArgs e)
+        {
+            txtBuscaProdutoPorID.BackColor = Color.White;
+        }
+
+        private void txtSaldo_Enter(object sender, EventArgs e)
+        {
+            txtSaldo.BackColor = Color.Aquamarine;
+        }
+
+        private void txtSaldo_Leave(object sender, EventArgs e)
+        {
+            txtSaldo.BackColor = Color.White;
+        }
+
+        private void txtNovoPreco_Enter_1(object sender, EventArgs e)
+        {
+            txtNovoPreco.BackColor = Color.Aquamarine;
+        }
+
+        private void txtNovoPreco_Leave_1(object sender, EventArgs e)
+        {
+            txtNovoPreco.BackColor = Color.White;
+        }
     }
 }

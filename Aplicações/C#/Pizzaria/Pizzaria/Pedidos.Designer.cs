@@ -122,6 +122,7 @@
             this.txtAjuste.Size = new System.Drawing.Size(40, 20);
             this.txtAjuste.TabIndex = 21;
             this.txtAjuste.TextChanged += new System.EventHandler(this.txtAjuste_TextChanged);
+            this.txtAjuste.Enter += new System.EventHandler(this.txtAjuste_Enter_1);
             this.txtAjuste.Leave += new System.EventHandler(this.txtAjuste_Leave_1);
             // 
             // txtTotal

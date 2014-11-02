@@ -419,5 +419,10 @@ namespace Pizzaria
             if(txtSaldo.Text != "")
                 btnGravarAjuste.Enabled = true;
         }
+
+        private void txtAjuste_Enter_1(object sender, EventArgs e)
+        {
+            txtAjuste.BackColor = Color.Aquamarine;
+        }
     }
 }
