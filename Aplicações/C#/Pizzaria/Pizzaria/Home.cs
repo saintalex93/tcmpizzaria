@@ -102,7 +102,7 @@ namespace Pizzaria
 
         private void toolStripLabel4_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("calc"); 
+            
         }
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -183,7 +183,7 @@ namespace Pizzaria
 
         private void pedidosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            abrirPedidos();
+            
         }
 
         private void promoçõesToolStripMenuItem_Click_1(object sender, EventArgs e)
@@ -200,6 +200,21 @@ namespace Pizzaria
             caixa.FormHome = this;
             this.Visible = false;
             caixa.Show();
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            abrirPedidos();
+        }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("calc"); 
         }
 
 
