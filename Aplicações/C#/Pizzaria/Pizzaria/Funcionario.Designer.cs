@@ -169,6 +169,7 @@
             this.mtxt_cpf.Name = "mtxt_cpf";
             this.mtxt_cpf.Size = new System.Drawing.Size(100, 20);
             this.mtxt_cpf.TabIndex = 11;
+            this.mtxt_cpf.TextChanged += new System.EventHandler(this.mtxt_cpf_TextChanged);
             this.mtxt_cpf.Enter += new System.EventHandler(this.mtxt_cpf_Enter);
             this.mtxt_cpf.Leave += new System.EventHandler(this.mtxt_cpf_Leave);
             // 
@@ -558,7 +559,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(670, 702);
+            this.ClientSize = new System.Drawing.Size(670, 694);
             this.ControlBox = false;
             this.Controls.Add(this.btn_Cancelar);
             this.Controls.Add(this.btn_Buscar);

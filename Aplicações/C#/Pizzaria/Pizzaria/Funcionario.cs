@@ -26,7 +26,8 @@ namespace Pizzaria
         {
             btn_alterar.Enabled = false;
             btn_excluir.Enabled = false;
-
+            valida_cargo = false;
+            string conexao = "Data Source=CASA-PC\\BPASERVER10 ;Initial Catalog=Pizzaria; Persist Security Info = True; User ID=sa; Password=AutoMateBPA10";
         }
 
         SqlConnection conn;
@@ -60,7 +61,7 @@ namespace Pizzaria
         
 
         //Validar se e update ou insert
-        Boolean valida = false;
+        Boolean valida = false, valida_cargo = false;
         private void label15_Click(object sender, EventArgs e)
         {
 
@@ -101,7 +102,7 @@ namespace Pizzaria
               }*/
         private void btn_salvar_Click_1(object sender, EventArgs e)
         {
-            conexao = Rede.DataContainer.conexaoGlobal;
+            //conexao = Rede.DataContainer.conexaoGlobal;
 
 
             //Valida se todos os campos estao preenchidos corretamente    
@@ -126,6 +127,7 @@ namespace Pizzaria
                             mtxt_cpf.Enabled = true;
                             btn_salvar.Text = "Gravar";
                             btn_Buscar.Enabled = true;
+                            dtgv_gravacao.Enabled = true;
                       /*  }
                         else
                         {
@@ -168,6 +170,7 @@ namespace Pizzaria
         {
             gp_dadosfunc.Enabled = true;
             groupBox3.Enabled = true;
+            dtgv_gravacao.Enabled = false;
             valida = true;
             btn_excluir.Enabled = true;
             mtxt_cpf.Enabled = false;
@@ -175,6 +178,7 @@ namespace Pizzaria
         }
         private void btn_Cancelar_Click(object sender, EventArgs e)
         {
+            dtgv_gravacao.Enabled = true;
             gp_dadosfunc.Enabled = true;
             groupBox3.Enabled = true;
             valida = false;
@@ -199,6 +203,14 @@ namespace Pizzaria
             btn_salvar.Text = "Gravar";
             btn_Buscar.Enabled = true;
 
+            dtgv_gravacao.Enabled = true;
+            gp_dadosfunc.Enabled = true;
+            groupBox3.Enabled = true;
+          
+        
+         
+            Clear_Dados();
+
 
         }
         private void dtgv_gravacao_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -221,7 +233,7 @@ namespace Pizzaria
 
             gp_dadosfunc.Enabled = false;
             groupBox3.Enabled = false;
-
+            dtgv_gravacao.Enabled = false;
 
             //btn_excluir.Enabled = true;
             btn_alterar.Enabled = true;
@@ -234,6 +246,13 @@ namespace Pizzaria
         }
         private void btn_Clear_Click(object sender, EventArgs e)
         {
+            dtgv_gravacao.Enabled = true;
+            gp_dadosfunc.Enabled = true;
+            groupBox3.Enabled = true;
+            valida = false;
+            btn_excluir.Enabled = false;
+            btn_Buscar.Enabled = true;
+            btn_salvar.Text = "Gravar";
             Clear_Dados();
         }
         private void btn_Buscar_Click(object sender, EventArgs e)
@@ -282,6 +301,7 @@ namespace Pizzaria
 
                     //btn_excluir.Enabled = true;
                     btn_alterar.Enabled = true;
+                    
 
                 }
 
@@ -490,7 +510,7 @@ namespace Pizzaria
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Estado Incorreto");
+                                    MessageBox.Show("Cargo Incorreto");
                                     return false;
                                 }
 
@@ -723,7 +743,7 @@ namespace Pizzaria
                 sqlComm = new SqlCommand(stringUpd, conn);
                 sqlComm.ExecuteNonQuery();
 
-                stringUpd = "update Funcionario set cod_Permissao = '" + cod_permissao + "',Usuario_Funcionario='" + usuario + "' where cod_Funcionario ='" + cod_cliente + "'";
+                stringUpd = "update Funcionario set cod_Permissao = '" + cod_permissao + "' where CPF_FUncionario ='" + cpf+ "'";
                 sqlComm = new SqlCommand(stringUpd, conn);
                 sqlComm.ExecuteNonQuery();
 
@@ -796,11 +816,17 @@ namespace Pizzaria
             {
 
                 SqlCommand sqlComm = new SqlCommand(strExclui, conn);
+                sqlComm.ExecuteNonQuery();
 
+                strExclui = "update Pedido set cod_Funcionario = null where cod_Funcionario = '" + cpf + "'";
+                sqlComm = new SqlCommand(strExclui, conn);
+                sqlComm.ExecuteNonQuery();
+
+                strExclui = "update PedidoFornecedor set cod_Funcionario = null where cod_Funcionario = '" + cpf + "'";
+                sqlComm = new SqlCommand(strExclui, conn);
                 sqlComm.ExecuteNonQuery();
 
                 strExclui = "delete Funcionario where cod_Funcionario = '" + cpf + "'";
-
                 sqlComm = new SqlCommand(strExclui, conn);
 
                 sqlComm.ExecuteNonQuery();
@@ -1027,6 +1053,17 @@ namespace Pizzaria
         private void txt_complemento_Enter(object sender, EventArgs e)
         {
             txt_complemento.BackColor = Color.Aquamarine;
+        }
+
+        private void mtxt_cpf_TextChanged(object sender, EventArgs e)
+        {
+            if (valida_cargo == false)
+            {
+                valida_cargo = true;
+
+                preenchecargo();
+            }
+            
         }
 
 
