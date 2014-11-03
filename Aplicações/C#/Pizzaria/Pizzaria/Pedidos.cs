@@ -188,6 +188,22 @@ namespace Pizzaria
 
             preencherGrid("select Cod_Pedido, Data, Hora from pedido where Cod_Cliente like ('%" + id + "%')", gridPedidosClientes);
 
+            for (int i = 0; i < gridPedidosClientes.RowCount - 1; i++)
+            {
+                string data = "";
+
+                if(gridPedidosClientes.Rows[i].Cells[1].Value != null)
+                    data = (string)gridPedidosClientes.Rows[i].Cells[1].Value;
+
+
+                if(data.Length != 0)
+                    for (int j = 0; j < data.Length; j++)
+                        if (j == 4 || j == 7)
+                            data = data.Insert(j, "/");
+
+                    gridPedidosClientes.Rows[i].Cells[1].Value = data;
+            }
+
 //            for (int i = 0; i < gridPedidosClientes.Columns.Count; i++)
   //              gridPedidosClientes.Columns[i].Width = 70;
 
