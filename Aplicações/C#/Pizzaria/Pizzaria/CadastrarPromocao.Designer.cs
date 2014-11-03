@@ -118,7 +118,7 @@
             this.gridBuscaProdutos.Name = "gridBuscaProdutos";
             this.gridBuscaProdutos.ReadOnly = true;
             this.gridBuscaProdutos.Size = new System.Drawing.Size(282, 150);
-            this.gridBuscaProdutos.TabIndex = 4;
+            this.gridBuscaProdutos.TabIndex = 23;
             // 
             // btnAdicionarProduto
             // 
@@ -209,7 +209,7 @@
             this.gridProdutosNaPromocao.Name = "gridProdutosNaPromocao";
             this.gridProdutosNaPromocao.ReadOnly = true;
             this.gridProdutosNaPromocao.Size = new System.Drawing.Size(273, 150);
-            this.gridProdutosNaPromocao.TabIndex = 7;
+            this.gridProdutosNaPromocao.TabIndex = 24;
             // 
             // lblPreço
             // 
@@ -265,7 +265,7 @@
             this.groupBox2.Location = new System.Drawing.Point(12, 12);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(607, 134);
-            this.groupBox2.TabIndex = 12;
+            this.groupBox2.TabIndex = 20;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Dados da Promoção";
             // 
@@ -399,7 +399,7 @@
             this.gridPromocoesEncontradas.ReadOnly = true;
             this.gridPromocoesEncontradas.RowTemplate.Height = 50;
             this.gridPromocoesEncontradas.Size = new System.Drawing.Size(586, 114);
-            this.gridPromocoesEncontradas.TabIndex = 4;
+            this.gridPromocoesEncontradas.TabIndex = 22;
             this.gridPromocoesEncontradas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridPromocoesEncontradas_CellContentClick);
             // 
             // txtBuscaPromocaoPorID
@@ -484,6 +484,7 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnVoltar);
             this.Controls.Add(this.groupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CadastrarPromocao";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

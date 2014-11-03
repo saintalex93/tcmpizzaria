@@ -416,6 +416,7 @@
             this.Controls.Add(this.btn_sair);
             this.Controls.Add(this.gpb_dadoscliente);
             this.Controls.Add(this.gpb_detalhamento);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Pedidos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

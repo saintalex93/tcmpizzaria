@@ -86,7 +86,7 @@
             this.groupBox1.Location = new System.Drawing.Point(12, 32);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(654, 188);
-            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabIndex = 22;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Dados do Cliente";
             // 
@@ -211,7 +211,7 @@
             this.groupBox2.Location = new System.Drawing.Point(12, 239);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(654, 252);
-            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabIndex = 23;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Dados de Localidade";
             // 
@@ -366,7 +366,7 @@
             this.dtgw_dados.Location = new System.Drawing.Point(12, 520);
             this.dtgw_dados.Name = "dtgw_dados";
             this.dtgw_dados.Size = new System.Drawing.Size(654, 150);
-            this.dtgw_dados.TabIndex = 2;
+            this.dtgw_dados.TabIndex = 24;
             this.dtgw_dados.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgw_dados_CellContentClick);
             // 
             // btn_gravar
@@ -444,6 +444,7 @@
             this.Controls.Add(this.dtgw_dados);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CadastroCliente";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

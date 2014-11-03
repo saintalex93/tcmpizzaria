@@ -123,6 +123,7 @@
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.pnl_login);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Login";
             this.Load += new System.EventHandler(this.Login_Load_1);
             this.Shown += new System.EventHandler(this.Login_Shown_1);

@@ -58,7 +58,7 @@
             this.gbp_produtos.Location = new System.Drawing.Point(12, 36);
             this.gbp_produtos.Name = "gbp_produtos";
             this.gbp_produtos.Size = new System.Drawing.Size(663, 116);
-            this.gbp_produtos.TabIndex = 0;
+            this.gbp_produtos.TabIndex = 10;
             this.gbp_produtos.TabStop = false;
             this.gbp_produtos.Text = "Produtos";
             // 
@@ -68,7 +68,7 @@
             this.chk_site.Location = new System.Drawing.Point(477, 68);
             this.chk_site.Name = "chk_site";
             this.chk_site.Size = new System.Drawing.Size(43, 17);
-            this.chk_site.TabIndex = 9;
+            this.chk_site.TabIndex = 3;
             this.chk_site.Text = "Sim";
             this.chk_site.UseVisualStyleBackColor = true;
             // 
@@ -78,7 +78,7 @@
             this.txt_vlrunitario.Mask = "$ 0000,00";
             this.txt_vlrunitario.Name = "txt_vlrunitario";
             this.txt_vlrunitario.Size = new System.Drawing.Size(100, 20);
-            this.txt_vlrunitario.TabIndex = 6;
+            this.txt_vlrunitario.TabIndex = 2;
             this.txt_vlrunitario.Enter += new System.EventHandler(this.txt_vlrunitario_Enter);
             this.txt_vlrunitario.Leave += new System.EventHandler(this.txt_vlrunitario_Leave);
             // 
@@ -87,7 +87,7 @@
             this.txt_nome.Location = new System.Drawing.Point(140, 28);
             this.txt_nome.Name = "txt_nome";
             this.txt_nome.Size = new System.Drawing.Size(100, 20);
-            this.txt_nome.TabIndex = 5;
+            this.txt_nome.TabIndex = 1;
             this.txt_nome.Enter += new System.EventHandler(this.txt_nome_Enter);
             this.txt_nome.Leave += new System.EventHandler(this.txt_nome_Leave);
             // 
@@ -123,7 +123,7 @@
             this.btn_inserir.Location = new System.Drawing.Point(307, 185);
             this.btn_inserir.Name = "btn_inserir";
             this.btn_inserir.Size = new System.Drawing.Size(75, 23);
-            this.btn_inserir.TabIndex = 1;
+            this.btn_inserir.TabIndex = 4;
             this.btn_inserir.Text = "Inserir";
             this.btn_inserir.UseVisualStyleBackColor = true;
             this.btn_inserir.Click += new System.EventHandler(this.btn_inserir_Click);
@@ -135,7 +135,7 @@
             this.dtg_produtos.Name = "dtg_produtos";
             this.dtg_produtos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dtg_produtos.Size = new System.Drawing.Size(663, 150);
-            this.dtg_produtos.TabIndex = 2;
+            this.dtg_produtos.TabIndex = 11;
             this.dtg_produtos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtg_produtos_CellDoubleClick);
             // 
             // btn_alterar
@@ -143,7 +143,7 @@
             this.btn_alterar.Location = new System.Drawing.Point(12, 430);
             this.btn_alterar.Name = "btn_alterar";
             this.btn_alterar.Size = new System.Drawing.Size(75, 23);
-            this.btn_alterar.TabIndex = 3;
+            this.btn_alterar.TabIndex = 5;
             this.btn_alterar.Text = "Alterar";
             this.btn_alterar.UseVisualStyleBackColor = true;
             this.btn_alterar.Click += new System.EventHandler(this.btn_altera_Click);
@@ -153,7 +153,7 @@
             this.btn_atualizar.Location = new System.Drawing.Point(162, 430);
             this.btn_atualizar.Name = "btn_atualizar";
             this.btn_atualizar.Size = new System.Drawing.Size(75, 23);
-            this.btn_atualizar.TabIndex = 4;
+            this.btn_atualizar.TabIndex = 6;
             this.btn_atualizar.Text = "Atualizar";
             this.btn_atualizar.UseVisualStyleBackColor = true;
             this.btn_atualizar.Click += new System.EventHandler(this.btn_atualizar_Click);
@@ -163,7 +163,7 @@
             this.btn_cancelar.Location = new System.Drawing.Point(307, 430);
             this.btn_cancelar.Name = "btn_cancelar";
             this.btn_cancelar.Size = new System.Drawing.Size(75, 23);
-            this.btn_cancelar.TabIndex = 5;
+            this.btn_cancelar.TabIndex = 7;
             this.btn_cancelar.Text = "Cancelar";
             this.btn_cancelar.UseVisualStyleBackColor = true;
             this.btn_cancelar.Click += new System.EventHandler(this.btn_cancelar_Click);
@@ -173,7 +173,7 @@
             this.btn_excluir.Location = new System.Drawing.Point(450, 430);
             this.btn_excluir.Name = "btn_excluir";
             this.btn_excluir.Size = new System.Drawing.Size(75, 23);
-            this.btn_excluir.TabIndex = 6;
+            this.btn_excluir.TabIndex = 8;
             this.btn_excluir.Text = "Excluir";
             this.btn_excluir.UseVisualStyleBackColor = true;
             this.btn_excluir.Click += new System.EventHandler(this.btn_excluir_Click);
@@ -183,7 +183,7 @@
             this.btn_sair.Location = new System.Drawing.Point(600, 430);
             this.btn_sair.Name = "btn_sair";
             this.btn_sair.Size = new System.Drawing.Size(75, 23);
-            this.btn_sair.TabIndex = 7;
+            this.btn_sair.TabIndex = 9;
             this.btn_sair.Text = "Voltar";
             this.btn_sair.UseVisualStyleBackColor = true;
             this.btn_sair.Click += new System.EventHandler(this.btn_sair_Click);
@@ -201,6 +201,7 @@
             this.Controls.Add(this.dtg_produtos);
             this.Controls.Add(this.btn_inserir);
             this.Controls.Add(this.gbp_produtos);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Produtos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

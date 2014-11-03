@@ -147,7 +147,7 @@
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(111, 298);
-            this.groupBox1.TabIndex = 9;
+            this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Período";
             // 
@@ -223,7 +223,7 @@
             this.gridRegistros.Location = new System.Drawing.Point(146, 12);
             this.gridRegistros.Name = "gridRegistros";
             this.gridRegistros.Size = new System.Drawing.Size(476, 282);
-            this.gridRegistros.TabIndex = 12;
+            this.gridRegistros.TabIndex = 15;
             // 
             // Caixa
             // 
@@ -236,6 +236,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnVoltar);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Caixa";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

@@ -64,7 +64,7 @@
             this.gpb_compras.Location = new System.Drawing.Point(12, 28);
             this.gpb_compras.Name = "gpb_compras";
             this.gpb_compras.Size = new System.Drawing.Size(595, 174);
-            this.gpb_compras.TabIndex = 0;
+            this.gpb_compras.TabIndex = 12;
             this.gpb_compras.TabStop = false;
             this.gpb_compras.Text = "Cadastro de Compras";
             this.gpb_compras.Enter += new System.EventHandler(this.gpb_compras_Enter);
@@ -131,7 +131,7 @@
             this.dtg_gravacao.Location = new System.Drawing.Point(12, 401);
             this.dtg_gravacao.Name = "dtg_gravacao";
             this.dtg_gravacao.Size = new System.Drawing.Size(595, 150);
-            this.dtg_gravacao.TabIndex = 1;
+            this.dtg_gravacao.TabIndex = 13;
             this.dtg_gravacao.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtg_gravacao_CellContentClick);
             // 
             // btn_inserir
@@ -258,6 +258,7 @@
             this.Controls.Add(this.btn_inserir);
             this.Controls.Add(this.dtg_gravacao);
             this.Controls.Add(this.gpb_compras);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Compras";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
