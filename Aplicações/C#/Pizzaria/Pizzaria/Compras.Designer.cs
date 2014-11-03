@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Compras));
             this.gpb_compras = new System.Windows.Forms.GroupBox();
             this.cmb_categoria = new System.Windows.Forms.ComboBox();
             this.txt_qdtcomprada = new System.Windows.Forms.TextBox();
@@ -287,6 +288,7 @@
             this.Controls.Add(this.btn_inserir);
             this.Controls.Add(this.dtg_gravacao);
             this.Controls.Add(this.gpb_compras);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Compras";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Compras";

@@ -14,7 +14,7 @@ namespace Pizzaria
 {
     public partial class Caixa : Form
     {
-        string conexao = "Data Source= Tuca\\SQLEXPRESS ;Initial Catalog=Pizzaria; Persist Security Info = True; User ID=sa; Password=peganomeupau";
+        string conexao = "Data Source= Alex\\SQLEXPRESS ;Initial Catalog=Pizzaria; Persist Security Info = True; User ID=sa; Password=1234";
 
         DateTime hoje = DateTime.Today;
         int periodo = 0;

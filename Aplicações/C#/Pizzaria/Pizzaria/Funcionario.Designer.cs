@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Funcionario));
             this.gp_dadosfunc = new System.Windows.Forms.GroupBox();
             this.txt_Senha = new System.Windows.Forms.TextBox();
             this.txt_Usuario = new System.Windows.Forms.TextBox();
@@ -572,6 +573,7 @@
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.gp_dadosfunc);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Funcionario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastramento de Funcionário";

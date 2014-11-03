@@ -445,6 +445,11 @@ namespace Pizzaria
             txt_vlrunitario.BackColor = Color.White;
         }
 
+        private void cmb_categoria_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
 
     }
 

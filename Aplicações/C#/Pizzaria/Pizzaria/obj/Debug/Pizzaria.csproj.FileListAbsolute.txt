@@ -358,3 +358,4 @@ C:\Users\ACS\Desktop\TcmVersiona\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Piz
 C:\Users\ACS\Desktop\TcmVersiona\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.csproj.GenerateResource.Cache
 E:\TCM\trunk\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Produtos.resources
 E:\TCM\trunk\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Caixa.resources
+C:\Users\ACS\Desktop\TcmVersiona\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Caixa.resources

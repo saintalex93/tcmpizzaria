@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Produtos));
             this.gbp_produtos = new System.Windows.Forms.GroupBox();
             this.chk_site = new System.Windows.Forms.CheckBox();
             this.cmb_categoria = new System.Windows.Forms.ComboBox();
@@ -84,6 +85,7 @@
             this.cmb_categoria.Name = "cmb_categoria";
             this.cmb_categoria.Size = new System.Drawing.Size(121, 21);
             this.cmb_categoria.TabIndex = 8;
+            this.cmb_categoria.SelectedIndexChanged += new System.EventHandler(this.cmb_categoria_SelectedIndexChanged);
             this.cmb_categoria.Enter += new System.EventHandler(this.cmb_categoria_Enter);
             this.cmb_categoria.Leave += new System.EventHandler(this.cmb_categoria_Leave);
             // 
@@ -225,6 +227,7 @@
             this.Controls.Add(this.dtg_produtos);
             this.Controls.Add(this.btn_inserir);
             this.Controls.Add(this.gbp_produtos);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Produtos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Produtos";

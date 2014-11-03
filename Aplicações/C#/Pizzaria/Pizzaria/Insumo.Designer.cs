@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Insumo));
             this.btn_sair = new System.Windows.Forms.Button();
             this.btn_excluir = new System.Windows.Forms.Button();
             this.btn_gravar = new System.Windows.Forms.Button();
@@ -355,6 +356,7 @@
             this.Controls.Add(this.btn_inserir);
             this.Controls.Add(this.dtg_gravacao);
             this.Controls.Add(this.gpb_compras);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Insumo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Insumos";

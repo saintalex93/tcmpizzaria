@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Fornecedores));
             this.grpDadosFornecedor = new System.Windows.Forms.GroupBox();
             this.grpResponsável = new System.Windows.Forms.GroupBox();
             this.mtxtCelular = new System.Windows.Forms.MaskedTextBox();
@@ -627,6 +628,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.grpDadosBancarios);
             this.Controls.Add(this.grpDadosFornecedor);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Fornecedores";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gerenciamento de Fornecedores";

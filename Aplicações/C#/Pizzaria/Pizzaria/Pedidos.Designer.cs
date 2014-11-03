@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Pedidos));
             this.gpb_detalhamento = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnGravarAjuste = new System.Windows.Forms.Button();
@@ -415,6 +416,7 @@
             this.Controls.Add(this.btn_sair);
             this.Controls.Add(this.gpb_dadoscliente);
             this.Controls.Add(this.gpb_detalhamento);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Pedidos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Pedidos";

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Caixa));
             this.btnVoltar = new System.Windows.Forms.Button();
             this.rdDiario = new System.Windows.Forms.RadioButton();
             this.rdSemanal = new System.Windows.Forms.RadioButton();
@@ -235,7 +236,9 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnVoltar);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Caixa";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Caixa";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
