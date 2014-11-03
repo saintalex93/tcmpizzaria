@@ -11,6 +11,8 @@ go
 use Pizzaria
 go
 
+
+
 create table Cliente(
 Cod_Cliente INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 Nome_Cliente VARCHAR(40),
@@ -100,6 +102,7 @@ create table Pedido
 Cod_Pedido INT IDENTITY(1,1) PRIMARY KEY,
 Data VARCHAR(10),
 Hora VarChar(5),
+Ajuste numeric (5,2),
 Valor numeric (5,2),
 Cod_Funcionario INT FOREIGN KEY REFERENCES Funcionario(Cod_Funcionario),
 Cod_Cliente INT FOREIGN KEY REFERENCES Cliente(Cod_Cliente),
