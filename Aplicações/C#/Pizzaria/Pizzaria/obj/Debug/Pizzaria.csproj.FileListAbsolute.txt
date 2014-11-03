@@ -352,7 +352,6 @@ C:\Users\ACS\Desktop\TcmVersiona\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Piz
 C:\Users\ACS\Desktop\TcmVersiona\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Funcionario.resources
 C:\Users\ACS\Desktop\TcmVersiona\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.CadastroCliente.resources
 C:\Users\ACS\Desktop\TcmVersiona\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Produtos.resources
-C:\Users\ACS\Desktop\TcmVersiona\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.GerenciarPromocao.resources
 C:\Users\ACS\Desktop\TcmVersiona\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Properties.Resources.resources
 C:\Users\ACS\Desktop\TcmVersiona\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Rede.resources
 C:\Users\ACS\Desktop\TcmVersiona\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.csproj.GenerateResource.Cache

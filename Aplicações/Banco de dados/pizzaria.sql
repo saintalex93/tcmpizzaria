@@ -94,7 +94,7 @@ Sobe_Site INT,
 
 )
 go
-select * from pedido
+
 create table Pedido
 (
 Cod_Pedido INT IDENTITY(1,1) PRIMARY KEY,

@@ -29,7 +29,7 @@ namespace Pizzaria
         int num_endereco = 0;
 
         //conexao DB
-        string conexao = "Data Source=Tuca\\SQLEXPRESS ;Initial Catalog=Pizzaria; Persist Security Info = True; User ID=sa; Password=peganomeupau";
+        string conexao = "Data Source=Alex\\SQLEXPRESS ;Initial Catalog=Pizzaria; Persist Security Info = True; User ID=sa; Password=1234";
        // string conexao = "Data Source=192.168.1.105\\BPAServer9;Initial Catalog=Pizzaria; Persist Security Info = True; User ID=sa; Password=AutoMateBPA9";
         
         //Validar se e update ou insert

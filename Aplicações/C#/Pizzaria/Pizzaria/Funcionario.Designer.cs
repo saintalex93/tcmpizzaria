@@ -110,7 +110,7 @@
             this.txt_Senha.Name = "txt_Senha";
             this.txt_Senha.PasswordChar = '*';
             this.txt_Senha.Size = new System.Drawing.Size(100, 20);
-            this.txt_Senha.TabIndex = 17;
+            this.txt_Senha.TabIndex = 9;
             this.txt_Senha.Enter += new System.EventHandler(this.txt_Senha_Enter);
             this.txt_Senha.Leave += new System.EventHandler(this.txt_Senha_Leave);
             // 
@@ -120,7 +120,7 @@
             this.txt_Usuario.MaxLength = 20;
             this.txt_Usuario.Name = "txt_Usuario";
             this.txt_Usuario.Size = new System.Drawing.Size(111, 20);
-            this.txt_Usuario.TabIndex = 16;
+            this.txt_Usuario.TabIndex = 8;
             this.txt_Usuario.Enter += new System.EventHandler(this.txt_Usuario_Enter);
             this.txt_Usuario.Leave += new System.EventHandler(this.txt_Usuario_Leave);
             // 
@@ -148,8 +148,9 @@
             this.cbox_Cargo.Location = new System.Drawing.Point(530, 151);
             this.cbox_Cargo.Name = "cbox_Cargo";
             this.cbox_Cargo.Size = new System.Drawing.Size(107, 21);
-            this.cbox_Cargo.TabIndex = 13;
+            this.cbox_Cargo.TabIndex = 7;
             this.cbox_Cargo.TabStop = false;
+            this.cbox_Cargo.SelectedIndexChanged += new System.EventHandler(this.cbox_Cargo_SelectedIndexChanged);
             this.cbox_Cargo.Enter += new System.EventHandler(this.cbox_Cargo_Enter);
             this.cbox_Cargo.Leave += new System.EventHandler(this.cbox_Cargo_Leave);
             // 
@@ -159,7 +160,7 @@
             this.dtp_datanasc.Location = new System.Drawing.Point(530, 68);
             this.dtp_datanasc.Name = "dtp_datanasc";
             this.dtp_datanasc.Size = new System.Drawing.Size(95, 20);
-            this.dtp_datanasc.TabIndex = 12;
+            this.dtp_datanasc.TabIndex = 3;
             this.dtp_datanasc.Enter += new System.EventHandler(this.dtp_datanasc_Enter);
             this.dtp_datanasc.Leave += new System.EventHandler(this.dtp_datanasc_Leave);
             // 
@@ -169,7 +170,7 @@
             this.mtxt_cpf.Mask = "000,000,000-00";
             this.mtxt_cpf.Name = "mtxt_cpf";
             this.mtxt_cpf.Size = new System.Drawing.Size(100, 20);
-            this.mtxt_cpf.TabIndex = 11;
+            this.mtxt_cpf.TabIndex = 2;
             this.mtxt_cpf.TextChanged += new System.EventHandler(this.mtxt_cpf_TextChanged);
             this.mtxt_cpf.Enter += new System.EventHandler(this.mtxt_cpf_Enter);
             this.mtxt_cpf.Leave += new System.EventHandler(this.mtxt_cpf_Leave);
@@ -180,7 +181,7 @@
             this.mtxt_telefone.Mask = "(00) 0000-0000";
             this.mtxt_telefone.Name = "mtxt_telefone";
             this.mtxt_telefone.Size = new System.Drawing.Size(100, 20);
-            this.mtxt_telefone.TabIndex = 10;
+            this.mtxt_telefone.TabIndex = 4;
             this.mtxt_telefone.Enter += new System.EventHandler(this.mtxt_telefone_Enter);
             this.mtxt_telefone.Leave += new System.EventHandler(this.mtxt_telefone_Leave);
             // 
@@ -190,7 +191,7 @@
             this.mtxt_celular.Mask = "(00) 00000-0000";
             this.mtxt_celular.Name = "mtxt_celular";
             this.mtxt_celular.Size = new System.Drawing.Size(100, 20);
-            this.mtxt_celular.TabIndex = 9;
+            this.mtxt_celular.TabIndex = 5;
             this.mtxt_celular.Enter += new System.EventHandler(this.mtxt_celular_Enter);
             this.mtxt_celular.Leave += new System.EventHandler(this.mtxt_celular_Leave);
             // 
@@ -200,7 +201,7 @@
             this.txt_email.MaxLength = 40;
             this.txt_email.Name = "txt_email";
             this.txt_email.Size = new System.Drawing.Size(269, 20);
-            this.txt_email.TabIndex = 7;
+            this.txt_email.TabIndex = 6;
             this.txt_email.Enter += new System.EventHandler(this.txt_email_Enter);
             this.txt_email.Leave += new System.EventHandler(this.txt_email_Leave);
             // 
@@ -210,7 +211,7 @@
             this.txt_nome.MaxLength = 40;
             this.txt_nome.Name = "txt_nome";
             this.txt_nome.Size = new System.Drawing.Size(269, 20);
-            this.txt_nome.TabIndex = 6;
+            this.txt_nome.TabIndex = 1;
             this.txt_nome.Enter += new System.EventHandler(this.txt_nome_Enter);
             this.txt_nome.Leave += new System.EventHandler(this.txt_nome_Leave);
             // 
@@ -336,7 +337,7 @@
             this.cb_uf.Location = new System.Drawing.Point(520, 125);
             this.cb_uf.Name = "cb_uf";
             this.cb_uf.Size = new System.Drawing.Size(64, 21);
-            this.cb_uf.TabIndex = 13;
+            this.cb_uf.TabIndex = 15;
             this.cb_uf.Enter += new System.EventHandler(this.cb_uf_Enter);
             this.cb_uf.Leave += new System.EventHandler(this.cb_uf_Leave);
             // 
@@ -346,7 +347,7 @@
             this.mtxt_cep.Mask = "000,00-000";
             this.mtxt_cep.Name = "mtxt_cep";
             this.mtxt_cep.Size = new System.Drawing.Size(64, 20);
-            this.mtxt_cep.TabIndex = 12;
+            this.mtxt_cep.TabIndex = 13;
             this.mtxt_cep.Enter += new System.EventHandler(this.mtxt_cep_Enter);
             this.mtxt_cep.Leave += new System.EventHandler(this.mtxt_cep_Leave);
             // 
@@ -357,7 +358,7 @@
             this.txt_complemento.Multiline = true;
             this.txt_complemento.Name = "txt_complemento";
             this.txt_complemento.Size = new System.Drawing.Size(500, 47);
-            this.txt_complemento.TabIndex = 11;
+            this.txt_complemento.TabIndex = 16;
             this.txt_complemento.Enter += new System.EventHandler(this.txt_complemento_Enter);
             this.txt_complemento.Leave += new System.EventHandler(this.txt_complemento_Leave);
             // 
@@ -367,7 +368,7 @@
             this.txt_cidade.MaxLength = 20;
             this.txt_cidade.Name = "txt_cidade";
             this.txt_cidade.Size = new System.Drawing.Size(338, 20);
-            this.txt_cidade.TabIndex = 10;
+            this.txt_cidade.TabIndex = 14;
             this.txt_cidade.Enter += new System.EventHandler(this.txt_cidade_Enter);
             this.txt_cidade.Leave += new System.EventHandler(this.txt_cidade_Leave);
             // 
@@ -377,7 +378,7 @@
             this.txt_bairro.MaxLength = 30;
             this.txt_bairro.Name = "txt_bairro";
             this.txt_bairro.Size = new System.Drawing.Size(338, 20);
-            this.txt_bairro.TabIndex = 9;
+            this.txt_bairro.TabIndex = 12;
             this.txt_bairro.Enter += new System.EventHandler(this.txt_bairro_Enter);
             this.txt_bairro.Leave += new System.EventHandler(this.txt_bairro_Leave);
             // 
@@ -387,7 +388,7 @@
             this.txt_numero.MaxLength = 5;
             this.txt_numero.Name = "txt_numero";
             this.txt_numero.Size = new System.Drawing.Size(64, 20);
-            this.txt_numero.TabIndex = 8;
+            this.txt_numero.TabIndex = 11;
             this.txt_numero.Enter += new System.EventHandler(this.txt_numero_Enter);
             this.txt_numero.Leave += new System.EventHandler(this.txt_numero_Leave);
             // 
@@ -397,7 +398,7 @@
             this.txt_endereco.MaxLength = 40;
             this.txt_endereco.Name = "txt_endereco";
             this.txt_endereco.Size = new System.Drawing.Size(338, 20);
-            this.txt_endereco.TabIndex = 7;
+            this.txt_endereco.TabIndex = 10;
             this.txt_endereco.Enter += new System.EventHandler(this.txt_endereco_Enter);
             this.txt_endereco.Leave += new System.EventHandler(this.txt_endereco_Leave);
             // 
@@ -489,7 +490,7 @@
             this.btn_salvar.Location = new System.Drawing.Point(12, 608);
             this.btn_salvar.Name = "btn_salvar";
             this.btn_salvar.Size = new System.Drawing.Size(75, 23);
-            this.btn_salvar.TabIndex = 4;
+            this.btn_salvar.TabIndex = 17;
             this.btn_salvar.Text = "Salvar";
             this.btn_salvar.UseVisualStyleBackColor = true;
             this.btn_salvar.Click += new System.EventHandler(this.btn_salvar_Click_1);
@@ -499,7 +500,7 @@
             this.btn_alterar.Location = new System.Drawing.Point(202, 608);
             this.btn_alterar.Name = "btn_alterar";
             this.btn_alterar.Size = new System.Drawing.Size(75, 23);
-            this.btn_alterar.TabIndex = 5;
+            this.btn_alterar.TabIndex = 19;
             this.btn_alterar.Text = "Alterar";
             this.btn_alterar.UseVisualStyleBackColor = true;
             this.btn_alterar.Click += new System.EventHandler(this.btn_alterar_Click);
@@ -509,7 +510,7 @@
             this.btn_excluir.Location = new System.Drawing.Point(486, 608);
             this.btn_excluir.Name = "btn_excluir";
             this.btn_excluir.Size = new System.Drawing.Size(75, 23);
-            this.btn_excluir.TabIndex = 6;
+            this.btn_excluir.TabIndex = 22;
             this.btn_excluir.Text = "Excluir";
             this.btn_excluir.UseVisualStyleBackColor = true;
             this.btn_excluir.Click += new System.EventHandler(this.btn_excluir_Click);
@@ -520,7 +521,7 @@
             this.btn_sair.Location = new System.Drawing.Point(583, 608);
             this.btn_sair.Name = "btn_sair";
             this.btn_sair.Size = new System.Drawing.Size(75, 23);
-            this.btn_sair.TabIndex = 7;
+            this.btn_sair.TabIndex = 23;
             this.btn_sair.Text = "Voltar";
             this.btn_sair.UseVisualStyleBackColor = true;
             this.btn_sair.Click += new System.EventHandler(this.btn_sair_Click);
@@ -530,7 +531,7 @@
             this.btn_Clear.Location = new System.Drawing.Point(393, 608);
             this.btn_Clear.Name = "btn_Clear";
             this.btn_Clear.Size = new System.Drawing.Size(75, 23);
-            this.btn_Clear.TabIndex = 8;
+            this.btn_Clear.TabIndex = 21;
             this.btn_Clear.Text = "Limpar";
             this.btn_Clear.UseVisualStyleBackColor = true;
             this.btn_Clear.Click += new System.EventHandler(this.btn_Clear_Click);
@@ -540,7 +541,7 @@
             this.btn_Buscar.Location = new System.Drawing.Point(105, 608);
             this.btn_Buscar.Name = "btn_Buscar";
             this.btn_Buscar.Size = new System.Drawing.Size(75, 23);
-            this.btn_Buscar.TabIndex = 9;
+            this.btn_Buscar.TabIndex = 18;
             this.btn_Buscar.Text = "Buscar";
             this.btn_Buscar.UseVisualStyleBackColor = true;
             this.btn_Buscar.Click += new System.EventHandler(this.btn_Buscar_Click);
@@ -550,7 +551,7 @@
             this.btn_Cancelar.Location = new System.Drawing.Point(295, 608);
             this.btn_Cancelar.Name = "btn_Cancelar";
             this.btn_Cancelar.Size = new System.Drawing.Size(75, 23);
-            this.btn_Cancelar.TabIndex = 10;
+            this.btn_Cancelar.TabIndex = 20;
             this.btn_Cancelar.Text = "Cancelar";
             this.btn_Cancelar.UseVisualStyleBackColor = true;
             this.btn_Cancelar.Click += new System.EventHandler(this.btn_Cancelar_Click);

@@ -126,7 +126,7 @@
             this.mtxtCelular.Mask = "(99) 99999-9999";
             this.mtxtCelular.Name = "mtxtCelular";
             this.mtxtCelular.Size = new System.Drawing.Size(100, 20);
-            this.mtxtCelular.TabIndex = 8;
+            this.mtxtCelular.TabIndex = 9;
             this.mtxtCelular.Enter += new System.EventHandler(this.mtxtCelular_Enter);
             this.mtxtCelular.Leave += new System.EventHandler(this.mtxtCelular_Leave);
             // 
@@ -154,7 +154,7 @@
             this.txtResponsavel.MaxLength = 30;
             this.txtResponsavel.Name = "txtResponsavel";
             this.txtResponsavel.Size = new System.Drawing.Size(242, 20);
-            this.txtResponsavel.TabIndex = 6;
+            this.txtResponsavel.TabIndex = 7;
             this.txtResponsavel.Enter += new System.EventHandler(this.txtResponsavel_Enter);
             this.txtResponsavel.Leave += new System.EventHandler(this.txtResponsavel_Leave);
             // 
@@ -173,7 +173,7 @@
             this.txtEmailResponsavel.MaxLength = 50;
             this.txtEmailResponsavel.Name = "txtEmailResponsavel";
             this.txtEmailResponsavel.Size = new System.Drawing.Size(204, 20);
-            this.txtEmailResponsavel.TabIndex = 7;
+            this.txtEmailResponsavel.TabIndex = 8;
             this.txtEmailResponsavel.Enter += new System.EventHandler(this.txtEmailResponsavel_Enter);
             this.txtEmailResponsavel.Leave += new System.EventHandler(this.txtEmailResponsavel_Leave);
             // 
@@ -203,7 +203,7 @@
             this.mtxtCNPJ.Mask = "99,999,999/9999-99";
             this.mtxtCNPJ.Name = "mtxtCNPJ";
             this.mtxtCNPJ.Size = new System.Drawing.Size(105, 20);
-            this.mtxtCNPJ.TabIndex = 13;
+            this.mtxtCNPJ.TabIndex = 6;
             this.mtxtCNPJ.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.mtxtCNPJ_MaskInputRejected);
             this.mtxtCNPJ.Enter += new System.EventHandler(this.mtxtCNPJ_Enter);
             this.mtxtCNPJ.Leave += new System.EventHandler(this.mtxtCNPJ_Leave);
@@ -309,7 +309,7 @@
             this.txtConta.MaxLength = 8;
             this.txtConta.Name = "txtConta";
             this.txtConta.Size = new System.Drawing.Size(56, 20);
-            this.txtConta.TabIndex = 10;
+            this.txtConta.TabIndex = 12;
             this.txtConta.Enter += new System.EventHandler(this.txtConta_Enter);
             this.txtConta.Leave += new System.EventHandler(this.txtConta_Leave);
             // 
@@ -319,7 +319,7 @@
             this.txtAgencia.MaxLength = 8;
             this.txtAgencia.Name = "txtAgencia";
             this.txtAgencia.Size = new System.Drawing.Size(56, 20);
-            this.txtAgencia.TabIndex = 9;
+            this.txtAgencia.TabIndex = 11;
             this.txtAgencia.Enter += new System.EventHandler(this.txtAgencia_Enter);
             this.txtAgencia.Leave += new System.EventHandler(this.txtAgencia_Leave);
             // 
@@ -329,7 +329,7 @@
             this.txtBanco.MaxLength = 3;
             this.txtBanco.Name = "txtBanco";
             this.txtBanco.Size = new System.Drawing.Size(38, 20);
-            this.txtBanco.TabIndex = 8;
+            this.txtBanco.TabIndex = 10;
             this.txtBanco.TextChanged += new System.EventHandler(this.txtBanco_TextChanged);
             this.txtBanco.Enter += new System.EventHandler(this.txtBanco_Enter);
             this.txtBanco.Leave += new System.EventHandler(this.txtBanco_Leave);
@@ -389,7 +389,7 @@
             this.txtComplemento.Location = new System.Drawing.Point(83, 118);
             this.txtComplemento.Name = "txtComplemento";
             this.txtComplemento.Size = new System.Drawing.Size(123, 20);
-            this.txtComplemento.TabIndex = 18;
+            this.txtComplemento.TabIndex = 19;
             this.txtComplemento.Enter += new System.EventHandler(this.txtComplemento_Enter);
             this.txtComplemento.Leave += new System.EventHandler(this.txtComplemento_Leave);
             // 
@@ -408,7 +408,7 @@
             this.txtCidade.MaxLength = 40;
             this.txtCidade.Name = "txtCidade";
             this.txtCidade.Size = new System.Drawing.Size(123, 20);
-            this.txtCidade.TabIndex = 16;
+            this.txtCidade.TabIndex = 18;
             this.txtCidade.Enter += new System.EventHandler(this.txtCidade_Enter);
             this.txtCidade.Leave += new System.EventHandler(this.txtCidade_Leave);
             // 
@@ -484,7 +484,7 @@
             this.txtBairro.Location = new System.Drawing.Point(83, 69);
             this.txtBairro.Name = "txtBairro";
             this.txtBairro.Size = new System.Drawing.Size(123, 20);
-            this.txtBairro.TabIndex = 14;
+            this.txtBairro.TabIndex = 16;
             this.txtBairro.Enter += new System.EventHandler(this.txtBairro_Enter);
             this.txtBairro.Leave += new System.EventHandler(this.txtBairro_Leave);
             // 
@@ -494,7 +494,7 @@
             this.txtNumero.MaxLength = 5;
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.Size = new System.Drawing.Size(52, 20);
-            this.txtNumero.TabIndex = 12;
+            this.txtNumero.TabIndex = 14;
             this.txtNumero.Enter += new System.EventHandler(this.txtNumero_Enter);
             this.txtNumero.Leave += new System.EventHandler(this.txtNumero_Leave);
             // 
@@ -504,7 +504,7 @@
             this.txtNomeDaRua.MaxLength = 40;
             this.txtNomeDaRua.Name = "txtNomeDaRua";
             this.txtNomeDaRua.Size = new System.Drawing.Size(237, 20);
-            this.txtNomeDaRua.TabIndex = 11;
+            this.txtNomeDaRua.TabIndex = 13;
             this.txtNomeDaRua.Enter += new System.EventHandler(this.txtNomeDaRua_Enter);
             this.txtNomeDaRua.Leave += new System.EventHandler(this.txtNomeDaRua_Leave);
             // 
@@ -538,7 +538,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(10, 25);
+            this.label8.Location = new System.Drawing.Point(11, 20);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(68, 13);
             this.label8.TabIndex = 6;
@@ -549,7 +549,7 @@
             this.btnVoltar.Location = new System.Drawing.Point(220, 676);
             this.btnVoltar.Name = "btnVoltar";
             this.btnVoltar.Size = new System.Drawing.Size(75, 23);
-            this.btnVoltar.TabIndex = 60;
+            this.btnVoltar.TabIndex = 25;
             this.btnVoltar.Text = "Voltar";
             this.btnVoltar.UseVisualStyleBackColor = true;
             this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
@@ -568,7 +568,7 @@
             this.btnSalvar.Location = new System.Drawing.Point(56, 647);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(75, 23);
-            this.btnSalvar.TabIndex = 19;
+            this.btnSalvar.TabIndex = 20;
             this.btnSalvar.Text = "Adicionar";
             this.btnSalvar.UseVisualStyleBackColor = true;
             this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
@@ -578,7 +578,7 @@
             this.btnAlterar.Location = new System.Drawing.Point(137, 676);
             this.btnAlterar.Name = "btnAlterar";
             this.btnAlterar.Size = new System.Drawing.Size(75, 23);
-            this.btnAlterar.TabIndex = 6;
+            this.btnAlterar.TabIndex = 23;
             this.btnAlterar.Text = "Alterar";
             this.btnAlterar.UseVisualStyleBackColor = true;
             this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
@@ -588,7 +588,7 @@
             this.btnExcluir.Location = new System.Drawing.Point(56, 676);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(75, 23);
-            this.btnExcluir.TabIndex = 7;
+            this.btnExcluir.TabIndex = 21;
             this.btnExcluir.Text = "Excluir";
             this.btnExcluir.UseVisualStyleBackColor = true;
             this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
@@ -598,7 +598,7 @@
             this.btnBuscar.Location = new System.Drawing.Point(137, 647);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(75, 23);
-            this.btnBuscar.TabIndex = 8;
+            this.btnBuscar.TabIndex = 22;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
@@ -608,7 +608,7 @@
             this.btnLimpar.Location = new System.Drawing.Point(220, 647);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(75, 23);
-            this.btnLimpar.TabIndex = 61;
+            this.btnLimpar.TabIndex = 24;
             this.btnLimpar.Text = "Limpar";
             this.btnLimpar.UseVisualStyleBackColor = true;
             this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);

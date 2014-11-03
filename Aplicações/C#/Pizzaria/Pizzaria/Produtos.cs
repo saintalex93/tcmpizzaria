@@ -323,11 +323,7 @@ namespace Pizzaria
             da.Fill(dt);
 
 
-            for (int i = 1; i < dt.Rows.Count; i++)
-            {
-                  cmb_categoria.Items.Add((dt.Rows[i][0].ToString()));
-
-            }
+          
 
             conn.Close();
 
@@ -425,15 +421,9 @@ namespace Pizzaria
             txt_nome.BackColor = Color.White;
         }
 
-        private void cmb_categoria_Leave(object sender, EventArgs e)
-        {
-            cmb_categoria.BackColor = Color.White;
-        }
+       
 
-        private void cmb_categoria_Enter(object sender, EventArgs e)
-        {
-            cmb_categoria.BackColor = Color.Aquamarine;
-        }
+       
 
         private void txt_vlrunitario_Enter(object sender, EventArgs e)
         {

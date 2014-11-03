@@ -31,11 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Produtos));
             this.gbp_produtos = new System.Windows.Forms.GroupBox();
             this.chk_site = new System.Windows.Forms.CheckBox();
-            this.cmb_categoria = new System.Windows.Forms.ComboBox();
             this.txt_vlrunitario = new System.Windows.Forms.MaskedTextBox();
             this.txt_nome = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btn_inserir = new System.Windows.Forms.Button();
@@ -52,16 +50,14 @@
             // gbp_produtos
             // 
             this.gbp_produtos.Controls.Add(this.chk_site);
-            this.gbp_produtos.Controls.Add(this.cmb_categoria);
             this.gbp_produtos.Controls.Add(this.txt_vlrunitario);
             this.gbp_produtos.Controls.Add(this.txt_nome);
             this.gbp_produtos.Controls.Add(this.label5);
-            this.gbp_produtos.Controls.Add(this.label3);
             this.gbp_produtos.Controls.Add(this.label2);
             this.gbp_produtos.Controls.Add(this.label1);
             this.gbp_produtos.Location = new System.Drawing.Point(12, 36);
             this.gbp_produtos.Name = "gbp_produtos";
-            this.gbp_produtos.Size = new System.Drawing.Size(663, 163);
+            this.gbp_produtos.Size = new System.Drawing.Size(663, 116);
             this.gbp_produtos.TabIndex = 0;
             this.gbp_produtos.TabStop = false;
             this.gbp_produtos.Text = "Produtos";
@@ -69,29 +65,16 @@
             // chk_site
             // 
             this.chk_site.AutoSize = true;
-            this.chk_site.Location = new System.Drawing.Point(385, 68);
+            this.chk_site.Location = new System.Drawing.Point(477, 68);
             this.chk_site.Name = "chk_site";
             this.chk_site.Size = new System.Drawing.Size(43, 17);
             this.chk_site.TabIndex = 9;
             this.chk_site.Text = "Sim";
             this.chk_site.UseVisualStyleBackColor = true;
             // 
-            // cmb_categoria
-            // 
-            this.cmb_categoria.FormattingEnabled = true;
-            this.cmb_categoria.Items.AddRange(new object[] {
-            "Selecione.."});
-            this.cmb_categoria.Location = new System.Drawing.Point(385, 27);
-            this.cmb_categoria.Name = "cmb_categoria";
-            this.cmb_categoria.Size = new System.Drawing.Size(121, 21);
-            this.cmb_categoria.TabIndex = 8;
-            this.cmb_categoria.SelectedIndexChanged += new System.EventHandler(this.cmb_categoria_SelectedIndexChanged);
-            this.cmb_categoria.Enter += new System.EventHandler(this.cmb_categoria_Enter);
-            this.cmb_categoria.Leave += new System.EventHandler(this.cmb_categoria_Leave);
-            // 
             // txt_vlrunitario
             // 
-            this.txt_vlrunitario.Location = new System.Drawing.Point(140, 62);
+            this.txt_vlrunitario.Location = new System.Drawing.Point(477, 28);
             this.txt_vlrunitario.Mask = "$ 0000,00";
             this.txt_vlrunitario.Name = "txt_vlrunitario";
             this.txt_vlrunitario.Size = new System.Drawing.Size(100, 20);
@@ -111,25 +94,16 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(315, 69);
+            this.label5.Location = new System.Drawing.Point(420, 69);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(25, 13);
             this.label5.TabIndex = 4;
             this.label5.Text = "Site";
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(288, 30);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(52, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Categoria";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 65);
+            this.label2.Location = new System.Drawing.Point(366, 31);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(79, 13);
             this.label2.TabIndex = 1;
@@ -146,7 +120,7 @@
             // 
             // btn_inserir
             // 
-            this.btn_inserir.Location = new System.Drawing.Point(307, 238);
+            this.btn_inserir.Location = new System.Drawing.Point(307, 185);
             this.btn_inserir.Name = "btn_inserir";
             this.btn_inserir.Size = new System.Drawing.Size(75, 23);
             this.btn_inserir.TabIndex = 1;
@@ -157,7 +131,7 @@
             // dtg_produtos
             // 
             this.dtg_produtos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtg_produtos.Location = new System.Drawing.Point(12, 307);
+            this.dtg_produtos.Location = new System.Drawing.Point(12, 241);
             this.dtg_produtos.Name = "dtg_produtos";
             this.dtg_produtos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dtg_produtos.Size = new System.Drawing.Size(663, 150);
@@ -166,7 +140,7 @@
             // 
             // btn_alterar
             // 
-            this.btn_alterar.Location = new System.Drawing.Point(12, 496);
+            this.btn_alterar.Location = new System.Drawing.Point(12, 430);
             this.btn_alterar.Name = "btn_alterar";
             this.btn_alterar.Size = new System.Drawing.Size(75, 23);
             this.btn_alterar.TabIndex = 3;
@@ -176,7 +150,7 @@
             // 
             // btn_atualizar
             // 
-            this.btn_atualizar.Location = new System.Drawing.Point(162, 496);
+            this.btn_atualizar.Location = new System.Drawing.Point(162, 430);
             this.btn_atualizar.Name = "btn_atualizar";
             this.btn_atualizar.Size = new System.Drawing.Size(75, 23);
             this.btn_atualizar.TabIndex = 4;
@@ -186,7 +160,7 @@
             // 
             // btn_cancelar
             // 
-            this.btn_cancelar.Location = new System.Drawing.Point(307, 496);
+            this.btn_cancelar.Location = new System.Drawing.Point(307, 430);
             this.btn_cancelar.Name = "btn_cancelar";
             this.btn_cancelar.Size = new System.Drawing.Size(75, 23);
             this.btn_cancelar.TabIndex = 5;
@@ -196,7 +170,7 @@
             // 
             // btn_excluir
             // 
-            this.btn_excluir.Location = new System.Drawing.Point(450, 496);
+            this.btn_excluir.Location = new System.Drawing.Point(450, 430);
             this.btn_excluir.Name = "btn_excluir";
             this.btn_excluir.Size = new System.Drawing.Size(75, 23);
             this.btn_excluir.TabIndex = 6;
@@ -206,7 +180,7 @@
             // 
             // btn_sair
             // 
-            this.btn_sair.Location = new System.Drawing.Point(600, 496);
+            this.btn_sair.Location = new System.Drawing.Point(600, 430);
             this.btn_sair.Name = "btn_sair";
             this.btn_sair.Size = new System.Drawing.Size(75, 23);
             this.btn_sair.TabIndex = 7;
@@ -218,7 +192,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(687, 544);
+            this.ClientSize = new System.Drawing.Size(687, 473);
             this.Controls.Add(this.btn_sair);
             this.Controls.Add(this.btn_excluir);
             this.Controls.Add(this.btn_cancelar);
@@ -243,12 +217,10 @@
 
         private System.Windows.Forms.GroupBox gbp_produtos;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txt_nome;
         private System.Windows.Forms.CheckBox chk_site;
-        private System.Windows.Forms.ComboBox cmb_categoria;
         private System.Windows.Forms.MaskedTextBox txt_vlrunitario;
         private System.Windows.Forms.Button btn_inserir;
         private System.Windows.Forms.DataGridView dtg_produtos;

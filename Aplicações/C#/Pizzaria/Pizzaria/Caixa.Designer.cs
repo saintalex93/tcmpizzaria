@@ -54,7 +54,7 @@
             this.btnVoltar.Location = new System.Drawing.Point(547, 310);
             this.btnVoltar.Name = "btnVoltar";
             this.btnVoltar.Size = new System.Drawing.Size(75, 23);
-            this.btnVoltar.TabIndex = 0;
+            this.btnVoltar.TabIndex = 10;
             this.btnVoltar.Text = "Voltar";
             this.btnVoltar.UseVisualStyleBackColor = true;
             this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
@@ -101,7 +101,7 @@
             this.rdSemestral.Location = new System.Drawing.Point(7, 88);
             this.rdSemestral.Name = "rdSemestral";
             this.rdSemestral.Size = new System.Drawing.Size(71, 17);
-            this.rdSemestral.TabIndex = 6;
+            this.rdSemestral.TabIndex = 4;
             this.rdSemestral.TabStop = true;
             this.rdSemestral.Text = "Semestral";
             this.rdSemestral.UseVisualStyleBackColor = true;
@@ -113,7 +113,7 @@
             this.rdAnual.Location = new System.Drawing.Point(6, 111);
             this.rdAnual.Name = "rdAnual";
             this.rdAnual.Size = new System.Drawing.Size(52, 17);
-            this.rdAnual.TabIndex = 7;
+            this.rdAnual.TabIndex = 5;
             this.rdAnual.TabStop = true;
             this.rdAnual.Text = "Anual";
             this.rdAnual.UseVisualStyleBackColor = true;
@@ -125,7 +125,7 @@
             this.rdEspecifico.Location = new System.Drawing.Point(6, 134);
             this.rdEspecifico.Name = "rdEspecifico";
             this.rdEspecifico.Size = new System.Drawing.Size(80, 17);
-            this.rdEspecifico.TabIndex = 8;
+            this.rdEspecifico.TabIndex = 6;
             this.rdEspecifico.TabStop = true;
             this.rdEspecifico.Text = "Especificar:";
             this.rdEspecifico.UseVisualStyleBackColor = true;
@@ -157,7 +157,7 @@
             this.btnBuscar.Location = new System.Drawing.Point(17, 259);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(75, 23);
-            this.btnBuscar.TabIndex = 13;
+            this.btnBuscar.TabIndex = 9;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
@@ -169,7 +169,7 @@
             this.dpFim.Location = new System.Drawing.Point(7, 225);
             this.dpFim.Name = "dpFim";
             this.dpFim.Size = new System.Drawing.Size(95, 20);
-            this.dpFim.TabIndex = 12;
+            this.dpFim.TabIndex = 8;
             // 
             // dpComeco
             // 
@@ -178,7 +178,7 @@
             this.dpComeco.Location = new System.Drawing.Point(7, 174);
             this.dpComeco.Name = "dpComeco";
             this.dpComeco.Size = new System.Drawing.Size(95, 20);
-            this.dpComeco.TabIndex = 11;
+            this.dpComeco.TabIndex = 7;
             // 
             // label2
             // 

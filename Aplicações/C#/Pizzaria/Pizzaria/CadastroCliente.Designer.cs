@@ -96,7 +96,7 @@
             this.dtp_datanasc.Location = new System.Drawing.Point(144, 103);
             this.dtp_datanasc.Name = "dtp_datanasc";
             this.dtp_datanasc.Size = new System.Drawing.Size(100, 20);
-            this.dtp_datanasc.TabIndex = 11;
+            this.dtp_datanasc.TabIndex = 4;
             // 
             // mtxt_cpf
             // 
@@ -104,7 +104,7 @@
             this.mtxt_cpf.Mask = "000,000,000-00";
             this.mtxt_cpf.Name = "mtxt_cpf";
             this.mtxt_cpf.Size = new System.Drawing.Size(100, 20);
-            this.mtxt_cpf.TabIndex = 10;
+            this.mtxt_cpf.TabIndex = 5;
             // 
             // mtxt_celular
             // 
@@ -112,7 +112,7 @@
             this.mtxt_celular.Mask = "(00) 00000-0000";
             this.mtxt_celular.Name = "mtxt_celular";
             this.mtxt_celular.Size = new System.Drawing.Size(100, 20);
-            this.mtxt_celular.TabIndex = 9;
+            this.mtxt_celular.TabIndex = 3;
             // 
             // mtxt_telefone
             // 
@@ -120,21 +120,21 @@
             this.mtxt_telefone.Mask = "(00) 0000-0000";
             this.mtxt_telefone.Name = "mtxt_telefone";
             this.mtxt_telefone.Size = new System.Drawing.Size(100, 20);
-            this.mtxt_telefone.TabIndex = 8;
+            this.mtxt_telefone.TabIndex = 2;
             // 
             // txt_telefone
             // 
             this.txt_telefone.Location = new System.Drawing.Point(144, 148);
             this.txt_telefone.Name = "txt_telefone";
             this.txt_telefone.Size = new System.Drawing.Size(310, 20);
-            this.txt_telefone.TabIndex = 7;
+            this.txt_telefone.TabIndex = 6;
             // 
             // txt_nome
             // 
             this.txt_nome.Location = new System.Drawing.Point(144, 28);
             this.txt_nome.Name = "txt_nome";
             this.txt_nome.Size = new System.Drawing.Size(310, 20);
-            this.txt_nome.TabIndex = 6;
+            this.txt_nome.TabIndex = 1;
             this.txt_nome.Leave += new System.EventHandler(this.txt_nome_Leave);
             // 
             // lbl_cpf
@@ -250,7 +250,7 @@
             this.cb_uf.Location = new System.Drawing.Point(530, 119);
             this.cb_uf.Name = "cb_uf";
             this.cb_uf.Size = new System.Drawing.Size(65, 21);
-            this.cb_uf.TabIndex = 13;
+            this.cb_uf.TabIndex = 12;
             // 
             // mtxt_cep
             // 
@@ -258,14 +258,14 @@
             this.mtxt_cep.Mask = "000,00-000";
             this.mtxt_cep.Name = "mtxt_cep";
             this.mtxt_cep.Size = new System.Drawing.Size(65, 20);
-            this.mtxt_cep.TabIndex = 12;
+            this.mtxt_cep.TabIndex = 10;
             // 
             // txt_numero
             // 
             this.txt_numero.Location = new System.Drawing.Point(530, 30);
             this.txt_numero.Name = "txt_numero";
             this.txt_numero.Size = new System.Drawing.Size(65, 20);
-            this.txt_numero.TabIndex = 11;
+            this.txt_numero.TabIndex = 8;
             // 
             // txt_complemento
             // 
@@ -273,21 +273,21 @@
             this.txt_complemento.Multiline = true;
             this.txt_complemento.Name = "txt_complemento";
             this.txt_complemento.Size = new System.Drawing.Size(451, 74);
-            this.txt_complemento.TabIndex = 10;
+            this.txt_complemento.TabIndex = 13;
             // 
             // txt_cidade
             // 
             this.txt_cidade.Location = new System.Drawing.Point(144, 118);
             this.txt_cidade.Name = "txt_cidade";
             this.txt_cidade.Size = new System.Drawing.Size(218, 20);
-            this.txt_cidade.TabIndex = 9;
+            this.txt_cidade.TabIndex = 11;
             // 
             // txt_bairro
             // 
             this.txt_bairro.Location = new System.Drawing.Point(144, 73);
             this.txt_bairro.Name = "txt_bairro";
             this.txt_bairro.Size = new System.Drawing.Size(218, 20);
-            this.txt_bairro.TabIndex = 8;
+            this.txt_bairro.TabIndex = 9;
             // 
             // txt_endereco
             // 
@@ -374,7 +374,7 @@
             this.btn_gravar.Location = new System.Drawing.Point(12, 716);
             this.btn_gravar.Name = "btn_gravar";
             this.btn_gravar.Size = new System.Drawing.Size(75, 23);
-            this.btn_gravar.TabIndex = 3;
+            this.btn_gravar.TabIndex = 14;
             this.btn_gravar.Text = "Gravar";
             this.btn_gravar.UseVisualStyleBackColor = true;
             this.btn_gravar.Click += new System.EventHandler(this.btn_gravar_Click_1);
@@ -384,7 +384,7 @@
             this.btn_alterar.Location = new System.Drawing.Point(236, 716);
             this.btn_alterar.Name = "btn_alterar";
             this.btn_alterar.Size = new System.Drawing.Size(75, 23);
-            this.btn_alterar.TabIndex = 4;
+            this.btn_alterar.TabIndex = 16;
             this.btn_alterar.Text = "Alterar";
             this.btn_alterar.UseVisualStyleBackColor = true;
             this.btn_alterar.Click += new System.EventHandler(this.btn_alterar_Click);
@@ -394,7 +394,7 @@
             this.btn_excluir.Location = new System.Drawing.Point(367, 716);
             this.btn_excluir.Name = "btn_excluir";
             this.btn_excluir.Size = new System.Drawing.Size(75, 23);
-            this.btn_excluir.TabIndex = 5;
+            this.btn_excluir.TabIndex = 17;
             this.btn_excluir.Text = "Excluir";
             this.btn_excluir.UseVisualStyleBackColor = true;
             this.btn_excluir.Click += new System.EventHandler(this.btn_excluir_Click);
@@ -404,7 +404,7 @@
             this.btn_sair.Location = new System.Drawing.Point(591, 716);
             this.btn_sair.Name = "btn_sair";
             this.btn_sair.Size = new System.Drawing.Size(75, 23);
-            this.btn_sair.TabIndex = 6;
+            this.btn_sair.TabIndex = 19;
             this.btn_sair.Text = "Voltar";
             this.btn_sair.UseVisualStyleBackColor = true;
             this.btn_sair.Click += new System.EventHandler(this.btn_sair_Click);
@@ -414,7 +414,7 @@
             this.btn_Clear.Location = new System.Drawing.Point(480, 716);
             this.btn_Clear.Name = "btn_Clear";
             this.btn_Clear.Size = new System.Drawing.Size(75, 23);
-            this.btn_Clear.TabIndex = 7;
+            this.btn_Clear.TabIndex = 18;
             this.btn_Clear.Text = "Limpar";
             this.btn_Clear.UseVisualStyleBackColor = true;
             this.btn_Clear.Click += new System.EventHandler(this.btn_Clear_Click);
@@ -424,7 +424,7 @@
             this.btn_Buscar.Location = new System.Drawing.Point(125, 716);
             this.btn_Buscar.Name = "btn_Buscar";
             this.btn_Buscar.Size = new System.Drawing.Size(75, 23);
-            this.btn_Buscar.TabIndex = 8;
+            this.btn_Buscar.TabIndex = 15;
             this.btn_Buscar.Text = "Buscar";
             this.btn_Buscar.UseVisualStyleBackColor = true;
             this.btn_Buscar.Click += new System.EventHandler(this.btn_Buscar_Click);

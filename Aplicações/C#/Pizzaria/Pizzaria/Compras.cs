@@ -117,15 +117,7 @@ namespace Pizzaria
              txt_nome.BackColor = Color.Aquamarine;
          }
 
-         private void cmb_categoria_Leave(object sender, EventArgs e)
-         {
-             cmb_categoria.BackColor = Color.White;
-         }
-
-         private void cmb_categoria_Enter(object sender, EventArgs e)
-         {
-             cmb_categoria.BackColor = Color.Aquamarine;
-         }
+       
 
          private void txt_qdtcomprada_Leave(object sender, EventArgs e)
          {

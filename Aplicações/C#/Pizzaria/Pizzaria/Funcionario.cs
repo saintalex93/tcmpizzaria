@@ -27,7 +27,7 @@ namespace Pizzaria
             btn_alterar.Enabled = false;
             btn_excluir.Enabled = false;
             valida_cargo = false;
-            string conexao = "Data Source=CASA-PC\\BPASERVER10 ;Initial Catalog=Pizzaria; Persist Security Info = True; User ID=sa; Password=AutoMateBPA10";
+            string conexao = "Data Source=ALEX\\SQLEXPRESS ;Initial Catalog=Pizzaria; Persist Security Info = True; User ID=sa; Password=1234";
         }
 
         SqlConnection conn;
@@ -56,7 +56,7 @@ namespace Pizzaria
 
 
         //String com informações de acesso pro BD
-        string conexao = "Data Source=CASA-PC\\BPASERVER10 ;Initial Catalog=Pizzaria; Persist Security Info = True; User ID=sa; Password=AutoMateBPA10";
+        string conexao = "Data Source=ALEX\\SQLEXPRESS ;Initial Catalog=Pizzaria; Persist Security Info = True; User ID=sa; Password=1234";
 
         
 
@@ -1064,6 +1064,11 @@ namespace Pizzaria
                 preenchecargo();
             }
             
+        }
+
+        private void cbox_Cargo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        
         }
 
 

@@ -126,7 +126,7 @@
             this.btnAdicionarProduto.Location = new System.Drawing.Point(191, 230);
             this.btnAdicionarProduto.Name = "btnAdicionarProduto";
             this.btnAdicionarProduto.Size = new System.Drawing.Size(102, 23);
-            this.btnAdicionarProduto.TabIndex = 5;
+            this.btnAdicionarProduto.TabIndex = 13;
             this.btnAdicionarProduto.Text = "Adicionar produto";
             this.btnAdicionarProduto.UseVisualStyleBackColor = true;
             this.btnAdicionarProduto.Click += new System.EventHandler(this.btnAdicionar_Click);
@@ -136,7 +136,7 @@
             this.txtBuscaProdutoPorID.Location = new System.Drawing.Point(222, 35);
             this.txtBuscaProdutoPorID.Name = "txtBuscaProdutoPorID";
             this.txtBuscaProdutoPorID.Size = new System.Drawing.Size(71, 20);
-            this.txtBuscaProdutoPorID.TabIndex = 3;
+            this.txtBuscaProdutoPorID.TabIndex = 12;
             this.txtBuscaProdutoPorID.TextChanged += new System.EventHandler(this.txtBuscaProdutoPorID_TextChanged);
             this.txtBuscaProdutoPorID.Enter += new System.EventHandler(this.txtBuscaProdutoPorID_Enter);
             this.txtBuscaProdutoPorID.Leave += new System.EventHandler(this.txtBuscaProdutoPorID_Leave);
@@ -146,7 +146,7 @@
             this.txtBuscaPalavraChave.Location = new System.Drawing.Point(10, 35);
             this.txtBuscaPalavraChave.Name = "txtBuscaPalavraChave";
             this.txtBuscaPalavraChave.Size = new System.Drawing.Size(100, 20);
-            this.txtBuscaPalavraChave.TabIndex = 2;
+            this.txtBuscaPalavraChave.TabIndex = 11;
             this.txtBuscaPalavraChave.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             this.txtBuscaPalavraChave.Enter += new System.EventHandler(this.txtBuscaPalavraChave_Enter_1);
             this.txtBuscaPalavraChave.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
@@ -176,7 +176,7 @@
             this.txtSaldo.Location = new System.Drawing.Point(14, 203);
             this.txtSaldo.Name = "txtSaldo";
             this.txtSaldo.Size = new System.Drawing.Size(69, 20);
-            this.txtSaldo.TabIndex = 12;
+            this.txtSaldo.TabIndex = 14;
             this.txtSaldo.Enter += new System.EventHandler(this.txtSaldo_Enter);
             this.txtSaldo.Leave += new System.EventHandler(this.txtSaldo_Leave);
             // 
@@ -186,7 +186,7 @@
             this.btnProcessarNovoPreco.Location = new System.Drawing.Point(14, 229);
             this.btnProcessarNovoPreco.Name = "btnProcessarNovoPreco";
             this.btnProcessarNovoPreco.Size = new System.Drawing.Size(122, 23);
-            this.btnProcessarNovoPreco.TabIndex = 11;
+            this.btnProcessarNovoPreco.TabIndex = 17;
             this.btnProcessarNovoPreco.Text = "Processar novo preço";
             this.btnProcessarNovoPreco.UseVisualStyleBackColor = true;
             // 
@@ -195,7 +195,7 @@
             this.txtNovoPreco.Location = new System.Drawing.Point(100, 203);
             this.txtNovoPreco.Name = "txtNovoPreco";
             this.txtNovoPreco.Size = new System.Drawing.Size(69, 20);
-            this.txtNovoPreco.TabIndex = 9;
+            this.txtNovoPreco.TabIndex = 15;
             this.txtNovoPreco.TextChanged += new System.EventHandler(this.txtNovoPreco_TextChanged);
             this.txtNovoPreco.Enter += new System.EventHandler(this.txtNovoPreco_Enter_1);
             this.txtNovoPreco.Leave += new System.EventHandler(this.txtNovoPreco_Leave_1);
@@ -233,10 +233,10 @@
             // btnRemoverProduto
             // 
             this.btnRemoverProduto.Enabled = false;
-            this.btnRemoverProduto.Location = new System.Drawing.Point(189, 190);
+            this.btnRemoverProduto.Location = new System.Drawing.Point(187, 200);
             this.btnRemoverProduto.Name = "btnRemoverProduto";
             this.btnRemoverProduto.Size = new System.Drawing.Size(98, 23);
-            this.btnRemoverProduto.TabIndex = 6;
+            this.btnRemoverProduto.TabIndex = 16;
             this.btnRemoverProduto.Text = "Remover produto";
             this.btnRemoverProduto.UseVisualStyleBackColor = true;
             this.btnRemoverProduto.Click += new System.EventHandler(this.btnRemoverProduto_Click);
@@ -246,7 +246,7 @@
             this.btnVoltar.Location = new System.Drawing.Point(538, 612);
             this.btnVoltar.Name = "btnVoltar";
             this.btnVoltar.Size = new System.Drawing.Size(75, 23);
-            this.btnVoltar.TabIndex = 11;
+            this.btnVoltar.TabIndex = 18;
             this.btnVoltar.Text = "Voltar";
             this.btnVoltar.UseVisualStyleBackColor = true;
             this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click_1);
@@ -275,7 +275,7 @@
             this.ckVisivelNoSite.Location = new System.Drawing.Point(354, 26);
             this.ckVisivelNoSite.Name = "ckVisivelNoSite";
             this.ckVisivelNoSite.Size = new System.Drawing.Size(223, 17);
-            this.ckVisivelNoSite.TabIndex = 9;
+            this.ckVisivelNoSite.TabIndex = 3;
             this.ckVisivelNoSite.Text = "Visível apenas para usuários cadastrados";
             this.ckVisivelNoSite.UseVisualStyleBackColor = true;
             this.ckVisivelNoSite.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
@@ -286,7 +286,7 @@
             this.ckAcessoCadastrado.Location = new System.Drawing.Point(474, 47);
             this.ckAcessoCadastrado.Name = "ckAcessoCadastrado";
             this.ckAcessoCadastrado.Size = new System.Drawing.Size(103, 17);
-            this.ckAcessoCadastrado.TabIndex = 8;
+            this.ckAcessoCadastrado.TabIndex = 4;
             this.ckAcessoCadastrado.Text = "Sobe para o site";
             this.ckAcessoCadastrado.UseVisualStyleBackColor = true;
             this.ckAcessoCadastrado.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
@@ -298,7 +298,7 @@
             this.dataPrazo.Location = new System.Drawing.Point(241, 25);
             this.dataPrazo.Name = "dataPrazo";
             this.dataPrazo.Size = new System.Drawing.Size(100, 20);
-            this.dataPrazo.TabIndex = 6;
+            this.dataPrazo.TabIndex = 2;
             this.dataPrazo.ValueChanged += new System.EventHandler(this.dataPrazo_ValueChanged);
             // 
             // btnCriarPromocoes
@@ -306,7 +306,7 @@
             this.btnCriarPromocoes.Location = new System.Drawing.Point(465, 75);
             this.btnCriarPromocoes.Name = "btnCriarPromocoes";
             this.btnCriarPromocoes.Size = new System.Drawing.Size(112, 36);
-            this.btnCriarPromocoes.TabIndex = 4;
+            this.btnCriarPromocoes.TabIndex = 6;
             this.btnCriarPromocoes.Text = "Adicionar Nova Promoção";
             this.btnCriarPromocoes.UseVisualStyleBackColor = true;
             this.btnCriarPromocoes.Click += new System.EventHandler(this.btnCriarPromocoes_Click);
@@ -326,7 +326,7 @@
             this.txtDescricaoPromocao.Multiline = true;
             this.txtDescricaoPromocao.Name = "txtDescricaoPromocao";
             this.txtDescricaoPromocao.Size = new System.Drawing.Size(379, 47);
-            this.txtDescricaoPromocao.TabIndex = 3;
+            this.txtDescricaoPromocao.TabIndex = 5;
             this.txtDescricaoPromocao.Enter += new System.EventHandler(this.txtDescricaoPromocao_Enter);
             this.txtDescricaoPromocao.Leave += new System.EventHandler(this.txtDescricaoPromocao_Leave);
             // 
@@ -335,7 +335,7 @@
             this.txtTituloPromocao.Location = new System.Drawing.Point(74, 25);
             this.txtTituloPromocao.Name = "txtTituloPromocao";
             this.txtTituloPromocao.Size = new System.Drawing.Size(100, 20);
-            this.txtTituloPromocao.TabIndex = 2;
+            this.txtTituloPromocao.TabIndex = 1;
             this.txtTituloPromocao.TextChanged += new System.EventHandler(this.txtTituloPromocao_TextChanged);
             this.txtTituloPromocao.Enter += new System.EventHandler(this.txtTituloPromocao_Enter);
             this.txtTituloPromocao.Leave += new System.EventHandler(this.txtTituloPromocao_Leave);
@@ -407,7 +407,7 @@
             this.txtBuscaPromocaoPorID.Location = new System.Drawing.Point(558, 13);
             this.txtBuscaPromocaoPorID.Name = "txtBuscaPromocaoPorID";
             this.txtBuscaPromocaoPorID.Size = new System.Drawing.Size(39, 20);
-            this.txtBuscaPromocaoPorID.TabIndex = 3;
+            this.txtBuscaPromocaoPorID.TabIndex = 8;
             this.txtBuscaPromocaoPorID.TextChanged += new System.EventHandler(this.txtBuscaPorID_TextChanged);
             this.txtBuscaPromocaoPorID.Enter += new System.EventHandler(this.txtBuscaPromocaoPorID_Enter);
             this.txtBuscaPromocaoPorID.Leave += new System.EventHandler(this.txtBuscaPromocaoPorID_Leave);
@@ -426,7 +426,7 @@
             this.txtBuscaPorTitulo.Location = new System.Drawing.Point(374, 13);
             this.txtBuscaPorTitulo.Name = "txtBuscaPorTitulo";
             this.txtBuscaPorTitulo.Size = new System.Drawing.Size(100, 20);
-            this.txtBuscaPorTitulo.TabIndex = 1;
+            this.txtBuscaPorTitulo.TabIndex = 7;
             this.txtBuscaPorTitulo.TextChanged += new System.EventHandler(this.txtBuscaPorTitulo_TextChanged);
             this.txtBuscaPorTitulo.Enter += new System.EventHandler(this.txtBuscaPorTitulo_Enter);
             this.txtBuscaPorTitulo.Leave += new System.EventHandler(this.txtBuscaPorTitulo_Leave);

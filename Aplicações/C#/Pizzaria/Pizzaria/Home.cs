@@ -138,7 +138,7 @@ namespace Pizzaria
 
         private void promoçõesAtivasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            GerenciarPromocao Promo = new GerenciarPromocao();
+            CadastrarPromocao Promo = new CadastrarPromocao();
             Promo.Show();
             this.Hide();
         }

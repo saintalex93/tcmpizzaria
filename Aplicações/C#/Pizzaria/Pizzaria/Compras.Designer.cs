@@ -30,13 +30,11 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Compras));
             this.gpb_compras = new System.Windows.Forms.GroupBox();
-            this.cmb_categoria = new System.Windows.Forms.ComboBox();
             this.txt_qdtcomprada = new System.Windows.Forms.TextBox();
             this.txt_vlrunitario = new System.Windows.Forms.TextBox();
             this.txt_nome = new System.Windows.Forms.TextBox();
             this.lbl_qtdcomprada = new System.Windows.Forms.Label();
             this.lbl_valorunitario = new System.Windows.Forms.Label();
-            this.lbl_categoria = new System.Windows.Forms.Label();
             this.lbl_nome = new System.Windows.Forms.Label();
             this.dtg_gravacao = new System.Windows.Forms.DataGridView();
             this.btn_inserir = new System.Windows.Forms.Button();
@@ -56,13 +54,11 @@
             // 
             // gpb_compras
             // 
-            this.gpb_compras.Controls.Add(this.cmb_categoria);
             this.gpb_compras.Controls.Add(this.txt_qdtcomprada);
             this.gpb_compras.Controls.Add(this.txt_vlrunitario);
             this.gpb_compras.Controls.Add(this.txt_nome);
             this.gpb_compras.Controls.Add(this.lbl_qtdcomprada);
             this.gpb_compras.Controls.Add(this.lbl_valorunitario);
-            this.gpb_compras.Controls.Add(this.lbl_categoria);
             this.gpb_compras.Controls.Add(this.lbl_nome);
             this.gpb_compras.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gpb_compras.Location = new System.Drawing.Point(12, 28);
@@ -73,39 +69,22 @@
             this.gpb_compras.Text = "Cadastro de Compras";
             this.gpb_compras.Enter += new System.EventHandler(this.gpb_compras_Enter);
             // 
-            // cmb_categoria
-            // 
-            this.cmb_categoria.FormattingEnabled = true;
-            this.cmb_categoria.Items.AddRange(new object[] {
-            "Selecione...",
-            "Bebida alcóolica",
-            "Bebida não alcóolica",
-            "Itens para cozinha",
-            "Ingredientes",
-            "Embalagens"});
-            this.cmb_categoria.Location = new System.Drawing.Point(159, 72);
-            this.cmb_categoria.Name = "cmb_categoria";
-            this.cmb_categoria.Size = new System.Drawing.Size(121, 21);
-            this.cmb_categoria.TabIndex = 16;
-            this.cmb_categoria.Enter += new System.EventHandler(this.cmb_categoria_Enter);
-            this.cmb_categoria.Leave += new System.EventHandler(this.cmb_categoria_Leave);
-            // 
             // txt_qdtcomprada
             // 
-            this.txt_qdtcomprada.Location = new System.Drawing.Point(437, 99);
+            this.txt_qdtcomprada.Location = new System.Drawing.Point(159, 71);
             this.txt_qdtcomprada.Name = "txt_qdtcomprada";
             this.txt_qdtcomprada.Size = new System.Drawing.Size(100, 20);
-            this.txt_qdtcomprada.TabIndex = 12;
+            this.txt_qdtcomprada.TabIndex = 3;
             this.txt_qdtcomprada.TextChanged += new System.EventHandler(this.txt_qdtcomprada_TextChanged);
             this.txt_qdtcomprada.Enter += new System.EventHandler(this.txt_qdtcomprada_Enter);
             this.txt_qdtcomprada.Leave += new System.EventHandler(this.txt_qdtcomprada_Leave);
             // 
             // txt_vlrunitario
             // 
-            this.txt_vlrunitario.Location = new System.Drawing.Point(159, 117);
+            this.txt_vlrunitario.Location = new System.Drawing.Point(159, 114);
             this.txt_vlrunitario.Name = "txt_vlrunitario";
             this.txt_vlrunitario.Size = new System.Drawing.Size(121, 20);
-            this.txt_vlrunitario.TabIndex = 10;
+            this.txt_vlrunitario.TabIndex = 4;
             this.txt_vlrunitario.Enter += new System.EventHandler(this.txt_vlrunitario_Enter);
             this.txt_vlrunitario.Leave += new System.EventHandler(this.txt_vlrunitario_Leave);
             // 
@@ -114,14 +93,14 @@
             this.txt_nome.Location = new System.Drawing.Point(159, 34);
             this.txt_nome.Name = "txt_nome";
             this.txt_nome.Size = new System.Drawing.Size(359, 20);
-            this.txt_nome.TabIndex = 9;
+            this.txt_nome.TabIndex = 1;
             this.txt_nome.Enter += new System.EventHandler(this.txt_nome_Enter);
             this.txt_nome.Leave += new System.EventHandler(this.txt_nome_Leave);
             // 
             // lbl_qtdcomprada
             // 
             this.lbl_qtdcomprada.AutoSize = true;
-            this.lbl_qtdcomprada.Location = new System.Drawing.Point(304, 102);
+            this.lbl_qtdcomprada.Location = new System.Drawing.Point(28, 74);
             this.lbl_qtdcomprada.Name = "lbl_qtdcomprada";
             this.lbl_qtdcomprada.Size = new System.Drawing.Size(113, 13);
             this.lbl_qtdcomprada.TabIndex = 6;
@@ -131,20 +110,11 @@
             // lbl_valorunitario
             // 
             this.lbl_valorunitario.AutoSize = true;
-            this.lbl_valorunitario.Location = new System.Drawing.Point(28, 120);
+            this.lbl_valorunitario.Location = new System.Drawing.Point(28, 117);
             this.lbl_valorunitario.Name = "lbl_valorunitario";
             this.lbl_valorunitario.Size = new System.Drawing.Size(70, 13);
             this.lbl_valorunitario.TabIndex = 2;
             this.lbl_valorunitario.Text = "Valor Unitário";
-            // 
-            // lbl_categoria
-            // 
-            this.lbl_categoria.AutoSize = true;
-            this.lbl_categoria.Location = new System.Drawing.Point(28, 75);
-            this.lbl_categoria.Name = "lbl_categoria";
-            this.lbl_categoria.Size = new System.Drawing.Size(52, 13);
-            this.lbl_categoria.TabIndex = 1;
-            this.lbl_categoria.Text = "Categoria";
             // 
             // lbl_nome
             // 
@@ -169,7 +139,7 @@
             this.btn_inserir.Location = new System.Drawing.Point(270, 353);
             this.btn_inserir.Name = "btn_inserir";
             this.btn_inserir.Size = new System.Drawing.Size(75, 23);
-            this.btn_inserir.TabIndex = 2;
+            this.btn_inserir.TabIndex = 8;
             this.btn_inserir.Text = "Inserir";
             this.btn_inserir.UseVisualStyleBackColor = true;
             this.btn_inserir.Click += new System.EventHandler(this.btn_inserir_Click);
@@ -179,7 +149,7 @@
             this.btn_alterar.Location = new System.Drawing.Point(12, 596);
             this.btn_alterar.Name = "btn_alterar";
             this.btn_alterar.Size = new System.Drawing.Size(75, 23);
-            this.btn_alterar.TabIndex = 3;
+            this.btn_alterar.TabIndex = 9;
             this.btn_alterar.Text = "Alterar";
             this.btn_alterar.UseVisualStyleBackColor = true;
             this.btn_alterar.Click += new System.EventHandler(this.btn_alterar_Click);
@@ -189,7 +159,7 @@
             this.btn_gravar.Location = new System.Drawing.Point(160, 596);
             this.btn_gravar.Name = "btn_gravar";
             this.btn_gravar.Size = new System.Drawing.Size(75, 23);
-            this.btn_gravar.TabIndex = 4;
+            this.btn_gravar.TabIndex = 10;
             this.btn_gravar.Text = "Gravar";
             this.btn_gravar.UseVisualStyleBackColor = true;
             this.btn_gravar.Click += new System.EventHandler(this.btn_gravar_Click);
@@ -199,7 +169,7 @@
             this.btn_excluir.Location = new System.Drawing.Point(384, 596);
             this.btn_excluir.Name = "btn_excluir";
             this.btn_excluir.Size = new System.Drawing.Size(75, 23);
-            this.btn_excluir.TabIndex = 5;
+            this.btn_excluir.TabIndex = 11;
             this.btn_excluir.Text = "Excluir";
             this.btn_excluir.UseVisualStyleBackColor = true;
             this.btn_excluir.Click += new System.EventHandler(this.btn_excluir_Click);
@@ -209,7 +179,7 @@
             this.btn_sair.Location = new System.Drawing.Point(532, 596);
             this.btn_sair.Name = "btn_sair";
             this.btn_sair.Size = new System.Drawing.Size(75, 23);
-            this.btn_sair.TabIndex = 6;
+            this.btn_sair.TabIndex = 12;
             this.btn_sair.Text = "Sair";
             this.btn_sair.UseVisualStyleBackColor = true;
             this.btn_sair.Click += new System.EventHandler(this.btn_sair_Click);
@@ -220,7 +190,7 @@
             this.dtp_datarecebimento.Location = new System.Drawing.Point(334, 299);
             this.dtp_datarecebimento.Name = "dtp_datarecebimento";
             this.dtp_datarecebimento.Size = new System.Drawing.Size(96, 20);
-            this.dtp_datarecebimento.TabIndex = 15;
+            this.dtp_datarecebimento.TabIndex = 7;
             this.dtp_datarecebimento.Enter += new System.EventHandler(this.dtp_datarecebimento_Enter);
             this.dtp_datarecebimento.Leave += new System.EventHandler(this.dtp_datarecebimento_Leave);
             // 
@@ -248,7 +218,7 @@
             this.cb_fornecedores.Location = new System.Drawing.Point(334, 229);
             this.cb_fornecedores.Name = "cb_fornecedores";
             this.cb_fornecedores.Size = new System.Drawing.Size(121, 21);
-            this.cb_fornecedores.TabIndex = 17;
+            this.cb_fornecedores.TabIndex = 5;
             this.cb_fornecedores.Enter += new System.EventHandler(this.cb_fornecedores_Enter);
             this.cb_fornecedores.Leave += new System.EventHandler(this.cb_fornecedores_Leave);
             // 
@@ -266,7 +236,7 @@
             this.lbl_totalnota.Location = new System.Drawing.Point(334, 263);
             this.lbl_totalnota.Name = "lbl_totalnota";
             this.lbl_totalnota.Size = new System.Drawing.Size(121, 20);
-            this.lbl_totalnota.TabIndex = 19;
+            this.lbl_totalnota.TabIndex = 6;
             this.lbl_totalnota.Enter += new System.EventHandler(this.lbl_totalnota_Enter);
             this.lbl_totalnota.Leave += new System.EventHandler(this.lbl_totalnota_Leave);
             // 
@@ -312,12 +282,10 @@
         private System.Windows.Forms.Button btn_gravar;
         private System.Windows.Forms.Button btn_excluir;
         private System.Windows.Forms.Button btn_sair;
-        private System.Windows.Forms.ComboBox cmb_categoria;
         private System.Windows.Forms.TextBox txt_qdtcomprada;
         private System.Windows.Forms.TextBox txt_vlrunitario;
         private System.Windows.Forms.Label lbl_qtdcomprada;
         private System.Windows.Forms.Label lbl_valorunitario;
-        private System.Windows.Forms.Label lbl_categoria;
         private System.Windows.Forms.DateTimePicker dtp_datarecebimento;
         private System.Windows.Forms.Label lbl_datarecebimento;
         private System.Windows.Forms.Label lbl_fornecedor;
