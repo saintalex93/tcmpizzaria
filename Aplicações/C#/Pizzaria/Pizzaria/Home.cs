@@ -194,6 +194,14 @@ namespace Pizzaria
             cadastrarPromocao.Show();
         }
 
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            Caixa caixa = new Caixa();
+            caixa.FormHome = this;
+            this.Visible = false;
+            caixa.Show();
+        }
+
 
 
     }
