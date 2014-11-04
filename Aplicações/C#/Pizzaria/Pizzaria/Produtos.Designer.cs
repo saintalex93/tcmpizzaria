@@ -42,6 +42,10 @@
             this.btn_cancelar = new System.Windows.Forms.Button();
             this.btn_excluir = new System.Windows.Forms.Button();
             this.btn_sair = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtBuscaPorNome = new System.Windows.Forms.TextBox();
+            this.txtBuscaPorID = new System.Windows.Forms.TextBox();
             this.gbp_produtos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtg_produtos)).BeginInit();
             this.SuspendLayout();
@@ -53,9 +57,10 @@
             this.gbp_produtos.Controls.Add(this.txt_nome);
             this.gbp_produtos.Controls.Add(this.label2);
             this.gbp_produtos.Controls.Add(this.label1);
+            this.gbp_produtos.Controls.Add(this.btn_inserir);
             this.gbp_produtos.Location = new System.Drawing.Point(12, 12);
             this.gbp_produtos.Name = "gbp_produtos";
-            this.gbp_produtos.Size = new System.Drawing.Size(213, 100);
+            this.gbp_produtos.Size = new System.Drawing.Size(215, 126);
             this.gbp_produtos.TabIndex = 10;
             this.gbp_produtos.TabStop = false;
             this.gbp_produtos.Text = "Produtos";
@@ -63,7 +68,7 @@
             // chk_site
             // 
             this.chk_site.AutoSize = true;
-            this.chk_site.Location = new System.Drawing.Point(93, 75);
+            this.chk_site.Location = new System.Drawing.Point(92, 71);
             this.chk_site.Name = "chk_site";
             this.chk_site.Size = new System.Drawing.Size(116, 17);
             this.chk_site.TabIndex = 3;
@@ -85,7 +90,7 @@
             this.txt_nome.Location = new System.Drawing.Point(93, 19);
             this.txt_nome.MaxLength = 40;
             this.txt_nome.Name = "txt_nome";
-            this.txt_nome.Size = new System.Drawing.Size(100, 20);
+            this.txt_nome.Size = new System.Drawing.Size(115, 20);
             this.txt_nome.TabIndex = 1;
             this.txt_nome.Enter += new System.EventHandler(this.txt_nome_Enter);
             this.txt_nome.Leave += new System.EventHandler(this.txt_nome_Leave);
@@ -110,7 +115,7 @@
             // 
             // btn_inserir
             // 
-            this.btn_inserir.Location = new System.Drawing.Point(150, 118);
+            this.btn_inserir.Location = new System.Drawing.Point(92, 94);
             this.btn_inserir.Name = "btn_inserir";
             this.btn_inserir.Size = new System.Drawing.Size(75, 23);
             this.btn_inserir.TabIndex = 4;
@@ -123,8 +128,9 @@
             this.dtg_produtos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dtg_produtos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dtg_produtos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtg_produtos.Location = new System.Drawing.Point(12, 147);
+            this.dtg_produtos.Location = new System.Drawing.Point(12, 192);
             this.dtg_produtos.Name = "dtg_produtos";
+            this.dtg_produtos.ReadOnly = true;
             this.dtg_produtos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dtg_produtos.Size = new System.Drawing.Size(399, 150);
             this.dtg_produtos.TabIndex = 11;
@@ -132,7 +138,7 @@
             // 
             // btn_alterar
             // 
-            this.btn_alterar.Location = new System.Drawing.Point(12, 303);
+            this.btn_alterar.Location = new System.Drawing.Point(12, 348);
             this.btn_alterar.Name = "btn_alterar";
             this.btn_alterar.Size = new System.Drawing.Size(75, 23);
             this.btn_alterar.TabIndex = 5;
@@ -142,7 +148,7 @@
             // 
             // btn_atualizar
             // 
-            this.btn_atualizar.Location = new System.Drawing.Point(93, 303);
+            this.btn_atualizar.Location = new System.Drawing.Point(93, 348);
             this.btn_atualizar.Name = "btn_atualizar";
             this.btn_atualizar.Size = new System.Drawing.Size(75, 23);
             this.btn_atualizar.TabIndex = 6;
@@ -152,7 +158,7 @@
             // 
             // btn_cancelar
             // 
-            this.btn_cancelar.Location = new System.Drawing.Point(174, 303);
+            this.btn_cancelar.Location = new System.Drawing.Point(174, 348);
             this.btn_cancelar.Name = "btn_cancelar";
             this.btn_cancelar.Size = new System.Drawing.Size(75, 23);
             this.btn_cancelar.TabIndex = 7;
@@ -162,7 +168,7 @@
             // 
             // btn_excluir
             // 
-            this.btn_excluir.Location = new System.Drawing.Point(255, 303);
+            this.btn_excluir.Location = new System.Drawing.Point(255, 348);
             this.btn_excluir.Name = "btn_excluir";
             this.btn_excluir.Size = new System.Drawing.Size(75, 23);
             this.btn_excluir.TabIndex = 8;
@@ -172,7 +178,7 @@
             // 
             // btn_sair
             // 
-            this.btn_sair.Location = new System.Drawing.Point(336, 303);
+            this.btn_sair.Location = new System.Drawing.Point(336, 348);
             this.btn_sair.Name = "btn_sair";
             this.btn_sair.Size = new System.Drawing.Size(75, 23);
             this.btn_sair.TabIndex = 9;
@@ -180,18 +186,55 @@
             this.btn_sair.UseVisualStyleBackColor = true;
             this.btn_sair.Click += new System.EventHandler(this.btn_sair_Click);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(9, 167);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(84, 13);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "Busca por nome";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(233, 167);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(72, 13);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "Buscar por ID";
+            // 
+            // txtBuscaPorNome
+            // 
+            this.txtBuscaPorNome.Location = new System.Drawing.Point(99, 164);
+            this.txtBuscaPorNome.Name = "txtBuscaPorNome";
+            this.txtBuscaPorNome.Size = new System.Drawing.Size(100, 20);
+            this.txtBuscaPorNome.TabIndex = 14;
+            this.txtBuscaPorNome.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // txtBuscaPorID
+            // 
+            this.txtBuscaPorID.Location = new System.Drawing.Point(311, 164);
+            this.txtBuscaPorID.Name = "txtBuscaPorID";
+            this.txtBuscaPorID.Size = new System.Drawing.Size(100, 20);
+            this.txtBuscaPorID.TabIndex = 15;
+            this.txtBuscaPorID.TextChanged += new System.EventHandler(this.txtBuscaPorID_TextChanged);
+            // 
             // Produtos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(419, 335);
+            this.ClientSize = new System.Drawing.Size(419, 378);
+            this.Controls.Add(this.txtBuscaPorID);
+            this.Controls.Add(this.txtBuscaPorNome);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.btn_sair);
             this.Controls.Add(this.btn_excluir);
             this.Controls.Add(this.btn_cancelar);
             this.Controls.Add(this.btn_atualizar);
             this.Controls.Add(this.btn_alterar);
             this.Controls.Add(this.dtg_produtos);
-            this.Controls.Add(this.btn_inserir);
             this.Controls.Add(this.gbp_produtos);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -203,6 +246,7 @@
             this.gbp_produtos.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtg_produtos)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -221,5 +265,9 @@
         private System.Windows.Forms.Button btn_cancelar;
         private System.Windows.Forms.Button btn_excluir;
         private System.Windows.Forms.Button btn_sair;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtBuscaPorNome;
+        private System.Windows.Forms.TextBox txtBuscaPorID;
     }
 }

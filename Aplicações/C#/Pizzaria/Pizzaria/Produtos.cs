@@ -38,7 +38,52 @@ namespace Pizzaria
 
         //RAPHA
         //string conexao = "Data Source=localhost ;Initial Catalog=Pizzaria; Persist Security Info = True; User ID=SA; Password=123456";
-        
+
+        public void preencherGrid(string busca, DataGridView tabela)
+        {
+
+            conn = new SqlConnection(conexao);
+            conn.Open();
+            SqlCommand sqlComm = new SqlCommand(busca, conn);
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = sqlComm;
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            tabela.DataSource = dt;
+            conn.Close();
+        }
+
+        public void preenchegrid()
+        {
+
+            try
+            {
+                SqlConnection conn = new SqlConnection(conexao);
+                string strIncluir = "select Nome_Produto,Valor_Venda, sobe_site from produto";
+                conn.Open();
+                SqlCommand sqlComm = new SqlCommand(strIncluir, conn);
+
+                DataTable dt = new DataTable();
+
+                SqlDataAdapter da = new SqlDataAdapter();
+                da.SelectCommand = sqlComm;
+
+
+                da.Fill(dt);
+                conn.Close();
+                dtg_produtos.DataSource = dt;
+
+
+            }
+            catch (Exception)
+            {
+                conn.Close();
+                MessageBox.Show("Falha ao preencher tabela com produtos cadastrados");
+            }
+
+
+        }
+
         private void Insumo_Load(object sender, EventArgs e)
         {
             conexao = Acesso.Conexao;
@@ -61,31 +106,28 @@ namespace Pizzaria
         private void btn_altera_Click(object sender, EventArgs e)
         {
 
-            dtg_produtos.Enabled = false;
             btn_excluir.Enabled = true;
             gbp_produtos.Enabled = true;
             btn_cancelar.Enabled = true;
             btn_atualizar.Enabled = true;
             btn_alterar.Enabled = false;
         }
-        private void btn_atualizar_Click(object sender, EventArgs e)
-        {
 
+        private void btn_atualizar_Click(object sender, EventArgs e)
+        {/*
+            
             if (ValidaCampos())
             {
                 if (Validaexistente())
                 {
                     strsql = "select cod_Produto from Produto where Nome_Produto = '" + dtg_produtos.CurrentRow.Cells[0].Value.ToString() + "'";
-                    //obtem cod do produto antes de alterar
                     cod_produto = ValidaUpdate(strsql);
-                    //atualizarproduto(cod_produto);
                     dtg_produtos.Enabled = true;
                     btn_excluir.Enabled = false;
                     btn_atualizar.Enabled = false;
                     btn_cancelar.Enabled = false;
                     btn_alterar.Enabled = false;
                     btn_inserir.Enabled = true;
-                    preenchegrid();
                 }
                 else
                 {
@@ -112,7 +154,23 @@ namespace Pizzaria
                 }
 
             }
-            else {}
+            else {}*/
+
+            int sobeProSite = 0;
+            if (chk_site.Checked)
+                sobeProSite = 1;
+
+            int idProduto = (int)dtg_produtos.CurrentRow.Cells[0].Value;
+
+            preenchegrid("UPDATE Produto SET Nome_Produto = '" + txt_nome.Text + "', Valor_Venda = " + txt_vlrunitario.Text.Replace("R$","").Replace(" ","") + ", Sobe_Site = " + sobeProSite + " WHERE cod_Produto = " + dtg_produtos.CurrentRow.Cells[0].Value);
+
+            preenchegrid("select cod_Produto as [ID], Nome_Produto as [Produto], Valor_Venda as [Preço], Sobe_Site as [Visível no site] from Produto where Cod_Produto like (" + idProduto + ")");
+
+            txt_vlrunitario.Clear();
+            txt_nome.Clear();
+            chk_site.Checked = false;
+
+            btn_atualizar.Enabled = false;
         }
         private void btn_cancelar_Click(object sender, EventArgs e)
         {
@@ -122,6 +180,56 @@ namespace Pizzaria
             btn_inserir.Enabled = true;
 
         }
+
+    public bool ValidaCampos()
+        {
+            //valida nome
+            if (txt_nome.TextLength > 2)
+            {
+                nome = txt_nome.Text;
+                //Valida categoria
+                /*if (cmb_categoria.SelectedIndex > 0)
+                {
+                    categoria = cmb_categoria.SelectedItem.ToString();*/
+                   // Valida valor
+                        if (Convert.ToInt32(txt_vlrunitario.Text.Replace(",", "").Replace(".", "").Replace("_", "").Replace(" ", "").Replace("R$", "")) > 0)
+                        {
+                            valoruntd = Convert.ToDouble(txt_vlrunitario.Text.Replace(" ", "").Replace(".", "").Replace("_", "").Replace(" ", "").Replace("R$", "")) / 100;
+
+                         
+                                if (chk_site.Checked == true)
+                                {
+                                    site = 1;
+                                    return true;
+                                }
+                                else
+                                {
+                                    site  = 0;
+                                    return true;
+                                }
+                                //  MessageBox.Show(Convert.ToString(dtp_datanasc.Value.Date.AddYears(18)));
+                           
+                        
+                           
+                        }
+                        /*else
+                        {
+                            MessageBox.Show("Valor Unitario Incorreta!");
+                        }*/
+                
+                
+                else
+                {
+                    MessageBox.Show("Categoria Incorreta!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Nome Incorreto!");
+            }
+            return false;
+        }
+
         private void btn_inserir_Click(object sender, EventArgs e)
         {
             if (ValidaCampos())
@@ -154,15 +262,14 @@ namespace Pizzaria
             preenchegrid();
         }
 
-        public void preenchegrid()
+        public void preenchegrid(string comandoSQL)
         {
 
             try
             {
                 SqlConnection conn = new SqlConnection(conexao);
-                string strIncluir = "select Nome_Produto,Valor_Venda, sobe_site from produto";
                 conn.Open();
-                SqlCommand sqlComm = new SqlCommand(strIncluir, conn);
+                SqlCommand sqlComm = new SqlCommand(comandoSQL, conn);
 
                 DataTable dt = new DataTable();
 
@@ -229,59 +336,15 @@ namespace Pizzaria
             }
             else
             {
+
+
+
                 return true;
             }
 
 
         }
-        public Boolean ValidaCampos()
-        {
-            //valida nome
-            if (txt_nome.TextLength > 2)
-            {
-                nome = txt_nome.Text;
-                //Valida categoria
-                /*if (cmb_categoria.SelectedIndex > 0)
-                {
-                    categoria = cmb_categoria.SelectedItem.ToString();*/
-                   // Valida valor
-                        if (Convert.ToInt32(txt_vlrunitario.Text.Replace(",", "").Replace(".", "").Replace("_", "").Replace(" ", "").Replace("R$", "")) > 0)
-                        {
-                            valoruntd = Convert.ToDouble(txt_vlrunitario.Text.Replace(" ", "").Replace(".", "").Replace("_", "").Replace(" ", "").Replace("R$", "")) / 100;
-
-                         
-                                if (chk_site.Checked == true)
-                                {
-                                    site = 1;
-                                    return true;
-                                }
-                                else
-                                {
-                                    site  = 0;
-                                    return true;
-                                }
-                                //  MessageBox.Show(Convert.ToString(dtp_datanasc.Value.Date.AddYears(18)));
-                           
-                        
-                           
-                        }
-                        /*else
-                        {
-                            MessageBox.Show("Valor Unitario Incorreta!");
-                        }*/
-                
-                
-                else
-                {
-                    MessageBox.Show("Categoria Incorreta!");
-                }
-            }
-            else
-            {
-                MessageBox.Show("Nome Incorreto!");
-            }
-            return false;
-        }
+        
         /*public void atualizarproduto(string cod_prod)
         {
 
@@ -406,8 +469,8 @@ namespace Pizzaria
 
         private void dtg_produtos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            txt_nome.Text = dtg_produtos.CurrentRow.Cells[0].Value.ToString();
-            txt_vlrunitario.Text = dtg_produtos.CurrentRow.Cells[1].Value.ToString();
+            txt_nome.Text = dtg_produtos.CurrentRow.Cells[1].Value.ToString();
+            txt_vlrunitario.Text = dtg_produtos.CurrentRow.Cells[2].Value.ToString();
            
 
             gbp_produtos.Enabled = false;
@@ -443,6 +506,20 @@ namespace Pizzaria
         private void cmb_categoria_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            txtBuscaPorID.Text = "";
+
+            preenchegrid("select cod_Produto as [ID], Nome_Produto as [Produto], Valor_Venda as [Preço], Sobe_Site as [Visível no site] from Produto where Nome_Produto like ('%" + txtBuscaPorNome.Text + "%')");
+        }
+
+        private void txtBuscaPorID_TextChanged(object sender, EventArgs e)
+        {
+            txtBuscaPorNome.Text = "";
+
+            preenchegrid("select cod_Produto as [ID], Nome_Produto as [Produto], Valor_Venda as [Preço], Sobe_Site as [Visível no site] from Produto where cod_Produto like (" + txtBuscaPorID.Text + ")");
         }
 
 
