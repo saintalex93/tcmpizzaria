@@ -58,51 +58,7 @@ Cod_Permissao INT FOREIGN KEY REFERENCES Permissao(Cod_Permissao),
 data_Nasc VARCHAR(10),
 )
 go
-/*
-select Cod_Produto as [ID Produto],  Nome_Produto as [Produto], Valor_Venda as [Preço]
-from produto
-where Cod_Produto
-order by cod_produto IN 
-	(
-	select Cod_Produto 
-	from Detalhe_Pedido 
-	where Cod_Pedido = 1 
-	)
 
-	select Produto.Cod_Produto as [ID Produto],  
-	   Produto.Nome_Produto as [Produto], 
-	   Produto.Valor_Venda as [Preço]
-from Pedido
-inner join Detalhe_Pedido
-on Pedido.Cod_Pedido = Detalhe_Pedido.Cod_Pedido
-inner join Produto
-on Detalhe_Pedido.Cod_Produto = Produto.Cod_Produto
-where Pedido.Cod_Pedido = 3;
-
-select *,
-	(
-		select *
-		from produto where Cod_Pedido = 1
-	)
-	from detalhe_pedido where cod_pedido = 1
-		
-	)
-
-Cod_Produto as [ID Produto],  Nome_Produto as [Produto], Valor_Venda as [Preço] 
-from produto
-where Cod_Produto IN 
-	(
-	select Cod_Produto 
-	from Detalhe_Pedido 
-	where Cod_Pedido = 1 
-	)
-
-
-
-select * from Detalhe_Pedido where Cod_Pedido in (select Cod_Produto from produto where Cod_Produto = 1)
-
-
-*/
 create table Insumo
 (
 Cod_Insumo INT IDENTITY(1,1) PRIMARY KEY,
@@ -142,7 +98,7 @@ go
 create table Pedido
 (
 Cod_Pedido INT IDENTITY(1,1) PRIMARY KEY,
-Data VARCHAR(10),
+Data Date,
 Hora VarChar(5),
 Valor numeric (5,2),
 Cod_Funcionario INT FOREIGN KEY REFERENCES Funcionario(Cod_Funcionario),
@@ -233,15 +189,7 @@ Cod_Detalhe INT IDENTITY(1,1) PRIMARY KEY,
 Cod_Produto INT FOREIGN KEY REFERENCES Produto(Cod_Produto),
 Cod_Pedido INT FOREIGN KEY REFERENCES Pedido(Cod_Pedido),
 )
-/*
-select * from Detalhe_Pedido 
 
-select Cod_Produto as [ID Produto],  Nome_Produto as [Produto], Valor_Venda as [Preço], (select count(Cod_Pedido)from detalhe_pedido where cod_produto = 3)  as Quantidade  from produto where Cod_Produto IN (select Cod_Produto from Detalhe_Pedido where Cod_Pedido = 3)
-
-select Cod_Produto from produto where Cod_Produto IN (select Cod_Produto as [ID Produto],  Nome_Produto as [Produto], Valor_Venda as [Preço] from Detalhe_Pedido where Cod_Pedido = 3)
-
-select * from Detalhe_Pedido
-*/
 go
 
 -- INSERT'S
@@ -342,17 +290,26 @@ values
 ('Porção de Camarão',19.00,'Porção de Camarão, acompanhada de cebola',0),('Porção de Calabresa',18.00,'Porção de Calabresa, acompanhada de cebola',0),('Porção de Provolone',17.00,'Porção de Provolone, acompanhada de cebola',1)
 go
 
-insert into Pedido(Cod_Cliente,Cod_Funcionario,Data,Hora,Valor)
+insert into Pedido(
+Cod_Cliente,
+Cod_Funcionario,
+Data,
+Hora,
+Valor)
 values
-(1,1,'10/05/2014','20:15',31.00),
-(2,2,'22/07/2014','19:14',25.25),
-(3,3,'12/08/2014','22:57',38.89),
-(3,1,'04/10/2014','21:40',78.98),
-(5,2,'02/07/2014','21:15',42.30),
-(5,3,'05/02/2014','20:22',67.90),
-(5,2,'15/06/2014','22:57',84.20),
-(4,1,'29/04/2014','18:49',76.00),
-(2,3,'30/02/2014','19:16',58.20)
+(1,1,'10-05-2014','20:15',31.00),
+(2,2,'22-01-2014','19:14',25.25),
+(3,3,'12-08-2014','22:57',38.89),
+(3,1,'04-10-2014','21:40',78.98),
+(5,2,'02-07-2014','21:15',42.30),
+(5,3,'05-02-2014','20:22',67.90),
+(5,2,'15-06-2014','22:57',84.20),
+(4,1,'29-04-2014','18:49',76.00),
+(4,2,'02-07-2014','21:15',42.30),
+(4,3,'05-02-2014','20:22',67.90),
+(4,2,'15-06-2014','22:57',84.20),
+(4,1,'29-04-2014','18:49',76.00),
+(2,3,'30-03-2014','19:16',58.20)
 go
 
 
@@ -464,30 +421,6 @@ values
 (1,2),
 (1,2),
 (2,2),
-(3,3)
+(2,3)
 
 go
-
-Select * from Produto
-Select * from Insumo
-
-/* Deixar 3 ou mais dados em cada tabela por favor.
-
-TABELAS				  STATUS
-
-cliente				|   OK
-permissao			|   OK
-funcionario			|   OK
-insumo				|   OK
-funcpermissao		|   OK
-categoria			|   OK
-produto				|   OK
-pedido				|   OK
-fornecedor			|   faltam dados
-insumo_fornecedor	|   OK
-produto_insumo		|   OK
-promocao 			|   OK
-produto_promocao	|   OK
-pedido_fornecedor	|   OK
-detalhe_pedido		|   Faltam dados
-*/

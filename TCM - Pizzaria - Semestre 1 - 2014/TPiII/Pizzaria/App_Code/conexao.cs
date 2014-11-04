@@ -19,7 +19,7 @@ public class conexao
     public SqlConnection Conexao;
     public SqlCommand command;
 
-    string strConexao = "Server=localhost;DataBase=Pizzaria;user id=SA;password=123456";
+    string strConexao = "Server=Tuca\\SQLEXPRESS;DataBase=Pizzaria;user id=sa;password=peganomeupau";
     //string strConexao = "Server=localhost;DataBase=Pizzaria;user id=aluno;password=etesp";
 
     public void conectar()

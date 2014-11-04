@@ -1,9 +1,0 @@
---- C# --- 
-Tabela funcionário
-- No load carregar os cargos da tabela cargos do banco
-- Foi enviado um registro para o banco sem ter passado nas validações
-- Não deixar data de nascimento padrão como hoje na tela de funcionarios. Deixar vazia
-- Indicar com asterisco nas labels os campos obrigatórios
-
-Tabela Fornecedores
-- Deixar uma das opções de documento habilitadas por default
