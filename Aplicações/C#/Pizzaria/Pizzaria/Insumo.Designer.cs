@@ -41,7 +41,6 @@
             this.cbox_Fornecedores = new System.Windows.Forms.ComboBox();
             this.txt_vlrunitario = new System.Windows.Forms.MaskedTextBox();
             this.cmb_medida = new System.Windows.Forms.ComboBox();
-            this.cmb_categoria = new System.Windows.Forms.ComboBox();
             this.dtp_datafabricacao = new System.Windows.Forms.DateTimePicker();
             this.dtp_datavalidade = new System.Windows.Forms.DateTimePicker();
             this.dtp_datarecebimento = new System.Windows.Forms.DateTimePicker();
@@ -128,7 +127,6 @@
             this.gpb_compras.Controls.Add(this.cbox_Fornecedores);
             this.gpb_compras.Controls.Add(this.txt_vlrunitario);
             this.gpb_compras.Controls.Add(this.cmb_medida);
-            this.gpb_compras.Controls.Add(this.cmb_categoria);
             this.gpb_compras.Controls.Add(this.dtp_datafabricacao);
             this.gpb_compras.Controls.Add(this.dtp_datavalidade);
             this.gpb_compras.Controls.Add(this.dtp_datarecebimento);
@@ -176,6 +174,7 @@
             this.cbox_Fornecedores.Name = "cbox_Fornecedores";
             this.cbox_Fornecedores.Size = new System.Drawing.Size(121, 21);
             this.cbox_Fornecedores.TabIndex = 9;
+            this.cbox_Fornecedores.DropDown += new System.EventHandler(this.cbox_Fornecedores_DropDown);
             this.cbox_Fornecedores.Enter += new System.EventHandler(this.cbox_Fornecedores_Enter);
             this.cbox_Fornecedores.Leave += new System.EventHandler(this.cbox_Fornecedores_Leave);
             // 
@@ -207,18 +206,6 @@
             this.cmb_medida.TabIndex = 3;
             this.cmb_medida.Enter += new System.EventHandler(this.cmb_medida_Enter);
             this.cmb_medida.Leave += new System.EventHandler(this.cmb_medida_Leave);
-            // 
-            // cmb_categoria
-            // 
-            this.cmb_categoria.FormattingEnabled = true;
-            this.cmb_categoria.Items.AddRange(new object[] {
-            "Selecione..."});
-            this.cmb_categoria.Location = new System.Drawing.Point(160, 72);
-            this.cmb_categoria.Name = "cmb_categoria";
-            this.cmb_categoria.Size = new System.Drawing.Size(121, 21);
-            this.cmb_categoria.TabIndex = 2;
-            this.cmb_categoria.Enter += new System.EventHandler(this.cmb_categoria_Enter);
-            this.cmb_categoria.Leave += new System.EventHandler(this.cmb_categoria_Leave);
             // 
             // dtp_datafabricacao
             // 
@@ -379,7 +366,6 @@
         private System.Windows.Forms.DataGridView dtg_gravacao;
         private System.Windows.Forms.GroupBox gpb_compras;
         private System.Windows.Forms.ComboBox cmb_medida;
-        private System.Windows.Forms.ComboBox cmb_categoria;
         private System.Windows.Forms.DateTimePicker dtp_datafabricacao;
         private System.Windows.Forms.DateTimePicker dtp_datavalidade;
         private System.Windows.Forms.DateTimePicker dtp_datarecebimento;

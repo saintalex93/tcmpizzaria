@@ -18,8 +18,7 @@ namespace Pizzaria
             InitializeComponent();
         }
 
-        string conexao = "Data Source= Tuca\\SQLEXPRESS ;Initial Catalog=Pizzaria; Persist Security Info = True; User ID=sa; Password=peganomeupau";
-
+        string conexao = "Data Source= USER-PC;Initial Catalog=Pizzaria; Persist Security Info = True; User ID=sa; Password=1234";
         string strBusca = "";
 
         public Form FormHome { get; set; }
@@ -772,6 +771,11 @@ namespace Pizzaria
         private void txtNovoPreco_Leave_1(object sender, EventArgs e)
         {
             txtNovoPreco.BackColor = Color.White;
+        }
+
+        private void CadastrarPromocao_Load(object sender, EventArgs e)
+        {
+            //conexao = Acesso.Conexao;
         }
     }
 }

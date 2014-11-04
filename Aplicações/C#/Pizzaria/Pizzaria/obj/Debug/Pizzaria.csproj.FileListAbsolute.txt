@@ -246,7 +246,6 @@ E:\TCM\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.exe
 E:\TCM\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.pdb
 E:\TCM\Aplicações\C#\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe
 E:\TCM\Aplicações\C#\Pizzaria\Pizzaria\bin\Debug\Pizzaria.pdb
-E:\TCM\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.csprojResolveAssemblyReference.cache
 E:\TCM\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Fornecedores.resources
 E:\TCM\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Home.resources
 E:\TCM\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Pedidos.resources
@@ -254,7 +253,6 @@ E:\TCM\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Compras.resources
 E:\TCM\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Funcionario.resources
 E:\TCM\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.CadastroCliente.resources
 E:\TCM\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Produtos.resources
-E:\TCM\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Promocao.resources
 E:\TCM\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Properties.Resources.resources
 E:\TCM\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.csproj.GenerateResource.Cache
 E:\TCM\trunk\Aplicações\C#\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe.config
@@ -357,3 +355,8 @@ C:\Users\ACS\Desktop\TcmVersiona\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Piz
 E:\TCM\trunk\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Produtos.resources
 E:\TCM\trunk\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Caixa.resources
 C:\Users\ACS\Desktop\TcmVersiona\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Caixa.resources
+E:\TCM\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.CadastrarPromocao.resources
+E:\TCM\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Caixa.resources
+E:\TCM\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Insumo.resources
+E:\TCM\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Login.resources
+E:\TCM\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Rede.resources

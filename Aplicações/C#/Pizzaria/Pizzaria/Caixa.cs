@@ -14,8 +14,8 @@ namespace Pizzaria
 {
     public partial class Caixa : Form
     {
-        string conexao = "Data Source= Alex\\SQLEXPRESS ;Initial Catalog=Pizzaria; Persist Security Info = True; User ID=sa; Password=1234";
-
+        //string conexao = "Data Source= Alex\\SQLEXPRESS ;Initial Catalog=Pizzaria; Persist Security Info = True; User ID=sa; Password=1234";
+        string conexao = "";
         DateTime hoje = DateTime.Today;
         int periodo = 0;
         string dataComeco = "";
@@ -154,6 +154,11 @@ namespace Pizzaria
             preencherGrid("select Cod_Pedido as [ID], Data, Hora, Valor as [Saldo], Cod_Funcionario as [Atendente], Cod_Cliente as [Cliente] from Pedido where Data between " + dataComeco + " and " + dataFim, gridRegistros);
 
             calcularSaldo();
+        }
+
+        private void Caixa_Load(object sender, EventArgs e)
+        {
+            conexao = Acesso.Conexao;
         }
     }
 }

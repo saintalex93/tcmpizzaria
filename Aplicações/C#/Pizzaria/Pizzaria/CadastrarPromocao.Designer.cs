@@ -489,6 +489,7 @@
             this.Name = "CadastrarPromocao";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Criação de Promoções";
+            this.Load += new System.EventHandler(this.CadastrarPromocao_Load);
             this.Shown += new System.EventHandler(this.CadastrarPromocao_Shown);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

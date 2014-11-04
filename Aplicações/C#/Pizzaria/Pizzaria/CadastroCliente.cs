@@ -57,7 +57,7 @@ namespace Pizzaria
 
         private void CadastroCliente_Load_1(object sender, EventArgs e)
         {
-            btn_alterar.Enabled = false;
+//            btn_alterar.Enabled = true;
             btn_excluir.Enabled = false;
 
             preenchegrid();

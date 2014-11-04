@@ -241,6 +241,7 @@
             this.Name = "Caixa";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Caixa";
+            this.Load += new System.EventHandler(this.Caixa_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridRegistros)).EndInit();

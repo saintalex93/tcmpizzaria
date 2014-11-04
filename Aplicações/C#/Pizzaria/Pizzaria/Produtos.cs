@@ -31,14 +31,17 @@ namespace Pizzaria
         //ALEX
         // string conexao = "Data Source=ALEX\\SQLEXPRESS ;Initial Catalog=Pizzaria; Persist Security Info = True; User ID=sa; Password=1234";
 
+        String conexao = "";
         //EMERSON
-        string conexao = "Data Source=CASA-PC\\BPASERVER10 ;Initial Catalog=Pizzaria; Persist Security Info = True; User ID=sa; Password=AutoMateBPA10";
+        /*string conexao = "Data Source=CASA-PC\\BPASERVER10 ;Initial Catalog=Pizzaria; Persist Security Info = True; User ID=sa; Password=AutoMateBPA10";*/
+
 
         //RAPHA
         //string conexao = "Data Source=localhost ;Initial Catalog=Pizzaria; Persist Security Info = True; User ID=SA; Password=123456";
         
         private void Insumo_Load(object sender, EventArgs e)
         {
+            conexao = Acesso.Conexao;
             btn_alterar.Enabled = false;
             btn_excluir.Enabled = false;
             btn_atualizar.Enabled = false;
@@ -156,7 +159,7 @@ namespace Pizzaria
             try
             {
                 SqlConnection conn = new SqlConnection(conexao);
-                string strIncluir = "select Nome_Produto,Valor_Venda,cod_Categoria, sobe_site from produto";
+                string strIncluir = "select Nome_Produto,Valor_Venda, sobe_site from produto";
                 conn.Open();
                 SqlCommand sqlComm = new SqlCommand(strIncluir, conn);
 
@@ -187,20 +190,21 @@ namespace Pizzaria
             //seleciona categoria
 
             SqlConnection conn = new SqlConnection(conexao);
-            string strIncluir = "select cod_Categoria from Categoria where Nome_Categoria = '" + categoria + "'";
+            /*string strIncluir = "select cod_Categoria from Categoria where Nome_Categoria = '" + categoria + "'";
+            string strIncluir = "select cod_produto from Produto where";
             conn.Open();
             SqlCommand sqlComm = new SqlCommand(strIncluir, conn);
 
             SqlDataAdapter da = new SqlDataAdapter();
             DataTable dt = new DataTable();
             da.SelectCommand = sqlComm;
-            da.Fill(dt);
+            da.Fill(dt);*/
 
             //Insere dados
             conn = new SqlConnection(conexao);
-            strIncluir = "insert into Produto (Nome_Produto, Valor_venda,Sobe_Site ) values ('" + nome + "','" + valoruntd.ToString().Replace(",",".") + "','"+ site +"')";
+            string strIncluir = "insert into Produto (Nome_Produto, Valor_venda,Sobe_Site ) values ('" + nome + "','" + valoruntd.ToString().Replace(",",".") + "','"+ site +"')";
             conn.Open();
-            sqlComm = new SqlCommand(strIncluir, conn);
+            SqlCommand sqlComm = new SqlCommand(strIncluir, conn);
             sqlComm.ExecuteNonQuery();
 
 

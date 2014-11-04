@@ -22,6 +22,7 @@ namespace Pizzaria
 
         private void Produtos_Load(object sender, EventArgs e)
         {
+            conexao = Acesso.Conexao;
             btn_alterar.Enabled = false;
             btn_excluir.Enabled = false;
             btn_gravar.Enabled = false;
@@ -37,7 +38,9 @@ namespace Pizzaria
 
         //conexao DB
        // string conexao = "Data Source=ALEX\\SQLEXPRESS ;Initial Catalog=Pizzaria; Persist Security Info = True; User ID=sa; Password=1234";
-        string conexao = "Data Source=CASA-PC\\BPASERVER10 ;Initial Catalog=Pizzaria; Persist Security Info = True; User ID=sa; Password=AutoMateBPA10";
+        /*string conexao = "Data Source=CASA-PC\\BPASERVER10 ;Initial Catalog=Pizzaria; Persist Security Info = True; User ID=sa; Password=AutoMateBPA10";*/
+
+        string conexao = "";
 
 
 
@@ -219,8 +222,8 @@ namespace Pizzaria
 
         }
 
-
-        public void PreencheCatego()
+        /*
+       public void PreencheCatego()
         {
 
             SqlConnection conn = new SqlConnection(conexao);
@@ -245,7 +248,7 @@ namespace Pizzaria
 
             conn.Close();
 
-        }
+        }*/
         public Boolean ValidaCampos()
         {
             //valida nome
@@ -253,10 +256,10 @@ namespace Pizzaria
             {
                 nome = txt_nome.Text;
                 //Valida categoria
-                if (cmb_categoria.SelectedIndex > 0)
+             /*   if (cmb_categoria.SelectedIndex > 0)
                 {
                     categoria = cmb_categoria.SelectedItem.ToString();
-                    // valida medida
+                    // valida medida*/
                     if (cmb_medida.SelectedIndex > 0)
                     {
                         medida = cmb_medida.SelectedItem.ToString();
@@ -357,11 +360,11 @@ namespace Pizzaria
                     {
                         MessageBox.Show("Medida Incorreta!");
                     }
-                }
+               /* }
                 else
                 {
                     MessageBox.Show("Categoria Incorreta!");
-                }
+                }*/
             }
             else
             {
@@ -399,6 +402,7 @@ namespace Pizzaria
             //seleciona categoria
             try
             {
+                /*
                 SqlConnection conn = new SqlConnection(conexao);
                 string strIncluir = "select cod_Categoria from Categoria where Nome_Categoria = '" + categoria + "'";
                 conn.Open();
@@ -410,16 +414,17 @@ namespace Pizzaria
                 da.Fill(dt);
                 cod_categoria = Convert.ToInt32(dt.Rows[0][0].ToString());
                 conn.Close();
-                //Insere dados
-                conn = new SqlConnection(conexao);
-                strIncluir = "insert into insumo " +
+                */
+
+                SqlConnection conn = new SqlConnection(conexao);
+                string strIncluir = "insert into insumo " +
                     "(Nome_Insumo, Medida, ValorDeCompra,QtdeEmEstoque, " +
-                    "Recebimento, Fabricacao,validade,Cod_Categoria,QtdeRecomendavel) values ('"
+                    "Recebimento, Fabricacao,validade,QtdeRecomendavel) values ('"
                     + nome + "','" + medida + "','" + valoruntd.ToString().Replace(",", ".") + "','" +
                     qtd + "','" + datarecebimento.ToString("dd/MM/yyyy") + "','" + datafabricacao.ToString("dd/MM/yyyy") +
-                    "','" + datavalidade.ToString("dd/MM/yyyy") + "','" + cod_categoria + "','" + txtbox_Recomendada.Text.ToString() +"')";
+                    "','" + datavalidade.ToString("dd/MM/yyyy") + "','" + txtbox_Recomendada.Text.ToString() +"')";
                 conn.Open();
-                sqlComm = new SqlCommand(strIncluir, conn);
+                SqlCommand sqlComm = new SqlCommand(strIncluir, conn);
                 sqlComm.ExecuteNonQuery();
                 
 
@@ -432,8 +437,8 @@ namespace Pizzaria
                     conn.Open();
                     sqlComm = new SqlCommand(strIncluir, conn);
 
-                       da = new SqlDataAdapter();
-                       dt = new DataTable();
+                    SqlDataAdapter da = new SqlDataAdapter();
+                    DataTable dt = new DataTable();
                     da.SelectCommand = sqlComm;
                     da.Fill(dt);
 
@@ -501,7 +506,7 @@ namespace Pizzaria
 
 
             //seleciona categoria
-
+            /*
             SqlConnection conn = new SqlConnection(conexao);
             string strIncluir = "select cod_Categoria from Categoria where Nome_Categoria = '" + categoria + "'";
             conn.Open();
@@ -511,24 +516,25 @@ namespace Pizzaria
             DataTable dt = new DataTable();
             da.SelectCommand = sqlComm;
             da.Fill(dt);
+            */
 
             //atualiza produto
             conn = new SqlConnection(conexao);
-            strIncluir = "update Insumo set Nome_Insumo ='" + nome + 
+            string strIncluir = "update Insumo set Nome_Insumo ='" + nome + 
                 "',ValorDeCompra='" + valoruntd.ToString().Replace(",", ".") + 
                 "',QtdeRecomendavel = '"+ txtbox_Recomendada.Text.ToString() +"',validade ='" + 
                 datavalidade.ToString("yyy/MM/dd") + "',qtdeemEstoque= qtdeemEstoque +" + qtd +
-                ",cod_categoria ='" + dt.Rows[0][0].ToString() + "',Fabricacao = '" + datafabricacao.ToString("yyy/MM/dd") +
+                "',Fabricacao = '" + datafabricacao.ToString("yyy/MM/dd") +
                 "',Recebimento = '" + datarecebimento.ToString("yyy/MM/dd") + "', medida ='" + medida + "' where Cod_Insumo = '" + 
                 cod_prod + "'";
 
             conn.Open();
-            sqlComm = new SqlCommand(strIncluir, conn);
+            SqlCommand sqlComm = new SqlCommand(strIncluir, conn);
             sqlComm.ExecuteNonQuery();
-
+            /*
             da.SelectCommand = sqlComm;
             da.Fill(dt);
-
+            */
 
 
         }
@@ -631,12 +637,12 @@ namespace Pizzaria
 
         private void cmb_categoria_Leave(object sender, EventArgs e)
         {
-            cmb_categoria.BackColor = Color.White;
+            //cmb_categoria.BackColor = Color.White;
         }
 
         private void cmb_categoria_Enter(object sender, EventArgs e)
         {
-            cmb_categoria.BackColor = Color.Aquamarine;
+          //  cmb_categoria.BackColor = Color.Aquamarine;
         }
 
         private void cmb_medida_Enter(object sender, EventArgs e)
@@ -707,6 +713,11 @@ namespace Pizzaria
         private void cbox_Fornecedores_Enter(object sender, EventArgs e)
         {
             cbox_Fornecedores.BackColor = Color.Aquamarine;
+        }
+
+        private void cbox_Fornecedores_DropDown(object sender, EventArgs e)
+        {
+            preenchefornecedores();
         }
     }
 

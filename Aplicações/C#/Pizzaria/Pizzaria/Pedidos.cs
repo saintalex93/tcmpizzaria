@@ -25,8 +25,9 @@ namespace Pizzaria
         public void preencherGrid(string busca, DataGridView tabela)
         {
             //conexao = "Data Source=localhost; Initial Catalog=Pizzaria; Persist Security Info = True; User ID=SA; Password=peganomeupau";
-            conexao = "Data Source=Tuca\\SQLEXPRESS; Initial Catalog=Pizzaria; Persist Security Info = True; User ID=sa; Password=peganomeupau";
+          //  conexao = "Data Source=Tuca\\SQLEXPRESS; Initial Catalog=Pizzaria; Persist Security Info = True; User ID=sa; Password=peganomeupau";
             SqlConnection conn = new SqlConnection(conexao);
+            
             conn.Open();
             SqlCommand sqlComm = new SqlCommand(busca, conn);
 //            sqlComm.ExecuteNonQuery();
@@ -91,6 +92,7 @@ namespace Pizzaria
 
         private void Pedidos_Load(object sender, EventArgs e)
         {
+            conexao = Acesso.Conexao;
 
         }
 
@@ -128,7 +130,7 @@ namespace Pizzaria
 
         private void Pedidos_Shown(object sender, EventArgs e)
         {
-            conexao = Rede.DataContainer.conexaoGlobal;
+            //conexao = Rede.DataContainer.conexaoGlobal;
         }
 
         private void txtCPF_TextChanged(object sender, EventArgs e)
