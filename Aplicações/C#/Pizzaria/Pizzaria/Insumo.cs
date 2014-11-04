@@ -574,11 +574,6 @@ namespace Pizzaria
             //string strIncluir = "select cod_Produto from Produto where Nome_Produto = '" + dtg_gravacao.CurrentRow.Cells[1].ToString(); +"'";
             conn.Open();
             SqlCommand sqlComm = new SqlCommand(strIncluir, conn);
-
-
-
-
-
             SqlDataAdapter da = new SqlDataAdapter();
             DataTable dt = new DataTable();
             da.SelectCommand = sqlComm;
@@ -717,6 +712,7 @@ namespace Pizzaria
 
         private void cbox_Fornecedores_DropDown(object sender, EventArgs e)
         {
+            if(cbox_Fornecedores.Items.Count == 1)
             preenchefornecedores();
         }
     }
