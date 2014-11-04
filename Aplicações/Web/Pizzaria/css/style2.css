@@ -426,7 +426,7 @@ background-color: #000;
 table#ContentPlaceHolder1_DataGrid1 caption,table#ContentPlaceHolder1_datagPedidos caption,table#ContentPlaceHolder1_TabelaPromocao caption
 {
 font-size: 50px;
-margin-bottom: 50px;
+margin-bottom: 80px;
 color: #fff;
 font-family: 'Calisto MT';
 }
@@ -463,4 +463,9 @@ input#ContentPlaceHolder1_Preenche
 {
     background-color: rgba(255,255,255,0);
     border-color: rgba(255,255,255,0);
+}
+div#ContentPlaceHolder1_pnlBotoesPedido
+{
+    position: absolute;
+    margin: 60px 0px 0px 110px;
 }

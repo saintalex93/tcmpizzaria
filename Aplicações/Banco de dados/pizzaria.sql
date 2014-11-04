@@ -284,7 +284,7 @@ Ingred_Prod,
 Sobe_Site
 )
 values
-('Pizza Baiana',20.00,'Queijo Mussarela, Calabresa Moída, Ovos, Cebola e Pimenta.',1),('Pizza Mussarela',18.40,'Queijo Mussarela e Cebola.',1),('Pizza Bacon',20.20,'Queijo Mussarela, Ovos e Bacon.,',1),
+('Pizza Baiana',20.00,'Queijo Mussarela, Calabresa Moída, Ovos, Cebola e Pimenta.',1),('Pizza Mussarela',18.40,'Queijo Mussarela e Cebola.',1),('Pizza Bacon',20.20,'Queijo Mussarela, Ovos e Bacon.',1),
 ('Pizza Americana',24.00,'Queijo Mussarela, Lombo, Champignon e Palmito.',1),('Pizza Bauru',23.50,'Queijo Mussarela, Presunto e Tomate.',1),('Pizza Calabresa',18.00,'Queijo Mussarela, Calabresa e Cebola.',1),
 ('Pizza Catupiry',23.00,'Queijo Mussarela e Catupiry.',1),('Pizza Três Queijos',24.70,'Queijo Mussarela, Catupiry e Provolone',1),('Pizza Alemã',25.20,'Queijo Mussarela, Calabresa Moída e Parmesão.',1),
 ('Pizza Havaiana Brotinho',13.70,'Queijo Mussarela, ',1),('Pizza Baiana Brotinho',14.50,'Queijo Mussarela, ',0),('Pizza Palmito Brotinho',15.00,'Queijo Mussarela, ',0),('Pizza Peruana Brotinho',14.00,'Queijo Mussarela, ',1),
@@ -316,11 +316,11 @@ values
 (2,3,'30/02/2014','19:16',58.20)*/
 
 (1,1, '11/01/2014','20:15',31.00),
-(1,1, '01/11/2014','20:15',31.00)
-/*(1,1, '2014-11-03','20:15',31.00),
-(1,1, '2014-11-04','20:15',31.00),
-(1,1, '2014-11-05','20:15',31.00),
-(1,1, '2014-05-10','20:15',31.00),
+(1,1, '21/03/2014','20:15',31.00),
+(5,1, '03/11/2014','20:15',31.00),
+(5,1, '02/08/2014','22:40',31.00),
+(5,1, '05/11/2014','23:39',31.00)
+/*(1,1, '2014-05-10','20:15',31.00),
 (2,2, '2014-07-22','19:14',25.25),
 (3,3, '2014-08-12','22:57',38.89),
 (3,1, '2014-10-04','21:40',78.98),

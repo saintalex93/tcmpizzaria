@@ -64,7 +64,17 @@ public partial class aspx_cadastro : System.Web.UI.Page
                 String bairro = txtBairro.Text.Trim();
                 String cep = txtCep.Text;
                 String estado = DDLEstado.SelectedValue.ToString();
-            
+
+                try
+                {
+                    Convert.ToInt32(txtNumCasa.Text);
+                }
+                catch (Exception ex)
+                {
+                    x = false;
+                    lblresposta.Text = "Número é obrigatório e deve conter apenas números !!";
+                    txtNumCasa.Focus();
+                }
                 conexao con2 = new conexao();
                 con2.conectar();
                
@@ -197,14 +207,18 @@ public partial class aspx_cadastro : System.Web.UI.Page
 
     protected void validacao()
     {
+        string numcasa = txtNumCasa.Text.Trim();
+
         if (txtNome.Text.Length < 3)
         {
             x = false;
+            lblresposta.Text = "Nome deve conter mais de 3 letras";
             txtNome.Focus();
         }
         else if (txtTel.Text.Length != 10 && txtTel.Text.Length != 13)
         {
             x = false;
+            lblresposta.Text = "Telefone inválido !!";
             txtTel.Focus();
         }
 
@@ -214,6 +228,7 @@ public partial class aspx_cadastro : System.Web.UI.Page
             if (txtCel.Text.Length != 10 && txtCel.Text.Length != 11 && txtCel.Text.Length != 13 && txtCel.Text.Length != 15)
             {
                 x = false;
+                lblresposta.Text = "Celular inválido !!";
                 txtCel.Focus();
             }
         }
@@ -221,59 +236,70 @@ public partial class aspx_cadastro : System.Web.UI.Page
         else if (txtEmail.Text.Length < 5)
         {
             x = false;
+            lblresposta.Text = "Email inválido !!";
             txtEmail.Focus();
         }
         
         else if (txtCpf.Text.Length != 11 && txtCpf.Text.Length != 14)
         {
             x = false;
+            lblresposta.Text = "CPF inválido !!";
             txtCpf.Focus();
         }
         
         else if (txtDtNasc.Text.Length != 8 && txtDtNasc.Text.Length != 10)
         {
             x = false;
+            lblresposta.Text = "Data de Nascimento inválida !!";
             txtDtNasc.Focus();
         }
 
         else if (txtSenha.Text.Length < 5)
         {
             x = false;
+            lblresposta.Text = "Senha inválida !!";
             txtSenha.Focus();
         }
         else if (txtSenhaConfirm.Text != txtSenha.Text) 
         {
             x = false;
+            lblresposta.Text = "Suas senhas não conferem !!";
             txtSenhaConfirm.Focus();
         }
 
         else if (txtCidade.Text.Length < 3)
         {
             x = false;
+            lblresposta.Text = "Cidade inválido !!";
             txtCidade.Focus();
         }
 
         else if (txtRua.Text.Length < 1)
         {
             x = false;
+            lblresposta.Text = "Rua é obrigatória !!";
             txtRua.Focus();
         }
-
-        else if (txtNumCasa.Text.Length < 1)
+/*
+        else if (txtNumCasa.Text == "")
         {
+            Convert.ToInt32(txtNumCasa.Text);
             x = false;
-            txtNumCasa.Focus();
+            lblresposta.Text = "Número incorreto";
         }
+    */
 
         else if (txtBairro.Text.Length < 3)
         {
             x = false;
+            lblresposta.Text = "Bairro deve conter mais de 3 letras !!";
             txtBairro.Focus();
         }
 
         else if (txtCep.Text.Length != 8 && txtCep.Text.Length != 9)
         {
             x = false;
+            lblresposta.Text = "CEP inválido !!";
             txtCep.Focus();
         }
     }
