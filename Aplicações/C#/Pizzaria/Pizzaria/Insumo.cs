@@ -187,7 +187,11 @@ namespace Pizzaria
         }
         private void txt_vlrunitario_TextChanged(object sender, EventArgs e)
         {
-            //Decimal.Parse(txt_vlrunitario.Text).ToString("N2");
+            string conteudoOriginal = txt_vlrunitario.Text.Replace(" ","_");
+            string conteudoCorrigido = "";
+        
+
+        
         }
         private void dtg_gravacao_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -421,7 +425,7 @@ namespace Pizzaria
                     "(Nome_Insumo, Medida, ValorDeCompra,QtdeEmEstoque, " +
                     "Recebimento, Fabricacao,validade,QtdeRecomendavel) values ('"
                     + nome + "','" + medida + "','" + valoruntd.ToString().Replace(",", ".") + "','" +
-                    qtd + "','" + datarecebimento.ToString("dd/MM/yyyy") + "','" + datafabricacao.ToString("dd/MM/yyyy") +
+                    txtQuantidadeEmEstoque.Text + "','" + datarecebimento.ToString("dd/MM/yyyy") + "','" + datafabricacao.ToString("dd/MM/yyyy") +
                     "','" + datavalidade.ToString("dd/MM/yyyy") + "','" + txtbox_Recomendada.Text.ToString() +"')";
                 conn.Open();
                 SqlCommand sqlComm = new SqlCommand(strIncluir, conn);
@@ -658,6 +662,7 @@ namespace Pizzaria
         private void txt_vlrunitario_Enter(object sender, EventArgs e)
         {
             txt_vlrunitario.BackColor = Color.Aquamarine;
+
         }
 
         private void txtbox_Recomendada_Enter(object sender, EventArgs e)
@@ -714,6 +719,11 @@ namespace Pizzaria
         {
             if(cbox_Fornecedores.Items.Count == 1)
             preenchefornecedores();
+        }
+
+        private void txt_vlrunitario_MouseClick(object sender, MouseEventArgs e)
+        {
+            txt_vlrunitario.SelectionStart = txt_vlrunitario.Mask.Length;
         }
     }
 

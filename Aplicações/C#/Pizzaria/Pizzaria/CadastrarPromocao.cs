@@ -18,7 +18,7 @@ namespace Pizzaria
             InitializeComponent();
         }
 
-        string conexao = "Data Source= USER-PC;Initial Catalog=Pizzaria; Persist Security Info = True; User ID=sa; Password=1234";
+        string conexao = ""/*Data Source= USER-PC;Initial Catalog=Pizzaria; Persist Security Info = True; User ID=sa; Password=1234"*/;
         string strBusca = "";
 
         public Form FormHome { get; set; }
@@ -302,9 +302,9 @@ namespace Pizzaria
 
 /*            preencherGrid("select cod_Produto, Nome_Produto, Valor_Venda from Produto where Nome_Produto LIKE ('%a%')", dtgBuscaProdutos);
 
-
+            
 */
-
+            txtTituloPromocao.Focus();
         }
 
         private void btnAdicionar_Click(object sender, EventArgs e)
@@ -464,7 +464,7 @@ namespace Pizzaria
                     txtBuscaPromocaoPorID.Focus();
                 }
 
-            preencherGrid("select Cod_Promocao as [ID], Nome_Promocao as [Título], Vigencia as [Vigência], Descricao as [Descrição] from Promocao where Cod_Promocao = " + txtBuscaPromocaoPorID.Text, gridPromocoesEncontradas);
+            preencherGrid("select Cod_Promocao as [ID], Nome_Promocao as [Título], Preco_Original as [Preço original], Preco_Promocao as [Preço promocional], Vigencia as [Vigência], Descricao as [Descrição] from Promocao where Cod_Promocao = " + txtBuscaPromocaoPorID.Text, gridPromocoesEncontradas);
 
             btnAlterar.Enabled = true;
 
@@ -514,7 +514,7 @@ namespace Pizzaria
         {
             txtBuscaPromocaoPorID.Text = "";
 
-            preencherGrid("select Cod_Promocao as [ID], Nome_Promocao as [Título], Vigencia as [Vigência], Descricao as [Descrição] from Promocao where Nome_Promocao like ('%" + txtBuscaPorTitulo.Text + "%')", gridPromocoesEncontradas);
+            preencherGrid("select Cod_Promocao as [ID], Nome_Promocao as [Título], Preco_Original as [Preço original], Preco_Promocao as [Preço promocional], Vigencia as [Vigência], Descricao as [Descrição] from Promocao where Nome_Promocao like ('%" + txtBuscaPorTitulo.Text + "%')", gridPromocoesEncontradas);
 
             btnAlterar.Enabled = true;
 
@@ -735,7 +735,13 @@ namespace Pizzaria
 
         private void txtBuscaPalavraChave_Enter_1(object sender, EventArgs e)
         {
-            txtBuscaPalavraChave.BackColor = Color.Aquamarine;
+            if (gridProdutosNaPromocao.Rows.Count == 0)
+            {
+                mensagemDeErro("Por favor, antes de selecionar um Produto, selecione uma Promoção aonde inserir o Produto.");
+
+                txtBuscaPorTitulo.Focus();
+            }else
+                txtBuscaPalavraChave.BackColor = Color.Aquamarine;
         }
 
         private void txtBuscaPalavraChave_Leave_1(object sender, EventArgs e)
@@ -745,7 +751,14 @@ namespace Pizzaria
 
         private void txtBuscaProdutoPorID_Enter(object sender, EventArgs e)
         {
-            txtBuscaProdutoPorID.BackColor = Color.Aquamarine;
+            if (gridProdutosNaPromocao.Rows.Count == 0)
+            {
+                mensagemDeErro("Por favor, antes de selecionar um Produto, selecione uma Promoção aonde inserir o Produto.");
+
+                txtBuscaPorTitulo.Focus();
+            }
+            else
+                txtBuscaProdutoPorID.BackColor = Color.Aquamarine;
         }
 
         private void txtBuscaProdutoPorID_Leave(object sender, EventArgs e)
@@ -775,7 +788,7 @@ namespace Pizzaria
 
         private void CadastrarPromocao_Load(object sender, EventArgs e)
         {
-            //conexao = Acesso.Conexao;
+            conexao = Acesso.Conexao;
         }
     }
 }

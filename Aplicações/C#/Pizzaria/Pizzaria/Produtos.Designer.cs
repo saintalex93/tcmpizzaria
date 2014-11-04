@@ -33,7 +33,6 @@
             this.chk_site = new System.Windows.Forms.CheckBox();
             this.txt_vlrunitario = new System.Windows.Forms.MaskedTextBox();
             this.txt_nome = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btn_inserir = new System.Windows.Forms.Button();
@@ -52,12 +51,11 @@
             this.gbp_produtos.Controls.Add(this.chk_site);
             this.gbp_produtos.Controls.Add(this.txt_vlrunitario);
             this.gbp_produtos.Controls.Add(this.txt_nome);
-            this.gbp_produtos.Controls.Add(this.label5);
             this.gbp_produtos.Controls.Add(this.label2);
             this.gbp_produtos.Controls.Add(this.label1);
-            this.gbp_produtos.Location = new System.Drawing.Point(12, 36);
+            this.gbp_produtos.Location = new System.Drawing.Point(12, 12);
             this.gbp_produtos.Name = "gbp_produtos";
-            this.gbp_produtos.Size = new System.Drawing.Size(663, 116);
+            this.gbp_produtos.Size = new System.Drawing.Size(213, 100);
             this.gbp_produtos.TabIndex = 10;
             this.gbp_produtos.TabStop = false;
             this.gbp_produtos.Text = "Produtos";
@@ -65,45 +63,37 @@
             // chk_site
             // 
             this.chk_site.AutoSize = true;
-            this.chk_site.Location = new System.Drawing.Point(477, 68);
+            this.chk_site.Location = new System.Drawing.Point(93, 75);
             this.chk_site.Name = "chk_site";
-            this.chk_site.Size = new System.Drawing.Size(43, 17);
+            this.chk_site.Size = new System.Drawing.Size(116, 17);
             this.chk_site.TabIndex = 3;
-            this.chk_site.Text = "Sim";
+            this.chk_site.Text = "Será visível no site";
             this.chk_site.UseVisualStyleBackColor = true;
             // 
             // txt_vlrunitario
             // 
-            this.txt_vlrunitario.Location = new System.Drawing.Point(477, 28);
+            this.txt_vlrunitario.Location = new System.Drawing.Point(93, 45);
             this.txt_vlrunitario.Mask = "$ 0000,00";
             this.txt_vlrunitario.Name = "txt_vlrunitario";
-            this.txt_vlrunitario.Size = new System.Drawing.Size(100, 20);
+            this.txt_vlrunitario.Size = new System.Drawing.Size(68, 20);
             this.txt_vlrunitario.TabIndex = 2;
             this.txt_vlrunitario.Enter += new System.EventHandler(this.txt_vlrunitario_Enter);
             this.txt_vlrunitario.Leave += new System.EventHandler(this.txt_vlrunitario_Leave);
             // 
             // txt_nome
             // 
-            this.txt_nome.Location = new System.Drawing.Point(140, 28);
+            this.txt_nome.Location = new System.Drawing.Point(93, 19);
+            this.txt_nome.MaxLength = 40;
             this.txt_nome.Name = "txt_nome";
             this.txt_nome.Size = new System.Drawing.Size(100, 20);
             this.txt_nome.TabIndex = 1;
             this.txt_nome.Enter += new System.EventHandler(this.txt_nome_Enter);
             this.txt_nome.Leave += new System.EventHandler(this.txt_nome_Leave);
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(420, 69);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(25, 13);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "Site";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(366, 31);
+            this.label2.Location = new System.Drawing.Point(8, 48);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(79, 13);
             this.label2.TabIndex = 1;
@@ -112,7 +102,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 31);
+            this.label1.Location = new System.Drawing.Point(52, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 0;
@@ -120,7 +110,7 @@
             // 
             // btn_inserir
             // 
-            this.btn_inserir.Location = new System.Drawing.Point(307, 185);
+            this.btn_inserir.Location = new System.Drawing.Point(150, 118);
             this.btn_inserir.Name = "btn_inserir";
             this.btn_inserir.Size = new System.Drawing.Size(75, 23);
             this.btn_inserir.TabIndex = 4;
@@ -130,17 +120,19 @@
             // 
             // dtg_produtos
             // 
+            this.dtg_produtos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dtg_produtos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dtg_produtos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtg_produtos.Location = new System.Drawing.Point(12, 241);
+            this.dtg_produtos.Location = new System.Drawing.Point(12, 147);
             this.dtg_produtos.Name = "dtg_produtos";
             this.dtg_produtos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dtg_produtos.Size = new System.Drawing.Size(663, 150);
+            this.dtg_produtos.Size = new System.Drawing.Size(399, 150);
             this.dtg_produtos.TabIndex = 11;
             this.dtg_produtos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtg_produtos_CellDoubleClick);
             // 
             // btn_alterar
             // 
-            this.btn_alterar.Location = new System.Drawing.Point(12, 430);
+            this.btn_alterar.Location = new System.Drawing.Point(12, 303);
             this.btn_alterar.Name = "btn_alterar";
             this.btn_alterar.Size = new System.Drawing.Size(75, 23);
             this.btn_alterar.TabIndex = 5;
@@ -150,7 +142,7 @@
             // 
             // btn_atualizar
             // 
-            this.btn_atualizar.Location = new System.Drawing.Point(162, 430);
+            this.btn_atualizar.Location = new System.Drawing.Point(93, 303);
             this.btn_atualizar.Name = "btn_atualizar";
             this.btn_atualizar.Size = new System.Drawing.Size(75, 23);
             this.btn_atualizar.TabIndex = 6;
@@ -160,7 +152,7 @@
             // 
             // btn_cancelar
             // 
-            this.btn_cancelar.Location = new System.Drawing.Point(307, 430);
+            this.btn_cancelar.Location = new System.Drawing.Point(174, 303);
             this.btn_cancelar.Name = "btn_cancelar";
             this.btn_cancelar.Size = new System.Drawing.Size(75, 23);
             this.btn_cancelar.TabIndex = 7;
@@ -170,7 +162,7 @@
             // 
             // btn_excluir
             // 
-            this.btn_excluir.Location = new System.Drawing.Point(450, 430);
+            this.btn_excluir.Location = new System.Drawing.Point(255, 303);
             this.btn_excluir.Name = "btn_excluir";
             this.btn_excluir.Size = new System.Drawing.Size(75, 23);
             this.btn_excluir.TabIndex = 8;
@@ -180,7 +172,7 @@
             // 
             // btn_sair
             // 
-            this.btn_sair.Location = new System.Drawing.Point(600, 430);
+            this.btn_sair.Location = new System.Drawing.Point(336, 303);
             this.btn_sair.Name = "btn_sair";
             this.btn_sair.Size = new System.Drawing.Size(75, 23);
             this.btn_sair.TabIndex = 9;
@@ -192,7 +184,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(687, 473);
+            this.ClientSize = new System.Drawing.Size(419, 335);
             this.Controls.Add(this.btn_sair);
             this.Controls.Add(this.btn_excluir);
             this.Controls.Add(this.btn_cancelar);
@@ -217,7 +209,6 @@
         #endregion
 
         private System.Windows.Forms.GroupBox gbp_produtos;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txt_nome;

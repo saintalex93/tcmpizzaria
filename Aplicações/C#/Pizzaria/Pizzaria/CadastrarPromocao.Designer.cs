@@ -136,7 +136,7 @@
             this.txtBuscaProdutoPorID.Location = new System.Drawing.Point(222, 35);
             this.txtBuscaProdutoPorID.Name = "txtBuscaProdutoPorID";
             this.txtBuscaProdutoPorID.Size = new System.Drawing.Size(71, 20);
-            this.txtBuscaProdutoPorID.TabIndex = 12;
+            this.txtBuscaProdutoPorID.TabIndex = 998989;
             this.txtBuscaProdutoPorID.TextChanged += new System.EventHandler(this.txtBuscaProdutoPorID_TextChanged);
             this.txtBuscaProdutoPorID.Enter += new System.EventHandler(this.txtBuscaProdutoPorID_Enter);
             this.txtBuscaProdutoPorID.Leave += new System.EventHandler(this.txtBuscaProdutoPorID_Leave);
@@ -146,10 +146,9 @@
             this.txtBuscaPalavraChave.Location = new System.Drawing.Point(10, 35);
             this.txtBuscaPalavraChave.Name = "txtBuscaPalavraChave";
             this.txtBuscaPalavraChave.Size = new System.Drawing.Size(100, 20);
-            this.txtBuscaPalavraChave.TabIndex = 11;
+            this.txtBuscaPalavraChave.TabIndex = 999999;
             this.txtBuscaPalavraChave.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             this.txtBuscaPalavraChave.Enter += new System.EventHandler(this.txtBuscaPalavraChave_Enter_1);
-            this.txtBuscaPalavraChave.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             this.txtBuscaPalavraChave.Leave += new System.EventHandler(this.txtBuscaPalavraChave_Leave_1);
             // 
             // label3
@@ -326,7 +325,7 @@
             this.txtDescricaoPromocao.Multiline = true;
             this.txtDescricaoPromocao.Name = "txtDescricaoPromocao";
             this.txtDescricaoPromocao.Size = new System.Drawing.Size(379, 47);
-            this.txtDescricaoPromocao.TabIndex = 5;
+            this.txtDescricaoPromocao.TabIndex = 1;
             this.txtDescricaoPromocao.Enter += new System.EventHandler(this.txtDescricaoPromocao_Enter);
             this.txtDescricaoPromocao.Leave += new System.EventHandler(this.txtDescricaoPromocao_Leave);
             // 
@@ -335,7 +334,7 @@
             this.txtTituloPromocao.Location = new System.Drawing.Point(74, 25);
             this.txtTituloPromocao.Name = "txtTituloPromocao";
             this.txtTituloPromocao.Size = new System.Drawing.Size(100, 20);
-            this.txtTituloPromocao.TabIndex = 1;
+            this.txtTituloPromocao.TabIndex = 0;
             this.txtTituloPromocao.TextChanged += new System.EventHandler(this.txtTituloPromocao_TextChanged);
             this.txtTituloPromocao.Enter += new System.EventHandler(this.txtTituloPromocao_Enter);
             this.txtTituloPromocao.Leave += new System.EventHandler(this.txtTituloPromocao_Leave);
@@ -479,6 +478,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(625, 647);
+            this.ControlBox = false;
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox2);
