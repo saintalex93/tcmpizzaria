@@ -52,6 +52,7 @@ namespace Pizzaria
             cadastroCliente.FormHome = this;
             this.Visible = false;
             cadastroCliente.Show();
+            
         }
 
         private void sairToolStripMenuItem_Click(object sender, EventArgs e)
@@ -183,7 +184,7 @@ namespace Pizzaria
 
         private void pedidosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            abrirPedidos();
         }
 
         private void promoçõesToolStripMenuItem_Click_1(object sender, EventArgs e)

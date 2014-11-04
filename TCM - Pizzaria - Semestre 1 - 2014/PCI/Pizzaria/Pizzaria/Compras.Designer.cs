@@ -245,6 +245,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(619, 651);
+            this.ControlBox = false;
             this.Controls.Add(this.lbl_totalnota);
             this.Controls.Add(this.lbl_total);
             this.Controls.Add(this.cb_fornecedores);

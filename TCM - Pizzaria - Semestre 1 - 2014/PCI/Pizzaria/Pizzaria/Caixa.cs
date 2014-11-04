@@ -56,6 +56,16 @@ namespace Pizzaria
             conn.Close();
         }
 
+        public string formatarParaData(string dataAFormatar)
+        {
+            dataAFormatar = dataAFormatar.Insert(0, "'");
+            dataAFormatar = dataAFormatar.Insert(3, "-");
+            dataAFormatar = dataAFormatar.Insert(6, "-");
+            dataAFormatar = dataAFormatar.Insert(dataAFormatar.Length, "'");
+
+            return dataAFormatar;
+        }
+
         private void btnVoltar_Click(object sender, EventArgs e)
         {
             this.FormHome.Show();
@@ -75,8 +85,12 @@ namespace Pizzaria
             }
 
 
-            dataComeco = dpComeco.Value.Year + dpComeco.Value.Month.ToString("D2") + dpComeco.Value.Day.ToString("D2");
-            dataFim = dpFim.Value.Year + dpFim.Value.Month.ToString("D2") + dpFim.Value.Day.ToString("D2");
+            dataComeco = dpComeco.Value.Day.ToString("D2") + dpComeco.Value.Month.ToString("D2") + dpComeco.Value.Year;
+
+            dataFim = dpFim.Value.Day.ToString("D2") + dpFim.Value.Month.ToString("D2") + dpFim.Value.Year;
+
+            dataComeco = formatarParaData(dataComeco);
+            dataFim = formatarParaData(dataFim);
 
             preencherGrid("select Cod_Pedido as [ID], Data, Hora, Valor as [Saldo], Cod_Funcionario as [Atendente], Cod_Cliente as [Cliente] from Pedido where Data between " + dataComeco + " and " + dataFim, gridRegistros);
 
@@ -97,7 +111,9 @@ namespace Pizzaria
 
         private void rdDiario_CheckedChanged(object sender, EventArgs e)
         {
-            dataComeco = hoje.Year + hoje.Month.ToString("D2") + hoje.Day.ToString("D2");
+            dataComeco = hoje.Day.ToString("D2") + hoje.Month.ToString("D2") + hoje.Year;
+
+            dataComeco = formatarParaData(dataComeco);
 
             dataFim = dataComeco;
 
@@ -112,8 +128,11 @@ namespace Pizzaria
             int delta = DayOfWeek.Monday - input.DayOfWeek;
             DateTime monday = input.AddDays(delta);
 
-            dataComeco = hoje.Year + hoje.Month.ToString("D2") + monday.Day.ToString("D2");
-            dataFim = hoje.Year + hoje.Month.ToString("D2") + hoje.Day.ToString("D2");
+            dataComeco = monday.Day.ToString("D2") + hoje.Month.ToString("D2") + hoje.Year;
+            dataFim = monday.Day.ToString("D2") + hoje.Month.ToString("D2") + hoje.Year;
+
+            dataComeco = formatarParaData(dataComeco);
+            dataFim = formatarParaData(dataFim);
 
             preencherGrid("select Cod_Pedido as [ID], Data, Hora, Valor as [Saldo], Cod_Funcionario as [Atendente], Cod_Cliente as [Cliente] from Pedido where Data between " + dataComeco + " and " + dataFim, gridRegistros);
 
@@ -122,8 +141,11 @@ namespace Pizzaria
 
         private void rdMensal_CheckedChanged(object sender, EventArgs e)
         {
-            dataComeco = hoje.Year + hoje.Month.ToString("D2") + "01";
-            dataFim = hoje.Year + hoje.Month.ToString("D2") + hoje.Day.ToString("D2");
+            dataComeco = "01" + hoje.Month.ToString("D2") + hoje.Year;
+            dataFim = hoje.Day.ToString("D2") + hoje.Month.ToString("D2") + hoje.Year;
+
+            dataComeco = formatarParaData(dataComeco);
+            dataFim = formatarParaData(dataFim);
 
             preencherGrid("select Cod_Pedido as [ID], Data, Hora, Valor as [Saldo], Cod_Funcionario as [Atendente], Cod_Cliente as [Cliente] from Pedido where Data between " + dataComeco + " and " + dataFim, gridRegistros);
 
@@ -135,11 +157,14 @@ namespace Pizzaria
             DateTime meioDoAno = new DateTime(hoje.Year, 6, 1);
 
             if (hoje <= meioDoAno)
-                dataComeco = hoje.Year + "01" + "01";
+                dataComeco = "01" + "01" + hoje.Year;
             else
-                dataComeco = hoje.Year + "06" + "01";
+                dataComeco = "01" + "06" + hoje.Year;
 
-            dataFim = hoje.Year + hoje.Month.ToString("D2") + hoje.Day.ToString("D2");
+            dataFim = hoje.Day.ToString("D2") + hoje.Month.ToString("D2") + hoje.Year;
+
+            dataComeco = formatarParaData(dataComeco);
+            dataFim = formatarParaData(dataFim);
 
             preencherGrid("select Cod_Pedido as [ID], Data, Hora, Valor as [Saldo], Cod_Funcionario as [Atendente], Cod_Cliente as [Cliente] from Pedido where Data between " + dataComeco + " and " + dataFim, gridRegistros);
 
@@ -148,8 +173,11 @@ namespace Pizzaria
 
         private void rdAnual_CheckedChanged(object sender, EventArgs e)
         {
-            dataComeco = hoje.Year + "01" + "01";
-            dataFim = hoje.Year + hoje.Month.ToString("D2") + hoje.Day.ToString("D2");
+            dataComeco = "01" + "01" + hoje.Year;
+            dataFim = hoje.Day.ToString("D2") + hoje.Month.ToString("D2") + hoje.Year;
+
+            dataComeco = formatarParaData(dataComeco);
+            dataFim = formatarParaData(dataFim);
 
             preencherGrid("select Cod_Pedido as [ID], Data, Hora, Valor as [Saldo], Cod_Funcionario as [Atendente], Cod_Cliente as [Cliente] from Pedido where Data between " + dataComeco + " and " + dataFim, gridRegistros);
 

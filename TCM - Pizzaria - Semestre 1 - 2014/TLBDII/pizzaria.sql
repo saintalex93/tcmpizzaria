@@ -101,6 +101,7 @@ Cod_Pedido INT IDENTITY(1,1) PRIMARY KEY,
 Data Date,
 Hora VarChar(5),
 Valor numeric (5,2),
+Ajuste numeric (5,2),
 Cod_Funcionario INT FOREIGN KEY REFERENCES Funcionario(Cod_Funcionario),
 Cod_Cliente INT FOREIGN KEY REFERENCES Cliente(Cod_Cliente),
 )

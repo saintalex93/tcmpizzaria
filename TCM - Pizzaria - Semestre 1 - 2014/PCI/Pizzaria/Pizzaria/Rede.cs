@@ -17,17 +17,15 @@ namespace Pizzaria
             InitializeComponent();
         }
 
-        public static string dataSource= "Tuca\\SQLEXPRESS";
-        public static string catalog= "Pizzaria";
-        public static string id= "sa";
-        public static string password= "peganomeupau";
+        public static string dataSource= "";
+        public static string catalog= "";
+        public static string id= "";
+        public static string password= "";
 
         public static class DataContainer
         {
             static public string conexaoGlobal = "";
         }
-
-
 
         private void Rede_Load(object sender, EventArgs e)
         {

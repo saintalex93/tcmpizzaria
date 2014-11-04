@@ -30,7 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.produtosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -42,10 +44,8 @@
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -72,10 +72,32 @@
             this.toolStrip1.Text = "toolStrip1";
             this.toolStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStrip1_ItemClicked);
             // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.Image = global::Pizzaria.Properties.Resources.Untitled_2;
+            this.toolStripButton2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(48, 59);
+            this.toolStripButton2.Text = "Pedido";
+            this.toolStripButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
+            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 62);
+            // 
+            // toolStripButton4
+            // 
+            this.toolStripButton4.Image = global::Pizzaria.Properties.Resources.Caixa;
+            this.toolStripButton4.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton4.Name = "toolStripButton4";
+            this.toolStripButton4.Size = new System.Drawing.Size(74, 59);
+            this.toolStripButton4.Text = "Calculadora";
+            this.toolStripButton4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
             // 
             // toolStripSeparator
             // 
@@ -162,26 +184,6 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 62);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Pizzaria.Properties.Resources.marca;
-            this.pictureBox1.Location = new System.Drawing.Point(56, 94);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(346, 275);
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
-            // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.Image = global::Pizzaria.Properties.Resources.Untitled_2;
-            this.toolStripButton2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(48, 59);
-            this.toolStripButton2.Text = "Pedido";
-            this.toolStripButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
-            // 
             // toolStripButton3
             // 
             this.toolStripButton3.Image = global::Pizzaria.Properties.Resources.exit2;
@@ -193,16 +195,14 @@
             this.toolStripButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
             // 
-            // toolStripButton4
+            // pictureBox1
             // 
-            this.toolStripButton4.Image = global::Pizzaria.Properties.Resources.Caixa;
-            this.toolStripButton4.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(74, 59);
-            this.toolStripButton4.Text = "Calculadora";
-            this.toolStripButton4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
+            this.pictureBox1.Image = global::Pizzaria.Properties.Resources.marca;
+            this.pictureBox1.Location = new System.Drawing.Point(56, 94);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(346, 275);
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
             // 
             // Home
             // 

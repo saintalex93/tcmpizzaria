@@ -146,6 +146,160 @@
   <data name="&gt;&gt;btnConfiguracoes.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="&gt;&gt;tbp_alterarLogin.Name" xml:space="preserve">
+    <value>tbp_alterarLogin</value>
+  </data>
+  <data name="&gt;&gt;tbp_alterarLogin.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tbp_alterarLogin.Parent" xml:space="preserve">
+    <value>tbp_Acesso</value>
+  </data>
+  <data name="&gt;&gt;tbp_alterarLogin.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tbp_Acesso.Location" type="System.Drawing.Point, System.Drawing">
+    <value>28, 26</value>
+  </data>
+  <data name="tbp_Acesso.Size" type="System.Drawing.Size, System.Drawing">
+    <value>432, 230</value>
+  </data>
+  <data name="tbp_Acesso.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;tbp_Acesso.Name" xml:space="preserve">
+    <value>tbp_Acesso</value>
+  </data>
+  <data name="&gt;&gt;tbp_Acesso.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tbp_Acesso.Parent" xml:space="preserve">
+    <value>pnl_login</value>
+  </data>
+  <data name="&gt;&gt;tbp_Acesso.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="pnl_login.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 12</value>
+  </data>
+  <data name="pnl_login.Size" type="System.Drawing.Size, System.Drawing">
+    <value>494, 289</value>
+  </data>
+  <data name="pnl_login.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;pnl_login.Name" xml:space="preserve">
+    <value>pnl_login</value>
+  </data>
+  <data name="&gt;&gt;pnl_login.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pnl_login.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;pnl_login.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;btn_Acessa.Name" xml:space="preserve">
+    <value>btn_Acessa</value>
+  </data>
+  <data name="&gt;&gt;btn_Acessa.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btn_Acessa.Parent" xml:space="preserve">
+    <value>tbp_alterarLogin</value>
+  </data>
+  <data name="&gt;&gt;btn_Acessa.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;txt_senha.Name" xml:space="preserve">
+    <value>txt_senha</value>
+  </data>
+  <data name="&gt;&gt;txt_senha.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txt_senha.Parent" xml:space="preserve">
+    <value>tbp_alterarLogin</value>
+  </data>
+  <data name="&gt;&gt;txt_senha.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;txt_usuario.Name" xml:space="preserve">
+    <value>txt_usuario</value>
+  </data>
+  <data name="&gt;&gt;txt_usuario.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txt_usuario.Parent" xml:space="preserve">
+    <value>tbp_alterarLogin</value>
+  </data>
+  <data name="&gt;&gt;txt_usuario.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;lbl_Senha.Name" xml:space="preserve">
+    <value>lbl_Senha</value>
+  </data>
+  <data name="&gt;&gt;lbl_Senha.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbl_Senha.Parent" xml:space="preserve">
+    <value>tbp_alterarLogin</value>
+  </data>
+  <data name="&gt;&gt;lbl_Senha.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;lbl_usuario.Name" xml:space="preserve">
+    <value>lbl_usuario</value>
+  </data>
+  <data name="&gt;&gt;lbl_usuario.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbl_usuario.Parent" xml:space="preserve">
+    <value>tbp_alterarLogin</value>
+  </data>
+  <data name="&gt;&gt;lbl_usuario.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;pictureBox1.Name" xml:space="preserve">
+    <value>pictureBox1</value>
+  </data>
+  <data name="&gt;&gt;pictureBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pictureBox1.Parent" xml:space="preserve">
+    <value>tbp_alterarLogin</value>
+  </data>
+  <data name="&gt;&gt;pictureBox1.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="tbp_alterarLogin.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="tbp_alterarLogin.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tbp_alterarLogin.Size" type="System.Drawing.Size, System.Drawing">
+    <value>424, 204</value>
+  </data>
+  <data name="tbp_alterarLogin.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="tbp_alterarLogin.Text" xml:space="preserve">
+    <value>Acesso</value>
+  </data>
+  <data name="&gt;&gt;tbp_alterarLogin.Name" xml:space="preserve">
+    <value>tbp_alterarLogin</value>
+  </data>
+  <data name="&gt;&gt;tbp_alterarLogin.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tbp_alterarLogin.Parent" xml:space="preserve">
+    <value>tbp_Acesso</value>
+  </data>
+  <data name="&gt;&gt;tbp_alterarLogin.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="btn_Acessa.Location" type="System.Drawing.Point, System.Drawing">
     <value>185, 120</value>
   </data>
@@ -286,76 +440,6 @@
   </data>
   <data name="&gt;&gt;pictureBox1.ZOrder" xml:space="preserve">
     <value>5</value>
-  </data>
-  <data name="tbp_alterarLogin.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="tbp_alterarLogin.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="tbp_alterarLogin.Size" type="System.Drawing.Size, System.Drawing">
-    <value>424, 204</value>
-  </data>
-  <data name="tbp_alterarLogin.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="tbp_alterarLogin.Text" xml:space="preserve">
-    <value>Acesso</value>
-  </data>
-  <data name="&gt;&gt;tbp_alterarLogin.Name" xml:space="preserve">
-    <value>tbp_alterarLogin</value>
-  </data>
-  <data name="&gt;&gt;tbp_alterarLogin.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tbp_alterarLogin.Parent" xml:space="preserve">
-    <value>tbp_Acesso</value>
-  </data>
-  <data name="&gt;&gt;tbp_alterarLogin.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="tbp_Acesso.Location" type="System.Drawing.Point, System.Drawing">
-    <value>28, 26</value>
-  </data>
-  <data name="tbp_Acesso.Size" type="System.Drawing.Size, System.Drawing">
-    <value>432, 230</value>
-  </data>
-  <data name="tbp_Acesso.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;tbp_Acesso.Name" xml:space="preserve">
-    <value>tbp_Acesso</value>
-  </data>
-  <data name="&gt;&gt;tbp_Acesso.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tbp_Acesso.Parent" xml:space="preserve">
-    <value>pnl_login</value>
-  </data>
-  <data name="&gt;&gt;tbp_Acesso.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="pnl_login.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 12</value>
-  </data>
-  <data name="pnl_login.Size" type="System.Drawing.Size, System.Drawing">
-    <value>494, 289</value>
-  </data>
-  <data name="pnl_login.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;pnl_login.Name" xml:space="preserve">
-    <value>pnl_login</value>
-  </data>
-  <data name="&gt;&gt;pnl_login.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pnl_login.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;pnl_login.ZOrder" xml:space="preserve">
-    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

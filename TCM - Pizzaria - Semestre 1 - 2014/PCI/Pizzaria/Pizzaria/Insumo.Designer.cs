@@ -36,6 +36,8 @@
             this.btn_inserir = new System.Windows.Forms.Button();
             this.dtg_gravacao = new System.Windows.Forms.DataGridView();
             this.gpb_compras = new System.Windows.Forms.GroupBox();
+            this.txtQuantidadeEmEstoque = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.txtbox_Recomendada = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cbox_Fornecedores = new System.Windows.Forms.ComboBox();
@@ -53,8 +55,6 @@
             this.lbl_valorunitario = new System.Windows.Forms.Label();
             this.lbl_nome = new System.Windows.Forms.Label();
             this.btn_cancelar = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtQuantidadeEmEstoque = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dtg_gravacao)).BeginInit();
             this.gpb_compras.SuspendLayout();
             this.SuspendLayout();
@@ -148,6 +148,23 @@
             this.gpb_compras.TabStop = false;
             this.gpb_compras.Text = "Cadastro de Insumos";
             this.gpb_compras.Enter += new System.EventHandler(this.gpb_compras_Enter);
+            // 
+            // txtQuantidadeEmEstoque
+            // 
+            this.txtQuantidadeEmEstoque.Location = new System.Drawing.Point(141, 128);
+            this.txtQuantidadeEmEstoque.MaxLength = 3;
+            this.txtQuantidadeEmEstoque.Name = "txtQuantidadeEmEstoque";
+            this.txtQuantidadeEmEstoque.Size = new System.Drawing.Size(100, 20);
+            this.txtQuantidadeEmEstoque.TabIndex = 22;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(15, 131);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(120, 13);
+            this.label2.TabIndex = 21;
+            this.label2.Text = "Quantidade em estoque";
             // 
             // txtbox_Recomendada
             // 
@@ -324,28 +341,12 @@
             this.btn_cancelar.UseVisualStyleBackColor = true;
             this.btn_cancelar.Click += new System.EventHandler(this.btn_cancelar_Click);
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 131);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(120, 13);
-            this.label2.TabIndex = 21;
-            this.label2.Text = "Quantidade em estoque";
-            // 
-            // txtQuantidadeEmEstoque
-            // 
-            this.txtQuantidadeEmEstoque.Location = new System.Drawing.Point(141, 128);
-            this.txtQuantidadeEmEstoque.MaxLength = 3;
-            this.txtQuantidadeEmEstoque.Name = "txtQuantidadeEmEstoque";
-            this.txtQuantidadeEmEstoque.Size = new System.Drawing.Size(100, 20);
-            this.txtQuantidadeEmEstoque.TabIndex = 22;
-            // 
             // Insumo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(535, 423);
+            this.ControlBox = false;
             this.Controls.Add(this.btn_cancelar);
             this.Controls.Add(this.btn_sair);
             this.Controls.Add(this.btn_excluir);
