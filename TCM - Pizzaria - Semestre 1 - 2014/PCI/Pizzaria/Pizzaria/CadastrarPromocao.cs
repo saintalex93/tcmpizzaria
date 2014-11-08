@@ -85,10 +85,6 @@ namespace Pizzaria
 //            conn.Close();
   //      }
     
-        public void mensagemDeErro(string mensagem) 
-        {
-            Fornecedores.mensagemDeErro(mensagem);
-        }
 /*
         public void criarSegundaTabela()
         {
@@ -176,7 +172,7 @@ namespace Pizzaria
 
             if(txtTituloPromocao.Text.Length == 0)
             {
-                Fornecedores.mensagemDeErro("Por favor, adicione um título para a Promoção.");
+                Home.mensagemDeErro("Por favor, adicione um título para a Promoção.","Promoção sem nome");
 
                 resultado = false;
             }
@@ -190,14 +186,14 @@ namespace Pizzaria
 
             if (!dataPrazo.Checked)
             {
-                Fornecedores.mensagemDeErro("Por favor, escolha uma data para a validade da Promoção.");
+                Home.mensagemDeErro("Por favor, escolha uma data para a validade da Promoção.","Data inválida");
 
                 resultado = false;
             }
 
             if(dataPrazo.Value < DateTime.Today)
             {
-                Fornecedores.mensagemDeErro("Infelizmente, não é possível escolher uma data passada para a Promoção.\n\nPor favor, escolha uma data futura.");
+                Home.mensagemDeErro("Infelizmente, não é possível escolher uma data passada para a Promoção.\n\nPor favor, escolha uma data futura.","Data inválida");
 
                 resultado = false;
             }
@@ -211,7 +207,7 @@ namespace Pizzaria
 
             if (txtDescricaoPromocao.Text.Length == 0)
             {
-                Fornecedores.mensagemDeErro("Por favor, coloque uma descrição que liste os produtos que estarão na Promoção.");
+                Home.mensagemDeErro("Por favor, coloque uma descrição que liste os produtos que estarão na Promoção.","Sem descrição");
 
                 resultado = false;
             }
@@ -225,7 +221,7 @@ namespace Pizzaria
 
             if (txtSaldo.Text.Length == 0)
             {
-                Fornecedores.mensagemDeErro("Por favor, antes de adicionar uma Promoção ao banco, é preciso adicionar produtos a ela.");
+                Home.mensagemDeErro("Por favor, antes de adicionar uma Promoção ao banco, é preciso adicionar produtos a ela.","Promoção sem produtos");
 
                 txtBuscaPalavraChave.Focus();
 
@@ -242,7 +238,7 @@ namespace Pizzaria
 
             if (txtNovoPreco.Text.Length == 0)
             {
-                Fornecedores.mensagemDeErro("Não é permitido criar uma nova Promoção sem antes estabelecer um novo preço promocional.");
+                Home.mensagemDeErro("Não é permitido criar uma nova Promoção sem antes estabelecer um novo preço promocional.","Promoção sem preço promocional");
 
                 txtNovoPreco.Focus();
 
@@ -459,7 +455,7 @@ namespace Pizzaria
             for (int i = 0; i < txtBuscaPromocaoPorID.Text.Length; i++)
                 if (!char.IsNumber(txtBuscaPromocaoPorID.Text[i]))
                 {
-                    Fornecedores.mensagemDeErro("É permitido apenas o uso de números no campo \"Busca por ID\".");
+                    Home.mensagemDeErro("É permitido apenas o uso de números no campo \"Busca por ID\".","Símbolos proibidos nas busca");
                     txtBuscaPromocaoPorID.Clear();
                     txtBuscaPromocaoPorID.Focus();
                 }
@@ -481,7 +477,7 @@ namespace Pizzaria
         {
             if (txtNovoPreco.Text.Contains("."))
             {
-                Fornecedores.mensagemDeErro("Por favor, use vírgula (\",\") no lugar de ponto (\".\").");
+                Home.mensagemDeErro("Por favor, use vírgula (\",\") no lugar de ponto (\".\").","Utilização de símbolo errado");
                 return;
             }
 
@@ -587,7 +583,7 @@ namespace Pizzaria
                                     break;
 
                                 default:
-                                    mensagemDeErro("Aconteceu algo de errado na alteração das Promoções. Informe seu suporte para que o problema possa ser avaliado.");
+                                    Home.mensagemDeErro("Aconteceu algo de errado na alteração das Promoções. Informe seu suporte para que o problema possa ser avaliado.","Problema desconhecido");
                                     break;
 
                             }
@@ -645,7 +641,7 @@ namespace Pizzaria
             for (int i = 0; i < txtBuscaProdutoPorID.Text.Length; i++)
                 if (!char.IsNumber(txtBuscaProdutoPorID.Text[i]))
                 {
-                    Fornecedores.mensagemDeErro("É permitido apenas o uso de números no campo de busca de produtos por ID.");
+                    Home.mensagemDeErro("É permitido apenas o uso de números no campo de busca de produtos por ID.","Utilização de símbolos proibidos na busca");
                     txtBuscaProdutoPorID.Clear();
                     txtBuscaProdutoPorID.Focus();
                 }
@@ -737,7 +733,7 @@ namespace Pizzaria
         {
             if (gridProdutosNaPromocao.Rows.Count == 0)
             {
-                mensagemDeErro("Por favor, antes de selecionar um Produto, selecione uma Promoção aonde inserir o Produto.");
+                Home.mensagemDeErro("Por favor, antes de selecionar um Produto, selecione uma Promoção aonde inserir o Produto.","Promoção não selecionada");
 
                 txtBuscaPorTitulo.Focus();
             }else
@@ -753,7 +749,7 @@ namespace Pizzaria
         {
             if (gridProdutosNaPromocao.Rows.Count == 0)
             {
-                mensagemDeErro("Por favor, antes de selecionar um Produto, selecione uma Promoção aonde inserir o Produto.");
+                Home.mensagemDeErro("Por favor, antes de selecionar um Produto, selecione uma Promoção aonde inserir o Produto.","Promoção não selecionada");
 
                 txtBuscaPorTitulo.Focus();
             }

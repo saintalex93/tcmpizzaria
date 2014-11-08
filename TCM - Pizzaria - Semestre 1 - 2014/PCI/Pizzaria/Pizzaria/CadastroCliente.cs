@@ -24,17 +24,29 @@ namespace Pizzaria
         public Form FormHome { get; set; }
 
         //Variaveis de dados
+        string conexao = "";
         SqlConnection conn;
         string cod_cliente, nome = "", cep="",email = "", endereco = "", bairro = "", cidade = "", uf = "", complemento = "", telefone = "", cel = "", cpf = "",strIncluir = "";
         int num_endereco = 0;
 
-        //conexao DB
-        string conexao = ""/*Data Source=Alex\\SQLEXPRESS ;Initial Catalog=Pizzaria; Persist Security Info = True; User ID=sa; Password=1234"*/;
-       // string conexao = "Data Source=192.168.1.105\\BPAServer9;Initial Catalog=Pizzaria; Persist Security Info = True; User ID=sa; Password=AutoMateBPA9";
-        
         //Validar se e update ou insert
         Boolean valida = false;
 
+        public void preencherGrid(string busca, DataGridView tabela)
+        {
+            //conexao = "Data Source=localhost; Initial Catalog=Pizzaria; Persist Security Info = True; User ID=SA; Password=peganomeupau";
+            SqlConnection conn = new SqlConnection(conexao);
+
+            conn.Open();
+            SqlCommand sqlComm = new SqlCommand(busca, conn);
+            //            sqlComm.ExecuteNonQuery();
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = sqlComm;
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            tabela.DataSource = dt;
+            conn.Close();
+        }
 
         private void btn_sair_Click(object sender, EventArgs e)
         {
@@ -57,115 +69,40 @@ namespace Pizzaria
 
         private void CadastroCliente_Load_1(object sender, EventArgs e)
         {
-//            btn_alterar.Enabled = true;
-            btn_excluir.Enabled = false;
-
+            conexao = Acesso.Conexao;
+            
             preenchegrid();
 
             this.StartPosition = FormStartPosition.CenterScreen;
         }
 
-        private void btn_gravar_Click_1(object sender, EventArgs e)
+        public void atualizarRegistro()
         {
+            cod_cliente = dtgw_dados.CurrentRow.Cells[0].Value.ToString();
+
+
+            strIncluir = "update cliente set Nome_Cliente = '" + txt_nome.Text + "',CPF_Cliente = '" + mtxt_cpf.Text + "',Endereco_Cliente = '" + txt_endereco.Text + "',Complemento_Cliente ='" + txt_complemento.Text + "',Numero_Residencia = '" + txt_numero.Text + "',CEP_Cliente = '" + mtxt_cep.Text + "',Estado_Cliente = '" + cb_uf.Text + "',Cidade_Cliente = '" + txt_cidade.Text + "' ,Email_Cliente = '" + txtEmail.Text + "' ,Telefone_Cliente = '" + mtxt_telefone.Text + "' ,Celular_Cliente = '" + mtxt_celular.Text + "' ,Bairro_Cliente = '" + txt_bairro.Text + "' where Cod_Cliente =  '" + cod_cliente + "'";
+
+            preencherGrid(strIncluir, dtgw_dados);
+
             
-            if (ValidaCampos() == true)
-            {
-
-                switch (valida)
-                {
-                    case true:
-                        cod_cliente = dtgw_dados.CurrentRow.Cells[0].Value.ToString();
-
-                        strIncluir = "update cliente set Nome_Cliente = '" + nome + "',CPF_Cliente = '" + cpf + "',Endereco_Cliente = '" + endereco + "',Complemento_Cliente ='" + complemento + "',Número_Cliente = '" + num_endereco + "',CEP_Cliente = '" + cep + "',Estado_Cliente = '" + uf + "',Cidade_Cliente = '" + cidade + "' ,Email_Cliente = '" + email + "' ,Telefone_Cliente = '" + telefone + "' ,Celular_Cliente = '" + cel + "' ,Bairo_Cliente = '" + bairro + "' where Cod_Cliente =  '"+ cod_cliente +"'";
-                        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////'" + nome + "','" + cpf + "','" + endereco + "','" + complemento + "','" + num_endereco + "','" + cep + "','" + uf + "','" + cidade + "','" + email + "','" + telefone + "','" + cel + "','" + bairro + "')
-                       //insert into Cliente () values (";
-
-                         conn = new SqlConnection(conexao);
-                                    conn.Open();
-                                    try
-                                    {
-
-
-                                        
-
-                                        SqlCommand sqlComm = new SqlCommand(strIncluir, conn);
-
-                                        sqlComm.ExecuteNonQuery();
-
-
-
-
-                                    }
-                                    catch (Exception)
-                                    {
-                                        MessageBox.Show("Dados de localidade invalidos ou não preenchidos!");
-
-
-
-                                    }
-                                    conn.Close();
-
-                                    preenchegrid();
-                                    Clear_Dados();
-                        
-
-
-                        valida = false;
-                      //  groupBox1.Enabled = false;
-                     //   groupBox2.Enabled = false;
-                        break;
-                    case false:
-
-                        //Verificar se existe usuario cadastrado
-                       
-
-                        // fim da verificacao
-
-                        strIncluir = "select * from CLiente where CPF_Cliente = '" + cpf + "'";
-
-                       if (Buscar(strIncluir).Rows.Count <= 0)
-                       {
-                           strIncluir = "insert into Cliente (Nome_Cliente,CPF_Cliente,Endereco_Cliente,Complemento_Cliente ,Número_Cliente ,CEP_Cliente,Estado_Cliente,Cidade_Cliente ,Email_Cliente ,Telefone_Cliente ,Celular_Cliente ,Bairo_Cliente) values ('" + nome + "','" + cpf + "','" + endereco + "','" + complemento + "','" + num_endereco + "','" + cep + "','" + uf + "','" + cidade + "','" + email + "','" + telefone + "','" + cel + "','" + bairro + "')";
-                           conn = new SqlConnection(conexao);
-                           conn.Open();
-                           try
-                           {
-
-                               SqlCommand sqlComm = new SqlCommand(strIncluir, conn);
-
-                               sqlComm.ExecuteNonQuery();
-
-                           }
-                           catch (Exception)
-                           {
-                               MessageBox.Show("Dados de localidade invalidos ou não preenchidos!");
-
-                           }
-                           conn.Close();
-
-                           preenchegrid();
-                           Clear_Dados();
-
-
-                       }
-                       else
-                       {
-
-                           preenchegrid();
-                       }
-
-
-                        break;
-
-
-                }
-
-            }
-            btn_gravar.Text = "Gravar";
         }
 
+        private void btn_gravar_Click_1(object sender, EventArgs e)
+        {
 
-      
+            if (!validaCampos())
+                return;
+
+            preencherGrid(
+                "insert into Cliente (Nome_Cliente,CPF_Cliente,Endereco_Cliente,Complemento_Cliente ,Numero_Residencia ,CEP_Cliente,Estado_Cliente,Cidade_Cliente ,Email_Cliente ,Telefone_Cliente ,Celular_Cliente ,Bairro_Cliente) values ('" + txt_nome.Text + "','" + mtxt_cpf.Text + "','" + txt_endereco.Text + "','" + txt_complemento.Text + "','" + txt_numero.Text + "','" + mtxt_cep.Text + "','" + cb_uf.Text + "','" + txt_cidade.Text + "','" + txtEmail.Text + "','" + mtxt_telefone.Text + "','" + mtxt_celular.Text + "','" + txt_bairro.Text + "')", dtgw_dados);
+
+            preencherGrid(
+                "SELECT * FROM Cliente WHERE CPF_Cliente = '" + mtxt_cpf.Text + "'", dtgw_dados);
+
+            limparCampos();
+        }
+
         private void btn_Buscar_Click(object sender, EventArgs e)
         {
             if (mtxt_cpf.Text.Replace(" ", "").Length == 14)
@@ -193,8 +130,6 @@ namespace Pizzaria
 
         }
 
-
-
         private void dtgw_dados_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -209,7 +144,7 @@ namespace Pizzaria
             //Verificar logica para selecionar de acordo com o texto
             //cb_uf.SelectedText.Text = dtgw_dados.CurrentRow.Cells[7].Value.ToString();
             txt_cidade.Text = dtgw_dados.CurrentRow.Cells[8].Value.ToString();
-            txt_telefone.Text = dtgw_dados.CurrentRow.Cells[9].Value.ToString();
+            txtEmail.Text = dtgw_dados.CurrentRow.Cells[9].Value.ToString();
             mtxt_telefone.Text = dtgw_dados.CurrentRow.Cells[10].Value.ToString();
             mtxt_celular.Text = dtgw_dados.CurrentRow.Cells[11].Value.ToString();
             txt_bairro.Text = dtgw_dados.CurrentRow.Cells[12].Value.ToString();
@@ -235,11 +170,24 @@ namespace Pizzaria
 
         private void btn_alterar_Click(object sender, EventArgs e)
         {
-            groupBox1.Enabled = true;
-            groupBox2.Enabled = true;
-            valida = true;
-            btn_excluir.Enabled = true;
-            btn_gravar.Text = "Atualizar";
+            if (btn_alterar.Text == "Alterar")
+            {
+                btn_alterar.Text = "Salvar";
+                groupBox1.Enabled = true;
+                groupBox2.Enabled = true;
+                valida = true;
+//                btn_excluir.Enabled = true;
+            }
+            else 
+            {
+                btn_alterar.Text = "Alterar";
+
+                string idCliente = dtgw_dados.CurrentRow.Cells[0].Value.ToString();
+
+                atualizarRegistro();
+
+                preencherGrid("SELECT * FROM cliente where cod_cliente = " + idCliente, dtgw_dados);
+            }
 
         }
 
@@ -253,54 +201,25 @@ namespace Pizzaria
 
         private void btn_excluir_Click(object sender, EventArgs e)
         {
-            /*
-            if(Interaction.MsgBox("Deseja?",MsgBoxStyle.OkCancel, "Atenção").)
+            DialogResult decisao = MessageBox.Show("Tem certeza que deseja remover esse registro?", "Remover Registro", MessageBoxButtons.YesNo);
+            if (decisao == DialogResult.Yes)
             {
-                MessageBox.Show("TREu");
+                int idCliente = Convert.ToInt32(dtgw_dados.CurrentRow.Cells[0].Value);
+
+                preencherGrid("UPDATE Pedido set Cod_Cliente = 1 where Cod_Cliente = " + idCliente, dtgw_dados);
+
+                preencherGrid("DELETE FROM cliente where Cod_cliente =" + idCliente, dtgw_dados);
+
+                preenchegrid();
             }
-                else
-            {
-                MessageBox.Show("False");
-            }
-
-            
-            cod_cliente = dtgw_dados.CurrentRow.Cells[0].Value.ToString();
-
-            strIncluir = "delete cliente where cod_Cliente = '" + cod_cliente + "'";
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////'" + nome + "','" + cpf + "','" + endereco + "','" + complemento + "','" + num_endereco + "','" + cep + "','" + uf + "','" + cidade + "','" + email + "','" + telefone + "','" + cel + "','" + bairro + "')
-            //insert into Cliente () values (";
-
-            conn = new SqlConnection(conexao);
-            conn.Open();
-            try
-            {
-               SqlCommand sqlComm = new SqlCommand(strIncluir, conn);
-
-                sqlComm.ExecuteNonQuery();
-                
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Dados de localidade invalidos ou não preenchidos!");
-                
-            }
-            conn.Close();
-
-            preenchegrid();
-            */
-
         }
-
-
-
-
 
         public void Clear_Dados()
         {
 
             txt_nome.Text = "";
             mtxt_telefone.Text = "";
-            txt_telefone.Text = "";
+            txtEmail.Text = "";
 
             mtxt_celular.Text = "";
             mtxt_cep.Text = "";
@@ -325,17 +244,12 @@ namespace Pizzaria
 
         public void preenchegrid()
         {
-
             string strIncluir = "select * from Cliente";
             SqlConnection conn = new SqlConnection(conexao);
 
             conn.Open();
-
-
             try
             {
-
-
                 SqlCommand sqlComm = new SqlCommand(strIncluir, conn);
 
                 //sqlComm.ExecuteNonQuery();
@@ -344,26 +258,302 @@ namespace Pizzaria
                 DataTable dt = new DataTable();
                 da.Fill(dt);
                 dtgw_dados.DataSource = dt;
-
-
             }
             catch (Exception)
             {
                 MessageBox.Show("Falha ao conectar ao Bano de Dados, Contate seu suporte");
-
-
             }
             conn.Close();
+        }
 
+        public bool validaNome()
+        {
+            bool estado = true;
 
+            if (txt_nome.Text.Length == 0)
+            {
+                Home.mensagemDeErro("Não é permitido inserir um usuário sem nome.", "Falta de informações");
 
+                txt_nome.Focus();
 
+                estado = false;
+            }
 
+            if (txt_nome.Text.Length < 4)
+            {
+                Home.mensagemDeErro("Nome de usuário não permitido.", "Informações inadequada");
 
+                txt_nome.Focus();
+
+                estado = false;
+            }
+
+            return estado;
+        }
+
+        public bool validaTelefone() 
+        {
+            bool estado = true;
+
+            if (mtxt_telefone.Text.Replace("(", "").Replace(")", "").Replace(" ", "").Replace("-", "").Length > 10)
+            {
+                Home.mensagemDeErro("O telefone fornecido não é válido.", "Telefone inválido");
+
+                mtxt_telefone.Focus();
+
+                estado = false;
+            }
+
+            return estado;
+        
+        }
+
+        public bool validaCelular()
+        {
+            bool estado = true;
+
+            if (mtxt_celular.Text.Replace("(", "").Replace(")", "").Replace(" ", "").Replace("-", "").Length > 11)
+            {
+                Home.mensagemDeErro("O celular fornecido não é válido.", "Telefone inválido");
+
+                mtxt_celular.Focus();
+
+                estado = false;
+            }
+
+            return estado;
 
         }
 
-        public Boolean ValidaCampos()
+        public bool validaCPF()
+        {
+            bool estado = true;
+
+            if (mtxt_cpf.Text.Replace(".","").Replace(" ","").Replace("-","").Replace("_","").Length < 11)
+            {
+                Home.mensagemDeErro("CPF inválido. Por favor, verifique sua validade", "CPF inválido");
+
+                mtxt_cpf.Focus();
+
+                estado = false;
+            }
+
+            return estado;
+        }
+
+        private bool validaEmail()
+        {
+            //Validação email do Responsável
+            string email = txtEmail.Text;
+            bool arroba = false;
+            bool dominio = false;
+            bool ponto = false;
+            bool final = false;
+
+            if (txtEmail.Text.Length == 0)
+            {
+                Home.mensagemDeErro("Não é permitido inserir um usuário sem email de contato.", "Usuário sem email");
+
+                txtEmail.Focus();
+
+                return false;
+            }
+
+            for (int i = 0; i < email.Length; i++)
+            {
+                if (email[i].ToString() == "@")
+                    arroba = true;
+
+                try
+                {
+                    if
+                    (
+                    dominio == false
+                    &&
+                    arroba == true
+                    &&
+                    email[i + 1].ToString() != "."
+                    )
+                        dominio = true;
+                }
+                catch (Exception e)
+                {
+
+                }
+
+                if
+                    (
+                    arroba == true
+                    &&
+                    dominio == true
+                    &&
+                    email[i].ToString() == "."
+                    )
+                    ponto = true;
+
+                if (
+                    arroba == true
+                    &&
+                    dominio == true
+                    &&
+                    ponto == true
+                    &&
+                        (
+                        email.Substring(i + 1, email.Length - i - 1).ToString().Contains("com")
+                        ||
+                        email.Substring(i + 1, email.Length - i - 1).ToString().Contains("net")
+                        ||
+                        email.Substring(i + 1, email.Length - i - 1).ToString().Contains("gov")
+                        ||
+                        email.Substring(i + 1, email.Length - i - 1).ToString().Contains("br")
+                        ||
+                        email.Substring(i + 1, email.Length - i - 1).ToString().Contains("inf")
+                        )
+                    )
+                    final = true;
+            }
+
+            if
+                (
+                arroba == false
+                ||
+                dominio == false
+                ||
+                ponto == false
+                ||
+                final == false
+                )
+            {
+                Home.mensagemDeErro("Infelizmente, o endereço fornecido no campo \"Email\" não é válido. Por favor, utilize um endereço de email válido.","Email inválido");
+                txtEmail.Focus();
+                return false;
+            }
+
+            return true;
+        }
+
+        public bool validaEndereco()
+        {
+            if (txt_endereco.Text.Length < 4)
+            {
+                Home.mensagemDeErro("Nome de rua inválido. Por favor, certifique-se de que ele esteja correto", "Nome de rua inválido");
+
+                txt_endereco.Focus();
+
+                return false;
+            }
+
+            return true;
+        }
+
+        public bool validaNumero()
+        {
+            if (txt_numero.Text.Length < 2)
+            {
+                Home.mensagemDeErro("Número de residência inválido. Por favor, certifique-se de que ele esteja correto", "Número de residência inválido");
+
+                txt_numero.Focus();
+
+                return false;
+            }
+
+            return true;
+        }
+
+        public bool validaBairro()
+        {
+            if (txt_bairro.Text.Length < 4)
+            {
+                Home.mensagemDeErro("Bairro inválido. Por favor, certifique-se de que ele esteja correto", "Bairro inválido");
+
+                txt_bairro.Focus();
+
+                return false;
+            }
+
+            return true;
+        }
+
+        public bool validaCEP()
+        {
+            if (mtxt_cep.Text.Replace(".", "").Replace("-", "").Replace(" ", "").Length < 8)
+            {
+                Home.mensagemDeErro("CEP inválido. Por favor, certifique-se de que ele esteja correto", "CEP inválido");
+
+                mtxt_cep.Focus();
+
+                return false;
+            }
+
+            return true;
+        }
+
+        public bool validaEstado()
+        {
+            if (cb_uf.Text.Length != 2)
+            {
+                Home.mensagemDeErro("Por favor, selecione um estado", "Estado inválido");
+
+                cb_uf.Focus();
+
+                return false;
+            }
+
+            return true;
+        }
+
+        public bool validaCampos() 
+        {
+            if (!validaNome())
+                return false;
+
+            if (!validaTelefone())
+                return false;
+
+            if (!validaCelular())
+                return false;
+
+            if (!validaCPF())
+                return false;
+
+            if (!validaEmail())
+                return false;
+
+            if (!validaEndereco())
+                return false;
+
+            if (!validaNumero())
+                return false;
+
+            if (!validaBairro())
+                return false;
+
+            if (!validaCEP())
+                return false;
+
+            if (!validaEstado())
+                return false;
+            
+            return true;
+        }
+
+        public void limparCampos() 
+        {
+            txt_bairro.Clear();
+            txt_cidade.Clear();
+            txt_complemento.Clear();
+            txt_endereco.Clear();
+            txt_nome.Clear();
+            txt_numero.Clear();
+            txtEmail.Clear();
+            mtxt_celular.Clear();
+            mtxt_cep.Clear();
+            mtxt_cpf.Clear();
+            mtxt_telefone.Clear();
+            dtp_datanasc.Value = DateTime.Today;
+        }
+
+/*        public Boolean ValidaCampos()
         {
 
             // MessageBox.Show("teste");
@@ -393,9 +583,9 @@ namespace Pizzaria
                         }
                         // MessageBox.Show(mtxt_telefone.Text);
                         telefone = mtxt_telefone.Text;
-                        if (txt_telefone.TextLength > 3)
+                        if (txtEmail.TextLength > 3)
                         {
-                            email = txt_telefone.Text;
+                            email = txtEmail.Text;
                         }
                         else
                         {
@@ -473,8 +663,7 @@ namespace Pizzaria
             }
             return false;
 
-        }
-
+        }*/
 
         private DataTable Buscar(string strIncluir)
         {
@@ -523,6 +712,49 @@ namespace Pizzaria
         private void txt_nome_Leave(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtBuscaPorNome_TextChanged(object sender, EventArgs e)
+        {
+            mtxtBuscaPorCPF.Text = "";
+
+            preencherGrid("select *"/*Cod_Cliente, Nome_Cliente ,CPF_Cliente*/+" from cliente where Nome_Cliente like ('%" + txtBuscaPorNome.Text + "%')", dtgw_dados);
+        }
+
+        private void mtxtBuscaPorCPF_TextChanged(object sender, EventArgs e)
+        {
+            txtBuscaPorNome.Text = "";
+
+            string cpfOriginal = mtxtBuscaPorCPF.Text/*.Replace(" ", "").Replace(".", "").Replace(" ","")*/;
+            string cpfCorrigido = "";
+            bool primeiroNumeroDoStringEncontardo = false;
+            int i = 0;
+
+            if (mtxtBuscaPorCPF.Text != "   .   .   -")
+            {
+                while (!primeiroNumeroDoStringEncontardo)
+                {
+                    if (char.IsNumber(cpfOriginal[i]))
+                        break;
+                    i++;
+                }
+
+                for (int j = i; j < cpfOriginal.Length; j++)
+                    if (cpfOriginal[j].ToString() != " ")
+                        cpfCorrigido += cpfOriginal[j].ToString();
+                    else
+                        break;
+            }
+
+            preencherGrid("select Cod_Cliente, Nome_Cliente ,CPF_Cliente from cliente where CPF_Cliente like ('%" + cpfCorrigido + "%')", dtgw_dados);
+
+            /*            txt_nome.Clear();
+                        txtPalavraChave.Clear();
+                        txtIDProduto.Clear();
+                        btn_inserir.Enabled = false;
+                        limparGrid(gridProdutosEncontrados);
+                        limparGrid(gridProdutosConsumidos);
+                        btn_remover.Enabled = false;*/
         }
 
     }

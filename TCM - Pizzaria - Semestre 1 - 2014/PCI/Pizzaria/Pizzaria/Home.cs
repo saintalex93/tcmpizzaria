@@ -28,6 +28,17 @@ namespace Pizzaria
             pedidos.Show();
         }
 
+        public static void mensagemDeErro(string mensagem, string titutlo)
+        {
+            MessageBox.Show
+                (
+                mensagem,
+                titutlo,
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning
+                );
+        }
+
         private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
@@ -82,13 +93,6 @@ namespace Pizzaria
             produtos.FormHome = this;
             this.Visible = false;
             produtos.Show();
-        }
-
-        private void comprasToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Compras Comp = new Compras();
-            Comp.Show();
-            this.Hide();
         }
 
         private void cadastrarPromoçãoToolStripMenuItem_Click(object sender, EventArgs e)

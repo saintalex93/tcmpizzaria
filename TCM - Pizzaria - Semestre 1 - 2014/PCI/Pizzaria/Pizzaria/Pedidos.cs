@@ -262,7 +262,7 @@ namespace Pizzaria
             for (int i = 0; i < txtIDProduto.Text.Length; i++)
                 if (!char.IsNumber(txtIDProduto.Text[i]))
                 {
-                    Fornecedores.mensagemDeErro("É permitido apenas o uso de números no campo \"Busca por ID\".");
+                    Home.mensagemDeErro("É permitido apenas o uso de números no campo \"Busca por ID\".","Símbolos proibidos em busca");
                     txtIDProduto.Clear();
                     txtIDProduto.Focus();
                 }
@@ -380,7 +380,7 @@ namespace Pizzaria
         {
             if (txtAjuste.Text.Contains(".")) 
             {
-                Fornecedores.mensagemDeErro("Por favor, use vírgula (,) no lugar de ponto (.).");
+                Home.mensagemDeErro("Por favor, use vírgula (,) no lugar de ponto (.).","Símbolos proibidos na busca");
                 return;
             }
                 
@@ -419,9 +419,6 @@ namespace Pizzaria
                 preencherGrid("DELETE FROM pedido where Cod_Pedido =" + idPedido, gridPedidosClientes);
 
                 preencherGrid("select Cod_Pedido, Data, Hora from pedido where Cod_Cliente like ('%" + idCliente + "%')", gridPedidosClientes);
-
-//                for (int i = 0; i < gridPedidosClientes.Columns.Count; i++)
-  //                  gridPedidosClientes.Columns[i].Width = 70;
             }
             else if (decisao == DialogResult.No)
             {

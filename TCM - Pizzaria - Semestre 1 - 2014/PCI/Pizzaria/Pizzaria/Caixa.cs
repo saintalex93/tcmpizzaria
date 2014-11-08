@@ -76,7 +76,7 @@ namespace Pizzaria
         {
             if (dpComeco.Value > dpFim.Value)
             {
-                Fornecedores.mensagemDeErro("A data inicial não pode estar depois da data final.\n\nPor favor, certifique-se de que as datas estejam corretas e tente novamente.");
+                Home.mensagemDeErro("A data inicial não pode estar depois da data final.\n\nPor favor, certifique-se de que as datas estejam corretas e tente novamente.","Data inadequada");
 
                 dpComeco.Value = hoje;
                 dpFim.Value = hoje.AddDays(1);

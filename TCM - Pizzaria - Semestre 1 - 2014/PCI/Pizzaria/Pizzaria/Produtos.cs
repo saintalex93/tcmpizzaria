@@ -27,17 +27,7 @@ namespace Pizzaria
 
         public Form FormHome { get; set; }
 
-        //conexao DB
-        //ALEX
-        // string conexao = "Data Source=ALEX\\SQLEXPRESS ;Initial Catalog=Pizzaria; Persist Security Info = True; User ID=sa; Password=1234";
-
         String conexao = "";
-        //EMERSON
-        /*string conexao = "Data Source=CASA-PC\\BPASERVER10 ;Initial Catalog=Pizzaria; Persist Security Info = True; User ID=sa; Password=AutoMateBPA10";*/
-
-
-        //RAPHA
-        //string conexao = "Data Source=localhost ;Initial Catalog=Pizzaria; Persist Security Info = True; User ID=SA; Password=123456";
 
         public void preencherGrid(string busca, DataGridView tabela)
         {
@@ -93,10 +83,12 @@ namespace Pizzaria
 
          
         }
+        
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
 
         }
+        
         private void btn_sair_Click(object sender, EventArgs e)
         {
             this.FormHome.Show();
@@ -172,6 +164,7 @@ namespace Pizzaria
 
             btn_atualizar.Enabled = false;
         }
+
         private void btn_cancelar_Click(object sender, EventArgs e)
         {
             dtg_produtos.Enabled = true;
@@ -181,7 +174,7 @@ namespace Pizzaria
 
         }
 
-    public bool ValidaCampos()
+        public bool ValidaCampos()
         {
             //valida nome
             if (txt_nome.TextLength > 2)
@@ -246,6 +239,7 @@ namespace Pizzaria
             }
 
         }
+
         private void btn_excluir_Click(object sender, EventArgs e)
         {
            // strsql = "select cod_Produto from Produto where Nome_Produto = '" + dtg_produtos.CurrentRow.Cells[0].Value.ToString() + "'";
@@ -291,6 +285,7 @@ namespace Pizzaria
 
 
         }
+
         public void inseredados()
         {
 
@@ -318,6 +313,7 @@ namespace Pizzaria
 
 
         }
+        
         public Boolean Validaexistente()
         {
 
@@ -345,35 +341,6 @@ namespace Pizzaria
 
         }
         
-        /*public void atualizarproduto(string cod_prod)
-        {
-
-
-            //seleciona categoria
-
-            SqlConnection conn = new SqlConnection(conexao);
-            string strIncluir = "select cod_Categoria from Categoria where Nome_Categoria = '" + categoria + "'";
-            conn.Open();
-            SqlCommand sqlComm = new SqlCommand(strIncluir, conn);
-
-            SqlDataAdapter da = new SqlDataAdapter();
-            DataTable dt = new DataTable();
-            da.SelectCommand = sqlComm;
-            da.Fill(dt);
-
-            //atualiza produto
-            conn = new SqlConnection(conexao);
-            strIncluir = "update Produto set Nome_Produto ='" + nome + "',Valor_venda='" + valoruntd.ToString().Replace(",", ".") + "',cod_categoria ='" + dt.Rows[0][0].ToString() + "', Sobe_Site = '" + site + "' where Cod_Produto = '" + cod_prod + "'";
-            conn.Open();
-            sqlComm = new SqlCommand(strIncluir, conn);
-            sqlComm.ExecuteNonQuery();
-
-            da.SelectCommand = sqlComm;
-            da.Fill(dt);
-
-
-
-        }*/
         public void PreencheCatego()
         {
 
@@ -396,6 +363,7 @@ namespace Pizzaria
             conn.Close();
 
         }
+
         public void excluiprod(string produto)
         {
             try
@@ -446,6 +414,7 @@ namespace Pizzaria
                 MessageBox.Show("Falha ao excluir arquivo");
             }
         }
+        
         public string ValidaUpdate(string strIncluir)
         {
             //seleciona categoria
@@ -488,10 +457,6 @@ namespace Pizzaria
         {
             txt_nome.BackColor = Color.White;
         }
-
-       
-
-       
 
         private void txt_vlrunitario_Enter(object sender, EventArgs e)
         {
