@@ -1,0 +1,171 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+body
+{
+    background-image:url(../img/fundo-site.jpg);
+    background-position: center;
+}
+div#tudo
+{
+    margin: auto;
+    width: 1000px;
+}
+
+/* CSS DO BANNER */
+
+div#banner
+{
+    margin: 10px auto auto auto;
+    width: 950px;
+    height: 325px;
+    border: 3px solid #f8ce45;
+    border-radius: 40px;
+    background-image:url(../img/banner-rata.jpg);
+}
+
+/* CSS DA DIV LOGIN */
+
+.login
+{
+    padding: 10px;
+    height: 20px;
+    border: 2px solid #f8ce45;
+    border-radius: 15px;
+    margin-top: 10px;
+    background-color: rgba(60,85,165,0.9);
+}
+.login input#txtLogin, input#txtLogin_senha
+{
+    height: 19px;
+}
+.login input, span 
+{
+    margin-top: -8px;
+}
+.login span 
+{
+    color: #fff;
+    font-size: 16px;
+    font-family: Constantia;
+}
+
+.login span#bemvindo
+{
+    position: relative;
+    margin-left: -75px;
+    left: 50%;
+}
+.login input#btnLogout 
+{
+    position: relative;
+    margin-left: -15px;
+    left: 55%;
+}
+.login a 
+{
+    color: #fff;
+    transition: color 0.5s;
+}
+.login a:hover 
+{
+    color: #eb5701;
+}
+
+/* CSS DOS BOTOES */
+
+.button
+{
+    padding: 5px;
+    border: 2px solid #f8ce45;
+    border-radius: 5px;
+    background-color: #eb5701;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* CSS DO MENU */
+nav#menu
+{
+    margin-top: 100px;
+}
+nav#menu ul
+{
+    background-color: rgba(255,255,255,0.5);
+    padding: 5px;
+    border: 1px solid rgba(255,255,255,0);
+    border-radius: 4px;
+    list-style: none;
+    float: left;
+}
+nav#menu ul li
+{
+    background-color: #eb5701;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #f8ce45;
+    border-radius: 4px;
+    text-align: center;
+}
+nav#menu ul li a 
+{
+    text-decoration: none;
+    font-size: 21px;
+    text-align: center;
+    color: #fff;
+    transition: color 0.5s;
+}
+nav#menu ul li a:hover 
+{
+    color: #3c55a5;
+}
+
+/* CSS DO CONTEUDO DA INDEX */
+
+div#index 
+{
+    width: 810px;
+    height: 700px;
+    background-color: red;
+    margin: -50px 0px 0px 170px;
+}
+.painel img#conhecer
+{
+    background-color: rgba(235,87,1,0.7);
+    border: 3px solid #f8ce45;
+    border-radius: 5px;
+}
+
+/* CSS DO RODAPÉ */
+
+div#rodape 
+{
+    color: #fff;
+    width: 400px;
+    position: absolute;
+    margin-left: -200px;
+    margin-top: 40px;
+    left: 50%;
+    text-align: center;
+    background-color: rgba(60,85,165,0.9);
+    border: 1px solid #fff;
+    border-radius: 5px;
+}
+
+
+
+
+/* CSS DE UTILIDADE */
+
+.aparecer
+{
+    display: block;
+}
+.sumir
+{
+    display: none;
+}
