@@ -250,7 +250,7 @@ namespace Pizzaria
         {
             desativarTextBox.Text = "";
 
-            string cpfOriginal = cpf.Text/*.Replace(" ", "").Replace(".", "").Replace(" ","")*/;
+            string cpfOriginal = cpf.Text;
             string cpfCorrigido = "";
             bool primeiroNumeroDoStringEncontardo = false;
             int i = 0;
@@ -274,11 +274,46 @@ namespace Pizzaria
             Home.preencherGrid("select Cod_Cliente, Nome_Cliente ,CPF_Cliente from cliente where CPF_Cliente like ('%" + cpfCorrigido + "%')", tabela);
         }
 
-        static public void buscarPorNome(TextBox campoDoNome, MaskedTextBox limparControle, string tabelaNoBanco, string parametroDeBusca, DataGridView tabelaNoPrograma)
+        static public void buscarPorCPF(TextBox cpf, TextBox desativarTextBox, DataGridView tabela)
+        {
+            desativarTextBox.Text = "";
+
+            string cpfOriginal = cpf.Text;
+            string cpfCorrigido = "";
+            bool primeiroNumeroDoStringEncontardo = false;
+            int i = 0;
+
+            if (cpf.Text != "   .   .   -")
+            {
+                while (!primeiroNumeroDoStringEncontardo)
+                {
+                    if (char.IsNumber(cpfOriginal[i]))
+                        break;
+                    i++;
+                }
+
+                for (int j = i; j < cpfOriginal.Length; j++)
+                    if (cpfOriginal[j].ToString() != " ")
+                        cpfCorrigido += cpfOriginal[j].ToString();
+                    else
+                        break;
+            }
+
+            Home.preencherGrid("select Cod_Cliente, Nome_Cliente ,CPF_Cliente from cliente where CPF_Cliente like ('%" + cpfCorrigido + "%')", tabela);
+        }
+
+        static public void buscarPorNome(TextBox campoDoNome, MaskedTextBox limparControle, string tabelaNoBanco, string colunaNaTabela, DataGridView tabelaNoPrograma)
         {
             limparControle .Text = "";
 
-            Home.preencherGrid("select * from "+ tabelaNoBanco +" where "+ parametroDeBusca +" like ('%" + campoDoNome.Text + "%')", tabelaNoPrograma);
+            Home.preencherGrid("select * from "+ tabelaNoBanco +" where "+ colunaNaTabela +" like ('%" + campoDoNome.Text + "%')", tabelaNoPrograma);
+        }
+
+        static public void buscarPorNome(TextBox campoDoNome, TextBox limparControle, string tabelaNoBanco, string colunaNaTabela, DataGridView tabelaNoPrograma)
+        {
+            limparControle.Text = "";
+
+            Home.preencherGrid("select * from " + tabelaNoBanco + " where " + colunaNaTabela + " like ('%" + campoDoNome.Text + "%')", tabelaNoPrograma);
         }
         
 

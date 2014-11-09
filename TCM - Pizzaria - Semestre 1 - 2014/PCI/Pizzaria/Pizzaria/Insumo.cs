@@ -725,6 +725,17 @@ namespace Pizzaria
         {
             txt_vlrunitario.SelectionStart = txt_vlrunitario.Mask.Length;
         }
+
+        private void txtBuscarPorNome_TextChanged(object sender, EventArgs e)
+        {
+            Home.buscarPorNome(txtBuscarPorNome, txtBuscarPorID, "Insumo", "Nome_Insumo", dtg_gravacao);
+
+        }
+
+        private void txtBuscarPorID_TextChanged(object sender, EventArgs e)
+        {
+            Home.buscarPorNome(txtBuscarPorID, txtBuscarPorNome, "Insumo", "Cod_Insumo", dtg_gravacao);
+        }
     }
 
 }

@@ -55,6 +55,10 @@
             this.lbl_valorunitario = new System.Windows.Forms.Label();
             this.lbl_nome = new System.Windows.Forms.Label();
             this.btn_cancelar = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtBuscarPorNome = new System.Windows.Forms.TextBox();
+            this.txtBuscarPorID = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dtg_gravacao)).BeginInit();
             this.gpb_compras.SuspendLayout();
             this.SuspendLayout();
@@ -101,7 +105,7 @@
             // 
             // btn_inserir
             // 
-            this.btn_inserir.Location = new System.Drawing.Point(227, 188);
+            this.btn_inserir.Location = new System.Drawing.Point(442, 188);
             this.btn_inserir.Name = "btn_inserir";
             this.btn_inserir.Size = new System.Drawing.Size(75, 23);
             this.btn_inserir.TabIndex = 10;
@@ -111,6 +115,8 @@
             // 
             // dtg_gravacao
             // 
+            this.dtg_gravacao.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dtg_gravacao.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dtg_gravacao.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtg_gravacao.Location = new System.Drawing.Point(12, 217);
             this.dtg_gravacao.MultiSelect = false;
@@ -341,12 +347,50 @@
             this.btn_cancelar.UseVisualStyleBackColor = true;
             this.btn_cancelar.Click += new System.EventHandler(this.btn_cancelar_Click);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 193);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(90, 13);
+            this.label3.TabIndex = 24;
+            this.label3.Text = "Buscar por nome:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(214, 192);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(72, 13);
+            this.label4.TabIndex = 25;
+            this.label4.Text = "Buscar por ID";
+            // 
+            // txtBuscarPorNome
+            // 
+            this.txtBuscarPorNome.Location = new System.Drawing.Point(108, 189);
+            this.txtBuscarPorNome.Name = "txtBuscarPorNome";
+            this.txtBuscarPorNome.Size = new System.Drawing.Size(100, 20);
+            this.txtBuscarPorNome.TabIndex = 26;
+            this.txtBuscarPorNome.TextChanged += new System.EventHandler(this.txtBuscarPorNome_TextChanged);
+            // 
+            // txtBuscarPorID
+            // 
+            this.txtBuscarPorID.Location = new System.Drawing.Point(292, 190);
+            this.txtBuscarPorID.Name = "txtBuscarPorID";
+            this.txtBuscarPorID.Size = new System.Drawing.Size(100, 20);
+            this.txtBuscarPorID.TabIndex = 27;
+            this.txtBuscarPorID.TextChanged += new System.EventHandler(this.txtBuscarPorID_TextChanged);
+            // 
             // Insumo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(535, 423);
             this.ControlBox = false;
+            this.Controls.Add(this.txtBuscarPorID);
+            this.Controls.Add(this.txtBuscarPorNome);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.btn_cancelar);
             this.Controls.Add(this.btn_sair);
             this.Controls.Add(this.btn_excluir);
@@ -365,6 +409,7 @@
             this.gpb_compras.ResumeLayout(false);
             this.gpb_compras.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -396,6 +441,10 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtQuantidadeEmEstoque;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtBuscarPorNome;
+        private System.Windows.Forms.TextBox txtBuscarPorID;
 
     }
 }
