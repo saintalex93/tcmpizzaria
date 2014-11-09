@@ -70,5 +70,23 @@ namespace Pizzaria
             txtPassword.Text = password;
 
         }
+
+
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            txtDataSource.Text = "Tuca\\SQLEXPRESS";
+            txtCatalog.Text = "Pizzaria";
+            txtID.Text = "sa";
+            txtPassword.Text = "peganomeupau";
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+            txtDataSource.Text = "Tuca\\SQLEXPRESS";
+            txtCatalog.Text = "Pizzaria";
+            txtID.Text = "sa";
+            txtPassword.Text = "peganomeupau";
+        }
     }
 }

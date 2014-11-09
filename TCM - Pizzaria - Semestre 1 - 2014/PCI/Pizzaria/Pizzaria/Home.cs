@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace Pizzaria
 {
@@ -222,7 +224,63 @@ namespace Pizzaria
             System.Diagnostics.Process.Start("calc"); 
         }
 
+        static public void preencherGrid(string comandoSQL, DataGridView tabela)
+        {
+            SqlConnection conn = new SqlConnection(Acesso.Conexao);
+            conn.Open();
 
+            try
+            {
+                SqlCommand sqlComm = new SqlCommand(comandoSQL, conn);
+                SqlDataAdapter da = new SqlDataAdapter();
+                da.SelectCommand = sqlComm;
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                tabela.DataSource = dt;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Falha ao conectar ao Bano de Dados. Contate seu suporte.");
+            }
+
+            conn.Close();
+        }
+
+        static public void buscarPorCPF(MaskedTextBox cpf, TextBox desativarTextBox, DataGridView tabela)
+        {
+            desativarTextBox.Text = "";
+
+            string cpfOriginal = cpf.Text/*.Replace(" ", "").Replace(".", "").Replace(" ","")*/;
+            string cpfCorrigido = "";
+            bool primeiroNumeroDoStringEncontardo = false;
+            int i = 0;
+
+            if (cpf.Text != "   .   .   -")
+            {
+                while (!primeiroNumeroDoStringEncontardo)
+                {
+                    if (char.IsNumber(cpfOriginal[i]))
+                        break;
+                    i++;
+                }
+
+                for (int j = i; j < cpfOriginal.Length; j++)
+                    if (cpfOriginal[j].ToString() != " ")
+                        cpfCorrigido += cpfOriginal[j].ToString();
+                    else
+                        break;
+            }
+
+            Home.preencherGrid("select Cod_Cliente, Nome_Cliente ,CPF_Cliente from cliente where CPF_Cliente like ('%" + cpfCorrigido + "%')", tabela);
+        }
+
+        static public void buscarPorNome(TextBox campoDoNome, MaskedTextBox limparControle, string tabelaNoBanco, string parametroDeBusca, DataGridView tabelaNoPrograma)
+        {
+            limparControle .Text = "";
+
+            Home.preencherGrid("select * from "+ tabelaNoBanco +" where "+ parametroDeBusca +" like ('%" + campoDoNome.Text + "%')", tabelaNoPrograma);
+        }
+        
 
     }
 }

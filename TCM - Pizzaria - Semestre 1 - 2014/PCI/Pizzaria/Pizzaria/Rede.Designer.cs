@@ -38,6 +38,7 @@
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.btnOkay = new System.Windows.Forms.Button();
             this.btnSair = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -126,11 +127,20 @@
             this.btnSair.UseVisualStyleBackColor = true;
             this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
             // 
+            // label5
+            // 
+            this.label5.Location = new System.Drawing.Point(166, 138);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(56, 30);
+            this.label5.TabIndex = 10;
+            this.label5.Click += new System.EventHandler(this.label5_Click);
+            // 
             // Rede
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(203, 153);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.btnSair);
             this.Controls.Add(this.btnOkay);
             this.Controls.Add(this.txtPassword);
@@ -164,5 +174,6 @@
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Button btnOkay;
         private System.Windows.Forms.Button btnSair;
+        private System.Windows.Forms.Label label5;
     }
 }

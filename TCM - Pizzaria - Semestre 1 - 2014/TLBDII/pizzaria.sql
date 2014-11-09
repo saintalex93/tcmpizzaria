@@ -10,7 +10,7 @@ go
 
 use Pizzaria
 go
-
+ 
 create table Cliente(
 Cod_Cliente INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 Nome_Cliente VARCHAR(40),
@@ -270,9 +270,13 @@ values
 ('Tomate',15.30,25,20)
 go
 
-insert into FuncPermissao(Login_, Senha) 
-values ('admin','1234'),('Tuca','123456')
+insert into FuncPermissao(Login_, Senha, Cod_Funcionario, Cod_Permissao) 
+values
+('admin','123456', 1, 1),
+('gere','12345', 2, 2),
+('aten','1234', 3, 3)
 go
+
 
 
 insert into Produto

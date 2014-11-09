@@ -110,5 +110,11 @@ namespace Pizzaria
         {
             txt_senha.BackColor = Color.Aquamarine;
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            txt_usuario.Text = "admin";
+            txt_senha.Text = "123456";
+        }
     }
 }

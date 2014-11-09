@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             this.pnl_login = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.btnConfiguracoes = new System.Windows.Forms.Button();
             this.tbp_Acesso = new System.Windows.Forms.TabControl();
             this.tbp_alterarLogin = new System.Windows.Forms.TabPage();
@@ -38,19 +39,24 @@
             this.txt_usuario = new System.Windows.Forms.TextBox();
             this.lbl_Senha = new System.Windows.Forms.Label();
             this.lbl_usuario = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pnl_login.SuspendLayout();
             this.tbp_Acesso.SuspendLayout();
             this.tbp_alterarLogin.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // pnl_login
             // 
             resources.ApplyResources(this.pnl_login, "pnl_login");
+            this.pnl_login.Controls.Add(this.label1);
             this.pnl_login.Controls.Add(this.btnConfiguracoes);
             this.pnl_login.Controls.Add(this.tbp_Acesso);
             this.pnl_login.Name = "pnl_login";
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // btnConfiguracoes
             // 
@@ -73,7 +79,6 @@
             this.tbp_alterarLogin.Controls.Add(this.txt_usuario);
             this.tbp_alterarLogin.Controls.Add(this.lbl_Senha);
             this.tbp_alterarLogin.Controls.Add(this.lbl_usuario);
-            this.tbp_alterarLogin.Controls.Add(this.pictureBox1);
             resources.ApplyResources(this.tbp_alterarLogin, "tbp_alterarLogin");
             this.tbp_alterarLogin.Name = "tbp_alterarLogin";
             this.tbp_alterarLogin.UseVisualStyleBackColor = true;
@@ -111,13 +116,6 @@
             resources.ApplyResources(this.lbl_usuario, "lbl_usuario");
             this.lbl_usuario.Name = "lbl_usuario";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Pizzaria.Properties.Resources._48px_Crystal_Clear_kdm_user_male;
-            resources.ApplyResources(this.pictureBox1, "pictureBox1");
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.TabStop = false;
-            // 
             // Login
             // 
             resources.ApplyResources(this, "$this");
@@ -131,7 +129,6 @@
             this.tbp_Acesso.ResumeLayout(false);
             this.tbp_alterarLogin.ResumeLayout(false);
             this.tbp_alterarLogin.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -146,8 +143,8 @@
         private System.Windows.Forms.TextBox txt_usuario;
         private System.Windows.Forms.Label lbl_Senha;
         private System.Windows.Forms.Label lbl_usuario;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnConfiguracoes;
+        private System.Windows.Forms.Label label1;
 
     }
 }
