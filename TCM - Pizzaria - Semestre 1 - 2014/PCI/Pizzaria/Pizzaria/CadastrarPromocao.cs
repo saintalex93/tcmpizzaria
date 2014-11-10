@@ -450,7 +450,7 @@ namespace Pizzaria
 
         private void txtBuscaPorID_TextChanged(object sender, EventArgs e)
         {
-            txtBuscaPorTitulo.Text = "";
+            //txtBuscaPorTitulo.Text = "";
 
             for (int i = 0; i < txtBuscaPromocaoPorID.Text.Length; i++)
                 if (!char.IsNumber(txtBuscaPromocaoPorID.Text[i]))
@@ -508,7 +508,7 @@ namespace Pizzaria
 
         private void txtBuscaPorTitulo_TextChanged(object sender, EventArgs e)
         {
-            txtBuscaPromocaoPorID.Text = "";
+            //tBuscaPromocaoPorID.Text = "";
 
             preencherGrid("select Cod_Promocao as [ID], Nome_Promocao as [Título], Preco_Original as [Preço original], Preco_Promocao as [Preço promocional], Vigencia as [Vigência], Descricao as [Descrição] from Promocao where Nome_Promocao like ('%" + txtBuscaPorTitulo.Text + "%')", gridPromocoesEncontradas);
 
@@ -712,6 +712,8 @@ namespace Pizzaria
         private void txtBuscaPorTitulo_Enter(object sender, EventArgs e)
         {
             txtBuscaPorTitulo.BackColor = Color.Aquamarine;
+
+            txtBuscaPromocaoPorID.Clear();
         }
 
         private void txtBuscaPorTitulo_Leave(object sender, EventArgs e)
@@ -722,6 +724,8 @@ namespace Pizzaria
         private void txtBuscaPromocaoPorID_Enter(object sender, EventArgs e)
         {
             txtBuscaPromocaoPorID.BackColor = Color.Aquamarine;
+
+            txtBuscaPorTitulo.Clear();
         }
 
         private void txtBuscaPromocaoPorID_Leave(object sender, EventArgs e)
@@ -733,11 +737,17 @@ namespace Pizzaria
         {
             if (gridProdutosNaPromocao.Rows.Count == 0)
             {
-                Home.mensagemDeErro("Por favor, antes de selecionar um Produto, selecione uma Promoção aonde inserir o Produto.","Promoção não selecionada");
+                Home.mensagemDeErro("Por favor, antes de selecionar um Produto, selecione uma Promoção aonde inserir o Produto.", "Promoção não selecionada");
 
                 txtBuscaPorTitulo.Focus();
-            }else
+            }
+            else
+            {
                 txtBuscaPalavraChave.BackColor = Color.Aquamarine;
+
+                txtBuscaProdutoPorID.Clear();
+            }
+                
         }
 
         private void txtBuscaPalavraChave_Leave_1(object sender, EventArgs e)
@@ -749,12 +759,17 @@ namespace Pizzaria
         {
             if (gridProdutosNaPromocao.Rows.Count == 0)
             {
-                Home.mensagemDeErro("Por favor, antes de selecionar um Produto, selecione uma Promoção aonde inserir o Produto.","Promoção não selecionada");
+                Home.mensagemDeErro("Por favor, antes de selecionar um Produto, selecione uma Promoção aonde inserir o Produto.", "Promoção não selecionada");
 
                 txtBuscaPorTitulo.Focus();
             }
-            else
+            else 
+            {
                 txtBuscaProdutoPorID.BackColor = Color.Aquamarine;
+
+                txtBuscaPalavraChave.Clear();
+            }
+                
         }
 
         private void txtBuscaProdutoPorID_Leave(object sender, EventArgs e)

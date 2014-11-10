@@ -17,6 +17,8 @@ namespace Pizzaria
             InitializeComponent();
         }
 
+        public Form FormHome { get; set; }
+
         public static string dataSource= "";
         public static string catalog= "";
         public static string id= "";
@@ -75,18 +77,15 @@ namespace Pizzaria
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            txtDataSource.Text = "Tuca\\SQLEXPRESS";
-            txtCatalog.Text = "Pizzaria";
-            txtID.Text = "sa";
-            txtPassword.Text = "peganomeupau";
+
         }
 
         private void label5_Click(object sender, EventArgs e)
         {
-            txtDataSource.Text = "Tuca\\SQLEXPRESS";
+            txtDataSource.Text = "MÔNICA\\SQLEXPRESS";
             txtCatalog.Text = "Pizzaria";
             txtID.Text = "sa";
-            txtPassword.Text = "peganomeupau";
+            txtPassword.Text = "123456";
         }
     }
 }

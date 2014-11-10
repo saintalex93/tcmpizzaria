@@ -257,7 +257,7 @@ namespace Pizzaria
         }
 
         public void preenchegrid(string comandoSQL)
-        {
+       {
 
             try
             {
@@ -267,19 +267,18 @@ namespace Pizzaria
 
                 DataTable dt = new DataTable();
 
+
                 SqlDataAdapter da = new SqlDataAdapter();
                 da.SelectCommand = sqlComm;
-
 
                 da.Fill(dt);
                 conn.Close();
                 dtg_produtos.DataSource = dt;
-
-
             }
             catch (Exception)
             {
-                conn.Close();
+                //Fechar a conexão no catch acusava NullReference e parece que, quando vem pra cá, a propriedade criada antes de fato é fechada.
+                //conn.Close();
                 MessageBox.Show("Falha ao preencher tabela com produtos cadastrados");
             }
 
@@ -475,16 +474,54 @@ namespace Pizzaria
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            txtBuscaPorID.Text = "";
-
-            preenchegrid("select cod_Produto as [ID], Nome_Produto as [Produto], Valor_Venda as [Preço], Sobe_Site as [Visível no site] from Produto where Nome_Produto like ('%" + txtBuscaPorNome.Text + "%')");
         }
 
         private void txtBuscaPorID_TextChanged(object sender, EventArgs e)
         {
-            txtBuscaPorNome.Text = "";
 
-            preenchegrid("select cod_Produto as [ID], Nome_Produto as [Produto], Valor_Venda as [Preço], Sobe_Site as [Visível no site] from Produto where cod_Produto like (" + txtBuscaPorID.Text + ")");
+        }
+
+        private void txtBuscaPorNome_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
+        }
+
+        private void txtBuscaPorID_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
+        }
+
+        private void txtBuscaPorNome_TextChanged(object sender, EventArgs e)
+        {
+            string busca = txtBuscaPorNome.Text;
+
+//            txtBuscaPorID.Text = "";
+
+            Home.preencherGrid("select cod_Produto as [ID], Nome_Produto as [Produto], Valor_Venda as [Preço], Sobe_Site as [Visível no site] from Produto where Nome_Produto like ('%" + busca + "%')", dtg_produtos);
+
+//            preenchegrid("select cod_Produto as [ID], Nome_Produto as [Produto], Valor_Venda as [Preço], Sobe_Site as [Visível no site] from Produto where Nome_Produto like ('%" + busca + "%')");
+        }
+
+        private void txtBuscaPorID_TextChanged_1(object sender, EventArgs e)
+        {
+            string busca = txtBuscaPorID.Text;
+
+//            txtBuscaPorNome.Text = "";
+
+            Home.preencherGrid("select cod_Produto as [ID], Nome_Produto as [Produto], Valor_Venda as [Preço], Sobe_Site as [Visível no site] from Produto where Cod_Produto like ('%" + busca + "%')", dtg_produtos);
+
+
+//            preenchegrid("select cod_Produto as [ID], Nome_Produto as [Produto], Valor_Venda as [Preço], Sobe_Site as [Visível no site] from Produto where cod_Produto like ('%" + busca + "%')");
+        }
+
+        private void txtBuscaPorNome_Enter(object sender, EventArgs e)
+        {
+            txtBuscaPorID.Text = "";
+        }
+
+        private void txtBuscaPorID_Enter(object sender, EventArgs e)
+        {
+            txtBuscaPorNome.Text = "";
         }
 
 
