@@ -25,8 +25,8 @@ public partial class aspx_modelo : System.Web.UI.MasterPage
         }
         if (Session["nome_func"] != null)
         {
-            linkCadastro.NavigateUrl = "pedidos.aspx";
-            linkCadastro.Text = "Gerenciar Pedidos";
+            linkCadastro.NavigateUrl = "cadastrapedido.aspx";
+            linkCadastro.Text = "Gerenciar<br />Pedidos";
             pnl.Visible = false;
             pnl_logout.Visible = true;
             lblNomeUsuario.Text = Session["nome_func"].ToString();

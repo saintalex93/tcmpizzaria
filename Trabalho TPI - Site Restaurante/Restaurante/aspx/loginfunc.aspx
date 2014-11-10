@@ -15,7 +15,7 @@
             <asp:TextBox ID="txtLoginFunc" runat="server" BorderWidth="1"></asp:TextBox>
             <br />
             <asp:Label ID="lblSenhaFunc" runat="server" Text="Senha"></asp:Label>
-            <asp:TextBox ID="txtSenhaFunc" runat="server" BorderWidth="1"></asp:TextBox>
+            <asp:TextBox ID="txtSenhaFunc" runat="server" BorderWidth="1" TextMode="Password"></asp:TextBox>
 
             <asp:Label ID="lblErrado" runat="server" Text="" Visible="False"></asp:Label>
 

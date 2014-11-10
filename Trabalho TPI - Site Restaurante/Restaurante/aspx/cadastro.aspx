@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 
-    <link rel="stylesheet" type="text/css" href="../css/style2.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
     <link rel="icon" type="image/png" href="../img/logo.ico" />
 
     <script type="text/javascript" src="../js/valida.js"></script>

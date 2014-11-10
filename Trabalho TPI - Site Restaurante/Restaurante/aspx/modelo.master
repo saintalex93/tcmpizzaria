@@ -13,6 +13,7 @@
 <body>
     <form id="form1" runat="server">
         <div id = "tudo">
+
 		    <header id="cabecalho">
 
 		        <div id="banner">
@@ -43,8 +44,8 @@
 
             <nav id="menu">
                 <ul>
-				    <li><asp:HyperLink ID="linkHome" runat="server" NavigateUrl="index.aspx">Home</asp:HyperLink></li>
-                    <li><asp:HyperLink ID="linkCardápio" runat="server" NavigateUrl="cardapio.aspx">Cardápio</asp:HyperLink></li>
+				    <li style="margin-bottom: 15px;"><asp:HyperLink ID="linkHome" runat="server" NavigateUrl="index.aspx">Home</asp:HyperLink></li>
+                    <li style="margin-bottom: 15px;"><asp:HyperLink ID="linkCardápio" runat="server" NavigateUrl="sobre.aspx">Sobre Nós</asp:HyperLink></li>
 				    <li><asp:HyperLink ID="linkCadastro" runat="server" NavigateUrl="cadastro.aspx">Cadastro</asp:HyperLink></li>
                     <li id="li_cadastrarPed" class="sumir"><asp:HyperLink ID="linkCadastraPedido" runat="server" NavigateUrl="cadastrapedido.aspx" Enabled="True">Cadastrar Pedido</asp:HyperLink></li>
                 </ul>
@@ -64,9 +65,9 @@
 		
 			    <div id = "informacoes">
 			
-                    Telefone: 3333-3333
+                    Telefone: 7777-7777
 				    <br />
-                    Rua Logradouro, 654, São Paulo - SP 
+                    Rua Francesa, 654, Paris - Île-de-France
 				    <br />
                     Aberto de Segunda à Sexta das 18h às 24h
 

@@ -22,25 +22,33 @@ div#pnlLoginFunc
     width: 280px;
     margin: -75px 0px 0px -140px;
     border: 3px solid #808080;
-    background-color: #ed5e00;
+    background-color: #3c55a5;
 }
 div#pnlLoginFunc span
 {
     font-size: 18px;
+    color: #fff;
     margin-left: 20px;
 }
-    div#pnlLoginFunc input#txtLoginFunc
-    {
-        margin-top: 30px;
-    }
+div#pnlLoginFunc input#txtLoginFunc, input#txtSenhaFunc 
+{
+    border-radius: 6px;
+}
+div#pnlLoginFunc input#txtLoginFunc
+{
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
 
 /* CSS DO BOTAO */
+
 .button
 {
-    padding: 7px;
-    border: 2px solid #f65757;
+    padding: 5px;
+    margin: 8px 0px 0px 37%;
+    border: 2px solid #f8ce45;
     border-radius: 5px;
-    background-color: red;
+    background-color: #eb5701;
     color: #fff;
     font-size: 16px;
     font-weight: bold;

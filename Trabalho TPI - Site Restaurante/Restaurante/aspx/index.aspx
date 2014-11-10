@@ -7,10 +7,13 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
-    <div id="index">
+    <div id="conteudo_index" class="conteudo">
 		<nav class = "painel">
-            <ul>
-				<li><img id="conhecer" src = "../img/conhecer-chefs2.png" /></li>
+            <ul style="list-style: none;">
+				<li> <img id="conhecer" src = "../img/conhecer-chefs3.jpg" /> </li>
+
+                <li> <img id="conhecercoz" src="../img/conhecer-cozinha.jpg" /> </li>
+				
             </ul>
 		</nav>
     </div>
