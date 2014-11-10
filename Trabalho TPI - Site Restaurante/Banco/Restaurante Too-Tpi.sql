@@ -46,7 +46,8 @@ Data VARCHAR(10),
 Valor numeric (5,2),
 Produtos VarChar (100),
 Descricao Varchar (100),
-Situacao int--Boolean Pago
+Situacao int,--Boolean Pago
+Cod_Cliente INT foreign key references Cliente(Cod_Cliente)
 )
 
 go
@@ -85,7 +86,6 @@ insert into Cliente
 Nome_Cliente,CPF_Cliente,Endereco_Cliente,Numero_Residencia,Bairro_Cliente,CEP_Cliente,Complemento_Cliente,
 Telefone_Cliente,Celular_Cliente,Login_Cliente,Senha_Cliente
 )
-
 Values
 
 (
@@ -109,9 +109,10 @@ go
 
 
 Insert into Pedido
-(Data,Valor,Produtos,Descricao,Situacao)
+(Data,Valor,Produtos,Descricao,Situacao,Cod_Cliente)
 Values
-('10/11/2014', 50.80, 'Macarrão com almondega e Coca-Cola', '7 pedidos contabilizados',1)
+('10/11/2014', 50.80, 'Macarrão com almondega e Coca-Cola', '7 pedidos contabilizados',1,3),
+('10/11/2014', 50.80, 'Macarrão com almondega e Coca-Cola', '7 pedidos contabilizados',0,3)
 
 go
 
