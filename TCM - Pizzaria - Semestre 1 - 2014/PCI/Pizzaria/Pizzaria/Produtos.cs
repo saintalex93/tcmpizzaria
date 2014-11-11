@@ -25,6 +25,9 @@ namespace Pizzaria
         Boolean valida = false;
         int qtd = 0, site = 0;
 
+        string buscarPorNome = "";
+        string buscarPorID = "";
+
         public Form FormHome { get; set; }
 
         String conexao = "";
@@ -72,7 +75,7 @@ namespace Pizzaria
             }
 
 
-        }
+        }   
 
         private void Insumo_Load(object sender, EventArgs e)
         {
@@ -133,22 +136,31 @@ namespace Pizzaria
 
             }
             else {}*/
+            if (btn_atualizar.Text == "Alterar")
+            {
+                btn_atualizar.Text = "Gravar";
+                txt_nome.Enabled = true;
+                txt_vlrunitario.Enabled = true;
+                chk_site.Enabled = true;
+                gbp_produtos.Enabled = true;
+            }
+            else 
+            {
+                int sobeProSite = 0;
+                if (chk_site.Checked)
+                    sobeProSite = 1;
 
-            int sobeProSite = 0;
-            if (chk_site.Checked)
-                sobeProSite = 1;
+                int idProduto = (int)dtg_produtos.CurrentRow.Cells[0].Value;
 
-            int idProduto = (int)dtg_produtos.CurrentRow.Cells[0].Value;
+                preenchegrid("UPDATE Produto SET Nome_Produto = '" + txt_nome.Text + "', Valor_Venda = " + txt_vlrunitario.Text.Replace("R$", "").Replace(" ", "") + ", Sobe_Site = " + sobeProSite + " WHERE cod_Produto = " + dtg_produtos.CurrentRow.Cells[0].Value);
 
-            preenchegrid("UPDATE Produto SET Nome_Produto = '" + txt_nome.Text + "', Valor_Venda = " + txt_vlrunitario.Text.Replace("R$","").Replace(" ","") + ", Sobe_Site = " + sobeProSite + " WHERE cod_Produto = " + dtg_produtos.CurrentRow.Cells[0].Value);
+                preenchegrid("select cod_Produto as [ID], Nome_Produto as [Produto], Valor_Venda as [Preço], Sobe_Site as [Visível no site] from Produto where Cod_Produto like (" + idProduto + ")");
 
-            preenchegrid("select cod_Produto as [ID], Nome_Produto as [Produto], Valor_Venda as [Preço], Sobe_Site as [Visível no site] from Produto where Cod_Produto like (" + idProduto + ")");
-
-            txt_vlrunitario.Clear();
-            txt_nome.Clear();
-            chk_site.Checked = false;
-
-            btn_atualizar.Enabled = false;
+                txt_vlrunitario.Clear();
+                txt_nome.Clear();
+                chk_site.Checked = false;
+                btn_atualizar.Text = "Alterar";
+            }
         }
 
         private void btn_cancelar_Click(object sender, EventArgs e)
@@ -237,7 +249,6 @@ namespace Pizzaria
             dtg_produtos.Enabled = true;
             btn_excluir.Enabled = false;
             btn_inserir.Enabled = false;
-            btn_alterar.Enabled = false;
             preenchegrid();
         }
 
@@ -438,7 +449,6 @@ namespace Pizzaria
                 chk_site.Checked = false;
 
             gbp_produtos.Enabled = false;
-            btn_alterar.Enabled = true;
             btn_inserir.Enabled = false;
 
         }
@@ -470,16 +480,7 @@ namespace Pizzaria
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            txtBuscaPorID.Text = "";
 
-            preenchegrid("select cod_Produto as [ID], Nome_Produto as [Produto], Valor_Venda as [Preço], Sobe_Site as [Visível no site] from Produto where Nome_Produto like ('%" + txtBuscaPorNome.Text + "%')");
-        }
-
-        private void txtBuscaPorID_TextChanged(object sender, EventArgs e)
-        {
-            txtBuscaPorNome.Text = "";
-
-            preenchegrid("select cod_Produto as [ID], Nome_Produto as [Produto], Valor_Venda as [Preço], Sobe_Site as [Visível no site] from Produto where cod_Produto like (" + txtBuscaPorID.Text + ")");
         }
 
         private void btn_alterar_Click(object sender, EventArgs e)
@@ -487,7 +488,65 @@ namespace Pizzaria
 
         }
 
+        private void txtBuscaPorNome_KeyPress(object sender, KeyPressEventArgs e)
+        {
 
+        }
+
+        private void txtBuscaPorNome_KeyPress(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void txtBuscaPorID_KeyPress(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtBuscaPorNome_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void txtBuscaPorID_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            
+        }
+
+        private void txtBuscaPorNome_KeyPress_1(object sender, KeyEventArgs e)
+        {
+            
+        }
+
+        private void txtBuscaPorNome_Leave(object sender, EventArgs e)
+        {
+            txtBuscaPorNome.Clear();
+
+            dtg_produtos.DataSource = null;
+            dtg_produtos.Rows.Clear();
+        }
+
+        private void txtBuscaPorID_Leave(object sender, EventArgs e)
+        {
+            txtBuscaPorID.Clear();
+        }
+
+        private void txtBuscaPorNome_TextChanged(object sender, EventArgs e)
+        {
+            dtg_produtos.DataSource = null;
+
+            dtg_produtos.Rows.Clear();
+
+            Home.preencherGrid("select cod_Produto as [ID], Nome_Produto as [Produto], Valor_Venda as [Preço], Sobe_Site as [Visível no site] from Produto where Nome_Produto like ('%" + txtBuscaPorNome.Text + "%')", dtg_produtos);
+        }
+
+        private void txtBuscaPorID_TextChanged(object sender, EventArgs e)
+        {
+            dtg_produtos.DataSource = null;
+
+            dtg_produtos.Rows.Clear();
+            
+            Home.preencherGrid("select cod_Produto as [ID], Nome_Produto as [Produto], Valor_Venda as [Preço], Sobe_Site as [Visível no site] from Produto where cod_Produto like (" + txtBuscaPorID.Text + ")", dtg_produtos);
+        }
     }
-
 }

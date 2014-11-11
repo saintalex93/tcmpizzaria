@@ -37,7 +37,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btn_inserir = new System.Windows.Forms.Button();
             this.dtg_produtos = new System.Windows.Forms.DataGridView();
-            this.btn_alterar = new System.Windows.Forms.Button();
             this.btn_atualizar = new System.Windows.Forms.Button();
             this.btn_excluir = new System.Windows.Forms.Button();
             this.btn_sair = new System.Windows.Forms.Button();
@@ -135,29 +134,19 @@
             this.dtg_produtos.TabIndex = 11;
             this.dtg_produtos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtg_produtos_CellDoubleClick);
             // 
-            // btn_alterar
-            // 
-            this.btn_alterar.Location = new System.Drawing.Point(12, 348);
-            this.btn_alterar.Name = "btn_alterar";
-            this.btn_alterar.Size = new System.Drawing.Size(75, 23);
-            this.btn_alterar.TabIndex = 5;
-            this.btn_alterar.Text = "Alterar";
-            this.btn_alterar.UseVisualStyleBackColor = true;
-            this.btn_alterar.Click += new System.EventHandler(this.btn_alterar_Click);
-            // 
             // btn_atualizar
             // 
-            this.btn_atualizar.Location = new System.Drawing.Point(93, 348);
+            this.btn_atualizar.Location = new System.Drawing.Point(12, 348);
             this.btn_atualizar.Name = "btn_atualizar";
             this.btn_atualizar.Size = new System.Drawing.Size(75, 23);
             this.btn_atualizar.TabIndex = 6;
-            this.btn_atualizar.Text = "Atualizar";
+            this.btn_atualizar.Text = "Alterar";
             this.btn_atualizar.UseVisualStyleBackColor = true;
             this.btn_atualizar.Click += new System.EventHandler(this.btn_atualizar_Click);
             // 
             // btn_excluir
             // 
-            this.btn_excluir.Location = new System.Drawing.Point(174, 348);
+            this.btn_excluir.Location = new System.Drawing.Point(93, 348);
             this.btn_excluir.Name = "btn_excluir";
             this.btn_excluir.Size = new System.Drawing.Size(75, 23);
             this.btn_excluir.TabIndex = 8;
@@ -200,18 +189,14 @@
             this.txtBuscaPorNome.Size = new System.Drawing.Size(100, 20);
             this.txtBuscaPorNome.TabIndex = 14;
             this.txtBuscaPorNome.TextChanged += new System.EventHandler(this.txtBuscaPorNome_TextChanged);
-            this.txtBuscaPorNome.Enter += new System.EventHandler(this.txtBuscaPorNome_Enter);
-            this.txtBuscaPorNome.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuscaPorNome_KeyPress);
             // 
             // txtBuscaPorID
             // 
-            this.txtBuscaPorID.Location = new System.Drawing.Point(311, 164);
+            this.txtBuscaPorID.Location = new System.Drawing.Point(311, 165);
             this.txtBuscaPorID.Name = "txtBuscaPorID";
             this.txtBuscaPorID.Size = new System.Drawing.Size(100, 20);
             this.txtBuscaPorID.TabIndex = 15;
-            this.txtBuscaPorID.TextChanged += new System.EventHandler(this.txtBuscaPorID_TextChanged_1);
-            this.txtBuscaPorID.Enter += new System.EventHandler(this.txtBuscaPorID_Enter);
-            this.txtBuscaPorID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuscaPorID_KeyPress);
+            this.txtBuscaPorID.TextChanged += new System.EventHandler(this.txtBuscaPorID_TextChanged);
             // 
             // Produtos
             // 
@@ -226,7 +211,6 @@
             this.Controls.Add(this.btn_sair);
             this.Controls.Add(this.btn_excluir);
             this.Controls.Add(this.btn_atualizar);
-            this.Controls.Add(this.btn_alterar);
             this.Controls.Add(this.dtg_produtos);
             this.Controls.Add(this.gbp_produtos);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -253,7 +237,6 @@
         private System.Windows.Forms.MaskedTextBox txt_vlrunitario;
         private System.Windows.Forms.Button btn_inserir;
         private System.Windows.Forms.DataGridView dtg_produtos;
-        private System.Windows.Forms.Button btn_alterar;
         private System.Windows.Forms.Button btn_atualizar;
         private System.Windows.Forms.Button btn_excluir;
         private System.Windows.Forms.Button btn_sair;

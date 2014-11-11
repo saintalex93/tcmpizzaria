@@ -226,24 +226,22 @@ namespace Pizzaria
 
         static public void preencherGrid(string comandoSQL, DataGridView tabela)
         {
-            SqlConnection conn = new SqlConnection(Acesso.Conexao);
-            conn.Open();
-
             try
             {
+                SqlConnection conn = new SqlConnection(Acesso.Conexao);
+                conn.Open();
                 SqlCommand sqlComm = new SqlCommand(comandoSQL, conn);
                 SqlDataAdapter da = new SqlDataAdapter();
                 da.SelectCommand = sqlComm;
                 DataTable dt = new DataTable();
                 da.Fill(dt);
                 tabela.DataSource = dt;
+                conn.Close();
             }
             catch (Exception)
             {
                 MessageBox.Show("Falha ao conectar ao Bano de Dados. Contate seu suporte.");
             }
-
-            conn.Close();
         }
 
         static public void buscarPorCPF(MaskedTextBox cpf, TextBox desativarTextBox, DataGridView tabela)
