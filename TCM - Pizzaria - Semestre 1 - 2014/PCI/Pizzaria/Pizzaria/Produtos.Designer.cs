@@ -39,7 +39,6 @@
             this.dtg_produtos = new System.Windows.Forms.DataGridView();
             this.btn_alterar = new System.Windows.Forms.Button();
             this.btn_atualizar = new System.Windows.Forms.Button();
-            this.btn_cancelar = new System.Windows.Forms.Button();
             this.btn_excluir = new System.Windows.Forms.Button();
             this.btn_sair = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
@@ -77,20 +76,20 @@
             // 
             // txt_vlrunitario
             // 
-            this.txt_vlrunitario.Location = new System.Drawing.Point(93, 45);
-            this.txt_vlrunitario.Mask = "$ 0000,00";
+            this.txt_vlrunitario.Location = new System.Drawing.Point(113, 45);
+            this.txt_vlrunitario.Mask = "00,00";
             this.txt_vlrunitario.Name = "txt_vlrunitario";
-            this.txt_vlrunitario.Size = new System.Drawing.Size(68, 20);
+            this.txt_vlrunitario.Size = new System.Drawing.Size(32, 20);
             this.txt_vlrunitario.TabIndex = 2;
             this.txt_vlrunitario.Enter += new System.EventHandler(this.txt_vlrunitario_Enter);
             this.txt_vlrunitario.Leave += new System.EventHandler(this.txt_vlrunitario_Leave);
             // 
             // txt_nome
             // 
-            this.txt_nome.Location = new System.Drawing.Point(93, 19);
+            this.txt_nome.Location = new System.Drawing.Point(113, 19);
             this.txt_nome.MaxLength = 40;
             this.txt_nome.Name = "txt_nome";
-            this.txt_nome.Size = new System.Drawing.Size(115, 20);
+            this.txt_nome.Size = new System.Drawing.Size(95, 20);
             this.txt_nome.TabIndex = 1;
             this.txt_nome.Enter += new System.EventHandler(this.txt_nome_Enter);
             this.txt_nome.Leave += new System.EventHandler(this.txt_nome_Leave);
@@ -100,14 +99,14 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(8, 48);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(79, 13);
+            this.label2.Size = new System.Drawing.Size(99, 13);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Valor de venda";
+            this.label2.Text = "Valor de venda: R$";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(52, 22);
+            this.label1.Location = new System.Drawing.Point(72, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 0;
@@ -144,7 +143,7 @@
             this.btn_alterar.TabIndex = 5;
             this.btn_alterar.Text = "Alterar";
             this.btn_alterar.UseVisualStyleBackColor = true;
-            this.btn_alterar.Click += new System.EventHandler(this.btn_altera_Click);
+            this.btn_alterar.Click += new System.EventHandler(this.btn_alterar_Click);
             // 
             // btn_atualizar
             // 
@@ -156,19 +155,9 @@
             this.btn_atualizar.UseVisualStyleBackColor = true;
             this.btn_atualizar.Click += new System.EventHandler(this.btn_atualizar_Click);
             // 
-            // btn_cancelar
-            // 
-            this.btn_cancelar.Location = new System.Drawing.Point(174, 348);
-            this.btn_cancelar.Name = "btn_cancelar";
-            this.btn_cancelar.Size = new System.Drawing.Size(75, 23);
-            this.btn_cancelar.TabIndex = 7;
-            this.btn_cancelar.Text = "Cancelar";
-            this.btn_cancelar.UseVisualStyleBackColor = true;
-            this.btn_cancelar.Click += new System.EventHandler(this.btn_cancelar_Click);
-            // 
             // btn_excluir
             // 
-            this.btn_excluir.Location = new System.Drawing.Point(255, 348);
+            this.btn_excluir.Location = new System.Drawing.Point(174, 348);
             this.btn_excluir.Name = "btn_excluir";
             this.btn_excluir.Size = new System.Drawing.Size(75, 23);
             this.btn_excluir.TabIndex = 8;
@@ -236,7 +225,6 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btn_sair);
             this.Controls.Add(this.btn_excluir);
-            this.Controls.Add(this.btn_cancelar);
             this.Controls.Add(this.btn_atualizar);
             this.Controls.Add(this.btn_alterar);
             this.Controls.Add(this.dtg_produtos);
@@ -267,7 +255,6 @@
         private System.Windows.Forms.DataGridView dtg_produtos;
         private System.Windows.Forms.Button btn_alterar;
         private System.Windows.Forms.Button btn_atualizar;
-        private System.Windows.Forms.Button btn_cancelar;
         private System.Windows.Forms.Button btn_excluir;
         private System.Windows.Forms.Button btn_sair;
         private System.Windows.Forms.Label label3;
