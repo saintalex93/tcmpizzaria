@@ -226,8 +226,8 @@ namespace Pizzaria
 
         static public void preencherGrid(string comandoSQL, DataGridView tabela)
         {
-            try
-            {
+            //try
+            //{
                 SqlConnection conn = new SqlConnection(Acesso.Conexao);
                 conn.Open();
                 SqlCommand sqlComm = new SqlCommand(comandoSQL, conn);
@@ -237,11 +237,11 @@ namespace Pizzaria
                 da.Fill(dt);
                 tabela.DataSource = dt;
                 conn.Close();
-            }
+/*            }
             catch (Exception)
             {
                 MessageBox.Show("Falha ao conectar ao Bano de Dados. Contate seu suporte.");
-            }
+            }*/
         }
 
         static public void buscarPorCPF(MaskedTextBox cpf, TextBox desativarTextBox, DataGridView tabela)

@@ -302,7 +302,7 @@ Data,
 Hora,
 Valor)
 values
-(1,1,'10-05-2014','20:15',31.00),
+(1,1,'14-11-2014','20:15',31.00),
 (2,2,'22-01-2014','19:14',25.25),
 (3,3,'12-08-2014','22:57',38.89),
 (3,1,'04-10-2014','21:40',78.98),
@@ -314,9 +314,14 @@ values
 (4,3,'05-02-2014','20:22',67.90),
 (4,2,'15-06-2014','22:57',84.20),
 (4,1,'29-04-2014','18:49',76.00),
-(2,3,'30-03-2014','19:16',58.20)
+(2,3,'30-03-2014','19:16',58.20),
+(2,3,'01-11-2014','19:16',58.20),
+(3,1,'02-11-2014','19:16',58.20),
+(2,2,'05-11-2014','19:16',58.20),
+(1,1,'10-11-2014','19:16',58.20),
+(3,3,'14-11-2014','19:16',58.20),
+(2,3,'14-11-2014','19:16',58.20)
 go
-
 
 insert into Fornecedor
 (
@@ -353,12 +358,14 @@ insert into Promocao
 Nome_Promocao,
 Descricao,
 sobe_promocao,
-usuario_cadastrado
+usuario_cadastrado,
+Preco_Original,
+Preco_Promocao
 )
 values
-('Final de semana','Nos finais de semana deste mês(Novembro), as pizzas de Mussarela,Calabresa e Baiana terão seu preço reduzido a R$16,00.<br /> Aproveite !!',1,0),
-('Cookie Promocional','Compras acima de R$25,00, você ganha dois deliciosos cookies de chocolate.',1,0),
-('Compras acima de R$50,00','Ao gastar R$50,00 ou mais em nossa Pizzaria, você concorre a um Iphone 9 !!',1,1)
+('Final de semana','Nos finais de semana deste mês(Novembro), as pizzas de Mussarela,Calabresa e Baiana terão seu preço reduzido a R$16,00.<br /> Aproveite !!',1,0,20,6),
+('Cookie Promocional','Compras acima de R$25,00, você ganha dois deliciosos cookies de chocolate.',1,0,25,25),
+('Compras acima de R$50,00','Ao gastar R$50,00 ou mais em nossa Pizzaria, você concorre a um Iphone 9 !!',1,1,50,50)
 go
 
 insert into insumo_fornecedor
@@ -427,5 +434,10 @@ values
 (1,2),
 (2,2),
 (2,3)
-
 go
+
+/*
+select cod_produto, Nome_produto, valor_venda, sobe_site from produto where Nome_produto = 'Pizza Quatro Queijos'
+
+select * from promocao
+*/

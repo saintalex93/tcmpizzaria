@@ -184,7 +184,7 @@ namespace Pizzaria
         {
             bool resultado = true;
 
-            if (!dataPrazo.Checked)
+            if (dataPrazo.Value == DateTime.Today)
             {
                 Home.mensagemDeErro("Por favor, escolha uma data para a validade da Promoção.","Data inválida");
 
@@ -460,7 +460,7 @@ namespace Pizzaria
                     txtBuscaPromocaoPorID.Focus();
                 }
 
-            preencherGrid("select Cod_Promocao as [ID], Nome_Promocao as [Título], Preco_Original as [Preço original], Preco_Promocao as [Preço promocional], Vigencia as [Vigência], Descricao as [Descrição] from Promocao where Cod_Promocao = " + txtBuscaPromocaoPorID.Text, gridPromocoesEncontradas);
+            preencherGrid("select Cod_Promocao as [ID], Nome_Promocao as [Título], Preco_Original as [Preço original], Preco_Promocao as [Preço promocional], Vigencia as [Vigência], Descricao as [Descrição] from Promocao where Cod_Promocao like '%" + txtBuscaPromocaoPorID.Text + "%'", gridPromocoesEncontradas);
 
             btnAlterar.Enabled = true;
 
@@ -562,24 +562,24 @@ namespace Pizzaria
 
                 string valor = gridPromocoesEncontradas.CurrentRow.Cells[3].Value.ToString();
 
-                if (gridPromocoesEncontradas.CurrentRow.Cells[2].Value.ToString().Length > 0)
+                if (gridPromocoesEncontradas.CurrentRow.Cells[4].Value.ToString().Length > 0)
                 {
-                    for (int i = 0; i < gridPromocoesEncontradas.CurrentRow.Cells[2].Value.ToString().Length; i++)
-                        if (gridPromocoesEncontradas.CurrentRow.Cells[2].Value.ToString()[i].ToString() == "/")
+                    for (int i = 0; i < gridPromocoesEncontradas.CurrentRow.Cells[4].Value.ToString().Length; i++)
+                        if (gridPromocoesEncontradas.CurrentRow.Cells[4].Value.ToString()[i].ToString() == "/")
                             sessao++;
                         else
                             switch (sessao)
                             {
                                 case 0:
-                                    dia += gridPromocoesEncontradas.CurrentRow.Cells[2].Value.ToString()[i];
+                                    dia += gridPromocoesEncontradas.CurrentRow.Cells[4].Value.ToString()[i];
                                     break;
 
                                 case 1:
-                                    mes += gridPromocoesEncontradas.CurrentRow.Cells[2].Value.ToString()[i];
+                                    mes += gridPromocoesEncontradas.CurrentRow.Cells[4].Value.ToString()[i];
                                     break;
 
                                 case 2:
-                                    ano += gridPromocoesEncontradas.CurrentRow.Cells[2].Value.ToString()[i];
+                                    ano += gridPromocoesEncontradas.CurrentRow.Cells[4].Value.ToString()[i];
                                     break;
 
                                 default:
@@ -629,6 +629,12 @@ namespace Pizzaria
             preencherGrid("select ProdutoPromocao.codPromoProd as [ID], Produto.Cod_Produto as [ID Produto], Produto.Nome_Produto as [Produto], Produto.Valor_Venda as [Preço] from Promocao inner join ProdutoPromocao on Promocao.Cod_Promocao = ProdutoPromocao.Cod_Promocao inner join Produto on ProdutoPromocao.Cod_Produto = Produto.Cod_Produto where ProdutoPromocao.Cod_Promocao = " + gridPromocoesEncontradas.CurrentRow.Cells[0].Value.ToString(), gridProdutosNaPromocao);
 
             calcularSaldo();
+
+            txtTituloPromocao.Clear();
+            txtDescricaoPromocao.Clear();
+            ckAcessoCadastrado.Checked = false;
+            ckVisivelNoSite.Checked = false;
+            dataPrazo.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day);
 
             btnProcessarNovoPreco.Enabled = true;
             btnRemoverProduto.Enabled = true;
@@ -800,6 +806,15 @@ namespace Pizzaria
         private void CadastrarPromocao_Load(object sender, EventArgs e)
         {
             conexao = Acesso.Conexao;
+        }
+
+        private void label12_Click(object sender, EventArgs e)
+        {
+            txtTituloPromocao.Text = "3 por 2 natalino";
+            dataPrazo.Value = new DateTime(2014, 12, 25);
+            txtDescricaoPromocao.Text = "Até o Natal, três pizzas e um refrigerante sairá por R$ 50! Ho ho ho!";
+            ckVisivelNoSite.Checked = true;
+            ckAcessoCadastrado.Checked = true;
         }
     }
 }

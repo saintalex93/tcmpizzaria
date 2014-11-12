@@ -66,6 +66,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridBuscaProdutos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridProdutosNaPromocao)).BeginInit();
@@ -252,6 +253,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label12);
             this.groupBox2.Controls.Add(this.ckVisivelNoSite);
             this.groupBox2.Controls.Add(this.ckAcessoCadastrado);
             this.groupBox2.Controls.Add(this.dataPrazo);
@@ -473,6 +475,14 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Buscar Promoções";
             // 
+            // label12
+            // 
+            this.label12.Location = new System.Drawing.Point(421, 75);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(38, 36);
+            this.label12.TabIndex = 7;
+            this.label12.Click += new System.EventHandler(this.label12_Click);
+            // 
             // CadastrarPromocao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -545,6 +555,7 @@
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.CheckBox ckVisivelNoSite;
         private System.Windows.Forms.CheckBox ckAcessoCadastrado;
+        private System.Windows.Forms.Label label12;
 
     }
 }

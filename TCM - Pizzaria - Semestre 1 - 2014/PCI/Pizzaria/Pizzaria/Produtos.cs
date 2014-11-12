@@ -95,47 +95,7 @@ namespace Pizzaria
 
 
         private void btn_atualizar_Click(object sender, EventArgs e)
-        {/*
-            
-            if (ValidaCampos())
-            {
-                if (Validaexistente())
-                {
-                    strsql = "select cod_Produto from Produto where Nome_Produto = '" + dtg_produtos.CurrentRow.Cells[0].Value.ToString() + "'";
-                    cod_produto = ValidaUpdate(strsql);
-                    dtg_produtos.Enabled = true;
-                    btn_excluir.Enabled = false;
-                    btn_atualizar.Enabled = false;
-                    btn_cancelar.Enabled = false;
-                    btn_alterar.Enabled = false;
-                    btn_inserir.Enabled = true;
-                }
-                else
-                {
-
-                    strsql = "select cod_Produto from Produto where Nome_Produto = '" + dtg_produtos.CurrentRow.Cells[0].Value.ToString() + "'";
-                    //obtem cod do produto antes de alterar
-                    cod_produto = ValidaUpdate(strsql);
-                    strsql = "select cod_Produto from Produto where Nome_Produto = '" + nome + "'";
-                    if (cod_produto == ValidaUpdate(strsql))
-                    {
-                        //atualizarproduto(cod_produto);
-                        dtg_produtos.Enabled = true;
-                        btn_excluir.Enabled = false;
-                        btn_atualizar.Enabled = false;
-                        btn_cancelar.Enabled = false;
-                        btn_alterar.Enabled = false;
-                        btn_inserir.Enabled = true;
-                        preenchegrid();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Ja existe um produto com este nome");
-                    }
-                }
-
-            }
-            else {}*/
+        {
             if (btn_atualizar.Text == "Alterar")
             {
                 btn_atualizar.Text = "Gravar";
@@ -227,8 +187,22 @@ namespace Pizzaria
             {
                 if (Validaexistente())
                 {
-                    inseredados();
-                    preenchegrid();
+//                    inseredados();
+            //        preenchegrid();
+                    int sobeSite = 0;
+                    if (chk_site.Checked)
+                        sobeSite = 1;
+                    else
+                        sobeSite = 0;
+
+                    Home.preencherGrid("insert into produto(Nome_Produto, Valor_Venda, Sobe_Site) values('"+ txt_nome.Text +"', "+ txt_vlrunitario.Text +", " + sobeSite + ") ", dtg_produtos);
+
+                    Home.preencherGrid("select cod_Produto as [ID], Nome_Produto as [Produto], Valor_Venda as [Preço], Sobe_Site as [Visível no site] from Produto where Nome_Produto like ('%" + txt_nome.Text + "%')", dtg_produtos);
+
+                    txt_nome.Clear();
+                    txt_vlrunitario.Clear();
+                    chk_site.Checked = false;
+
                 }
                 else
                 {
@@ -244,12 +218,17 @@ namespace Pizzaria
             //obtem cod do produto antes de alterar
             cod_produto = dtg_produtos.CurrentRow.Cells[0].Value.ToString();
 
-            excluiprod(cod_produto);
+//            excluiprod(cod_produto);
+
+            Home.preencherGrid("delete Produto_Insumo where cod_produto = '" + cod_produto +"'",dtg_produtos);
+
+            Home.preencherGrid("delete ProdutoPromocao where cod_produto = '" + cod_produto + "'", dtg_produtos);
+
+            Home.preencherGrid("delete Detalhe_Pedido where cod_produto = '" + cod_produto + "'", dtg_produtos);
+
+            Home.preencherGrid("delete Produto where cod_produto = '" + cod_produto + "'", dtg_produtos);
 
             dtg_produtos.Enabled = true;
-            btn_excluir.Enabled = false;
-            btn_inserir.Enabled = false;
-            preenchegrid();
         }
 
         public void preenchegrid(string comandoSQL)
@@ -284,20 +263,8 @@ namespace Pizzaria
 
         public void inseredados()
         {
-
-
             //seleciona categoria
-
             SqlConnection conn = new SqlConnection(conexao);
-            /*string strIncluir = "select cod_Categoria from Categoria where Nome_Categoria = '" + categoria + "'";
-            string strIncluir = "select cod_produto from Produto where";
-            conn.Open();
-            SqlCommand sqlComm = new SqlCommand(strIncluir, conn);
-
-            SqlDataAdapter da = new SqlDataAdapter();
-            DataTable dt = new DataTable();
-            da.SelectCommand = sqlComm;
-            da.Fill(dt);*/
 
             //Insere dados
             conn = new SqlConnection(conexao);
@@ -305,9 +272,6 @@ namespace Pizzaria
             conn.Open();
             SqlCommand sqlComm = new SqlCommand(strIncluir, conn);
             sqlComm.ExecuteNonQuery();
-
-
-
         }
         
         public Boolean Validaexistente()
@@ -364,7 +328,6 @@ namespace Pizzaria
         {
             try
             {
-
                 SqlConnection conn = new SqlConnection(conexao);
                 string strIncluir = "select cod_Produto from Produto where Nome_Produto = '" + produto + "'";
                 conn.Open();
@@ -436,18 +399,15 @@ namespace Pizzaria
         {
             txt_nome.Text = dtg_produtos.CurrentRow.Cells[1].Value.ToString();
 
-            /*string preco */ txt_vlrunitario.Text = dtg_produtos.CurrentRow.Cells[2].Value.ToString();
+            txt_vlrunitario.Text = dtg_produtos.CurrentRow.Cells[2].Value.ToString();
 
-
-//                = preco;
-
-//             = precoProduto.PadLeft(7).Trim();
 
             if ((int)dtg_produtos.CurrentRow.Cells[3].Value == 0)
                 chk_site.Checked = true;
             else
                 chk_site.Checked = false;
 
+            btn_atualizar.Enabled = true;
             gbp_produtos.Enabled = false;
             btn_inserir.Enabled = false;
 
@@ -547,6 +507,23 @@ namespace Pizzaria
             dtg_produtos.Rows.Clear();
             
             Home.preencherGrid("select cod_Produto as [ID], Nome_Produto as [Produto], Valor_Venda as [Preço], Sobe_Site as [Visível no site] from Produto where cod_Produto like (" + txtBuscaPorID.Text + ")", dtg_produtos);
+        }
+
+        private void chk_site_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+            txt_nome.Text = "Pizza Quatro Queijos";
+            txt_vlrunitario.Text = "23,30";
+            chk_site.Checked = true;
+        }
+
+        private void dtg_produtos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
