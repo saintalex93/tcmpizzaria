@@ -27,7 +27,7 @@ public partial class aspx_pedidos : System.Web.UI.Page
         con.conectar();
         SqlDataAdapter dAdapter = new SqlDataAdapter();
         DataSet ds = new DataSet();
-        con.command.CommandText = "select Data,Valor from Pedido where " + x + "= Cod_Cliente order by Data";
+        con.command.CommandText = "select Data,Valor from Pedido where " + x + "= Cod_Cliente order by Data desc";
         //dAdapter seleciona o comando con.command
         dAdapter.SelectCommand = con.command;
         //Preencho meu DataSet com informações que o dAdapter "traduziu" pra ele.
@@ -45,7 +45,7 @@ public partial class aspx_pedidos : System.Web.UI.Page
         con.conectar();
         SqlDataAdapter dAdapter = new SqlDataAdapter();
         DataSet ds = new DataSet();
-        con.command.CommandText = "select Data,Valor from Pedido where " + x + "= Cod_Cliente order by Data desc";
+        con.command.CommandText = "select Data,Valor from Pedido where " + x + "= Cod_Cliente order by Data";
         //dAdapter seleciona o comando con.command
         dAdapter.SelectCommand = con.command;
         //Preencho meu DataSet com informações que o dAdapter "traduziu" pra ele.

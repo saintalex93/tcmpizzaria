@@ -11,7 +11,7 @@ public partial class aspx_promocoes : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["logado"] != null)
+        if (Session["nome"] != null)
         {
             refreshCadastrado();
         }
