@@ -1,2 +1,0 @@
-As nossas modelagens abre somente com a versão do BRmodelo que está nesta pasta
-Ao abrir o programa perguntará se deseja associar a extensão de arquivos, basta colocar "Não"

@@ -1,7 +1,0 @@
-Permissão:
-Status:
-Administrador
-visitante
-Gerente
-usuario
-Diretor
