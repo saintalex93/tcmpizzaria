@@ -163,7 +163,7 @@ namespace Pizzaria
 
         public void atualizarPromocoesEncontradas() 
         {
-            preencherGrid("select Cod_Promocao as [ID], Nome_Promocao as [Título], Preco_Original [Preço Original], Preco_Promocao as [Preço Promocional], Vigencia as [Vigência], Descricao as [Descrição] from Promocao", gridPromocoesEncontradas);
+            preencherGrid("select Cod_Promocao as [ID], Nome_Promocao as [Título], Preco_Original as [Preço original], Preco_Promocao as [Preço promocional], Vigencia as [Vigência], Descricao as [Descrição], sobe_promocao as [Visível no site], usuario_cadastrado as [Acessibilidade] from Promocao", gridPromocoesEncontradas);
         }
 
         public bool validaTitulo() 
@@ -542,6 +542,8 @@ namespace Pizzaria
                 txtTituloPromocao.Clear();
                 txtDescricaoPromocao.Clear();
                 dataPrazo.Value = DateTime.Today;
+                grpDados.Enabled = true;
+                btnAlterar.Enabled = false;
             }
         }
 
@@ -552,6 +554,11 @@ namespace Pizzaria
                 btnAlterar.Text = "Gravar";
 
                 btnCriarPromocoes.Enabled = false;
+
+                ckVisivelNoSite.Enabled = true;
+                ckAcessoCadastrado.Enabled = true;
+
+                grpDados.Enabled = true;
             }
             else if (btnAlterar.Text == "Gravar")
             {
@@ -574,14 +581,15 @@ namespace Pizzaria
                 int idPromocao = (int)gridPromocoesEncontradas.CurrentRow.Cells[0].Value;
 
                 preencherGrid("update Promocao set Nome_Promocao = '" + txtTituloPromocao.Text + "', Descricao = '" + txtDescricaoPromocao.Text + "', Vigencia = '" + dataPrazo.Value.ToShortDateString() + "', sobe_promocao = " + visivel + ", usuario_cadastrado = " + acesso + " where cod_Promocao = " + idPromocao, gridPromocoesEncontradas);
- 
-                preencherGrid("select Cod_Promocao as [ID], Nome_Promocao as [Título], Preco_Original [Preço Original], Preco_Promocao as [Preço Promocional], Vigencia as [Vigência], Descricao as [Descrição] from Promocao where cod_Promocao = " + idPromocao, gridPromocoesEncontradas);
+
+                preencherGrid("select Cod_Promocao as [ID], Nome_Promocao as [Título], Preco_Original as [Preço original], Preco_Promocao as [Preço promocional], Vigencia as [Vigência], Descricao as [Descrição], sobe_promocao as [Visível no site], usuario_cadastrado as [Acessibilidade] from Promocao where cod_Promocao = " + idPromocao, gridPromocoesEncontradas);
 
                 txtTituloPromocao.Clear();
                 txtDescricaoPromocao.Clear();
                 dataPrazo.Value = DateTime.Today;
                 ckVisivelNoSite.Checked = false;
                 ckAcessoCadastrado.Checked = false;
+                btnAlterar.Enabled = false;
             }
         }
 
@@ -613,7 +621,7 @@ namespace Pizzaria
                     txtBuscaProdutoPorID.Focus();
                 }
 
-            preencherGrid("select cod_Produto as [ID], Nome_Produto as [Produto], Valor_Venda as [Preço] from Produto where Cod_Produto = "+ txtBuscaProdutoPorID.Text, gridBuscaProdutos);
+            preencherGrid("select cod_Produto as [ID], Nome_Produto as [Produto], Valor_Venda as [Preço] from Produto where Cod_Produto like '%" + txtBuscaProdutoPorID.Text + "%'", gridBuscaProdutos);
 
             if (gridProdutosNaPromocao.Rows.Count > 0)
                 btnAdicionarProduto.Enabled = true;
@@ -767,6 +775,10 @@ namespace Pizzaria
         private void CadastrarPromocao_Load(object sender, EventArgs e)
         {
             conexao = Acesso.Conexao;
+
+            atualizarPromocoesEncontradas();
+
+
         }
 
         private void label12_Click(object sender, EventArgs e)
@@ -816,18 +828,24 @@ namespace Pizzaria
                         }
 
                 dataPrazo.Value = new DateTime(Convert.ToInt32(ano), Convert.ToInt32(mes), Convert.ToInt32(dia));
-
-                if ((int)gridPromocoesEncontradas.CurrentRow.Cells[6].Value == 1)
-                    ckVisivelNoSite.Enabled = true;
-                else
-                    ckVisivelNoSite.Enabled = false;
-
-                if ((int)gridPromocoesEncontradas.CurrentRow.Cells[7].Value == 1)
-                    ckAcessoCadastrado.Enabled = true;
-                else
-                    ckAcessoCadastrado.Enabled = false;
             }
+
             txtDescricaoPromocao.Text = gridPromocoesEncontradas.CurrentRow.Cells[5].Value.ToString();
+
+            Console.WriteLine("A coluna 6 da tabela de promoções é: " + gridPromocoesEncontradas.Columns[6].Name);
+            if ((int)gridPromocoesEncontradas.CurrentRow.Cells[6].Value == 1)
+                ckVisivelNoSite.Checked = true;
+            else
+                ckVisivelNoSite.Checked = false;
+
+            Console.WriteLine("A coluna 7 da tabela de promoções é: " + gridPromocoesEncontradas.Columns[7].Name);
+            if ((int)gridPromocoesEncontradas.CurrentRow.Cells[7].Value == 1)
+                ckAcessoCadastrado.Checked = true;
+            else
+                ckAcessoCadastrado.Checked = false;
+
+            grpDados.Enabled = false;
+            btnAlterar.Enabled = true;
         }
     }
 }

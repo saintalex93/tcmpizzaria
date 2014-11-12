@@ -46,7 +46,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.btnRemoverProduto = new System.Windows.Forms.Button();
             this.btnVoltar = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.grpDados = new System.Windows.Forms.GroupBox();
             this.label12 = new System.Windows.Forms.Label();
             this.ckVisivelNoSite = new System.Windows.Forms.CheckBox();
             this.ckAcessoCadastrado = new System.Windows.Forms.CheckBox();
@@ -70,7 +70,7 @@
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridBuscaProdutos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridProdutosNaPromocao)).BeginInit();
-            this.groupBox2.SuspendLayout();
+            this.grpDados.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridPromocoesEncontradas)).BeginInit();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -137,7 +137,7 @@
             this.txtBuscaProdutoPorID.Location = new System.Drawing.Point(222, 35);
             this.txtBuscaProdutoPorID.Name = "txtBuscaProdutoPorID";
             this.txtBuscaProdutoPorID.Size = new System.Drawing.Size(71, 20);
-            this.txtBuscaProdutoPorID.TabIndex = 12;
+            this.txtBuscaProdutoPorID.TabIndex = 9999;
             this.txtBuscaProdutoPorID.TextChanged += new System.EventHandler(this.txtBuscaProdutoPorID_TextChanged);
             this.txtBuscaProdutoPorID.Enter += new System.EventHandler(this.txtBuscaProdutoPorID_Enter);
             this.txtBuscaProdutoPorID.Leave += new System.EventHandler(this.txtBuscaProdutoPorID_Leave);
@@ -147,7 +147,7 @@
             this.txtBuscaPalavraChave.Location = new System.Drawing.Point(10, 35);
             this.txtBuscaPalavraChave.Name = "txtBuscaPalavraChave";
             this.txtBuscaPalavraChave.Size = new System.Drawing.Size(100, 20);
-            this.txtBuscaPalavraChave.TabIndex = 11;
+            this.txtBuscaPalavraChave.TabIndex = 999;
             this.txtBuscaPalavraChave.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             this.txtBuscaPalavraChave.Enter += new System.EventHandler(this.txtBuscaPalavraChave_Enter_1);
             this.txtBuscaPalavraChave.Leave += new System.EventHandler(this.txtBuscaPalavraChave_Leave_1);
@@ -251,24 +251,24 @@
             this.btnVoltar.UseVisualStyleBackColor = true;
             this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click_1);
             // 
-            // groupBox2
+            // grpDados
             // 
-            this.groupBox2.Controls.Add(this.label12);
-            this.groupBox2.Controls.Add(this.ckVisivelNoSite);
-            this.groupBox2.Controls.Add(this.ckAcessoCadastrado);
-            this.groupBox2.Controls.Add(this.dataPrazo);
-            this.groupBox2.Controls.Add(this.btnCriarPromocoes);
-            this.groupBox2.Controls.Add(this.label11);
-            this.groupBox2.Controls.Add(this.txtDescricaoPromocao);
-            this.groupBox2.Controls.Add(this.txtTituloPromocao);
-            this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Location = new System.Drawing.Point(12, 12);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(607, 134);
-            this.groupBox2.TabIndex = 20;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Dados da Promoção";
+            this.grpDados.Controls.Add(this.label12);
+            this.grpDados.Controls.Add(this.ckVisivelNoSite);
+            this.grpDados.Controls.Add(this.ckAcessoCadastrado);
+            this.grpDados.Controls.Add(this.dataPrazo);
+            this.grpDados.Controls.Add(this.btnCriarPromocoes);
+            this.grpDados.Controls.Add(this.label11);
+            this.grpDados.Controls.Add(this.txtDescricaoPromocao);
+            this.grpDados.Controls.Add(this.txtTituloPromocao);
+            this.grpDados.Controls.Add(this.label8);
+            this.grpDados.Controls.Add(this.label7);
+            this.grpDados.Location = new System.Drawing.Point(12, 12);
+            this.grpDados.Name = "grpDados";
+            this.grpDados.Size = new System.Drawing.Size(607, 134);
+            this.grpDados.TabIndex = 20;
+            this.grpDados.TabStop = false;
+            this.grpDados.Text = "Dados da Promoção";
             // 
             // label12
             // 
@@ -388,6 +388,7 @@
             // 
             // btnAlterar
             // 
+            this.btnAlterar.Enabled = false;
             this.btnAlterar.Location = new System.Drawing.Point(436, 158);
             this.btnAlterar.Name = "btnAlterar";
             this.btnAlterar.Size = new System.Drawing.Size(75, 23);
@@ -492,7 +493,7 @@
             this.ControlBox = false;
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.grpDados);
             this.Controls.Add(this.btnVoltar);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -506,8 +507,8 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridBuscaProdutos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridProdutosNaPromocao)).EndInit();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.grpDados.ResumeLayout(false);
+            this.grpDados.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridPromocoesEncontradas)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
@@ -534,7 +535,7 @@
         private System.Windows.Forms.TextBox txtNovoPreco;
         private System.Windows.Forms.Button btnVoltar;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox grpDados;
         private System.Windows.Forms.TextBox txtDescricaoPromocao;
         private System.Windows.Forms.TextBox txtTituloPromocao;
         private System.Windows.Forms.Label label8;

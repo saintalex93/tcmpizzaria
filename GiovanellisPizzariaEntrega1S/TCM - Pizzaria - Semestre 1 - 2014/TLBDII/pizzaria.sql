@@ -10,7 +10,7 @@ go
 
 use Pizzaria
 go
- 
+
 create table Cliente(
 Cod_Cliente INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 Nome_Cliente VARCHAR(40),
@@ -377,12 +377,11 @@ usuario_cadastrado,
 Preco_Original,
 Preco_Promocao
 )
-select * from promocao
 values
 ('Final de semana','Nos finais de semana deste mês(Novembro), as pizzas de Mussarela,Calabresa e Baiana terão seu preço reduzido a R$16,00.<br /> Aproveite !!',1,0,20,6),
 ('Cookie Promocional','Compras acima de R$25,00, você ganha dois deliciosos cookies de chocolate.',1,0,25,25),
-('Compras acima de R$50,00','Ao gastar R$50,00 ou mais em nossa Pizzaria, você concorre a um Iphone 9 !!',1,1,50,50)/*,
-('3 por 2 natalino','Até o Natal, três pizzas e um refrigerante sairá por R$ 50! Ho ho ho!',1,1,70,50)*/
+('Compras acima de R$50,00','Ao gastar R$50,00 ou mais em nossa Pizzaria, você concorre a um Iphone 9 !!',1,1,50,50),
+('3 por 2 natalino','Até o Natal, três pizzas e um refrigerante sairá por R$ 50! Ho ho ho!',1,1,70,50)
 go
 
 insert into insumo_fornecedor
@@ -456,5 +455,7 @@ go
 /*
 select cod_produto, Nome_produto, valor_venda, sobe_site from produto where Nome_produto = 'Pizza Quatro Queijos'
 
-select * from promocao
+select * from produto
+
+select * from promocao p
 */

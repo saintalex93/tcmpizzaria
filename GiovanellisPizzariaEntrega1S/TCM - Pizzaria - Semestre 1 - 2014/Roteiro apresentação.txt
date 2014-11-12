@@ -1,0 +1,27 @@
+Tela produtos
+- Buscar "Q" para mostrar pizza de três queijos e quatro queijos
+- Exclui pizza de quatro queijos
+- Auto-preenchimento
+- Insere pizza de quatro queijos
+- Muda o valor da pizza de quatro queijos de 23,30 pra 27,30
+
+Tela promoção
+- Buscar "com" na busca por título para encontrar a promoção de "Compras acima de R$ 50"
+- Buscar 2 na busca por ID para encontrar a "Cookie Promocional"
+- Auto-preenchimento
+- Inserir promoção do auto-preenchimento
+- Excluir a promoção repetida que não tem data
+- Buscar promoção "3 por 2"
+- Duplo clique na promoção
+- Clicar em alterar
+- Mudar Vigência para 25/12/2014
+- Gravar
+- Clicar na promoção
+- Buscar por "por" para mostrar pizza portuguesa e porções entre outros
+- Buscar por 3 para encontrar a Pizza de Bacon
+- Buscar "Pizza" e adicionar 3 pizzas quaisquer
+- Buscar "refri" e adicionar 2
+- Preencher "Novo Preço" com 50
+- Remover um refrigerante
+- Clicar em "Novo Preço" de novo.
+- Mostrar promoção com preço na tabela
