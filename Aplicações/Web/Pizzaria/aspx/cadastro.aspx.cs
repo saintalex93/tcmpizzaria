@@ -65,16 +65,6 @@ public partial class aspx_cadastro : System.Web.UI.Page
                 String cep = txtCep.Text;
                 String estado = DDLEstado.SelectedValue.ToString();
 
-                try
-                {
-                    Convert.ToInt32(txtNumCasa.Text);
-                }
-                catch (Exception ex)
-                {
-                    x = false;
-                    lblresposta.Text = "Número é obrigatório e deve conter apenas números !!";
-                    txtNumCasa.Focus();
-                }
                 conexao con2 = new conexao();
                 con2.conectar();
                

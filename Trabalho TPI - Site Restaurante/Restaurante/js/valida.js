@@ -1,5 +1,4 @@
-﻿
-function validaCadastro()
+﻿function validaCadastro()
 {
     var nome = document.getElementById("ContentPlaceHolder1_txtNome").value;
     var nome_exp = /\w+/;

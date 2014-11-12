@@ -14,10 +14,10 @@
     <asp:Panel ID="pnl_conteudo_meuspedidos" CssClass="conteudo" runat="server">
 
             <asp:Panel ID="pnlBotoesPedido" runat="server">
-            <asp:Button ID="btnOrdenarData" runat="server" style="margin-bottom: 10px;" Text="Ordenar pelo mais Recente" CssClass="button" OnClick="btnOrdenarData_Click" ValidationGroup="Group5" /><br />
-            <asp:Button ID="btnOrdenarDataAntiga" runat="server" style="margin-bottom: 10px;" Text="Ordenar pelo mais Antigo" CssClass="button" OnClick="btnOrdenarDataAntiga_Click" ValidationGroup="Group5" /><br />
-            <asp:Button ID="btnOrdenarPrecoCaro" runat="server" style="margin-bottom: 10px;" Text="Ordenar pelo mais Caro" CssClass="button" OnClick="btnOrdenarPreco_Click" ValidationGroup="Group5" /><br />
-            <asp:Button ID="btnOrdenarBarato" runat="server" style="margin-bottom: 10px;" Text="Ordenar pelo mais Barato" CssClass="button" OnClick="btnOrdenarBarato_Click" ValidationGroup="Group5" />
+                <asp:Button ID="btnOrdenarData" runat="server" style="margin-bottom: 10px;" Text="Ordenar pelo mais Recente" CssClass="button" OnClick="btnOrdenarData_Click" ValidationGroup="Group5" /><br />
+                <asp:Button ID="btnOrdenarDataAntiga" runat="server" style="margin-bottom: 10px;" Text="Ordenar pelo mais Antigo" CssClass="button" OnClick="btnOrdenarDataAntiga_Click" ValidationGroup="Group5" /><br />
+                <asp:Button ID="btnOrdenarPrecoCaro" runat="server" style="margin-bottom: 10px;" Text="Ordenar pelo mais Caro" CssClass="button" OnClick="btnOrdenarPreco_Click" ValidationGroup="Group5" /><br />
+                <asp:Button ID="btnOrdenarBarato" runat="server" style="margin-bottom: 10px;" Text="Ordenar pelo mais Barato" CssClass="button" OnClick="btnOrdenarBarato_Click" ValidationGroup="Group5" />
             </asp:Panel>
 
         <asp:DataGrid ID="datagPedidos" runat="server" AutoGenerateColumns="False" Caption="Meus Pedidos" HeaderStyle-CssClass="colunaheader">

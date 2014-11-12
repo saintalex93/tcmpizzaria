@@ -34,7 +34,6 @@ Cod_Func INT IDENTITY(1,1) PRIMARY KEY,
 Nome_Func VARCHAR(40),
 Login_Func VARCHAR(20),
 Senha_Func VARCHAR(15),
-Permissao VARCHAR(20)
 )
 
 go
@@ -43,22 +42,12 @@ create table Pedido
 (
 Cod_Pedido INT IDENTITY(1,1) PRIMARY KEY,
 Data VARCHAR(10),
-Valor numeric (5,2),
-Produtos VarChar (100),
-Descricao Varchar (100),
-Situacao int,--Boolean Pago
-Cod_Cliente INT foreign key references Cliente(Cod_Cliente)
+Valor numeric (6,2),
+Cod_Cliente int foreign key references Cliente(Cod_Cliente),
+Situacao int--Boolean Pago
 )
 
 go
-
-Create table Pedido_Cliente
-(
-CodPedido_Cliente int Identity (1,1) primary key,
-CodCliente int foreign key references Cliente(Cod_Cliente),
-CodPedido int foreign key references Pedido(Cod_Pedido)
-
-)
 
 create table Produto
 (
@@ -69,6 +58,16 @@ Valor_Venda DECIMAL(6,2)
 
 go
 
+Create table Pedido_Cliente
+(
+CodPedido_Cliente int Identity (1,1) primary key,
+Cod_Cliente int foreign key references Cliente(Cod_Cliente),
+Cod_Pedido int foreign key references Pedido(Cod_Pedido),
+Cod_Produto int foreign key references Produto(Cod_Produto),
+Qtd_Prod INT
+)
+go
+
 Create table Produto_Pedido
 (
 Cod_ProdutoPedido int identity(1,1),
@@ -77,14 +76,22 @@ Cod_Pedido int foreign key references Pedido(cod_Pedido),
 Cod_Func int foreign key references Funcionario(Cod_Func)
 )
 
-
 go
 
 insert into Cliente 
 
 (
-Nome_Cliente,CPF_Cliente,Endereco_Cliente,Numero_Residencia,Bairro_Cliente,CEP_Cliente,Complemento_Cliente,
-Telefone_Cliente,Celular_Cliente,Login_Cliente,Senha_Cliente
+Nome_Cliente,
+CPF_Cliente,
+Endereco_Cliente,
+Numero_Residencia,
+Bairro_Cliente,
+CEP_Cliente,
+Complemento_Cliente,
+Telefone_Cliente,
+Celular_Cliente,
+Login_Cliente,
+Senha_Cliente
 )
 Values
 
@@ -101,25 +108,26 @@ Values
 'Teste','111.111.111-00','Rua Teste',99,'Sul','99445-666','Próximo a sua mãe','(11)5507-3542',null,'a','a'
 )
 
-insert into Funcionario(Nome_Func,Login_Func,Senha_Func,Permissao)
+insert into Funcionario(Nome_Func,Login_Func,Senha_Func)
 values
-('João da Silva','joaosilva','1234','Atendente'),('Pedro Massaranduba','massaranduba','gerente123','Gerente')
+('João da Silva','joaosilva','1234'),('Pedro Massaranduba','massaranduba','gerente123')
 
 go
 
 
 Insert into Pedido
-(Data,Valor,Produtos,Descricao,Situacao,Cod_Cliente)
+(Data,Valor,Situacao)
 Values
-('10/11/2014', 50.80, 'Macarrão com almondega e Coca-Cola', '7 pedidos contabilizados',1,3),
-('10/11/2014', 50.80, 'Macarrão com almondega e Coca-Cola', '7 pedidos contabilizados',0,3)
+('10/11/2014', 50.80,1),
+('21/07/2014', 30.50,0),
+('15/08/2014', 25.90,0)
 
 go
 
 Insert into Produto
 (Nome_Produto,Valor_Venda)
 Values
-('Macarrão com Almômdega',12.00),
+('Macarrão com Almôndega',12.00),
 ('Panqueca',10.00),
 ('Escondidinho de carne',15.00),
 ('Miojo',3.00),
@@ -130,6 +138,11 @@ Values
 ('Cerveja Lata',3.50),
 ('Tequila José Cuervo Ouro(Dose)',20.00)
 
+insert into Pedido_Cliente
+(Cod_Cliente, Cod_Pedido, Cod_Produto, Qtd_Prod)
+Values
+(1,1,6,4),(1,2,5,5),(1,3,1,8)
+
 select * from Cliente
 
 Select * from Pedido
@@ -138,7 +151,6 @@ Select * from Produto_Pedido
 
 Select * from Funcionario
 
-insert into Produto_Pedido
-(Cod_Pedido, Cod_Produto,Cod_Func)
-Values
-(1,1,1),(1,10,1),(1,5,1)
+Select * from Pedido_Cliente
+
+
