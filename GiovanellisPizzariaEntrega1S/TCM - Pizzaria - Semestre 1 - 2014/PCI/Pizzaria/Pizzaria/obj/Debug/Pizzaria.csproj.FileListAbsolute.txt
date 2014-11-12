@@ -1,0 +1,400 @@
+c:\users\etesp\documents\visual studio 2012\Projects\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe.config
+c:\users\etesp\documents\visual studio 2012\Projects\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Cliente.resources
+c:\users\etesp\documents\visual studio 2012\Projects\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Compras.resources
+c:\users\etesp\documents\visual studio 2012\Projects\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Pedido.resources
+c:\users\etesp\documents\visual studio 2012\Projects\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Properties.Resources.resources
+c:\users\etesp\documents\visual studio 2012\Projects\Pizzaria\Pizzaria\obj\Debug\Pizzaria.csproj.GenerateResource.Cache
+c:\users\etesp\documents\visual studio 2012\Projects\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe
+c:\users\etesp\documents\visual studio 2012\Projects\Pizzaria\Pizzaria\bin\Debug\Pizzaria.pdb
+c:\users\etesp\documents\visual studio 2012\Projects\Pizzaria\Pizzaria\obj\Debug\Pizzaria.exe
+c:\users\etesp\documents\visual studio 2012\Projects\Pizzaria\Pizzaria\obj\Debug\Pizzaria.pdb
+c:\users\etesp\documents\visual studio 2012\Projects\Pizzaria\Pizzaria\obj\Debug\Pizzaria.csprojResolveAssemblyReference.cache
+C:\Users\Alex\Desktop\Etesp\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe.config
+C:\Users\Alex\Desktop\Etesp\Pizzaria\Pizzaria\obj\Debug\Pizzaria.exe
+C:\Users\Alex\Desktop\Etesp\Pizzaria\Pizzaria\obj\Debug\Pizzaria.pdb
+C:\Users\Alex\Desktop\Etesp\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe
+C:\Users\Alex\Desktop\Etesp\Pizzaria\Pizzaria\bin\Debug\Pizzaria.pdb
+C:\Users\Alex\Desktop\Etesp\Pizzaria\Pizzaria\obj\Debug\Pizzaria.csprojResolveAssemblyReference.cache
+C:\Users\Alex\Desktop\Etesp\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Cliente.resources
+C:\Users\Alex\Desktop\Etesp\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Compras.resources
+C:\Users\Alex\Desktop\Etesp\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Funcionario.resources
+C:\Users\Alex\Desktop\Etesp\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Pedido.resources
+C:\Users\Alex\Desktop\Etesp\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Properties.Resources.resources
+C:\Users\Alex\Desktop\Etesp\Pizzaria\Pizzaria\obj\Debug\Pizzaria.csproj.GenerateResource.Cache
+C:\Users\ETESP\Desktop\Pizzaria-2014-09-09\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe.config
+C:\Users\ETESP\Desktop\Pizzaria-2014-09-09\Pizzaria\Pizzaria\obj\Debug\Pizzaria.exe
+C:\Users\ETESP\Desktop\Pizzaria-2014-09-09\Pizzaria\Pizzaria\obj\Debug\Pizzaria.pdb
+C:\Users\ETESP\Desktop\Pizzaria-2014-09-09\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe
+C:\Users\ETESP\Desktop\Pizzaria-2014-09-09\Pizzaria\Pizzaria\bin\Debug\Pizzaria.pdb
+C:\Users\ETESP\Desktop\Pizzaria-2014-09-09\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Pedidos.resources
+C:\Users\ETESP\Desktop\Pizzaria-2014-09-09\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Compras.resources
+C:\Users\ETESP\Desktop\Pizzaria-2014-09-09\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Funcionario.resources
+C:\Users\ETESP\Desktop\Pizzaria-2014-09-09\Pizzaria\Pizzaria\obj\Debug\Pizzaria.CadastroCliente.resources
+C:\Users\ETESP\Desktop\Pizzaria-2014-09-09\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Produtos.resources
+C:\Users\ETESP\Desktop\Pizzaria-2014-09-09\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Promocao.resources
+C:\Users\ETESP\Desktop\Pizzaria-2014-09-09\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Properties.Resources.resources
+C:\Users\ETESP\Desktop\Pizzaria-2014-09-09\Pizzaria\Pizzaria\obj\Debug\Pizzaria.csproj.GenerateResource.Cache
+C:\Users\ETESP\Desktop\BackUp\Pizzaria CagadaCorrigida\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe.config
+C:\Users\ETESP\Desktop\BackUp\Pizzaria CagadaCorrigida\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe
+C:\Users\ETESP\Desktop\BackUp\Pizzaria CagadaCorrigida\Pizzaria\Pizzaria\bin\Debug\Pizzaria.pdb
+C:\Users\ETESP\Desktop\BackUp\Pizzaria CagadaCorrigida\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Pedidos.resources
+C:\Users\ETESP\Desktop\BackUp\Pizzaria CagadaCorrigida\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Compras.resources
+C:\Users\ETESP\Desktop\BackUp\Pizzaria CagadaCorrigida\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Funcionario.resources
+C:\Users\ETESP\Desktop\BackUp\Pizzaria CagadaCorrigida\Pizzaria\Pizzaria\obj\Debug\Pizzaria.CadastroCliente.resources
+C:\Users\ETESP\Desktop\BackUp\Pizzaria CagadaCorrigida\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Produtos.resources
+C:\Users\ETESP\Desktop\BackUp\Pizzaria CagadaCorrigida\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Promocao.resources
+C:\Users\ETESP\Desktop\BackUp\Pizzaria CagadaCorrigida\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Properties.Resources.resources
+C:\Users\ETESP\Desktop\BackUp\Pizzaria CagadaCorrigida\Pizzaria\Pizzaria\obj\Debug\Pizzaria.csproj.GenerateResource.Cache
+C:\Users\ETESP\Desktop\BackUp\Pizzaria CagadaCorrigida\Pizzaria\Pizzaria\obj\Debug\Pizzaria.exe
+C:\Users\ETESP\Desktop\BackUp\Pizzaria CagadaCorrigida\Pizzaria\Pizzaria\obj\Debug\Pizzaria.pdb
+C:\Users\Tecnico00\Desktop\BackUpCOPIA\Pizzaria CagadaCorrigida\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe.config
+C:\Users\Tecnico00\Desktop\BackUpCOPIA\Pizzaria CagadaCorrigida\Pizzaria\Pizzaria\obj\Debug\Pizzaria.exe
+C:\Users\Tecnico00\Desktop\BackUpCOPIA\Pizzaria CagadaCorrigida\Pizzaria\Pizzaria\obj\Debug\Pizzaria.pdb
+C:\Users\Tecnico00\Desktop\BackUpCOPIA\Pizzaria CagadaCorrigida\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe
+C:\Users\Tecnico00\Desktop\BackUpCOPIA\Pizzaria CagadaCorrigida\Pizzaria\Pizzaria\bin\Debug\Pizzaria.pdb
+C:\Users\Tecnico00\Desktop\BackUpCOPIA\Pizzaria CagadaCorrigida\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Pedidos.resources
+C:\Users\Tecnico00\Desktop\BackUpCOPIA\Pizzaria CagadaCorrigida\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Compras.resources
+C:\Users\Tecnico00\Desktop\BackUpCOPIA\Pizzaria CagadaCorrigida\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Funcionario.resources
+C:\Users\Tecnico00\Desktop\BackUpCOPIA\Pizzaria CagadaCorrigida\Pizzaria\Pizzaria\obj\Debug\Pizzaria.CadastroCliente.resources
+C:\Users\Tecnico00\Desktop\BackUpCOPIA\Pizzaria CagadaCorrigida\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Produtos.resources
+C:\Users\Tecnico00\Desktop\BackUpCOPIA\Pizzaria CagadaCorrigida\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Promocao.resources
+C:\Users\Tecnico00\Desktop\BackUpCOPIA\Pizzaria CagadaCorrigida\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Properties.Resources.resources
+C:\Users\Tecnico00\Desktop\BackUpCOPIA\Pizzaria CagadaCorrigida\Pizzaria\Pizzaria\obj\Debug\Pizzaria.csproj.GenerateResource.Cache
+C:\Users\Tecnico00\Desktop\BackUpCOPIA\Pizzaria CagadaCorrigida\Pizzaria\Pizzaria\obj\Debug\Pizzaria.csprojResolveAssemblyReference.cache
+C:\Users\ETESP\Desktop\Pizzaria 10_09-17_22\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe.config
+C:\Users\ETESP\Desktop\Pizzaria 10_09-17_22\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Pedidos.resources
+C:\Users\ETESP\Desktop\Pizzaria 10_09-17_22\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Compras.resources
+C:\Users\ETESP\Desktop\Pizzaria 10_09-17_22\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Funcionario.resources
+C:\Users\ETESP\Desktop\Pizzaria 10_09-17_22\Pizzaria\Pizzaria\obj\Debug\Pizzaria.CadastroCliente.resources
+C:\Users\ETESP\Desktop\Pizzaria 10_09-17_22\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Produtos.resources
+C:\Users\ETESP\Desktop\Pizzaria 10_09-17_22\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Promocao.resources
+C:\Users\ETESP\Desktop\Pizzaria 10_09-17_22\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Properties.Resources.resources
+C:\Users\ETESP\Desktop\Pizzaria 10_09-17_22\Pizzaria\Pizzaria\obj\Debug\Pizzaria.csproj.GenerateResource.Cache
+C:\Users\ETESP\Desktop\Pizzaria 10_09-17_22\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe
+C:\Users\ETESP\Desktop\Pizzaria 10_09-17_22\Pizzaria\Pizzaria\bin\Debug\Pizzaria.pdb
+C:\Users\ETESP\Desktop\Pizzaria 10_09-17_22\Pizzaria\Pizzaria\obj\Debug\Pizzaria.exe
+C:\Users\ETESP\Desktop\Pizzaria 10_09-17_22\Pizzaria\Pizzaria\obj\Debug\Pizzaria.pdb
+C:\Users\ETESP\Desktop\Pizzaria\FUNCIONANDO\Pizzaria 10_09-21_49\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe.config
+C:\Users\ETESP\Desktop\Pizzaria\FUNCIONANDO\Pizzaria 10_09-21_49\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe
+C:\Users\ETESP\Desktop\Pizzaria\FUNCIONANDO\Pizzaria 10_09-21_49\Pizzaria\Pizzaria\bin\Debug\Pizzaria.pdb
+C:\Users\ETESP\Desktop\Pizzaria\FUNCIONANDO\Pizzaria 10_09-21_49\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Pedidos.resources
+C:\Users\ETESP\Desktop\Pizzaria\FUNCIONANDO\Pizzaria 10_09-21_49\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Compras.resources
+C:\Users\ETESP\Desktop\Pizzaria\FUNCIONANDO\Pizzaria 10_09-21_49\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Funcionario.resources
+C:\Users\ETESP\Desktop\Pizzaria\FUNCIONANDO\Pizzaria 10_09-21_49\Pizzaria\Pizzaria\obj\Debug\Pizzaria.CadastroCliente.resources
+C:\Users\ETESP\Desktop\Pizzaria\FUNCIONANDO\Pizzaria 10_09-21_49\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Produtos.resources
+C:\Users\ETESP\Desktop\Pizzaria\FUNCIONANDO\Pizzaria 10_09-21_49\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Promocao.resources
+C:\Users\ETESP\Desktop\Pizzaria\FUNCIONANDO\Pizzaria 10_09-21_49\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Properties.Resources.resources
+C:\Users\ETESP\Desktop\Pizzaria\FUNCIONANDO\Pizzaria 10_09-21_49\Pizzaria\Pizzaria\obj\Debug\Pizzaria.csproj.GenerateResource.Cache
+C:\Users\ETESP\Desktop\Pizzaria\FUNCIONANDO\Pizzaria 10_09-21_49\Pizzaria\Pizzaria\obj\Debug\Pizzaria.exe
+C:\Users\ETESP\Desktop\Pizzaria\FUNCIONANDO\Pizzaria 10_09-21_49\Pizzaria\Pizzaria\obj\Debug\Pizzaria.pdb
+C:\Users\Tecnico00\Desktop\Pizzaria\FUNCIONANDO\Nova pasta\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe.config
+C:\Users\Tecnico00\Desktop\Pizzaria\FUNCIONANDO\Nova pasta\Pizzaria\Pizzaria\obj\Debug\Pizzaria.exe
+C:\Users\Tecnico00\Desktop\Pizzaria\FUNCIONANDO\Nova pasta\Pizzaria\Pizzaria\obj\Debug\Pizzaria.pdb
+C:\Users\Tecnico00\Desktop\Pizzaria\FUNCIONANDO\Nova pasta\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe
+C:\Users\Tecnico00\Desktop\Pizzaria\FUNCIONANDO\Nova pasta\Pizzaria\Pizzaria\bin\Debug\Pizzaria.pdb
+C:\Users\Tecnico00\Desktop\Pizzaria\FUNCIONANDO\Nova pasta\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Pedidos.resources
+C:\Users\Tecnico00\Desktop\Pizzaria\FUNCIONANDO\Nova pasta\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Compras.resources
+C:\Users\Tecnico00\Desktop\Pizzaria\FUNCIONANDO\Nova pasta\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Funcionario.resources
+C:\Users\Tecnico00\Desktop\Pizzaria\FUNCIONANDO\Nova pasta\Pizzaria\Pizzaria\obj\Debug\Pizzaria.CadastroCliente.resources
+C:\Users\Tecnico00\Desktop\Pizzaria\FUNCIONANDO\Nova pasta\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Produtos.resources
+C:\Users\Tecnico00\Desktop\Pizzaria\FUNCIONANDO\Nova pasta\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Promocao.resources
+C:\Users\Tecnico00\Desktop\Pizzaria\FUNCIONANDO\Nova pasta\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Properties.Resources.resources
+C:\Users\Tecnico00\Desktop\Pizzaria\FUNCIONANDO\Nova pasta\Pizzaria\Pizzaria\obj\Debug\Pizzaria.csproj.GenerateResource.Cache
+C:\Users\ETESP\Desktop\Pizzaria\Pizzaria 15_09-17_24\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe.config
+C:\Users\ETESP\Desktop\Pizzaria\Pizzaria 15_09-17_24\Pizzaria\Pizzaria\obj\Debug\Pizzaria.exe
+C:\Users\ETESP\Desktop\Pizzaria\Pizzaria 15_09-17_24\Pizzaria\Pizzaria\obj\Debug\Pizzaria.pdb
+C:\Users\ETESP\Desktop\Pizzaria\Pizzaria 15_09-17_24\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe
+C:\Users\ETESP\Desktop\Pizzaria\Pizzaria 15_09-17_24\Pizzaria\Pizzaria\bin\Debug\Pizzaria.pdb
+C:\Users\ETESP\Desktop\Pizzaria\Pizzaria 15_09-17_24\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Pedidos.resources
+C:\Users\ETESP\Desktop\Pizzaria\Pizzaria 15_09-17_24\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Compras.resources
+C:\Users\ETESP\Desktop\Pizzaria\Pizzaria 15_09-17_24\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Funcionario.resources
+C:\Users\ETESP\Desktop\Pizzaria\Pizzaria 15_09-17_24\Pizzaria\Pizzaria\obj\Debug\Pizzaria.CadastroCliente.resources
+C:\Users\ETESP\Desktop\Pizzaria\Pizzaria 15_09-17_24\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Produtos.resources
+C:\Users\ETESP\Desktop\Pizzaria\Pizzaria 15_09-17_24\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Promocao.resources
+C:\Users\ETESP\Desktop\Pizzaria\Pizzaria 15_09-17_24\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Properties.Resources.resources
+C:\Users\ETESP\Desktop\Pizzaria\Pizzaria 15_09-17_24\Pizzaria\Pizzaria\obj\Debug\Pizzaria.csproj.GenerateResource.Cache
+C:\Users\Tecnico00\Desktop\Pizzaria\Pizzaria 15_09-21_14\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe.config
+C:\Users\Tecnico00\Desktop\Pizzaria\Pizzaria 15_09-21_14\Pizzaria\Pizzaria\obj\Debug\Pizzaria.exe
+C:\Users\Tecnico00\Desktop\Pizzaria\Pizzaria 15_09-21_14\Pizzaria\Pizzaria\obj\Debug\Pizzaria.pdb
+C:\Users\Tecnico00\Desktop\Pizzaria\Pizzaria 15_09-21_14\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe
+C:\Users\Tecnico00\Desktop\Pizzaria\Pizzaria 15_09-21_14\Pizzaria\Pizzaria\bin\Debug\Pizzaria.pdb
+C:\Users\Tecnico00\Desktop\Pizzaria\Pizzaria 15_09-21_14\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Pedidos.resources
+C:\Users\Tecnico00\Desktop\Pizzaria\Pizzaria 15_09-21_14\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Compras.resources
+C:\Users\Tecnico00\Desktop\Pizzaria\Pizzaria 15_09-21_14\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Funcionario.resources
+C:\Users\Tecnico00\Desktop\Pizzaria\Pizzaria 15_09-21_14\Pizzaria\Pizzaria\obj\Debug\Pizzaria.CadastroCliente.resources
+C:\Users\Tecnico00\Desktop\Pizzaria\Pizzaria 15_09-21_14\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Produtos.resources
+C:\Users\Tecnico00\Desktop\Pizzaria\Pizzaria 15_09-21_14\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Promocao.resources
+C:\Users\Tecnico00\Desktop\Pizzaria\Pizzaria 15_09-21_14\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Properties.Resources.resources
+C:\Users\Tecnico00\Desktop\Pizzaria\Pizzaria 15_09-21_14\Pizzaria\Pizzaria\obj\Debug\Pizzaria.csproj.GenerateResource.Cache
+C:\Users\ETESP\Desktop\Pizzaria 16_09-17_52\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe.config
+C:\Users\ETESP\Desktop\Pizzaria 16_09-17_52\Pizzaria\Pizzaria\obj\Debug\Pizzaria.exe
+C:\Users\ETESP\Desktop\Pizzaria 16_09-17_52\Pizzaria\Pizzaria\obj\Debug\Pizzaria.pdb
+C:\Users\ETESP\Desktop\Pizzaria 16_09-17_52\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe
+C:\Users\ETESP\Desktop\Pizzaria 16_09-17_52\Pizzaria\Pizzaria\bin\Debug\Pizzaria.pdb
+C:\Users\ETESP\Desktop\Pizzaria 16_09-17_52\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Pedidos.resources
+C:\Users\ETESP\Desktop\Pizzaria 16_09-17_52\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Compras.resources
+C:\Users\ETESP\Desktop\Pizzaria 16_09-17_52\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Funcionario.resources
+C:\Users\ETESP\Desktop\Pizzaria 16_09-17_52\Pizzaria\Pizzaria\obj\Debug\Pizzaria.CadastroCliente.resources
+C:\Users\ETESP\Desktop\Pizzaria 16_09-17_52\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Produtos.resources
+C:\Users\ETESP\Desktop\Pizzaria 16_09-17_52\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Promocao.resources
+C:\Users\ETESP\Desktop\Pizzaria 16_09-17_52\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Properties.Resources.resources
+C:\Users\ETESP\Desktop\Pizzaria 16_09-17_52\Pizzaria\Pizzaria\obj\Debug\Pizzaria.csproj.GenerateResource.Cache
+C:\Users\ETESP\Desktop\Pizzaria 16_09-22_23\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe.config
+C:\Users\ETESP\Desktop\Pizzaria 16_09-22_23\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe
+C:\Users\ETESP\Desktop\Pizzaria 16_09-22_23\Pizzaria\Pizzaria\bin\Debug\Pizzaria.pdb
+C:\Users\ETESP\Desktop\Pizzaria 16_09-22_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Form1.resources
+C:\Users\ETESP\Desktop\Pizzaria 16_09-22_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Pedidos.resources
+C:\Users\ETESP\Desktop\Pizzaria 16_09-22_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Compras.resources
+C:\Users\ETESP\Desktop\Pizzaria 16_09-22_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Funcionario.resources
+C:\Users\ETESP\Desktop\Pizzaria 16_09-22_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.CadastroCliente.resources
+C:\Users\ETESP\Desktop\Pizzaria 16_09-22_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Produtos.resources
+C:\Users\ETESP\Desktop\Pizzaria 16_09-22_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Promocao.resources
+C:\Users\ETESP\Desktop\Pizzaria 16_09-22_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Properties.Resources.resources
+C:\Users\ETESP\Desktop\Pizzaria 16_09-22_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.csproj.GenerateResource.Cache
+C:\Users\ETESP\Desktop\Pizzaria 16_09-22_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.exe
+C:\Users\ETESP\Desktop\Pizzaria 16_09-22_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.pdb
+C:\Users\ETESP\Desktop\Pizzaria 16_09-22_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.frmCadastro.resources
+C:\Users\ETESP\Desktop\Pizzaria 16_09-22_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.frmCadastro2.resources
+C:\Users\ETESP\Desktop\Pizzaria 19_09-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Form1.resources
+C:\Users\ETESP\Desktop\Pizzaria 19_09-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.frmCadastro.resources
+C:\Users\ETESP\Desktop\Pizzaria 19_09-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.frmCadastro2.resources
+C:\Users\ETESP\Desktop\Pizzaria 19_09-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Pedidos.resources
+C:\Users\ETESP\Desktop\Pizzaria 19_09-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Compras.resources
+C:\Users\ETESP\Desktop\Pizzaria 19_09-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Funcionario.resources
+C:\Users\ETESP\Desktop\Pizzaria 19_09-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.CadastroCliente.resources
+C:\Users\ETESP\Desktop\Pizzaria 19_09-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Produtos.resources
+C:\Users\ETESP\Desktop\Pizzaria 19_09-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Promocao.resources
+C:\Users\ETESP\Desktop\Pizzaria 19_09-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Properties.Resources.resources
+C:\Users\ETESP\Desktop\Pizzaria 19_09-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.csproj.GenerateResource.Cache
+C:\Users\ETESP\Desktop\Pizzaria 19_09-20_23\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe.config
+C:\Users\ETESP\Desktop\Pizzaria 19_09-20_23\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe
+C:\Users\ETESP\Desktop\Pizzaria 19_09-20_23\Pizzaria\Pizzaria\bin\Debug\Pizzaria.pdb
+C:\Users\ETESP\Desktop\Pizzaria 19_09-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.exe
+C:\Users\ETESP\Desktop\Pizzaria 19_09-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.pdb
+C:\Users\ETESP\Desktop\Pizzaria 24_09-20_23\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe.config
+C:\Users\ETESP\Desktop\Pizzaria 24_09-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.exe
+C:\Users\ETESP\Desktop\Pizzaria 24_09-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.pdb
+C:\Users\ETESP\Desktop\Pizzaria 24_09-20_23\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe
+C:\Users\ETESP\Desktop\Pizzaria 24_09-20_23\Pizzaria\Pizzaria\bin\Debug\Pizzaria.pdb
+C:\Users\ETESP\Desktop\Pizzaria 24_09-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Form1.resources
+C:\Users\ETESP\Desktop\Pizzaria 24_09-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.frmCadastro.resources
+C:\Users\ETESP\Desktop\Pizzaria 24_09-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.frmCadastro2.resources
+C:\Users\ETESP\Desktop\Pizzaria 24_09-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Pedidos.resources
+C:\Users\ETESP\Desktop\Pizzaria 24_09-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Compras.resources
+C:\Users\ETESP\Desktop\Pizzaria 24_09-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Funcionario.resources
+C:\Users\ETESP\Desktop\Pizzaria 24_09-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.CadastroCliente.resources
+C:\Users\ETESP\Desktop\Pizzaria 24_09-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Produtos.resources
+C:\Users\ETESP\Desktop\Pizzaria 24_09-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Promocao.resources
+C:\Users\ETESP\Desktop\Pizzaria 24_09-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Properties.Resources.resources
+C:\Users\ETESP\Desktop\Pizzaria 24_09-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.csproj.GenerateResource.Cache
+C:\Users\Casa\Desktop\Pizzaria 30_09-20_23\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe.config
+C:\Users\Casa\Desktop\Pizzaria 30_09-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.exe
+C:\Users\Casa\Desktop\Pizzaria 30_09-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.pdb
+C:\Users\Casa\Desktop\Pizzaria 30_09-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Form1.resources
+C:\Users\Casa\Desktop\Pizzaria 30_09-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.frmCadastro.resources
+C:\Users\Casa\Desktop\Pizzaria 30_09-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.frmCadastro2.resources
+C:\Users\Casa\Desktop\Pizzaria 30_09-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Pedidos.resources
+C:\Users\Casa\Desktop\Pizzaria 30_09-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Compras.resources
+C:\Users\Casa\Desktop\Pizzaria 30_09-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Funcionario.resources
+C:\Users\Casa\Desktop\Pizzaria 30_09-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.CadastroCliente.resources
+C:\Users\Casa\Desktop\Pizzaria 30_09-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Produtos.resources
+C:\Users\Casa\Desktop\Pizzaria 30_09-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Promocao.resources
+C:\Users\Casa\Desktop\Pizzaria 30_09-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Properties.Resources.resources
+C:\Users\Casa\Desktop\Pizzaria 30_09-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.csproj.GenerateResource.Cache
+C:\Users\Casa\Desktop\Pizzaria 30_09-20_23\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe
+C:\Users\Casa\Desktop\Pizzaria 30_09-20_23\Pizzaria\Pizzaria\bin\Debug\Pizzaria.pdb
+C:\Users\Casa\Desktop\Pizzaria 30_09-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.csprojResolveAssemblyReference.cache
+C:\Users\Casa\Desktop\Pizzaria 05_10-20_23\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe.config
+C:\Users\Casa\Desktop\Pizzaria 05_10-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.exe
+C:\Users\Casa\Desktop\Pizzaria 05_10-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.pdb
+C:\Users\Tecnico01\Desktop\Pizzaria 05_10-20_23\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe.config
+C:\Users\Tecnico01\Desktop\Pizzaria 05_10-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.exe
+C:\Users\Tecnico01\Desktop\Pizzaria 05_10-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.pdb
+C:\Users\Tecnico01\Desktop\Pizzaria 05_10-20_23\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe
+C:\Users\Tecnico01\Desktop\Pizzaria 05_10-20_23\Pizzaria\Pizzaria\bin\Debug\Pizzaria.pdb
+C:\Users\Tecnico01\Desktop\Pizzaria 05_10-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Form1.resources
+C:\Users\Tecnico01\Desktop\Pizzaria 05_10-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.frmCadastro.resources
+C:\Users\Tecnico01\Desktop\Pizzaria 05_10-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.frmCadastro2.resources
+C:\Users\Tecnico01\Desktop\Pizzaria 05_10-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Pedidos.resources
+C:\Users\Tecnico01\Desktop\Pizzaria 05_10-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Compras.resources
+C:\Users\Tecnico01\Desktop\Pizzaria 05_10-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Funcionario.resources
+C:\Users\Tecnico01\Desktop\Pizzaria 05_10-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.CadastroCliente.resources
+C:\Users\Tecnico01\Desktop\Pizzaria 05_10-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Produtos.resources
+C:\Users\Tecnico01\Desktop\Pizzaria 05_10-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Promocao.resources
+C:\Users\Tecnico01\Desktop\Pizzaria 05_10-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Properties.Resources.resources
+C:\Users\Tecnico01\Desktop\Pizzaria 05_10-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.csproj.GenerateResource.Cache
+C:\Users\Tecnico01\Desktop\Old\Pizzaria 05_10-20_23\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe.config
+C:\Users\Tecnico01\Desktop\Old\Pizzaria 05_10-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.exe
+C:\Users\Tecnico01\Desktop\Old\Pizzaria 05_10-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.pdb
+C:\Users\ACS\Desktop\Pizzaria_08_10-20_23-2014-10-09\Pizzaria 08_10-20_23\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe.config
+C:\Users\ACS\Desktop\Pizzaria_08_10-20_23-2014-10-09\Pizzaria 08_10-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.exe
+C:\Users\ACS\Desktop\Pizzaria_08_10-20_23-2014-10-09\Pizzaria 08_10-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.pdb
+C:\Users\ACS\Desktop\Pizzaria_08_10-20_23-2014-10-09\Pizzaria 08_10-20_23\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe
+C:\Users\ACS\Desktop\Pizzaria_08_10-20_23-2014-10-09\Pizzaria 08_10-20_23\Pizzaria\Pizzaria\bin\Debug\Pizzaria.pdb
+C:\Users\ACS\Desktop\Pizzaria_08_10-20_23-2014-10-09\Pizzaria 08_10-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Pedidos.resources
+C:\Users\ACS\Desktop\Pizzaria_08_10-20_23-2014-10-09\Pizzaria 08_10-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Compras.resources
+C:\Users\ACS\Desktop\Pizzaria_08_10-20_23-2014-10-09\Pizzaria 08_10-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Funcionario.resources
+C:\Users\ACS\Desktop\Pizzaria_08_10-20_23-2014-10-09\Pizzaria 08_10-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.CadastroCliente.resources
+C:\Users\ACS\Desktop\Pizzaria_08_10-20_23-2014-10-09\Pizzaria 08_10-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Produtos.resources
+C:\Users\ACS\Desktop\Pizzaria_08_10-20_23-2014-10-09\Pizzaria 08_10-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Promocao.resources
+C:\Users\ACS\Desktop\Pizzaria_08_10-20_23-2014-10-09\Pizzaria 08_10-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Properties.Resources.resources
+C:\Users\ACS\Desktop\Pizzaria_08_10-20_23-2014-10-09\Pizzaria 08_10-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.csproj.GenerateResource.Cache
+C:\Users\ACS\Desktop\Pizzaria_08_10-20_23-2014-10-09\Pizzaria 08_10-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.csprojResolveAssemblyReference.cache
+C:\Users\ACS\Desktop\Pizzaria_08_10-20_23-2014-10-09\Pizzaria 08_10-20_23\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Home.resources
+E:\TCM\Aplicações\C#\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe.config
+E:\TCM\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.exe
+E:\TCM\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.pdb
+E:\TCM\Aplicações\C#\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe
+E:\TCM\Aplicações\C#\Pizzaria\Pizzaria\bin\Debug\Pizzaria.pdb
+E:\TCM\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Fornecedores.resources
+E:\TCM\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Home.resources
+E:\TCM\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Pedidos.resources
+E:\TCM\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Compras.resources
+E:\TCM\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Funcionario.resources
+E:\TCM\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.CadastroCliente.resources
+E:\TCM\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Produtos.resources
+E:\TCM\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Properties.Resources.resources
+E:\TCM\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.csproj.GenerateResource.Cache
+E:\TCM\trunk\Aplicações\C#\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe.config
+E:\TCM\trunk\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.exe
+E:\TCM\trunk\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.pdb
+E:\TCM\trunk\Aplicações\C#\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe
+E:\TCM\trunk\Aplicações\C#\Pizzaria\Pizzaria\bin\Debug\Pizzaria.pdb
+E:\TCM\trunk\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.csprojResolveAssemblyReference.cache
+E:\TCM\trunk\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Fornecedores.resources
+E:\TCM\trunk\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Home.resources
+E:\TCM\trunk\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Pedidos.resources
+E:\TCM\trunk\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Compras.resources
+E:\TCM\trunk\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Funcionario.resources
+E:\TCM\trunk\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.CadastroCliente.resources
+E:\TCM\trunk\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Properties.Resources.resources
+E:\TCM\trunk\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.csproj.GenerateResource.Cache
+C:\Users\Casa\Documents\TortoiseSVN\Aplicações\C#\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe.config
+C:\Users\Casa\Documents\TortoiseSVN\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.exe
+C:\Users\Casa\Documents\TortoiseSVN\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.pdb
+C:\Users\Casa\Documents\TortoiseSVN\Aplicações\C#\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe
+C:\Users\Casa\Documents\TortoiseSVN\Aplicações\C#\Pizzaria\Pizzaria\bin\Debug\Pizzaria.pdb
+C:\Users\Casa\Documents\TortoiseSVN\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Fornecedores.resources
+C:\Users\Casa\Documents\TortoiseSVN\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Home.resources
+C:\Users\Casa\Documents\TortoiseSVN\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Pedidos.resources
+C:\Users\Casa\Documents\TortoiseSVN\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Compras.resources
+C:\Users\Casa\Documents\TortoiseSVN\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Funcionario.resources
+C:\Users\Casa\Documents\TortoiseSVN\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.CadastroCliente.resources
+C:\Users\Casa\Documents\TortoiseSVN\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Properties.Resources.resources
+C:\Users\Casa\Documents\TortoiseSVN\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.csproj.GenerateResource.Cache
+C:\Users\Alex\Desktop\SVN-2014-10-19\SVN\C#\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe.config
+C:\Users\Alex\Desktop\SVN-2014-10-19\SVN\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.exe
+C:\Users\Alex\Desktop\SVN-2014-10-19\SVN\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.pdb
+C:\Users\Alex\Desktop\SVN-2014-10-19\SVN\C#\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe
+C:\Users\Alex\Desktop\SVN-2014-10-19\SVN\C#\Pizzaria\Pizzaria\bin\Debug\Pizzaria.pdb
+C:\Users\Alex\Desktop\SVN-2014-10-19\SVN\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.csprojResolveAssemblyReference.cache
+C:\Users\Alex\Desktop\SVN-2014-10-19\SVN\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Fornecedores.resources
+C:\Users\Alex\Desktop\SVN-2014-10-19\SVN\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Home.resources
+C:\Users\Alex\Desktop\SVN-2014-10-19\SVN\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Pedidos.resources
+C:\Users\Alex\Desktop\SVN-2014-10-19\SVN\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Compras.resources
+C:\Users\Alex\Desktop\SVN-2014-10-19\SVN\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Funcionario.resources
+C:\Users\Alex\Desktop\SVN-2014-10-19\SVN\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.CadastroCliente.resources
+C:\Users\Alex\Desktop\SVN-2014-10-19\SVN\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Produtos.resources
+C:\Users\Alex\Desktop\SVN-2014-10-19\SVN\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Promocao.resources
+C:\Users\Alex\Desktop\SVN-2014-10-19\SVN\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Properties.Resources.resources
+C:\Users\Alex\Desktop\SVN-2014-10-19\SVN\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.csproj.GenerateResource.Cache
+C:\Users\Alex\Desktop\SVN-2014-10-19\SVN\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Insumo.resources
+C:\Users\Alex\Desktop\SVN-2014-10-19\SVN\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Login.resources
+C:\Users\Casa\Documents\TortoiseSVN\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Insumo.resources
+C:\Users\Casa\Documents\TortoiseSVN\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Login.resources
+C:\Users\Casa\Documents\TortoiseSVN\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Produto.resources
+C:\Users\Casa\Documents\TortoiseSVN\Aplicações\c\Pizzaria\bin\Debug\Pizzaria.exe.config
+C:\Users\Casa\Documents\TortoiseSVN\Aplicações\c\Pizzaria\obj\Debug\Pizzaria.exe
+C:\Users\Casa\Documents\TortoiseSVN\Aplicações\c\Pizzaria\obj\Debug\Pizzaria.pdb
+C:\Users\Casa\Documents\TortoiseSVN\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Rede.resources
+E:\TCM\trunk\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.CadastrarPromocao.resources
+E:\TCM\trunk\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Insumo.resources
+E:\TCM\trunk\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Login.resources
+E:\TCM\trunk\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Rede.resources
+C:\Users\Casa\Documents\TortoiseSVN\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.CadastrarPromocao.resources
+C:\Users\Casa\Documents\TortoiseSVN\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.GerenciarPromocao.resources
+C:\Users\Rapha\Desktop\Versionamento\Aplicações\C#\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe.config
+C:\Users\Rapha\Desktop\Versionamento\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.exe
+C:\Users\Rapha\Desktop\Versionamento\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.pdb
+C:\Users\Rapha\Desktop\Versionamento\Aplicações\C#\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe
+C:\Users\Rapha\Desktop\Versionamento\Aplicações\C#\Pizzaria\Pizzaria\bin\Debug\Pizzaria.pdb
+C:\Users\Rapha\Desktop\Versionamento\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.csprojResolveAssemblyReference.cache
+C:\Users\Rapha\Desktop\Versionamento\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.CadastrarPromocao.resources
+C:\Users\Rapha\Desktop\Versionamento\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Fornecedores.resources
+C:\Users\Rapha\Desktop\Versionamento\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Home.resources
+C:\Users\Rapha\Desktop\Versionamento\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Insumo.resources
+C:\Users\Rapha\Desktop\Versionamento\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Login.resources
+C:\Users\Rapha\Desktop\Versionamento\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Pedidos.resources
+C:\Users\Rapha\Desktop\Versionamento\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Compras.resources
+C:\Users\Rapha\Desktop\Versionamento\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Funcionario.resources
+C:\Users\Rapha\Desktop\Versionamento\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.CadastroCliente.resources
+C:\Users\Rapha\Desktop\Versionamento\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Produto.resources
+C:\Users\Rapha\Desktop\Versionamento\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.GerenciarPromocao.resources
+C:\Users\Rapha\Desktop\Versionamento\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Properties.Resources.resources
+C:\Users\Rapha\Desktop\Versionamento\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Rede.resources
+C:\Users\Rapha\Desktop\Versionamento\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.csproj.GenerateResource.Cache
+C:\Users\ACS\Desktop\TcmVersiona\Aplicações\C#\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe.config
+C:\Users\ACS\Desktop\TcmVersiona\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.exe
+C:\Users\ACS\Desktop\TcmVersiona\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.pdb
+C:\Users\ACS\Desktop\TcmVersiona\Aplicações\C#\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe
+C:\Users\ACS\Desktop\TcmVersiona\Aplicações\C#\Pizzaria\Pizzaria\bin\Debug\Pizzaria.pdb
+C:\Users\ACS\Desktop\TcmVersiona\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.csprojResolveAssemblyReference.cache
+C:\Users\ACS\Desktop\TcmVersiona\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.CadastrarPromocao.resources
+C:\Users\ACS\Desktop\TcmVersiona\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Fornecedores.resources
+C:\Users\ACS\Desktop\TcmVersiona\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Home.resources
+C:\Users\ACS\Desktop\TcmVersiona\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Insumo.resources
+C:\Users\ACS\Desktop\TcmVersiona\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Login.resources
+C:\Users\ACS\Desktop\TcmVersiona\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Pedidos.resources
+C:\Users\ACS\Desktop\TcmVersiona\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Compras.resources
+C:\Users\ACS\Desktop\TcmVersiona\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Funcionario.resources
+C:\Users\ACS\Desktop\TcmVersiona\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.CadastroCliente.resources
+C:\Users\ACS\Desktop\TcmVersiona\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Produtos.resources
+C:\Users\ACS\Desktop\TcmVersiona\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Properties.Resources.resources
+C:\Users\ACS\Desktop\TcmVersiona\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Rede.resources
+C:\Users\ACS\Desktop\TcmVersiona\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.csproj.GenerateResource.Cache
+E:\TCM\trunk\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Produtos.resources
+E:\TCM\trunk\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Caixa.resources
+C:\Users\ACS\Desktop\TcmVersiona\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Caixa.resources
+E:\TCM\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.CadastrarPromocao.resources
+E:\TCM\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Caixa.resources
+E:\TCM\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Insumo.resources
+E:\TCM\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Login.resources
+E:\TCM\Aplicações\C#\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Rede.resources
+E:\TCM\tags\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe.config
+E:\TCM\tags\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.exe
+E:\TCM\tags\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.pdb
+E:\TCM\tags\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe
+E:\TCM\tags\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\bin\Debug\Pizzaria.pdb
+E:\TCM\tags\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.csprojResolveAssemblyReference.cache
+E:\TCM\tags\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.CadastrarPromocao.resources
+E:\TCM\tags\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Caixa.resources
+E:\TCM\tags\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Fornecedores.resources
+E:\TCM\tags\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Home.resources
+E:\TCM\tags\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Insumo.resources
+E:\TCM\tags\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Login.resources
+E:\TCM\tags\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Pedidos.resources
+E:\TCM\tags\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Funcionario.resources
+E:\TCM\tags\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.CadastroCliente.resources
+E:\TCM\tags\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Produtos.resources
+E:\TCM\tags\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Properties.Resources.resources
+E:\TCM\tags\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Rede.resources
+E:\TCM\tags\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.csproj.GenerateResource.Cache
+C:\Users\Gui\Desktop\Giovanellis Pizzaria\tags\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe.config
+C:\Users\Gui\Desktop\Giovanellis Pizzaria\tags\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.exe
+C:\Users\Gui\Desktop\Giovanellis Pizzaria\tags\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.pdb
+C:\Users\Gui\Desktop\Giovanellis Pizzaria\tags\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe
+C:\Users\Gui\Desktop\Giovanellis Pizzaria\tags\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\bin\Debug\Pizzaria.pdb
+C:\Users\Gui\Desktop\Giovanellis Pizzaria\tags\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.csprojResolveAssemblyReference.cache
+C:\Users\Gui\Desktop\Giovanellis Pizzaria\tags\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.CadastrarPromocao.resources
+C:\Users\Gui\Desktop\Giovanellis Pizzaria\tags\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Caixa.resources
+C:\Users\Gui\Desktop\Giovanellis Pizzaria\tags\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Fornecedores.resources
+C:\Users\Gui\Desktop\Giovanellis Pizzaria\tags\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Home.resources
+C:\Users\Gui\Desktop\Giovanellis Pizzaria\tags\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Insumo.resources
+C:\Users\Gui\Desktop\Giovanellis Pizzaria\tags\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Login.resources
+C:\Users\Gui\Desktop\Giovanellis Pizzaria\tags\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Pedidos.resources
+C:\Users\Gui\Desktop\Giovanellis Pizzaria\tags\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Funcionario.resources
+C:\Users\Gui\Desktop\Giovanellis Pizzaria\tags\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.CadastroCliente.resources
+C:\Users\Gui\Desktop\Giovanellis Pizzaria\tags\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Produtos.resources
+C:\Users\Gui\Desktop\Giovanellis Pizzaria\tags\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Properties.Resources.resources
+C:\Users\Gui\Desktop\Giovanellis Pizzaria\tags\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Rede.resources
+C:\Users\Gui\Desktop\Giovanellis Pizzaria\tags\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.csproj.GenerateResource.Cache

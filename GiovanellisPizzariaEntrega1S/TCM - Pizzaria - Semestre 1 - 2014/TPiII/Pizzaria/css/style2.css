@@ -1,0 +1,471 @@
+/* Tags estão em ordem ALFABÉTICA */
+.bandeira
+{
+text-align: center;
+line-height: 100px;
+height: auto;
+width: auto;
+/*border: 2px dashed black;*/
+}
+
+body,p
+{
+margin:0;
+/*background-color: black;*/
+background-image: url('../img/texturafundo.png');
+background-position: center; 
+font-family: Arial;
+}
+
+#cabecalho
+{
+height: auto;
+/*background-color: #040;*/
+/* border: 2px dashed gray; */
+}
+
+#cadastro
+{
+text-align: center;
+margin-left: auto;
+}
+
+#carrossel
+{
+margin: 30px 0;
+height: 400px;
+line-height: 400px;
+}
+
+.ce
+{
+background-color: #fff;
+color: #6e0000;
+border-color: #d7c500;
+}
+.ce_ingred
+{
+background-color: #fff;
+color: #4e0202;
+border-color: #d7c500;
+font-size: 16px;
+}
+.cd 
+{
+color: #000;
+background-color: #fff;
+border-color: #d7c500;
+}
+
+
+.colunaheader
+{
+color: #010101;
+text-align: center;
+font-weight: bold;
+font-family: 'Calisto MT';
+font-size: 30px;
+text-shadow: 1px 0px 12px #fff;
+border-color: #ae0101;
+background-image: linear-gradient(to right, #128700, #fff, #ae0101);
+}
+
+#conteudo
+{
+height: auto;
+line-height: 150%;
+margin-top: 60px;
+}
+#conteudo input#ContentPlaceHolder1_btnEnvia
+{
+margin-left: 45%;
+}
+
+#conteudo #ContentPlaceHolder1_HyperLink1 /* Ainda não é cadastrado? */
+{
+font-size: 12px;
+}
+
+div#texto_cadastro
+{
+   width: 315px;
+   height: 150px;
+   margin: 0px auto 40px auto;
+   border: 3px double #fff;
+   border-radius: 8px;
+   line-height: 160%;
+   border-color: #6f0000;
+   padding: 15px;
+}
+div#texto_cadastro p
+{
+    color: #fff;
+    text-align: justify;
+}
+div#texto_cadastro h3 
+{
+    margin: 0;
+}
+div#texto_cadastro a
+{
+    color: #128700;
+    text-align: justify;
+    text-decoration: none;
+}
+
+/* CSS DA DIV LOGIN */
+
+.login
+{
+/*top: 40%;
+left: 32%;*/
+background-color: rgba(255,0,30,0.5);
+height: 32px;
+padding: 5px;
+border: 2px solid #fff;
+}
+.login #Label1
+{
+margin-left: 10px;
+}
+.login a,#Label1,#Label2
+{
+color: #fff;
+text-decoration: none;
+font-weight: bold;
+}
+
+.login #txtEmail,#txtLogin_senha
+{
+margin: 5px 5px 6px 0px;
+border-radius: 5px;
+}
+
+.login a
+{
+margin-left: 10px;
+}
+
+.login a:hover
+{
+color: #4c9c05;
+}
+
+.login span#lblLoginInc
+{
+color: gold;
+font-weight:bold;
+float:initial;
+font-size: 13px;
+margin-left: 15px;
+}
+
+/* CSS DO BOTAO LOGIN e LOGOUT */
+.button
+{
+background-color: #c21b1b;
+border: 2px solid #c79292;
+border-radius: 5px;
+margin-bottom: 0px 0px 6px 0px;
+padding: 4px;
+box-shadow: 5px 4px 2px rgba(0,0,0,0.6);
+font-weight: bold;
+font-size: 14px;
+color: #fff;
+}
+
+/* CSS DA DIV LOGOUT */
+
+.logout
+{
+background-color: rgba(255,0,30,0.5);
+height: 32px;
+padding: 5px;
+border: 2px solid #fff;
+}
+
+.erros 
+{
+color: #c40000;
+}
+
+.faixa
+{
+height: 100px;
+width: auto;
+border: 2px solid white;
+line-height: 100px;
+text-align: center;
+margin-bottom: 15px;
+}
+
+fieldset#formulario1
+{
+margin: 15px auto;
+padding: 10px 0px 10px 10px;
+height: auto;
+width: 430px;
+border: 1px solid white;
+}
+fieldset#formulario1 span
+{
+margin-left: 2px;
+}
+fieldset#formulario1 input,select
+{
+border-radius: 4px;
+margin-left : 8px;
+}
+.grupoformulario legend 
+{
+font-weight : bold;
+}
+
+.grupoformulario2
+{
+margin: 15px auto;
+padding: 10px 0px 10px 10px;
+height: auto;
+width: 430px;
+border: 1px solid white;
+}
+.grupoformulario2 span
+{
+margin-left: 2px;
+}
+.grupoformulario2 input,select
+{
+border-radius: 4px;
+margin-left : 8px;
+}
+.grupoformulario2 legend 
+{
+font-weight : bold;
+}
+
+h1, h2
+{
+text-align: center;
+font-size: 35px;
+color : #fff;
+}
+
+h2
+{
+text-decoration: underline;
+}
+h3 
+{
+    color: #fff;
+}
+
+#informacoes::before /* LINHA DIVISÓRIA DO RODAPÉ */
+{
+content: "";
+display: block;
+height: 1px;
+width: 1000px;
+background: -webkit-linear-gradient(right, transparent, white, transparent);
+background: -o-linear-gradient(right, transparent, white, transparent);
+background: -moz-linear-gradient(right, transparent, white, transparent);
+background: linear-gradient(to right, transparent, white, transparent);
+margin: 0px 0px 25px 0px;
+}
+
+#informacoes
+{
+font-weight: bold;
+font-size: 13px;
+margin: 0;
+padding:0;
+line-height: 130%;
+}
+
+#informacoes<p
+{
+
+margin: 0;
+padding:0;
+
+}
+
+#linksFaixa
+{
+height: auto;
+width: 70%;
+}
+
+#logo
+{
+height: 350px;
+width: 1000px;
+text-align: center;
+line-height: 300px;
+font-size: 100px;
+margin: 2px 0px 30px 0px;
+}
+
+/* LOGO COM MASCOTE E TRIGO */
+#marca 
+{
+position: absolute;
+left: 200px;
+top: 70px;  
+}
+#marca img 
+{
+width: 300px;
+height: 268px;
+}
+
+/* CSS MENU DO CLIENTE */
+
+nav#menu_gerencia
+{
+width: 400px;
+}
+
+nav#menu_gerencia ul
+{
+margin-top: 50px;
+border: 1px solid #fff;
+width: 150px;
+height: 120px;
+list-style: none;
+}
+
+nav#menu_gerencia li
+{
+    line-height: 240%;
+}
+nav#menu_gerencia li a
+{
+    color: #fff;
+    text-decoration : none;
+    font-size: 19px;
+}
+/* CSS DO MENU */
+
+nav#menu{
+display: block;
+text-align: center;
+height: 70px;
+border: 2px solid #128700;
+margin-top: 30px;
+}
+nav#menu ul{
+	list-style: none;
+}
+nav#menu li{
+display: inline-block;
+float: left;
+border: 2px solid #6f0000;
+border-radius: 5px;
+padding: 10px;
+margin-top: -6px;
+margin-left: 11%;
+transition: background-color 1.2s;
+/*box-shadow: 0px 0px 15px 1px rgba(222, 174, 40, 0.5);*/
+}
+nav#menu li:hover{
+background-color: rgba(255, 255, 255, 0.7);
+text-shadow: 0px 5px 3px #000;
+}
+nav#menu li a
+{
+text-decoration: none;
+color: #fff;
+font-size: 18px;
+}
+
+.painel
+{
+float: right;
+height: 220px;
+width: 22%;
+border: 2px solid white;
+line-height: 100px;
+text-align: center;
+}
+
+#rodape
+{
+text-align: center;
+/*border: 2px dashed purple;*/
+padding-bottom: 50px;
+margin-top: 60px;
+color: #fff;
+}
+
+.spans 
+{
+    color: #fff;
+}
+
+span#ContentPlaceHolder1_Label1 /* "Campos obrigatórios são marcados com (*)" */
+{
+color: gold;
+margin-left: 210px;
+}
+
+/* CSS DO CARDÁPIO */
+
+table#ContentPlaceHolder1_DataGrid1,table#ContentPlaceHolder1_datagPedidos  
+{
+margin: auto;
+border: 2px solid gold;
+}
+
+table#ContentPlaceHolder1_DataGrid1,table#ContentPlaceHolder1_datagPedidos tr, td
+{
+font-size: 25px;
+padding : 20px;
+background-color: #000;
+}
+
+table#ContentPlaceHolder1_DataGrid1 caption,table#ContentPlaceHolder1_datagPedidos caption,table#ContentPlaceHolder1_TabelaPromocao caption
+{
+font-size: 50px;
+margin-bottom: 80px;
+color: #fff;
+font-family: 'Calisto MT';
+}
+/* TABELA DE PROMOÇÕES */
+
+table#ContentPlaceHolder1_TabelaPromocao 
+{
+border: 2px solid gold;
+}
+
+#tudo
+{
+height: auto;
+margin: 0 auto;
+width: 1000px;
+}
+
+#logue 
+{
+    width: 150px;
+    height: 150px;
+    margin: 10px auto auto auto;
+}
+span#bemvindo 
+{
+    color: #fff;
+    margin: 0px 150px 0px 150px;
+}
+span#bemvindo #lblBemvindo 
+{
+    font-weight:bold;
+}
+input#ContentPlaceHolder1_Preenche 
+{
+    background-color: rgba(255,255,255,0);
+    border-color: rgba(255,255,255,0);
+}
+div#ContentPlaceHolder1_pnlBotoesPedido
+{
+    position: absolute;
+    margin: 60px 0px 0px 110px;
+}

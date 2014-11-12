@@ -1,0 +1,11 @@
+Bem-vindo ao sistema interno do Giovanelli's Pizzaria!
+
+Para estabelecer uma conexão com o banco de dados, clique no botão "Config." logo na primeira tela do programa e coloque as informações necessárias dentro dos campos de textos corretos.
+
+Terminado, clique em okay.
+
+Login e senha para entrar no sistema são:
+Login: admin
+Senha: 1234
+
+Espero que aproveite!
