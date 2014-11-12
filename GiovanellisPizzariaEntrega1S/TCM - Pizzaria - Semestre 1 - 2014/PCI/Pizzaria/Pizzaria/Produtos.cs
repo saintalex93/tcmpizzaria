@@ -120,6 +120,7 @@ namespace Pizzaria
                 txt_nome.Clear();
                 chk_site.Checked = false;
                 btn_atualizar.Text = "Alterar";
+                btn_inserir.Enabled = true;
             }
         }
 
@@ -402,7 +403,7 @@ namespace Pizzaria
             txt_vlrunitario.Text = dtg_produtos.CurrentRow.Cells[2].Value.ToString();
 
 
-            if ((int)dtg_produtos.CurrentRow.Cells[3].Value == 0)
+            if ((int)dtg_produtos.CurrentRow.Cells[3].Value == 1)
                 chk_site.Checked = true;
             else
                 chk_site.Checked = false;

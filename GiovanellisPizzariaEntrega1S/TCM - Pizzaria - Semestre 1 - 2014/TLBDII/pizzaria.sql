@@ -287,12 +287,27 @@ Ingred_Prod,
 Sobe_Site
 )
 values
-('Pizza Baiana',20.00,'Queijo Mussarela, Calabresa Moída, Ovos, Cebola e Pimenta.',1),('Pizza Mussarela',18.40,'Queijo Mussarela e Cebola.',1),('Pizza Bacon',20.20,'Queijo Mussarela, Ovos e Bacon.,',1),
-('Pizza Americana',24.00,'Queijo Mussarela, Lombo, Champignon e Palmito.',1),('Pizza Bauru',23.50,'Queijo Mussarela, Presunto e Tomate.',1),('Pizza Calabresa',18.00,'Queijo Mussarela, Calabresa e Cebola.',1),
-('Pizza Catupiry',23.00,'Queijo Mussarela e Catupiry.',1),('Pizza Três Queijos',24.70,'Queijo Mussarela, Catupiry e Provolone',1),('Pizza Alemã',25.20,'Queijo Mussarela, Calabresa Moída e Parmesão.',1),
-('Pizza Havaiana Brotinho',13.70,'Queijo Mussarela, ',1),('Pizza Baiana Brotinho',14.50,'Queijo Mussarela, ',0),('Pizza Palmito Brotinho',15.00,'Queijo Mussarela, ',0),('Pizza Peruana Brotinho',14.00,'Queijo Mussarela, ',1),
-('Refrigerante',7.00,null,0),('Cerveja',9.40,null,0),('Vinho',15.50,null,0),('Champagne',17.00,null,0),
-('Porção de Camarão',19.00,'Porção de Camarão, acompanhada de cebola',0),('Porção de Calabresa',18.00,'Porção de Calabresa, acompanhada de cebola',0),('Porção de Provolone',17.00,'Porção de Provolone, acompanhada de cebola',1)
+('Pizza Baiana',20.00,'Queijo Mussarela, Calabresa Moída, Ovos, Cebola e Pimenta.',1),
+('Pizza Mussarela',18.40,'Queijo Mussarela e Cebola.',1),
+('Pizza Bacon',20.20,'Queijo Mussarela, Ovos e Bacon.,',1),
+('Pizza Americana',24.00,'Queijo Mussarela, Lombo, Champignon e Palmito.',1),
+('Pizza Bauru',23.50,'Queijo Mussarela, Presunto e Tomate.',1),
+('Pizza Calabresa',18.00,'Queijo Mussarela, Calabresa e Cebola.',1),
+('Pizza Catupiry',23.00,'Queijo Mussarela e Catupiry.',1),
+('Pizza Três Queijos',24.70,'Queijo Mussarela, Catupiry e Provolone',1),
+('Pizza Alemã',25.20,'Queijo Mussarela, Calabresa Moída e Parmesão.',1),
+('Pizza Havaiana Brotinho',13.70,'Queijo Mussarela, ',1),
+('Pizza Baiana Brotinho',14.50,'Queijo Mussarela, ',0),
+('Pizza Palmito Brotinho',15.00,'Queijo Mussarela, ',0),
+('Pizza Peruana Brotinho',14.00,'Queijo Mussarela, ',1),
+('Refrigerante',7.00,null,0),
+('Cerveja',9.40,null,0),
+('Vinho',15.50,null,0),
+('Champagne',17.00,null,0),
+('Porção de Camarão',19.00,'Porção de Camarão, acompanhada de cebola',0),
+('Porção de Calabresa',18.00,'Porção de Calabresa, acompanhada de cebola',0),
+('Porção de Provolone',17.00,'Porção de Provolone, acompanhada de cebola',1),
+('Pizza Quatro Queijos',23.30,'Gorgonzola, Provolone, Mussarela e Catupiry',1)
 go
 
 insert into Pedido(
@@ -362,10 +377,12 @@ usuario_cadastrado,
 Preco_Original,
 Preco_Promocao
 )
+select * from promocao
 values
 ('Final de semana','Nos finais de semana deste mês(Novembro), as pizzas de Mussarela,Calabresa e Baiana terão seu preço reduzido a R$16,00.<br /> Aproveite !!',1,0,20,6),
 ('Cookie Promocional','Compras acima de R$25,00, você ganha dois deliciosos cookies de chocolate.',1,0,25,25),
-('Compras acima de R$50,00','Ao gastar R$50,00 ou mais em nossa Pizzaria, você concorre a um Iphone 9 !!',1,1,50,50)
+('Compras acima de R$50,00','Ao gastar R$50,00 ou mais em nossa Pizzaria, você concorre a um Iphone 9 !!',1,1,50,50)/*,
+('3 por 2 natalino','Até o Natal, três pizzas e um refrigerante sairá por R$ 50! Ho ho ho!',1,1,70,50)*/
 go
 
 insert into insumo_fornecedor

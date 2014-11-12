@@ -47,6 +47,7 @@
             this.btnRemoverProduto = new System.Windows.Forms.Button();
             this.btnVoltar = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.ckVisivelNoSite = new System.Windows.Forms.CheckBox();
             this.ckAcessoCadastrado = new System.Windows.Forms.CheckBox();
             this.dataPrazo = new System.Windows.Forms.DateTimePicker();
@@ -66,7 +67,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.label12 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridBuscaProdutos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridProdutosNaPromocao)).BeginInit();
@@ -119,7 +119,7 @@
             this.gridBuscaProdutos.Name = "gridBuscaProdutos";
             this.gridBuscaProdutos.ReadOnly = true;
             this.gridBuscaProdutos.Size = new System.Drawing.Size(282, 150);
-            this.gridBuscaProdutos.TabIndex = 23;
+            this.gridBuscaProdutos.TabIndex = 30;
             // 
             // btnAdicionarProduto
             // 
@@ -137,7 +137,7 @@
             this.txtBuscaProdutoPorID.Location = new System.Drawing.Point(222, 35);
             this.txtBuscaProdutoPorID.Name = "txtBuscaProdutoPorID";
             this.txtBuscaProdutoPorID.Size = new System.Drawing.Size(71, 20);
-            this.txtBuscaProdutoPorID.TabIndex = 998989;
+            this.txtBuscaProdutoPorID.TabIndex = 12;
             this.txtBuscaProdutoPorID.TextChanged += new System.EventHandler(this.txtBuscaProdutoPorID_TextChanged);
             this.txtBuscaProdutoPorID.Enter += new System.EventHandler(this.txtBuscaProdutoPorID_Enter);
             this.txtBuscaProdutoPorID.Leave += new System.EventHandler(this.txtBuscaProdutoPorID_Leave);
@@ -147,7 +147,7 @@
             this.txtBuscaPalavraChave.Location = new System.Drawing.Point(10, 35);
             this.txtBuscaPalavraChave.Name = "txtBuscaPalavraChave";
             this.txtBuscaPalavraChave.Size = new System.Drawing.Size(100, 20);
-            this.txtBuscaPalavraChave.TabIndex = 999999;
+            this.txtBuscaPalavraChave.TabIndex = 11;
             this.txtBuscaPalavraChave.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             this.txtBuscaPalavraChave.Enter += new System.EventHandler(this.txtBuscaPalavraChave_Enter_1);
             this.txtBuscaPalavraChave.Leave += new System.EventHandler(this.txtBuscaPalavraChave_Leave_1);
@@ -186,7 +186,7 @@
             this.btnProcessarNovoPreco.Location = new System.Drawing.Point(14, 229);
             this.btnProcessarNovoPreco.Name = "btnProcessarNovoPreco";
             this.btnProcessarNovoPreco.Size = new System.Drawing.Size(122, 23);
-            this.btnProcessarNovoPreco.TabIndex = 17;
+            this.btnProcessarNovoPreco.TabIndex = 16;
             this.btnProcessarNovoPreco.Text = "Processar novo preço";
             this.btnProcessarNovoPreco.UseVisualStyleBackColor = true;
             // 
@@ -209,7 +209,7 @@
             this.gridProdutosNaPromocao.Name = "gridProdutosNaPromocao";
             this.gridProdutosNaPromocao.ReadOnly = true;
             this.gridProdutosNaPromocao.Size = new System.Drawing.Size(273, 150);
-            this.gridProdutosNaPromocao.TabIndex = 24;
+            this.gridProdutosNaPromocao.TabIndex = 31;
             // 
             // lblPreço
             // 
@@ -236,7 +236,7 @@
             this.btnRemoverProduto.Location = new System.Drawing.Point(187, 200);
             this.btnRemoverProduto.Name = "btnRemoverProduto";
             this.btnRemoverProduto.Size = new System.Drawing.Size(98, 23);
-            this.btnRemoverProduto.TabIndex = 16;
+            this.btnRemoverProduto.TabIndex = 17;
             this.btnRemoverProduto.Text = "Remover produto";
             this.btnRemoverProduto.UseVisualStyleBackColor = true;
             this.btnRemoverProduto.Click += new System.EventHandler(this.btnRemoverProduto_Click);
@@ -269,6 +269,14 @@
             this.groupBox2.TabIndex = 20;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Dados da Promoção";
+            // 
+            // label12
+            // 
+            this.label12.Location = new System.Drawing.Point(421, 75);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(38, 36);
+            this.label12.TabIndex = 7;
+            this.label12.Click += new System.EventHandler(this.label12_Click);
             // 
             // ckVisivelNoSite
             // 
@@ -400,8 +408,9 @@
             this.gridPromocoesEncontradas.ReadOnly = true;
             this.gridPromocoesEncontradas.RowTemplate.Height = 50;
             this.gridPromocoesEncontradas.Size = new System.Drawing.Size(586, 114);
-            this.gridPromocoesEncontradas.TabIndex = 22;
+            this.gridPromocoesEncontradas.TabIndex = 32;
             this.gridPromocoesEncontradas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridPromocoesEncontradas_CellContentClick);
+            this.gridPromocoesEncontradas.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridPromocoesEncontradas_CellDoubleClick);
             // 
             // txtBuscaPromocaoPorID
             // 
@@ -474,14 +483,6 @@
             this.groupBox5.TabIndex = 14;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Buscar Promoções";
-            // 
-            // label12
-            // 
-            this.label12.Location = new System.Drawing.Point(421, 75);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(38, 36);
-            this.label12.TabIndex = 7;
-            this.label12.Click += new System.EventHandler(this.label12_Click);
             // 
             // CadastrarPromocao
             // 

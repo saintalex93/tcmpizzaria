@@ -30,16 +30,14 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.produtosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.insumosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pedidosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.promoçõesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pedidosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usuáriosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.insumosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.funcionáriosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
@@ -55,11 +53,9 @@
             this.toolStrip1.BackColor = System.Drawing.SystemColors.MenuBar;
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton2,
+            this.toolStripDropDownButton1,
             this.toolStripSeparator2,
             this.toolStripButton4,
-            this.toolStripSeparator,
-            this.toolStripDropDownButton1,
             this.toolStripSeparator5,
             this.toolStripButton1,
             this.toolStripSeparator1,
@@ -71,17 +67,6 @@
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
             this.toolStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStrip1_ItemClicked);
-            // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.Image = global::Pizzaria.Properties.Resources.Untitled_2;
-            this.toolStripButton2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(48, 59);
-            this.toolStripButton2.Text = "Pedido";
-            this.toolStripButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
             // toolStripSeparator2
             // 
@@ -98,11 +83,6 @@
             this.toolStripButton4.Text = "Calculadora";
             this.toolStripButton4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
-            // 
-            // toolStripSeparator
-            // 
-            this.toolStripSeparator.Name = "toolStripSeparator";
-            this.toolStripSeparator.Size = new System.Drawing.Size(6, 62);
             // 
             // toolStripDropDownButton1
             // 
@@ -128,12 +108,12 @@
             this.produtosToolStripMenuItem.Text = "Produtos";
             this.produtosToolStripMenuItem.Click += new System.EventHandler(this.produtoToolStripMenuItem_Click);
             // 
-            // insumosToolStripMenuItem
+            // promoçõesToolStripMenuItem
             // 
-            this.insumosToolStripMenuItem.Name = "insumosToolStripMenuItem";
-            this.insumosToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.insumosToolStripMenuItem.Text = "Insumos";
-            this.insumosToolStripMenuItem.Click += new System.EventHandler(this.insumoToolStripMenuItem_Click);
+            this.promoçõesToolStripMenuItem.Name = "promoçõesToolStripMenuItem";
+            this.promoçõesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.promoçõesToolStripMenuItem.Text = "Promoções";
+            this.promoçõesToolStripMenuItem.Click += new System.EventHandler(this.promoçõesToolStripMenuItem_Click);
             // 
             // pedidosToolStripMenuItem
             // 
@@ -142,19 +122,19 @@
             this.pedidosToolStripMenuItem.Text = "Pedidos";
             this.pedidosToolStripMenuItem.Click += new System.EventHandler(this.pedidosToolStripMenuItem_Click);
             // 
-            // promoçõesToolStripMenuItem
-            // 
-            this.promoçõesToolStripMenuItem.Name = "promoçõesToolStripMenuItem";
-            this.promoçõesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.promoçõesToolStripMenuItem.Text = "Promoções";
-            this.promoçõesToolStripMenuItem.Click += new System.EventHandler(this.promoçõesToolStripMenuItem_Click);
-            // 
             // usuáriosToolStripMenuItem
             // 
             this.usuáriosToolStripMenuItem.Name = "usuáriosToolStripMenuItem";
             this.usuáriosToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.usuáriosToolStripMenuItem.Text = "Usuários";
             this.usuáriosToolStripMenuItem.Click += new System.EventHandler(this.clienteToolStripMenuItem_Click);
+            // 
+            // insumosToolStripMenuItem
+            // 
+            this.insumosToolStripMenuItem.Name = "insumosToolStripMenuItem";
+            this.insumosToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.insumosToolStripMenuItem.Text = "Insumos";
+            this.insumosToolStripMenuItem.Click += new System.EventHandler(this.insumoToolStripMenuItem_Click);
             // 
             // funcionáriosToolStripMenuItem
             // 
@@ -233,7 +213,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
         private System.Windows.Forms.ToolStripMenuItem produtosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem insumosToolStripMenuItem;
@@ -243,7 +222,6 @@
         private System.Windows.Forms.ToolStripMenuItem funcionáriosToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
         private System.Windows.Forms.ToolStripButton toolStripButton3;
         private System.Windows.Forms.ToolStripButton toolStripButton4;
     }
