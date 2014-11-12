@@ -115,7 +115,7 @@
                         <asp:TextBox ID="txtComplemento" runat="server" MaxLength="60" Width="255px"></asp:TextBox>
                     <br />
                         <asp:Label ID="lblNumCasa" runat="server" Text="Número *" style="margin-left: 56px;" CssClass="spans"></asp:Label>
-                        <asp:TextBox ID="txtNumCasa" runat="server" MaxLength="4" Width="50px" TextMode="SingleLine" min="1"></asp:TextBox>
+                        <asp:TextBox ID="txtNumCasa" runat="server" MaxLength="4" Width="50px" Type="Number" min="1" max="4"></asp:TextBox>
 
                         <%--<asp:RequiredFieldValidator ID="requiredNumCasa" runat="server" ErrorMessage="Número Residencial é obrigatório *" CssClass="erros" Display="Dynamic" ControlToValidate="txtNumCasa" ValidationGroup="Grupo1"></asp:RequiredFieldValidator>--%>
                     <br />
