@@ -506,7 +506,7 @@ namespace Pizzaria
 
             dtg_produtos.Rows.Clear();
             
-            Home.preencherGrid("select cod_Produto as [ID], Nome_Produto as [Produto], Valor_Venda as [Preço], Sobe_Site as [Visível no site] from Produto where cod_Produto like (" + txtBuscaPorID.Text + ")", dtg_produtos);
+            Home.preencherGrid("select cod_Produto as [ID], Nome_Produto as [Produto], Valor_Venda as [Preço], Sobe_Site as [Visível no site] from Produto where cod_Produto like ('%" + txtBuscaPorID.Text + "%')", dtg_produtos);
         }
 
         private void chk_site_CheckedChanged(object sender, EventArgs e)
