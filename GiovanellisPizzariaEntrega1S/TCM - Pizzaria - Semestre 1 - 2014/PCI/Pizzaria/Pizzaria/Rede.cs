@@ -82,7 +82,7 @@ namespace Pizzaria
 
         private void label5_Click(object sender, EventArgs e)
         {
-            txtDataSource.Text = "MÔNICA\\SQLEXPRESS";
+            txtDataSource.Text = "";
             txtCatalog.Text = "Pizzaria";
             txtID.Text = "sa";
             txtPassword.Text = "123456";
