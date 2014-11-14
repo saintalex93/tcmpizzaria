@@ -229,6 +229,17 @@ table#ContentPlaceHolder1_datagPedidos caption
     font-size: 40px;
     margin: 30px 0px 0px 25px;
 }
+
+table#ContentPlaceHolder1_datagridPedido input
+{
+    width: 100px;
+    border-radius: 4px;
+}
+table#ContentPlaceHolder1_datagridPedido a
+{
+    text-decoration: none;
+    color: #3c55a5;
+}
 .colunaheader 
 {
     padding: 5px;
@@ -240,7 +251,8 @@ table#ContentPlaceHolder1_datagPedidos caption
 }
 .ce 
 {
-    padding: 5px;
+    padding: 3px;
+    text-align: center;
     color: #000;
     font-size: 19px;
     border: 2px solid gold;
@@ -254,7 +266,12 @@ div#ContentPlaceHolder1_pnlBotoesPedido
     margin-right: 20px;
 }
 /* CSS DE UTILIDADE */
-
+.titulo 
+{
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px 0px 10px 325px;
+}
 .aparecer
 {
     display: block;

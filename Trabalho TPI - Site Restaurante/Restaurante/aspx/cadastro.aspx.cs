@@ -21,7 +21,6 @@ public partial class aspx_cadastro : System.Web.UI.Page
 
         /*Adicionando o atributo onblur e chamando a função aplicaMascara().
         Onblur é para quando o usuário tirar o foco do campo*/
-        txtDtNasc.Attributes.Add("onblur", "aplicaMascara()");
         txtCpf.Attributes.Add("onblur", "aplicaMascara()");
         txtTel.Attributes.Add("onblur", "aplicaMascara()");
         txtCel.Attributes.Add("onblur", "aplicaMascara()");
@@ -32,11 +31,8 @@ public partial class aspx_cadastro : System.Web.UI.Page
         txtCel.Attributes.Add("placeholder", "Digite apenas números");
         txtCep.Attributes.Add("placeholder", "Digite apenas números");
         txtCpf.Attributes.Add("placeholder", "Digite apenas números");
-        txtDtNasc.Attributes.Add("placeholder", "Digite apenas números");
-        txtEmail.Attributes.Add("placeholder", "exemplo@exemplo.com.br");
 
         //Adicionando atributo onfocus e chamando a função retiraMascara() referente a cada campo
-        txtDtNasc.Attributes.Add("onfocus", "retiraMascaraDtNasc()");
         txtCpf.Attributes.Add("onfocus", "retiraMascaraCpf()");
         txtTel.Attributes.Add("onfocus", "retiraMascaraTel()");
         txtCel.Attributes.Add("onfocus", "retiraMascaraCel()");
@@ -51,9 +47,7 @@ public partial class aspx_cadastro : System.Web.UI.Page
                 String nome = txtNome.Text.Trim();
                 String tel = txtTel.Text;
                 String cel = txtCel.Text;
-                String email = txtEmail.Text;
                 String cpf = txtCpf.Text;
-                String datanasc = txtDtNasc.Text;
                 String senha = txtSenha.Text;
                 String senhaconf = txtSenhaConfirm.Text;
                 String cidade = txtCidade.Text.Trim();
@@ -65,21 +59,10 @@ public partial class aspx_cadastro : System.Web.UI.Page
                 String cep = txtCep.Text;
                 String estado = DDLEstado.SelectedValue.ToString();
 
-                try
-                {
-                    Convert.ToInt32(txtNumCasa.Text);
-                }
-                catch (Exception ex)
-                {
-                    x = false;
-                    lblresposta.Text = "Número é obrigatório e deve conter apenas números !!";
-                    txtNumCasa.Focus();
-                }
                 conexao con2 = new conexao();
                 con2.conectar();
                
                 con2.command.CommandText = "select * from Cliente where Email_Cliente=@email or CPF_Cliente=@cpf";
-                con2.command.Parameters.Add("@email", SqlDbType.VarChar).Value = email;
                 con2.command.Parameters.Add("@cpf", SqlDbType.VarChar).Value = cpf;
                 result = Convert.ToInt32(con2.command.ExecuteScalar());
                 con2.fechaConexao();
@@ -108,35 +91,21 @@ public partial class aspx_cadastro : System.Web.UI.Page
                     con.command.Parameters.Add("@complemento", SqlDbType.VarChar).Value = complemento;
                     con.command.Parameters.Add("@telefone", SqlDbType.VarChar).Value = tel;
                     con.command.Parameters.Add("@celular", SqlDbType.VarChar).Value = cel;
-                    con.command.Parameters.Add("@email", SqlDbType.VarChar).Value = email;
                     con.command.Parameters.Add("@senha", SqlDbType.VarChar).Value = senha;
-                    con.command.Parameters.Add("@datanasc", SqlDbType.VarChar).Value = datanasc;
                     con.command.ExecuteNonQuery();
                     con.fechaConexao();
-                    try
-                    {
-                        Response.Write("<script>alert('Dados Cadastrados com sucesso.\\nVocê já pode se logar.')</script>");
                     }
                     catch (Exception exx)
-                    {
-                        lblresposta.Text = "Dados Cadastrados com sucesso.Você já pode se logar.";
-                    }
-                }
-                catch (Exception ex)
-                {
-                    try
                     {
                         Response.Write("<script language=javascript>alert('Dados Incorretos.')</script>");
                     }
-                    catch (Exception exx)
-                    {
-                        lblresposta.Text = "Dados Incorretos.";
-                    }
+
                 }
+                        LimpaCamposAprovado();
             }
             
         }
-            LimpaCamposAprovado();
+
         
     }
     protected void btnLimpa_Click(object sender, EventArgs e)
@@ -149,9 +118,7 @@ public partial class aspx_cadastro : System.Web.UI.Page
         txtNome.Text = "";
         txtTel.Text = "";
         txtCel.Text = "";
-        txtEmail.Text = "";
         txtCpf.Text = "";
-        txtDtNasc.Text = "";
         txtSenha.Text = "";
         txtSenhaConfirm.Text = "";
         DDLEstado.SelectedIndex = 0;
@@ -171,9 +138,7 @@ public partial class aspx_cadastro : System.Web.UI.Page
         txtNome.Text = "";
         txtTel.Text = "";
         txtCel.Text = "";
-        txtEmail.Text = "";
         txtCpf.Text = "";
-        txtDtNasc.Text = "";
         txtSenha.Text = "";
         txtSenhaConfirm.Text = "";
         DDLEstado.SelectedIndex = 0;
@@ -191,9 +156,7 @@ public partial class aspx_cadastro : System.Web.UI.Page
         txtNome.Text = "Nome Teste";
         txtTel.Text = "(11)9999-9999";
         txtCel.Text = "(11)9-3333-3333";
-        txtEmail.Text = "email@teste.com";
         txtCpf.Text = "666.666.666-66";
-        txtDtNasc.Text = "12/05/1995";
         DDLEstado.SelectedIndex = 1;
         txtCidade.Text = "Cidade Teste";
         txtRua.Text = "Rua Teste";
@@ -233,25 +196,11 @@ public partial class aspx_cadastro : System.Web.UI.Page
             }
         }
         
-        else if (txtEmail.Text.Length < 5)
-        {
-            x = false;
-            lblresposta.Text = "Email inválido !!";
-            txtEmail.Focus();
-        }
-        
         else if (txtCpf.Text.Length != 11 && txtCpf.Text.Length != 14)
         {
             x = false;
             lblresposta.Text = "CPF inválido !!";
             txtCpf.Focus();
-        }
-        
-        else if (txtDtNasc.Text.Length != 8 && txtDtNasc.Text.Length != 10)
-        {
-            x = false;
-            lblresposta.Text = "Data de Nascimento inválida !!";
-            txtDtNasc.Focus();
         }
 
         else if (txtSenha.Text.Length < 5)

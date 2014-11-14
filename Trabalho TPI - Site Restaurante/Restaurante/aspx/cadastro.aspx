@@ -5,11 +5,10 @@
     <link rel="stylesheet" type="text/css" href="../css/style.css" />
     <link rel="icon" type="image/png" href="../img/logo.ico" />
 
-    <script type="text/javascript" src="../js/valida.js"></script>
-
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    <div id="conteudo_cadastro" class="conteudo">
         <h1>Cadastro</h1><br />
     <div id="texto_cadastro">
     <h3>O que eu ganho por me cadastrar?</h3>
@@ -30,6 +29,11 @@
 
                             <%--<asp:RequiredFieldValidator ID="requiredNome" runat="server" ErrorMessage="Nome é obrigatório *" CssClass="erros" Display="Dynamic" ControlToValidate="txtNome" ValidationGroup="Grupo1" AutoPostBack="false"></asp:RequiredFieldValidator>--%>
                         <br />
+                            <asp:Label ID="lblCpf" runat="server" Text="CPF *" style="margin-left: 119px;" CssClass="spans"></asp:Label>
+                            <asp:TextBox ID="txtCpf" runat="server" Width="146px" MaxLength="11"></asp:TextBox>
+
+                            <%--<asp:RequiredFieldValidator ID="requiredCpf" runat="server" ErrorMessage="CPF é obrigatório" Display="Dynamic" CssClass="erros" ControlToValidate="txtCpf" ValidationGroup="Grupo1"></asp:RequiredFieldValidator>--%>
+                        <br />
                             <asp:Label ID="lblTel" runat="server" Text="Telefone *" style="margin-left: 89px;" CssClass="spans"></asp:Label>
                             <asp:TextBox ID="txtTel" runat="server" MaxLength="10" Width="146px"></asp:TextBox>
 
@@ -37,23 +41,7 @@
                         <br />
                             <asp:Label ID="lblCel" runat="server" Text="Celular" style="margin-left: 111px;" CssClass="spans"></asp:Label>
                             <asp:TextBox ID="txtCel" runat="server" Width="146px" MaxLength="11" style="margin-right: 65px;"></asp:TextBox>
-                        <br />
-                            <asp:Label ID="lblEmail" runat="server" Text="Email *" style="margin-left: 111px;" CssClass="spans"></asp:Label>
-                            <asp:TextBox ID="txtEmail" runat="server" Width="226px" MaxLength="35"></asp:TextBox>
 
-                            <%--<asp:RequiredFieldValidator ID="requiredEmail" runat="server" ErrorMessage="Email é obrigatório" CssClass="erros" Display="Dynamic" ControlToValidate="txtEmail" ValidationGroup="Grupo1"></asp:RequiredFieldValidator>
-                            <asp:RegularExpressionValidator ID="regexvalidEmail" runat="server" ErrorMessage="Email inválido *" Display="Dynamic" SetFocusOnError="True" ValidationExpression="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ControlToValidate="txtEmail" CssClass="erros" ValidationGroup="Grupo1"></asp:RegularExpressionValidator>--%>
-
-                        <br />
-                            <asp:Label ID="lblCpf" runat="server" Text="CPF *" style="margin-left: 119px;" CssClass="spans"></asp:Label>
-                            <asp:TextBox ID="txtCpf" runat="server" Width="146px" MaxLength="11"></asp:TextBox>
-
-                            <%--<asp:RequiredFieldValidator ID="requiredCpf" runat="server" ErrorMessage="CPF é obrigatório" Display="Dynamic" CssClass="erros" ControlToValidate="txtCpf" ValidationGroup="Grupo1"></asp:RequiredFieldValidator>--%>
-                        <br />
-                            <asp:Label ID="lblDataNasc" runat="server" Text="Data de Nascimento *" CssClass="spans" style="margin-left: 6px;"></asp:Label>
-                            <asp:TextBox ID="txtDtNasc" runat="server" Width="146px" MaxLength="8"></asp:TextBox>
-
-                            <%--<asp:RequiredFieldValidator ID="requiredDtNasc" runat="server" ErrorMessage="Data de Nascimento é obrigatória *" Display="Dynamic" CssClass="erros" ControlToValidate="txtDtNasc" ValidationGroup="Grupo1"></asp:RequiredFieldValidator>--%>
                         <br />
                             <asp:Label ID="lblSenha" runat="server" Text="Senha *" style="margin-left: 104px" CssClass="spans"></asp:Label>
                             <asp:TextBox ID="txtSenha" runat="server" Width="146px" TextMode="Password" MaxLength="20"></asp:TextBox>
@@ -139,8 +127,7 @@
                     <asp:Button ID="Preenche" runat="server" Text="Preencher Campos" OnClick="Preenche_Click" Width="125px" Height="25px" />
                     <br />
                     <br />
-                    <asp:Label ID="lblresposta" runat="server" ForeColor="White"></asp:Label>
         <br />
 
-   
+   </div>
 </asp:Content>

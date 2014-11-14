@@ -42,7 +42,7 @@ create table Pedido
 (
 Cod_Pedido INT IDENTITY(1,1) PRIMARY KEY,
 Data VARCHAR(10),
-Valor numeric (6,2),
+Valor numeric(4,2),
 Cod_Cliente int foreign key references Cliente(Cod_Cliente),
 Situacao int--Boolean Pago
 )
@@ -61,7 +61,6 @@ go
 Create table Pedido_Cliente
 (
 CodPedido_Cliente int Identity (1,1) primary key,
-Cod_Cliente int foreign key references Cliente(Cod_Cliente),
 Cod_Pedido int foreign key references Pedido(Cod_Pedido),
 Cod_Produto int foreign key references Produto(Cod_Produto),
 Qtd_Prod INT
@@ -71,15 +70,14 @@ go
 Create table Produto_Pedido
 (
 Cod_ProdutoPedido int identity(1,1),
-Cod_Produto int foreign key references Produto(cod_Produto),
-Cod_Pedido int foreign key references Pedido(cod_Pedido),
+Cod_Produto int foreign key references Produto(Cod_Produto),
+Cod_Pedido int foreign key references Pedido(Cod_Pedido),
 Cod_Func int foreign key references Funcionario(Cod_Func)
 )
 
 go
 
-insert into Cliente 
-
+insert into Cliente
 (
 Nome_Cliente,
 CPF_Cliente,
@@ -94,6 +92,10 @@ Login_Cliente,
 Senha_Cliente
 )
 Values
+(
+'Avulso', '111.111.111-11','Rua Avulsa',100,'Avulso','99999-999',null,
+'(11) 4444-0000','(11) 94444-5555','avulso','avulso321'
+),
 
 (
 'João de Souza', '398.562.321-21','Rua dos Andradas',107,'Centro','012253-000','Proximo a rua Santa Efigênia',
@@ -114,19 +116,18 @@ values
 
 go
 
-
 Insert into Pedido
-(Data,Valor,Situacao)
+(Data,Valor,Cod_Cliente,Situacao)
 Values
-('10/11/2014', 50.80,1),
-('21/07/2014', 30.50,0),
-('15/08/2014', 25.90,0)
+('10/11/2014', 50.80,1,1),
+('21/07/2014', 30.50,1,0),
+('15/08/2014', 25.90,2,0)
 
 go
-
+insert into Pedido(Data, Valor,Cod_Cliente, Situacao) values('05/02/1995', 15.50,1,0)
 Insert into Produto
 (Nome_Produto,Valor_Venda)
-Values
+Values	
 ('Macarrão com Almôndega',12.00),
 ('Panqueca',10.00),
 ('Escondidinho de carne',15.00),
@@ -139,9 +140,9 @@ Values
 ('Tequila José Cuervo Ouro(Dose)',20.00)
 
 insert into Pedido_Cliente
-(Cod_Cliente, Cod_Pedido, Cod_Produto, Qtd_Prod)
+(Cod_Pedido, Cod_Produto, Qtd_Prod)
 Values
-(1,1,6,4),(1,2,5,5),(1,3,1,8)
+(1,6,4),(2,5,5),(3,1,8)
 
 select * from Cliente
 
@@ -152,5 +153,4 @@ Select * from Produto_Pedido
 Select * from Funcionario
 
 Select * from Pedido_Cliente
-
 

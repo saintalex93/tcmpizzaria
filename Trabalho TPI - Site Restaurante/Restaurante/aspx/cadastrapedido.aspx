@@ -10,102 +10,55 @@
         <asp:Panel ID="pnl_cadastrapedido" runat="server">
 
             <asp:HyperLink ID="linkCadastrarPed" runat="server" NavigateUrl="~/aspx/cadastrapedido.aspx">Cadastrar Pedidos</asp:HyperLink>
-            <asp:HyperLink ID="linkVerPed" runat="server" NavigateUrl="~/aspx/verificarpedido">Verificar Pedidos</asp:HyperLink>
+            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/aspx/cadastraprodutos.aspx">Atrelar Produtos aos Pedidos</asp:HyperLink>
+            <asp:HyperLink ID="linkVerPed" runat="server" NavigateUrl="~/aspx/verificarpedido?=verifica=2">Verificar Pedidos</asp:HyperLink>
 
-            <h1>Cadastro de Pedidos</h1>
+            <asp:Label ID="lblTitulo" runat="server" Text="Cadastro de Pedidos"></asp:Label>
             <br />
 
-            <asp:Panel ID="pnl_CadastrarPedido" runat="server">
+            <asp:Panel ID="pnl_CadastrarPedido" runat="server" style="float: left;">
             
                 <asp:Label ID="lblData" runat="server" Text="Data"></asp:Label>
-                <asp:TextBox ID="txtData" Type="date" onKeyPress="formatar('##/##/####', this)" runat="server" MaxLength="10"></asp:TextBox>
+                <asp:TextBox ID="txtData" onKeyPress="formatar('##/##/####', this)" runat="server" MaxLength="10"></asp:TextBox>
                 <br />
                 <asp:Label ID="lblValor" runat="server" Text="Valor"></asp:Label>
-                <asp:TextBox ID="txtValor" onKeyPress="formatar('##,###', this)" runat="server" MaxLength="6"></asp:TextBox>
+                <asp:TextBox ID="txtValor" onKeyPress="formatar('##,##', this)" runat="server" MaxLength="5"></asp:TextBox>
                 <br />
-                <asp:Label ID="lblSit" runat="server" Text="Situação"></asp:Label>
-                <asp:TextBox ID="txtSit" runat="server" MaxLength="1"></asp:TextBox>(0 para não pago, e 1 para pago)<br />
-
-            </asp:Panel>
-           
-            <%-- BOTAO QUE FAZ O INSERT EM PEDIDOS --%>
-
-            <asp:Button ID="btnCadastraPedido" runat="server" Text="Cadastrar Pedido" OnClientClick="return validaCampos();" OnClick="btnCadastraPedido_Click" />
-
-             <%-- PAINEL QUE MOSTRA O ULTIMO PEDIDO CRIADO(NAO VAI SER MOSTRADO, SÓ USADO PRA PEGAR O ID DO PEDIDO) --%>
-
-            <asp:Panel ID="pnl_dgUltimoPedido" runat="server" Visible="False">
-                <asp:DataGrid ID="dataGridPedido" runat="server" AutoGenerateColumns="False" Caption="Último pedido realizado">
-
-                <Columns>
-                    <asp:BoundColumn DataField="Pedido" HeaderText="Código do Pedido" ItemStyle-CssClass="ce">
-                        <ItemStyle CssClass="ce" />
-                    </asp:BoundColumn>
-
-                    <asp:BoundColumn DataField="Produtos" HeaderText="Produtos" ItemStyle-CssClass="ce"></asp:BoundColumn>
-
-                </Columns>
-            
-
-                </asp:DataGrid>
-            </asp:Panel>
-
-            <%-- PAINEL QUE MOSTRA OS PRODUTOS PARA O CLIENTE INSERIR PRODUTOS NO PEDIDO(INSERT EM PEDIDO_CLIENTE) --%>
-
-            <asp:Panel ID="pnl_dgProdutos" runat="server" Visible="False">
-
-                <asp:Label ID="lblProduto" runat="server" Text="Produto Consumido"></asp:Label>
-                <asp:TextBox ID="txtProduto" runat="server" MaxLength="2"></asp:TextBox>
+                <asp:Label ID="lblCodCli" runat="server" Text="Código do Cliente"></asp:Label>
+                <asp:TextBox ID="txtCodCli" runat="server" MaxLength="3"></asp:TextBox>
                 <br />
-                <asp:Label ID="lblQtd" runat="server" Text="Quantidade"></asp:Label>
-                <asp:TextBox ID="txtQtd" runat="server" MaxLength="2"></asp:TextBox>
-                <br />
+                 <asp:Label ID="lblSit" runat="server" Text="Situação"></asp:Label>
+                <asp:TextBox ID="txtSit" runat="server" MaxLength="1"></asp:TextBox>(0 para não pago, e 1 para pago)
 
-                <asp:DataGrid ID="datagridProdutos" runat="server" AutoGenerateColumns="False">
-                    <Columns>
-                        <asp:BoundColumn DataField="Cod_Produto" ReadOnly="True" ItemStyle-CssClass="ce" HeaderText="Código do Produto"></asp:BoundColumn>
-                        <asp:BoundColumn DataField="Nome_Produto" HeaderText="Nome do Produto" ItemStyle-CssClass="ce" ReadOnly="True">
-                            <ItemStyle CssClass="ce" />
-                        </asp:BoundColumn>
-                    </Columns>
-
-                </asp:DataGrid>
-
-                <asp:Button ID="btnCadastrarProdutos" runat="server" Text="Cadastrar Cliente" />
-
+            <asp:Button ID="btnCadastraPedido" runat="server" Text="Cadastrar Pedido" OnClick="btnCadastraPedido_Click" ValidationGroup="valGroup1" />
+                
             </asp:Panel>
 
-            <br /><br />
+            <%-- PAINEL QUE PUXA OS CLIENTES CADASTRADOS --%>
 
-            <asp:Panel ID="pnl_dgAddProduto" runat="server" Visible="False">
-
-                <asp:DataGrid ID="dataGridProduto" runat="server" AutoGenerateColumns="False">
-
-
-                    <Columns>
-                        <asp:BoundColumn DataField="Produtos" HeaderText="Produtos Adicionados nesse Pedido" ItemStyle-CssClass="ce"></asp:BoundColumn>
-                    </Columns>
-
-
-                </asp:DataGrid>
-            </asp:Panel>
-
-
-        <asp:Panel ID="pnl_dgCliente" runat="server" Visible="False">
+            <asp:Panel ID="pnl_dgCliente" runat="server">
 
             <asp:Label ID="lblcpf_usuario" runat="server" Text="CPF do Cliente"></asp:Label>
-            <asp:TextBox ID="txtCpf" runat="server"></asp:TextBox><br />
+            <asp:TextBox ID="txtCpf" onKeyPress="formatar('###.###.###-##', this)" runat="server" MaxLength="14"></asp:TextBox><br />
 
-                <asp:DataGrid ID="DataGridClientes" runat="server">
+                <asp:Button ID="btnPesquisarCliente" runat="server" Text="Pesquisar um Cliente" OnClick="btnPesquisarCliente_Click" ValidationGroup="valGroup2" />
+
+                <asp:DataGrid ID="datagridClientes" runat="server" AutoGenerateColumns="False">
+
                     <Columns>
-                        <asp:BoundColumn DataField="CodCliente" HeaderText="Código do Cliente" ItemStyle-CssClass="ce"></asp:BoundColumn>
-                        <asp:BoundColumn DataField="NomeCliente" HeaderText="Nome do Cliente" ItemStyle-CssClass="ce"></asp:BoundColumn>
+
+                        <asp:BoundColumn DataField="Cod_Cliente" HeaderText="Código do Cliente" ItemStyle-CssClass="ce"></asp:BoundColumn>
+                        <asp:BoundColumn DataField="Nome_Cliente" HeaderText="Nome do Cliente" ItemStyle-CssClass="ce"></asp:BoundColumn>
+
                     </Columns>
 
                 </asp:DataGrid>
-            <asp:Button ID="Button1" runat="server" Text="Button" />
+            
         </asp:Panel>
-            </asp:Panel>
+
+            
+        </asp:Panel>
+        
     </div>
 </asp:Content>
 
