@@ -90,6 +90,7 @@ div#banner
 
 .button
 {
+    margin-left:60px;
     padding: 5px;
     border: 2px solid #f8ce45;
     border-radius: 5px;
@@ -161,6 +162,19 @@ nav#menu ul li a:hover
     font-weight: bold;
     text-shadow: 1px 1px 1px #000;
 }
+
+.conteudo h1, h3
+{
+    width: 750px;
+    text-indent: 30px;
+    text-align: justify;
+    margin-left: 20px;
+    margin-top: 20px;
+    font-family: Papyrus;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px #000;
+}
+
 .conteudo img 
 {
     margin-left: 100px;
@@ -195,6 +209,12 @@ div#pnl_cadastrapedido
     left: 50%;
     width: 500px;
     height: 300px;
+}
+
+span
+{
+    margin-left: 55px;
+
 }
 
 /* CSS DO RODAPÉ */
@@ -279,4 +299,12 @@ div#ContentPlaceHolder1_pnlBotoesPedido
 .sumir
 {
     display: none;
+}
+
+
+{
+    height: 150px;
+    width: 300px;
+    background-color: blue;
+    margin-left: 50px;
 }

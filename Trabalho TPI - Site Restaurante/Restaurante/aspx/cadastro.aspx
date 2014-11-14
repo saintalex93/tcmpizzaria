@@ -14,17 +14,26 @@
     <h3>O que eu ganho por me cadastrar?</h3>
         <br />
     <p>
-        Você poderá ver seus pedidos,
-        na seção <a href="pedidos.aspx" title="Clique apenas se estiver logado !!">Meus Pedidos</a>,
-        e ainda participar de <a href="promocoes.aspx">promoções</a> 
-        exclusivas feitas para usuários cadastrados.
+        Você poderá ver seus pedidos, na seção 
+        
+        <a href="pedidos.aspx" title="Clique apenas se estiver logado !!">Meus Pedidos</a>
+        
+        , e ainda participar de 
+        
+        <a href="promocoes.aspx">promoções</a> 
     </p>
+    
+        <p>
+        exclusivas feitas para usuários cadastrados.
+        </p>
+        </br>
         </div>
-            <asp:Label ID="Label1" runat="server" Text="Campos obrigatórios são marcados com *" Font-Italic="True"></asp:Label>
+            <asp:Label  ID ="Label1" runat="server" Text="Campos obrigatórios são marcados com *" Font-Italic="True"></asp:Label>
 			    <fieldset id="formulario1" class = "grupoformulario" >
-                        <legend style="margin-left: 5px;color:#fff;">Dados Pessoais</legend>
+                        <legend style="margin: 55px; margin-bottom: 15px;color:#000; font-size: 20px;">Dados Pessoais</legend>
                           
                             <asp:Label ID="lblNome" runat="server" Text="Nome *" style="margin-left: 108px;" CssClass="spans" ></asp:Label>
+
                             <asp:TextBox ID="txtNome" name="nome" runat="server" MaxLength="70" Width="220px"></asp:TextBox>
 
                             <%--<asp:RequiredFieldValidator ID="requiredNome" runat="server" ErrorMessage="Nome é obrigatório *" CssClass="erros" Display="Dynamic" ControlToValidate="txtNome" ValidationGroup="Grupo1" AutoPostBack="false"></asp:RequiredFieldValidator>--%>
@@ -57,8 +66,10 @@
                     <br />
 
                     <fieldset class = "grupoformulario2">
-                        <legend style="margin-left: 5px;color:#fff;">Dados de Localidade</legend>
-                        <asp:Label ID="lblEstado" runat="server" Text="Estado *" style="margin-left: 63px;" CssClass="spans"></asp:Label>
+                        <legend style="margin-left: 55px; margin-bottom: 15px; padding-top: 30px; color:#000; font-size: 20px;">Dados de Localidade</legend>
+                        
+                        <asp:Label ID="lblEstado" runat="server" Text="Estado *" style="margin-left: 100px;" CssClass="spans"></asp:Label>
+                        
                         <asp:DropDownList ID="DDLEstado" runat="server">
                             <asp:ListItem Value="SP">SP</asp:ListItem>
                             <asp:ListItem Value="AC">AC</asp:ListItem>
@@ -89,41 +100,47 @@
                             <asp:ListItem Value="TO">TO</asp:ListItem>
                         </asp:DropDownList>
                     <br />
-                        <asp:Label ID="lblCidade" runat="server" Text="Cidade *" style="margin-left: 62px;" CssClass="spans"></asp:Label>
+                        <asp:Label ID="lblCidade" runat="server" Text="Cidade *" style="margin-left: 100px;" CssClass="spans"></asp:Label>
+
                         <asp:TextBox ID="txtCidade" runat="server" MaxLength="50" Width="199px"></asp:TextBox>
 
                         <%--<asp:RequiredFieldValidator ID="requiredCidade" runat="server" ErrorMessage="Cidade é obrigatória *" CssClass="erros" Display="Dynamic" ControlToValidate="txtCidade" ValidationGroup="Grupo1"></asp:RequiredFieldValidator>--%>
                     <br />
-                        <asp:Label ID="lblRua" runat="server" Text="Nome da Rua *" style="margin-left: 14px;" CssClass="spans"></asp:Label>
+                        <asp:Label ID="lblRua" runat="server" Text="Nome da Rua *" style="margin-left: 55px;" CssClass="spans"></asp:Label>
                         <asp:TextBox ID="txtRua" runat="server" MaxLength="50" Width="255px"></asp:TextBox>
 
                         <%--<asp:RequiredFieldValidator ID="requiredRua" runat="server" ErrorMessage="Rua é obrigatória *" CssClass="erros" Display="Dynamic" ControlToValidate="txtRua" ValidationGroup="Grupo1"></asp:RequiredFieldValidator>--%>
                     <br />
-                        <asp:Label ID="lblComplemento" runat="server" Text="Complemento" style="margin-left: 24px;" CssClass="spans"></asp:Label>
+                        <asp:Label ID="lblComplemento" runat="server" Text="Complemento" style="margin-left: 70px;" CssClass="spans"></asp:Label>
                         <asp:TextBox ID="txtComplemento" runat="server" MaxLength="60" Width="255px"></asp:TextBox>
                     <br />
-                        <asp:Label ID="lblNumCasa" runat="server" Text="Número *" style="margin-left: 56px;" CssClass="spans"></asp:Label>
+                        <asp:Label ID="lblNumCasa" runat="server" Text="Número *" style="margin-left: 90px;" CssClass="spans"></asp:Label>
                         <asp:TextBox ID="txtNumCasa" runat="server" MaxLength="4" Width="50px" min="1"></asp:TextBox>
 
                         <%--<asp:RequiredFieldValidator ID="requiredNumCasa" runat="server" ErrorMessage="Número Residencial é obrigatório *" CssClass="erros" Display="Dynamic" ControlToValidate="txtNumCasa" ValidationGroup="Grupo1"></asp:RequiredFieldValidator>--%>
                     <br />
-                        <asp:Label ID="lblNumApart" runat="server" Text="Nº Apartamento" style="margin-left: 10px;" CssClass="spans"></asp:Label>
+                        <asp:Label ID="lblNumApart" runat="server" Text="Nº Apartamento" style="margin-left: 50px;" CssClass="spans"></asp:Label>
                         <asp:TextBox ID="txtNumApart" runat="server" MaxLength="4" Width="50px"></asp:TextBox>
                     <br />
-                        <asp:Label ID="lblBairro" runat="server" Text="Bairro *" style="margin-left: 70px;" CssClass="spans"></asp:Label>
+                        <asp:Label ID="lblBairro" runat="server" Text="Bairro *" style="margin-left: 100px;" CssClass="spans"></asp:Label>
                         <asp:TextBox ID="txtBairro" runat="server" MaxLength="30" Width="180px"></asp:TextBox>
 
                         <%--<asp:RequiredFieldValidator ID="requiredBairro" runat="server" ErrorMessage="Bairro é obrigatório *" Display="Dynamic" CssClass="erros" ControlToValidate="txtBairro" ValidationGroup="Grupo1"></asp:RequiredFieldValidator>--%>
                     <br />
-                        <asp:Label ID="lblCep" runat="server" Text="CEP *" style="margin-left: 80px;" CssClass="spans"></asp:Label>
+                        <asp:Label ID="lblCep" runat="server" Text="CEP *" style="margin-left: 120px;" CssClass="spans"></asp:Label>
                         <asp:TextBox ID="txtCep" runat="server" MaxLength="8" Width="140px"></asp:TextBox>
 
                         <%--<asp:RequiredFieldValidator ID="requiredCep" runat="server" ErrorMessage="CEP é obrigatório *" CssClass="erros" Display="Dynamic" ControlToValidate="txtCep" ValidationGroup="Grupo1"></asp:RequiredFieldValidator>--%>
                     <br />
 
                     </fieldset>
+
+                    <br />
+
                     <asp:Button ID="btnEnvia" runat="server" Text="Enviar" OnClick="btnEnvia_Click" OnClientClick="return validaCadastro();" ValidationGroup="Grupo1" CssClass="button" />
+
                     <asp:Button ID="btnLimpa" runat="server" Text="Limpar" OnClick="btnLimpa_Click" OnClientClick="LimpaCampos();" CssClass="button" />
+
                     <asp:Button ID="Preenche" runat="server" Text="Preencher Campos" OnClick="Preenche_Click" Width="125px" Height="25px" />
                     <br />
                     <br />
