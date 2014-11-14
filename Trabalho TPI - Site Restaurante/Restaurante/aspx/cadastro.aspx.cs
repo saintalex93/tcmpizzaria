@@ -48,21 +48,19 @@ public partial class aspx_cadastro : System.Web.UI.Page
                 String tel = txtTel.Text;
                 String cel = txtCel.Text;
                 String cpf = txtCpf.Text;
+                String login = txtLogin_Cli.Text;
                 String senha = txtSenha.Text;
                 String senhaconf = txtSenhaConfirm.Text;
-                String cidade = txtCidade.Text.Trim();
                 String rua = txtRua.Text.Trim();
                 String complemento = txtComplemento.Text.Trim();
                 int numcasa = Convert.ToInt32(txtNumCasa.Text);
-                int numapart = Convert.ToInt32(txtNumApart.Text);
                 String bairro = txtBairro.Text.Trim();
                 String cep = txtCep.Text;
-                String estado = DDLEstado.SelectedValue.ToString();
 
                 conexao con2 = new conexao();
                 con2.conectar();
                
-                con2.command.CommandText = "select * from Cliente where Email_Cliente=@email or CPF_Cliente=@cpf";
+                con2.command.CommandText = "select * from Cliente where CPF_Cliente=@cpf";
                 con2.command.Parameters.Add("@cpf", SqlDbType.VarChar).Value = cpf;
                 result = Convert.ToInt32(con2.command.ExecuteScalar());
                 con2.fechaConexao();
@@ -71,26 +69,24 @@ public partial class aspx_cadastro : System.Web.UI.Page
                 {
                     Response.Write("<script>alert('Email e/ou CPF já cadastrado(s).\\nInsira outro Email ou CPF para se cadastrar.')</script>");
                 }
+
                 else
                 {
                     try
                     {
-
                 conexao con = new conexao();
                 con.conectar();
-                    con.command.CommandText = "insert into Cliente(Nome_Cliente, CPF_Cliente,Endereco_Cliente, Numero_Residencia, Numero_Apartamento, Bairro_Cliente, CEP_Cliente, Estado_Cliente, Cidade_Cliente, Complemento_Cliente, Telefone_Cliente, Celular_Cliente, Email_Cliente, Senha_Cliente, DataNascimento)" + "values(@nome, @cpf, @rua, @numcasa, @numapart, @bairro, @cep, @estado, @cidade, @complemento, @telefone, @celular, @email, @senha, @datanasc)";
+                    con.command.CommandText = "insert into Cliente(Nome_Cliente, CPF_Cliente,Endereco_Cliente, Numero_Residencia, Bairro_Cliente, CEP_Cliente, Complemento_Cliente, Telefone_Cliente, Celular_Cliente, Login_Cliente, Senha_Cliente)" + "values(@nome, @cpf, @rua, @numcasa, @bairro, @cep, @complemento, @telefone, @celular, @login, @senha)";
                     con.command.Parameters.Add("@nome", SqlDbType.VarChar).Value = nome;
                     con.command.Parameters.Add("@cpf", SqlDbType.VarChar).Value = cpf;
                     con.command.Parameters.Add("@rua", SqlDbType.VarChar).Value = rua;
                     con.command.Parameters.Add("@numcasa", SqlDbType.Int).Value = numcasa;
-                    con.command.Parameters.Add("@numapart", SqlDbType.Int).Value = numapart;
                     con.command.Parameters.Add("@bairro", SqlDbType.VarChar).Value = bairro;
                     con.command.Parameters.Add("@cep", SqlDbType.VarChar).Value = cep;
-                    con.command.Parameters.Add("@estado", SqlDbType.VarChar).Value = estado;
-                    con.command.Parameters.Add("@cidade", SqlDbType.VarChar).Value = cidade;
                     con.command.Parameters.Add("@complemento", SqlDbType.VarChar).Value = complemento;
                     con.command.Parameters.Add("@telefone", SqlDbType.VarChar).Value = tel;
                     con.command.Parameters.Add("@celular", SqlDbType.VarChar).Value = cel;
+                    con.command.Parameters.Add("@login",SqlDbType.VarChar).Value = login;
                     con.command.Parameters.Add("@senha", SqlDbType.VarChar).Value = senha;
                     con.command.ExecuteNonQuery();
                     con.fechaConexao();
@@ -115,15 +111,13 @@ protected void btnLimpa_Click(object sender, EventArgs e)
         txtNome.Text = "";
         txtTel.Text = "";
         txtCel.Text = "";
+        txtLogin_Cli.Text = "";
         txtCpf.Text = "";
         txtSenha.Text = "";
         txtSenhaConfirm.Text = "";
-        DDLEstado.SelectedIndex = 0;
-        txtCidade.Text = "";
         txtRua.Text = "";
         txtComplemento.Text = "";
         txtNumCasa.Text = "";
-        txtNumApart.Text = "";
         txtBairro.Text = "";
         txtCep.Text = "";
         btnLimpa.Focus();
@@ -134,15 +128,13 @@ protected void btnLimpa_Click(object sender, EventArgs e)
         txtNome.Text = "";
         txtTel.Text = "";
         txtCel.Text = "";
+        txtLogin_Cli.Text = "";
         txtCpf.Text = "";
         txtSenha.Text = "";
         txtSenhaConfirm.Text = "";
-        DDLEstado.SelectedIndex = 0;
-        txtCidade.Text = "";
         txtRua.Text = "";
         txtComplemento.Text = "";
         txtNumCasa.Text = "";
-        txtNumApart.Text = "";
         txtBairro.Text = "";
         txtCep.Text = "";
         btnLimpa.Focus();
@@ -152,13 +144,11 @@ protected void btnLimpa_Click(object sender, EventArgs e)
         txtNome.Text = "Nome Teste";
         txtTel.Text = "(11)9999-9999";
         txtCel.Text = "(11)9-3333-3333";
+        txtLogin_Cli.Text = "Testelog";
         txtCpf.Text = "666.666.666-66";
-        DDLEstado.SelectedIndex = 1;
-        txtCidade.Text = "Cidade Teste";
         txtRua.Text = "Rua Teste";
         txtComplemento.Text = "Complemento Teste";
         txtNumCasa.Text = "123";
-        txtNumApart.Text = "321";
         txtBairro.Text = "Bairro Teste";
         txtCep.Text = "55555-555";
         btnEnvia.Focus();
@@ -204,12 +194,6 @@ protected void btnLimpa_Click(object sender, EventArgs e)
         {
             x = false;
             txtSenhaConfirm.Focus();
-        }
-
-        else if (txtCidade.Text.Length < 3)
-        {
-            x = false;
-            txtCidade.Focus();
         }
 
         else if (txtRua.Text.Length < 1)

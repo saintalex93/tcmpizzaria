@@ -2,6 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <link rel="stylesheet" type="text/css" href="../css/style.css" />
+    <link rel="icon" type="image/png" href="../img/logo.ico" />
     <script type="text/javascript" src="../js/mascara.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
@@ -9,11 +10,7 @@
 
         <asp:Panel ID="pnl_cadastrapedido" runat="server">
 
-            <asp:HyperLink ID="linkCadastrarPed" runat="server" NavigateUrl="~/aspx/cadastrapedido.aspx">Cadastrar Pedidos</asp:HyperLink>
-            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/aspx/cadastraprodutos.aspx">Atrelar Produtos aos Pedidos</asp:HyperLink>
-            <asp:HyperLink ID="linkVerPed" runat="server" NavigateUrl="~/aspx/verificarpedido?=verifica=2">Verificar Pedidos</asp:HyperLink>
-
-            <asp:Label ID="lblTitulo" runat="server" Text="Cadastro de Pedidos"></asp:Label>
+            <asp:Label ID="lblTitulo" class="titulo" runat="server" Text="Cadastro de Pedidos"></asp:Label>
             <br />
 
             <asp:Panel ID="pnl_CadastrarPedido" runat="server" style="float: left;">
@@ -28,20 +25,21 @@
                 <asp:TextBox ID="txtCodCli" runat="server" MaxLength="3"></asp:TextBox>
                 <br />
                  <asp:Label ID="lblSit" runat="server" Text="Situação"></asp:Label>
-                <asp:TextBox ID="txtSit" runat="server" MaxLength="1"></asp:TextBox>(0 para não pago, e 1 para pago)
+                <asp:TextBox ID="txtSit" runat="server" MaxLength="1"></asp:TextBox><br />
+                <span>(0 para não pago, e 1 para pago)</span><br />
 
-            <asp:Button ID="btnCadastraPedido" runat="server" Text="Cadastrar Pedido" OnClick="btnCadastraPedido_Click" ValidationGroup="valGroup1" />
+            <asp:Button ID="btnCadastraPedido" runat="server" style="margin-top: 10px;" CssClass="button" Text="Cadastrar Pedido" OnClick="btnCadastraPedido_Click" ValidationGroup="valGroup1" />
                 
             </asp:Panel>
 
             <%-- PAINEL QUE PUXA OS CLIENTES CADASTRADOS --%>
 
-            <asp:Panel ID="pnl_dgCliente" runat="server">
+            <asp:Panel ID="pnl_dgCliente" style="float: right;" runat="server">
 
             <asp:Label ID="lblcpf_usuario" runat="server" Text="CPF do Cliente"></asp:Label>
             <asp:TextBox ID="txtCpf" onKeyPress="formatar('###.###.###-##', this)" runat="server" MaxLength="14"></asp:TextBox><br />
 
-                <asp:Button ID="btnPesquisarCliente" runat="server" Text="Pesquisar um Cliente" OnClick="btnPesquisarCliente_Click" ValidationGroup="valGroup2" />
+                <asp:Button ID="btnPesquisarCliente" runat="server" CssClass="button" style="margin: 10px 0px;" Text="Pesquisar um Cliente" OnClick="btnPesquisarCliente_Click" ValidationGroup="valGroup2" />
 
                 <asp:DataGrid ID="datagridClientes" runat="server" AutoGenerateColumns="False">
 

@@ -137,7 +137,7 @@ nav#menu ul li a:hover
     color: #3c55a5;
 }
 
-/* CSS DO CONTEUDO GERAL */
+/* CSS DA DIV QUE SEGURA OS CONTEUDOS */
 
 .conteudo 
 {
@@ -211,11 +211,6 @@ div#pnl_cadastrapedido
     height: 300px;
 }
 
-span
-{
-    margin-left: 55px;
-
-}
 
 /* CSS DO RODAPÉ */
 
@@ -302,9 +297,9 @@ div#ContentPlaceHolder1_pnlBotoesPedido
 }
 
 
-{
+/*{
     height: 150px;
     width: 300px;
     background-color: blue;
     margin-left: 50px;
-}
+}*/

@@ -11,21 +11,11 @@ public partial class aspx_cadastrapedido : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        //refresh();
-        //refreshUltimo();
-        //if (Session["nome"] != null)
-        //{
-        //    Response.Write("<script>alert('Você não está autorizado a acessar essa página')</script>");
-        //    Response.Write("<script>window.history.go(-1)</script>");
-        //}
-
-        //int cod2 = 0;
-        //cod2 = Convert.ToInt32(Session["codpedido"]);
-
-        //if (cod2 > 0)
-        //{
-        //    refreshUltimo();
-        //}
+        if (Session["nome"] != null)
+        {
+            Response.Write("<script>alert('Você não está autorizado a acessar essa página')</script>");
+            Response.Write("<script>window.history.go(-1)</script>");
+        }
     }
    
     protected void btnCadastraPedido_Click(object sender, EventArgs e)
@@ -65,41 +55,20 @@ public partial class aspx_cadastrapedido : System.Web.UI.Page
         Response.Redirect("cadastraproduto.aspx");
     }
 
-    protected void UltimosProdutos() 
-    {
-        //SqlDataAdapter dAdapter3 = new SqlDataAdapter();
-        //DataSet dt3 = new DataSet();
-
-        //conexao con3 = new conexao();
-        //con3.conectar();
-
-        ////con3.command.CommandText = "select Cod_Produto as Produtos from Pedido_Cliente where @cod = " + x + "\"";
-        //dAdapter3.SelectCommand = con3.command;
-        //dAdapter3.Fill(dt3);
-        //datagridProdutos.DataSource = dt3;
-        //datagridProdutos.DataBind();
-        //con3.fechaConexao();
-    }
-
     protected void btnPesquisarCliente_Click(object sender, EventArgs e)
     {
-        //SqlDataAdapter dAdapter5 = new SqlDataAdapter();
-        //DataSet dt5 = new DataSet();
+        SqlDataAdapter dAdapter5 = new SqlDataAdapter();
+        DataSet dt5 = new DataSet();
 
-        //conexao con = new conexao();
-        //con.conectar();
-        //string cpf = "%" + txtCpf.Text + "%";
-        //con.command.CommandText = "select Cod_Cliente,Nome_Cliente from Cliente where CPF_Cliente like @cpf";
-        //con.command.Parameters.Add("@cpf", SqlDbType.VarChar).Value = cpf;
-        //dAdapter5.SelectCommand = con.command;
-        //dAdapter5.Fill(dt5);
-        //datagridClientes.DataSource = dt5;
-        //datagridClientes.DataBind();
-        //con.fechaConexao();
-    }
-    protected void btnCadastrarProdutos_Click(object sender, EventArgs e)
-    {
-       
-        ////Response.Write("<script>alert('Produto Cadastrado com sucesso.')</script>");
+        conexao con = new conexao();
+        con.conectar();
+        string cpf = "%" + txtCpf.Text + "%";
+        con.command.CommandText = "select Cod_Cliente,Nome_Cliente from Cliente where CPF_Cliente like @cpf";
+        con.command.Parameters.Add("@cpf", SqlDbType.VarChar).Value = cpf;
+        dAdapter5.SelectCommand = con.command;
+        dAdapter5.Fill(dt5);
+        datagridClientes.DataSource = dt5;
+        datagridClientes.DataBind();
+        con.fechaConexao();
     }
 }

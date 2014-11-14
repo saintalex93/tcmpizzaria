@@ -25,7 +25,7 @@ public partial class aspx_modelo : System.Web.UI.MasterPage
         }
         if (Session["nome_func"] != null)
         {
-            linkCadastro.NavigateUrl = "cadastrapedido.aspx";
+            linkCadastro.NavigateUrl = "visualizapedido.aspx";
             linkCadastro.Text = "Gerenciar<br />Pedidos";
             pnl.Visible = false;
             pnl_logout.Visible = true;
@@ -83,15 +83,6 @@ public partial class aspx_modelo : System.Web.UI.MasterPage
                     pnl_logout.Visible = true;
                     Response.Redirect("index.aspx");
                 }
-                //if (nome_func != null)
-                //{
-                //    Session["funcionario"] = permissao;
-                //    Session["nome_func"] = nome_func;
-                //    lblNomeUsuario.Text = Session["nome_func"].ToString();
-                //    pnl.Visible = false;
-                //    pnl_logout.Visible = true;
-                //    Response.Redirect("index.aspx");
-                //}
                 else
                 {
                     Session.Abandon();
@@ -120,17 +111,17 @@ public partial class aspx_modelo : System.Web.UI.MasterPage
 
     protected void validacao() 
     {
-        //if (txtLogin.Text.Length < 1) 
-        //{
-        //    x = false;
-        //    Response.Write("<script>alert('Email não foi preenchido corretamente !!')</script>");
-        //    txtLogin.Focus();
-        //}
-        //else if (txtLogin_senha.Text.Length < 1)
-        //{
-        //    x = false;
-        //    Response.Write("<script>alert('Senha não foi preenchida corretamente !!')</script>");
-        //    txtLogin_senha.Focus();
-        //}
+        if (txtLogin.Text.Length < 1)
+        {
+            x = false;
+            Response.Write("<script>alert('Email não foi preenchido corretamente !!')</script>");
+            txtLogin.Focus();
+        }
+        else if (txtLogin_senha.Text.Length < 1)
+        {
+            x = false;
+            Response.Write("<script>alert('Senha não foi preenchida corretamente !!')</script>");
+            txtLogin_senha.Focus();
+        }
     }
 }

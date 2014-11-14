@@ -107,7 +107,7 @@ Values
 '(11) 3152-8596','(11) 98596-3231','Cleberson4321','Judith'
 ),
 (
-'Teste','111.111.111-00','Rua Teste',99,'Sul','99445-666','Próximo a sua mãe','(11)5507-3542',null,'a','a'
+'Teste','111.111.111-00','Rua Teste',99,'Sul','99445-666','Próximo a lugar algum','(11)5507-3542',null,'a','a'
 )
 
 insert into Funcionario(Nome_Func,Login_Func,Senha_Func)
@@ -124,7 +124,7 @@ Values
 ('15/08/2014', 25.90,2,0)
 
 go
-insert into Pedido(Data, Valor,Cod_Cliente, Situacao) values('05/02/1995', 15.50,1,0)
+
 Insert into Produto
 (Nome_Produto,Valor_Venda)
 Values	

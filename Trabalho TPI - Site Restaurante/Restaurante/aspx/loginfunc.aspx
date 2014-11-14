@@ -6,6 +6,7 @@
 <head runat="server">
     <title>Ratatouille Restaurant Acesso</title>
     <link rel="stylesheet" type="text/css" href="../css/estilologinfunc.css" />
+    <link rel="icon" type="image/png" href="../img/logo.ico" />
 </head>
 <body>
     <form id="form1" runat="server">
