@@ -1,0 +1,614 @@
+﻿@import url(http://fonts.googleapis.com/css?family=Raleway);
+*{
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+body {
+    font-family: 'Raleway', sans-serif;
+	-webkit-animation: FadeIn 0.6s;
+	animation: FadeIn 0.6s;
+}
+
+@-webkit-keyframes FadeIn{
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+.wrapper
+{
+    width: 960px;
+    margin: 0 auto;
+}
+.clearfix {
+	clear: both;
+	overflow: auto;
+	width: 0;
+	height: 0;
+}
+
+h1 {
+    font-size: 50px;
+	text-align: center;
+}
+h2 {
+    font-size: 30px;
+	text-align: center;
+}
+input {
+	outline-color: #583742;
+}
+/* Hack pra tirar a cor do autocomplete que o navegador coloca */
+input:-webkit-autofill {
+	 -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+	 box-shadow: 0 0 0px 1000px #583742 #fff inset;
+}
+input[type="submit"]:hover {
+	cursor: pointer;
+}
+
+header
+{
+    min-width: 100%;
+    float: left;
+	position: relative;
+	z-index: 999;
+    height: 200px;
+    background: url(../imagens/fundo_header.jpg);
+	box-shadow: 0px 9px 27px #000;
+}
+
+.logo {
+	float: left;
+	margin: 0 40px 0 0;
+}
+
+
+.menuTopo {
+    float: left;
+	position: relative;
+    margin: 80px 0 0 0;
+}
+.menuTopo ul{
+    list-style: none;
+}
+.menuTopo ul li{
+    display: inline-block;
+    float: left;
+}
+.menuTopo ul li a {
+    text-decoration: none;
+    padding: 7px 10px;
+    font-size: 14px;
+    color: #fff;
+    font-family: Verdana;
+    text-transform: uppercase;
+	transition: all 0.6s;
+}
+.cursor {
+	cursor: default;
+}
+
+/* MOSTRANDO SUBMENU */
+
+.menuTopo ul li ul {
+	display: none;
+	max-width: 160px;
+	z-index: 999;
+	-webkit-animation: apareceMenu 0.7s;
+	/*background: #583742;*/
+	border: 1px solid #eeebe3;
+	border-radius: 8px;
+}
+.menuTopo ul li:hover ul {
+	display: block;
+	position: absolute;
+	top: 20px;
+	left: 180px;
+}
+.menuTopo ul li ul li {
+	float: none !important;
+}
+.menuTopo ul li ul li a {
+	display: block;
+	min-width: 140px;
+}
+
+@-webkit-keyframes apareceMenu {
+	0% {
+		opacity: 0;
+		left: 220px;
+	}
+	100% {
+		opacity: 1;
+		left: 180px;
+	}
+}
+
+.menuTopo ul li a:hover {
+	color: #ef6f53;
+}
+
+.boxLogin {
+	float: right;
+	width: 180px;
+	padding: 7px;
+	margin: 40px 0 0 0;
+	border-radius: 5px;
+	background: linear-gradient(to bottom, rgba(255,255,255,0.7),rgba(255,255,255,0.5));
+}
+.boxLogin .lblEmail, .boxLogin .lblSenha {
+	color: #583742;
+	font-weight: bold;
+	font-size: 17px;
+}
+.boxLogin input[type="submit"] {
+	float: right;
+	padding: 5px;
+	border-radius: 5px;
+	background: linear-gradient(to bottom, rgba(239,111,83,1), rgba(200,94,71,1));
+	color: #fff;
+	margin: 7px 0 0 0;
+	transition: all 0.6s;
+}
+.boxLogin input[type="submit"]:hover {
+	color: #583742;
+}
+.boxLogin input[type="text"], .boxLogin input[type="password"] {
+	border-radius: 5px;
+	font-size: 16px;
+	max-width: 180px;
+	color: #ef6f53;
+}
+.boxLogin a {
+	display: block;
+	margin: 9px 0 0 0;
+	text-decoration: none;
+	color: #fff;
+	transition: all 0.6s;
+}
+.boxLogin a:hover {
+	color: #ff7b5e;
+	font-weight: bold;
+	text-shadow: 0px 0px 6px #fff;
+}
+
+/* BOX DE LOGOUT */
+
+.boxLogout {
+	float: right;
+	width: auto;
+	max-width: 230px;
+	padding: 7px;
+	margin: 40px 0 0 0;
+	border-radius: 5px;
+	background: linear-gradient(to bottom, rgba(255,255,255,0.7),rgba(255,255,255,0.5));
+}
+.boxLogout span {
+	display: block;
+	float: left;
+	clear: left;
+	color: #fff;
+}
+.boxLogout .lblNomeUsuario {
+	float: none;
+}
+.boxLogout input[type="submit"] {
+	float: right;
+	padding: 5px;
+	border-radius: 5px;
+	background: linear-gradient(to bottom, rgba(239,111,83,1), rgba(200,94,71,1));
+	color: #fff;
+	margin: 7px 0 0 0;
+	transition: all ease-in-out 0.6s;
+}
+.boxLogout input[type="submit"]:hover {
+	color: #583742;
+}
+
+.banner {
+	clear: both;
+	position: relative;
+}
+
+section {
+    clear: both;
+}
+.chamada {
+    min-width: 100%;
+    float: left;
+    padding: 60px 0;
+	background: radial-gradient(rgba(238,235,227,1),rgba(255,255,255,1));
+}
+.chamada h1, .chamada h2 {
+	color: #ef6f53;
+}
+.chamada .btnPedir a{
+	text-decoration: none;
+	float: left;
+	padding: 8px;
+	margin: 20px 410px 0 410px;
+	color: #fff;
+	border-radius: 3px;
+	background: linear-gradient(to bottom, rgba(239,111,83,1), rgba(200,94,71,1));
+	transition: all 0.6s;
+}
+.chamada .btnPedir a:hover {
+	color: #583742;
+	font-weight: bold;
+}
+
+.melhores {
+    min-width: 100%;
+    float: left;
+	position: relative;
+	box-shadow: 0 -9px 27px #000;
+    background: url(../imagens/fundo_header.jpg);
+    padding: 30px 0;
+}
+div[class*="tag"] {
+	float: left;
+    width: 270px;
+    display: inline-block;
+    margin: 0 25px;
+}
+div[class*="tag"] img {
+    margin: 0 70px;
+}
+div[class*="tag"] h3 {
+    color: #fff;
+    font-size: 22px;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 15px 0 0 0;
+}
+div[class*="tag"] h3:nth-child(3) {
+    color: #ef6f53;
+    margin: 0 !important;
+    font-size: 21px;
+}
+div[class*="tag"] p {
+    font-size: 14px;
+    line-height: 22px;
+    color: #fff;
+    width: 230px;
+    margin: 10px 20px 0 20px;
+}
+
+.chamadaCardapio {
+	float: left;
+	min-width: 100%;
+	clear: both;
+	padding: 45px 0;
+	background: #eeebe3;
+}
+
+div[class*="chamadacdp"] {
+	float: left;
+	display: inline-block;
+	width: 180px;
+	margin: 40px 6px 0 6px;
+}
+div[class*="pizza_chamada"]{
+	height: 160px;
+	width: 160px;
+	border-radius: 160px;
+	border: 4px solid #fff;
+	margin: 0 6px 20px 6px;
+}
+div[class*="chamadacdp"] h3{
+	font-size: 20px;
+	color: #583742;
+	text-align: center;
+}
+
+footer {
+	clear: both;
+	float: left;
+	padding: 30px 0;
+	min-width: 100%;
+	background: url(../imagens/fundo_header.jpg);
+}
+.logoRodape {
+	margin: 0 364px;
+}
+.menuRodape {
+	float: left;
+	margin: 0 204px 20px 204px;
+}
+.menuRodape ul{
+	list-style: none;
+}
+.menuRodape ul li {
+	float: left;
+	display: inline-block;
+}
+.menuRodape ul li a {
+	text-decoration: none;
+	text-transform: uppercase;
+	padding: 7px 10px;
+	font-size: 15px;
+	color: #fff;
+	font-family: Verdana;
+	transition: all 0.6s;
+}
+.menuRodape ul li a:hover {
+	color: #ef6f53;
+}
+footer p {
+	text-align: center;
+	color: #fff;
+}
+
+/* CSS INTERNO */
+
+.bannerInterno {
+	float: left;
+	min-width: 100%;
+	padding: 40px 0;
+	background: radial-gradient(rgba(238,235,227,1),rgba(255,255,255,1));
+}
+.bannerInterno h1 {
+	color: #ef6f53;
+}
+
+/* CSS PÁGINA CADASTRO */
+
+.descCadastro {
+	float: left;
+	min-width: 100%;
+	padding: 30px 0;
+	background: linear-gradient(to bottom, rgba(250,249,246,1), rgba(238,235,227,1));
+}
+.descCadastro h3 {
+	text-align: center;
+	margin: 0 0 25px 0;
+	color: #583742;
+}
+.descCadastro p {
+	text-align: center;
+	margin: 0 200px;
+}
+.descCadastro p a {
+	text-decoration: none;
+	color: #ef6f53;
+	transition: all 0.6s;
+}
+.descCadastro p a:hover {
+	color: #f89b5d;
+}
+
+.descForm {
+	min-width: 100%;
+	float: left;
+	text-align: left;
+	clear: both;
+}
+.descForm p {
+	color: #583742;
+	font-style: italic;
+	font-weight: bold;
+	margin: 20px 0 0 120px;
+}
+
+.formulario1, .formulario2 {
+	min-width: 100%;
+	float: left;
+	background: #eeebe3;
+	padding: 20px 0;
+	margin: 20px 0 0 0;
+	border-top: 2px solid #583742;
+	border-bottom: 2px solid #583742;
+}
+.formulario1 legend, .formulario2 legend {
+	margin: 0 auto;
+	color: #ff7b5e;
+	font-size: 19px;
+	font-weight: bold;
+}
+.formulario1 .spans, .formulario2 .spans {
+	display: block;
+	float: left;
+	clear: left;
+	width: 170px;
+	text-align: right;
+	margin: 0 0 0 201px;
+	color: #583742;
+	font-weight: bold;
+}
+.formulario1 input[type="text"], .formulario1 input[type="password"], .formulario2 input[type="text"], .formulario2 input[type="number"], .formulario2 select {
+	border: 1px solid #583742;
+	border-radius: 3px;
+	font-size: 15px;
+	float: left;
+	margin: 0 0 12px 10px;
+}
+
+.buttonsCadastro {
+	clear: both;
+	min-width: 100%;
+	float: left;
+	padding: 20px 0;
+}
+.buttonsCadastro input[type="submit"] {
+	padding: 6px;
+	border-radius: 4px;
+	float: left;
+	background: linear-gradient(to bottom,rgba(239,111,83,1), rgba(200,94,71,1));
+	margin: 0 10px;
+	color: #fff;
+	transition: all 0.6s;
+}
+.buttonsCadastro input[type="submit"]:hover {
+	color: #583742;
+}
+.buttonsCadastro input[type="submit"]:first-child {
+	margin: 0 10px 0 398px;
+}
+.buttonsCadastro .btnPreenche {
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+.resposta {
+	clear: both;
+	min-width: 100%;
+	float: left;
+	padding: 20px 0;
+}
+
+/* CSS PÁGINA CARDÁPIO */
+
+.cardapio {
+	clear: both;
+	float: left;
+	min-width: 100%;
+	padding: 30px 0;
+	background: #eeebe3;
+	border-top: 2px solid #583742;
+	border-bottom: 2px solid #583742;
+}
+.cardapio h2 {
+	color: #583742;
+	font-size: 25px;
+	margin: 0 0 20px 0;
+}
+
+.cardapio table {
+	margin: 0 145px;
+}
+.cardapio td {
+	padding: 9px 5px;
+	border: 1px solid #583742;
+	font-weight: bold;
+	color: #ef6f53;
+	background: #fff3e9;
+}
+.cardapio .colunaheader {
+	font-size: 18px;
+	text-align: center;
+	background: url(../imagens/fundo_header.jpg);
+	color: #fff;
+}
+.cardapio .clmSabor {
+	text-align: center;
+}
+.cardapio .clmIngred {
+	font-size: 15px;
+}
+.cardapio .clmPreco {
+	width: auto;
+}
+
+/* CSS PÁGINA PROMOÇÃO */
+
+.promocoes {
+	float: left;
+	min-width: 100%;
+	padding: 30px 0;
+	background: #eeebe3;
+	border-top: 2px solid #583742;
+	border-bottom: 2px solid #583742;
+}
+.promocoes table {
+	margin: 0 130px;
+}
+.promocoes td {
+	padding: 9px 5px;
+	border: 1px solid #583742;
+	font-weight: bold;
+	color: #ef6f53;
+	background: #fff3e9;
+}
+.promocoes .colunaheader {
+	font-size: 18px;
+	text-align: center;
+	background: url(../imagens/fundo_header.jpg);
+	color: #fff;
+}
+.promocoes .clmNomePromo {
+	text-align: center;
+}
+
+/* CSS PÁGINA PEDIDOS */
+
+.pedidos .buttonsPedidos {
+	float: left;
+	margin: 0 136px 30px 136px;
+}
+.pedidos .buttonsPedidos input[type="submit"]{
+	padding: 8px 4px;
+	background: linear-gradient(to bottom,rgba(239,111,83,1), rgba(200,94,71,1));
+	color: #fff;
+	border-radius: 4px;
+	font-weight: bold;
+}
+
+.pedidos {
+	float: left;
+	min-width: 100%;
+	padding: 30px 0;
+	background: #eeebe3;
+	border-top: 2px solid #583742;
+	border-bottom: 2px solid #583742;
+}
+.pedidos table {
+	margin: 0 358px;
+	clear: both;
+}
+.pedidos td {
+	padding: 10px 15px;
+	border: 1px solid #583742;
+	font-weight: bold;
+	color: #ef6f53;
+	background: #fff3e9;
+	font-size: 18px;
+	text-align: center;
+}
+.pedidos .colunaheader {
+	font-size: 18px;
+	text-align: center;
+	background: url(../imagens/fundo_header.jpg);
+	color: #fff;
+}
+
+/* ESTILO PÁGINA TROCAR SENHA */
+
+.trocaSenha {
+	min-width: 100%;
+	float: left;
+	padding: 30px 0;
+	background: #eeebe3;
+	border-top: 2px solid #583742;
+	border-bottom: 2px solid #583742;
+}
+.trocaSenha fieldset {
+	max-width: 170px;
+	margin: 0 400px;
+	line-height: 25px;
+}
+.trocaSenha span {
+	display: block;
+	color: #583742;
+	font-weight: bold;
+}
+.trocaSenha input[type="password"] {
+	border: 1px solid #583742;
+	border-radius: 4px;
+	color: #ef6f53;
+}
+.btnTrocaSenha {
+	padding: 4px;
+	background: linear-gradient(to bottom,rgba(239,111,83,1), rgba(200,94,71,1));
+	border-radius: 3px;
+	margin: 20px 437px 0 437px;
+	font-weight: bold;
+	color: #fff;
+	transition: all 0.4s;
+}
+.btnTrocaSenha:hover {
+	color: #583742;
+}
