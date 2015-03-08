@@ -16,8 +16,8 @@ Cod_Cliente INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 Nome_Cliente VARCHAR(40),
 CPF_Cliente VARCHAR(15),
 Endereco_Cliente VARCHAR(40),
-Numero_Residencia VARCHAR(10),
-Numero_Apartamento VARCHAR(10),
+Numero_Residencia int,
+Numero_Apartamento int,
 Bairro_Cliente Varchar(30),
 CEP_Cliente VARCHAR(9),
 Estado_Cliente VARCHAR(2),
@@ -58,7 +58,51 @@ Cod_Permissao INT FOREIGN KEY REFERENCES Permissao(Cod_Permissao),
 data_Nasc VARCHAR(10),
 )
 go
+/*
+select Cod_Produto as [ID Produto],  Nome_Produto as [Produto], Valor_Venda as [Preço]
+from produto
+where Cod_Produto
+order by cod_produto IN 
+	(
+	select Cod_Produto 
+	from Detalhe_Pedido 
+	where Cod_Pedido = 1 
+	)
 
+	select Produto.Cod_Produto as [ID Produto],  
+	   Produto.Nome_Produto as [Produto], 
+	   Produto.Valor_Venda as [Preço]
+from Pedido
+inner join Detalhe_Pedido
+on Pedido.Cod_Pedido = Detalhe_Pedido.Cod_Pedido
+inner join Produto
+on Detalhe_Pedido.Cod_Produto = Produto.Cod_Produto
+where Pedido.Cod_Pedido = 3;
+
+select *,
+	(
+		select *
+		from produto where Cod_Pedido = 1
+	)
+	from detalhe_pedido where cod_pedido = 1
+		
+	)
+
+Cod_Produto as [ID Produto],  Nome_Produto as [Produto], Valor_Venda as [Preço] 
+from produto
+where Cod_Produto IN 
+	(
+	select Cod_Produto 
+	from Detalhe_Pedido 
+	where Cod_Pedido = 1 
+	)
+
+
+
+select * from Detalhe_Pedido where Cod_Pedido in (select Cod_Produto from produto where Cod_Produto = 1)
+
+
+*/
 create table Insumo
 (
 Cod_Insumo INT IDENTITY(1,1) PRIMARY KEY,
@@ -91,17 +135,16 @@ Nome_Produto VARCHAR(40),
 Valor_Venda DECIMAL(6,2),
 Ingred_Prod VARCHAR(100),
 Sobe_Site INT,
-
+Categoria INT
 )
 go
 
 create table Pedido
 (
 Cod_Pedido INT IDENTITY(1,1) PRIMARY KEY,
-Data Date,
+Data date,
 Hora VarChar(5),
 Valor numeric (5,2),
-Ajuste numeric (5,2),
 Cod_Funcionario INT FOREIGN KEY REFERENCES Funcionario(Cod_Funcionario),
 Cod_Cliente INT FOREIGN KEY REFERENCES Cliente(Cod_Cliente),
 )
@@ -190,7 +233,15 @@ Cod_Detalhe INT IDENTITY(1,1) PRIMARY KEY,
 Cod_Produto INT FOREIGN KEY REFERENCES Produto(Cod_Produto),
 Cod_Pedido INT FOREIGN KEY REFERENCES Pedido(Cod_Pedido),
 )
+/*
+select * from Detalhe_Pedido 
 
+select Cod_Produto as [ID Produto],  Nome_Produto as [Produto], Valor_Venda as [Preço], (select count(Cod_Pedido)from detalhe_pedido where cod_produto = 3)  as Quantidade  from produto where Cod_Produto IN (select Cod_Produto from Detalhe_Pedido where Cod_Pedido = 3)
+
+select Cod_Produto from produto where Cod_Produto IN (select Cod_Produto as [ID Produto],  Nome_Produto as [Produto], Valor_Venda as [Preço] from Detalhe_Pedido where Cod_Pedido = 3)
+
+select * from Detalhe_Pedido
+*/
 go
 
 -- INSERT'S
@@ -270,13 +321,9 @@ values
 ('Tomate',15.30,25,20)
 go
 
-insert into FuncPermissao(Login_, Senha, Cod_Funcionario, Cod_Permissao) 
-values
-('admin','123456', 1, 1),
-('gere','12345', 2, 2),
-('aten','1234', 3, 3)
+insert into FuncPermissao(Login_, Senha) 
+values ('admin','1234'),('Tuca','123456')
 go
-
 
 
 insert into Produto
@@ -284,59 +331,31 @@ insert into Produto
 Nome_Produto,
 Valor_Venda,
 Ingred_Prod,
-Sobe_Site
+Sobe_Site,
+Categoria
 )
 values
-('Pizza Baiana',20.00,'Queijo Mussarela, Calabresa Moída, Ovos, Cebola e Pimenta.',1),
-('Pizza Mussarela',18.40,'Queijo Mussarela e Cebola.',1),
-('Pizza Bacon',20.20,'Queijo Mussarela, Ovos e Bacon.,',1),
-('Pizza Americana',24.00,'Queijo Mussarela, Lombo, Champignon e Palmito.',1),
-('Pizza Bauru',23.50,'Queijo Mussarela, Presunto e Tomate.',1),
-('Pizza Calabresa',18.00,'Queijo Mussarela, Calabresa e Cebola.',1),
-('Pizza Catupiry',23.00,'Queijo Mussarela e Catupiry.',1),
-('Pizza Três Queijos',24.70,'Queijo Mussarela, Catupiry e Provolone',1),
-('Pizza Alemã',25.20,'Queijo Mussarela, Calabresa Moída e Parmesão.',1),
-('Pizza Havaiana Brotinho',13.70,'Queijo Mussarela, ',1),
-('Pizza Baiana Brotinho',14.50,'Queijo Mussarela, ',0),
-('Pizza Palmito Brotinho',15.00,'Queijo Mussarela, ',0),
-('Pizza Peruana Brotinho',14.00,'Queijo Mussarela, ',1),
-('Refrigerante',7.00,null,0),
-('Cerveja',9.40,null,0),
-('Vinho',15.50,null,0),
-('Champagne',17.00,null,0),
-('Porção de Camarão',19.00,'Porção de Camarão, acompanhada de cebola',0),
-('Porção de Calabresa',18.00,'Porção de Calabresa, acompanhada de cebola',0),
-('Porção de Provolone',17.00,'Porção de Provolone, acompanhada de cebola',1),
-('Pizza Quatro Queijos',23.30,'Gorgonzola, Provolone, Mussarela e Catupiry',1)
+('Baiana',20.00,'Queijo Mussarela, Calabresa Moída, Ovos, Cebola e Pimenta.',1,1),('Mussarela',18.40,'Queijo Mussarela e Cebola.',1,1),('Bacon',20.20,'Queijo Mussarela, Ovos e Bacon.',1,1),
+('Americana',24.00,'Queijo Mussarela, Lombo, Champignon e Palmito.',1,1),('Bauru',23.50,'Queijo Mussarela, Presunto e Tomate.',1,1),('Calabresa',18.00,'Queijo Mussarela, Calabresa e Cebola.',1,1),
+('Catupiry',23.00,'Queijo Mussarela e Catupiry.',1,1),('Três Queijos',24.70,'Queijo Mussarela, Catupiry e Provolone',1,1),('Alemã',25.20,'Queijo Mussarela, Calabresa Moída e Parmesão.',1,1),
+('Pizza Havaiana Brotinho',13.70,'Queijo Mussarela, ',0,2),('Pizza Baiana Brotinho',14.50,'Queijo Mussarela, ',0,2),('Pizza Palmito Brotinho',15.00,'Queijo Mussarela, ',0,2),('Pizza Peruana Brotinho',14.00,'Queijo Mussarela, ',0,2),
+('Refrigerante',7.00,null,0,3),('Cerveja',9.40,null,0,3),('Vinho',15.50,null,0,3),('Champagne',17.00,null,0,3),
+('Porção de Camarão',19.00,'Porção de Camarão, acompanhada de cebola',0,4),('Porção de Calabresa',18.00,'Porção de Calabresa, acompanhada de cebola',0,4),('Porção de Provolone',17.00,'Porção de Provolone, acompanhada de cebola',1,4)
 go
 
-insert into Pedido(
-Cod_Cliente,
-Cod_Funcionario,
-Data,
-Hora,
-Valor)
+insert into Pedido(Cod_Cliente,Cod_Funcionario,Data,Hora,Valor)
 values
-(1,1,'14-11-2014','20:15',31.00),
-(2,2,'22-01-2014','19:14',25.25),
-(3,3,'12-08-2014','22:57',38.89),
-(3,1,'04-10-2014','21:40',78.98),
-(5,2,'02-07-2014','21:15',42.30),
-(5,3,'05-02-2014','20:22',67.90),
-(5,2,'15-06-2014','22:57',84.20),
-(4,1,'29-04-2014','18:49',76.00),
-(4,2,'02-07-2014','21:15',42.30),
-(4,3,'05-02-2014','20:22',67.90),
-(4,2,'15-06-2014','22:57',84.20),
-(4,1,'29-04-2014','18:49',76.00),
-(2,3,'30-03-2014','19:16',58.20),
-(2,3,'01-11-2014','19:16',58.20),
-(3,1,'02-11-2014','19:16',58.20),
-(2,2,'05-11-2014','19:16',58.20),
-(1,1,'10-11-2014','19:16',58.20),
-(3,3,'14-11-2014','19:16',58.20),
-(2,3,'14-11-2014','19:16',58.20)
+(1,1,'2014-01-05','20:15',31.00),
+(2,2,'2014-07-22','19:14',25.25),
+(3,3,'2014-08-12','22:57',38.89),
+(3,1,'2014-10-04','21:40',78.98),
+(5,2,'2014-07-02','21:15',42.30),
+(5,3,'2014-02-05','20:22',67.90),
+(5,2,'2014-06-15','22:57',84.20),
+(4,1,'2014-04-29','18:49',76.00),
+(2,3,'2014-02-15','19:16',58.20)
 go
+
 
 insert into Fornecedor
 (
@@ -373,15 +392,12 @@ insert into Promocao
 Nome_Promocao,
 Descricao,
 sobe_promocao,
-usuario_cadastrado,
-Preco_Original,
-Preco_Promocao
+usuario_cadastrado
 )
 values
-('Final de semana','Nos finais de semana deste mês(Novembro), as pizzas de Mussarela,Calabresa e Baiana terão seu preço reduzido a R$16,00.<br /> Aproveite !!',1,0,20,6),
-('Cookie Promocional','Compras acima de R$25,00, você ganha dois deliciosos cookies de chocolate.',1,0,25,25),
-('Compras acima de R$50,00','Ao gastar R$50,00 ou mais em nossa Pizzaria, você concorre a um Iphone 9 !!',1,1,50,50),
-('3 por 2 natalino','Até o Natal, três pizzas e um refrigerante sairá por R$ 50! Ho ho ho!',1,1,70,50)
+('Final de semana','Nos finais de semana deste mês(Novembro), as pizzas de Mussarela,Calabresa e Baiana terão seu preço reduzido a R$16,00.<br /> Aproveite !!',1,0),
+('Cookie Promocional','Compras acima de R$25,00, você ganha dois deliciosos cookies de chocolate.',1,0),
+('Compras acima de R$50,00','Ao gastar R$50,00 ou mais em nossa Pizzaria, você concorre a um Iphone 9 !!',1,1)
 go
 
 insert into insumo_fornecedor
@@ -449,13 +465,32 @@ values
 (1,2),
 (1,2),
 (2,2),
-(2,3)
+(3,3)
+
 go
 
-/*
-select cod_produto, Nome_produto, valor_venda, sobe_site from produto where Nome_produto = 'Pizza Quatro Queijos'
+Select * from Produto
+Select * from Insumo
 
-select * from produto
+/* Deixar 3 ou mais dados em cada tabela por favor.
 
-select * from promocao p
+TABELAS				  STATUS
+
+cliente				|   OK
+permissao			|   OK
+funcionario			|   OK
+insumo				|   OK
+funcpermissao		|   OK
+categoria			|   OK
+produto				|   OK
+pedido				|   OK
+fornecedor			|   faltam dados
+insumo_fornecedor	|   OK
+produto_insumo		|   OK
+promocao 			|   OK
+produto_promocao	|   OK
+pedido_fornecedor	|   OK
+detalhe_pedido		|   Faltam dados
 */
+
+select * from Cliente
