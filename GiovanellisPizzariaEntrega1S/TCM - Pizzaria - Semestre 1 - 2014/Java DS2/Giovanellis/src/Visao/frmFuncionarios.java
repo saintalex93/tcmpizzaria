@@ -77,7 +77,7 @@ public class frmFuncionarios extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 520, 70, -1));
-        getContentPane().add(JdcInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 140, -1));
+        getContentPane().add(JdcInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 140, -1));
         getContentPane().add(JdcFim, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 240, 140, -1));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

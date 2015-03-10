@@ -417,3 +417,6 @@ C:\Users\Gui\Desktop\Giovanellis Pizzaria\trunk\GiovanellisPizzariaEntrega1S\TCM
 C:\Users\Gui\Desktop\Giovanellis Pizzaria\trunk\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Properties.Resources.resources
 C:\Users\Gui\Desktop\Giovanellis Pizzaria\trunk\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Rede.resources
 C:\Users\Gui\Desktop\Giovanellis Pizzaria\trunk\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.csproj.GenerateResource.Cache
+C:\Users\Alex\Desktop\TCC GIOVANELLIS\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe.config
+C:\Users\Alex\Desktop\TCC GIOVANELLIS\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.exe
+C:\Users\Alex\Desktop\TCC GIOVANELLIS\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.pdb

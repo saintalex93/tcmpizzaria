@@ -38,13 +38,12 @@ public class frmFornecedores extends javax.swing.JFrame {
         JdcFim = new com.toedter.calendar.JDateChooser();
         JdcInicio = new com.toedter.calendar.JDateChooser();
         btnVoltar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        lstProdutos = new javax.swing.JList();
         jLabel1 = new javax.swing.JLabel();
         btnTotal = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        lstPedidos = new javax.swing.JList();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Fornecedores");
@@ -65,7 +64,7 @@ public class frmFornecedores extends javax.swing.JFrame {
                 JdcFimPropertyChange(evt);
             }
         });
-        getContentPane().add(JdcFim, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 30, 130, -1));
+        getContentPane().add(JdcFim, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, 130, -1));
 
         JdcInicio.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -77,7 +76,7 @@ public class frmFornecedores extends javax.swing.JFrame {
                 JdcInicioPropertyChange(evt);
             }
         });
-        getContentPane().add(JdcInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 130, -1));
+        getContentPane().add(JdcInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 130, -1));
 
         btnVoltar.setText("Voltar");
         btnVoltar.addActionListener(new java.awt.event.ActionListener() {
@@ -85,15 +84,11 @@ public class frmFornecedores extends javax.swing.JFrame {
                 btnVoltarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 470, 70, -1));
-
-        jScrollPane1.setViewportView(lstProdutos);
-
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 390, 110));
+        getContentPane().add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 400, 70, -1));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Total");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 430, 100, 30));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 360, 100, 30));
 
         btnTotal.setText("Calcular");
         btnTotal.addActionListener(new java.awt.event.ActionListener() {
@@ -101,16 +96,31 @@ public class frmFornecedores extends javax.swing.JFrame {
                 btnTotalActionPerformed(evt);
             }
         });
-        getContentPane().add(btnTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 470, -1, -1));
+        getContentPane().add(btnTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 400, -1, -1));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", " " }));
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 390, -1));
+        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 390, -1));
 
-        jScrollPane2.setViewportView(lstPedidos);
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 390, 110));
+        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 390, 120));
 
-        setBounds(0, 0, 425, 563);
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Descritivos de Compras de Fornecedores");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 390, 30));
+
+        setBounds(0, 0, 425, 501);
     }// </editor-fold>//GEN-END:initComponents
 
     private void JdcFimMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JdcFimMouseClicked
@@ -250,10 +260,9 @@ public class frmFornecedores extends javax.swing.JFrame {
     private javax.swing.JButton btnVoltar;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JList lstPedidos;
-    private javax.swing.JList lstProdutos;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 
     
