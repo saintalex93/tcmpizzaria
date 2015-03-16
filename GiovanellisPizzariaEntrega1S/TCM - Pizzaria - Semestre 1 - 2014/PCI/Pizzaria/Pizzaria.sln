@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 2013 for Windows Desktop
-VisualStudioVersion = 12.0.30723.0
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio Express 2012 for Windows Desktop
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pizzaria", "Pizzaria\Pizzaria.csproj", "{63591929-75BC-4472-B33E-ACACA073DE6B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "ClassLibrary1\DAL.csproj", "{CB897383-B242-42A9-B8AD-D0B778B940CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "ClassLibrary2\BLL.csproj", "{024C6D03-11C7-4F4B-BFE4-5005750060B8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,14 @@ Global
 		{63591929-75BC-4472-B33E-ACACA073DE6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{63591929-75BC-4472-B33E-ACACA073DE6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{63591929-75BC-4472-B33E-ACACA073DE6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB897383-B242-42A9-B8AD-D0B778B940CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB897383-B242-42A9-B8AD-D0B778B940CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB897383-B242-42A9-B8AD-D0B778B940CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB897383-B242-42A9-B8AD-D0B778B940CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{024C6D03-11C7-4F4B-BFE4-5005750060B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{024C6D03-11C7-4F4B-BFE4-5005750060B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{024C6D03-11C7-4F4B-BFE4-5005750060B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{024C6D03-11C7-4F4B-BFE4-5005750060B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

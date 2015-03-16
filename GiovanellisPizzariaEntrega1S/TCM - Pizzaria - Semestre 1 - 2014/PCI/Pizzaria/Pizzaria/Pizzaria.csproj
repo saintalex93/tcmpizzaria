@@ -210,6 +210,12 @@
   <ItemGroup>
     <None Include="Resources\Gerenciamento_mini.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ClassLibrary1\DAL.csproj">
+      <Project>{cb897383-b242-42a9-b8ad-d0b778b940ce}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

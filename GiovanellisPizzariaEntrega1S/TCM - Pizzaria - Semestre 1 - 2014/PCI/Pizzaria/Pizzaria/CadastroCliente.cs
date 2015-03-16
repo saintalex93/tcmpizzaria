@@ -94,8 +94,8 @@ namespace Pizzaria
             if (!validaCampos())
                 return;
 
-            preencherGrid(
-                "insert into Cliente (Nome_Cliente,CPF_Cliente,Endereco_Cliente,Complemento_Cliente ,Numero_Residencia ,CEP_Cliente,Estado_Cliente,Cidade_Cliente ,Email_Cliente ,Telefone_Cliente ,Celular_Cliente ,Bairro_Cliente) values ('" + txt_nome.Text + "','" + mtxt_cpf.Text + "','" + txt_endereco.Text + "','" + txt_complemento.Text + "','" + txt_numero.Text + "','" + mtxt_cep.Text + "','" + cb_uf.Text + "','" + txt_cidade.Text + "','" + txtEmail.Text + "','" + mtxt_telefone.Text + "','" + mtxt_celular.Text + "','" + txt_bairro.Text + "')", dtgw_dados);
+            preencherGrid("insert into Cliente (Nome_Cliente,CPF_Cliente,Endereco_Cliente,Complemento_Cliente ,Numero_Residencia ,CEP_Cliente,Estado_Cliente,Cidade_Cliente ,Email_Cliente ,Telefone_Cliente ,Celular_Cliente ,Bairro_Cliente) values ('" + txt_nome.Text + "','" + mtxt_cpf.Text + "','" + txt_endereco.Text + "','" + txt_complemento.Text + "','" + txt_numero.Text + "','" + mtxt_cep.Text + "','" + cb_uf.Text + "','" + txt_cidade.Text + "','" + txtEmail.Text + "','" + mtxt_telefone.Text + "','" + mtxt_celular.Text + "','" + txt_bairro.Text + "')", dtgw_dados);
+         
 
             preencherGrid(
                 "SELECT * FROM Cliente WHERE CPF_Cliente = '" + mtxt_cpf.Text + "'", dtgw_dados);

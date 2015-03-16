@@ -420,3 +420,24 @@ C:\Users\Gui\Desktop\Giovanellis Pizzaria\trunk\GiovanellisPizzariaEntrega1S\TCM
 C:\Users\Alex\Desktop\TCC GIOVANELLIS\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe.config
 C:\Users\Alex\Desktop\TCC GIOVANELLIS\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.exe
 C:\Users\Alex\Desktop\TCC GIOVANELLIS\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.pdb
+C:\Users\Casa\Documents\TortoiseSVN\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe.config
+C:\Users\Casa\Documents\TortoiseSVN\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.exe
+C:\Users\Casa\Documents\TortoiseSVN\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.pdb
+C:\Users\Casa\Documents\TortoiseSVN\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\bin\Debug\Pizzaria.exe
+C:\Users\Casa\Documents\TortoiseSVN\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\bin\Debug\Pizzaria.pdb
+C:\Users\Casa\Documents\TortoiseSVN\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.csprojResolveAssemblyReference.cache
+C:\Users\Casa\Documents\TortoiseSVN\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.CadastrarPromocao.resources
+C:\Users\Casa\Documents\TortoiseSVN\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Caixa.resources
+C:\Users\Casa\Documents\TortoiseSVN\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Fornecedores.resources
+C:\Users\Casa\Documents\TortoiseSVN\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Home.resources
+C:\Users\Casa\Documents\TortoiseSVN\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Insumo.resources
+C:\Users\Casa\Documents\TortoiseSVN\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Login.resources
+C:\Users\Casa\Documents\TortoiseSVN\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Pedidos.resources
+C:\Users\Casa\Documents\TortoiseSVN\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Funcionario.resources
+C:\Users\Casa\Documents\TortoiseSVN\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.CadastroCliente.resources
+C:\Users\Casa\Documents\TortoiseSVN\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Produtos.resources
+C:\Users\Casa\Documents\TortoiseSVN\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Properties.Resources.resources
+C:\Users\Casa\Documents\TortoiseSVN\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Rede.resources
+C:\Users\Casa\Documents\TortoiseSVN\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.csproj.GenerateResource.Cache
+C:\Users\Casa\Documents\TortoiseSVN\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\bin\Debug\ClassLibrary1.dll
+C:\Users\Casa\Documents\TortoiseSVN\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\bin\Debug\ClassLibrary1.pdb
