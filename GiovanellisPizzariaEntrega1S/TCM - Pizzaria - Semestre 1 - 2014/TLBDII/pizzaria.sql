@@ -1,7 +1,7 @@
 Use master
 go
 
-IF exists (SELECT name from master.dbo.sysdatabases where name = 'Pizzaria')
+IF EXISTS (SELECT * from sys.databases where name = 'Pizzaria')
 DROP DATABASE Pizzaria
 go
 
@@ -29,13 +29,15 @@ Email_Cliente VARCHAR(40),
 Senha_Cliente Varchar (15),
 DataNascimento Varchar(10)
 )
-
 go
 
-create table Permissao
+create table Despesa
 (
-Cod_Permissao int IDENTITY (1,1) Primary Key,
-Cargo Varchar (30)
+codDespesa INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+NomeDespesa VarChar (15),
+ValorDespesa Decimal (6,2),
+DataPagamento Date,
+TipoDespesa VarChar (10)
 )
 go
 
@@ -48,61 +50,27 @@ Endereco_Funcionario VARCHAR(40),
 Complemento_Funcionario VARCHAR(40),
 Numero_Residencia VARCHAR(6),
 CEP_Funcionario VARCHAR(10),
-Estado_Funcionario VARCHAR(2),
+Estado_Funcionario CHAR(2),
 Cidade_Funcionario VARCHAR(20),
 Bairro_Funcionario VarChar (30),
 Email_Funcionario VARCHAR(40),
 Celular_Funcionario VarChar (15),
 Telefone_Funcionario VarChar (14),
-Cod_Permissao INT FOREIGN KEY REFERENCES Permissao(Cod_Permissao),
-data_Nasc VARCHAR(10),
+data_Nasc Date,
+Salario decimal(6,2),
 )
 go
-/*
-select Cod_Produto as [ID Produto],  Nome_Produto as [Produto], Valor_Venda as [Preço]
-from produto
-where Cod_Produto
-order by cod_produto IN 
-	(
-	select Cod_Produto 
-	from Detalhe_Pedido 
-	where Cod_Pedido = 1 
-	)
 
-	select Produto.Cod_Produto as [ID Produto],  
-	   Produto.Nome_Produto as [Produto], 
-	   Produto.Valor_Venda as [Preço]
-from Pedido
-inner join Detalhe_Pedido
-on Pedido.Cod_Pedido = Detalhe_Pedido.Cod_Pedido
-inner join Produto
-on Detalhe_Pedido.Cod_Produto = Produto.Cod_Produto
-where Pedido.Cod_Pedido = 3;
+create table Permissao
+(
+Cod_Permissao int IDENTITY (1,1) Primary Key,
+Login_ VARCHAR(20),
+Senha VARCHAR(20),
+Cargo Varchar (20),
+Cod_Funcionario INT FOREIGN KEY REFERENCES Funcionario(Cod_Funcionario),
+)
+go
 
-select *,
-	(
-		select *
-		from produto where Cod_Pedido = 1
-	)
-	from detalhe_pedido where cod_pedido = 1
-		
-	)
-
-Cod_Produto as [ID Produto],  Nome_Produto as [Produto], Valor_Venda as [Preço] 
-from produto
-where Cod_Produto IN 
-	(
-	select Cod_Produto 
-	from Detalhe_Pedido 
-	where Cod_Pedido = 1 
-	)
-
-
-
-select * from Detalhe_Pedido where Cod_Pedido in (select Cod_Produto from produto where Cod_Produto = 1)
-
-
-*/
 create table Insumo
 (
 Cod_Insumo INT IDENTITY(1,1) PRIMARY KEY,
@@ -117,25 +85,12 @@ Medida VARCHAR(10),
 )
 go
 
-create table FuncPermissao
-(
-Cod_Func_Perm INT IDENTITY(1,1) PRIMARY KEY,
-Login_ VARCHAR(20),
-Senha VARCHAR(20),
-Cod_Funcionario INT FOREIGN KEY REFERENCES Funcionario(Cod_Funcionario),
-Cod_Permissao INT FOREIGN KEY REFERENCES Permissao(Cod_Permissao)
-)
-
-go
-
 create table Produto
 (
 Cod_Produto INT IDENTITY(1,1) PRIMARY KEY,
 Nome_Produto VARCHAR(40),
 Valor_Venda DECIMAL(6,2),
-Ingred_Prod VARCHAR(100),
 Sobe_Site INT,
-Categoria INT
 )
 go
 
@@ -147,6 +102,9 @@ Hora VarChar(5),
 Valor numeric (5,2),
 Cod_Funcionario INT FOREIGN KEY REFERENCES Funcionario(Cod_Funcionario),
 Cod_Cliente INT FOREIGN KEY REFERENCES Cliente(Cod_Cliente),
+Observacao VarChar (100),
+Origem VarChar (10),
+Estado VarChar(12)
 )
 
 go
@@ -183,15 +141,35 @@ Cod_Fornecedor INT FOREIGN KEY REFERENCES Fornecedor(Cod_Fornecedor),
 )
 go
 
-
-
-
-create table Produto_Insumo
-
+create table Categoria
 (
-Cod_ProdutoInsumo int identity (1,1) Primary Key,
-Cod_Insumo INT FOREIGN KEY REFERENCES Insumo(Cod_Insumo),
-Cod_Produto INT FOREIGN KEY REFERENCES Produto(Cod_Produto),
+CodCategoria int identity (1,1) Primary Key,
+NomeCategoria VarChar (20)
+)
+go
+
+create table ProdutoCategoria
+(
+CodProdutoCategoria int identity (1,1) Primary Key,
+CodProduto INT FOREIGN KEY REFERENCES Produto(Cod_Produto),
+CodCategoria INT FOREIGN KEY REFERENCES Categoria(CodCategoria)
+)
+go
+
+create table InsumoCategoria
+(
+CodInsumoCat int identity (1,1) Primary Key,
+CodInsumo INT FOREIGN KEY REFERENCES Insumo(Cod_Insumo),
+CodCategoria INT FOREIGN KEY REFERENCES Categoria(CodCategoria)
+)
+go
+
+create table Consumo
+(
+CodProdutoInsumo int identity (1,1) Primary Key,
+CodInsumo INT FOREIGN KEY REFERENCES Insumo(Cod_Insumo),
+CodProduto INT FOREIGN KEY REFERENCES Produto(Cod_Produto),
+Quantidade DECIMAL (6,4)
 )
 go
 
@@ -208,20 +186,19 @@ usuario_cadastrado INT
 )
 go
 
-create table ProdutoPromocao
+create table PedidoPromocao
 (
-codPromoProd INT IDENTITY(1,1) PRIMARY KEY,
-Cod_Produto INT FOREIGN KEY REFERENCES Produto(Cod_Produto),
+codPromoPedido INT IDENTITY(1,1) PRIMARY KEY,
+Cod_Pedido INT FOREIGN KEY REFERENCES Pedido(Cod_Pedido),
 Cod_Promocao INT FOREIGN KEY REFERENCES Promocao(Cod_Promocao)
 )
-
 go
 
-create table PedidoFornecedor
+create table CompraFornecedor
 (
-Cod_PedidoF INT IDENTITY(1,1) PRIMARY KEY,
-Valor_Venda DECIMAL(10),
-Data_Venda VARCHAR(10),
+Cod_Compra INT IDENTITY(1,1) PRIMARY KEY,
+Valor_Compra DECIMAL(10),
+Data_Venda DATE,
 Cod_Fornecedor INT FOREIGN KEY REFERENCES Fornecedor(Cod_Fornecedor),
 Cod_Funcionario INT FOREIGN KEY REFERENCES Funcionario(Cod_Funcionario)
 )
@@ -233,19 +210,10 @@ Cod_Detalhe INT IDENTITY(1,1) PRIMARY KEY,
 Cod_Produto INT FOREIGN KEY REFERENCES Produto(Cod_Produto),
 Cod_Pedido INT FOREIGN KEY REFERENCES Pedido(Cod_Pedido),
 )
-/*
-select * from Detalhe_Pedido 
-
-select Cod_Produto as [ID Produto],  Nome_Produto as [Produto], Valor_Venda as [Preço], (select count(Cod_Pedido)from detalhe_pedido where cod_produto = 3)  as Quantidade  from produto where Cod_Produto IN (select Cod_Produto from Detalhe_Pedido where Cod_Pedido = 3)
-
-select Cod_Produto from produto where Cod_Produto IN (select Cod_Produto as [ID Produto],  Nome_Produto as [Produto], Valor_Venda as [Preço] from Detalhe_Pedido where Cod_Pedido = 3)
-
-select * from Detalhe_Pedido
-*/
 go
 
 -- INSERT'S
-
+/*
 insert into Cliente
 (
 Nome_Cliente,
@@ -321,26 +289,32 @@ values
 ('Tomate',15.30,25,20)
 go
 
-insert into FuncPermissao(Login_, Senha) 
-values ('admin','1234'),('Tuca','123456')
-go
-
-
 insert into Produto
 (
 Nome_Produto,
 Valor_Venda,
-Ingred_Prod,
-Sobe_Site,
-Categoria
+Sobe_Site
 )
 values
-('Baiana',20.00,'Queijo Mussarela, Calabresa Moída, Ovos, Cebola e Pimenta.',1,1),('Mussarela',18.40,'Queijo Mussarela e Cebola.',1,1),('Bacon',20.20,'Queijo Mussarela, Ovos e Bacon.',1,1),
-('Americana',24.00,'Queijo Mussarela, Lombo, Champignon e Palmito.',1,1),('Bauru',23.50,'Queijo Mussarela, Presunto e Tomate.',1,1),('Calabresa',18.00,'Queijo Mussarela, Calabresa e Cebola.',1,1),
-('Catupiry',23.00,'Queijo Mussarela e Catupiry.',1,1),('Três Queijos',24.70,'Queijo Mussarela, Catupiry e Provolone',1,1),('Alemã',25.20,'Queijo Mussarela, Calabresa Moída e Parmesão.',1,1),
-('Pizza Havaiana Brotinho',13.70,'Queijo Mussarela, ',0,2),('Pizza Baiana Brotinho',14.50,'Queijo Mussarela, ',0,2),('Pizza Palmito Brotinho',15.00,'Queijo Mussarela, ',0,2),('Pizza Peruana Brotinho',14.00,'Queijo Mussarela, ',0,2),
-('Refrigerante',7.00,null,0,3),('Cerveja',9.40,null,0,3),('Vinho',15.50,null,0,3),('Champagne',17.00,null,0,3),
-('Porção de Camarão',19.00,'Porção de Camarão, acompanhada de cebola',0,4),('Porção de Calabresa',18.00,'Porção de Calabresa, acompanhada de cebola',0,4),('Porção de Provolone',17.00,'Porção de Provolone, acompanhada de cebola',1,4)
+('Baiana',20.00,1),
+('Mussarela',18.40,1),
+('Bacon',20.20,1),
+('Americana',24.00,1),
+('Bauru',23.50,1),
+('Calabresa',18.00,1),
+('Catupiry',23.00,1),
+('Três Queijos',24.70,1),
+('Alemã',25.20,1),
+('Pizza Havaiana Brotinho',13.70,1),
+('Pizza Baiana Brotinho',14.50,0),
+('Pizza Palmito Brotinho',15.00,0),
+('Pizza Peruana Brotinho',14.00,0),
+('Refrigerante',7.00,0),
+('Cerveja',9.40,0),
+('Vinho',15.50,0),
+('Champagne',17.00,0),
+('Porção de Camarão',19.00,0),
+('Porção de Calabresa',18.00,'Porção de Calabresa, acompanhada de cebola',0,4),('Porção de Provolone',17.00,'Porção de Provolone, acompanhada de cebola',1,4)
 go
 
 insert into Pedido(Cod_Cliente,Cod_Funcionario,Data,Hora,Valor)
@@ -468,10 +442,7 @@ values
 (3,3)
 
 go
-
-Select * from Produto
-Select * from Insumo
-
+*/
 /* Deixar 3 ou mais dados em cada tabela por favor.
 
 TABELAS				  STATUS
@@ -492,5 +463,3 @@ produto_promocao	|   OK
 pedido_fornecedor	|   OK
 detalhe_pedido		|   Faltam dados
 */
-
-select * from Cliente
