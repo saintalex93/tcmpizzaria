@@ -27,7 +27,8 @@ Telefone_Cliente VARCHAR(14),
 Celular_Cliente VarChar (15),
 Email_Cliente VARCHAR(40),
 Senha_Cliente Varchar (15),
-DataNascimento Varchar(10)
+DataNascimento Varchar(10),
+DataCadastro date
 )
 go
 
