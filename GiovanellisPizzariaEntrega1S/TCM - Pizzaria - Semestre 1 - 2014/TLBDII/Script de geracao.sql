@@ -11,7 +11,8 @@ go
 use Pizzaria
 go
 
-create table Cliente(
+create table Cliente
+(
 Cod_Cliente INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 Nome_Cliente VARCHAR(40),
 CPF_Cliente VARCHAR(15),
@@ -27,7 +28,7 @@ Telefone_Cliente VARCHAR(14),
 Celular_Cliente VarChar (15),
 Login_Cliente VARCHAR(40),
 Senha_Cliente Varchar (15),
-DataNascimento Varchar(10),
+DataNascimento DATE,
 DataCadastro DATE
 )
 go
@@ -223,10 +224,11 @@ TipoPagamento VARCHAR(20)
 )
 go
 
--- INSERT'S
 /*
+-- INSERT'S
 insert into Cliente
 (
+Cod_Cliente,
 Nome_Cliente,
 CPF_Cliente,
 Endereco_Cliente,
@@ -239,12 +241,13 @@ Cidade_Cliente,
 Complemento_Cliente,
 Telefone_Cliente,
 Celular_Cliente,
-Email_Cliente,
+Login_Cliente,
 Senha_Cliente,
-DataNascimento
+DataNascimento,
+DataCadastro
 )
 values
-('avulso','111.111.111-11','a',1,null,'a','1','aa','aaa','aaa','1',null,'a','a','a'),
+('Avulso','111.111.111-11','',1,null,'a','1','aa','aaa','aaa','1',null,'a','a','a'),
 
 ('João da Cunha','123.456.789-14','Rua das Caviúnas',49,32,'Alphaville','78061-302','SP','Barueri','Edifício Pelicano','(11)4972-1976',null,'joao.cunha@gmail.com','joaocunha123','27/07/1981'),
 
@@ -253,7 +256,6 @@ values
 ('Sandra Costa da Silva','496.527.352-98','Rua dos Bobos',9,727,'Jardins','18949-850','SP','São Paulo',null,'(11)5789-1240','(11)9-8752-6714','sandra@gmail.com','costa123','16/12/1977'),
 
 ('Gabriel Andrade Yamotsu','155.157.758-61','Rua das Laranjeiras',1785,null,'Capão Redondo','54189-206','SP','São Paulo','Em frente ao Habibs','(11)4972-1546',null,'andrade@yahoo.com','andrade123','12/05/1985')
-
 
 go
 
