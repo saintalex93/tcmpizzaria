@@ -34,7 +34,7 @@
                         <h3>Observações Gerais sobre o seu Pedido</h3>
                         <asp:TextBox ID="txtObservacoes" runat="server" CssClass="txtObservacoes" TextMode="MultiLine"></asp:TextBox>
 
-                        <asp:Label ID="lblIndex" runat="server" Text="a"></asp:Label>
+                        <asp:Label ID="lblIndex" runat="server" Text=""></asp:Label>
                     </ContentTemplate>
                     <%--<Triggers>
                         <asp:AsyncPostBackTrigger ControlID="ddlPizzasInteiras" EventName="SelectedIndexChanged" />

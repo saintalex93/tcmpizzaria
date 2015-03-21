@@ -10,8 +10,9 @@ using System.Data.SqlClient;
 
 public partial class aspx_pedir : System.Web.UI.Page
 {
-    double selecionado1;
-    double selecionado2;
+    public static double selecionado1;
+    public static double selecionado2;
+    public double precoAtual;
     string codCli;
 
     protected void Page_Load(object sender, EventArgs e)
@@ -28,13 +29,13 @@ public partial class aspx_pedir : System.Web.UI.Page
                 codCli = Request.Cookies["cod"].Value;
                 if (Request.Cookies["pizzas"] == null)
                 {
-                    //Response.Cookies["pizzas"].Value = ddlPizzasInteiras.SelectedIndex.ToString();
+                    Response.Cookies["pizzas"].Value = "1";
                 }
                 else
                 {
                     if (!IsPostBack)
                     {
-                        ddlPizzasInteiras.SelectedIndex = Convert.ToInt32(Request.Cookies["pizzas"].Value);
+                        ddlPizzasInteiras.SelectedValue = Request.Cookies["pizzas"].Value;
                     }
                 }
             }
@@ -46,6 +47,17 @@ public partial class aspx_pedir : System.Web.UI.Page
         }        
 
         txtObservacoes.Attributes.Add("placeholder", "Ex: Pizza Mussarela sem cebola");
+
+        Conexao con2 = new Conexao();
+        SqlDataAdapter dAdapter2 = new SqlDataAdapter();
+        DataSet ds2 = new DataSet();
+
+        con2.conectar();
+        con2.command.CommandText = "select Valor_Venda from Produto where Categoria=1 and Cod_Produto=" + Convert.ToInt32(Request.Cookies["pizzas"].Value);
+        dAdapter2.SelectCommand = con2.command;
+        dAdapter2.Fill(ds2);
+        selecionado1 = Convert.ToDouble(ds2.Tables[0].DefaultView[0].Row["Valor_Venda"]);
+        con2.fechaConexao();
 
         Conexao con = new Conexao();
         SqlDataAdapter dAdapter = new SqlDataAdapter();
@@ -96,7 +108,7 @@ public partial class aspx_pedir : System.Web.UI.Page
 
     protected void ddlPizzasInteiras_SelectedIndexChanged(object sender, EventArgs e)
     {
-        Response.Cookies["pizzas"].Value = ddlPizzasInteiras.SelectedIndex.ToString();
+        Response.Cookies["pizzas"].Value = ddlPizzasInteiras.SelectedValue.ToString();
         Response.Cookies["pizzas"].Expires = DateTime.Now.AddDays(10);
 
         Conexao con = new Conexao();
@@ -133,19 +145,75 @@ public partial class aspx_pedir : System.Web.UI.Page
     {
         if (chkMeio.Checked)
         {
-            if (selecionado2 > selecionado1)
+            try
             {
-                lblIndex.Text = selecionado2.ToString();
+                precoAtual = Convert.ToDouble(lblIndex.Text);
+                if (precoAtual >= selecionado1 && precoAtual >= selecionado2)
+                {
+                    if (selecionado1 > selecionado2)
+                    {
+                        lblIndex.Text = selecionado1.ToString();
+                    }
+                    else
+                    {
+                        lblIndex.Text = selecionado2.ToString();
+                    }
+                }
+                else if(precoAtual >= selecionado1 && precoAtual <= selecionado2)
+                {
+                    lblIndex.Text = selecionado2.ToString();
+                }
+                else if (precoAtual >= selecionado2 && precoAtual <= selecionado1)
+                {
+                    lblIndex.Text = selecionado1.ToString();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                lblIndex.Text = selecionado1.ToString();
+                if (selecionado1 > selecionado2)
+                {
+                    lblIndex.Text = selecionado1.ToString();
+                }
+                else
+                {
+                    lblIndex.Text = selecionado2.ToString();
+                }
             }
         }
         else
         {
             lblIndex.Text = selecionado1.ToString();
         }
+
+
+        //try
+        //{
+        //    precoAtual = Convert.ToDouble(lblIndex.Text);
+        //}
+        //catch(Exception ex){
+        //    if (precoAtual > selecionado1)
+        //    {
+
+        //    }
+        //    else
+        //    {
+        //        if (chkMeio.Checked)
+        //        {
+        //            if (selecionado2 > selecionado1)
+        //            {
+        //                lblIndex.Text = selecionado2.ToString();
+        //            }
+        //            else
+        //            {
+        //                lblIndex.Text = selecionado1.ToString();
+        //            }
+        //        }
+        //        else
+        //        {
+        //            lblIndex.Text = selecionado1.ToString();
+        //        }
+        //    }
+        //}
     }
 
     protected void ddlPizzasInteiras2_Load(object sender, EventArgs e)

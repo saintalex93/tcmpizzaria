@@ -142,7 +142,6 @@ Complemento VarChar (40),
 )
 go
 
-
 create table Insumo_Fornecedor
 (
 Cod_InsumoFornecedor int identity (1,1) Primary Key,
@@ -150,7 +149,7 @@ Cod_Insumo INT FOREIGN KEY REFERENCES Insumo(Cod_Insumo),
 Cod_Fornecedor INT FOREIGN KEY REFERENCES Fornecedor(Cod_Fornecedor),
 )
 go
-
+select * from ProdutoCategoria
 create table ProdutoCategoria
 (
 CodProdutoCategoria int identity (1,1) Primary Key,
@@ -224,11 +223,12 @@ TipoPagamento VARCHAR(20)
 )
 go
 
-/*
--- INSERT'S
+
+	-------------------- *** INSERT'S *** ------------------------ 
+		
+	
 insert into Cliente
 (
-Cod_Cliente,
 Nome_Cliente,
 CPF_Cliente,
 Endereco_Cliente,
@@ -247,15 +247,15 @@ DataNascimento,
 DataCadastro
 )
 values
-('Avulso','111.111.111-11','',1,null,'a','1','aa','aaa','aaa','1',null,'a','a','a'),
+('Avulso','111.111.111-11','',1,null,'a','1','aa','aaa','aaa','1',null,'a','a','19/03/1908','19/07/1907'),
 
-('João da Cunha','123.456.789-14','Rua das Caviúnas',49,32,'Alphaville','78061-302','SP','Barueri','Edifício Pelicano','(11)4972-1976',null,'joao.cunha@gmail.com','joaocunha123','27/07/1981'),
+('João da Cunha','123.456.789-14','Rua das Caviúnas',49,32,'Alphaville','78061-302','SP','Barueri','Edifício Pelicano','(11)4972-1976',null,'joao.cunha@gmail.com','joaocunha123','27/07/1981','11/07/1980'),
 
-('Maria Joaquina','814.198.872-68','Rua Canjeranas',574,null,'Jabaquara','04349-020','SP','São Paulo',null,'(11)3697-4567','(11)9-7419-9715','carrossel@sbt.com.br','cirilo123','04/10/1994'),
+('Maria Joaquina','814.198.872-68','Rua Canjeranas',574,null,'Jabaquara','04349-020','SP','São Paulo',null,'(11)3697-4567','(11)9-7419-9715','carrossel@sbt.com.br','cirilo123','04/10/1994','02/11/1998'),
 
-('Sandra Costa da Silva','496.527.352-98','Rua dos Bobos',9,727,'Jardins','18949-850','SP','São Paulo',null,'(11)5789-1240','(11)9-8752-6714','sandra@gmail.com','costa123','16/12/1977'),
+('Sandra Costa da Silva','496.527.352-98','Rua dos Bobos',9,727,'Jardins','18949-850','SP','São Paulo',null,'(11)5789-1240','(11)9-8752-6714','sandra@gmail.com','costa123','16/12/1977','18/05/1975'),
 
-('Gabriel Andrade Yamotsu','155.157.758-61','Rua das Laranjeiras',1785,null,'Capão Redondo','54189-206','SP','São Paulo','Em frente ao Habibs','(11)4972-1546',null,'andrade@yahoo.com','andrade123','12/05/1985')
+('Gabriel Andrade Yamotsu','155.157.758-61','Rua das Laranjeiras',1785,null,'Capão Redondo','54189-206','SP','São Paulo','Em frente ao Habibs','(11)4972-1546',null,'andrade@yahoo.com','andrade123','12/05/1985','18/11/1982')
 
 go
 
@@ -302,32 +302,49 @@ values
 ('Tomate',15.30,25,20)
 go
 
+insert into Categoria
+(
+NomeCategoria
+)
+values
+('Pizza'),
+('Pizza Brotinho'),
+('Bebidas'),
+('Porções'),
+('Embalagens'),
+('Queijos'),
+('Vegetais'),
+('Massas')
+
 insert into Produto
 (
 Nome_Produto,
 Valor_Venda,
-Sobe_Site
+Sobe_Site,
+CodCategoria
 )
 values
-('Baiana',20.00,1),
-('Mussarela',18.40,1),
-('Bacon',20.20,1),
-('Americana',24.00,1),
-('Bauru',23.50,1),
-('Calabresa',18.00,1),
-('Catupiry',23.00,1),
-('Três Queijos',24.70,1),
-('Alemã',25.20,1),
-('Pizza Havaiana Brotinho',13.70,1),
-('Pizza Baiana Brotinho',14.50,0),
-('Pizza Palmito Brotinho',15.00,0),
-('Pizza Peruana Brotinho',14.00,0),
-('Refrigerante',7.00,0),
-('Cerveja',9.40,0),
-('Vinho',15.50,0),
-('Champagne',17.00,0),
-('Porção de Camarão',19.00,0),
-('Porção de Calabresa',18.00,'Porção de Calabresa, acompanhada de cebola',0,4),('Porção de Provolone',17.00,'Porção de Provolone, acompanhada de cebola',1,4)
+('Baiana',20.00,1,1),
+('Mussarela',18.40,1,1),
+('Bacon',20.20,1,1),
+('Americana',24.00,1,1),
+('Bauru',23.50,1,1),
+('Calabresa',18.00,1,1),
+('Catupiry',23.00,1,1),
+('Três Queijos',24.70,1,1),
+('Alemã',25.20,1,1),
+('Pizza Havaiana Brotinho',13.70,1,2),
+('Pizza Baiana Brotinho',14.50,0,2),
+('Pizza Palmito Brotinho',15.00,0,2),
+('Pizza Peruana Brotinho',14.00,0,2),
+('Refrigerante',7.00,0,3),
+('Cerveja',9.40,0,3),
+('Vinho',15.50,0,3),
+('Champagne',17.00,0,3),
+('Porção de Camarão',19.00,0,4),
+('Porção de Calabresa',18.00,0,4),
+('Porção de Provolone',17.00,0,4),
+('Porção de Cu',19.00,1,4)
 go
 
 insert into Pedido(Cod_Cliente,Cod_Funcionario,Data,Hora,Valor)
@@ -379,7 +396,7 @@ insert into Promocao
 Nome_Promocao,
 Descricao,
 sobe_promocao,
-usuario_cadastrado
+AcessivelATodos
 )
 values
 ('Final de semana','Nos finais de semana deste mês(Novembro), as pizzas de Mussarela,Calabresa e Baiana terão seu preço reduzido a R$16,00.<br /> Aproveite !!',1,0),
@@ -398,31 +415,35 @@ values
 (1, 4)
 go
 
-insert into produto_insumo
+insert into Consumo
 (
-Cod_Insumo,
-Cod_Produto
+CodInsumo,
+CodProduto,
+Quantidade
 )
 values
-(1, 2),
-(2, 1),
-(3, 5)
+(1, 4,0.01),
+(2, 2,0.40),
+(3, 5,1)
 go
 
-insert into ProdutoPromocao
+insert into PedidoPromocao
 (
-Cod_Produto,
-Cod_Promocao
+Cod_Promocao,
+Cod_Pedido
 )
 values
-(6, 1),
-(2, 1),
-(8, 2)
+(1, 1),
+(2, 7),
+(3, 4)
 go
 
-insert into PedidoFornecedor
+select * from Promocao
+select * from Pedido
+
+insert into CompraFornecedor
 (
-Valor_venda,
+Valor_Compra,
 Data_venda,
 Cod_Fornecedor,
 Cod_Funcionario
@@ -455,7 +476,7 @@ values
 (3,3)
 
 go
-*/
+
 /* Deixar 3 ou mais dados em cada tabela por favor.
 
 TABELAS				  STATUS

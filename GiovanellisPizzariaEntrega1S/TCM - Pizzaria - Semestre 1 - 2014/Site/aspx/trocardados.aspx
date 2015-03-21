@@ -91,6 +91,8 @@
 
                     <asp:Label ID="lblCep" runat="server" Text="CEP *" CssClass="spans"></asp:Label>
                     <asp:TextBox ID="txtCep" runat="server" MaxLength="8" Width="152px"></asp:TextBox>
+
+                    <asp:Button ID="btnTrocaDados" CssClass="btnTrocaDados" runat="server" Text="Alterar meus Dados" />
                 </div>
             </fieldset>
         </article>
