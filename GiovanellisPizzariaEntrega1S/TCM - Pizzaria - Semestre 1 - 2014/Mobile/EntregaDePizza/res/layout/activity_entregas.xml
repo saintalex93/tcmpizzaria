@@ -18,7 +18,7 @@
         android:textSize="20dp" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/txtSenha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -28,21 +28,21 @@
         android:inputType="textPassword" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/btnEntrar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText2"
+        android:layout_below="@+id/txtSenha"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="63dp"
         android:text="Entrar" />
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/txtLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/editText2"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_alignRight="@+id/editText2"
+        android:layout_above="@+id/txtSenha"
+        android:layout_alignLeft="@+id/txtSenha"
+        android:layout_alignRight="@+id/txtSenha"
         android:layout_marginBottom="47dp"
         android:ems="10"
         android:hint="Login"
