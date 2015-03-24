@@ -19,4 +19,13 @@
         android:text="@string/saudacao_home"
         android:textSize="25sp" />
 
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtSaudacao"
+        android:layout_below="@+id/txtSaudacao"
+        android:layout_marginTop="76dp"
+        android:text="Button" />
+
 </RelativeLayout>
