@@ -10,10 +10,10 @@
             <h1>Trocar Dados</h1>
         </div>
     </div>
-        <article>
-            <fieldset class="formulario1">
+        <article class="dadosCliente">
+            <div class="wrapper">          
+                <fieldset class="formTrocaDados1">
                 <legend>Dados Pessoais</legend>
-                <div class="wrapper">
                     
                     <asp:Label ID="lblNome" runat="server" Text="Nome *" CssClass="spans"></asp:Label>
                     <asp:TextBox ID="txtNome" name="nome" runat="server" MaxLength="70" Width="220px"></asp:TextBox>
@@ -32,13 +32,10 @@
 
                     <asp:Label ID="lblDataNasc" runat="server" Text="Data de Nascimento *" CssClass="spans" ></asp:Label>
                     <asp:TextBox ID="txtDtNasc" runat="server" Width="155px" MaxLength="8"></asp:TextBox>
-                        
-                </div>
-            </fieldset>
+                </fieldset>
 
-            <fieldset class="formulario2">
-                <legend>Dados de Localidade</legend>
-                <div class="wrapper">
+                <fieldset class="formTrocaDados2">
+                    <legend>Dados de Localidade</legend>
 
                     <asp:Label ID="lblEstado" runat="server" Text="Estado *" CssClass="spans"></asp:Label>
                     <asp:DropDownList ID="DDLEstado" runat="server">
@@ -81,10 +78,10 @@
                     <asp:TextBox ID="txtComplemento" runat="server" MaxLength="60" Width="255px"></asp:TextBox>
 
                     <asp:Label ID="lblNumCasa" runat="server" Text="Número *" CssClass="spans"></asp:Label>
-                    <asp:TextBox ID="txtNumCasa" runat="server" MaxLength="4" Width="50px" type="number" min="1"></asp:TextBox>
+                    <asp:TextBox ID="txtNumCasa" runat="server" MaxLength="4" Width="58px" type="number" min="1"></asp:TextBox>
 
                     <asp:Label ID="lblNumApart" runat="server" Text="Nº Apartamento" CssClass="spans"></asp:Label>
-                    <asp:TextBox ID="txtNumApart" runat="server" MaxLength="4" Width="50px"></asp:TextBox>
+                    <asp:TextBox ID="txtNumApart" runat="server" MaxLength="4" Width="58px"></asp:TextBox>
 
                     <asp:Label ID="lblBairro" runat="server" Text="Bairro *" CssClass="spans"></asp:Label>
                     <asp:TextBox ID="txtBairro" runat="server" MaxLength="30" Width="180px"></asp:TextBox>
@@ -92,9 +89,11 @@
                     <asp:Label ID="lblCep" runat="server" Text="CEP *" CssClass="spans"></asp:Label>
                     <asp:TextBox ID="txtCep" runat="server" MaxLength="8" Width="152px"></asp:TextBox>
 
-                    <asp:Button ID="btnTrocaDados" CssClass="btnTrocaDados" runat="server" Text="Alterar meus Dados" />
-                </div>
-            </fieldset>
+                </fieldset>
+                    <asp:Button ID="btnTrocaDados" CssClass="btnTrocaDados" runat="server" Text="Alterar meus Dados" OnClick="btnTrocaDados_Click" CausesValidation="True" OnClientClick="return validaCadastro();" />
+
+                    <asp:Label runat="server" CssClass="erroTrocaDados" ID="lblresposta" Text=""></asp:Label>
+            </div>
         </article>
 </asp:Content>
 

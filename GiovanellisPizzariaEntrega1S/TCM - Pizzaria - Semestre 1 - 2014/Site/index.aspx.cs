@@ -30,6 +30,24 @@ public partial class index : System.Web.UI.Page
                 pnl.Visible = false;
                 pnl_logado.Visible = true;
                 lblNomeUsuario.Text = Request.Cookies["nome"].Value;
+                linkCadastro_rodape.Text = "meus pedidos";
+                linkCadastro_rodape.NavigateUrl = "aspx/pedidos.aspx";
+                if (Request.Cookies["pizzas"] != null)
+                {
+                    try
+                    {
+                        string numpizzas = Request.Cookies["pizzas"].Value;
+                        string[] numpizzas2 = numpizzas.Trim().Split('/');
+                        for (int i = 0; i <= numpizzas2.Length; i++)
+                        {
+                            lblProdutosCarrinho.Text = "Seu carrinho tem " + i.ToString() + " produto(s).";
+                        }
+                    }
+                    catch
+                    {
+                        lblProdutosCarrinho.Text = "0";
+                    }
+                }
             }
         }
         else
@@ -66,7 +84,7 @@ public partial class index : System.Web.UI.Page
                 con.command.Parameters.Add("@email", SqlDbType.VarChar).Value = email;
                 con.command.Parameters.Add("@senha", SqlDbType.VarChar).Value = senha;
 
-                con.command.CommandText = "select Cod_Cliente,Nome_Cliente from Cliente where Email_Cliente=@email and Senha_Cliente=@senha";
+                con.command.CommandText = "select Cod_Cliente,Nome_Cliente from Cliente where Login_Cliente=@email and Senha_Cliente=@senha";
                 dAdapter.SelectCommand = con.command;
                 dAdapter.Fill(dt);
                 con.fechaConexao();
@@ -88,7 +106,7 @@ public partial class index : System.Web.UI.Page
                 nome = dt.Tables[0].DefaultView[0].Row["Nome_Cliente"].ToString();
                 codcliente = Convert.ToInt32(dt.Tables[0].DefaultView[0].Row["Cod_Cliente"]);
 
-                /*Verificando se o nome não é nulo. 
+                /*Verificando se o nome não é nulo.
                 Se não for, duas sessões são criadas, 
                 uma com nome dele para mostrar depois,
                 e outra com ID dele, para manipulação de dados. */

@@ -11,9 +11,16 @@ public partial class aspx_promocoes : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Request.Cookies["nome"].Value != "0")
+        if (Request.Cookies["nome"] != null)
         {
-            refreshCadastrado();
+            if (Request.Cookies["nome"].Value != "0")
+            {
+                refreshCadastrado();
+            }
+            else
+            {
+                refresh();
+            }
         }
         else
         {
@@ -25,7 +32,7 @@ public partial class aspx_promocoes : System.Web.UI.Page
         {
             Conexao c = new Conexao();
             c.conectar();
-            c.command.CommandText = "select Nome_Promocao,Descricao from Promocao where sobe_promocao = 1 and usuario_cadastrado = 0";
+            c.command.CommandText = "select Nome_Promocao,Descricao from Promocao where sobe_promocao = 1 and AcessivelATodos = 0";
             SqlDataAdapter dAdapter = new SqlDataAdapter();
             DataSet dt = new DataSet();
 
@@ -41,7 +48,7 @@ public partial class aspx_promocoes : System.Web.UI.Page
     {
         Conexao c = new Conexao();
         c.conectar();
-        c.command.CommandText = "select Nome_Promocao,Descricao from Promocao where sobe_promocao = 1 and usuario_cadastrado >= 0";
+        c.command.CommandText = "select Nome_Promocao,Descricao from Promocao where sobe_promocao = 1 and AcessivelATodos >= 0";
         SqlDataAdapter dAdapter = new SqlDataAdapter();
         DataSet dt = new DataSet();
 

@@ -17,14 +17,14 @@ public partial class aspx_cadastro : System.Web.UI.Page
         {
             if (Request.Cookies["nome"].Value != "0")
             {
-                Response.Write("<script>alert('Você deve deslogar para cadastrar uma nova conta !!!')</script>");
+                Response.Write("<script>alert('Você deve deslogar para cadastrar uma nova conta !')</script>");
                 Response.Write("<script>window.history.go(-1)</script>");
             }
         }
         else
         {
-            Response.Write("<script>alert('Você deve deslogar para cadastrar uma nova conta !!!')</script>");
-            Response.Write("<script>window.history.go(-1)</script>");
+            //Response.Write("<script>alert('Você deve deslogar para cadastrar uma nova conta !!!')</script>");
+            //Response.Write("<script>window.history.go(-1)</script>");
         }
 
         /*Adicionando o atributo onblur e chamando a função aplicaMascara().
@@ -85,7 +85,7 @@ public partial class aspx_cadastro : System.Web.UI.Page
             Conexao con2 = new Conexao();
             con2.conectar();
 
-            con2.command.CommandText = "select * from Cliente where Email_Cliente=@email or CPF_Cliente=@cpf";
+            con2.command.CommandText = "select * from Cliente where Login_Cliente=@email or CPF_Cliente=@cpf";
             con2.command.Parameters.Add("@email", SqlDbType.VarChar).Value = email;
             con2.command.Parameters.Add("@cpf", SqlDbType.VarChar).Value = cpf;
             result = Convert.ToInt32(con2.command.ExecuteScalar());
@@ -102,7 +102,7 @@ public partial class aspx_cadastro : System.Web.UI.Page
 
                     Conexao con = new Conexao();
                     con.conectar();
-                    con.command.CommandText = "insert into Cliente(Nome_Cliente, CPF_Cliente,Endereco_Cliente, Numero_Residencia, Numero_Apartamento, Bairro_Cliente, CEP_Cliente, Estado_Cliente, Cidade_Cliente, Complemento_Cliente, Telefone_Cliente, Celular_Cliente, Email_Cliente, Senha_Cliente, DataNascimento)" + "values(@nome, @cpf, @rua, @numcasa, @numapart, @bairro, @cep, @estado, @cidade, @complemento, @telefone, @celular, @email, @senha, @datanasc)";
+                    con.command.CommandText = "insert into Cliente(Nome_Cliente, CPF_Cliente,Endereco_Cliente, Numero_Residencia, Numero_Apartamento, Bairro_Cliente, CEP_Cliente, Estado_Cliente, Cidade_Cliente, Complemento_Cliente, Telefone_Cliente, Celular_Cliente, Login_Cliente, Senha_Cliente, DataNascimento)" + "values(@nome, @cpf, @rua, @numcasa, @numapart, @bairro, @cep, @estado, @cidade, @complemento, @telefone, @celular, @email, @senha, @datanasc)";
                     con.command.Parameters.Add("@nome", SqlDbType.VarChar).Value = nome;
                     con.command.Parameters.Add("@cpf", SqlDbType.VarChar).Value = cpf;
                     con.command.Parameters.Add("@rua", SqlDbType.VarChar).Value = rua;

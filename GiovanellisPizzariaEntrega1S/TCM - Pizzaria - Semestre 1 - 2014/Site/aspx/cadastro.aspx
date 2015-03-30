@@ -27,38 +27,38 @@
                     <p>Campos obrigatórios são marcados com *</p>
                 </div>
             </div>
-			    <fieldset class="formulario1" >
+        <article class="dadosCliente">
+            <div class="wrapper">
+			    <fieldset class="formTrocaDados1" >
                     <legend>Dados Pessoais</legend>
-                    <div class="wrapper">          
-                            <asp:Label ID="lblNome" runat="server" Text="Nome *" CssClass="spans"></asp:Label>
-                            <asp:TextBox ID="txtNome" name="nome" runat="server" MaxLength="70" Width="220px"></asp:TextBox>
+                       
+                    <asp:Label ID="lblNome" runat="server" Text="Nome *" CssClass="spans"></asp:Label>
+                    <asp:TextBox ID="txtNome" name="nome" runat="server" MaxLength="70" Width="220px"></asp:TextBox>
 
-                            <asp:Label ID="lblTel" runat="server" Text="Telefone *" CssClass="spans"></asp:Label>
-                            <asp:TextBox ID="txtTel" runat="server" MaxLength="10" Width="155px"></asp:TextBox>
+                    <asp:Label ID="lblTel" runat="server" Text="Telefone *" CssClass="spans"></asp:Label>
+                    <asp:TextBox ID="txtTel" runat="server" MaxLength="10" Width="155px"></asp:TextBox>
 
-                            <asp:Label ID="lblCel" runat="server" Text="Celular" CssClass="spans"></asp:Label>
-                            <asp:TextBox ID="txtCel" runat="server" Width="155px" MaxLength="11"></asp:TextBox>
+                    <asp:Label ID="lblCel" runat="server" Text="Celular" CssClass="spans"></asp:Label>
+                    <asp:TextBox ID="txtCel" runat="server" Width="155px" MaxLength="11"></asp:TextBox>
 
-                            <asp:Label ID="lblEmail" runat="server" Text="Email *" CssClass="spans"></asp:Label>
-                            <asp:TextBox ID="txtEmail" runat="server" Width="226px" MaxLength="35"></asp:TextBox>
+                    <asp:Label ID="lblEmail" runat="server" Text="Email *" CssClass="spans"></asp:Label>
+                    <asp:TextBox ID="txtEmail" runat="server" Width="226px" MaxLength="35"></asp:TextBox>
 
-                            <asp:Label ID="lblCpf" runat="server" Text="CPF *" CssClass="spans"></asp:Label>
-                            <asp:TextBox ID="txtCpf" runat="server" Width="155px" MaxLength="11"></asp:TextBox>
+                    <asp:Label ID="lblCpf" runat="server" Text="CPF *" CssClass="spans"></asp:Label>
+                    <asp:TextBox ID="txtCpf" runat="server" Width="155px" MaxLength="11"></asp:TextBox>
 
-                            <asp:Label ID="lblDataNasc" runat="server" Text="Data de Nascimento *" CssClass="spans" ></asp:Label>
-                            <asp:TextBox ID="txtDtNasc" runat="server" Width="155px" MaxLength="8"></asp:TextBox>
+                    <asp:Label ID="lblDataNasc" runat="server" Text="Data de Nascimento *" CssClass="spans" ></asp:Label>
+                    <asp:TextBox ID="txtDtNasc" runat="server" Width="155px" MaxLength="8"></asp:TextBox>
                             
-                            <asp:Label ID="lblSenha" runat="server" Text="Senha *" CssClass="spans"></asp:Label>
-                            <asp:TextBox ID="txtSenha" runat="server" Width="155px" TextMode="Password" MaxLength="20"></asp:TextBox>
+                    <asp:Label ID="lblSenha" runat="server" Text="Senha *" CssClass="spans"></asp:Label>
+                    <asp:TextBox ID="txtSenha" runat="server" Width="155px" TextMode="Password" MaxLength="20"></asp:TextBox>
 
-                            <asp:Label ID="lblSenhaConfirm" runat="server" Text="Confirmar Senha" CssClass="spans"></asp:Label>
-                            <asp:TextBox ID="txtSenhaConfirm" runat="server" Width="155px" TextMode="Password" MaxLength="20"></asp:TextBox>
-                        </div>
+                    <asp:Label ID="lblSenhaConfirm" runat="server" Text="Confirmar Senha" CssClass="spans"></asp:Label>
+                    <asp:TextBox ID="txtSenhaConfirm" runat="server" Width="155px" TextMode="Password" MaxLength="20"></asp:TextBox>
                 </fieldset>
 
-                    <fieldset class="formulario2">
+                    <fieldset class="formTrocaDados2">
                         <legend>Dados de Localidade</legend>
-                        <div class="wrapper">
                             <asp:Label ID="lblEstado" runat="server" Text="Estado *" CssClass="spans"></asp:Label>
                             <asp:DropDownList ID="DDLEstado" runat="server">
                                 <asp:ListItem Value="SP">SP</asp:ListItem>
@@ -100,30 +100,27 @@
                             <asp:TextBox ID="txtComplemento" runat="server" MaxLength="60" Width="255px"></asp:TextBox>
 
                             <asp:Label ID="lblNumCasa" runat="server" Text="Número *" CssClass="spans"></asp:Label>
-                            <asp:TextBox ID="txtNumCasa" runat="server" MaxLength="4" Width="50px" type="number" min="1"></asp:TextBox>
+                            <asp:TextBox ID="txtNumCasa" runat="server" MaxLength="4" Width="58px" type="number" min="1"></asp:TextBox>
 
                             <asp:Label ID="lblNumApart" runat="server" Text="Nº Apartamento" CssClass="spans"></asp:Label>
-                            <asp:TextBox ID="txtNumApart" runat="server" MaxLength="4" Width="50px"></asp:TextBox>
+                            <asp:TextBox ID="txtNumApart" runat="server" MaxLength="4" Width="58px"></asp:TextBox>
 
                             <asp:Label ID="lblBairro" runat="server" Text="Bairro *" CssClass="spans"></asp:Label>
                             <asp:TextBox ID="txtBairro" runat="server" MaxLength="30" Width="180px"></asp:TextBox>
 
                             <asp:Label ID="lblCep" runat="server" Text="CEP *" CssClass="spans"></asp:Label>
                             <asp:TextBox ID="txtCep" runat="server" MaxLength="8" Width="152px"></asp:TextBox>
-                        </div>
                     </fieldset>
+                </div>
                     <div class="buttonsCadastro">
                         <div class="wrapper">
                             <asp:Button ID="btnEnvia" runat="server" Text="Cadastrar" OnClick="btnEnvia_Click" OnClientClick="return validaCadastro();" ValidationGroup="Grupo1" />
                             <asp:Button ID="btnLimpa" runat="server" Text="Limpar" OnClick="btnLimpa_Click" OnClientClick="LimpaCampos();" />
-                            <asp:Button ID="Preenche" CssClass="btnPreenche" runat="server" Text="Preencher Campos" OnClick="Preenche_Click" />
+                            <asp:Button ID="Preenche" CssClass="btnPreenche" runat="server" Text="Preencher Campos" OnClick="Preenche_Click" CausesValidation="False" />
                         </div>
                     </div>
-                    <div class="resposta">
-                        <div class="wrapper">
-                            <asp:Label ID="lblresposta" runat="server" Text="lblresposta"></asp:Label>
-                        </div>
-                    </div>
+            </article>
+                    <asp:Label ID="lblresposta" runat="server" Text=""></asp:Label>
         </section>
 </asp:Content>
 

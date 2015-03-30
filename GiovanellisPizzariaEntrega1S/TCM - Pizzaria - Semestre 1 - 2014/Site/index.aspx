@@ -67,10 +67,15 @@
 
                 <!-- PAINEL LOGOUT -->
                 <asp:Panel ID="pnl_logado" CssClass="boxLogout" runat="server" Visible="False">
+                    <asp:Button ID="btnLogout" runat="server" CssClass="btnLogout" Text="Logout" OnClick="btnLogout_Click" />
                     <asp:Label ID="lblBemVindo" runat="server" CssClass="lblBemVindo" Text="Seja Bem Vindo, "></asp:Label>
                     <asp:Label ID="lblNomeUsuario" runat="server" CssClass="lblNomeUsuario" Text="" ></asp:Label>
-
-                    <asp:Button ID="btnLogout" runat="server" CssClass="btnLogout" Text="Logout" OnClick="btnLogout_Click" />
+                    
+                    <div class="carrinho">
+                        <asp:Label ID="lblMeuCarrinho" CssClass="lblMeuCarrinho" runat="server" Text="Meu Carrinho"></asp:Label>
+                        <img src="imagens/motoboy.png" />
+                        <asp:Label ID="lblProdutosCarrinho" runat="server" Text=""></asp:Label>
+                    </div>
                 </asp:Panel>
             <!-- FIM LOGOUT -->
             </div>

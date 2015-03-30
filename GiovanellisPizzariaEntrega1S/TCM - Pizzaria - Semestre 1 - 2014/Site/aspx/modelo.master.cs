@@ -23,13 +23,35 @@ public partial class modelo : System.Web.UI.MasterPage
                 linkCadastro.Visible = true;
                 linkConta.Visible = false;
             }
-            else if (Request.Cookies["nome"].Value != null)
+            else if (Request.Cookies["nome"].Value != "0")
             {
                 linkCadastro.Visible = false;
                 linkConta.Visible = true;
                 pnl.Visible = false;
                 pnl_logado.Visible = true;
                 lblNomeUsuario.Text = Request.Cookies["nome"].Value;
+                linkCadastro_rodape.Text = "meus pedidos";
+                linkCadastro_rodape.NavigateUrl = "pedidos.aspx";
+                if (Request.Cookies["pizzas"] != null)
+                {
+                    try
+                    {
+                        string numpizzas = Request.Cookies["pizzas"].Value;
+                        string[] numpizzas2 = numpizzas.Split('/');
+                        for (int i = 0; i <= numpizzas2.Length; i++)
+                        {
+                            lblProdutosCarrinho.Text = "Seu carrinho tem " + i.ToString() + " produto(s).";
+                        }
+                    }
+                    catch
+                    {
+                        lblProdutosCarrinho.Text = "Não há pizzas no seu carrinho.";
+                    }
+                }
+                else
+                {
+                    lblProdutosCarrinho.Text = "Não há pizzas no seu carrinho.";
+                }
             }
         }
         else
@@ -67,7 +89,7 @@ public partial class modelo : System.Web.UI.MasterPage
                 con.command.Parameters.Add("@email", SqlDbType.VarChar).Value = email;
                 con.command.Parameters.Add("@senha", SqlDbType.VarChar).Value = senha;
                 
-                con.command.CommandText = "select Cod_Cliente from Cliente where Email_Cliente=@email and Senha_Cliente=@senha";
+                con.command.CommandText = "select Cod_Cliente from Cliente where Login_Cliente=@email and Senha_Cliente=@senha";
                 dAdapter.SelectCommand = con.command;
                 dAdapter.Fill(dt);
                 con.fechaConexao();
@@ -79,7 +101,7 @@ public partial class modelo : System.Web.UI.MasterPage
 
                 con2.command.Parameters.Add("@email", SqlDbType.VarChar).Value = email;
                 con2.command.Parameters.Add("@senha", SqlDbType.VarChar).Value = senha;
-                con2.command.CommandText = "select Nome_Cliente from Cliente where Email_Cliente=@email and Senha_Cliente=@senha";
+                con2.command.CommandText = "select Nome_Cliente from Cliente where Login_Cliente=@email and Senha_Cliente=@senha";
                 dAdapter2.SelectCommand = con2.command;
                 dAdapter2.Fill(dt2);
                 con2.fechaConexao();

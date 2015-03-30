@@ -102,8 +102,8 @@ header
 	display: none;
 	max-width: 160px;
 	z-index: 999;
-	-webkit-animation: apareceMenu 0.7s;
-	background: linear-gradient(to bottom,rgba(88, 55, 66,.4),rgba(88, 55, 66,.2));
+	-webkit-animation: apareceMenu 0.6s;
+	background: linear-gradient(to bottom,rgba(88, 55, 66,.2),rgba(88, 55, 66,.9));
 	border: 1px solid #eeebe3;
 	border-radius: 8px;
     box-shadow: 1px 1px 15px #000;
@@ -167,6 +167,10 @@ header
 	font-size: 16px;
 	max-width: 180px;
 	color: #ef6f53;
+	padding: 1px;
+}
+.boxLogin input[type="password"] {
+	letter-spacing: 3px;
 }
 .boxLogin a {
 	display: block;
@@ -186,11 +190,13 @@ header
 .boxLogout {
 	float: right;
 	width: auto;
-	max-width: 230px;
+	max-width: 270px;
 	padding: 7px;
-	margin: 40px 0 0 0;
-	border-radius: 5px;
-	background: linear-gradient(to bottom, rgba(255,255,255,0.7),rgba(255,255,255,0.5));
+	margin: 25px 0 0 0;
+	border-radius: 15px;
+	border: 2px solid #583742;
+	background: linear-gradient(to bottom, rgba(255,255,255,0.6),rgba(255,255,255,0.4));
+	box-shadow: 6px 7px 15px #1e1e1e;
 }
 .boxLogout span {
 	display: block;
@@ -198,20 +204,59 @@ header
 	clear: left;
 	color: #fff;
 }
-.boxLogout .lblNomeUsuario {
-	float: none;
+.boxLogout .lblBemVindo, .lblNomeUsuario
+{
+    font-weight: bold;
+    color: #2d1100 !important;
+}
+.boxLogout .lblBemVindo {
+	margin: 0 77px 0 0;
 }
 .boxLogout input[type="submit"] {
 	float: right;
 	padding: 5px;
+	margin: 5px 0 0 0;
 	border-radius: 5px;
-	background: linear-gradient(to bottom, rgba(239,111,83,1), rgba(200,94,71,1));
 	color: #fff;
-	margin: 7px 0 0 0;
+	font-weight: bold;
+	background: linear-gradient(to bottom, rgba(239,111,83,1), rgba(200,94,71,1));
 	transition: all ease-in-out 0.6s;
 }
 .boxLogout input[type="submit"]:hover {
 	color: #583742;
+}
+
+.carrinho {
+	float: left;
+	clear: left;
+	margin: 10px 0 0 7px;
+	max-width: 230px;
+	border-top: 1px dotted #583742;
+	border-right: 1px dotted #583742;
+	border-left: 1px dotted #583742;
+	border-radius: 7px;
+	padding: 5px;
+}
+.carrinho img {
+	float: right;
+	margin: 0 15px 8px 0;
+}
+.carrinho span {
+	font-size: 14px;
+}
+.carrinho .lblMeuCarrinho {
+	font-size: 21px;
+	color: #ff7b5e;
+	font-weight: bold;
+	text-shadow: 1px 1px 1px #1e1e1e;
+	margin: 5px 0 0 10px;
+}
+.carrinho .produtosCar {
+	color: #583742;
+	float: none;
+	display: initial;
+	font-size: 16px !important;
+	font-weight: bold;
 }
 
 .banner {
@@ -391,12 +436,13 @@ footer p {
 	float: left;
 	text-align: left;
 	clear: both;
+	padding: 20px 0;
 }
 .descForm p {
 	color: #583742;
 	font-style: italic;
 	font-weight: bold;
-	margin: 20px 0 0 120px;
+	margin: 0 0 0 120px;
 }
 
 .formulario1, .formulario2 {
@@ -413,6 +459,7 @@ footer p {
 	color: #ff7b5e;
 	font-size: 19px;
 	font-weight: bold;
+	padding: 0 5px;
 }
 .formulario1 .spans, .formulario2 .spans {
 	display: block;
@@ -447,6 +494,8 @@ footer p {
 	margin: 0 10px;
 	color: #fff;
 	transition: all 0.6s;
+	font-size: 17px;
+	font-weight: 500;
 }
 .buttonsCadastro input[type="submit"]:hover {
 	color: #583742;
@@ -540,6 +589,16 @@ footer p {
 
 /* CSS PÁGINA PEDIDOS */
 
+
+.pedidoAndamento {
+	clear: both;
+	min-width: 100%;
+	float: left;
+	padding: 30px 0;
+	background: #eeebe3;
+	border-top: 1px solid #583742;
+}
+
 .pedidos .buttonsPedidos {
 	float: left;
 	margin: 0 136px 30px 136px;
@@ -592,7 +651,7 @@ footer p {
 }
 .trocaSenha fieldset {
 	max-width: 170px;
-	margin: 0 400px;
+	margin: 0 368px;
 	line-height: 25px;
 }
 .trocaSenha span {
@@ -604,13 +663,17 @@ footer p {
 	border: 1px solid #583742;
 	border-radius: 4px;
 	color: #ef6f53;
+	font-size: 17px;
+	letter-spacing: 3px;
+	padding: 0 3px;
 }
 .btnTrocaSenha {
 	padding: 4px;
 	background: linear-gradient(to bottom,rgba(239,111,83,1), rgba(200,94,71,1));
 	border-radius: 3px;
-	margin: 20px 437px 0 437px;
+	margin: 20px 425px 0 425px;
 	font-weight: bold;
+	font-size: 16px;
 	color: #fff;
 	transition: all 0.4s;
 }
@@ -638,18 +701,7 @@ footer p {
     color: #583742;
 }
 
-.pedindo .btnEfetuarPedido {
-	padding: 5px;
-	border-radius: 6px;
-    margin: 0 415px;
-	background: linear-gradient(to bottom, rgba(239,111,83,1), rgba(200,94,71,1));
-	color: #fff;
-	transition: all 0.6s;
-	font-size: 18px;
-}
-.pedindo .btnEfetuarPedido:hover {
-	color: #583742;
-}
+
 .pedindo select
 {
     float: left;
@@ -662,10 +714,22 @@ footer p {
 	border-radius: 5px;
 	background: #fff3e9;
 }
+
+.pedindo .lblQtd {
+	display: block;
+	float: left;
+	color: #583742;
+	font-weight: bold;
+	margin: 3px 0 20px 0;
+}
+.pnlPrimeiraPizza, .pnlSegundaPizza, .pnlTerceiraPizza, .pnlQuartaPizza, .pnlQuintaPizza {
+	clear: left;
+}
+
 .chkList
 {
     float: left;
-    margin: 0 0 0 8px;
+    margin: 5px 0 0 8px;
 }
 .chkList label
 {
@@ -673,13 +737,17 @@ footer p {
     color: #583742;
     margin: 0 0 0 4px;
 }
-.lblPizza
+.pedindoSabores .lblPizza
 {
     display: block;
     float: left;
-    margin: 2px 7px 50px 0;
+    margin: 4px 5px 30px 0;
     color: #583742;
     font-weight: bold;
+}
+.pedindoSabores .lblIndex {
+	display: block;
+	clear: left;
 }
 .rbtnList
 {
@@ -701,12 +769,12 @@ footer p {
 	border-radius: 5px;
 }
 
-.pedindoSabores h3
+.produtosPedido h3
 {
     clear: left;
     margin: 0 0 5px 0;
 }
-.pedindoSabores textarea
+.produtosPedido textarea
 {
     display: block;
     clear: left;
@@ -718,11 +786,115 @@ footer p {
     padding: 4px;
 }
 
-/* ESTILO PÁGINA ALTERAR DADOS */
+.pedindo .btnEfetuarPedido {
+	padding: 5px;
+	border-radius: 6px;
+    margin: 0 415px;
+	background: linear-gradient(to bottom, rgba(239,111,83,1), rgba(200,94,71,1));
+	color: #fff;
+	transition: all 0.6s;
+	font-size: 18px;
+}
+.pedindo .btnEfetuarPedido:hover {
+	color: #583742;
+}
 
+/* PIZZAS NO CARRINHO */
+
+.produtosPedido {
+	float: left;
+	min-width: 100%;
+	padding: 30px 0;
+	background: #eeebe3;
+}
+.produtosPedido h1 {
+	color: #ef6f53;
+}
+.btnConfirmaPedido {
+	padding: 5px;
+	border-radius: 6px;
+    margin: 0 415px;
+	background: linear-gradient(to bottom, rgba(239,111,83,1), rgba(200,94,71,1));
+	color: #fff;
+	transition: all 0.6s;
+	font-size: 18px;
+}
+.pedindo .btnEfetuarPedido:hover {
+	color: #583742;
+}
+
+/* ESTILO PÁGINA TROCAR DADOS */
+
+
+.dadosCliente {
+	float: left;
+	min-width: 100%;
+	padding: 30px 0;
+	background: #eeebe3;
+	border-top: 2px solid #583742;
+	border-bottom: 2px solid #583742;
+}
+
+fieldset[class*="formTrocaDados"]
+{
+	border: 1px solid #583742;
+	padding: 15px;
+	box-shadow: 0 0 7px #583742 inset;
+}
+
+.formTrocaDados1 
+{
+	float: left;
+}
+.formTrocaDados2 
+{
+	float: right;
+}
+fieldset[class*="formTrocaDados"] legend
+{
+	text-align: center;
+	font-weight: bold;
+	color: #ef6f53;
+	font-size: 18px;
+	margin: 0 0 15px 0;
+	padding: 0 5px;
+	background: #eeebe3;
+	border-radius: 8px;
+}
+fieldset[class*="formTrocaDados"] .spans
+{
+	display: block;
+	float: left;
+	clear: left;
+	text-align: right;
+	color: #583742;
+	font-weight: bold;
+}
+.formTrocaDados1 .spans 
+{
+	width: 161px;
+}
+.formTrocaDados2 .spans
+{
+	width: 124px;
+}
+
+fieldset[class*="formTrocaDados"] input[type="text"], fieldset[class*="formTrocaDados"] input[type="password"], fieldset[class*="formTrocaDados"] select, fieldset[class*="formTrocaDados"] input[type="number"]
+{
+	border: 1px solid #583742;
+	border-radius: 3px;
+	font-size: 15px;
+	float: left;
+	margin: 0 0 12px 10px;
+	padding: 2px;
+}
+fieldset[class*="formTrocaDados"] input[type="text"]:focus, fieldset[class*="formTrocaDados"] input[type="password"]:focus, fieldset[class*="formTrocaDados"] select:focus, fieldset[class*="formTrocaDados"] input[type="number"]:focus
+{
+	box-shadow: 0px 1px 3px #999 inset;
+}
 .btnTrocaDados
 {
-    float: left;
+	float: left;
     clear: both;
     margin: 25px 0 0 400px;
     padding: 5px;
@@ -736,4 +908,12 @@ footer p {
 .btnTrocaDados:hover
 {
     color: #583742;
+}
+.erroTrocaDados 
+{
+	display: block;
+	float: left;
+	clear: left;
+	color: #f53d15;
+	font-weight: bold;
 }
