@@ -33,14 +33,25 @@ DataCadastro DATE
 )
 go
 
+create table TipoDespesa
+(
+codTipoDespesa INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+Descricao VARCHAR(50),
+ativo BIT
+)
+go
+
 create table Despesa
 (
 codDespesa INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
-NomeDespesa VarChar (15),
 ValorDespesa Decimal (6,2),
-DataPagamento Date
+DataPagamento Date,
+DataVencimento Date,
+TipoDespesa INT FOREIGN KEY REFERENCES TipoDespesa(codTipoDespesa)
 )
 go
+
+
 
 create table Permissao
 (
