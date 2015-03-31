@@ -1,6 +1,8 @@
 package com.example.giovanellispizzaria;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -9,38 +11,43 @@ import android.widget.TextView;
 
 public class Home extends Activity {
 
-	TextView saudacao;
-	Button botao;
+	TextView historico;
 	TextView pedido;
+	Button botao;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
 		
-		botao = (Button) findViewById(R.id.central);
-
-		saudacao = (TextView) findViewById(R.id.Pedidos);
+		botao = (Button) findViewById(R.id.btnCentral);
+		pedido = (TextView) findViewById(R.id.txtDetalhes);
+		historico = (TextView) findViewById(R.id.txtHistorico);		
 		
-/*		pedido.setOnClickListener
+		
+		pedido.setOnClickListener
 		(
 			new View.OnClickListener()
 			{
-				public void OnClick(View v)
+				public void onClick(View v)
 				{
-					
+					Context context = getApplicationContext();
+					Intent i = new Intent(context, DetalhePedido.class);
+					startActivity(i);
 				}
 			}
 		);
-	*/	
-		botao.setOnClickListener
+		
+		historico.setOnClickListener
 		(
-			new View.OnClickListener() 
+			new View.OnClickListener()
 			{
-            	public void onClick(View v) 
-        		{
-        			saudacao.setText("Hello word");
-        		}
+				public void onClick(View v)
+				{
+					Context context = getApplicationContext();
+					Intent i = new Intent(context, Historico.class);
+					startActivity(i);
+				}
 			}
 		);
 	}

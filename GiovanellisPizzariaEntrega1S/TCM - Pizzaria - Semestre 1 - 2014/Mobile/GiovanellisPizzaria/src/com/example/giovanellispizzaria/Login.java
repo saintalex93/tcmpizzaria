@@ -24,7 +24,6 @@ public class Login extends Activity {
 				  public void onClick(View v)
 			      {
 					  Context context = getApplicationContext();
-					  
 					  Intent i = new Intent(context, Home.class);
 					  startActivity(i);
 			      }

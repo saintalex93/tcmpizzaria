@@ -12,6 +12,7 @@
     <string name="historico_entergas">Veja o histórico de entregas</string>
     <string name="home_historico">Veja seu histórico >></string>
     <string name="title_activity_detalhe_pedido">DetalhePedido</string>
-    <string name="enderecoPlaceHolder">Avenida Paulista, 1505 - 3 produtos</string>
+    <string name="enderecoPlaceHolder">[Endereço] - [QuantidadeDeProdutos]</string>
+    <string name="title_activity_historico">Historico</string>
 
 </resources>

@@ -32,6 +32,10 @@
             android:name="com.example.giovanellispizzaria.DetalhePedido"
             android:label="@string/title_activity_detalhe_pedido" >
         </activity>
+        <activity
+            android:name="com.example.giovanellispizzaria.Historico"
+            android:label="@string/title_activity_historico" >
+        </activity>
     </application>
 
 </manifest>
