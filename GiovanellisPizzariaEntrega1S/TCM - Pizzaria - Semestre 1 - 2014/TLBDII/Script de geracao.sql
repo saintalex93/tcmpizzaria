@@ -451,9 +451,6 @@ values
 (3, 4)
 go
 
-select * from Promocao
-select * from Pedido
-
 insert into CompraFornecedor
 (
 Valor_Compra,
@@ -510,3 +507,6 @@ produto_promocao	|   OK
 pedido_fornecedor	|   OK
 detalhe_pedido		|   Faltam dados
 */
+
+---------------------------- PROCS ----------------------------
+
