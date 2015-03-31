@@ -1,5 +1,6 @@
 /*
- * To change this template, choose Tools | Templates
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package giovanellis;
@@ -13,65 +14,40 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author ETESP
+ * @author Alex
  */
 public class SqlServer {
     
+    private Connection con;
     
-    String driver="com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    // Sempre que for procurar o driver para o java começa com jdbc
-    String caminho ="jdbc:sqlserver://localhoist\\MSSQLSERVER:1433;"+
-    "DatabaseName=Clientes";
-    private String usuario ="aluno";
-    private String senha ="etesp";
     
-    private Connection conn;
-    
-    //Método para conexão com o Banco
-    public void conectar (){
-        
-        try {
-            Class.forName(this.driver);
-            this.setConn(DriverManager.getConnection(
-                    this.caminho,
-                    this.usuario,
-                    this.senha));
-            
-            JOptionPane.showMessageDialog(null, "Conexão Ok");
-        } catch (ClassNotFoundException ex)
-        {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
+    public SqlServer() throws Exception {
+        String usuario = "sa", senha = "123456", url = "jdbc:jtds:sqlserver://ALEX-PC:1433/Pizzaria";
+        Class.forName("net.sourceforge.jtds.jdbc.Driver");
+        con = DriverManager.getConnection(url, usuario, senha);
+    }
+    public Connection getConexao(){
+        return getCon();
+    }
 
-            }
-          catch (SQLException ex) {
-                Logger.getLogger(SqlServer.class.getName()).log(Level.SEVERE, null, ex.getMessage());
-            }
-       
+     public void conectar (){
         
-       
-        
-        }
-     public void desconectar (){
-        try {
-            this.getConn().close();
-        } catch (SQLException ex) {
-            Logger.getLogger(SqlServer.class.getName()).log(Level.SEVERE, null, ex);
-        }
      }
-     
     
-
     /**
-     * @return the conn
+     * @return the con
      */
-    public Connection getConn() {
-        return conn;
+    public Connection getCon() {
+        return con;
     }
 
     /**
-     * @param conn the conn to set
+     * @param con the con to set
      */
-    public void setConn(Connection conn) {
-        this.conn = conn;
+    public void setCon(Connection con) {
+        this.con = con;
     }
+    
 }
+
+ 

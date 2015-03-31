@@ -4,8 +4,11 @@
  * and open the template in the editor.
  */
 package Visao;
-
+import giovanellis.SqlServer;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,11 +16,14 @@ import javax.swing.JOptionPane;
  * @author Alex
  */
 public class frmFuncionarios extends javax.swing.JFrame {
-
+    SqlServer conn;
     /**
      * Creates new form frmFuncionarios
      */
-    public frmFuncionarios() {
+    public frmFuncionarios() throws Exception {
+        SqlServer conn = new SqlServer();
+          
+         this.setIconImage(new ImageIcon(getClass().getResource("/giovanellis/Icone.png")).getImage());  
         initComponents();
     }
 
@@ -47,17 +53,18 @@ public class frmFuncionarios extends javax.swing.JFrame {
         btnIncluirSalario = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Funcionários");
-        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                formMouseMoved(evt);
-            }
-        });
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
+            }
+        });
+        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                formMouseMoved(evt);
             }
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -110,13 +117,13 @@ public class frmFuncionarios extends javax.swing.JFrame {
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
 
         jLabel3.setText("Valor:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
 
         jLabel4.setText("Funcionário:");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
 
         mtxtVlrSalario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
-        getContentPane().add(mtxtVlrSalario, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 118, 110, -1));
+        getContentPane().add(mtxtVlrSalario, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 110, -1));
 
         btnIncluirSalario.setText("Incluir");
         getContentPane().add(btnIncluirSalario, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, -1, -1));
@@ -131,13 +138,21 @@ public class frmFuncionarios extends javax.swing.JFrame {
         jLabel6.setText("Consulta de Lançamentos");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 490, 30));
 
-        setBounds(0, 0, 503, 598);
+        jLabel7.setText("Tipo de pagamento");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
+
+        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+        setBounds((screenSize.width-503)/2, (screenSize.height-598)/2, 503, 598);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
-new frmHome().setVisible(true);
-timer.stop();
-dispose();
+        try {
+            new frmHome().setVisible(true);
+        } catch (Exception ex) {
+            Logger.getLogger(frmFuncionarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    timer.stop();
+    dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void formMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseMoved
@@ -179,6 +194,8 @@ contador=20;
             contador--;
             if(contador == 0)
             {
+                
+                
                 new frmLogin().setVisible(true);
             }
         }
@@ -217,7 +234,11 @@ contador=20;
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmFuncionarios().setVisible(true);
+                try {
+                    new frmFuncionarios().setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(frmFuncionarios.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -235,6 +256,7 @@ contador=20;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JComboBox jcbFuncionarioPagamento;

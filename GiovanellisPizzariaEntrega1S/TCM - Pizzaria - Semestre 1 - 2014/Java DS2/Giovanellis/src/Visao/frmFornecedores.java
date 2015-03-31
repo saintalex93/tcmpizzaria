@@ -5,12 +5,17 @@
  */
 package Visao;
 
+import giovanellis.SqlServer;
 import com.sun.org.apache.xerces.internal.impl.dv.xs.DateTimeDV;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,12 +23,17 @@ import javax.swing.JOptionPane;
  * @author Alex
  */
 public class frmFornecedores extends javax.swing.JFrame {
-
+    SqlServer conn;
     /**
      * Creates new form frmFornecedores
      */
-    public frmFornecedores() {
+    public frmFornecedores() throws Exception {
+        
+        SqlServer conn = new SqlServer();
+         this.setIconImage(new ImageIcon(getClass().getResource("/giovanellis/Icone.png")).getImage());  
         initComponents();
+        
+       
     }
 
     /**
@@ -45,7 +55,7 @@ public class frmFornecedores extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Fornecedores");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -116,11 +126,13 @@ public class frmFornecedores extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 390, 120));
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 2, 18)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Descritivos de Compras de Fornecedores");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 390, 30));
 
-        setBounds(0, 0, 425, 501);
+        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+        setBounds((screenSize.width-425)/2, (screenSize.height-501)/2, 425, 501);
     }// </editor-fold>//GEN-END:initComponents
 
     private void JdcFimMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JdcFimMouseClicked
@@ -150,8 +162,13 @@ public class frmFornecedores extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
-        new frmHome().setVisible(true);
+        try {
+            
+        } catch (Exception ex) {
+            Logger.getLogger(frmFornecedores.class.getName()).log(Level.SEVERE, null, ex);
+        }
        dispose();
+       timer.stop();
  
     }//GEN-LAST:event_btnVoltarActionPerformed
 
@@ -189,6 +206,8 @@ public class frmFornecedores extends javax.swing.JFrame {
             contador--;
             if(contador == 0)
             {
+                
+                
                 new frmLogin().setVisible(true);
             }
         }
@@ -248,7 +267,11 @@ public class frmFornecedores extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmFornecedores().setVisible(true);
+                try {
+                    new frmFornecedores().setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(frmFornecedores.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

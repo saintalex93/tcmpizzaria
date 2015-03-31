@@ -3,7 +3,11 @@
  * and open the template in the editor.
  */
 package Visao;
-
+import giovanellis.SqlServer;
+import java.awt.Color;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 
 
 /**
@@ -11,12 +15,23 @@ package Visao;
  * @author ETESP
  */
 public class frmHome extends javax.swing.JFrame {
+    
+    SqlServer conn;
 
     /**
      * Creates new form frmHome
      */
-    public frmHome() {
-   
+    public frmHome() throws Exception {
+      
+        
+        Color Branco = new Color(255,255,255); 
+          getContentPane().setBackground(Branco);    
+          
+         this.setExtendedState(this.getExtendedState()|frmHome.MAXIMIZED_BOTH);
+         
+         
+        SqlServer conn = new SqlServer();
+         this.setIconImage(new ImageIcon(getClass().getResource("/giovanellis/Icone.png")).getImage());  
         initComponents();
         
        
@@ -32,16 +47,23 @@ public class frmHome extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnProdutos = new javax.swing.JButton();
-        btnDespesas = new javax.swing.JButton();
-        btnPedidos = new javax.swing.JButton();
-        btnFuncionarios = new javax.swing.JButton();
-        btnPromocoes = new javax.swing.JButton();
-        btnInsumos = new javax.swing.JButton();
-        btnFornecedores = new javax.swing.JButton();
-        btnBackup = new javax.swing.JButton();
-        lblTempo = new javax.swing.JLabel();
         lblNomeFuncionario = new javax.swing.JLabel();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 120), new java.awt.Dimension(0, 120), new java.awt.Dimension(32767, 120));
+        jPanel1 = new javax.swing.JPanel();
+        label = new javax.swing.JLabel();
+        lblNomeFuncionario1 = new javax.swing.JLabel();
+        MenuTopo = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
+        jMenu5 = new javax.swing.JMenu();
+        jMenu6 = new javax.swing.JMenu();
+        jMenu7 = new javax.swing.JMenu();
+        MenuCadastrar = new javax.swing.JCheckBoxMenuItem();
+        MenuLancar = new javax.swing.JCheckBoxMenuItem();
+        jMenu8 = new javax.swing.JMenu();
+        jMenu9 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Giovanelli's");
@@ -57,121 +79,132 @@ public class frmHome extends javax.swing.JFrame {
         });
         getContentPane().setLayout(null);
 
-        btnProdutos.setText("Produtos");
-        getContentPane().add(btnProdutos);
-        btnProdutos.setBounds(30, 140, 122, 64);
-
-        btnDespesas.setText("Despesas");
-        btnDespesas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDespesasActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnDespesas);
-        btnDespesas.setBounds(30, 330, 122, 64);
-
-        btnPedidos.setText("Pedidos");
-        btnPedidos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPedidosActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnPedidos);
-        btnPedidos.setBounds(30, 50, 122, 64);
-
-        btnFuncionarios.setText("Funcionários");
-        btnFuncionarios.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFuncionariosActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnFuncionarios);
-        btnFuncionarios.setBounds(30, 240, 122, 64);
-
-        btnPromocoes.setText("Promoções");
-        btnPromocoes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPromocoesActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnPromocoes);
-        btnPromocoes.setBounds(280, 50, 122, 64);
-
-        btnInsumos.setText("Insumos");
-        btnInsumos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInsumosActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnInsumos);
-        btnInsumos.setBounds(280, 140, 122, 64);
-
-        btnFornecedores.setText("Fornecedores");
-        btnFornecedores.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFornecedoresActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnFornecedores);
-        btnFornecedores.setBounds(280, 240, 122, 64);
-
-        btnBackup.setText("Backup");
-        getContentPane().add(btnBackup);
-        btnBackup.setBounds(280, 330, 122, 64);
-
-        lblTempo.setDisplayedMnemonic('G');
-        lblTempo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/marca.png"))); // NOI18N
-        getContentPane().add(lblTempo);
-        lblTempo.setBounds(100, 20, 390, 330);
-
         lblNomeFuncionario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblNomeFuncionario.setText("Funcionário");
+        lblNomeFuncionario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
         getContentPane().add(lblNomeFuncionario);
-        lblNomeFuncionario.setBounds(350, 4, 80, 20);
+        lblNomeFuncionario.setBounds(-10, 0, 1370, 30);
+        getContentPane().add(filler1);
+        filler1.setBounds(240, 170, 20, 120);
 
-        setSize(new java.awt.Dimension(449, 471));
+        label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/giovanellis/marca.png"))); // NOI18N
+        jPanel1.add(label);
+
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(-40, 30, 1380, 880);
+
+        lblNomeFuncionario1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblNomeFuncionario1.setText("Funcionário");
+        lblNomeFuncionario1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
+        getContentPane().add(lblNomeFuncionario1);
+        lblNomeFuncionario1.setBounds(-10, 910, 1360, 30);
+
+        jMenu1.setText("Pedidos");
+        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu1MouseClicked(evt);
+            }
+        });
+        MenuTopo.add(jMenu1);
+
+        jMenu2.setText("Promoções");
+        jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu2MouseClicked(evt);
+            }
+        });
+        MenuTopo.add(jMenu2);
+
+        jMenu3.setText("Insumos");
+        jMenu3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu3MouseClicked(evt);
+            }
+        });
+        MenuTopo.add(jMenu3);
+
+        jMenu4.setText("Produtos");
+        jMenu4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu4MouseClicked(evt);
+            }
+        });
+        MenuTopo.add(jMenu4);
+
+        jMenu5.setText("Fornecedores");
+        jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu5MouseClicked(evt);
+            }
+        });
+        MenuTopo.add(jMenu5);
+
+        jMenu6.setText("Funcionários");
+        jMenu6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu6MouseClicked(evt);
+            }
+        });
+        MenuTopo.add(jMenu6);
+
+        jMenu7.setText("Despesas");
+        jMenu7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu7MouseClicked(evt);
+            }
+        });
+
+        MenuCadastrar.setSelected(true);
+        MenuCadastrar.setText("Cadastrar");
+        MenuCadastrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MenuCadastrarMouseClicked(evt);
+            }
+        });
+        MenuCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuCadastrarActionPerformed(evt);
+            }
+        });
+        jMenu7.add(MenuCadastrar);
+
+        MenuLancar.setSelected(true);
+        MenuLancar.setText("Lançar/Consultar");
+        MenuLancar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MenuLancarMouseClicked(evt);
+            }
+        });
+        jMenu7.add(MenuLancar);
+
+        MenuTopo.add(jMenu7);
+
+        jMenu8.setText("Backup");
+        MenuTopo.add(jMenu8);
+
+        jMenu9.setText("Sair");
+        jMenu9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu9MouseClicked(evt);
+            }
+        });
+        MenuTopo.add(jMenu9);
+
+        setJMenuBar(MenuTopo);
+
+        setSize(new java.awt.Dimension(1356, 1000));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPedidosActionPerformed
-     new frmPedidos().setVisible(true);
-     timer.stop();
-     dispose();
-    }//GEN-LAST:event_btnPedidosActionPerformed
-
-    private void btnPromocoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPromocoesActionPerformed
-       new frmPromocoes().setVisible(true);
-       timer.stop();
-     dispose();
-    }//GEN-LAST:event_btnPromocoesActionPerformed
-
-    private void btnFornecedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFornecedoresActionPerformed
-       new frmFornecedores().setVisible(true);
-       timer.stop();
-     dispose();
-    }//GEN-LAST:event_btnFornecedoresActionPerformed
-
-    private void btnInsumosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsumosActionPerformed
-      new frmInsumos().setVisible(true);
-      timer.stop();
-     dispose();
-    }//GEN-LAST:event_btnInsumosActionPerformed
-
-    private void btnFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFuncionariosActionPerformed
-     new frmFuncionarios().setVisible(true);
-     timer.stop();
-     dispose();
-    }//GEN-LAST:event_btnFuncionariosActionPerformed
-
-    private void btnDespesasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDespesasActionPerformed
-     new frmDespesas().setVisible(true);
-     timer.stop();
-     dispose();
-    }//GEN-LAST:event_btnDespesasActionPerformed
  
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-    
-      timer.start();
+  
+        try {
+              
+//timer.start();
+        } catch (Exception ex) {
+            Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
+        }
+   
+      
      
     }//GEN-LAST:event_formWindowOpened
 
@@ -184,9 +217,109 @@ public class frmHome extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_formMouseMoved
+
+    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+       try {
+            new frmPedidos().setVisible(true);
+        } catch (Exception ex) {
+            Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     timer.stop();
    
+    }//GEN-LAST:event_jMenu1MouseClicked
+
+    private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
+           try {
+               Desabilitarmenu();
+            new frmPromocoes().setVisible(true);
+           
+            
+        } catch (Exception ex) {
+            Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       timer.stop();
+    }//GEN-LAST:event_jMenu2MouseClicked
+
+    private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
+       try {
+         
+            
+            new frmInsumos().setVisible(true);
+        } catch (Exception ex) {
+            Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      timer.stop();
+     
+    }//GEN-LAST:event_jMenu3MouseClicked
+
+    private void jMenu4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MouseClicked
+       try {
+           new frmProdutos().setVisible(true);
+        } catch (Exception ex) {
+            Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         
+     timer.stop();
+    }//GEN-LAST:event_jMenu4MouseClicked
+
+    private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
+    try {
+            new frmFornecedores().setVisible(true);
+        } catch (Exception ex) {
+            Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       timer.stop();
     
-    int contador = 20;
+    }//GEN-LAST:event_jMenu5MouseClicked
+
+    private void jMenu6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu6MouseClicked
+         try {
+            new frmFuncionarios().setVisible(true);
+        } catch (Exception ex) {
+            Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     timer.stop();
+     
+    }//GEN-LAST:event_jMenu6MouseClicked
+
+    private void jMenu7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu7MouseClicked
+      
+    
+    }//GEN-LAST:event_jMenu7MouseClicked
+
+    private void jMenu9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu9MouseClicked
+       
+         
+       System.exit(0);     
+        
+    }//GEN-LAST:event_jMenu9MouseClicked
+
+    private void MenuCadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuCadastrarMouseClicked
+        try {
+            new frmCadastrarDespesa().setVisible(true);
+        } catch (Exception ex) {
+            Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_MenuCadastrarMouseClicked
+
+    private void MenuLancarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuLancarMouseClicked
+        try {
+            new frmDespesas().setVisible(true);
+        } catch (Exception ex) {
+            Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_MenuLancarMouseClicked
+
+    private void MenuCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuCadastrarActionPerformed
+        try {
+            new frmCadastrarDespesa().setVisible(true);
+        } catch (Exception ex) {
+            Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_MenuCadastrarActionPerformed
+  
+    
+    int contador = 10;
     
     public void escreva()
     {
@@ -194,14 +327,19 @@ public class frmHome extends javax.swing.JFrame {
        
     }
  
-    private javax.swing.Timer timer = new javax.swing.Timer(60*1000,new java.awt.event.ActionListener() {
+    private javax.swing.Timer timer = new javax.swing.Timer(1000,new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent e)
         {
             escreva();
             contador--;
             if(contador == 0)
             {
+                
+                timer.stop();
+                dispose();
+                
                 new frmLogin().setVisible(true);
+                
             }
         }
         
@@ -238,25 +376,51 @@ public class frmHome extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmHome().setVisible(true);
+                try {
+                   
+            
+                    new frmHome().setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBackup;
-    private javax.swing.JButton btnDespesas;
-    private javax.swing.JButton btnFornecedores;
-    private javax.swing.JButton btnFuncionarios;
-    private javax.swing.JButton btnInsumos;
-    private javax.swing.JButton btnPedidos;
-    private javax.swing.JButton btnProdutos;
-    private javax.swing.JButton btnPromocoes;
+    private javax.swing.JCheckBoxMenuItem MenuCadastrar;
+    private javax.swing.JCheckBoxMenuItem MenuLancar;
+    private javax.swing.JMenuBar MenuTopo;
+    private javax.swing.Box.Filler filler1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu jMenu7;
+    private javax.swing.JMenu jMenu8;
+    private javax.swing.JMenu jMenu9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel label;
     private javax.swing.JLabel lblNomeFuncionario;
-    private javax.swing.JLabel lblTempo;
+    private javax.swing.JLabel lblNomeFuncionario1;
     // End of variables declaration//GEN-END:variables
 
    
+public void Desabilitarmenu(){
 
+MenuTopo.setEnabled(false);
+
+}
+
+public void HabilitarMenu(){
+
+MenuTopo.setEnabled(true);
+
+}
+   
+    
+    
     
     
   

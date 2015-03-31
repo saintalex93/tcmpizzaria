@@ -5,7 +5,13 @@
  */
 package Visao;
 
+import giovanellis.SqlServer;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,12 +19,15 @@ import javax.swing.JOptionPane;
  * @author Alex
  */
 public class frmPedidos extends javax.swing.JFrame {
-
+    SqlServer conn;
     /**
      * Creates new form frmPedidos
      */
-    public frmPedidos() {
+    public frmPedidos() throws Exception {
+         this.setIconImage(new ImageIcon(getClass().getResource("/giovanellis/Icone.png")).getImage());  
         initComponents();
+        conn = new SqlServer();
+        
     }
 
     /**
@@ -40,16 +49,16 @@ public class frmPedidos extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Pedidos");
-        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                formMouseMoved(evt);
-            }
-        });
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
+            }
+        });
+        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                formMouseMoved(evt);
             }
         });
 
@@ -153,7 +162,8 @@ public class frmPedidos extends javax.swing.JFrame {
                 .addGap(50, 50, 50))
         );
 
-        pack();
+        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+        setBounds((screenSize.width-416)/2, (screenSize.height-420)/2, 416, 420);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
@@ -161,8 +171,13 @@ public class frmPedidos extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       new frmHome().setVisible(true);
+        try {
+            new frmHome().setVisible(true);
+        } catch (Exception ex) {
+            Logger.getLogger(frmPedidos.class.getName()).log(Level.SEVERE, null, ex);
+        }
        dispose();
+       timer.stop();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -202,6 +217,7 @@ public class frmPedidos extends javax.swing.JFrame {
             contador--;
             if(contador == 0)
             {
+                
                 new frmLogin().setVisible(true);
             }
         }
@@ -238,7 +254,11 @@ public class frmPedidos extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmPedidos().setVisible(true);
+                try {
+                     JDialog frame = new JDialog(new JFrame(), true);
+                } catch (Exception ex) {
+                    Logger.getLogger(frmPedidos.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

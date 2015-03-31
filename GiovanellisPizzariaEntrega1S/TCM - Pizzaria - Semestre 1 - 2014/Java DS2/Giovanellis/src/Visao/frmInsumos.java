@@ -4,17 +4,23 @@
  * and open the template in the editor.
  */
 package Visao;
+import giovanellis.SqlServer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 
 /**
  *
  * @author Alex
  */
 public class frmInsumos extends javax.swing.JFrame {
-
+SqlServer conn;
     /**
      * Creates new form frmInsumos
      */
-    public frmInsumos() {
+    public frmInsumos() throws Exception {
+        conn = new SqlServer();
+         this.setIconImage(new ImageIcon(getClass().getResource("/giovanellis/Icone.png")).getImage());  
         initComponents();
     }
 
@@ -36,8 +42,13 @@ public class frmInsumos extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Insumos");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -57,6 +68,11 @@ public class frmInsumos extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setText("Voltar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Calcular");
 
@@ -113,8 +129,26 @@ public class frmInsumos extends javax.swing.JFrame {
                 .addGap(44, 44, 44))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(416, 414));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    try {
+       
+        
+        dispose();
+        
+    } catch (Exception ex) {
+        Logger.getLogger(frmInsumos.class.getName()).log(Level.SEVERE, null, ex);
+    }
+       
+        timer.stop();;        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowOpened
  
     
     int contador = 20;
@@ -132,6 +166,7 @@ public class frmInsumos extends javax.swing.JFrame {
             contador--;
             if(contador == 0)
             {
+               
                 new frmLogin().setVisible(true);
             }
         }
@@ -167,7 +202,11 @@ public class frmInsumos extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmInsumos().setVisible(true);
+                try {
+                    new frmInsumos().setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(frmInsumos.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
