@@ -66,7 +66,7 @@ Celular_Funcionario VarChar (15),
 Telefone_Funcionario VarChar (14),
 Data_Nasc Date,
 Salario decimal(6,2),
-Login_Funcionario VARCHAR(30),
+Login_Funcionario VARCHAR(30) unique,
 Senha_Funcionario VARCHAR(20),
 Cod_Permissao INT FOREIGN KEY REFERENCES 
 Permissao(Cod_Permissao),
@@ -149,7 +149,7 @@ Cod_Insumo INT FOREIGN KEY REFERENCES Insumo(Cod_Insumo),
 Cod_Fornecedor INT FOREIGN KEY REFERENCES Fornecedor(Cod_Fornecedor),
 )
 go
-select * from ProdutoCategoria
+
 create table ProdutoCategoria
 (
 CodProdutoCategoria int identity (1,1) Primary Key,
@@ -282,13 +282,15 @@ Cidade_Funcionario,
 Bairro_Funcionario,
 Email_Funcionario,
 Telefone_Funcionario,
-Celular_Funcionario
+Celular_Funcionario,
+Login_Funcionario,
+Senha_Funcionario 
 )
 values
-('Maria do Carmo','128.589.519-87','Rua dos Funcionários',null,159,'12598-11','SP','São Paulo','Santa Cecília','maria_teste@hotmail.com','(11)4529-4196','(11)9-7988-4895'),
-('Joana Figueiredo','932.571.495-28','Rua Coronel Justino','Bloco D',1050,'28984-79','SP','São Paulo','Suzano','joana.fig@terra.com.br','(11)7819-4898','(11)9-6187-8959'),
-('Carlos Silva','475.427.106-85','Rua Juba da Jujuba',null,420,'59579-14','SP','São Paulo','Vila Mariana','carlos_silva@gmail.com','(11)4198-8274','(11)9-9488-9774')
-
+('Maria do Carmo','128.589.519-87','Rua dos Funcionários',null,159,'12598-11','SP','São Paulo','Santa Cecília','maria_teste@hotmail.com','(11)4529-4196','(11)9-7988-4895','Maria','123'),
+('Joana Figueiredo','932.571.495-28','Rua Coronel Justino','Bloco D',1050,'28984-79','SP','São Paulo','Suzano','joana.fig@terra.com.br','(11)7819-4898','(11)9-6187-8959','Admin','123'),
+('Carlos Silva','475.427.106-85','Rua Juba da Jujuba',null,420,'59579-14','SP','São Paulo','Vila Mariana','carlos_silva@gmail.com','(11)4198-8274','(11)9-9658-9774','Carlos','123'),
+('Alex Santos','399.305.868-22','Rua Pindamonhangaba',null,666,'023654-14','SP','São Paulo','Vila Tupiniquim','alexsantos@gmail.com','(11)4578-8274','(11)9-9852-9774','Alex','123')
 insert into Insumo
 (
 Nome_Insumo,
