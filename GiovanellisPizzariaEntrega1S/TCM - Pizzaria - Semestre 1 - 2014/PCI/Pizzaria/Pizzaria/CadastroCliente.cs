@@ -10,14 +10,17 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using Microsoft.VisualBasic;
 
-
+using BLL;
+using DAL;
 
 namespace Pizzaria
 {
     public partial class CadastroCliente : Form
     {
+
         public CadastroCliente()
         {
+            
             InitializeComponent();
         }
 
@@ -28,7 +31,7 @@ namespace Pizzaria
         SqlConnection conn;
         string cod_cliente, nome = "", cep="",email = "", endereco = "", bairro = "", cidade = "", uf = "", complemento = "", telefone = "", cel = "", cpf = "",strIncluir = "";
         int num_endereco = 0;
-
+        
         //Validar se e update ou insert
         Boolean valida = false;
 
@@ -72,7 +75,7 @@ namespace Pizzaria
             conexao = Acesso.Conexao;
             
             preenchegrid();
-
+            
             this.StartPosition = FormStartPosition.CenterScreen;
         }
 
@@ -95,7 +98,10 @@ namespace Pizzaria
                 return;
 
             preencherGrid("insert into Cliente (Nome_Cliente,CPF_Cliente,Endereco_Cliente,Complemento_Cliente ,Numero_Residencia ,CEP_Cliente,Estado_Cliente,Cidade_Cliente ,Email_Cliente ,Telefone_Cliente ,Celular_Cliente ,Bairro_Cliente) values ('" + txt_nome.Text + "','" + mtxt_cpf.Text + "','" + txt_endereco.Text + "','" + txt_complemento.Text + "','" + txt_numero.Text + "','" + mtxt_cep.Text + "','" + cb_uf.Text + "','" + txt_cidade.Text + "','" + txtEmail.Text + "','" + mtxt_telefone.Text + "','" + mtxt_celular.Text + "','" + txt_bairro.Text + "')", dtgw_dados);
-         
+            DAL.Model.clsCliente teste = new DAL.Model.clsCliente();
+            clsClienteBLL teste1 = new clsClienteBLL();
+            dtgw_dados.DataSource = teste1.SelectCliente(teste);
+
 
             preencherGrid(
                 "SELECT * FROM Cliente WHERE CPF_Cliente = '" + mtxt_cpf.Text + "'", dtgw_dados);
@@ -244,26 +250,13 @@ namespace Pizzaria
 
         public void preenchegrid()
         {
-            string strIncluir = "select * from Cliente";
-            SqlConnection conn = new SqlConnection(conexao);
 
-            conn.Open();
-            try
-            {
-                SqlCommand sqlComm = new SqlCommand(strIncluir, conn);
+            DAL.Model.clsCliente teste = new DAL.Model.clsCliente();     
+            clsClienteBLL teste1 = new clsClienteBLL();
+            dtgw_dados.DataSource = teste1.SelectCliente(teste);
 
-                //sqlComm.ExecuteNonQuery();
-                SqlDataAdapter da = new SqlDataAdapter();
-                da.SelectCommand = sqlComm;
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                dtgw_dados.DataSource = dt;
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Falha ao conectar ao Bano de Dados, Contate seu suporte");
-            }
-            conn.Close();
+
+            
         }
 
         public bool validaNome()
@@ -273,7 +266,7 @@ namespace Pizzaria
             if (txt_nome.Text.Length == 0)
             {
                 Home.mensagemDeErro("Não é permitido inserir um usuário sem nome.", "Falta de informações");
-
+                
                 txt_nome.Focus();
 
                 estado = false;

@@ -46,6 +46,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Acesso.cs" />
+    <Compile Include="Alterar_Status.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Alterar_Status.Designer.cs">
+      <DependentUpon>Alterar_Status.cs</DependentUpon>
+    </Compile>
     <Compile Include="CadastrarPromocao.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -58,12 +64,24 @@
     <Compile Include="Caixa.Designer.cs">
       <DependentUpon>Caixa.cs</DependentUpon>
     </Compile>
+    <Compile Include="Confirmacao_Alterar_Status.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Confirmacao_Alterar_Status.Designer.cs">
+      <DependentUpon>Confirmacao_Alterar_Status.cs</DependentUpon>
+    </Compile>
     <Compile Include="Connection.cs" />
     <Compile Include="Fornecedores.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Fornecedores.Designer.cs">
       <DependentUpon>Fornecedores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Gerenciamento_Entregas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gerenciamento_Entregas.Designer.cs">
+      <DependentUpon>Gerenciamento_Entregas.cs</DependentUpon>
     </Compile>
     <Compile Include="Home.cs">
       <SubType>Form</SubType>
@@ -115,14 +133,23 @@
     <Compile Include="Rede.Designer.cs">
       <DependentUpon>Rede.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Alterar_Status.resx">
+      <DependentUpon>Alterar_Status.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CadastrarPromocao.resx">
       <DependentUpon>CadastrarPromocao.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Caixa.resx">
       <DependentUpon>Caixa.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Confirmacao_Alterar_Status.resx">
+      <DependentUpon>Confirmacao_Alterar_Status.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Fornecedores.resx">
       <DependentUpon>Fornecedores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gerenciamento_Entregas.resx">
+      <DependentUpon>Gerenciamento_Entregas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
@@ -169,7 +196,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\48px-Crystal_Clear_mimetype_encrypted.png" />
@@ -214,6 +243,10 @@
     <ProjectReference Include="..\ClassLibrary1\DAL.csproj">
       <Project>{cb897383-b242-42a9-b8ad-d0b778b940ce}</Project>
       <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLibrary2\BLL.csproj">
+      <Project>{024c6d03-11c7-4f4b-bfe4-5005750060b8}</Project>
+      <Name>BLL</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
