@@ -37,7 +37,7 @@ create table TipoDespesa
 (
 codTipoDespesa INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 Descricao VARCHAR(50),
-ativo BIT
+ativo varchar(10)
 )
 go
 
@@ -50,8 +50,6 @@ DataVencimento Date,
 TipoDespesa INT FOREIGN KEY REFERENCES TipoDespesa(codTipoDespesa)
 )
 go
-
-
 
 create table Permissao
 (
@@ -373,7 +371,6 @@ values
 (2,3,'2014-02-15','19:16',58.20)
 go
 
-
 insert into Fornecedor
 (
 CNPJ_CPF,
@@ -484,7 +481,33 @@ values
 (1,2),
 (2,2),
 (3,3)
+go
 
+insert into TipoDespesa
+(
+Descricao,
+ativo
+)
+values
+('Gás encanado','Ativo'),
+('Butijão de gás','Inativo'),
+('Água','Ativo'),
+('Energia elétrica','Ativo'),
+('Telefone','Ativo')
+go
+
+insert into Despesa
+(
+ValorDespesa,
+DataPagamento,
+DataVencimento,
+TipoDespesa
+)
+values
+(112.35, '5-1-2014', '8-1-2014', 1),
+(87.35, '5-1-2014', '8-1-2014', 4),
+(182.35, '5-1-2014', '8-1-2014', 5),
+(120.35, '5-1-2014', '8-1-2014', 3)
 go
 
 /* Deixar 3 ou mais dados em cada tabela por favor.
@@ -507,6 +530,3 @@ produto_promocao	|   OK
 pedido_fornecedor	|   OK
 detalhe_pedido		|   Faltam dados
 */
-
----------------------------- PROCS ----------------------------
-
