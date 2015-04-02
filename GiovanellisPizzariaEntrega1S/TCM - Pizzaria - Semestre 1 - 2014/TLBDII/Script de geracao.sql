@@ -36,7 +36,7 @@ go
 create table TipoDespesa
 (
 codTipoDespesa INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
-Descricao VARCHAR(50),
+descricao VARCHAR(50),
 ativo varchar(10)
 )
 go
@@ -78,7 +78,7 @@ Salario decimal(6,2),
 Login_Funcionario VARCHAR(30) unique,
 Senha_Funcionario VARCHAR(20),
 Cod_Permissao INT FOREIGN KEY REFERENCES 
-Permissao(Cod_Permissao),
+Permissao(Cod_Permissao)
 )
 go
 
@@ -98,8 +98,7 @@ QtdeRecomendavel INT,
 QtdeEmEstoque INT,
 Fabricacao DATE,
 Validade VarChar(10),
-Medida VARCHAR(10),
-CodCategoria INT FOREIGN KEY REFERENCES Categoria(CodCategoria)
+Medida VARCHAR(10)
 )
 go
 
@@ -108,8 +107,7 @@ create table Produto
 Cod_Produto INT IDENTITY(1,1) PRIMARY KEY,
 Nome_Produto VARCHAR(40),
 Valor_Venda DECIMAL(6,2),
-Sobe_Site INT,
-CodCategoria INT FOREIGN KEY REFERENCES Categoria(CodCategoria)
+Sobe_Site INT
 )
 go
 
@@ -123,7 +121,10 @@ Cod_Funcionario INT FOREIGN KEY REFERENCES Funcionario(Cod_Funcionario),
 Cod_Cliente INT FOREIGN KEY REFERENCES Cliente(Cod_Cliente),
 Observacao VarChar (140),
 Origem VarChar (10),
-Estado VarChar(12)
+Estado VarChar(12),
+EnderecoAlternativo VarChar(140),
+FormaDePagamento varchar(10),
+ValorPago dec (6,2)
 )
 
 go
@@ -169,7 +170,7 @@ go
 
 create table InsumoCategoria
 (
-CodInsumoCat int identity (1,1) Primary Key,
+CodInsumoCategoria int identity (1,1) Primary Key,
 CodInsumo INT FOREIGN KEY REFERENCES Insumo(Cod_Insumo),
 CodCategoria INT FOREIGN KEY REFERENCES Categoria(CodCategoria)
 )
@@ -228,7 +229,8 @@ create table Pagamento
 Cod_Pagamento INT IDENTITY(1,1) PRIMARY KEY,
 ValorPagamento DECIMAL (6,2),
 DataExpedido DATE,
-TipoPagamento VARCHAR(20)
+TipoPagamento VARCHAR(20),
+Cod_Funcionario INT FOREIGN KEY REFERENCES Funcionario(Cod_Funcionario)
 )
 go
 
@@ -331,31 +333,29 @@ insert into Produto
 (
 Nome_Produto,
 Valor_Venda,
-Sobe_Site,
-CodCategoria
+Sobe_Site
 )
 values
-('Baiana',20.00,1,1),
-('Mussarela',18.40,1,1),
-('Bacon',20.20,1,1),
-('Americana',24.00,1,1),
-('Bauru',23.50,1,1),
-('Calabresa',18.00,1,1),
-('Catupiry',23.00,1,1),
-('Três Queijos',24.70,1,1),
-('Alemã',25.20,1,1),
-('Pizza Havaiana Brotinho',13.70,1,2),
-('Pizza Baiana Brotinho',14.50,0,2),
-('Pizza Palmito Brotinho',15.00,0,2),
-('Pizza Peruana Brotinho',14.00,0,2),
-('Refrigerante',7.00,0,3),
-('Cerveja',9.40,0,3),
-('Vinho',15.50,0,3),
-('Champagne',17.00,0,3),
-('Porção de Camarão',19.00,0,4),
-('Porção de Calabresa',18.00,0,4),
-('Porção de Provolone',17.00,0,4),
-('Porção de Cu',19.00,1,4)
+('Baiana',20.00,1),
+('Mussarela',18.40,1),
+('Bacon',20.20,1),
+('Americana',24.00,1),
+('Bauru',23.50,1),
+('Calabresa',18.00,1),
+('Catupiry',23.00,1),
+('Três Queijos',24.70,1),
+('Alemã',25.20,1),
+('Pizza Havaiana Brotinho',13.70,1),
+('Pizza Baiana Brotinho',14.50,0),
+('Pizza Palmito Brotinho',15.00,0),
+('Pizza Peruana Brotinho',14.00,0),
+('Refrigerante',7.00,0),
+('Cerveja',9.40,0),
+('Vinho',15.50,0),
+('Champagne',17.00,0),
+('Porção de Camarão',19.00,0),
+('Porção de Calabresa',18.00,0),
+('Porção de Provolone',17.00,0)
 go
 
 insert into Pedido(Cod_Cliente,Cod_Funcionario,Data,Hora,Valor)
