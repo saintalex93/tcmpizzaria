@@ -16,10 +16,6 @@ import android.widget.TextView;
 
 public class Login extends Activity {
 
-	TextView recent;
-	TextView tv1;
-	TextView can;
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

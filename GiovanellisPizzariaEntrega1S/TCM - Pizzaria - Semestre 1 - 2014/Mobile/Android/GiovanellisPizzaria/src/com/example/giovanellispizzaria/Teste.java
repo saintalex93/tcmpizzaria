@@ -1,36 +1,69 @@
 package com.example.giovanellispizzaria;
 
 import android.app.Activity;
-import android.graphics.Color;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
-import android.widget.LinearLayout;
+import android.widget.Button;
+import android.widget.RelativeLayout;
+import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Teste extends Activity {
 
-	TextView tv;
+	TextView tv1;
+	private TextView recent;
+	private Button b1;
+	protected LayoutParams lp;
 	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) 
-	{
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_teste);
-		
-		
-		String[] textArray={"one","two","asdasasdf asdf dsdaa"};
-		int length=textArray.length;
-		LinearLayout layout = new LinearLayout(this);
-		setContentView(layout);
-		layout.setOrientation(LinearLayout.VERTICAL);        
-		for(int i=0;i<length;i++)
-		{
-		    TextView tv = new TextView(getApplicationContext());
-		    tv.setText(textArray[i]);
-		    tv.setTextColor(Color.BLACK);
-		    layout.addView(tv);
-		}
-	}
+	public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        
+        setContentView(R.layout.activity_teste);
+        
+        //Toast.makeText(getApplicationContext(), rr.toString(), Toast.LENGTH_LONG).show();
+        
+/*        b1 = new Button(this);
+        b1.setId((int) System.currentTimeMillis());
+        recent = b1;
+        b1.setText("Click me");
+  */      
+        //rr.addView(b1);
+
+//        setContentView(rr);
+        
+        
+/*        for(int i = 0; i < 3; i++)
+        {
+        	tv1 = new TextView(getApplicationContext());
+            tv1.setId((int)System.currentTimeMillis());
+            tv1.setTextColor(Color.BLACK);
+            lp = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
+            lp.addRule(RelativeLayout.BELOW, recent.getId());
+            tv1.setText("Time: "+System.currentTimeMillis());
+            //	rr.addView(tv1, lp);
+            recent = tv1;
+        }*/
+
+/*        b1.setOnClickListener(new View.OnClickListener() 
+        {
+        	
+
+            @Override
+            public void onClick(View v) {
+                tv1 = new TextView(getApplicationContext());
+                tv1.setId((int)System.currentTimeMillis());
+                tv1.setTextColor(Color.BLACK);
+                lp = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
+                lp.addRule(RelativeLayout.BELOW, recent.getId());
+                tv1.setText("Time: "+System.currentTimeMillis());
+                rr.addView(tv1, lp);
+                recent = tv1;
+            }
+        });
+*/    }
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

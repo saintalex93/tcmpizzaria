@@ -8,14 +8,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".Home" >
 
-    <Button
-        android:id="@+id/btnCentral"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:text="@string/botao_central" />
-
     <TextView
         android:id="@+id/txtUser"
         android:layout_width="wrap_content"
@@ -26,35 +18,29 @@
         android:textSize="23sp" />
 
     <TextView
-        android:id="@+id/txtHistorico"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/txtUser"
-        android:layout_marginTop="15dp"
-        android:text="Ver histórico >>"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <TextView
         android:id="@+id/Pedidos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txtHistorico"
+        android:layout_below="@+id/txtUser"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="70dp"
         android:text="@string/home_pedidos"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <TextView
-        android:id="@+id/txtDetalhes"
+    <ListView
+        android:id="@+id/lstPedidos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Pedidos" >
+    </ListView>
+
+    <Button
+        android:id="@+id/btnHistorico"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/Pedidos"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="19dp"
-        android:clickable="true"
-        android:onClick="onClick"
-        android:text="@string/enderecoPlaceHolder"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:layout_alignRight="@+id/lstPedidos"
+        android:layout_below="@+id/txtUser"
+        android:layout_marginTop="17dp"
+        android:text="Ver histórico >>" />
 
 </RelativeLayout>

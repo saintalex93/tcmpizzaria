@@ -14,27 +14,38 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:text="Detalhes"
+        android:text="Detalhes - "
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
-        android:id="@+id/tituloPedido"
+        android:id="@+id/txtNomeClienteEHora"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/txtDetalhes"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
-        android:text="@string/enderecoPlaceHolder" />
+        android:layout_marginTop="14dp"
+        android:gravity="center_horizontal"
+        android:text="Emerson Talarico - 18:35"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
-        android:id="@+id/NomeClienteEHora"
+        android:id="@+id/txtTituloPedido"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/tituloPedido"
-        android:layout_marginTop="18dp"
-        android:text="[NomeCliente] - [HoraPedido]"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:layout_below="@+id/txtNomeClienteEHora"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="17dp"
+        android:text="QtdeProdutos - Preço"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <ListView
+        android:id="@+id/lstProdutos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/txtTituloPedido"
+        android:layout_centerHorizontal="true" >
+
+    </ListView>
 
 </RelativeLayout>
