@@ -33,12 +33,16 @@ DataCadastro DATE
 )
 go
 
+
+
 create table TipoDespesa
 (
 codTipoDespesa INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
-descricao VARCHAR(50),
-ativo varchar(10)
+NomeDespesa VARCHAR(50) unique,
+SituacaoDespesa varchar(10)
 )
+
+
 go
 
 create table Despesa
@@ -50,6 +54,7 @@ DataVencimento Date,
 TipoDespesa INT FOREIGN KEY REFERENCES TipoDespesa(codTipoDespesa)
 )
 go
+
 
 create table Permissao
 (
@@ -216,6 +221,7 @@ Cod_Funcionario INT FOREIGN KEY REFERENCES Funcionario(Cod_Funcionario)
 )
 go
 
+
 create table Detalhe_Pedido
 (
 Cod_Detalhe INT IDENTITY(1,1) PRIMARY KEY,
@@ -358,17 +364,19 @@ values
 ('Porção de Provolone',17.00,0)
 go
 
-insert into Pedido(Cod_Cliente,Cod_Funcionario,Data,Hora,Valor)
+
+
+insert into Pedido(Cod_Cliente,Cod_Funcionario,Data,Hora,Valor, Estado)
 values
-(1,1,'2014-01-05','20:15',31.00),
-(2,2,'2014-07-22','19:14',25.25),
-(3,3,'2014-08-12','22:57',38.89),
-(3,1,'2014-10-04','21:40',78.98),
-(5,2,'2014-07-02','21:15',42.30),
-(5,3,'2014-02-05','20:22',67.90),
-(5,2,'2014-06-15','22:57',84.20),
-(4,1,'2014-04-29','18:49',76.00),
-(2,3,'2014-02-15','19:16',58.20)
+(1,1,'05/01/2015','20:15',31.00,'Em Preparo'),
+(2,2,'22/02/2015','19:14',25.25,'Na Fila'),
+(3,3,'12/03/2015','22:57',38.89,'Realizado'),
+(3,1,'05/04/2015','21:40',78.98,'Cancelado'),
+(5,2,'06/04/2015','21:15',42.30,'A Caminho'),
+(5,3,'07/04/2015','20:22',67.90,'Em Preparo'),
+(5,2,'20/04/2015','22:57',84.20,'Realizado'),
+(4,1,'22/05/2015','18:49',76.00,'Realiado'),
+(2,3,'06/06/2015','19:16',58.20,'Cancelado')
 go
 
 insert into Fornecedor
@@ -456,10 +464,10 @@ Cod_Fornecedor,
 Cod_Funcionario
 )
 values
-(170.00, '17/09/2014', 2,3),
-(235.00, '20/09/2014', 3,2),
-(150.00, '22/10/2014', 4,3),
-(199.00, '15/10/2014', 1,1)
+(170.00, '17/09/2015', 2,3),
+(235.00, '20/09/2015', 3,2),
+(150.00, '22/10/2015', 4,3),
+(199.00, '15/10/2015', 1,1)
 go
 
 insert into Detalhe_Pedido
@@ -469,24 +477,24 @@ cod_produto
 )
 values
 (1,1),
-(1,2),
-(1,2),
-(1,6),
-(1,5),
-(1,7),
-(1,7),
-(1,7),
-(1,8),
-(1,2),
-(1,2),
 (2,2),
-(3,3)
+(3,2),
+(4,6),
+(5,5),
+(5,7),
+(6,7),
+(7,7),
+(8,8),
+(9,2),
+(9,2),
+(9,2),
+(8,3)
 go
 
 insert into TipoDespesa
 (
-Descricao,
-ativo
+NomeDespesa,
+SituacaoDespesa
 )
 values
 ('Gás encanado','Ativo'),
@@ -504,10 +512,10 @@ DataVencimento,
 TipoDespesa
 )
 values
-(112.35, '5-1-2014', '8-1-2014', 1),
-(87.35, '5-1-2014', '8-1-2014', 4),
-(182.35, '5-1-2014', '8-1-2014', 5),
-(120.35, '5-1-2014', '8-1-2014', 3)
+(112.35, '17/02/2015', '17/02/2015', 1),
+(87.35, '15/04/2015', '17/04/2015', 4),
+(182.35, '14/05/2015', '17/05/2015', 5),
+(120.35, '13/06/2015', '17/06/2015', 3)
 go
 
 /* Deixar 3 ou mais dados em cada tabela por favor.
@@ -530,3 +538,6 @@ produto_promocao	|   OK
 pedido_fornecedor	|   OK
 detalhe_pedido		|   Faltam dados
 */
+
+
+
