@@ -6,7 +6,6 @@
 package Visao;
 
 import giovanellis.SqlServer;
-import com.sun.org.apache.xerces.internal.impl.dv.xs.DateTimeDV;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -23,17 +22,18 @@ import javax.swing.JOptionPane;
  * @author Alex
  */
 public class frmFornecedores extends javax.swing.JFrame {
-    SqlServer conn;
+    SqlServer connCombo = new SqlServer();
+    
     /**
      * Creates new form frmFornecedores
      */
     public frmFornecedores() throws Exception {
         
-        SqlServer conn = new SqlServer();
+       
          this.setIconImage(new ImageIcon(getClass().getResource("/giovanellis/Icone.png")).getImage());  
         initComponents();
         
-       
+       //select * from Fornecedor as F inner join CompraFornecedor as Cf on Cf.Cod_Fornecedor = F.Cod_Fornecedor where Data_Venda between '17-07-2014' and '22-08-2014'
     }
 
     /**
@@ -50,13 +50,21 @@ public class frmFornecedores extends javax.swing.JFrame {
         btnVoltar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btnTotal = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox();
+        ComboFornecedores = new javax.swing.JComboBox();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Fornecedores");
+        addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                formPropertyChange(evt);
+            }
+        });
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -74,7 +82,7 @@ public class frmFornecedores extends javax.swing.JFrame {
                 JdcFimPropertyChange(evt);
             }
         });
-        getContentPane().add(JdcFim, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, 130, -1));
+        getContentPane().add(JdcFim, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 80, 130, -1));
 
         JdcInicio.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -86,7 +94,7 @@ public class frmFornecedores extends javax.swing.JFrame {
                 JdcInicioPropertyChange(evt);
             }
         });
-        getContentPane().add(JdcInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 130, -1));
+        getContentPane().add(JdcInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 130, -1));
 
         btnVoltar.setText("Voltar");
         btnVoltar.addActionListener(new java.awt.event.ActionListener() {
@@ -94,11 +102,11 @@ public class frmFornecedores extends javax.swing.JFrame {
                 btnVoltarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 400, 70, -1));
+        getContentPane().add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 400, 70, -1));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Total");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 360, 100, 30));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 360, 100, 30));
 
         btnTotal.setText("Calcular");
         btnTotal.addActionListener(new java.awt.event.ActionListener() {
@@ -108,8 +116,8 @@ public class frmFornecedores extends javax.swing.JFrame {
         });
         getContentPane().add(btnTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 400, -1, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", " " }));
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 390, -1));
+        ComboFornecedores.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", " " }));
+        getContentPane().add(ComboFornecedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 390, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -119,20 +127,29 @@ public class frmFornecedores extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nome do Fornecedor", "Insumo Comprado", "Data do Pedido", "Valor do Pedido"
             }
         ));
         jScrollPane3.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 390, 120));
+        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 640, 120));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 2, 18)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Descritivos de Compras de Fornecedores");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 390, 30));
 
-        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-425)/2, (screenSize.height-501)/2, 425, 501);
+        jLabel3.setText("Nome do Fornecedor");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 130, -1, -1));
+
+        jLabel4.setText("Data Inicial");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
+
+        jLabel5.setText("Data Final");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, -1, -1));
+
+        setSize(new java.awt.Dimension(671, 524));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void JdcFimMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JdcFimMouseClicked
@@ -146,7 +163,7 @@ public class frmFornecedores extends javax.swing.JFrame {
     private void JdcFimPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_JdcFimPropertyChange
   try{ 
         
-        datafim = formato.format (datas(JdcFim.getDate()));
+        datafim = formato.format (data(JdcFim.getDate()));
       System.out.println(datafim);
       // data receba um formato e formate o método data e guarde na varíável e guarde na caixa de combinação
     
@@ -157,8 +174,8 @@ public class frmFornecedores extends javax.swing.JFrame {
     }//GEN-LAST:event_JdcFimPropertyChange
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+     PreencherCombobox();
     
-     JdcInicio.setDate(new Date());
     }//GEN-LAST:event_formWindowOpened
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
@@ -173,13 +190,20 @@ public class frmFornecedores extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void JdcInicioPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_JdcInicioPropertyChange
-        // TODO add your handling code here:
+      try{ 
+        
+        datainicio = formato.format (datas(JdcInicio.getDate()));
+      System.out.println(datainicio);
+      // data receba um formato e formate o método data e guarde na varíável e guarde na caixa de combinação
+    
+  
+    }
+    catch (Exception e){}
     }//GEN-LAST:event_JdcInicioPropertyChange
 
     private void btnTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTotalActionPerformed
-        data1 = JdcInicio.getDate();
-        data2 = JdcFim.getDate();
         try{
+          
         if((data1.getDate() - data2.getDate())>0 )  
         {
         
@@ -191,7 +215,35 @@ public class frmFornecedores extends javax.swing.JFrame {
             
     }//GEN-LAST:event_btnTotalActionPerformed
 
-    int contador = 20;
+    private void formPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_formPropertyChange
+  
+    }//GEN-LAST:event_formPropertyChange
+    public Date datas(Date i){ 
+    // Método com retorno. Retorna data
+        datainicio=formato.format(i);
+        DateFormat df = DateFormat.getDateInstance
+                (DateFormat.LONG, new Locale ("pt","BR"));
+        
+    //Cria um novo formatador para formatar as datas em formato longo escrito em português
+    
+        
+                return i;
+                
+ }
+     public Date data(Date f){ 
+    // Método com retorno. Retorna data
+        datafim=formato.format(f);
+        DateFormat df = DateFormat.getDateInstance
+                (DateFormat.LONG, new Locale ("pt","BR"));
+        
+    //Cria um novo formatador para formatar as datas em formato longo escrito em português
+    
+        
+                return f;
+                
+ }
+
+ int contador = 20;
     
     public void escreva()
     {
@@ -208,33 +260,16 @@ public class frmFornecedores extends javax.swing.JFrame {
             {
                 
                 
-                new frmLogin().setVisible(true);
+                try {
+                    new frmLogin().setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(frmFornecedores.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
         
     });
-    
-    public Date datas(Date d){ 
-    // Método com retorno. Retorna data
-        data=formato.format(d);
-        DateFormat df = DateFormat.getDateInstance
-                (DateFormat.LONG, new Locale ("pt","BR"));
-    //Cria um novo formatador para formatar as datas em formato longo escrito em português
-    
-        
-                return d;
-                
- }
 
- 
- public static String getData(){
-    
-    return new SimpleDateFormat
-            ("dd/MM/yyyy").
-            format(new Date());
-    
- 
-}
     
     
     /**
@@ -277,13 +312,16 @@ public class frmFornecedores extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox ComboFornecedores;
     private com.toedter.calendar.JDateChooser JdcFim;
     private com.toedter.calendar.JDateChooser JdcInicio;
     private javax.swing.JButton btnTotal;
     private javax.swing.JButton btnVoltar;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
@@ -298,6 +336,26 @@ public class frmFornecedores extends javax.swing.JFrame {
 String datainicio, datafim, data;
 Date data1, data2;
 
+
+
+
+
+        public void PreencherCombobox(){
+         connCombo.getCon();
+         connCombo.executaSql("select Nome_Fantasia from Fornecedor order by Nome_Fantasia");
+         ComboFornecedores.removeAllItems();
+         try{
+         connCombo.rs.first();
+         do{
+         ComboFornecedores.addItem(connCombo.rs.getString("Nome_Fantasia"));
+         
+         }while(connCombo.rs.next());
+         
+         
+         }catch(Exception e){
+         JOptionPane.showMessageDialog(rootPane, "Erro ao preencher ComboBox"+e);
+         }
+
  
 }
-
+}

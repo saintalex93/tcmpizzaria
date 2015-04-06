@@ -5,32 +5,44 @@
  */
 package Visao;
 
+import Controlador.ControladorLancamentoDespesas;
+import Modelo.ModeloTabelas;
+import Modelo.clsLancamentoDespesas;
 import java.util.Date;
 import giovanellis.SqlServer;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import static sun.rmi.transport.TransportConstants.Return;
+import javax.swing.ListSelectionModel;
 
 /**
  *
  * @author Alex
  */
 public class frmDespesas extends javax.swing.JFrame {
+    private ControladorLancamentoDespesas DAO;
+    private clsLancamentoDespesas ObjLancaDespesa;
+    SqlServer conecta = new SqlServer();
+     SqlServer connCombo = new SqlServer();
+   
     
-        SqlServer conn;
-  
-
-    /**
-     * Creates new form frmDespesas
-     */
-    
+        
+        
     
     public frmDespesas() throws Exception {
         SqlServer conn = new SqlServer();
          this.setIconImage(new ImageIcon(getClass().getResource("/giovanellis/Icone.png")).getImage());  
         initComponents();
+        conecta.getCon();
+        
+         preencherTabela("Select * from TipoDespesa order by NomeDespesa" );
+        
+       
     }
 
     /**
@@ -45,16 +57,15 @@ public class frmDespesas extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        txtValor = new javax.swing.JTextField();
+        txtCodesp = new javax.swing.JTextField();
         jdtDatapagamento = new com.toedter.calendar.JDateChooser();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
-        jDateChooser3 = new com.toedter.calendar.JDateChooser();
+        Jdcfim = new com.toedter.calendar.JDateChooser();
+        Jdcinicio = new com.toedter.calendar.JDateChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        JTable = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox();
@@ -62,10 +73,19 @@ public class frmDespesas extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jdtDatapagamento1 = new com.toedter.calendar.JDateChooser();
         jButton3 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        txtValor1 = new javax.swing.JTextField();
+        CmbDespesa = new javax.swing.JComboBox();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Despesas");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Nome da Despesa");
@@ -76,23 +96,40 @@ public class frmDespesas extends javax.swing.JFrame {
 
         jLabel6.setText("Valor");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
-        getContentPane().add(txtValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 70, -1));
+        getContentPane().add(txtCodesp, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, 70, -1));
         getContentPane().add(jdtDatapagamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, 114, -1));
-        getContentPane().add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 270, 114, -1));
-        getContentPane().add(jDateChooser3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 114, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        Jdcfim.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                JdcfimPropertyChange(evt);
+            }
+        });
+        getContentPane().add(Jdcfim, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 270, 140, -1));
+
+        Jdcinicio.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                JdcinicioPropertyChange(evt);
+            }
+        });
+        getContentPane().add(Jdcinicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 140, -1));
+
+        JTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        JTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JTableMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(JTable);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 420, 106));
 
@@ -102,7 +139,7 @@ public class frmDespesas extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 520, 80, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 510, 80, -1));
 
         jButton2.setText("Consultar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -120,9 +157,6 @@ public class frmDespesas extends javax.swing.JFrame {
         });
         getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, -1, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 110, -1));
-
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("Consulta de Lançamento de Despesas");
@@ -134,7 +168,12 @@ public class frmDespesas extends javax.swing.JFrame {
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 480, -1, -1));
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Água", "Luz", "Telefone", "Internet", "Aluguel", "Outros" }));
-        getContentPane().add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 310, 150, -1));
+        jComboBox2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jComboBox2MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 310, 150, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -147,17 +186,61 @@ public class frmDespesas extends javax.swing.JFrame {
 
         jButton3.setText("Cancelar");
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 200, -1, -1));
+        getContentPane().add(txtValor1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 70, -1));
 
-        jButton5.setText("Cadastrar Despesa");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+        CmbDespesa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CmbDespesa.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                CmbDespesaItemStateChanged(evt);
             }
         });
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 193, -1, 30));
+        CmbDespesa.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                CmbDespesaFocusGained(evt);
+            }
+        });
+        CmbDespesa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CmbDespesaMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CmbDespesaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                CmbDespesaMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                CmbDespesaMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                CmbDespesaMouseReleased(evt);
+            }
+        });
+        CmbDespesa.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                CmbDespesaPropertyChange(evt);
+            }
+        });
+        getContentPane().add(CmbDespesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 100, -1));
 
-        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-454)/2, (screenSize.height-593)/2, 454, 593);
+        jMenu1.setText("Cadastrar Despesa");
+        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu1MouseClicked(evt);
+            }
+        });
+        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1ActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
+
+        setSize(new java.awt.Dimension(454, 593));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -175,17 +258,102 @@ public class frmDespesas extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+    preencherTabela("select * from Pedido as P Inner join Detalhe_Pedido as DP On p.Cod_Pedido = DP.Cod_Pedido inner join Produto as Pro on Dp.Cod_Produto = Pro.Cod_Produto where  p.Data between '"+datainicio+"' and'"+datafim+"'");
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-            try {
+    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu1ActionPerformed
+
+    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+       try {
                 new frmCadastrarDespesa().setVisible(true);
             } catch (Exception ex) {
                 Logger.getLogger(frmDespesas.class.getName()).log(Level.SEVERE, null, ex);
             }
-        dispose();
-    }//GEN-LAST:event_jButton5ActionPerformed
+        dispose();        
+    }//GEN-LAST:event_jMenu1MouseClicked
+
+    private void JTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTableMouseClicked
+      int linha_selecionada = JTable.getSelectedRow(); // Pega a linha selecionada.
+      txtCodesp.setText(JTable.getValueAt(linha_selecionada, 0).toString());
+    }//GEN-LAST:event_JTableMouseClicked
+
+    private void jComboBox2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox2MouseClicked
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+    preencherCombo();
+    }//GEN-LAST:event_formWindowOpened
+
+    private void JdcinicioPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_JdcinicioPropertyChange
+     try{ 
+        data1 = Jdcinicio.getDate();
+        datainicio = formato.format (data(Jdcinicio.getDate()));
+      System.out.println(datainicio);
+      // data receba um formato e formate o método data e guarde na varíável e guarde na caixa de combinação
+    
+  
+    }
+    catch (Exception e){}
+    }//GEN-LAST:event_JdcinicioPropertyChange
+
+    private void JdcfimPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_JdcfimPropertyChange
+  try{ 
+        data2 = Jdcfim.getDate();
+        datafim = formato.format (data(Jdcfim.getDate()));
+      System.out.println(datafim);
+      // data receba um formato e formate o método data e guarde na varíável e guarde na caixa de combinação
+    
+  
+    }
+    catch (Exception e){}
+    }//GEN-LAST:event_JdcfimPropertyChange
+
+    private void CmbDespesaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CmbDespesaMouseClicked
+int linha_selecionada = CmbDespesa.getSelectedIndex(); // Pega a linha selecionada.
+      txtCodesp.setText(JTable.getValueAt(linha_selecionada, 0).toString());
+      int cod = Integer.parseInt(txtCodesp.getText());
+      System.out.println(cod);
+      preencherTabela("Select * from TipoDespesa order by NomeDespesa  where codTipoDespesa ="+cod);     
+    }//GEN-LAST:event_CmbDespesaMouseClicked
+
+    private void CmbDespesaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CmbDespesaMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CmbDespesaMousePressed
+
+    private void CmbDespesaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CmbDespesaMouseEntered
+ 
+        //Funciona, mas tem que voltar o mouse
+        
+        //int linha_selecionada = CmbDespesa.getSelectedIndex(); // Pega a linha selecionada.
+     // txtCodesp.setText(JTable.getValueAt(linha_selecionada, 0).toString());
+    //  int cod = Integer.parseInt(txtCodesp.getText());
+     // System.out.println(cod);
+     // preencherTabela("Select * from TipoDespesa order by NomeDespesa  where codTipoDespesa ="+cod);
+      //CmbDespesa.requestFocus();
+    }//GEN-LAST:event_CmbDespesaMouseEntered
+
+    private void CmbDespesaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CmbDespesaMouseExited
+      
+    }//GEN-LAST:event_CmbDespesaMouseExited
+
+    private void CmbDespesaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CmbDespesaMouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CmbDespesaMouseReleased
+
+    private void CmbDespesaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_CmbDespesaPropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CmbDespesaPropertyChange
+
+    private void CmbDespesaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CmbDespesaItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CmbDespesaItemStateChanged
+
+    private void CmbDespesaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_CmbDespesaFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CmbDespesaFocusGained
 
     /**
      * @param args the command line arguments
@@ -208,7 +376,11 @@ public class frmDespesas extends javax.swing.JFrame {
             if(contador == 0)
             {
               
-                new frmLogin().setVisible(true);
+                try {
+                    new frmLogin().setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(frmDespesas.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
         
@@ -251,15 +423,15 @@ public class frmDespesas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox CmbDespesa;
+    private javax.swing.JTable JTable;
+    private com.toedter.calendar.JDateChooser Jdcfim;
+    private com.toedter.calendar.JDateChooser Jdcinicio;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
-    private com.toedter.calendar.JDateChooser jDateChooser3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -267,22 +439,51 @@ public class frmDespesas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private com.toedter.calendar.JDateChooser jdtDatapagamento;
     private com.toedter.calendar.JDateChooser jdtDatapagamento1;
-    private javax.swing.JTextField txtValor;
+    private javax.swing.JTextField txtCodesp;
+    private javax.swing.JTextField txtValor1;
     // End of variables declaration//GEN-END:variables
 Date data1, data2;
+String datainicio, datafim, data;
 
 
-
-
-
-
-
-
-
+  public Date datas(Date i){ 
+    // Método com retorno. Retorna data
+        datainicio=formato.format(i);
+        DateFormat df = DateFormat.getDateInstance
+                (DateFormat.LONG, new Locale ("pt","BR"));
+        
+    //Cria um novo formatador para formatar as datas em formato longo escrito em português
+    
+        
+                return i;
+                
+ }
+     public Date data(Date f){ 
+    // Método com retorno. Retorna data
+        datafim=formato.format(f);
+        DateFormat df = DateFormat.getDateInstance
+                (DateFormat.LONG, new Locale ("pt","BR"));
+        
+    //Cria um novo formatador para formatar as datas em formato longo escrito em português
+    
+        
+                return f;
+                
+ }
+ 
+ 
+ 
+ SimpleDateFormat formato =
+            new SimpleDateFormat("dd/MM/yyyy");
+    //Define Formato de Data
+    
+ 
 public boolean validarCampos()
 {
 /*if (txtDespesa.getText().equals("")){	
@@ -304,4 +505,60 @@ if (jdtDatapagamento.getDate().equals("")){
 */
 return true;
 
-}}
+}
+public void preencherTabela(String Sql){
+    ArrayList dados = new ArrayList();
+    String [] Colunas = new String[]{"Código","Nome da Despesa","Situação"};
+    
+    conecta.executaSql(Sql);
+    try{
+        conecta.rs.first();
+        do{
+    dados.add(new Object[]{conecta.rs.getInt("codTipoDespesa"),conecta.rs.getString("NomeDespesa"),conecta.rs.getString("SituacaoDespesa")});
+          }while(conecta.rs.next());
+        }
+    catch(Exception e){
+    JOptionPane.showMessageDialog(this,"Erro ao preencher o ArrayList");
+    
+    }
+    
+    ModeloTabelas modelo = new ModeloTabelas(dados, Colunas); //Instacia a classe do modelo da Tabela.
+    JTable.setModel(modelo);
+    JTable.getColumnModel().getColumn(0).setPreferredWidth(80); // Tamanho em pixel da coluna
+    JTable.getColumnModel().getColumn(0).setResizable(false);
+    JTable.getColumnModel().getColumn(1).setPreferredWidth(299);
+    JTable.getColumnModel().getColumn(1).setResizable(false);
+    JTable.getColumnModel().getColumn(2).setPreferredWidth(123);
+    JTable.getColumnModel().getColumn(2).setResizable(false);
+    JTable.getTableHeader().setReorderingAllowed(false);
+    JTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);//Não pode ser redimensionada
+    JTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+    
+  
+
+}
+public void preencherCombo()
+{
+         connCombo.getCon();
+         connCombo.executaSql("select NomeDespesa from TipoDespesa where SituacaoDespesa = 'Ativo' order by NomeDespesa");
+         CmbDespesa.removeAllItems();
+         try{
+         connCombo.rs.first();
+         do{
+         CmbDespesa.addItem(connCombo.rs.getString("NomeDespesa"));
+         
+         }while(connCombo.rs.next());
+         
+         
+         }catch(Exception e){
+         JOptionPane.showMessageDialog(rootPane, "Erro ao preencher ComboBox"+e);
+         }
+
+}
+
+
+}
+
+
+
+

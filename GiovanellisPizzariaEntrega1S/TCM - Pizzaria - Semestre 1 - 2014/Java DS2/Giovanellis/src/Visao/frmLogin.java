@@ -7,6 +7,7 @@ package Visao;
 
 import Controlador.ControladorLogin;
 import Modelo.clsLogin;
+import giovanellis.SqlServer;
 import java.awt.Color;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,11 +23,13 @@ public class frmLogin extends javax.swing.JFrame {
    
    boolean result;
     Controlador.ControladorLogin DAO;
+    
+    
     /**
      * Creates new form frmLogin
      */
-    public frmLogin() {
-        
+    public frmLogin() throws Exception {
+        SqlServer connCombo = new SqlServer();
         Color Preto = new Color(075,075,075); 
           getContentPane().setBackground(Preto);
           
@@ -37,6 +40,23 @@ public class frmLogin extends javax.swing.JFrame {
         } catch(Exception e){
           JOptionPane.showMessageDialog(this, e.getMessage());
         }
+        
+         connCombo.getCon();
+         connCombo.executaSql("select Login_Funcionario from Funcionario ");
+         
+         try{
+         connCombo.rs.first();
+         do{
+         cmb_Usuario.addItem(connCombo.rs.getString("Login_Funcionario"));
+         
+         }while(connCombo.rs.next());
+         
+         
+         }catch(Exception e){
+         JOptionPane.showMessageDialog(rootPane, "Erro ao preencher ComboBox"+e);
+         }
+        
+        
     }
 
     /**
@@ -53,16 +73,19 @@ public class frmLogin extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         mtxt_senha = new javax.swing.JPasswordField();
-        txt_usuario = new javax.swing.JTextField();
         btn_entrar = new javax.swing.JButton();
         btn_entrar1 = new javax.swing.JButton();
+        cmb_Usuario = new javax.swing.JComboBox();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Giovanelli's Pizzaria");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/giovanellis/Login2.png"))); // NOI18N
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 310, 260));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 260));
 
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
         jPanel1.setOpaque(false);
@@ -91,48 +114,54 @@ public class frmLogin extends javax.swing.JFrame {
             }
         });
 
+        cmb_Usuario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione o usuário..." }));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(10, 10, 10)
-                        .addComponent(txt_usuario))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(19, 19, 19)
-                        .addComponent(mtxt_senha, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btn_entrar1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                .addComponent(btn_entrar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(btn_entrar1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                        .addComponent(btn_entrar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel2))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cmb_Usuario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(mtxt_senha))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(16, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txt_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(19, 19, 19)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(mtxt_senha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                    .addComponent(cmb_Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(mtxt_senha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_entrar)
                     .addComponent(btn_entrar1))
                 .addContainerGap())
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, 250, 130));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 60, 250, 130));
+
+        jMenu1.setText("Alterar Senha");
+        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
 
         setSize(new java.awt.Dimension(616, 315));
         setLocationRelativeTo(null);
@@ -142,6 +171,7 @@ public class frmLogin extends javax.swing.JFrame {
         if(validarCampos()){
          if(usuarioExiste()){
             JOptionPane.showMessageDialog(this, "Usuário autenticado com sucesso!");
+            
             limparLogin();
             
             result = true;
@@ -154,7 +184,7 @@ public class frmLogin extends javax.swing.JFrame {
         } else {
             limparLogin();
             result = false;
-            txt_usuario.requestFocus();   
+            cmb_Usuario.requestFocus();   
         }
          
      }
@@ -196,7 +226,11 @@ public class frmLogin extends javax.swing.JFrame {
            
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmLogin().setVisible(true);
+                try {
+                    new frmLogin().setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(frmLogin.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -204,29 +238,32 @@ public class frmLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_entrar;
     private javax.swing.JButton btn_entrar1;
+    private javax.swing.JComboBox cmb_Usuario;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField mtxt_senha;
-    private javax.swing.JTextField txt_usuario;
     // End of variables declaration//GEN-END:variables
 
     public boolean usuarioExiste(){
       boolean opc = false;
       try{
-            if(txt_usuario.getText().equals("")){
+            if(cmb_Usuario.getSelectedItem().equals("")){
             JOptionPane.showMessageDialog(this,"Informe o usuário!", "Campo Obrigatório", 2);
-            txt_usuario.requestFocus();
+            cmb_Usuario.requestFocus();
             } else{
-                    setUsuario(DAO.existe(txt_usuario.getText()));
+                    setUsuario(DAO.existe((String) cmb_Usuario.getSelectedItem()));
                     if(getUsuario() == null){
                      JOptionPane.showMessageDialog(this, "Usuário não encontrado!");
-                     txt_usuario.setText("");
+                     //cmb_Usuario.setText("");
                      mtxt_senha.setText("");
-                     txt_usuario.requestFocus();
+                     cmb_Usuario.requestFocus();
                     }else{
-                           setUsuario(DAO.existe(txt_usuario.getText())); //O pesquisar deve retornar a senha 
+                           setUsuario(DAO.existe((String) cmb_Usuario.getSelectedItem())); //O pesquisar deve retornar a senha 
                            String senha = getUsuario().getSenha();
                            if(mtxt_senha.getText().equals(senha)){
                                opc = true;
@@ -243,9 +280,9 @@ public class frmLogin extends javax.swing.JFrame {
    }  
 
   public boolean validarCampos(){
-    if(txt_usuario.getText().equals("")){
+    if(cmb_Usuario.getSelectedItem().equals("")){
        JOptionPane.showMessageDialog(this, "Informe o usuário!");
-       txt_usuario.requestFocus();
+       cmb_Usuario.requestFocus();
        return false;
     }
     
@@ -258,7 +295,7 @@ public class frmLogin extends javax.swing.JFrame {
    }  
     
   public void limparLogin(){
-      txt_usuario.setText("");
+     cmb_Usuario.setSelectedIndex(0);
       mtxt_senha.setText("");
   }
   
@@ -268,7 +305,7 @@ public class frmLogin extends javax.swing.JFrame {
   
   public boolean preencherObjeto(){
         setUsuario(new clsLogin());
-        getUsuario().setUsuario(txt_usuario.getText());
+        getUsuario().setUsuario((String) cmb_Usuario.getSelectedItem());
         getUsuario().setSenha(mtxt_senha.getText());
       return true;
   }

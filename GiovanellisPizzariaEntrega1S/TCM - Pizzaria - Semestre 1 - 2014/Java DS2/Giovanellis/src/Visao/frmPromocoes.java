@@ -167,7 +167,11 @@ public class frmPromocoes extends javax.swing.JFrame {
             if(contador == 0)
             {
                 
-                new frmLogin().setVisible(true);
+                try {
+                    new frmLogin().setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(frmPromocoes.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
         

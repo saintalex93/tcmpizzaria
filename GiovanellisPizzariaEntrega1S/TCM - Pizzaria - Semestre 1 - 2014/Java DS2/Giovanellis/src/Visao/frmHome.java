@@ -27,7 +27,7 @@ public class frmHome extends javax.swing.JFrame {
         Color Branco = new Color(255,255,255); 
           getContentPane().setBackground(Branco);    
           
-         this.setExtendedState(this.getExtendedState()|frmHome.MAXIMIZED_BOTH);
+        // Maximizar this.setExtendedState(this.getExtendedState()|frmHome.MAXIMIZED_BOTH); 
          
          
         SqlServer conn = new SqlServer();
@@ -82,7 +82,7 @@ public class frmHome extends javax.swing.JFrame {
         lblNomeFuncionario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNomeFuncionario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
         getContentPane().add(lblNomeFuncionario);
-        lblNomeFuncionario.setBounds(-10, 0, 1370, 30);
+        lblNomeFuncionario.setBounds(-10, 0, 1450, 30);
         getContentPane().add(filler1);
         filler1.setBounds(240, 170, 20, 120);
 
@@ -90,13 +90,13 @@ public class frmHome extends javax.swing.JFrame {
         jPanel1.add(label);
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(-40, 30, 1380, 880);
+        jPanel1.setBounds(-40, 30, 1440, 880);
 
         lblNomeFuncionario1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNomeFuncionario1.setText("Funcionário");
         lblNomeFuncionario1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
         getContentPane().add(lblNomeFuncionario1);
-        lblNomeFuncionario1.setBounds(-10, 910, 1360, 30);
+        lblNomeFuncionario1.setBounds(-10, 910, 1470, 30);
 
         jMenu1.setText("Pedidos");
         jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -174,6 +174,11 @@ public class frmHome extends javax.swing.JFrame {
                 MenuLancarMouseClicked(evt);
             }
         });
+        MenuLancar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuLancarActionPerformed(evt);
+            }
+        });
         jMenu7.add(MenuLancar);
 
         MenuTopo.add(jMenu7);
@@ -191,7 +196,7 @@ public class frmHome extends javax.swing.JFrame {
 
         setJMenuBar(MenuTopo);
 
-        setSize(new java.awt.Dimension(1356, 1000));
+        setSize(new java.awt.Dimension(1413, 1000));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
  
@@ -317,6 +322,14 @@ public class frmHome extends javax.swing.JFrame {
             Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_MenuCadastrarActionPerformed
+
+    private void MenuLancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuLancarActionPerformed
+        try {
+            new frmDespesas().setVisible(true);
+        } catch (Exception ex) {
+            Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_MenuLancarActionPerformed
   
     
     int contador = 10;
@@ -338,7 +351,11 @@ public class frmHome extends javax.swing.JFrame {
                 timer.stop();
                 dispose();
                 
-                new frmLogin().setVisible(true);
+                try {
+                    new frmLogin().setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 
             }
         }

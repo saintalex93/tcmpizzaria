@@ -10,23 +10,23 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import giovanellis.SqlServer;
 /**
  *
  * @author Alex
  */
 public class frmProdutos extends javax.swing.JFrame {
-
-    static void ShowDialog() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    SqlServer conn;
+        SqlServer connCombo = new SqlServer();
+   
     /**
      * Creates new form frmProdutos
      */
     public frmProdutos() throws Exception {
          this.setIconImage(new ImageIcon(getClass().getResource("/giovanellis/Icone.png")).getImage());  
         initComponents();
-        conn = new SqlServer();
+        PreencherCombobox();
+        
     }
 
     /**
@@ -41,7 +41,7 @@ public class frmProdutos extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jDateChooser2 = new com.toedter.calendar.JDateChooser();
-        jComboBox1 = new javax.swing.JComboBox();
+        JcomboPedidos = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
@@ -53,9 +53,13 @@ public class frmProdutos extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Consulta de Lançamentos de Pedidos");
+        jLabel1.setText("Consulta de Produtos");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione o Produto...", " " }));
+        JcomboPedidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JcomboPedidosActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -95,7 +99,7 @@ public class frmProdutos extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(63, 63, 63)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(JcomboPedidos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(73, 73, 73)
@@ -125,7 +129,7 @@ public class frmProdutos extends javax.swing.JFrame {
                     .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(JcomboPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(68, 68, 68)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,8 +144,8 @@ public class frmProdutos extends javax.swing.JFrame {
                 .addContainerGap(45, Short.MAX_VALUE))
         );
 
-        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-478)/2, (screenSize.height-461)/2, 478, 461);
+        setSize(new java.awt.Dimension(478, 461));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -154,6 +158,10 @@ public class frmProdutos extends javax.swing.JFrame {
         dispose();
         timer.stop();;
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void JcomboPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JcomboPedidosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JcomboPedidosActionPerformed
 
     
     
@@ -173,7 +181,11 @@ public class frmProdutos extends javax.swing.JFrame {
             if(contador == 0)
             {
                 
-                new frmLogin().setVisible(true);
+                try {
+                    new frmLogin().setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(frmProdutos.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
         
@@ -209,7 +221,7 @@ public class frmProdutos extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    JDialog frmDialog = new JDialog(new JFrame(), true);
+                    new frmProdutos().setVisible(true);
                 } catch (Exception ex) {
                     Logger.getLogger(frmProdutos.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -218,9 +230,9 @@ public class frmProdutos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox JcomboPedidos;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox jComboBox1;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
@@ -228,4 +240,28 @@ public class frmProdutos extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+
+public void PreencherCombobox(){
+         connCombo.getCon();
+         connCombo.executaSql("select Nome_Produto from Produto order by Nome_Produto");
+         JcomboPedidos.removeAllItems();
+         try{
+         connCombo.rs.first();
+         do{
+         JcomboPedidos.addItem(connCombo.rs.getString("Nome_Produto"));
+         
+         }while(connCombo.rs.next());
+         
+         
+         }catch(Exception e){
+         JOptionPane.showMessageDialog(rootPane, "Erro ao preencher ComboBox"+e);
+         }
+
+
+
+}
+
+
+
 }

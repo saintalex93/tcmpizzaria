@@ -5,7 +5,10 @@
  */
 package Visao;
 
+import Modelo.ModeloTabelas;
 import giovanellis.SqlServer;
+import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,20 +16,24 @@ import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 /**
  *
  * @author Alex
  */
 public class frmPedidos extends javax.swing.JFrame {
-    SqlServer conn;
+   SqlServer conecta = new SqlServer();
     /**
      * Creates new form frmPedidos
      */
     public frmPedidos() throws Exception {
          this.setIconImage(new ImageIcon(getClass().getResource("/giovanellis/Icone.png")).getImage());  
         initComponents();
-        conn = new SqlServer();
+        conecta.getCon();
+         preencherTabela("select * from Pedido as P Inner join Detalhe_Pedido as DP On p.Cod_Pedido = DP.Cod_Pedido inner join Produto as Pro on Dp.Cod_Produto = Pro.Cod_Produto");
         
     }
 
@@ -41,50 +48,76 @@ public class frmPedidos extends javax.swing.JFrame {
 
         JdcInicio = new com.toedter.calendar.JDateChooser();
         JdcFim = new com.toedter.calendar.JDateChooser();
-        jComboBox1 = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        JTablePedidos = new javax.swing.JTable();
         lblTotal = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        JTableProdutos = new javax.swing.JTable();
+        btnPesquisar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        jCheckBox2 = new javax.swing.JCheckBox();
+        jCheckBox3 = new javax.swing.JCheckBox();
+        jCheckBox4 = new javax.swing.JCheckBox();
+        RdCancelado = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Pedidos");
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowOpened(java.awt.event.WindowEvent evt) {
-                formWindowOpened(evt);
-            }
-        });
+        setResizable(false);
         addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 formMouseMoved(evt);
             }
         });
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tipo do Pedido...", "Todos", "Entregues", "Cancelados", " " }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
             }
         });
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        JdcInicio.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                JdcInicioPropertyChange(evt);
+            }
+        });
+        getContentPane().add(JdcInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 124, -1));
+
+        JdcFim.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                JdcFimPropertyChange(evt);
+            }
+        });
+        getContentPane().add(JdcFim, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 60, 124, -1));
+
+        JTablePedidos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Cod Pedido", "Data Pedido", "Valor Pedido"
+
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        JTablePedidos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JTablePedidosMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(JTablePedidos);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, 126));
 
         lblTotal.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblTotal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTotal.setText("Total");
+        getContentPane().add(lblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 480, 540, -1));
 
         jButton1.setText("Voltar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -92,6 +125,7 @@ public class frmPedidos extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 510, 71, -1));
 
         jButton2.setText("Calcular");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -99,76 +133,70 @@ public class frmPedidos extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 510, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Consulta de Pedidos");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 540, 27));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(JdcInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(JdcFim, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(88, 88, 88)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 5, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(160, 160, 160))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(JdcFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JdcInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addGap(50, 50, 50))
-        );
+        JTableProdutos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
 
-        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-416)/2, (screenSize.height-420)/2, 416, 420);
+            }
+        ));
+        jScrollPane2.setViewportView(JTableProdutos);
+
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, -1, 120));
+
+        btnPesquisar.setText("Pesquisar");
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 130, 165, -1));
+
+        jLabel2.setText("Data Inicial");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, -1, -1));
+
+        jLabel3.setText("Data Final");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 60, -1, -1));
+
+        jCheckBox1.setText("Na Fila");
+        getContentPane().add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
+
+        jCheckBox2.setText("Em Preparo");
+        getContentPane().add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, -1, -1));
+
+        jCheckBox3.setText("Realizados");
+        getContentPane().add(jCheckBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, -1));
+
+        jCheckBox4.setText("A Caminho");
+        getContentPane().add(jCheckBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, -1, -1));
+
+        RdCancelado.setText("Cancelados");
+        RdCancelado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                RdCanceladoMouseClicked(evt);
+            }
+        });
+        RdCancelado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RdCanceladoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(RdCancelado, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, -1, -1));
+
+        setSize(new java.awt.Dimension(556, 595));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
@@ -181,26 +209,75 @@ public class frmPedidos extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-         data1 = JdcInicio.getDate();
-        data2 = JdcFim.getDate();
-        try{
-        if((data1.getDate() - data2.getDate())>0 )  
-        {
         
-        JOptionPane.showMessageDialog(null, "Data Incorreta");
-            
-        }
-        
-        }catch(Exception e){}
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-     JdcInicio.setDate(new Date());
+     
     }//GEN-LAST:event_formWindowOpened
 
     private void formMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseMoved
      contador = 20;
     }//GEN-LAST:event_formMouseMoved
+
+    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
+        
+        if (RdCancelado.isSelected())
+        {
+        preencherTabela("select * from Pedido as P Inner join Detalhe_Pedido as DP On p.Cod_Pedido = DP.Cod_Pedido inner join Produto as Pro on Dp.Cod_Produto = Pro.Cod_Produto where P.Estado = 'Cancelado' and p.Data between '"+datainicio+"' and'"+datafim+"'");
+        
+        }
+        else{
+         preencherTabela("select * from Pedido as P Inner join Detalhe_Pedido as DP On p.Cod_Pedido = DP.Cod_Pedido inner join Produto as Pro on Dp.Cod_Produto = Pro.Cod_Produto where  p.Data between '"+datainicio+"' and'"+datafim+"'");
+        
+        }
+        
+        
+            
+        
+        
+        
+       
+    }//GEN-LAST:event_btnPesquisarActionPerformed
+
+    private void JdcInicioPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_JdcInicioPropertyChange
+     try{ 
+        data1 = JdcFim.getDate();
+        datainicio = formato.format (datas(JdcInicio.getDate()));
+      System.out.println(datainicio);
+      // data receba um formato e formate o método data e guarde na varíável e guarde na caixa de combinação
+    
+  
+    }
+    catch (Exception e){}
+    }//GEN-LAST:event_JdcInicioPropertyChange
+
+    private void JdcFimPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_JdcFimPropertyChange
+    try{ 
+        data2 = JdcFim.getDate();
+        datafim = formato.format (data(JdcFim.getDate()));
+      System.out.println(datafim);
+      // data receba um formato e formate o método data e guarde na varíável e guarde na caixa de combinação
+    
+  
+    }
+    catch (Exception e){}
+    }//GEN-LAST:event_JdcFimPropertyChange
+
+    private void JTablePedidosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTablePedidosMouseClicked
+    int cod = (int) JTablePedidos.getValueAt(JTablePedidos.getSelectedRow(),0);
+    preencherTabelaDetalhe("select * from Pedido as P Inner join Detalhe_Pedido as DP On p.Cod_Pedido = DP.Cod_Pedido inner join Produto as Pro  on Dp.Cod_Produto = Pro.Cod_Produto where P.Cod_Pedido ="+cod);    
+
+    }//GEN-LAST:event_JTablePedidosMouseClicked
+
+    private void RdCanceladoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RdCanceladoMouseClicked
+       
+
+    }//GEN-LAST:event_RdCanceladoMouseClicked
+
+    private void RdCanceladoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RdCanceladoActionPerformed
+ 
+    }//GEN-LAST:event_RdCanceladoActionPerformed
 
    int contador = 20;
     
@@ -218,7 +295,11 @@ public class frmPedidos extends javax.swing.JFrame {
             if(contador == 0)
             {
                 
-                new frmLogin().setVisible(true);
+                try {
+                    new frmLogin().setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(frmPedidos.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
         
@@ -255,7 +336,7 @@ public class frmPedidos extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                     JDialog frame = new JDialog(new JFrame(), true);
+                    new frmPedidos().setVisible(true);
                 } catch (Exception ex) {
                     Logger.getLogger(frmPedidos.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -264,18 +345,129 @@ public class frmPedidos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable JTablePedidos;
+    private javax.swing.JTable JTableProdutos;
     private com.toedter.calendar.JDateChooser JdcFim;
     private com.toedter.calendar.JDateChooser JdcInicio;
+    private javax.swing.JRadioButton RdCancelado;
+    private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBox jCheckBox2;
+    private javax.swing.JCheckBox jCheckBox3;
+    private javax.swing.JCheckBox jCheckBox4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblTotal;
     // End of variables declaration//GEN-END:variables
 
 
 Date data1, data2;
+
+ public void preencherTabela(String Sql){
+    ArrayList dados = new ArrayList();
+    String [] Colunas = new String[]{"Código","Data","Valor","Estado", };
+    
+    conecta.executaSql(Sql);
+    try{
+        conecta.rs.first();
+        do{
+    dados.add(new Object[]{conecta.rs.getInt("Cod_Pedido"),conecta.rs.getDate("Data"),
+        conecta.rs.getDouble("Valor"), conecta.rs.getString("Estado")});
+          }while(conecta.rs.next());
+        }
+    catch(Exception e){
+    JOptionPane.showMessageDialog(this,"Erro ao preencher o ArrayList");
+    
+    }
+    
+    ModeloTabelas modelo = new ModeloTabelas(dados, Colunas); //Instacia a classe do modelo da Tabela.
+    JTablePedidos.setModel(modelo);
+    JTablePedidos.getColumnModel().getColumn(0).setPreferredWidth(80); // Tamanho em pixel da coluna
+    JTablePedidos.getColumnModel().getColumn(0).setResizable(false);
+    JTablePedidos.getColumnModel().getColumn(1).setPreferredWidth(80);
+    JTablePedidos.getColumnModel().getColumn(1).setResizable(false);
+    JTablePedidos.getColumnModel().getColumn(2).setPreferredWidth(100);
+    JTablePedidos.getColumnModel().getColumn(2).setResizable(false);
+    JTablePedidos.getColumnModel().getColumn(3).setPreferredWidth(170);
+    JTablePedidos.getColumnModel().getColumn(3).setResizable(false);
+    JTablePedidos.getTableHeader().setReorderingAllowed(false);
+    JTablePedidos.setAutoResizeMode(JTablePedidos.AUTO_RESIZE_OFF);//Não pode ser redimensionada
+    JTablePedidos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+    
+
+}
+ void preencherTabelaDetalhe(String Sql){
+    ArrayList dados = new ArrayList();
+    String [] Colunas = new String[]{"Código do Pedido","Código do Produto","Nome do Produto","Valor_Venda"};
+    
+    conecta.executaSql(Sql);
+    try{
+        conecta.rs.first();
+        do{
+    dados.add(new Object[]{conecta.rs.getInt("Cod_Pedido"),conecta.rs.getInt("Cod_Produto"),conecta.rs.getString("Nome_Produto"),
+        conecta.rs.getDouble("Valor_Venda")});
+          }while(conecta.rs.next());
+        }
+    catch(Exception e){
+    JOptionPane.showMessageDialog(this,"Erro ao preencher o ArrayList");
+    
+    }
+    
+    ModeloTabelas modelo = new ModeloTabelas(dados, Colunas); //Instacia a classe do modelo da Tabela.
+    JTableProdutos.setModel(modelo);
+    JTableProdutos.getColumnModel().getColumn(0).setPreferredWidth(110); // Tamanho em pixel da coluna
+    JTableProdutos.getColumnModel().getColumn(0).setResizable(false);
+    JTableProdutos.getColumnModel().getColumn(1).setPreferredWidth(110);
+    JTableProdutos.getColumnModel().getColumn(1).setResizable(false);
+    JTableProdutos.getColumnModel().getColumn(2).setPreferredWidth(320);
+    JTableProdutos.getColumnModel().getColumn(2).setResizable(false);
+    JTableProdutos.getColumnModel().getColumn(2).setPreferredWidth(120);
+    JTableProdutos.getColumnModel().getColumn(2).setResizable(false);
+    JTableProdutos.setAutoResizeMode(JTablePedidos.AUTO_RESIZE_OFF);//Não pode ser redimensionada
+    JTableProdutos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+ 
+ 
+ 
+ 
+}
+  public Date datas(Date i){ 
+    // Método com retorno. Retorna data
+        datainicio=formato.format(i);
+        DateFormat df = DateFormat.getDateInstance
+                (DateFormat.LONG, new Locale ("pt","BR"));
+        
+    //Cria um novo formatador para formatar as datas em formato longo escrito em português
+    
+        
+                return i;
+                
+ }
+     public Date data(Date f){ 
+    // Método com retorno. Retorna data
+        datafim=formato.format(f);
+        DateFormat df = DateFormat.getDateInstance
+                (DateFormat.LONG, new Locale ("pt","BR"));
+        
+    //Cria um novo formatador para formatar as datas em formato longo escrito em português
+    
+        
+                return f;
+                
+ }
+ 
+ 
+ 
+ SimpleDateFormat formato =
+            new SimpleDateFormat("dd/MM/yyyy");
+    //Define Formato de Data
+    
+    
+String datainicio, datafim, data;
+
 
 }

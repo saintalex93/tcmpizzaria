@@ -16,15 +16,19 @@ import javax.swing.JOptionPane;
  * @author Alex
  */
 public class frmFuncionarios extends javax.swing.JFrame {
-    SqlServer conn;
+   
+  
+  SqlServer connCombo = new SqlServer();
+  
     /**
      * Creates new form frmFuncionarios
      */
     public frmFuncionarios() throws Exception {
-        SqlServer conn = new SqlServer();
-          
+        
+          connCombo.getCon();
          this.setIconImage(new ImageIcon(getClass().getResource("/giovanellis/Icone.png")).getImage());  
-        initComponents();
+        
+         initComponents();
     }
 
     /**
@@ -161,7 +165,7 @@ contador=20;
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
     timer.start();
-    
+    PreencherCombobox();
     jdcSalario.setDate(new Date());
     }//GEN-LAST:event_formWindowOpened
 
@@ -196,7 +200,11 @@ contador=20;
             {
                 
                 
-                new frmLogin().setVisible(true);
+                try {
+                    new frmLogin().setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(frmFuncionarios.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
         
@@ -267,6 +275,21 @@ contador=20;
 Date data1, data2;
 
 
+public void PreencherCombobox(){
+         connCombo.getCon();
+         connCombo.executaSql("select Nome_Func from Funcionario order by Nome_Func");
+         jcbFuncionarioPagamento.removeAllItems();
+         
+         try{
+         connCombo.rs.first();
+         do{
+         jcbFuncionarioPagamento.addItem(connCombo.rs.getString("Nome_Func"));
+         
+        }while(connCombo.rs.next());
+         
+         
+         }catch(Exception e){
+         JOptionPane.showMessageDialog(rootPane, "Erro ao preencher ComboBox"+e);
+         }
 
-
-}
+}}
