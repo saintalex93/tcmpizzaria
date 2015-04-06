@@ -17,7 +17,9 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.example.giovanellispizzaria.Login"
+            android:screenOrientation="portrait"
             android:label="@string/app_name" >
+            
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,18 +28,22 @@
         </activity>
         <activity
             android:name="com.example.giovanellispizzaria.Home"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_home" >
         </activity>
         <activity
             android:name="com.example.giovanellispizzaria.DetalhePedido"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_detalhe_pedido" >
         </activity>
         <activity
             android:name="com.example.giovanellispizzaria.Historico"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_historico" >
         </activity>
         <activity
             android:name="com.example.giovanellispizzaria.Teste"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_teste" >
         </activity>
     </application>

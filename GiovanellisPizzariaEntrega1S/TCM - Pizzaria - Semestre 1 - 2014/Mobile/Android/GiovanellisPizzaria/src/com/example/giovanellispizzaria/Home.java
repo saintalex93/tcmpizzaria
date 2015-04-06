@@ -82,34 +82,18 @@ public class Home extends Activity {
 				
 			}
 		});
-		
-	/*	pedido.setOnLongClickListener
-		(
-			new View.OnLongClickListener()
-			{
-				public boolean onLongClick(View v)
-				{
-					Toast.makeText(context, "That was long enough, thank you very much.", Toast.LENGTH_LONG).show();
-					
-					return true;
-				}
-			}
-		);
-		
-		pedido.setOnClickListener
-		(
-			new View.OnClickListener()
-			{
-				public void onClick(View v)
-				{
-					Context context = getApplicationContext();
-					Intent i = new Intent(context, DetalhePedido.class);
-					startActivity(i);
-				}
-			}
-		);*/
-		
-		historico.setOnClickListener
+
+		pedidos.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+		    @Override
+		    public boolean onItemLongClick(AdapterView<?> av, View v, int pos, long id) {
+		        
+		    	Toast.makeText(context, "Long click on LivstView item " + pos, Toast.LENGTH_SHORT).show();
+		    	return true;
+		    }
+		});
+
+
+			historico.setOnClickListener
 		(
 			new View.OnClickListener()
 			{
