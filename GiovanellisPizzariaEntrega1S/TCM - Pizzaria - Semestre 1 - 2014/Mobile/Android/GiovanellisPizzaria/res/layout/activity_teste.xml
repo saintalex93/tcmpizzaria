@@ -18,22 +18,4 @@
         android:text="This is the Activity you&apos;re looking for"
         android:textColor="@android:color/background_dark" />
 
-    <ScrollView
-        android:id="@+id/scrollView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/txtTeste"
-        android:layout_below="@+id/txtTeste"
-        android:layout_marginTop="85dp" >
-    </ScrollView>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/txtTeste"
-        android:orientation="vertical" >
-
-    </LinearLayout>
-
 </RelativeLayout>
