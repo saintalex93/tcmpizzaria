@@ -9,58 +9,95 @@ import android.content.Context;
 import android.util.Log;
 import android.view.Menu;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
 public class DetalhePedido extends Activity {
 
 	TextView detalhesPedido;
-	TextView nomeHora;
 	TextView tituloPedido;
+	TextView pagamento;
+	TextView troco;
 	
+	Button nomeCliente;
+
 	ListView produtos;
+	
+	Random r = new Random();
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_detalhe_pedido);
-		
-		Random r = new Random();
-		
-		detalhesPedido = (TextView) findViewById(R.id.txtDetalhes);
-		nomeHora = (TextView) findViewById(R.id.txtNomeClienteEHora);
-		tituloPedido = (TextView) findViewById(R.id.txtTituloPedido);
-		detalhesPedido.setText(detalhesPedido.getText() + Home.endereco);
-		
-		String produtosPreco = "";
-		produtosPreco = String.valueOf(Home.qtdProdutos) + " produto";
-		
-		if(Home.qtdProdutos > 1)
-			produtosPreco += "s";
 
-		produtosPreco += " - R$ 54,73";
-		
-		tituloPedido.setText(produtosPreco);
-	
-		produtos = (ListView) findViewById(R.id.lstProdutos);
+		try
+		{
+			nomeCliente = (Button) findViewById(R.id.btnCliente);
+			tituloPedido = (TextView) findViewById(R.id.txtTituloPedido);
+			detalhesPedido = (TextView) findViewById(R.id.txtDetalhes);
+			pagamento = (TextView) findViewById(R.id.txtPagamento);
+			troco = (TextView) findViewById(R.id.txtTroco);
+			
+			detalhesPedido.setText(detalhesPedido.getText() + Home.endereco);
+			
+			int formaDePagamento = r.nextInt(3);
+			
+			switch(formaDePagamento)
+			{
+				case 0:
+					troco.setText("Cartão");
+					break;
+					
+				case 1:
+					troco.setText("Cheque");
+					break;
+					
+				case 2:
+					troco.setText("Dinheiro - R$ 60,00 (Troco: R$ 5,27)");
+					break;
+			}
+			
+			
+			
+			String produtosPreco = "";
+			produtosPreco = String.valueOf(Home.qtdProdutos) + " produto";
+			
+			if(Home.qtdProdutos > 1)
+				produtosPreco += "s";
 
-		final ArrayList<String> arrayProdutos = new ArrayList<String>();
+			tituloPedido.setText(produtosPreco);
 		
-		ArrayAdapter<String> adapter2 = new ArrayAdapter<String>
-		(
-			this,
-			android.R.layout.simple_list_item_1,
-			arrayProdutos
-		);
-		
-		
-			produtos.setAdapter(adapter2);
+			produtos = (ListView) findViewById(R.id.lstProdutos);
 
-			for(int i = 0; i < Home.qtdProdutos; i++)
-				arrayProdutos.add("Pizza " + (i+1));
+			final ArrayList<String> arrayProdutos = new ArrayList<String>();
+			
+			ArrayAdapter<String> adapter2 = new ArrayAdapter<String>
+			(
+				this,
+				android.R.layout.simple_list_item_1,
+				arrayProdutos
+			);
+			
+			
+				produtos.setAdapter(adapter2);
 
-			adapter2.notifyDataSetChanged();
+				int j = r.nextInt(6)+1;
+				
+				Log.d("Home", j+"");
+				
+				for(int i = 0; i <  j ; i++)
+					arrayProdutos.add("Pizza " + (i+1));
+
+				adapter2.notifyDataSetChanged();
+		}
+		catch(Exception e)
+		{
+			Log.d("Detalhes Pedido", e.getLocalizedMessage());
+		}
+		
+		
 	}
 
 	@Override

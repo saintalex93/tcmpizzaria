@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Debug;
@@ -31,6 +33,8 @@ public class Home extends Activity {
 	
 	ListView pedidos;
 	
+	String alertMessage = "";
+	
 	public static String nomePedido;
 	public static String endereco;
 	public static int qtdProdutos;
@@ -47,6 +51,34 @@ public class Home extends Activity {
 		historico = (Button) findViewById(R.id.btnHistorico);
 		
 		pedidos = (ListView) findViewById(R.id.lstPedidos);
+		
+		AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+		
+		builder1.setMessage("Marcar esse pedido como...");
+        builder1.setCancelable(true);
+        builder1.setPositiveButton
+        (
+    		"Entregue", new DialogInterface.OnClickListener() 
+    		{
+    			public void onClick(DialogInterface dialog, int id) 
+    			{
+    				dialog.cancel();
+    			}
+    		}
+		);
+        
+        builder1.setNegativeButton
+        (
+			"Cancelado", new DialogInterface.OnClickListener() 
+			{
+				public void onClick(DialogInterface dialog, int id) 
+				{
+					dialog.cancel();
+				}
+			}
+		);
+
+        final AlertDialog alert11 = builder1.create();
 
 		final ArrayList<String> arrayPedidos = new ArrayList<String>();
 		
@@ -83,14 +115,18 @@ public class Home extends Activity {
 			}
 		});
 
-		pedidos.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-		    @Override
-		    public boolean onItemLongClick(AdapterView<?> av, View v, int pos, long id) {
-		        
-		    	Toast.makeText(context, "Long click on LivstView item " + pos, Toast.LENGTH_SHORT).show();
-		    	return true;
-		    }
-		});
+		pedidos.setOnItemLongClickListener
+		(
+			new AdapterView.OnItemLongClickListener() 
+			{
+			    @Override
+			    public boolean onItemLongClick(AdapterView<?> av, View v, int pos, long id) 
+			    {
+						alert11.show();	
+			    	return true;
+			    }
+			}
+		);
 
 
 			historico.setOnClickListener
