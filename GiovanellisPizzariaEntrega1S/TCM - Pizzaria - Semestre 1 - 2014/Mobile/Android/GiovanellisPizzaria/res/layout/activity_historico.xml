@@ -9,17 +9,7 @@
     tools:context=".Historico" >
 
     <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:text="[EndereçoCliente] - [Produtos] - [Dia] - [Hora]"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
-
-    <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/txtPagamento"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -27,5 +17,15 @@
         android:text="Histórico de entregas"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textSize="20sp" />
+
+    <ListView
+        android:id="@+id/lstHistorico"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtPagamento"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp" >
+
+    </ListView>
 
 </RelativeLayout>

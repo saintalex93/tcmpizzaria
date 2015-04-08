@@ -4,7 +4,6 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -17,12 +16,6 @@ import android.widget.TextView;
 
 public class Login extends Activity {
 
-	Context context = getApplicationContext(); 
-	
-	TextView recent;
-	TextView tv1;
-	TextView can;
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -37,7 +30,7 @@ public class Login extends Activity {
 			      {
 //					  HttpClient webClient = new DefaultHttpClient();
 
-					  Intent i = new Intent(context, Home.class);
+					  Intent i = new Intent(getApplicationContext(), Home.class);
 					  startActivity(i);
 			      }
 			}

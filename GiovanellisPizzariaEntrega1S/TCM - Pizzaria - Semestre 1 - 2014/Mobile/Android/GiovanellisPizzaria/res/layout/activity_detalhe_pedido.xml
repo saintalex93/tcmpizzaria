@@ -14,27 +14,61 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:text="Detalhes"
+        android:text="Detalhes - "
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
-        android:id="@+id/tituloPedido"
+        android:id="@+id/txtTroco"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtPagamento"
+        android:layout_centerHorizontal="true"
+        android:text="asdf"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/txtPagamento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtHoraPreco"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:text="Pagamento"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <ListView
+        android:id="@+id/lstProdutos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtTituloPedido"
+        android:layout_centerHorizontal="true" >
+    </ListView>
+
+    <TextView
+        android:id="@+id/txtHoraPreco"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnCliente"
+        android:layout_centerHorizontal="true"
+        android:text="18:35 - R$ 54,73"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <Button
+        android:id="@+id/btnCliente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/txtDetalhes"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
-        android:text="@string/enderecoPlaceHolder" />
+        android:layout_marginTop="21dp"
+        android:text="Emerson Talaris (9 3625-8852)" />
 
     <TextView
-        android:id="@+id/NomeClienteEHora"
+        android:id="@+id/txtTituloPedido"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/tituloPedido"
-        android:layout_marginTop="18dp"
-        android:text="[NomeCliente] - [HoraPedido]"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:layout_centerVertical="true"
+        android:text="QtdeProdutos"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </RelativeLayout>
