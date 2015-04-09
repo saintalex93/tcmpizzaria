@@ -22,16 +22,17 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle" Text="MY APPLICATION" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock x:Name="PageTitle" Text="page name" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock x:Name="ApplicationTitle" Text="Giovanellis Pizzaria" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock x:Name="PageTitle" Text="Login" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             
             <!--Create a single button to navigate to the second page which is rendered with the XNA Framework-->
-            <Button Height="100" Content="Change to game page" Click="Button_Click" />
-            
+            <TextBox Height="72" HorizontalAlignment="Left" Margin="12,101,0,0" Name="txtLogin" Text="Login" VerticalAlignment="Top" Width="436" LayoutUpdated="txtLogin_LayoutUpdated"/>
+            <TextBox Height="72" HorizontalAlignment="Left" Margin="12,280,0,0" Name="txtSenha" Text="Senha" VerticalAlignment="Top" Width="436" />
+            <Button Content="Entrar" Height="72" HorizontalAlignment="Left" Margin="141,463,0,0" Name="btnEntrar" VerticalAlignment="Top" Width="160" />
         </Grid>
     </Grid>
  
