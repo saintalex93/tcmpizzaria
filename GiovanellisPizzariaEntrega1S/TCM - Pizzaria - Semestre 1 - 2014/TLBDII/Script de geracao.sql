@@ -10,7 +10,39 @@ go
 
 use Pizzaria
 go
+/*
+select 
+    db_name(dbid) as [Database Name], 
+    count(dbid) as [No Of Connections],
+    loginame as [Login Name]
+from
+    sys.sysprocesses
+where 
+    dbid > 0
+group by 
+    dbid, loginame
 
+set nocount on
+declare @databasename varchar(100)
+declare @query varchar(max)
+set @query = ''
+
+set @databasename = 'xxx'
+if db_id(@databasename) < 4
+begin
+	print 'system database connection cannot be killeed'
+return
+end
+
+select @query=coalesce(@query,',' )+'kill '+convert(varchar, spid)+ '; '
+from master..sysprocesses where dbid=db_id(@databasename)
+
+if len(@query) > 0
+begin
+print @query
+	exec(@query)
+end
+*/
 create table Cliente
 (
 Cod_Cliente INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
@@ -33,16 +65,12 @@ DataCadastro DATE
 )
 go
 
-
-
 create table TipoDespesa
 (
 codTipoDespesa INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 NomeDespesa VARCHAR(50) unique,
 SituacaoDespesa varchar(10)
 )
-
-
 go
 
 create table Despesa
@@ -86,6 +114,8 @@ Cod_Permissao INT FOREIGN KEY REFERENCES
 Permissao(Cod_Permissao)
 )
 go
+
+
 
 create table Categoria
 (
@@ -364,19 +394,27 @@ values
 ('Porção de Provolone',17.00,0)
 go
 
+/*
+select * from Pedido where Cod_Funcionario = 2
+select * from Pedido
+select * from Funcionario
+*/
 
-
-insert into Pedido(Cod_Cliente,Cod_Funcionario,Data,Hora,Valor, Estado)
+insert into Pedido
+(Data,Hora,Valor,Cod_Funcionario,Cod_Cliente, Observacao,Origem,Estado,EnderecoAlternativo,FormaDePagamento,ValorPago)
+/*
+(Cod_Cliente,Cod_Funcionario,Data,Hora,Valor, Estado)
+*/
 values
-(1,1,'05/01/2015','20:15',31.00,'Em Preparo'),
-(2,2,'22/02/2015','19:14',25.25,'Na Fila'),
-(3,3,'12/03/2015','22:57',38.89,'Realizado'),
-(3,1,'05/04/2015','21:40',78.98,'Cancelado'),
-(5,2,'06/04/2015','21:15',42.30,'A Caminho'),
-(5,3,'07/04/2015','20:22',67.90,'Em Preparo'),
-(5,2,'20/04/2015','22:57',84.20,'Realizado'),
-(4,1,'22/05/2015','18:49',76.00,'Realiado'),
-(2,3,'06/06/2015','19:16',58.20,'Cancelado')
+('05/01/2015','20:15',31.00,1, 1,'','Site','Em Preparo','','Cartão',31.00),
+('22/02/2015','19:14',25.25,2,2,'','In loco','Na Fila','','Dinheiro', 30),
+('12/03/2015','22:57',38.89,3,3,'','Telefone','Realizado','Alameda Itu, 753 - Jardins', 'Cartão',38.89),
+('05/04/2015','21:40',78.98,1,3,'Manera na cebola','Site','Cancelado','','Cartão',78.98),
+('06/04/2015','21:15',42.30,2,5,'','In loco','A caminho','','Cartão',42.30),
+('07/04/2015','20:22',67.90,3,5,'Sem azeitonas, pelo amor de Deus','Site','Realizado','','Cartão',67.90),
+('20/04/2015','22:57',84.20,2,5,'','In loco','Realizado','','Cartão',84.20),
+('22/05/2015','18:49',76.00,1,4,'','Site','Realizado','Rebouças 32','Dinheiro',80),
+('06/06/2015','00:16',58.20,3,2,'Favor, ao chegar, ligar no meu celular e não pelo interfone nem campainha','Site','Cancelado','','Cartão',58.20)
 go
 
 insert into Fornecedor
