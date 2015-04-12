@@ -16,7 +16,7 @@
         android:textSize="32sp" />
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/txtLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/txtLoginHeader"
@@ -24,16 +24,16 @@
         android:layout_marginTop="69dp"
         android:ems="10"
         android:hint="Email"
-        android:inputType="textPassword" >
+        android:inputType="textEmailAddress" >
 
         <requestFocus />
     </EditText>
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/txtSenha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText1"
+        android:layout_below="@+id/txtLogin"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="79dp"
         android:ems="10"
@@ -44,7 +44,7 @@
         android:id="@+id/btnLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText2"
+        android:layout_below="@+id/txtSenha"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="59dp"
         android:text="Entrar" />

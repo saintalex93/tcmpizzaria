@@ -30,6 +30,7 @@ public class Home extends Activity {
 	
 	TextView historico;
 	TextView pedido;
+	TextView user;
 	
 	ListView pedidos;
 	
@@ -43,6 +44,10 @@ public class Home extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
+		
+		user = (TextView) findViewById(R.id.txtUser);
+		
+		user.setText(Login.nomeFuncionario);
 		
 		Random r = new Random();
 		
