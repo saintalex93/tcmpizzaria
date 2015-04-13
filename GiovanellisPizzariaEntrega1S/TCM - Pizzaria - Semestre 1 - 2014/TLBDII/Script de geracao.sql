@@ -394,6 +394,36 @@ values
 ('Porção de Provolone',17.00,0)
 go
 
+--select * from Produto as p inner join ProdutoCategoria as pc on pc.CodCategoria = 1 and p.Cod_Produto = pc.CodProduto
+insert into ProdutoCategoria
+(
+CodCategoria,
+CodProduto
+)
+values
+(1,1),
+(1,2),
+(1,3),
+(1,4),
+(1,5),
+(1,6),
+(1,7),
+(1,8),
+(1,9),
+(2,10),
+(2,11),
+(2,12),
+(2,13),
+(3,14),
+(3,15),
+(3,16),
+(3,17),
+(4,18),
+(4,19),
+(4,20)
+
+go
+
 /*
 select * from Pedido where Cod_Funcionario = 2
 select * from Pedido
@@ -576,6 +606,3 @@ produto_promocao	|   OK
 pedido_fornecedor	|   OK
 detalhe_pedido		|   Faltam dados
 */
-
-
-
