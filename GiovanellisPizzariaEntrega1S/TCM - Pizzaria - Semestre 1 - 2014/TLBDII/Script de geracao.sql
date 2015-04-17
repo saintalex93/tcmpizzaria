@@ -1,6 +1,31 @@
 Use master
 go
 
+--
+set nocount on
+declare @databasename varchar(100)
+declare @query varchar(max)
+set @query = ''
+
+set @databasename = 'Pizzaria'
+if db_id(@databasename) < 4
+begin
+	print 'system database connection cannot be killeed'
+return
+end
+--
+
+--
+select @query=coalesce(@query,',' )+'kill '+convert(varchar, spid)+ '; '
+from master..sysprocesses where dbid=db_id(@databasename)
+
+if len(@query) > 0
+begin
+print @query
+	exec(@query)
+end
+go
+--
 IF EXISTS (SELECT * from sys.databases where name = 'Pizzaria')
 DROP DATABASE Pizzaria
 go
@@ -10,39 +35,7 @@ go
 
 use Pizzaria
 go
-/*
-select 
-    db_name(dbid) as [Database Name], 
-    count(dbid) as [No Of Connections],
-    loginame as [Login Name]
-from
-    sys.sysprocesses
-where 
-    dbid > 0
-group by 
-    dbid, loginame
 
-set nocount on
-declare @databasename varchar(100)
-declare @query varchar(max)
-set @query = ''
-
-set @databasename = 'xxx'
-if db_id(@databasename) < 4
-begin
-	print 'system database connection cannot be killeed'
-return
-end
-
-select @query=coalesce(@query,',' )+'kill '+convert(varchar, spid)+ '; '
-from master..sysprocesses where dbid=db_id(@databasename)
-
-if len(@query) > 0
-begin
-print @query
-	exec(@query)
-end
-*/
 create table Cliente
 (
 Cod_Cliente INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
@@ -82,7 +75,6 @@ DataVencimento Date,
 TipoDespesa INT FOREIGN KEY REFERENCES TipoDespesa(codTipoDespesa)
 )
 go
-
 
 create table Permissao
 (
@@ -271,6 +263,7 @@ Cod_Funcionario INT FOREIGN KEY REFERENCES Funcionario(Cod_Funcionario)
 go
 
 
+
 	-------------------- *** INSERT'S *** ------------------------ 
 		
 	
@@ -296,7 +289,7 @@ DataCadastro
 values
 ('Avulso','111.111.111-11','',1,null,'a','1','aa','aaa','aaa','1',null,'a','a','19/03/1908','19/07/1907'),
 
-('João da Cunha','123.456.789-14','Rua das Caviúnas',49,32,'Alphaville','78061-302','SP','Barueri','Edifício Pelicano','(11)4972-1976',null,'joao.cunha@gmail.com','joaocunha123','27/07/1981','11/07/1980'),
+('João da Cunha','123.456.789-14','Rua das Caviunas',49,32,'Alphaville','78061-302','SP','Barueri','Edifício Pelicano','(11)4972-1976',null,'joao.cunha@gmail.com','joaocunha123','27/07/1981','11/07/1980'),
 
 ('Maria Joaquina','814.198.872-68','Rua Canjeranas',574,null,'Jabaquara','04349-020','SP','São Paulo',null,'(11)3697-4567','(11)9-7419-9715','carrossel@sbt.com.br','cirilo123','04/10/1994','02/11/1998'),
 
@@ -338,6 +331,8 @@ values
 ('Joana Figueiredo','932.571.495-28','Rua Coronel Justino','Bloco D',1050,'28984-79','SP','São Paulo','Suzano','joana.fig@terra.com.br','(11)7819-4898','(11)9-6187-8959','Admin','123'),
 ('Carlos Silva','475.427.106-85','Rua Juba da Jujuba',null,420,'59579-14','SP','São Paulo','Vila Mariana','carlos_silva@gmail.com','(11)4198-8274','(11)9-9658-9774','Carlos','123'),
 ('Alex Santos','399.305.868-22','Rua Pindamonhangaba',null,666,'023654-14','SP','São Paulo','Vila Tupiniquim','alexsantos@gmail.com','(11)4578-8274','(11)9-9852-9774','Alex','123')
+
+
 insert into Insumo
 (
 Nome_Insumo,
@@ -348,7 +343,19 @@ QtdeEmEstoque
 values
 ('Orégano',20.00,20,12),
 ('Queijo mussarela',35.00,30,19),
-('Tomate',15.30,25,20)
+('Tomate',15.30,25,20),
+('Calabresa Moída',15,30,29),
+('Parmesão',17.20,20,18),
+('Ovos',12,25,17),
+('Presunto',16,15,10),
+('Cebola',9,50,12),
+('Catupiry',15.80,50,23),
+('Pimenta',7.90,30,1),
+('Lombo',21.70,25,1),
+('Palmito',18.90,20,1),
+('Champignon',19.60,15,1),
+('Provolone',19,20,18),
+('Bacon',18.30,25 ,8)
 go
 
 insert into Categoria
@@ -372,15 +379,15 @@ Valor_Venda,
 Sobe_Site
 )
 values
-('Baiana',20.00,1),
-('Mussarela',18.40,1),
-('Bacon',20.20,1),
-('Americana',24.00,1),
-('Bauru',23.50,1),
-('Calabresa',18.00,1),
-('Catupiry',23.00,1),
-('Três Queijos',24.70,1),
-('Alemã',25.20,1),
+('Pizza Baiana',20.00,1),
+('Pizza Mussarela',18.40,1),
+('Pizza Bacon',20.20,1),
+('Pizza Americana',24.00,1),
+('Pizza Bauru',23.50,1),
+('Pizza Calabresa',18.00,1),
+('Pizza Catupiry',23.00,1),
+('Pizza Três Queijos',24.70,1),
+('Pizza Alemã',25.20,1),
 ('Pizza Havaiana Brotinho',13.70,1),
 ('Pizza Baiana Brotinho',14.50,0),
 ('Pizza Palmito Brotinho',15.00,0),
@@ -394,7 +401,6 @@ values
 ('Porção de Provolone',17.00,0)
 go
 
---select * from Produto as p inner join ProdutoCategoria as pc on pc.CodCategoria = 1 and p.Cod_Produto = pc.CodProduto
 insert into ProdutoCategoria
 (
 CodCategoria,
@@ -421,30 +427,40 @@ values
 (4,18),
 (4,19),
 (4,20)
-
 go
-
-/*
-select * from Pedido where Cod_Funcionario = 2
-select * from Pedido
-select * from Funcionario
-*/
 
 insert into Pedido
 (Data,Hora,Valor,Cod_Funcionario,Cod_Cliente, Observacao,Origem,Estado,EnderecoAlternativo,FormaDePagamento,ValorPago)
-/*
-(Cod_Cliente,Cod_Funcionario,Data,Hora,Valor, Estado)
-*/
 values
-('05/01/2015','20:15',31.00,1, 1,'','Site','Em Preparo','','Cartão',31.00),
+('05/01/2015','20:15',31.00,1,2,'','Site','A caminho','','Cartão',31.00),
+('05/01/2015','20:15',31.00,1,3,'','Site','A caminho','','Cartão',31.00),
+('05/01/2015','20:15',31.00,1,4,'','Site','A caminho','','Cartão',31.00),
+
+('05/01/2015','20:15',31.00,2,2,'','Site','A caminho','','Cartão',31.00),
+('05/01/2015','20:15',31.00,2,3,'','Site','A caminho','','Cartão',31.00),
+('05/01/2015','20:15',31.00,2,4,'','Site','A caminho','','Cartão',31.00),
+
+('05/01/2015','20:15',31.00,3,2,'','Site','A caminho','','Cartão',31.00),
+('05/01/2015','20:15',31.00,3,3,'','Site','A caminho','','Cartão',31.00),
+('05/01/2015','20:15',31.00,3,4,'','Site','A caminho','','Cartão',31.00),
+
+('05/01/2015','20:15',31.00,4,2,'','Site','A caminho','','Cartão',31.00),
+('05/01/2015','20:15',31.00,4,3,'','Site','A caminho','','Cartão',31.00),
+('05/01/2015','20:15',31.00,4,4,'','Site','A caminho','','Cartão',31.00),
+
+('05/01/2015','23:56',22.00,2,3,'','Site','A caminho','','Cartão',22.00),
+('05/01/2015','18:31',65.87,3,4,'','Site','A caminho','','Cartão',65.87),
 ('22/02/2015','19:14',25.25,2,2,'','In loco','Na Fila','','Dinheiro', 30),
 ('12/03/2015','22:57',38.89,3,3,'','Telefone','Realizado','Alameda Itu, 753 - Jardins', 'Cartão',38.89),
-('05/04/2015','21:40',78.98,1,3,'Manera na cebola','Site','Cancelado','','Cartão',78.98),
-('06/04/2015','21:15',42.30,2,5,'','In loco','A caminho','','Cartão',42.30),
+('05/04/2015','22:22',68.98,1,5,'','Site','Realizado','','Cartão',68.98),
+('05/04/2015','21:40',78.98,4,3,'Manera na cebola','Site','Cancelado','','Cartão',78.98),
+('05/04/2015','22:22',55.32,1,5,'','Site','Realizado','','Cartão',55.32),
+('06/04/2015','21:15',42.30,4,5,'','In loco','A caminho','','Cartão',42.30),
 ('07/04/2015','20:22',67.90,3,5,'Sem azeitonas, pelo amor de Deus','Site','Realizado','','Cartão',67.90),
 ('20/04/2015','22:57',84.20,2,5,'','In loco','Realizado','','Cartão',84.20),
 ('22/05/2015','18:49',76.00,1,4,'','Site','Realizado','Rebouças 32','Dinheiro',80),
-('06/06/2015','00:16',58.20,3,2,'Favor, ao chegar, ligar no meu celular e não pelo interfone nem campainha','Site','Cancelado','','Cartão',58.20)
+('06/06/2015','00:16',58.20,3,2,'Favor, ao chegar, ligar no meu celular e não pelo interfone nem campainha','Site','Cancelado','','Cartão',58.20),
+('06/04/2015','21:15',42.30,2,5,'','In loco','A caminho','','Cartão',42.30)
 go
 
 insert into Fornecedor
@@ -501,6 +517,14 @@ values
 (1, 4)
 go
 
+/*select distinct p.Nome_Produto,i.Nome_Insumo,p.Valor_Venda 
+from Consumo as c
+inner join Produto as p on p.Cod_Produto = c.CodProduto and p.Sobe_Site = 1
+		inner join Insumo as i on c.CodInsumo = i.Cod_Insumo
+			inner join ProdutoCategoria as pc on pc.CodProduto = p.Cod_Produto and pc.CodCategoria = 1 
+			order by p.Nome_Produto
+			*/
+
 insert into Consumo
 (
 CodInsumo,
@@ -508,9 +532,36 @@ CodProduto,
 Quantidade
 )
 values
-(1, 4,0.01),
-(2, 2,0.40),
-(3, 5,1)
+(1, 2, 0.30),
+(1, 4, 0.01),
+(1, 6, 0.5),
+(1, 8, 0.90),
+(1, 10, 0.2),
+(2, 1, 0.20),
+(2, 2, 0.30),
+(2, 8, 0.60),
+(3, 2, 0.30),
+(3, 6, 1),
+(3, 15, 0.7),
+(4, 2, 0.30),
+(4, 11, 1),
+(4, 12, 1),
+(4, 13, 1),
+(5, 2, 0.30),
+(5, 3, 1),
+(5, 7, 1),
+(6, 2, 0.30),
+(6, 4, 1),
+(6, 8, 1),
+(7, 2, 0.30),
+(7, 9, 0.50),
+(8, 2, 0.30),
+(8, 2, 0.30),
+(8, 9, 1),
+(8, 14, 1),
+(9, 2, 0.30),
+(9, 4, 1),
+(9, 5, 1)
 go
 
 insert into PedidoPromocao
@@ -545,18 +596,93 @@ cod_produto
 )
 values
 (1,1),
+(1,2),
+(1,3),
+(1,14),
+
+(2,1),
 (2,2),
+(2,2),
+
+(3,1),
 (3,2),
-(4,6),
-(5,5),
-(5,7),
-(6,7),
-(7,7),
-(8,8),
+(3,3),
+(3,4),
+(3,5),
+(3,6),
+(3,14),
+(3,14),
+(3,15),
+
+(4,1),
+(4,2),
+(4,3),
+(4,14),
+
+(5,1),
+(5,2),
+(5,3),
+(5,14),
+
+(6,1),
+(6,2),
+(6,2),
+
+(7,1),
+(7,2),
+(7,3),
+(7,14),
+(7,15),
+
+(8,1),
+(8,2),
+(8,3),
+(8,14),
+
+(9,1),
 (9,2),
-(9,2),
-(9,2),
-(8,3)
+(9,3),
+(9,14),
+
+(10,1),
+(10,2),
+(10,2),
+
+(10,1),
+(10,2),
+(10,3),
+(10,4),
+(10,5),
+(10,6),
+(10,14),
+(10,14),
+(10,15),
+
+(11,1),
+(11,2),
+(11,3),
+(11,14),
+
+(12,1),
+(12,2),
+(12,3),
+(12,14),
+
+(13,1),
+(13,2),
+(13,2),
+
+(14,1),
+(14,2),
+(14,3),
+(14,14),
+(14,15),
+
+(15,1),
+(15,2),
+(15,3),
+(15,14)
+
 go
 
 insert into TipoDespesa
@@ -586,23 +712,215 @@ values
 (120.35, '13/06/2015', '17/06/2015', 3)
 go
 
-/* Deixar 3 ou mais dados em cada tabela por favor.
+	-------------------- *** PROCEDURES *** ------------------------ 
 
-TABELAS				  STATUS
+create procedure sp_Select_cliente
+(
+@NOME_CLIENTE VARCHAR(40) = null,
+@Param1 VARCHAR(40) = null, 
+@CPF_CLIENTE VARCHAR(15) = null,
+@ENDERECO_CLIENTE VARCHAR(40) = null,
+@NUMERO_RESIDENCIA INT = null,
+@NUMERO_APARTAMENTO INT = null,
+@BAIRRO_CLIENTE VARCHAR(30)= null,
+@CEP_CLIENTE VARCHAR(9)= null,
+@ESTADO_CLIENTE VARCHAR(2)= null,
+@CIDADE_CLIENTE VARCHAR(20)= null,
+@COMPLEMENTO_CLIENTE VARCHAR(40)= null,
+@TELEFONE_CLIENTE VARCHAR(40)= null,
+@CELULAR_CLIENTE VARCHAR(15)= null,
+@EMAIL_CLIENTE VARCHAR(40)= null,
+@SENHA_CLIENTE VARCHAR(15)= null,
+@DATA_NASCIMENTO VARCHAR(10)= null
+)
+as
+Begin
+select
+NOME_CLIENTE ,
+CPF_CLIENTE ,
+ENDERECO_CLIENTE ,
+NUMERO_RESIDENCIA  ,
+NUMERO_APARTAMENTO  ,
+BAIRRO_CLIENTE ,
+CEP_CLIENTE ,
+ESTADO_CLIENTE ,
+CIDADE_CLIENTE ,
+COMPLEMENTO_CLIENTE ,
+TELEFONE_CLIENTE ,
+CELULAR_CLIENTE ,
+--EMAIL_CLIENTE ,
+SENHA_CLIENTE ,
+DATANASCIMENTO
 
-cliente				|   OK
-permissao			|   OK
-funcionario			|   OK
-insumo				|   OK
-funcpermissao		|   OK
-categoria			|   OK
-produto				|   OK
-pedido				|   OK
-fornecedor			|   faltam dados
-insumo_fornecedor	|   OK
-produto_insumo		|   OK
-promocao 			|   OK
-produto_promocao	|   OK
-pedido_fornecedor	|   OK
-detalhe_pedido		|   Faltam dados
+from Cliente where 
+(NOME_CLIENTE = @NOME_CLIENTE or @NOME_CLIENTE IS Null)and
+(CPF_CLIENTE=@CPF_CLIENTE or @CPF_CLIENTE is null) and
+(ENDERECO_CLIENTE=@ENDERECO_CLIENTE or @ENDERECO_CLIENTE is null) and
+(NUMERO_RESIDENCIA  =@NUMERO_RESIDENCIA or @NUMERO_RESIDENCIA  is null) and
+(NUMERO_APARTAMENTO =@NUMERO_APARTAMENTO or @NUMERO_APARTAMENTO is null) and
+(BAIRRO_CLIENTE =@BAIRRO_CLIENTE or @BAIRRO_CLIENTE is null) and
+(CEP_CLIENTE =@CEP_CLIENTE or @CEP_CLIENTE is null) and
+(ESTADO_CLIENTE =@ESTADO_CLIENTE  or @ESTADO_CLIENTE is null) and
+(CIDADE_CLIENTE =@CIDADE_CLIENTE or @CIDADE_CLIENTE is null) and
+(COMPLEMENTO_CLIENTE =@COMPLEMENTO_CLIENTE or @COMPLEMENTO_CLIENTE is null) and
+(TELEFONE_CLIENTE =@TELEFONE_CLIENTE or @TELEFONE_CLIENTE is null) and
+(CELULAR_CLIENTE =@CELULAR_CLIENTE or @CELULAR_CLIENTE is null) and
+--(EMAIL_CLIENTE =@EMAIL_CLIENTE or @EMAIL_CLIENTE is null) and
+(SENHA_CLIENTE=@SENHA_CLIENTE  or @SENHA_CLIENTE is null) and
+(DATANASCIMENTO =@DATA_NASCIMENTO or @DATA_NASCIMENTO is null)
+end
+go
+
+print 'Proc sp_Select_cliente criada'
+go
+-----------------------------------------
+/*
+create procedure [dbo].[sp_insert_cliente]
+(
+@NOME_CLIENTE VARCHAR(40)= null,
+@CPF_CLIENTE VARCHAR(15)= null,
+@ENDERECO_CLIENTE VARCHAR(40)= null,
+@NUMERO_RESIDENCIA INT = null,
+@NUMERO_APARTAMENTO INT = null,
+@BAIRRO_CLIENTE VARCHAR(30)= null,
+@CEP_CLIENTE VARCHAR(9)= null,
+@ESTADO_CLIENTE VARCHAR(2)= null,
+@CIDADE_CLIENTE VARCHAR(20)= null,
+@COMPLEMENTO_CLIENTE VARCHAR(40)= null,
+@TELEFONE_CLIENTE VARCHAR(40)= null,
+@CELULAR_CLIENTE VARCHAR(15)= null,
+@EMAIL_CLIENTE VARCHAR(40)= null,
+@SENHA_CLIENTE VARCHAR(15)= null,
+@DATA_NASCIMENTO VARCHAR(10)= null
+
+)
+as
+Begin
+Insert into Cliente
+(
+NOME_CLIENTE ,
+CPF_CLIENTE ,
+ENDERECO_CLIENTE ,
+NUMERO_RESIDENCIA  ,
+NUMERO_APARTAMENTO  ,
+BAIRRO_CLIENTE ,
+CEP_CLIENTE ,
+ESTADO_CLIENTE ,
+CIDADE_CLIENTE ,
+COMPLEMENTO_CLIENTE ,
+TELEFONE_CLIENTE ,
+CELULAR_CLIENTE ,
+EMAIL_CLIENTE ,
+SENHA_CLIENTE ,
+DATANASCIMENTO
+)
+values (@NOME_CLIENTE ,
+@CPF_CLIENTE ,
+@ENDERECO_CLIENTE ,
+@NUMERO_RESIDENCIA  ,
+@NUMERO_APARTAMENTO  ,
+@BAIRRO_CLIENTE ,
+@CEP_CLIENTE ,
+@ESTADO_CLIENTE ,
+@CIDADE_CLIENTE ,
+@COMPLEMENTO_CLIENTE ,
+@TELEFONE_CLIENTE ,
+@CELULAR_CLIENTE ,
+@EMAIL_CLIENTE ,
+@SENHA_CLIENTE ,
+@DATA_NASCIMENTO 
+
+)
+
+end
+go
 */
+-----------------------------------------
+create procedure sp_Select_pedido
+(
+@Cod_Pedido int = null,
+@Data DateTime = null, 
+@Hora varchar(5) = null, 
+@Valor numeric(5,2) = null,
+@Cod_Funcionario int = null,
+@Cod_Cliente INT = null
+
+)
+as
+Begin
+select
+
+Cod_Pedido ,
+Data ,
+Hora,
+Valor,
+Cod_Funcionario,
+Cod_CLiente
+
+from Pedido where 
+(Cod_Pedido = @Cod_Pedido or @Cod_Pedido IS Null)and
+(Data=@Data or @Data is null) and
+(Hora=@Hora or @Hora is null) and
+(Valor  =@Valor or @Valor  is null) and
+(Cod_Funcionario =@Cod_Funcionario or @Cod_Funcionario is null) and
+(Cod_CLiente =@Cod_CLiente or @Cod_CLiente is null)
+
+end
+go
+
+print 'Proc sp_Select_pedido criada'
+go
+-----------------------------------------
+create proc USP_ANDROID_HOME_SelectPedidosAEntregar
+(
+	@Cod_Funcionario int = null
+)
+as
+	Begin
+		select p.Cod_Pedido, c.Endereco_Cliente, count(dp.Cod_Detalhe) as QtdeProdutos
+		from Detalhe_Pedido dp
+		inner join Pedido p on
+		p.Cod_Pedido = dp.Cod_Pedido and
+		p.Cod_Funcionario = @Cod_Funcionario and
+		p.Estado like 'A caminho'
+		inner join Cliente c on
+		c.Cod_Cliente = p.Cod_Cliente
+		group by 
+		dp.Cod_Pedido, 
+		c.Endereco_Cliente,
+		c.Numero_Residencia,
+		p.Cod_Pedido
+	End
+go
+
+print 'Proc USP_ANDROID_HOME_SelectPedidosAEntregar criada'
+go
+-----------------------------------------
+create proc USP_ANDROID_CancelarPedido
+(@CodPedido varChar(10))
+as
+	Begin
+		update Pedido
+		set Estado = 'Cancelado'
+		where Cod_Pedido = @CodPedido
+	End
+
+go
+
+print 'Proc USP_ANDROID_CancelarPedido criada'
+go
+
+----------------------------------------
+create proc USP_ANDROID_RealizarPedido
+(@CodPedido varChar(10))
+as
+	Begin
+		update Pedido
+		set Estado = 'Realizado'
+		where Cod_Pedido = @CodPedido
+	End
+go
+
+print 'Proc USP_ANDROID_RealizarPedido criada'
+go
+-----------------------------------------
