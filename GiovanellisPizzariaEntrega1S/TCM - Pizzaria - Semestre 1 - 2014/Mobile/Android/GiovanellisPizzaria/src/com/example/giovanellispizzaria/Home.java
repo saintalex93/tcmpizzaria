@@ -245,17 +245,19 @@ public class Home extends Activity {
 				int numeroPedido = 0;
 				int qtdProdutos = 0;
 				int coluna = 0;
-				int ap = 0;
 				
 				boolean achou = false;
-				
 
-				String endereço = "";
+				String endereco = "";
 				String numRes = "";
+				String numAp = "";
+				
+				
+				String enderecoAlt = "";
+				String numResAlt = "";
+				String numApAlt = "";
 				
 				String mensagem = "";
-				String enderecoAlt = "";
-				
 				
 				for (int i = 0; i < tamanho; i++) 
 				{
@@ -275,10 +277,6 @@ public class Home extends Activity {
 						else if (texto.charAt(i) == ',')
 						{
 							coluna++;
-							/*
-							TODO: Atualizar processo para receber e tratar dados de endereço alternativo, sobreescrevendo 
-							as informações anteriores de endereço
-							*/ 
 							switch(coluna)
 							{
 							case 1:
@@ -286,14 +284,15 @@ public class Home extends Activity {
 								break;
 								
 							case 2:
-								endereço = aux;
+								endereco = aux;
 								break;
 								
 							case 3:
 								numRes = aux;
+								break;
 								
 							case 4:
-								ap = Integer.parseInt(aux);
+								numAp = aux;
 								break;
 
 							case 5:
@@ -303,24 +302,45 @@ public class Home extends Activity {
 							case 6:
 								enderecoAlt = aux;
 								break;
+								
+							case 7:
+								numResAlt = aux;
+								break;
+								
 							}
 							
+							/*TODO: Essa linha foi colocada aqui, porque o algoritmo acima, quando achava um ponto e virgula (;)
+							 * partia para o próximo campo, sem inserir o valor de aux à numApAlt, fazendo o número alternativo
+							 * do apartamento não aparecer.
+							 * 
+							 * Ficar ligado nisso aqui...
+							*/
+							numApAlt = aux;
 							
 							aux = "";
 						}
 						else if (texto.charAt(i) == ';')
 						{
-							aux = "";
-							
 							coluna = 0;
+							
 							if(enderecoAlt.length() == 0)
-								mensagem = "#" + numeroPedido + " - " + endereço + ", "+ numRes +" (" + qtdProdutos + ")";
+							
+								if(numAp.length() == 0)
+									mensagem = "#" + numeroPedido + " - " + endereco + ", "+ numRes + " (" + qtdProdutos + ")";
+								else
+									mensagem = "#" + numeroPedido + " - " + endereco + ", "+ numRes + ", Ap: " + numAp +" (" + qtdProdutos + ")";
+
 							else
-							{
-								mensagem = "#" + numeroPedido + " - " + enderecoAlt +" (" + qtdProdutos + ")";
-								enderecoAlt = "";
-							}
 								
+								if(numApAlt.length() == 0)
+									mensagem = "#" + numeroPedido + " - " + enderecoAlt + ", "+ numResAlt + " (" + qtdProdutos + ")";
+								else
+									mensagem = "#" + numeroPedido + " - " + enderecoAlt + ", "+ numResAlt + ", Ap: " + numApAlt +" (" + qtdProdutos + ")";
+								
+							aux = "";
+							enderecoAlt = "";
+							numResAlt = "";
+							numApAlt = "";
 							
 							arrayPedidos.add(mensagem);
 						}
