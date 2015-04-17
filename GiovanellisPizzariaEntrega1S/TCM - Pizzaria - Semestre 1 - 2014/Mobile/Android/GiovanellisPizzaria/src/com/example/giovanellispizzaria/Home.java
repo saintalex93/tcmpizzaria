@@ -84,7 +84,7 @@ public class Home extends Activity {
 
 		builder1.setCancelable(true);
         
-        builder1.setPositiveButton("Realizado", new DialogInterface.OnClickListener() 
+        builder1.setNegativeButton("Realizado", new DialogInterface.OnClickListener() 
     		{
     			public void onClick(DialogInterface dialog, int id) 
     			{
@@ -116,7 +116,7 @@ public class Home extends Activity {
     		}
 		);
         
-        builder1.setNegativeButton("Cancelado", new DialogInterface.OnClickListener() 
+        builder1.setPositiveButton("Cancelado", new DialogInterface.OnClickListener() 
 			{
 				public void onClick(DialogInterface dialog, int id) 
 				{
@@ -173,7 +173,16 @@ public class Home extends Activity {
 			    @Override
 			    public boolean onItemLongClick(AdapterView<?> av, View v, int pos, long id) 
 			    {
-			    	codPedidoDesfecho = Integer.parseInt(arrayPedidos.get(pos).substring(1, 2));
+			    	int i = 1;
+			    	String numero = "";
+			    	
+			    	while(arrayPedidos.get(pos).toString().charAt(i) != ' ')
+			    	{
+			    		numero += arrayPedidos.get(pos).toString().charAt(i);
+			    		i++;
+			    	}
+			    	
+			    	codPedidoDesfecho = Integer.parseInt(numero);
 			    	
 			    	alert11.show();	
 			    	
