@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.Random;
 
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -29,8 +30,8 @@ public class Login extends Activity {
 	public static String nomeFuncionario = "";
 	public static int codFuncionario = 0;
 
-	TextView login;
-	TextView senha;
+	TextView tvLogin;
+	TextView tvSenha;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -43,45 +44,70 @@ public class Login extends Activity {
 
 		Button logar = (Button) findViewById(R.id.btnLogin);
 
-		login = (TextView) findViewById(R.id.txtLogin);
-		senha = (TextView) findViewById(R.id.txtSenha);
+		tvLogin = (TextView) findViewById(R.id.txtLogin);
+		tvSenha = (TextView) findViewById(R.id.txtSenha);
+		
+		Random r = new Random();
+		
+		switch(r.nextInt(4))
+		{
+		case 0:
+			tvLogin.setText("Maria");
+			break;
+			
+		case 1:
+			tvLogin.setText("Carlos");
+			break;
+			
+		case 2:
+			tvLogin.setText("Admin");
+			break;
+
+		case 3:
+			tvLogin.setText("Alex");
+			break;
+
+		}
+		
+		tvSenha.setText("123");
+		
 
 		logar.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 
-				if (login.getText().length() == 0) {
+				if (tvLogin.getText().length() == 0) {
 					Toast.makeText(
 							getBaseContext(),
-							"O LOGIN fornecido não é válido.\nPor favor, certifique-se de que ele está correto e tente de novo.",
+							"O LOGIN fornecido não é válido.\n\nPor favor, certifique-se de que ele está correto e tente de novo.",
 							Toast.LENGTH_LONG).show();
 					return;
 				}
 
-				if (senha.getText().length() == 0) {
+				if (tvSenha.getText().length() == 0) {
 					Toast.makeText(
 							getBaseContext(),
-							"A SENHA fornecida não é válido.\nPor favor, certifique-se de que ela está correta e tente de novo.",
+							"A SENHA fornecida não é válido.\n\nPor favor, certifique-se de que ela está correta e tente de novo.",
 							Toast.LENGTH_LONG).show();
 					return;
 				}
 
 				String texto = "", aux = "";
-				try {
+				try
+				{
 					// ATENÇÃO A REDE DEVE ESTAR FUNCIONANDO COM O ENDEREÇO IP
 					// OK
 
 					// IP do curso
-					// URL url = new
-					// URL("http://10.67.74.32/default_consulta.aspx");
-
+					// 10.67.74.32
+					
 					// IP de casa
-
-					URL url = new URL(
-							"http://192.168.1.14/Giovanellis/consulta_login_id.aspx");
+					//192.168.1.14
+					
+					// IP do curso
+					URL url = new 
+							URL("http://192.168.1.14//Giovanellis/consulta_login.aspx?Login_Funcionario="+tvLogin.getText()+"&Senha_Funcionario="+tvSenha.getText());
 
 					URLConnection conexao = url.openConnection();
-
-					Log.i("Input sozinho", conexao.getInputStream().toString());
 
 					InputStream inputStream = conexao.getInputStream();
 
@@ -111,8 +137,7 @@ public class Login extends Activity {
 							achou = false;
 
 						if (achou) {
-							if (texto.charAt(i) != ';'
-									&& texto.charAt(i) != ',')
+							if (texto.charAt(i) != ';'&& texto.charAt(i) != ',')
 								aux = aux + texto.charAt(i);
 							else if (texto.charAt(i) == ',') {
 								codFuncionario = Integer.parseInt(aux);
@@ -127,25 +152,30 @@ public class Login extends Activity {
 					// FIM DA SEPARAÇÃO DOS
 					// REGISTROS##################################
 
-				} catch (Exception e) {
-					Log.d("asdf", "Message: " + e.getMessage());
-					Log.d("asdf",
-							"Localized message: " + e.getLocalizedMessage());
-					Log.d("InputStream", "Message: " + e.getMessage()
-							+ " - Resto dos erros:", e);
 				}
-
-				// HttpClient webClient = new DefaultHttpClient();
+				catch (Exception e) 
+				{
+					Log.d("Login", "Message: " + e.getMessage());
+				}
 
 				if (nomeFuncionario.length() == 0)
 					Toast.makeText(
 							getApplicationContext(),
-							"Não há nenhum usuário com o login e senha fornecidos.\nPor favor,  certifique-se de que estão corretos e tente de novo.",
+							"Não há nenhum usuário com o login e senha fornecidos.\n\nPor favor,  certifique-se de que estão corretos e tente de novo.",
 							Toast.LENGTH_LONG).show();
 				else 
 				{
-					Intent i = new Intent(getApplicationContext(), Home.class);
-					startActivity(i);
+					try
+					{
+						Intent i = new Intent(getApplicationContext(), Home.class);
+						startActivity(i);
+					}
+					catch (Exception e)
+					{
+						Log.d("Login - Intent", e.getMessage());
+					}
+					
+					
 				}
 
 			}

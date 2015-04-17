@@ -17,21 +17,13 @@
         android:text="@string/nome_entregador"
         android:textSize="23sp" />
 
-    <TextView
-        android:id="@+id/Pedidos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txtUser"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"
-        android:text="@string/home_pedidos"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
     <ListView
         android:id="@+id/lstPedidos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/Pedidos" >
+        android:layout_below="@+id/Pedidos"
+        android:paddingTop="20dp" >
+
     </ListView>
 
     <Button
@@ -40,7 +32,16 @@
         android:layout_height="wrap_content"
         android:layout_alignRight="@+id/lstPedidos"
         android:layout_below="@+id/txtUser"
-        android:layout_marginTop="17dp"
+        android:layout_marginTop="10dp"
         android:text="Ver histórico >>" />
+
+    <TextView
+        android:id="@+id/Pedidos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnHistorico"
+        android:layout_centerHorizontal="true"
+        android:text="Pedidos a serem entregues:"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </RelativeLayout>
