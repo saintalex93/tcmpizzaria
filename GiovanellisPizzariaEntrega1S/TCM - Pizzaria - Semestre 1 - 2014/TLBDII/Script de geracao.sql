@@ -683,7 +683,46 @@ values
 (15,1),
 (15,2),
 (15,3),
-(15,14)
+(15,14),
+
+(16,1),
+(16,2),
+(16,3),
+(16,14),
+
+(17,1),
+(17,2),
+(17,2),
+
+(18,1),
+(18,2),
+(18,3),
+(18,4),
+(18,5),
+(18,6),
+(18,14),
+(18,14),
+(18,15),
+
+(19,1),
+(19,2),
+(19,3),
+(19,14),
+
+(21,1),
+(21,2),
+(21,3),
+(21,14),
+
+(22,1),
+(22,2),
+(22,2),
+
+(23,1),
+(23,2),
+(23,3),
+(23,14),
+(23,15)
 
 go
 
@@ -907,6 +946,9 @@ as
 		p.NumeroApartamentoAlt
 	End
 go
+
+print 'Proc USP_ANDROID_HOME_SelectPedidosAEntregar criada'
+go
 -----------------------------------------
 create proc USP_ANDROID_CancelarPedido
 (@CodPedido varChar(10))
@@ -936,3 +978,47 @@ go
 print 'Proc USP_ANDROID_RealizarPedido criada'
 go
 -----------------------------------------
+create proc USP_ANDROID_HOME_SelectHistorico
+(
+	@Cod_Funcionario int = null
+)
+as
+	Begin
+		select 
+		p.Cod_Pedido, 
+		c.Endereco_Cliente, 
+		c.Numero_Residencia, 
+		c.Numero_Apartamento, 
+		p.Data,
+		p.Hora,
+		count(dp.Cod_Detalhe) as QtdeProdutos, 
+		p.Estado,
+		p.EnderecoAlt,
+		p.NumeroResidencialAlt,
+		p.NumeroApartamentoAlt
+		
+		from Detalhe_Pedido dp
+		inner join Pedido p on
+		p.Cod_Pedido = dp.Cod_Pedido and
+		p.Cod_Funcionario = @Cod_Funcionario and
+		p.Estado like 'Realizado' or
+		p.Estado like 'Cancelado'
+		inner join Cliente c on
+		c.Cod_Cliente = p.Cod_Cliente
+		
+		group by 
+		p.Cod_Pedido, 
+		c.Endereco_Cliente, 
+		c.Numero_Residencia, 
+		c.Numero_Apartamento, 
+		p.Estado,
+		p.EnderecoAlt,
+		p.NumeroResidencialAlt,
+		p.NumeroApartamentoAlt,
+		p.Data,
+		p.Hora
+	End
+go
+
+print 'Proc USP_ANDROID_HOME_SelectHistorico criada'
+go
