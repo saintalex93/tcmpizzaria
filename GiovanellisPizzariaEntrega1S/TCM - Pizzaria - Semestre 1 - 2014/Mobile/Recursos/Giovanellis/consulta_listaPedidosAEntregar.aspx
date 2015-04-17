@@ -22,7 +22,11 @@
 			contato += (dr[0].ToString()) + ",";
 			contato += (dr[1].ToString()) + ",";
 			contato += (dr[2].ToString()) + ",";
-			contato += (dr[3].ToString()) + ";";
+			contato += (dr[3].ToString()) + ",";
+			contato += (dr[4].ToString()) + ",";
+			contato += (dr[5].ToString()) + ",";
+			contato += (dr[6].ToString()) + ",";
+			contato += (dr[7].ToString()) + ";";
 		}
 		contato+="^";
 		Label1.Text = contato;
@@ -30,7 +34,7 @@
 </script>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://ww.w3.org/TR/xhtml1/DTD/xhtml1-transitional.detd">
 
-<html xmlns="http://www.w3.org/1999.xhtml">
+<html xmlns="http://www.w3.org/1999.xhtml">	
 <head id = "Head1" runat = "server">
  <title>Buscar registro</title>
 </head>

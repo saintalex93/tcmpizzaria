@@ -149,7 +149,9 @@ Cod_Cliente INT FOREIGN KEY REFERENCES Cliente(Cod_Cliente),
 Observacao VarChar (140),
 Origem VarChar (10),
 Estado VarChar(12),
-EnderecoAlternativo VarChar(140),
+EnderecoAlt VarChar(140),
+NumeroResidencialAlt VarChar(5),
+NumeroApartamentoAlt VarChar(5),
 FormaDePagamento varchar(10),
 ValorPago dec (6,2)
 )
@@ -430,37 +432,37 @@ values
 go
 
 insert into Pedido
-(Data,Hora,Valor,Cod_Funcionario,Cod_Cliente, Observacao,Origem,Estado,EnderecoAlternativo,FormaDePagamento,ValorPago)
+(Data,Hora,Valor,Cod_Funcionario,Cod_Cliente, Observacao,Origem,Estado, EnderecoAlt, NumeroResidencialAlt, NumeroApartamentoAlt ,FormaDePagamento,ValorPago)
 values
-('05/01/2015','20:15',31.00,1,2,'','Site','A caminho','','Cartão',31.00),
-('05/01/2015','20:15',31.00,1,3,'','Site','A caminho','','Cartão',31.00),
-('05/01/2015','20:15',31.00,1,4,'','Site','A caminho','','Cartão',31.00),
+('05/01/2015','20:15',31.00,1,2,'','Site','A caminho','','','','Cartão',31.00),
+('05/01/2015','20:15',31.00,1,3,'','Site','A caminho','','','','Cartão',31.00),
+('05/01/2015','20:15',31.00,1,4,'','Site','A caminho','Alameda Itu','32','21','Cartão',31.00),
 
-('05/01/2015','20:15',31.00,2,2,'','Site','A caminho','','Cartão',31.00),
-('05/01/2015','20:15',31.00,2,3,'','Site','A caminho','','Cartão',31.00),
-('05/01/2015','20:15',31.00,2,4,'','Site','A caminho','','Cartão',31.00),
+('05/01/2015','20:15',31.00,2,2,'','Site','A caminho','','','','Cartão',31.00),
+('05/01/2015','20:15',31.00,2,3,'','Site','A caminho','Travessa Dom Gaspar','666','','Cartão',31.00),
+('05/01/2015','20:15',31.00,2,4,'','Site','A caminho','','','','Cartão',31.00),
 
-('05/01/2015','20:15',31.00,3,2,'','Site','A caminho','','Cartão',31.00),
-('05/01/2015','20:15',31.00,3,3,'','Site','A caminho','','Cartão',31.00),
-('05/01/2015','20:15',31.00,3,4,'','Site','A caminho','','Cartão',31.00),
+('05/01/2015','20:15',31.00,3,2,'','Site','A caminho','Avenida Paulista','756','35','Cartão',31.00),
+('05/01/2015','20:15',31.00,3,3,'','Site','A caminho','','','','Cartão',31.00),
+('05/01/2015','20:15',31.00,3,4,'','Site','A caminho','','','','Cartão',31.00),
 
-('05/01/2015','20:15',31.00,4,2,'','Site','A caminho','','Cartão',31.00),
-('05/01/2015','20:15',31.00,4,3,'','Site','A caminho','','Cartão',31.00),
-('05/01/2015','20:15',31.00,4,4,'','Site','A caminho','','Cartão',31.00),
+('05/01/2015','20:15',31.00,4,2,'','Site','A caminho','','','','Cartão',31.00),
+('05/01/2015','20:15',31.00,4,3,'','Site','A caminho','','','','Cartão',31.00),
+('05/01/2015','20:15',31.00,4,4,'','Site','A caminho','','','','Cartão',31.00),
 
-('05/01/2015','23:56',22.00,2,3,'','Site','A caminho','','Cartão',22.00),
-('05/01/2015','18:31',65.87,3,4,'','Site','A caminho','','Cartão',65.87),
-('22/02/2015','19:14',25.25,2,2,'','In loco','Na Fila','','Dinheiro', 30),
-('12/03/2015','22:57',38.89,3,3,'','Telefone','Realizado','Alameda Itu, 753 - Jardins', 'Cartão',38.89),
-('05/04/2015','22:22',68.98,1,5,'','Site','Realizado','','Cartão',68.98),
-('05/04/2015','21:40',78.98,4,3,'Manera na cebola','Site','Cancelado','','Cartão',78.98),
-('05/04/2015','22:22',55.32,1,5,'','Site','Realizado','','Cartão',55.32),
-('06/04/2015','21:15',42.30,4,5,'','In loco','A caminho','','Cartão',42.30),
-('07/04/2015','20:22',67.90,3,5,'Sem azeitonas, pelo amor de Deus','Site','Realizado','','Cartão',67.90),
-('20/04/2015','22:57',84.20,2,5,'','In loco','Realizado','','Cartão',84.20),
-('22/05/2015','18:49',76.00,1,4,'','Site','Realizado','Rebouças 32','Dinheiro',80),
-('06/06/2015','00:16',58.20,3,2,'Favor, ao chegar, ligar no meu celular e não pelo interfone nem campainha','Site','Cancelado','','Cartão',58.20),
-('06/04/2015','21:15',42.30,2,5,'','In loco','A caminho','','Cartão',42.30)
+('05/01/2015','23:56',22.00,2,3,'','Site','A caminho','','','','Cartão',22.00),
+('05/01/2015','18:31',65.87,3,4,'','Site','A caminho','','','','Cartão',65.87),
+('22/02/2015','19:14',25.25,2,2,'','In loco','Na Fila','','','','Dinheiro', 30),
+('12/03/2015','22:57',38.89,3,3,'','Telefone','Realizado','Alameda Itu', '753', '', 'Cartão',38.89),
+('05/04/2015','22:22',68.98,1,5,'','Site','Realizado','', '', '', 'Cartão',68.98),
+('05/04/2015','21:40',78.98,4,3,'Manera na cebola','Site','Cancelado','' ,'' ,'','Cartão',78.98),
+('05/04/2015','22:22',55.32,1,5,'','Site','Realizado','', '', '','Cartão',55.32),
+('06/04/2015','21:15',42.30,4,5,'','In loco','A caminho', '', '', '','Cartão',42.30),
+('07/04/2015','20:22',67.90,3,5,'Sem azeitonas, pelo amor de Deus','Site','Realizado','','','','Cartão',67.90),
+('20/04/2015','22:57',84.20,2,5,'','In loco','Realizado','','','','Cartão',84.20),
+('22/05/2015','18:49',76.00,1,4,'','Site','Realizado','Rebouças', '32', '','Dinheiro',80),
+('06/06/2015','00:16',58.20,3,2,'Favor, ao chegar, ligar no meu celular e não pelo interfone nem campainha','Site','Cancelado','','','','Cartão',58.20),
+('06/04/2015','21:15',42.30,2,5,'','In loco','A caminho','','','','Cartão',42.30)
 go
 
 insert into Fornecedor
@@ -877,7 +879,16 @@ create proc USP_ANDROID_HOME_SelectPedidosAEntregar
 )
 as
 	Begin
-		select p.Cod_Pedido, c.Endereco_Cliente, count(dp.Cod_Detalhe) as QtdeProdutos
+		select 
+		p.Cod_Pedido, 
+		c.Endereco_Cliente, 
+		c.Numero_Residencia, 
+		c.Numero_Apartamento, 
+		count(dp.Cod_Detalhe) as QtdeProdutos, 
+		p.EnderecoAlt,
+		p.NumeroResidencialAlt,
+		p.NumeroApartamentoAlt
+		
 		from Detalhe_Pedido dp
 		inner join Pedido p on
 		p.Cod_Pedido = dp.Cod_Pedido and
@@ -885,15 +896,16 @@ as
 		p.Estado like 'A caminho'
 		inner join Cliente c on
 		c.Cod_Cliente = p.Cod_Cliente
+		
 		group by 
-		dp.Cod_Pedido, 
-		c.Endereco_Cliente,
-		c.Numero_Residencia,
-		p.Cod_Pedido
+		p.Cod_Pedido, 
+		c.Endereco_Cliente, 
+		c.Numero_Residencia, 
+		c.Numero_Apartamento, 
+		p.EnderecoAlt,
+		p.NumeroResidencialAlt,
+		p.NumeroApartamentoAlt
 	End
-go
-
-print 'Proc USP_ANDROID_HOME_SelectPedidosAEntregar criada'
 go
 -----------------------------------------
 create proc USP_ANDROID_CancelarPedido

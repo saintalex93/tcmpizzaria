@@ -103,8 +103,6 @@ public class Home extends Activity {
 						Log.d("URL_CancelaPedido",e.getLocalizedMessage());
 					}
 
-					//TODO: Atualizar lista de pedidos para que o pedido finalizado seja removido da lista
-					
 					Toast.makeText(getApplicationContext(), "Pedido #" + codPedidoDesfecho + " foi marcado como 'REALIZADO'." , Toast.LENGTH_SHORT).show();
 					
 					updatePedidos();
@@ -135,8 +133,6 @@ public class Home extends Activity {
 						Log.d("URL_CancelaPedido",e.getLocalizedMessage());
 					}
 
-					//TODO: Atualizar lista de pedidos para que o pedido finalizado seja removido da lista
-					
 					Toast.makeText(getApplicationContext(), "Pedido #" + codPedidoDesfecho + " foi marcado como 'CANCELADO'." , Toast.LENGTH_SHORT).show();
 					
 					updatePedidos();
@@ -249,14 +245,16 @@ public class Home extends Activity {
 				int numeroPedido = 0;
 				int qtdProdutos = 0;
 				int coluna = 0;
+				int ap = 0;
 				
 				boolean achou = false;
 				
 
 				String endereço = "";
 				String numRes = "";
-				String mensagem = "";
 				
+				String mensagem = "";
+				String enderecoAlt = "";
 				
 				
 				for (int i = 0; i < tamanho; i++) 
@@ -277,7 +275,10 @@ public class Home extends Activity {
 						else if (texto.charAt(i) == ',')
 						{
 							coluna++;
-							
+							/*
+							TODO: Atualizar processo para receber e tratar dados de endereço alternativo, sobreescrevendo 
+							as informações anteriores de endereço
+							*/ 
 							switch(coluna)
 							{
 							case 1:
@@ -292,7 +293,15 @@ public class Home extends Activity {
 								numRes = aux;
 								
 							case 4:
+								ap = Integer.parseInt(aux);
+								break;
+
+							case 5:
 								qtdProdutos = Integer.parseInt(aux);
+								break;
+								
+							case 6:
+								enderecoAlt = aux;
 								break;
 							}
 							
@@ -301,19 +310,17 @@ public class Home extends Activity {
 						}
 						else if (texto.charAt(i) == ';')
 						{
-							qtdProdutos = Integer.parseInt(aux);
-
 							aux = "";
 							
 							coluna = 0;
-							
-							mensagem = "#" + numeroPedido + " - " + endereço + ", "+ numRes +" (" + qtdProdutos + ")";
-							/*
-							if(qtdProdutos > 1)
-								mensagem += " produtos)";
+							if(enderecoAlt.length() == 0)
+								mensagem = "#" + numeroPedido + " - " + endereço + ", "+ numRes +" (" + qtdProdutos + ")";
 							else
-								mensagem += " produto)";
-							*/
+							{
+								mensagem = "#" + numeroPedido + " - " + enderecoAlt +" (" + qtdProdutos + ")";
+								enderecoAlt = "";
+							}
+								
 							
 							arrayPedidos.add(mensagem);
 						}
