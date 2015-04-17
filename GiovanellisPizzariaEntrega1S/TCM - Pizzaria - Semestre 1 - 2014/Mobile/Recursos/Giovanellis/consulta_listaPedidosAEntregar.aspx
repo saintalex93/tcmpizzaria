@@ -21,7 +21,8 @@
 		{
 			contato += (dr[0].ToString()) + ",";
 			contato += (dr[1].ToString()) + ",";
-			contato += (dr[2].ToString()) + ";";
+			contato += (dr[2].ToString()) + ",";
+			contato += (dr[3].ToString()) + ";";
 		}
 		contato+="^";
 		Label1.Text = contato;

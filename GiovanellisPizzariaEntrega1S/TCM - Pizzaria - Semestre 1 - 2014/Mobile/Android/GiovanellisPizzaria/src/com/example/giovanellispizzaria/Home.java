@@ -173,19 +173,22 @@ public class Home extends Activity {
 			    @Override
 			    public boolean onItemLongClick(AdapterView<?> av, View v, int pos, long id) 
 			    {
-			    	int i = 1;
-			    	String numero = "";
-			    	
-			    	while(arrayPedidos.get(pos).toString().charAt(i) != ' ')
+			    	if(arrayPedidos.get(pos).toString().charAt(0) != 'N')
 			    	{
-			    		numero += arrayPedidos.get(pos).toString().charAt(i);
-			    		i++;
+			    		int i = 1;
+				    	String numero = "";
+			    		
+			    		while(arrayPedidos.get(pos).toString().charAt(i) != ' ')
+				    	{
+				    		numero += arrayPedidos.get(pos).toString().charAt(i);
+				    		i++;
+				    	}
+				    	
+				    	codPedidoDesfecho = Integer.parseInt(numero);
+				    	
+				    	alert11.show();	
 			    	}
-			    	
-			    	codPedidoDesfecho = Integer.parseInt(numero);
-			    	
-			    	alert11.show();	
-			    	
+
 			    	return true;
 			    }
 			}
@@ -251,6 +254,7 @@ public class Home extends Activity {
 				
 
 				String endereço = "";
+				String numRes = "";
 				String mensagem = "";
 				
 				
@@ -285,7 +289,11 @@ public class Home extends Activity {
 								break;
 								
 							case 3:
+								numRes = aux;
+								
+							case 4:
 								qtdProdutos = Integer.parseInt(aux);
+								break;
 							}
 							
 							
@@ -299,12 +307,13 @@ public class Home extends Activity {
 							
 							coluna = 0;
 							
-							mensagem = "#" + numeroPedido + " - " + endereço + " (" + qtdProdutos;
-							
+							mensagem = "#" + numeroPedido + " - " + endereço + ", "+ numRes +" (" + qtdProdutos + ")";
+							/*
 							if(qtdProdutos > 1)
 								mensagem += " produtos)";
 							else
 								mensagem += " produto)";
+							*/
 							
 							arrayPedidos.add(mensagem);
 						}
@@ -321,6 +330,9 @@ public class Home extends Activity {
 				Log.d("InputStream", "Message: " + e.getMessage()
 						+ " - Resto dos erros:", e);
 			}
+			
+			if(arrayPedidos.size() == 0)
+				arrayPedidos.add("Não há nenhum pedido pendente");
 	  }
 	
 	@Override
