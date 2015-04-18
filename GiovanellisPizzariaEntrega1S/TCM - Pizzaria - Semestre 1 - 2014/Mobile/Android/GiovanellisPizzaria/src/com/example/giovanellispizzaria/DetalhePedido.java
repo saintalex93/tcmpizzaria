@@ -44,7 +44,7 @@ public class DetalhePedido extends Activity {
 			pagamento = (TextView) findViewById(R.id.txtPagamento);
 			troco = (TextView) findViewById(R.id.txtTroco);
 			
-			detalhesPedido.setText(detalhesPedido.getText() + Home.endereco);
+			detalhesPedido.setText(Home.enderecoCompleto);
 			
 			int formaDePagamento = r.nextInt(3);
 			

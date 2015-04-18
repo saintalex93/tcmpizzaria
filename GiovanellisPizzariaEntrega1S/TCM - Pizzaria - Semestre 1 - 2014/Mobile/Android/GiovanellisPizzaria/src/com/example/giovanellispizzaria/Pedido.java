@@ -15,4 +15,9 @@ public class Pedido
 	public static int codCiente;
 	public static String Observacao;
 	
+	String enderecoCompleto()
+	{
+		return "asdf";
+	}
+	
 }

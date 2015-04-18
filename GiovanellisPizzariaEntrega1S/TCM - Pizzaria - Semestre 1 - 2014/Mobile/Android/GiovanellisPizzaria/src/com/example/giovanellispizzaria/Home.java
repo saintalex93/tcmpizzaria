@@ -43,7 +43,7 @@ public class Home extends Activity {
 	
 	String alertMessage = "";
 	
-	public static String endereco;
+	public static String enderecoCompleto = "";
 
 	public static int qtdProdutos;
 	public static int codPedidoDesfecho;
@@ -152,14 +152,39 @@ public class Home extends Activity {
 		
 		adapter.notifyDataSetChanged();
 
-		pedidos.setOnItemClickListener(new OnItemClickListener() 
+		pedidos.setOnItemClickListener
+		(new OnItemClickListener() 
 		{
 			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int position,
-					long arg3) {
+			public void onItemClick
+			(
+				AdapterView<?> arg0, 
+				View arg1, 
+				int position,
+				long arg3
+			)
+			{
+				boolean comeco = false;
+				boolean fim = false;
+				int i = 0;
+
+				while((arrayPedidos.get(position).charAt(i) != '('))
+				{
+					if(arrayPedidos.get(position).charAt(i) == '-')
+					{
+						comeco = true;
+						i++;
+					}
+
+					if(comeco)
+						enderecoCompleto += arrayPedidos.get(position).charAt(i);
+
+					
+					i++;
+				}
 				
-				Intent i = new Intent(context, DetalhePedido.class);
-				startActivity(i);
+				Intent intent = new Intent(context, DetalhePedido.class);
+				startActivity(intent);
 			}
 		}
 		);
@@ -190,17 +215,17 @@ public class Home extends Activity {
 			}
 		);
 
-			historico.setOnClickListener
-			(
-			new View.OnClickListener()
+		historico.setOnClickListener
+		(
+		new View.OnClickListener()
+		{
+			public void onClick(View v)
 			{
-				public void onClick(View v)
-				{
-					Intent i = new Intent(context, Historico.class);
-					startActivity(i);
-				}
+				Intent i = new Intent(context, Historico.class);
+				startActivity(i);
 			}
-		);
+		}
+	);
 	}
 
 	  void updatePedidos()
@@ -309,7 +334,8 @@ public class Home extends Activity {
 								
 							}
 							
-							/*TODO: Essa linha foi colocada aqui, porque o algoritmo acima, quando achava um ponto e virgula (;)
+							/*TODO: 
+							 * Essa linha foi colocada aqui, porque o algoritmo acima, quando achava um ponto e virgula (;)
 							 * partia para o próximo campo, sem inserir o valor de aux à numApAlt, fazendo o número alternativo
 							 * do apartamento não aparecer.
 							 * 
@@ -352,21 +378,17 @@ public class Home extends Activity {
 			catch (Exception e) 
 			{
 				Log.d("asdf", "Message: " + e.getMessage());
-				Log.d("asdf",
-						"Localized message: " + e.getLocalizedMessage());
-				Log.d("InputStream", "Message: " + e.getMessage()
-						+ " - Resto dos erros:", e);
 			}
 			
 			if(arrayPedidos.size() == 0)
 				arrayPedidos.add("Não há nenhum pedido pendente");
 	  }
 	
-	@Override
+	/*@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.home, menu);
 		return true;
-	}
+	}*/
 
 }
