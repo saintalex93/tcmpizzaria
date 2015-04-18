@@ -529,8 +529,8 @@ inner join Produto as p on p.Cod_Produto = c.CodProduto and p.Sobe_Site = 1
 
 insert into Consumo
 (
-CodInsumo,
 CodProduto,
+CodInsumo,
 Quantidade
 )
 values
