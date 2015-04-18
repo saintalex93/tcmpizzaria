@@ -45,7 +45,8 @@ public class Home extends Activity {
 	
 	public static String enderecoCompleto = "";
 
-	public static int qtdProdutos;
+	public static int qtdeProdutos;
+	public static int codPedido;
 	public static int codPedidoDesfecho;
 	
 	ArrayList<String> arrayPedidos = new ArrayList<String>();
@@ -79,6 +80,8 @@ public class Home extends Activity {
 			android.R.layout.simple_list_item_1, 
 			arrayPedidos
 		);
+		
+		codPedido = 0;
 		
 		builder1.setMessage("Marcar esse pedido como...");
 
@@ -164,25 +167,11 @@ public class Home extends Activity {
 				long arg3
 			)
 			{
-				boolean comeco = false;
-				boolean fim = false;
-				int i = 0;
-
-				while((arrayPedidos.get(position).charAt(i) != '('))
-				{
-					if(arrayPedidos.get(position).charAt(i) == '-')
-					{
-						comeco = true;
-						i++;
-					}
-
-					if(comeco)
-						enderecoCompleto += arrayPedidos.get(position).charAt(i);
-
-					
-					i++;
-				}
+				pegaEndereco(position);
 				
+				codPedido = pegarCodEndereco(position);
+				qtdeProdutos = pegarQtdeProdutos(position);
+						
 				Intent intent = new Intent(context, DetalhePedido.class);
 				startActivity(intent);
 			}
@@ -204,7 +193,7 @@ public class Home extends Activity {
 				    		numero += arrayPedidos.get(pos).toString().charAt(i);
 				    		i++;
 				    	}
-				    	
+
 				    	codPedidoDesfecho = Integer.parseInt(numero);
 				    	
 				    	alert11.show();	
@@ -384,11 +373,76 @@ public class Home extends Activity {
 				arrayPedidos.add("Não há nenhum pedido pendente");
 	  }
 	
-	/*@Override
+	  void pegaEndereco(int position)
+	  {
+		  enderecoCompleto = "";
+		  
+		  boolean comeco = false;
+			boolean fim = false;
+			int i = 0;
+
+			while((arrayPedidos.get(position).charAt(i) != '('))
+			{
+				if(arrayPedidos.get(position).charAt(i) == '-')
+				{
+					comeco = true;
+					i++;
+				}
+
+				if(comeco)
+					enderecoCompleto += arrayPedidos.get(position).charAt(i);
+
+				
+				i++;
+			}  
+	  }
+	  
+	  int pegarCodEndereco(int position)
+	  {
+			int i = 1;
+			
+			String resultado = "";
+			
+			while ((arrayPedidos.get(position).charAt(i) != ' ')) 
+			{
+				resultado += arrayPedidos.get(position).charAt(i);
+
+				i++;
+			}
+
+			return Integer.parseInt(resultado);
+	  }
+	  
+	  int pegarQtdeProdutos(int position)
+	  {
+			int i = 1;
+			
+			boolean comeco = false;
+			
+			String resultado = "";
+			
+			while ((arrayPedidos.get(position).charAt(i) != ')')) 
+			{
+				if(arrayPedidos.get(position).charAt(i) == '(')
+				{
+					comeco = true;
+					i++;
+				}
+				
+				if(comeco)
+					resultado += arrayPedidos.get(position).charAt(i);
+
+				i++;
+			}
+
+			return Integer.parseInt(resultado);
+	  }
+	  
+	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.home, menu);
 		return true;
-	}*/
+	}
 
 }

@@ -1,5 +1,9 @@
 package com.example.giovanellispizzaria;
 
+import java.io.BufferedInputStream;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -24,9 +28,19 @@ public class DetalhePedido extends Activity {
 	TextView pagamento;
 	TextView troco;
 	
-	Button nomeCliente;
+	Button btnNomeCliente;
 
 	ListView produtos;
+	
+	String NomeClienteString = "";
+	String telefone = "";
+	String hora = "";
+	String FormaDepagamentoString = "";
+
+	double valorPedido = 0;
+	double valorPago = 0;
+	
+	final ArrayList<String> arrayProdutos = new ArrayList<String>();
 	
 	Random r = new Random();
 	
@@ -38,7 +52,7 @@ public class DetalhePedido extends Activity {
 
 		try
 		{
-			nomeCliente = (Button) findViewById(R.id.btnCliente);
+			btnNomeCliente = (Button) findViewById(R.id.btnCliente);
 			tituloPedido = (TextView) findViewById(R.id.txtTituloPedido);
 			detalhesPedido = (TextView) findViewById(R.id.txtDetalhes);
 			pagamento = (TextView) findViewById(R.id.txtPagamento);
@@ -46,7 +60,7 @@ public class DetalhePedido extends Activity {
 			
 			detalhesPedido.setText(Home.enderecoCompleto);
 			
-			int formaDePagamento = r.nextInt(3);
+			/*int formaDePagamento = r.nextInt(3);
 			
 			switch(formaDePagamento)
 			{
@@ -61,21 +75,20 @@ public class DetalhePedido extends Activity {
 				case 2:
 					troco.setText("Dinheiro - R$ 60,00 (Troco: R$ 5,27)");
 					break;
-			}
+			}*/
 			
-			
+					
+			formaDePagamento();
 			
 			String produtosPreco = "";
-			produtosPreco = String.valueOf(Home.qtdProdutos) + " produto";
+			produtosPreco = String.valueOf(Home.qtdeProdutos) + " produto";
 			
-			if(Home.qtdProdutos > 1)
+			if(Home.qtdeProdutos > 1)
 				produtosPreco += "s";
 
 			tituloPedido.setText(produtosPreco);
 		
 			produtos = (ListView) findViewById(R.id.lstProdutos);
-
-			final ArrayList<String> arrayProdutos = new ArrayList<String>();
 			
 			ArrayAdapter<String> adapter2 = new ArrayAdapter<String>
 			(
@@ -84,22 +97,13 @@ public class DetalhePedido extends Activity {
 				arrayProdutos
 			);
 			
-			
 				produtos.setAdapter(adapter2);
 
-				int j = r.nextInt(6)+1;
+				preencheProdutos();
 				
-				Log.d("Home", j+"");
-				
-				for(int i = 0; i <  j ; i++)
-					arrayProdutos.add("Pizza " + (i+1));
-
 				adapter2.notifyDataSetChanged();
 				
-				
-				
-				
-				nomeCliente.setOnClickListener
+				btnNomeCliente.setOnClickListener
 				(
 						new View.OnClickListener()
 						{
@@ -131,4 +135,178 @@ public class DetalhePedido extends Activity {
 		return true;
 	}
 
+	void preencheProdutos()
+	  {
+		arrayProdutos.clear();
+		  
+		  String texto = "", aux = "";
+			try {
+				// ATENÇÃO A REDE DEVE ESTAR FUNCIONANDO COM O ENDEREÇO IP
+				// OK
+
+				// IP do curso
+				// 10.67.74.32
+				
+				// IP de casa
+				//192.168.1.14
+
+				// IP de casa
+
+				URL url = new URL(
+						"http://192.168.1.14/Giovanellis/consulta_Detalhes_listaProdutos.aspx?CodPedido=" + Home.codPedido);
+
+				URLConnection conexao = url.openConnection();
+
+				InputStream inputStream = conexao.getInputStream();
+
+				BufferedInputStream bufferedInput = new BufferedInputStream(inputStream);
+
+				int current = 0;
+
+				while ((current = bufferedInput.read()) != -1) 
+				{
+					texto = texto + ((char) (byte) current + "");
+				}
+
+				inputStream.close();
+
+				// INÍCIO DA SEPARAÇÃO DOS
+				// REGISTROS############################
+
+				int tamanho = texto.length();
+				
+				boolean achou = false;
+
+				for (int i = 0; i < tamanho; i++) 
+				{
+					if (texto.charAt(i) == '#') {
+						achou = true;
+						i++;
+					}
+
+					if (texto.charAt(i) == '^')
+						achou = false;
+
+					if (achou) 
+					{
+						if (texto.charAt(i) != ';' && texto.charAt(i) != ',')
+							aux = aux + texto.charAt(i);
+						else
+						{
+							arrayProdutos.add(aux);
+							aux = "";
+						}
+							
+					}
+					
+				}
+				
+				
+				// FIM DA SEPARAÇÃO DOS
+				// REGISTROS##################################
+			}
+			catch (Exception e) 
+			{
+				Log.d("asdf", "Message: " + e.getMessage());
+			}
+	  }
+
+	String dadosCliente()
+	{
+		
+		
+		return "";
+	}
+
+	void formaDePagamento()
+	{
+		String texto = "", aux = "";
+		try {
+			// ATENÇÃO A REDE DEVE ESTAR FUNCIONANDO COM O ENDEREÇO IP
+			// OK
+
+			// IP do curso
+			// 10.67.74.32
+			
+			// IP de casa
+			//192.168.1.14
+
+			URL url = new URL(
+					"http://192.168.1.14/Giovanellis/consulta_Detalhes_selectFormaPagamento.aspx?CodPedido=" + Home.codPedido);
+
+			URLConnection conexao = url.openConnection();
+
+			InputStream inputStream = conexao.getInputStream();
+
+			BufferedInputStream bufferedInput = new BufferedInputStream(inputStream);
+
+			int current = 0;
+
+			while ((current = bufferedInput.read()) != -1) 
+			{
+				texto = texto + ((char) (byte) current + "");
+			}
+
+			inputStream.close();
+
+			// INÍCIO DA SEPARAÇÃO DOS
+			// REGISTROS############################
+
+			int tamanho = texto.length();
+			int coluna = 1;
+			
+			boolean achou = false;
+			
+			for (int i = 0; i < tamanho; i++)
+			{
+				if (texto.charAt(i) == '#') {
+					achou = true;
+					i++;
+				}
+
+				if (texto.charAt(i) == '^')
+					achou = false;
+
+				if (achou) 
+				{
+					if (texto.charAt(i) != ';' && texto.charAt(i) != ',')
+						aux = aux + texto.charAt(i);
+					else if (texto.charAt(i) == ',')
+					{
+						switch(coluna)
+						{
+						case 0:
+							FormaDepagamentoString = aux;
+							break;
+							
+						case 1:
+							valorPedido = Double.parseDouble(aux);
+							break;
+							
+						case 2:
+							valorPago = Double.parseDouble(aux);
+							break;
+						}
+						
+						
+						aux = "";
+					}
+						
+				}
+				
+			}
+			
+			if(FormaDepagamentoString != "Dinheiro")
+				troco.setText(FormaDepagamentoString);
+			else
+				troco.setText(FormaDepagamentoString + " - R$ " + valorPago + " (Troco: R$ " + (valorPedido - valorPago) + ")");
+			
+			// FIM DA SEPARAÇÃO DOS
+			// REGISTROS##################################
+		}
+		catch (Exception e) 
+		{
+			Log.d("asdf", "Message: " + e.getMessage());
+		}
+	}
 }

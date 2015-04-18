@@ -291,7 +291,7 @@ DataCadastro
 values
 ('Avulso','111.111.111-11','',1,null,'a','1','aa','aaa','aaa','1',null,'a','a','19/03/1908','19/07/1907'),
 
-('João da Cunha','123.456.789-14','Rua das Caviunas',49,32,'Alphaville','78061-302','SP','Barueri','Edifício Pelicano','(11)4972-1976',null,'joao.cunha@gmail.com','joaocunha123','27/07/1981','11/07/1980'),
+('João da Cunha','123.456.789-14','Rua das Caviunas',49,32,'Alphaville','78061-302','SP','Barueri','Edifício Pelicano','(11) 4972-1976',null,'joao.cunha@gmail.com','joaocunha123','27/07/1981','11/07/1980'),
 
 ('Maria Joaquina','814.198.872-68','Rua Canjeranas',574,null,'Jabaquara','04349-020','SP','São Paulo',null,'(11)3697-4567','(11)9-7419-9715','carrossel@sbt.com.br','cirilo123','04/10/1994','02/11/1998'),
 
@@ -1048,3 +1048,58 @@ go
 
 print 'Proc USP_ANDROID_HISTORICO_SelectEstadoPedido criada'
 go
+-----------------------------------------
+create proc USP_ANDROID_DetalhesPedido_SelectProdutosPedido
+(
+	@Cod_Pedido int = null
+)
+as
+	Begin
+		select pr.Nome_Produto
+
+		from Produto pr
+		inner join Detalhe_Pedido dp on
+			dp.Cod_Produto = pr.Cod_Produto
+		inner join Pedido p on
+			p.Cod_Pedido = @Cod_Pedido and 
+			p.Cod_Pedido = dp.Cod_Pedido
+	End
+go
+
+print 'Proc USP_ANDROID_DetalhesPedido_SelectProdutosPedido criada'
+go
+
+-----------------------------------------
+create proc USP_ANDROID_DetalhesPedido_SelectInfoCLiente
+(
+	@Cod_Cliente int = null
+)
+as
+	Begin
+		select 
+			Nome_Cliente, 
+			Telefone_Cliente
+		from Cliente
+		where Cod_Cliente = @Cod_Cliente
+	End
+go
+-----------------------------------------
+create proc USP_ANDROID_DetalhesPedido_SelectFormaPagamento
+(
+	@Cod_Pedido int = null
+)
+as
+	Begin
+		select 
+			FormaDePagamento,
+			Valor,
+			ValorPago
+		from Pedido
+		where Cod_Pedido = @Cod_Pedido
+	End
+go
+
+print 'Proc USP_ANDROID_DetalhesPedido_SelectFormaPagamento criada'
+go
+
+exec USP_ANDROID_DetalhesPedido_SelectFormaPagamento 3
