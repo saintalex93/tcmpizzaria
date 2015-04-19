@@ -288,6 +288,10 @@ public class DetalhePedido extends Activity {
 							valorPedido = Double.parseDouble(aux.replace(',', '.'));
 							break;
 							
+						case 2:
+							valorPago = Double.parseDouble(aux.replace(',', '.'));
+							break;
+							
 						case 3:
 							hora = aux.substring(0, 5);
 							break;
@@ -316,9 +320,6 @@ public class DetalhePedido extends Activity {
 
 						else
 							troco.setText(FormaDepagamentoString);
-						
-						Home.meuLog("Telefone", telefone);
-						Home.meuLog("Celular", celular);
 						
 						if(telefone.length() == 0)
 							btnResidencial.setEnabled(false);
