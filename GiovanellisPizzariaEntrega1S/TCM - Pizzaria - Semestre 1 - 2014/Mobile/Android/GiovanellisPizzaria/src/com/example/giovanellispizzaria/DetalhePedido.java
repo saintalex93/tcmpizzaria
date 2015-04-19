@@ -27,12 +27,16 @@ public class DetalhePedido extends Activity {
 	TextView tituloPedido;
 	TextView pagamento;
 	TextView troco;
+	TextView nomeCliente;
+	TextView valorHora;
 	
-	Button btnNomeCliente;
+	Button btnResidencial;
+	Button btnCelular;
 
 	ListView produtos;
 	
 	String NomeClienteString = "";
+	String celular = "";
 	String telefone = "";
 	String hora = "";
 	String FormaDepagamentoString = "";
@@ -52,33 +56,23 @@ public class DetalhePedido extends Activity {
 
 		try
 		{
-			btnNomeCliente = (Button) findViewById(R.id.btnCliente);
+			btnCelular = (Button) findViewById(R.id.btnCel);
+			btnResidencial = (Button) findViewById(R.id.btnRes);
+			
 			tituloPedido = (TextView) findViewById(R.id.txtTituloPedido);
 			detalhesPedido = (TextView) findViewById(R.id.txtDetalhes);
 			pagamento = (TextView) findViewById(R.id.txtPagamento);
 			troco = (TextView) findViewById(R.id.txtTroco);
+			nomeCliente = (TextView) findViewById(R.id.txtNome);
+			valorHora = (TextView) findViewById(R.id.txtHoraPreco);
+			
+			buscaDetalhesPedido();
 			
 			detalhesPedido.setText(Home.enderecoCompleto);
 			
-			/*int formaDePagamento = r.nextInt(3);
+			nomeCliente.setText(NomeClienteString);
 			
-			switch(formaDePagamento)
-			{
-				case 0:
-					troco.setText("Cartão");
-					break;
-					
-				case 1:
-					troco.setText("Cheque");
-					break;
-					
-				case 2:
-					troco.setText("Dinheiro - R$ 60,00 (Troco: R$ 5,27)");
-					break;
-			}*/
-			
-					
-			formaDePagamento();
+			valorHora.setText(hora + " - R$ " + valorPedido);
 			
 			String produtosPreco = "";
 			produtosPreco = String.valueOf(Home.qtdeProdutos) + " produto";
@@ -103,7 +97,7 @@ public class DetalhePedido extends Activity {
 				
 				adapter2.notifyDataSetChanged();
 				
-				btnNomeCliente.setOnClickListener
+				btnCelular.setOnClickListener
 				(
 						new View.OnClickListener()
 						{
@@ -111,7 +105,24 @@ public class DetalhePedido extends Activity {
 							{
 								try {
 				                    Intent callIntent = new Intent(Intent.ACTION_CALL);
-				                    callIntent.setData(Uri.parse("tel: +55 (11) 989361878"));
+				                    callIntent.setData(Uri.parse("tel: +55 "+ celular));
+				                    startActivity(callIntent);
+				                } catch (ActivityNotFoundException e) {
+				                    Log.d("Calling a Phone Number", e.getLocalizedMessage());
+				                }
+							}
+						}
+					);
+				
+				btnResidencial.setOnClickListener
+				(
+						new View.OnClickListener()
+						{
+							public void onClick(View v)
+							{
+								try {
+				                    Intent callIntent = new Intent(Intent.ACTION_CALL);
+				                    callIntent.setData(Uri.parse("tel: +55 "+ telefone));
 				                    startActivity(callIntent);
 				                } catch (ActivityNotFoundException e) {
 				                    Log.d("Calling a Phone Number", e.getLocalizedMessage());
@@ -211,14 +222,7 @@ public class DetalhePedido extends Activity {
 			}
 	  }
 
-	String dadosCliente()
-	{
-		
-		
-		return "";
-	}
-
-	void formaDePagamento()
+	void buscaDetalhesPedido()
 	{
 		String texto = "", aux = "";
 		try {
@@ -253,7 +257,7 @@ public class DetalhePedido extends Activity {
 			// REGISTROS############################
 
 			int tamanho = texto.length();
-			int coluna = 1;
+			int coluna = 0;
 			
 			boolean achou = false;
 			
@@ -269,9 +273,10 @@ public class DetalhePedido extends Activity {
 
 				if (achou) 
 				{
-					if (texto.charAt(i) != ';' && texto.charAt(i) != ',')
-						aux = aux + texto.charAt(i);
-					else if (texto.charAt(i) == ',')
+					if (texto.charAt(i) != ';' && texto.charAt(i) != '.')
+							aux = aux + texto.charAt(i);	
+					
+					else if (texto.charAt(i) == '.' || texto.charAt(i) == ';')
 					{
 						switch(coluna)
 						{
@@ -280,26 +285,53 @@ public class DetalhePedido extends Activity {
 							break;
 							
 						case 1:
-							valorPedido = Double.parseDouble(aux);
+							valorPedido = Double.parseDouble(aux.replace(',', '.'));
 							break;
 							
-						case 2:
-							valorPago = Double.parseDouble(aux);
+						case 3:
+							hora = aux.substring(0, 5);
+							break;
+							
+						case 4:
+							NomeClienteString = aux;
+							break;
+							
+						case 5:
+							celular = aux.replace("-", "");
+							break;
+							
+						case 6:
+							telefone = aux.replace("-", "");
 							break;
 						}
-						
-						
 						aux = "";
+						
+						coluna++;
+					}
+					
+					if(texto.charAt(i) == ';')
+					{
+						if(FormaDepagamentoString.equals("Dinheiro"))
+							troco.setText(FormaDepagamentoString + " - R$ " + valorPago + " (Troco: R$ " + (valorPago - valorPedido) + ")");
+
+						else
+							troco.setText(FormaDepagamentoString);
+						
+						Home.meuLog("Telefone", telefone);
+						Home.meuLog("Celular", celular);
+						
+						if(telefone.length() == 0)
+							btnResidencial.setEnabled(false);
+					
+						if(celular.length() == 0)
+							btnCelular.setEnabled(false);
 					}
 						
 				}
 				
 			}
 			
-			if(FormaDepagamentoString != "Dinheiro")
-				troco.setText(FormaDepagamentoString);
-			else
-				troco.setText(FormaDepagamentoString + " - R$ " + valorPago + " (Troco: R$ " + (valorPedido - valorPago) + ")");
+			
 			
 			// FIM DA SEPARAÇÃO DOS
 			// REGISTROS##################################

@@ -434,16 +434,16 @@ go
 insert into Pedido
 (Data,Hora,Valor,Cod_Funcionario,Cod_Cliente, Observacao,Origem,Estado, EnderecoAlt, NumeroResidencialAlt, NumeroApartamentoAlt ,FormaDePagamento,ValorPago)
 values
-('05/01/2015','20:15',31.00,1,2,'','Site','A caminho','','','','Cartão',31.00),
-('05/01/2015','20:15',31.00,1,3,'','Site','A caminho','','','','Cartão',31.00),
+('05/01/2015','20:15',31.00,1,2,'','Site','A caminho','','','','Cheque',31.00),
+('05/01/2015','20:15',31.00,1,3,'','Site','A caminho','','','','Dinheiro',35.00),
 ('05/01/2015','20:15',31.00,1,4,'','Site','A caminho','Alameda Itu','32','21','Cartão',31.00),
 
 ('05/01/2015','20:15',31.00,2,2,'','Site','A caminho','','','','Cartão',31.00),
-('05/01/2015','20:15',31.00,2,3,'','Site','A caminho','Travessa Dom Gaspar','666','','Cartão',31.00),
-('05/01/2015','20:15',31.00,2,4,'','Site','A caminho','','','','Cartão',31.00),
+('05/01/2015','20:15',31.00,2,3,'','Site','A caminho','Travessa Dom Gaspar','666','','Cheque',31.00),
+('05/01/2015','20:15',31.00,2,4,'','Site','A caminho','','','','Dinheiro',35.00),
 
-('05/01/2015','20:15',31.00,3,2,'','Site','A caminho','Avenida Paulista','756','35','Cartão',31.00),
-('05/01/2015','20:15',31.00,3,3,'','Site','A caminho','','','','Cartão',31.00),
+('05/01/2015','20:15',31.00,3,2,'','Site','A caminho','Avenida Paulista','756','35','Cheque',31.00),
+('05/01/2015','20:15',31.00,3,3,'','Site','A caminho','','','','Dinheiro',50.00),
 ('05/01/2015','20:15',31.00,3,4,'','Site','A caminho','','','','Cartão',31.00),
 
 ('05/01/2015','20:15',31.00,4,2,'','Site','A caminho','','','','Cartão',31.00),
@@ -1101,5 +1101,30 @@ go
 
 print 'Proc USP_ANDROID_DetalhesPedido_SelectFormaPagamento criada'
 go
+-----------------------------------------
+create proc USP_ANDROID_DetalhesPedido_SelectInfoPedido
+(
+	@Cod_Pedido int = null
+)
+as
+	Begin
+		select 
+			p.FormaDePagamento,
+			p.Valor,
+			p.ValorPago,
+			p.Hora,
+			c.Nome_Cliente,
+			c.Celular_Cliente,
+			c.Telefone_Cliente
+		
+		from Pedido p
 
-exec USP_ANDROID_DetalhesPedido_SelectFormaPagamento 3
+		inner join Cliente c on
+			Cod_Pedido = @Cod_Pedido and
+			p.Cod_Cliente = c.Cod_Cliente
+	End
+go
+
+print 'Proc USP_ANDROID_DetalhesPedido_SelectInfoPedido criada'
+go
+exec USP_ANDROID_DetalhesPedido_SelectInfoPedido 10

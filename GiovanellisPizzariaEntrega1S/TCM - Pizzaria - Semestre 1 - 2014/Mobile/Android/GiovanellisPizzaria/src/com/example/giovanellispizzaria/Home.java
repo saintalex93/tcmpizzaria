@@ -171,7 +171,7 @@ public class Home extends Activity {
 				
 				codPedido = pegarCodEndereco(position);
 				qtdeProdutos = pegarQtdeProdutos(position);
-						
+				
 				Intent intent = new Intent(context, DetalhePedido.class);
 				startActivity(intent);
 			}
@@ -436,6 +436,11 @@ public class Home extends Activity {
 			}
 
 			return Integer.parseInt(resultado);
+	  }
+	  
+	  public static void meuLog(String tag, String mensagem)
+	  {
+		  Log.d(tag, "'" + mensagem + "'");
 	  }
 	  
 	@Override

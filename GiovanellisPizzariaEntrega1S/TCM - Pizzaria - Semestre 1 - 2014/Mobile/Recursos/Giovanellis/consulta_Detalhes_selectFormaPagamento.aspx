@@ -18,7 +18,7 @@
 		
 		SqlConnection objConexao = new SqlConnection(strConexao);
 		String contato = "";
-		String strSQL = "exec USP_ANDROID_DetalhesPedido_SelectFormaPagamento " + CodPedido;
+		String strSQL = "exec USP_ANDROID_DetalhesPedido_SelectInfoPedido " + CodPedido;
 		SqlCommand objCommand = new SqlCommand(strSQL, objConexao);
 		SqlDataReader dr;
 		objConexao.Open();
@@ -26,9 +26,13 @@
 		contato = "#";
 		while (dr.Read())
 		{
-			contato += (dr[0].ToString()) + ",";
-			contato += (dr[1].ToString()) + ",";
-			contato += (dr[2].ToString()) + ";";
+			contato += (dr[0].ToString()) + ".";
+			contato += (dr[1].ToString()) + ".";
+			contato += (dr[2].ToString()) + ".";
+			contato += (dr[3].ToString()) + ".";
+			contato += (dr[4].ToString()) + ".";
+			contato += (dr[5].ToString()) + ".";
+			contato += (dr[6].ToString()) + ";";
 		}
 		contato+="^";
 		Label1.Text = contato;
