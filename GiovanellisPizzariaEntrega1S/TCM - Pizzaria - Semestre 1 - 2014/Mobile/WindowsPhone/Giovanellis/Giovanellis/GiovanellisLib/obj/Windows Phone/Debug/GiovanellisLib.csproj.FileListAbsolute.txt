@@ -1,0 +1,6 @@
+F:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\Mobile\WindowsPhone\Giovanellis\Giovanellis\GiovanellisLib\bin\Windows Phone\Debug\GiovanellisLib.dll
+F:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\Mobile\WindowsPhone\Giovanellis\Giovanellis\GiovanellisLib\bin\Windows Phone\Debug\GiovanellisLib.pdb
+F:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\Mobile\WindowsPhone\Giovanellis\Giovanellis\GiovanellisLib\obj\Windows Phone\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+F:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\Mobile\WindowsPhone\Giovanellis\Giovanellis\GiovanellisLib\obj\Windows Phone\Debug\GiovanellisLib.dll
+F:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\Mobile\WindowsPhone\Giovanellis\Giovanellis\GiovanellisLib\obj\Windows Phone\Debug\GiovanellisLib.pdb
+F:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\Mobile\WindowsPhone\Giovanellis\Giovanellis\GiovanellisLib\obj\Windows Phone\Debug\GiovanellisLib.csprojResolveAssemblyReference.cache

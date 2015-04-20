@@ -1,0 +1,17 @@
+F:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\Mobile\WindowsPhone\Giovanellis\Giovanellis\Giovanellis\Bin\Debug\ApplicationIcon.png
+F:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\Mobile\WindowsPhone\Giovanellis\Giovanellis\Giovanellis\Bin\Debug\Background.png
+F:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\Mobile\WindowsPhone\Giovanellis\Giovanellis\Giovanellis\Bin\Debug\Giovanellis.dll
+F:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\Mobile\WindowsPhone\Giovanellis\Giovanellis\Giovanellis\Bin\Debug\Giovanellis.pdb
+F:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\Mobile\WindowsPhone\Giovanellis\Giovanellis\Giovanellis\Bin\Debug\AppManifest.xaml
+F:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\Mobile\WindowsPhone\Giovanellis\Giovanellis\Giovanellis\Bin\Debug\Giovanellis.xap
+F:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\Mobile\WindowsPhone\Giovanellis\Giovanellis\Giovanellis\Bin\Debug\GiovanellisLib.dll
+F:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\Mobile\WindowsPhone\Giovanellis\Giovanellis\Giovanellis\Bin\Debug\GiovanellisLib.pdb
+F:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\Mobile\WindowsPhone\Giovanellis\Giovanellis\Giovanellis\obj\Debug\Giovanellis.csprojResolveAssemblyReference.cache
+F:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\Mobile\WindowsPhone\Giovanellis\Giovanellis\Giovanellis\obj\Debug\App.g.i.cs
+F:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\Mobile\WindowsPhone\Giovanellis\Giovanellis\Giovanellis\obj\Debug\GamePage.g.i.cs
+F:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\Mobile\WindowsPhone\Giovanellis\Giovanellis\Giovanellis\obj\Debug\Giovanellis.g.resources
+F:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\Mobile\WindowsPhone\Giovanellis\Giovanellis\Giovanellis\obj\Debug\Giovanellis.dll
+F:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\Mobile\WindowsPhone\Giovanellis\Giovanellis\Giovanellis\obj\Debug\Giovanellis.pdb
+F:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\Mobile\WindowsPhone\Giovanellis\Giovanellis\Giovanellis\obj\Debug\XapCacheFile.xml
+F:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\Mobile\WindowsPhone\Giovanellis\Giovanellis\Giovanellis\obj\Debug\Home.g.i.cs
+F:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\Mobile\WindowsPhone\Giovanellis\Giovanellis\Giovanellis\obj\Debug\Login.g.i.cs

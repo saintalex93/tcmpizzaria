@@ -13,25 +13,17 @@ using Microsoft.Phone.Controls;
 
 namespace Giovanellis
 {
-    public partial class MainPage : PhoneApplicationPage
+    public partial class Home : PhoneApplicationPage
     {
-        // Constructor
-        public MainPage()
+        public Home()
         {
             InitializeComponent();
         }
 
-        // Simple button Click event handler to take us to the second page
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/GamePage.xaml", UriKind.Relative));
+            if (lstPedidos.Items.Count == 0)
+                lstPedidos.Items.Add("Não há pedidos a serem entregues.");
         }
-
-        private void txtLogin_LayoutUpdated(object sender, EventArgs e)
-        {
-            
-        }
-
-
     }
 }
