@@ -15,3 +15,5 @@ F:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 
 F:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\Mobile\WindowsPhone\Giovanellis\Giovanellis\Giovanellis\obj\Debug\XapCacheFile.xml
 F:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\Mobile\WindowsPhone\Giovanellis\Giovanellis\Giovanellis\obj\Debug\Home.g.i.cs
 F:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\Mobile\WindowsPhone\Giovanellis\Giovanellis\Giovanellis\obj\Debug\Login.g.i.cs
+F:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\Mobile\WindowsPhone\Giovanellis\Giovanellis\Giovanellis\obj\Debug\Detalhes.g.i.cs
+F:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\Mobile\WindowsPhone\Giovanellis\Giovanellis\Giovanellis\obj\Debug\Historico.g.i.cs

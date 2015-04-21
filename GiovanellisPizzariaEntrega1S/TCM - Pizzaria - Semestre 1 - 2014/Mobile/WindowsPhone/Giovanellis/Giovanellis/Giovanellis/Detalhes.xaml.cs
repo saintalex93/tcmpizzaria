@@ -19,5 +19,11 @@ namespace Giovanellis
         {
             InitializeComponent();
         }
+
+        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (lstProdutos.Items.Count == 0)
+                lstProdutos.Items.Add("Esse pedido não tem produtos.");
+        }
     }
 }

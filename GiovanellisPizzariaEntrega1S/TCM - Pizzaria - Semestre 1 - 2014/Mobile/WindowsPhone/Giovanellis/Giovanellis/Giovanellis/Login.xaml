@@ -11,7 +11,7 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    shell:SystemTray.IsVisible="False">
+    shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
@@ -30,9 +30,9 @@
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             
             <!--Create a single button to navigate to the second page which is rendered with the XNA Framework-->
-            <TextBox Height="72" HorizontalAlignment="Left" Margin="12,101,0,0" Name="txtLogin" Text="Login" VerticalAlignment="Top" Width="436" LayoutUpdated="txtLogin_LayoutUpdated" Tap="txtLogin_Tap" LostFocus="txtLogin_LostFocus"/>
-            <TextBox Height="72" HorizontalAlignment="Left" Margin="12,280,0,0" Name="txtSenha" Text="Senha" VerticalAlignment="Top" Width="436" Tap="txtSenha_Tap" LostFocus="txtSenha_LostFocus"/>
+            <TextBox Height="72" HorizontalAlignment="Left" Margin="0,101,0,0" Name="txtLogin" Text="Login" VerticalAlignment="Top" Width="460" LayoutUpdated="txtLogin_LayoutUpdated" Tap="txtLogin_Tap" LostFocus="txtLogin_LostFocus"/>
             <Button Content="Entrar" Height="72" HorizontalAlignment="Left" Margin="141,463,0,0" Name="btnEntrar" VerticalAlignment="Top" Width="160" Click="btnEntrar_Click" />
+            <PasswordBox Height="72" HorizontalAlignment="Left" Margin="-4,201,0,0" Name="txtSenha" VerticalAlignment="Top" Width="460" Tap="txtSenha_Tap" LostFocus="txtSenha_LostFocus" />
         </Grid>
     </Grid>
  

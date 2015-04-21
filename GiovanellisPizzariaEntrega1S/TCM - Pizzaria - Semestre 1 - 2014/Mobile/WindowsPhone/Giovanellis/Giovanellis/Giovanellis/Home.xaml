@@ -28,9 +28,11 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <TextBlock Height="Auto" HorizontalAlignment="Left" Margin="9,6,0,0" Name="txtUsuario" Text="[NomeUsuário]" VerticalAlignment="Top" FontSize="40" />
-            <Button Content="Ver histórico &gt;&gt;" Height="Auto" HorizontalAlignment="Left" Margin="210,79,0,0" Name="btnHistorico" VerticalAlignment="Top" Width="246" />
+            <Button Content="Ver histórico &gt;&gt;" Height="Auto" HorizontalAlignment="Left" Margin="210,79,0,0" Name="btnHistorico" VerticalAlignment="Top" Width="246" Click="btnHistorico_Click" />
             <TextBlock Height="Auto" HorizontalAlignment="Left" Margin="6,157,0,0" Name="textBlock2" Text="Pedidos a serem entregues:" VerticalAlignment="Top" FontSize="35" Width="450" TextAlignment="Center" />
-            <ListBox Height="418" HorizontalAlignment="Left" Margin="6,210,0,0" Name="lstPedidos" VerticalAlignment="Top" Width="444" />
+            <ListBox Height="418" HorizontalAlignment="Center" Margin="6,210,0,0" Name="lstPedidos" VerticalAlignment="Top" Width="444" Hold="lstPedidos_Hold" SelectionChanged="lstPedidos_SelectionChanged">
+                <ListBoxItem FontSize="25" />
+            </ListBox>
         </Grid>
     </Grid>
  

@@ -1083,6 +1083,9 @@ as
 		where Cod_Cliente = @Cod_Cliente
 	End
 go
+print 'Proc USP_ANDROID_DetalhesPedido_SelectInfoCLiente criada'
+go
+
 -----------------------------------------
 create proc USP_ANDROID_DetalhesPedido_SelectFormaPagamento
 (
@@ -1127,4 +1130,3 @@ go
 
 print 'Proc USP_ANDROID_DetalhesPedido_SelectInfoPedido criada'
 go
-exec USP_ANDROID_DetalhesPedido_SelectInfoPedido 10

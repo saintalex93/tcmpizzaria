@@ -19,5 +19,16 @@ namespace Giovanellis
         {
             InitializeComponent();
         }
+
+        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (lstHistorico.Items.Count == 0)
+                lstHistorico.Items.Add("Não há pedidos no histórico");
+        }
+
+        private void lstHistorico_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+//            if(lstHistorico.Selected
+        }
     }
 }
