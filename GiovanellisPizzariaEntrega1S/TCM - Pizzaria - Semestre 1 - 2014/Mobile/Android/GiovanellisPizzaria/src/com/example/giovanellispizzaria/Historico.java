@@ -411,9 +411,7 @@ public class Historico extends Activity {
 			int current = 0;
 
 			while ((current = bufferedInput.read()) != -1) 
-			{
 				texto = texto + ((char) (byte) current + "");
-			}
 
 			inputStream.close();
 
@@ -437,8 +435,6 @@ public class Historico extends Activity {
 				if (achou) 
 					if (texto.charAt(i) != ';')
 						aux = aux + texto.charAt(i);
-				
-				
 			}
 			
 			// FIM DA SEPARAÇÃO DOS

@@ -8,7 +8,13 @@
 	public void Page_Load()
 	{
 		int Cod_Funcionario = int.Parse((Request.QueryString["Cod_Funcionario"]));
-		String strConexao = "Password=peganomeupau; Persist Security Info=True; User ID=sa; Initial Catalog=Pizzaria; Data Source=TUCA\\SQLEXPRESS";
+
+		//String de casa
+		//String strConexao = "Password=peganomeupau; Persist Security Info=True; User ID=sa; Initial Catalog=Pizzaria; Data Source=TUCA\\SQLEXPRESS";
+
+		//String do curso
+		String strConexao = "Password=etesp; Persist Security Info=True; User ID=aluno; Initial Catalog=Pizzaria; Data Source=LAB02T-16";
+
 		SqlConnection objConexao = new SqlConnection(strConexao);
 		String contato = "";
 		String strSQL = "EXEC USP_ANDROID_HOME_SelectPedidosAEntregar " + Cod_Funcionario;

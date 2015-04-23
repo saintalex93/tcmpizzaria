@@ -28,6 +28,8 @@ namespace Giovanellis
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
+            lstPedidos.Items.Clear();
+
             txtUsuario.Text = MainPage.nomeFuncionario;
 
             WebClient wc = new WebClient();
@@ -35,9 +37,6 @@ namespace Giovanellis
             wc.DownloadStringAsync(new Uri("http://localhost/Giovanellis/consulta_listaPedidosAEntregar.aspx?Cod_Funcionario=" + MainPage.codFuncionario));
 
             wc.DownloadStringCompleted += new DownloadStringCompletedEventHandler(wc_DownloadStringCompleted);
-
-            if (lstPedidos.Items.Count == 0)
-                lstPedidos.Items.Add("Não há pedidos a serem entregues.");
         }
 
         private void btnHistorico_Click(object sender, RoutedEventArgs e)
@@ -47,14 +46,7 @@ namespace Giovanellis
 
         private void lstPedidos_Hold(object sender, GestureEventArgs e)
         {
-
-        }
-
-        private void lstPedidos_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            codPedido = 
-            
-            NavigationService.Navigate(new Uri("/Detalhes.xaml", UriKind.Relative));
+            MessageBox.Show("Hold no item " + lstPedidos.SelectedIndex);
         }
 
         void wc_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
@@ -73,15 +65,15 @@ namespace Giovanellis
                 int coluna = 0;
 
                 string endereco = "";
-                String numRes = "";
-                String numAp = "";
+                string numRes = "";
+                string numAp = "";
 
 
-                String enderecoAlt = "";
-                String numResAlt = "";
-                String numApAlt = "";
+                string enderecoAlt = "";
+                string numResAlt = "";
+                string numApAlt = "";
 
-                String mensagem = "";
+                string mensagem = "";
 
                 for (i = 0; i < tamanho; i++)
                 {
@@ -96,11 +88,12 @@ namespace Giovanellis
 
                     if (achou)
                         if (texto[i] != ';' && texto[i] != ',')
-                            aux = aux + texto[i];
+                            aux += texto[i];
 
                         else if (texto[i] == ',')
                         {
                             coluna++;
+
                             switch (coluna)
                             {
                                 case 1:
@@ -171,7 +164,93 @@ namespace Giovanellis
                         }
                 }
             }
+
+            if (lstPedidos.Items.Count == 0)
+                lstPedidos.Items.Add("Não há pedidos a serem entregues.");
         }
 
+        string getEndereco(int position)
+        {
+            string endereco = "";
+
+            try 
+            {
+                bool comeco = false;
+
+                int i = 0;
+
+                while (lstPedidos.Items[position].ToString()[i] != '(')
+                {
+                    if (lstPedidos.Items[position].ToString()[i] == '-')
+                    {
+                        comeco = true;
+                        i++;
+                    }
+
+                    if (comeco)
+                        endereco += lstPedidos.Items[position].ToString()[i];
+
+                    i++;
+                }
+            }
+            catch(Exception e)
+            {
+            }
+
+            return endereco;
+        }
+
+        private void lstPedidos_Tap(object sender, GestureEventArgs e)
+        {
+            enderecoCompleto = getEndereco(lstPedidos.SelectedIndex);
+
+            codPedido = getCodEndereco(lstPedidos.SelectedIndex);
+
+            qtdeProdutos = getQtdeProdutos(lstPedidos.SelectedIndex);
+
+            NavigationService.Navigate(new Uri("/Detalhes.xaml", UriKind.Relative));
+        }
+
+        private int getCodEndereco(int position) 
+        {
+            int i = 1;
+
+            String resultado = "";
+
+            while (lstPedidos.Items[position].ToString()[i] != ' ')
+            {
+                resultado += lstPedidos.Items[position].ToString()[i];
+
+                i++;
+            }
+
+            return Int32.Parse(resultado);
+        }
+
+        private int getQtdeProdutos(int position)
+        {
+
+            int i = 1;
+
+            bool comeco = false;
+
+            String resultado = "";
+
+            while (lstPedidos.Items[position].ToString()[i] != ')')
+            {
+                if (lstPedidos.Items[position].ToString()[i] == '(')
+                {
+                    comeco = true;
+                    i++;
+                }
+
+                if (comeco)
+                    resultado += lstPedidos.Items[position].ToString()[i];
+
+                i++;
+            }
+
+            return Int32.Parse(resultado);
+        }
     }
 }

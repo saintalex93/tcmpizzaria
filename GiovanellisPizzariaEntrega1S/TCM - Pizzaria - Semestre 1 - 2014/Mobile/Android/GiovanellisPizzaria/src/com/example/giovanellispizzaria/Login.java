@@ -38,8 +38,7 @@ public class Login extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 
-		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
-				.permitAll().build();
+		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 		StrictMode.setThreadPolicy(policy);
 
 		Button logar = (Button) findViewById(R.id.btnLogin);
@@ -75,19 +74,23 @@ public class Login extends Activity {
 		logar.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 
-				if (tvLogin.getText().length() == 0) {
+				if (tvLogin.getText().length() == 0) 
+				{
 					Toast.makeText(
 							getBaseContext(),
 							"O LOGIN fornecido não é válido.\n\nPor favor, certifique-se de que ele está correto e tente de novo.",
 							Toast.LENGTH_LONG).show();
+				
 					return;
 				}
 
-				if (tvSenha.getText().length() == 0) {
+				if (tvSenha.getText().length() == 0) 
+				{
 					Toast.makeText(
 							getBaseContext(),
 							"A SENHA fornecida não é válido.\n\nPor favor, certifique-se de que ela está correta e tente de novo.",
 							Toast.LENGTH_LONG).show();
+					
 					return;
 				}
 
@@ -104,20 +107,18 @@ public class Login extends Activity {
 					//192.168.1.14
 					
 					// IP do curso
-					URL url = new 
-							URL("http://192.168.1.14//Giovanellis/consulta_login.aspx?Login_Funcionario="+tvLogin.getText()+"&Senha_Funcionario="+tvSenha.getText());
+					URL url = new URL("http://192.168.1.14/Giovanellis/consulta_login.aspx?Login_Funcionario="+tvLogin.getText()+"&Senha_Funcionario="+tvSenha.getText());
 
 					URLConnection conexao = url.openConnection();
 
 					InputStream inputStream = conexao.getInputStream();
 
-					BufferedInputStream bufferedInput = new BufferedInputStream(
-							inputStream);
+					BufferedInputStream bufferedInput = new BufferedInputStream(inputStream);
+					
 					int current = 0;
 
-					while ((current = bufferedInput.read()) != -1) {
-						texto = texto + ((char) (byte) current + "");
-					}
+					while ((current = bufferedInput.read()) != -1) 
+						texto += ((char) (byte) current + "");
 
 					inputStream.close();
 
@@ -127,8 +128,10 @@ public class Login extends Activity {
 					int tamanho = texto.length();
 					boolean achou = false;
 
-					for (int i = 0; i < tamanho; i++) {
-						if (texto.charAt(i) == '#') {
+					for (int i = 0; i < tamanho; i++) 
+					{
+						if (texto.charAt(i) == '#') 
+						{
 							achou = true;
 							i++;
 						}
@@ -136,13 +139,18 @@ public class Login extends Activity {
 						if (texto.charAt(i) == '^')
 							achou = false;
 
-						if (achou) {
+						if (achou) 
+						{
 							if (texto.charAt(i) != ';'&& texto.charAt(i) != ',')
-								aux = aux + texto.charAt(i);
-							else if (texto.charAt(i) == ',') {
+								aux += texto.charAt(i);
+							
+							else if (texto.charAt(i) == ',') 
+							{
 								codFuncionario = Integer.parseInt(aux);
 								aux = "";
-							} else if (texto.charAt(i) == ';') {
+							} 
+							else if (texto.charAt(i) == ';') 
+							{
 								nomeFuncionario = aux;
 								aux = "";
 							}

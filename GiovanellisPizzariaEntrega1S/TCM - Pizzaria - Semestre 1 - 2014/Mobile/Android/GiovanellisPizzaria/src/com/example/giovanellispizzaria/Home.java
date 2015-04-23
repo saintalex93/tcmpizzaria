@@ -169,10 +169,7 @@ public class Home extends Activity {
 				long arg3
 			)
 			{
-				pegaEndereco(position);
-				
-				codPedido = pegarCodEndereco(position);
-				qtdeProdutos = pegarQtdeProdutos(position);
+				 
 				
 				Intent intent = new Intent(context, DetalhePedido.class);
 				startActivity(intent);

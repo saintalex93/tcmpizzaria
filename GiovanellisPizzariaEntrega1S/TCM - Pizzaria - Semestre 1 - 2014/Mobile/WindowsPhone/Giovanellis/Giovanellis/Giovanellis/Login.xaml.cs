@@ -45,22 +45,23 @@ namespace Giovanellis
 
         private void btnEntrar_Click(object sender, RoutedEventArgs e)
         {
-            if (txtLogin.Text.Count() == 0)
+            if (txtLogin.Text.Length == 0)
+            { 
                 MessageBox.Show("Por favor, coloque um LOGIN válido.");
-            else if (txtSenha.Password.Count() == 0)
+                return;
+            }
+                
+            else if (txtSenha.Password.Length == 0)
+            {
                 MessageBox.Show("Por favor, coloque uma SENHA válida.");
+                return;
+            }
 
             WebClient wc = new WebClient();
-
 
             wc.DownloadStringAsync(new Uri("http://localhost/Giovanellis/consulta_login.aspx?Login_Funcionario=" + txtLogin.Text + "&Senha_Funcionario=" + txtSenha.Password));
             
             wc.DownloadStringCompleted += new DownloadStringCompletedEventHandler(wc_DownloadStringCompleted);
-
-            if(nomeFuncionario.Count() != 0)
-                NavigationService.Navigate(new Uri("/Home.xaml", UriKind.Relative));
-            else
-                MessageBox.Show("Não foi encontrado nenhum usuário com o LOGIN e SENHA fornecidos.\nPor favor, verifique se estes estão corretos e tente de novo.");
         }
 
         private void txtLogin_Tap(object sender, GestureEventArgs e)
@@ -150,6 +151,11 @@ namespace Giovanellis
                         }
                 }
             }
+
+            if (nomeFuncionario.Length != 0)
+                NavigationService.Navigate(new Uri("/Home.xaml", UriKind.Relative));
+            else
+                MessageBox.Show("Não foi encontrado nenhum usuário com o LOGIN e SENHA fornecidos.\nPor favor, verifique se estes estão corretos e tente de novo.");
         }
     }
 }

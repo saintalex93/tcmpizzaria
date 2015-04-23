@@ -34,8 +34,8 @@
             <TextBlock Height="30" HorizontalAlignment="Left" Margin="183,179,0,0" Name="txtForma" Text="Forma" VerticalAlignment="Top" />
             <TextBlock Height="30" HorizontalAlignment="Left" Margin="170,229,0,0" Name="txtQtdeProdutos" Text="QtdeProdutos" VerticalAlignment="Top" />
             <ListBox Height="285" HorizontalAlignment="Left" Margin="0,265,0,0" Name="lstProdutos" VerticalAlignment="Top" Width="460" />
-            <Button Content="Ligar celular" Height="72" HorizontalAlignment="Left" Margin="6,556,0,0" Name="btnCelular" VerticalAlignment="Top" Width="Auto" />
-            <Button Content="Ligar residência" Height="72" HorizontalAlignment="Left" Margin="220,556,0,0" Name="btnResidencia" VerticalAlignment="Top" Width="Auto" />
+            <Button Content="Ligar celular" Height="72" HorizontalAlignment="Left" Margin="6,556,0,0" Name="btnCelular" VerticalAlignment="Top" Width="Auto" Click="btnCelular_Click" />
+            <Button Content="Ligar residência" Height="72" HorizontalAlignment="Left" Margin="220,556,0,0" Name="btnResidencia" VerticalAlignment="Top" Width="Auto" Click="btnResidencia_Click" />
         </Grid>
     </Grid>
  

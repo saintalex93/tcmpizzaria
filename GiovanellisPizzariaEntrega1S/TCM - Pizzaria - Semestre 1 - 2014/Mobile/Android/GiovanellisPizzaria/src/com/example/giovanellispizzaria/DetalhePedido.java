@@ -204,7 +204,7 @@ public class DetalhePedido extends Activity {
 
 					if (achou) 
 					{
-						if (texto.charAt(i) != ';' && texto.charAt(i) != ',')
+						if (texto.charAt(i) != ';')
 							aux = aux + texto.charAt(i);
 						else
 						{
@@ -282,7 +282,7 @@ public class DetalhePedido extends Activity {
 					if (texto.charAt(i) != ';' && texto.charAt(i) != '.')
 							aux = aux + texto.charAt(i);	
 					
-					else if (texto.charAt(i) == '.' || texto.charAt(i) == ';')
+					else if (texto.charAt(i) == '.')
 					{
 						switch(coluna)
 						{
@@ -318,9 +318,10 @@ public class DetalhePedido extends Activity {
 						
 						coluna++;
 					}
-					
-					if(texto.charAt(i) == ';')
+					else if(texto.charAt(i) == ';')
 					{
+						telefone = aux.replace("-", "");
+						
 						if(FormaDepagamentoString.equals("Dinheiro"))
 							troco.setText(FormaDepagamentoString + " - R$ " + valorPago + " (Troco: R$ " + (valorPago - valorPedido) + ")");
 
