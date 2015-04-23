@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Random;
 
+import org.apache.http.util.ByteArrayBuffer;
+
 import android.os.Bundle;
 import android.os.Debug;
 import android.app.Activity;
@@ -220,12 +222,14 @@ public class Historico extends Activity {
 
 				BufferedInputStream bufferedInput = new BufferedInputStream(inputStream);
 
+				ByteArrayBuffer byteArray = new ByteArrayBuffer(1);
+				
 				int current = 0;
 
-				while ((current = bufferedInput.read()) != -1) 
-				{
-					texto = texto + ((char) (byte) current + "");
-				}
+				while((current = bufferedInput.read()) != -1)
+					byteArray.append((byte)current);
+				
+				texto = new String(byteArray.toByteArray());
 
 				inputStream.close();
 
