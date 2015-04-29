@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
+//using System.Microsoft.Controls.CustomMessageBox;
 
 namespace Giovanellis
 {
@@ -36,7 +37,15 @@ namespace Giovanellis
 
             wc.DownloadStringAsync(new Uri("http://localhost/Giovanellis/consulta_listaPedidosAEntregar.aspx?Cod_Funcionario=" + MainPage.codFuncionario));
 
-            wc.DownloadStringCompleted += new DownloadStringCompletedEventHandler(wc_DownloadStringCompleted);
+            try
+            {
+                wc.DownloadStringCompleted += new DownloadStringCompletedEventHandler(wc_DownloadStringCompleted);
+            }
+            catch (Exception ex) 
+            {
+                MessageBox.Show(ex.ToString());
+            }
+
         }
 
         private void btnHistorico_Click(object sender, RoutedEventArgs e)
@@ -46,7 +55,25 @@ namespace Giovanellis
 
         private void lstPedidos_Hold(object sender, GestureEventArgs e)
         {
-            MessageBox.Show("Hold no item " + lstPedidos.SelectedIndex);
+            string text = (e.OriginalSource as TextBlock).Text;
+            
+            enderecoCompleto = getEndereco(text);
+
+            if (text[0] != 'N')
+            {
+                int i = 1;
+                String numero = "";
+
+                while (text[i] != '-')
+                {
+                    numero += text[i];
+                    i++;
+                }
+
+                codPedidoDesfecho = Int32.Parse(numero);
+            }
+
+            NavigationService.Navigate(new Uri("/DesfechoPedido.xaml", UriKind.Relative));
         }
 
         void wc_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
@@ -194,6 +221,37 @@ namespace Giovanellis
                 }
             }
             catch(Exception e)
+            {
+            }
+
+            return endereco;
+        }
+
+        string getEndereco(string itemValue)
+        {
+            string endereco = "";
+
+            try
+            {
+                bool comeco = false;
+
+                int i = 0;
+
+                while (itemValue[i] != '(')
+                {
+                    if (itemValue[i] == '-')
+                    {
+                        comeco = true;
+                        i++;
+                    }
+
+                    if (comeco)
+                        endereco += itemValue[i];
+
+                    i++;
+                }
+            }
+            catch (Exception e)
             {
             }
 
