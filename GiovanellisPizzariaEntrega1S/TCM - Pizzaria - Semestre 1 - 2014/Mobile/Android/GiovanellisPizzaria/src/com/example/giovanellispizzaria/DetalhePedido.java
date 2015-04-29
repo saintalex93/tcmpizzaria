@@ -165,8 +165,10 @@ public class DetalhePedido extends Activity {
 
 				// IP de casa
 
+				Log.d("preencherproduto - codPedido", Home.codPedido + "");
+				
 				URL url = new URL(
-						"http://192.168.1.14/Giovanellis/consulta_Detalhes_listaProdutos.aspx?CodPedido=" + Home.codPedido);
+						"http://192.168.1.8/Giovanellis/consulta_Detalhes_listaProdutos.aspx?CodPedido=" + Home.codPedido);
 
 				URLConnection conexao = url.openConnection();
 
@@ -188,6 +190,8 @@ public class DetalhePedido extends Activity {
 				// INÍCIO DA SEPARAÇÃO DOS
 				// REGISTROS############################
 
+				Log.d("PreencherProduto - texto", texto);
+				
 				int tamanho = texto.length();
 				
 				boolean achou = false;
@@ -239,8 +243,10 @@ public class DetalhePedido extends Activity {
 			// IP de casa
 			//192.168.1.14
 
+			Log.d("buscar detalhe - codPedido", Home.codPedido + "");
+			
 			URL url = new URL(
-					"http://192.168.1.14/Giovanellis/consulta_Detalhes_selectFormaPagamento.aspx?CodPedido=" + Home.codPedido);
+					"http://192.168.1.8/Giovanellis/consulta_Detalhes_selectFormaPagamento.aspx?CodPedido=" + Home.codPedido);
 
 			URLConnection conexao = url.openConnection();
 
@@ -259,6 +265,8 @@ public class DetalhePedido extends Activity {
 
 			inputStream.close();
 
+			Log.d("buscar detalhe - texto", texto);
+			
 			// INÍCIO DA SEPARAÇÃO DOS
 			// REGISTROS############################
 
@@ -333,6 +341,8 @@ public class DetalhePedido extends Activity {
 					
 						if(celular.length() == 0)
 							btnCelular.setEnabled(false);
+						
+						Log.d("troco", troco.getText().toString());
 					}
 						
 				}
@@ -346,7 +356,7 @@ public class DetalhePedido extends Activity {
 		}
 		catch (Exception e) 
 		{
-			Log.d("asdf", "Message: " + e.getMessage());
+			Log.d("DetalhePedido", "Message: " + e.getMessage());
 		}
 	}
 }

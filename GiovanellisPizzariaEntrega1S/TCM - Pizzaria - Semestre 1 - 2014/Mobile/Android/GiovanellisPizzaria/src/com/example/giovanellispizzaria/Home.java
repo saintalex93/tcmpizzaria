@@ -96,7 +96,7 @@ public class Home extends Activity {
     				URL url;
 					try 
 					{
-						url = new URL("http://192.168.1.14/Giovanellis/update_RealizarPedido.aspx?Cod_Pedido=" + codPedidoDesfecho);
+						url = new URL("http://192.168.1.8/Giovanellis/update_RealizarPedido.aspx?Cod_Pedido=" + codPedidoDesfecho);
 						
 						URLConnection conexao = url.openConnection();
 
@@ -126,7 +126,7 @@ public class Home extends Activity {
 					URL url;
 					try 
 					{
-						url = new URL("http://192.168.1.14/Giovanellis/update_CancelarPedido.aspx?Cod_Pedido=" + codPedidoDesfecho);
+						url = new URL("http://192.168.1.8/Giovanellis/update_CancelarPedido.aspx?Cod_Pedido=" + codPedidoDesfecho);
 						
 						URLConnection conexao = url.openConnection();
 
@@ -169,7 +169,11 @@ public class Home extends Activity {
 				long arg3
 			)
 			{
-				 
+				enderecoCompleto = getEndereco(position);
+
+	            codPedido = getCodEndereco(position);
+
+	            qtdeProdutos = getQtdeProdutos(position);
 				
 				Intent intent = new Intent(context, DetalhePedido.class);
 				startActivity(intent);
@@ -209,6 +213,8 @@ public class Home extends Activity {
 		{
 			public void onClick(View v)
 			{
+				
+				
 				Intent i = new Intent(context, Historico.class);
 				startActivity(i);
 			}
@@ -216,7 +222,7 @@ public class Home extends Activity {
 	);
 	}
 
-	  void updatePedidos()
+	void updatePedidos()
 	  {
 		  arrayPedidos.clear();
 		  
@@ -234,7 +240,7 @@ public class Home extends Activity {
 				// IP de casa
 
 				URL url = new URL(
-						"http://192.168.1.14/Giovanellis/consulta_listaPedidosAEntregar.aspx?Cod_Funcionario=" + Login.codFuncionario);
+						"http://192.168.1.8/Giovanellis/consulta_listaPedidosAEntregar.aspx?Cod_Funcionario=" + Login.codFuncionario);
 
 				URLConnection conexao = url.openConnection();
 
@@ -374,31 +380,31 @@ public class Home extends Activity {
 				arrayPedidos.add("Não há nenhum pedido pendente");
 	  }
 	
-	  void pegaEndereco(int position)
-	  {
-		  enderecoCompleto = "";
-		  
-		  boolean comeco = false;
-			boolean fim = false;
-			int i = 0;
-
-			while((arrayPedidos.get(position).charAt(i) != '('))
-			{
-				if(arrayPedidos.get(position).charAt(i) == '-')
-				{
-					comeco = true;
-					i++;
-				}
-
-				if(comeco)
-					enderecoCompleto += arrayPedidos.get(position).charAt(i);
-
-				
+	String getEndereco(int position)
+	 {
+		String resultado = "";	
+		enderecoCompleto = "";
+	
+		boolean comeco = false;
+		boolean fim = false;
+		int i = 0;
+	
+		while ((arrayPedidos.get(position).charAt(i) != '(')) {
+			if (arrayPedidos.get(position).charAt(i) == '-') {
+				comeco = true;
 				i++;
-			}  
-	  }
-	  
-	  int pegarCodEndereco(int position)
+			}
+	
+			if (comeco)
+				resultado += arrayPedidos.get(position).charAt(i);
+
+			i++;
+		}
+		
+		return resultado;
+	}
+  
+	int getCodEndereco(int position)
 	  {
 			int i = 1;
 			
@@ -414,7 +420,7 @@ public class Home extends Activity {
 			return Integer.parseInt(resultado);
 	  }
 	  
-	  int pegarQtdeProdutos(int position)
+	int getQtdeProdutos(int position)
 	  {
 			int i = 1;
 			
@@ -439,7 +445,7 @@ public class Home extends Activity {
 			return Integer.parseInt(resultado);
 	  }
 	  
-	  public static void meuLog(String tag, String mensagem)
+	public static void meuLog(String tag, String mensagem)
 	  {
 		  Log.d(tag, "'" + mensagem + "'");
 	  }

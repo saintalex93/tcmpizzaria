@@ -104,10 +104,10 @@ public class Login extends Activity {
 					// 10.67.74.32
 					
 					// IP de casa
-					//192.168.1.14
+					//192.168.1.8
 					
 					// IP do curso
-					URL url = new URL("http://192.168.1.14/Giovanellis/consulta_login.aspx?Login_Funcionario="+tvLogin.getText()+"&Senha_Funcionario="+tvSenha.getText());
+					URL url = new URL("http://192.168.1.8/Giovanellis/consulta_login.aspx?Login_Funcionario="+tvLogin.getText()+"&Senha_Funcionario="+tvSenha.getText());
 
 					URLConnection conexao = url.openConnection();
 

@@ -104,7 +104,7 @@ public class Historico extends Activity {
 	    				URL url;
 						try 
 						{
-							url = new URL("http://192.168.1.14/Giovanellis/update_CancelarPedido.aspx?Cod_Pedido=" + Home.codPedidoDesfecho);
+							url = new URL("http://192.168.1.8/Giovanellis/update_CancelarPedido.aspx?Cod_Pedido=" + Home.codPedidoDesfecho);
 							
 							URLConnection conexao = url.openConnection();
 
@@ -136,7 +136,7 @@ public class Historico extends Activity {
 						URL url;
 						try 
 						{
-							url = new URL("http://192.168.1.14/Giovanellis/update_RealizarPedido.aspx?Cod_Pedido=" + Home.codPedidoDesfecho);
+							url = new URL("http://192.168.1.8/Giovanellis/update_RealizarPedido.aspx?Cod_Pedido=" + Home.codPedidoDesfecho);
 							
 							URLConnection conexao = url.openConnection();
 
@@ -214,7 +214,7 @@ public class Historico extends Activity {
 				// IP de casa
 
 				URL url = new URL(
-						"http://192.168.1.14/Giovanellis/consulta_listaHistorico.aspx?Cod_Funcionario=" + Login.codFuncionario);
+						"http://192.168.1.8/Giovanellis/consulta_listaHistorico.aspx?Cod_Funcionario=" + Login.codFuncionario);
 
 				URLConnection conexao = url.openConnection();
 
@@ -330,29 +330,33 @@ public class Historico extends Activity {
 							*/
 							numApAlt = aux;
 							
-							data.replace("-", "/");
-							
 							aux = "";
 						}
 						else if (texto.charAt(i) == ';')
 						{
 							coluna = 0;
 							
+							data = formatarData(data);	
+							
+							String mensagemQtdeProdutos = qtdProdutos + " produto";
+
+							if(qtdProdutos > 1)
+								mensagemQtdeProdutos += "s";
+							
 							//Se NÃO tiver endereço alternativo
 							if(enderecoAlt.length() == 0)
-							
 								if(numAp.length() == 0)
-									mensagem = "#" + numeroPedido + " - " + endereco + ", "+ numRes + " - " + data + " - " + hora + " - " + estado + " (" + qtdProdutos + ")";
+									mensagem = "#" + numeroPedido + "\n" + endereco + ", "+ numRes + "\n" + data + " - " + hora + "\n" + mensagemQtdeProdutos + " - " + estado;
 								else
-									mensagem = "#" + numeroPedido + " - " + endereco + ", "+ numRes + ", Ap: " + numAp + " - " + data + " - " + hora + " - " + estado + " (" + qtdProdutos + ")";
+									mensagem = "#" + numeroPedido + "\n" + endereco + ", "+ numRes + ", Ap: " + numAp + "\n" + data + " - " + hora + "\n" + mensagemQtdeProdutos + " - " + estado;
 
 							//Se TIVER endereço alternativo
 							else
 								
 								if(numApAlt.length() == 0)
-									mensagem = "#" + numeroPedido + " - " + enderecoAlt + ", "+ numResAlt + " - " + data + " - " + hora + " " + estado + " (" + qtdProdutos + ")";
+									mensagem = "#" + numeroPedido + "\n" + enderecoAlt + ", "+ numResAlt + "\n" + data + " - " + hora + "\n" + mensagemQtdeProdutos + " - " + estado;
 								else
-									mensagem = "#" + numeroPedido + " - " + enderecoAlt + ", "+ numResAlt + ", Ap: " + numApAlt + " - " + data + " - " + hora + " - " + estado + " (" + qtdProdutos + ")";
+									mensagem = "#" + numeroPedido + "\n" + enderecoAlt + ", "+ numResAlt + ", Ap: " + numApAlt + "\n" + data + " - " + hora + "\n" + mensagemQtdeProdutos + " - " + estado;
 								
 							aux = "";
 							enderecoAlt = "";
@@ -400,7 +404,7 @@ public class Historico extends Activity {
 			// IP de casa
 
 			URL url = new URL(
-					"http://192.168.1.14/Giovanellis/consulta_estadoItemHistorico.aspx?Cod_Pedido=" + codPedido);
+					"http://192.168.1.8/Giovanellis/consulta_estadoItemHistorico.aspx?Cod_Pedido=" + codPedido);
 
 			URLConnection conexao = url.openConnection();
 
@@ -455,6 +459,83 @@ public class Historico extends Activity {
 		estadoPedido = aux;
 		
 		Log.d("estadoPedido", estadoPedido);
+	}
+	
+	String formatarData(String dataOriginal)
+	{
+/*		Log.d("formatarData", "DEU");
+		
+		String aux = "";
+		String ano = "";
+		String mes = "";
+		String dia = "";
+		String resultado = "";
+		
+		try
+		{
+			int coluna = 0;
+
+			for(int i = 0; i <= dataOriginal.length(); i++)
+			{
+				if(dataOriginal.charAt(i) != '-')
+				{
+					aux += String.valueOf(dataOriginal.charAt(i));
+					Log.d("aux", aux);
+				}
+				else if(dataOriginal.charAt(i) == '-')
+				{
+					Log.d("else", "dataOriginal.charAt(i) == '-'");
+					
+					if(ano.length() == 0)
+					{
+						ano = aux;	
+						Log.d("ano", ano);
+					}
+					else if (mes.length() == 0)
+					{
+						mes = aux;
+						Log.d("mes", mes);
+					}
+
+					dia = aux;
+					aux = "";					
+					*/
+		
+					/*
+					switch(coluna)
+					{
+						case 0:
+							ano = aux;
+							Log.d("case 0", ano);
+							break;
+						
+						case 1:
+							mes = aux;
+							Log.d("case 1", mes);
+					}
+					
+					coluna++;
+					*/
+		/*
+				}
+
+				
+			}
+		}
+		catch(Exception e)
+		{
+			Log.d("formatarData - Try", e.getMessage());
+		}*/
+		
+		String newDate = "";
+		
+		for(int i = 0; i < dataOriginal.length();i++)
+			if(dataOriginal.charAt(i) == '-')
+				newDate += "/";
+			else
+				newDate += dataOriginal.charAt(i);
+		
+		return newDate;
 	}
 	
 	@Override
