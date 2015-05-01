@@ -58,15 +58,15 @@ public class DetalhePedido extends Activity {
 
 		try
 		{
-			btnCelular = (Button) findViewById(R.id.btnCel);
-			btnResidencial = (Button) findViewById(R.id.btnRes);
+			btnCelular = 		(Button) findViewById(R.id.btnCel);
+			btnResidencial = 	(Button) findViewById(R.id.btnRes);
 			
-			tituloPedido = (TextView) findViewById(R.id.txtTituloPedido);
-			detalhesPedido = (TextView) findViewById(R.id.txtDetalhes);
-			pagamento = (TextView) findViewById(R.id.txtPagamento);
-			troco = (TextView) findViewById(R.id.txtTroco);
-			nomeCliente = (TextView) findViewById(R.id.txtNome);
-			valorHora = (TextView) findViewById(R.id.txtHoraPreco);
+			tituloPedido = 		(TextView) findViewById(R.id.txtTituloPedido);
+			detalhesPedido = 	(TextView) findViewById(R.id.txtDetalhes);
+			pagamento = 		(TextView) findViewById(R.id.txtPagamento);
+			troco = 			(TextView) findViewById(R.id.txtTroco);
+			nomeCliente = 		(TextView) findViewById(R.id.txtNome);
+			valorHora = 		(TextView) findViewById(R.id.txtHoraPreco);
 			
 			buscaDetalhesPedido();
 			

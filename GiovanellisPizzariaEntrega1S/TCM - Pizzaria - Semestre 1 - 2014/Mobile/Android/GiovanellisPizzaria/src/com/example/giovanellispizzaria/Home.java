@@ -293,19 +293,9 @@ public class Home extends Activity {
 							
 							try
 							{
-//								for(int j = 0; j < (dadosPedido.length); j++)
-	//								Log.d("SplitDadosPedido", j + ") " + dadosPedido[j]);
-								
-								meuLog("aux", aux);
 								
 								arrayPedidos.add(getMensagem(dadosPedido));
-								//Log.d("mensagem", getMensagem(dadosPedido));
-								
-								//arrayObjetos.add(getObjeto(dadosPedido));
-								
-								//for(int j = 0; j < (getObjeto(dadosPedido).length - 1); j++)
-									//Log.d("objeto", getObjeto(dadosPedido)[j]);
-								
+
 								aux = "";
 								
 								dadosPedido = null;	
@@ -334,31 +324,30 @@ public class Home extends Activity {
 	{
 		String[] objeto = null;
 		
-		//Código do pedido
 		objeto[0] = dadosPedido[0];
 		
-		//Pegando endereço completo de entrega
-		//Se quantidade de campos trazida do banco não tiver dados de endereço alternativo
-		if(dadosPedido.length == 5)
+		meuLog("objeto[0]", objeto[0]);
+		
+		//Pegando endereço do cliente
+		if(dadosPedido.length <= 5)
 		{
-			//Colocando dados de endereço no arrayObjetos
 			objeto[1] += dadosPedido[1] + ", "+ dadosPedido[2];
 			
-			//Se tiver apartamento, adicionar também
-			if(dadosPedido[3].length() == 0)
+			
+			//Se tiver apartamento, adicionar
+			if(dadosPedido[3].length() > 0)
 				objeto[1] += ", Ap: " + dadosPedido[3];
 		}
 		//Se pedido vier com endereço alternativo, pegar no lugar do endereço do cliente
 		else if(dadosPedido.length > 5)
 		{
-			//Colocando dados de endereço no arrayObjetos
 			objeto[1] += dadosPedido[5] + ", "+ dadosPedido[6];
 
 			//Se tiver apartamento, adicionar
-			if(dadosPedido[7].length() == 0)
-				objeto[1] += ", Ap: " + dadosPedido[7];
+			if(dadosPedido.length == 7)
+				if(dadosPedido[7].length() > 0)
+					objeto[1] += ", Ap: " + dadosPedido[7];
 		}
-		
 		//Pegar quantidade de produtos no pedido
 		
 		
@@ -368,11 +357,6 @@ public class Home extends Activity {
 	String getMensagem(String[] dadosPedido)
 	{
 		String mensagem = "";
-		
-		Home.meuLog("dadosPedido.length", dadosPedido.length+"");
-		
-		//for(int j = 0; j <= dadosPedido.length; j++)
-			//meuLog("GetDadosPedido", j + " - " + dadosPedido[j]);
 		
 		//Pegar mensagem de quantidade de produtos
 		String mensagemQtdeProdutos = dadosPedido[4] + " produto";
@@ -397,16 +381,9 @@ public class Home extends Activity {
 		{
 			mensagem += dadosPedido[5] + ", "+ dadosPedido[6];
 
-			try
-			{
-				//Se tiver apartamento, adicionar
+			if(dadosPedido.length == 8)
 				if(dadosPedido[7].length() > 0)
 					mensagem += ", Ap: " + dadosPedido[7];
-			}
-			catch(Exception e)
-			{
-				Log.d("fdas","ERRO", e);
-			}
 		}
 		
 		return mensagem;
