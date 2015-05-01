@@ -23,6 +23,8 @@
         android:id="@+id/lstHistorico"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:divider="#999999"
+        android:dividerHeight="1dp"
         android:layout_below="@+id/txtPagamento"
         android:layout_marginTop="18dp"
         android:textAlignment="center" >

@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
@@ -28,8 +29,16 @@ import android.widget.TextView;
 public class Login extends Activity {
 
 	public static String nomeFuncionario = "";
+
+	// IP do curso	
+	//public static String ip = "10.67.74.";
+
+	// IP de casa
+	public static String ip = "192.168.1.8";
+
 	public static int codFuncionario = 0;
 
+	TextView lbLogin;
 	TextView tvLogin;
 	TextView tvSenha;
 
@@ -43,34 +52,45 @@ public class Login extends Activity {
 
 		Button logar = (Button) findViewById(R.id.btnLogin);
 
+		lbLogin = (TextView) findViewById(R.id.s);
+		
 		tvLogin = (TextView) findViewById(R.id.txtLogin);
 		tvSenha = (TextView) findViewById(R.id.txtSenha);
 		
-		Random r = new Random();
-		
-		switch(r.nextInt(4))
-		{
-		case 0:
-			tvLogin.setText("Maria");
-			break;
-			
-		case 1:
-			tvLogin.setText("Carlos");
-			break;
-			
-		case 2:
-			tvLogin.setText("Admin");
-			break;
-
-		case 3:
-			tvLogin.setText("Alex");
-			break;
-
-		}
-		
-		tvSenha.setText("123");
 		
 
+		lbLogin.setOnClickListener
+		(
+			new View.OnClickListener()
+			{
+				public void onClick(View v)
+				{
+					Random r = new Random();
+					
+					switch(r.nextInt(4))
+					{
+					case 0:
+						tvLogin.setText("Maria");
+						break;
+						
+					case 1:
+						tvLogin.setText("Carlos");
+						break;
+						
+					case 2:
+						tvLogin.setText("Admin");
+						break;
+
+					case 3:
+						tvLogin.setText("Alex");
+						break;
+					}
+					
+					tvSenha.setText("123");
+				}
+			}
+		);
+		
 		logar.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 
@@ -100,14 +120,7 @@ public class Login extends Activity {
 					// ATENÇÃO A REDE DEVE ESTAR FUNCIONANDO COM O ENDEREÇO IP
 					// OK
 
-					// IP do curso
-					// 10.67.74.32
-					
-					// IP de casa
-					//192.168.1.8
-					
-					// IP do curso
-					URL url = new URL("http://192.168.1.8/Giovanellis/consulta_login.aspx?Login_Funcionario="+tvLogin.getText()+"&Senha_Funcionario="+tvSenha.getText());
+					URL url = new URL("http://"+ ip +"/Giovanellis/consulta_login.aspx?Login_Funcionario="+tvLogin.getText()+"&Senha_Funcionario="+tvSenha.getText());
 
 					URLConnection conexao = url.openConnection();
 
@@ -196,5 +209,15 @@ public class Login extends Activity {
 		getMenuInflater().inflate(R.menu.login, menu);
 		return true;
 	}
+	
+	@Override
+	  public boolean onOptionsItemSelected(MenuItem item) {
+		
+//		Intent i = new Intent(getApplicationContext(), Settings.class);
+	//	startActivity(i);
+
+	    return true;
+	  } 
+
 
 }

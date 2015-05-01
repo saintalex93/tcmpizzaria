@@ -45,11 +45,15 @@ public class Home extends Activity {
 	
 	String alertMessage = "";
 	
+	String[] dadosPedido = null;
+	
 	public static String enderecoCompleto = "";
 
-	public static int qtdeProdutos;
-	public static int codPedido;
-	public static int codPedidoDesfecho;
+	public static String qtdeProdutos;
+	public static String codPedido;
+	public static String codPedidoDesfecho;
+	
+	ArrayList<String[]> arrayObjetos = new ArrayList<String[]>();
 	
 	ArrayList<String> arrayPedidos = new ArrayList<String>();
 	
@@ -59,8 +63,8 @@ public class Home extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
 
-		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-		StrictMode.setThreadPolicy(policy);
+//		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+	//	StrictMode.setThreadPolicy(policy);
 		
 		user = (TextView) findViewById(R.id.txtUser);
 		
@@ -83,7 +87,7 @@ public class Home extends Activity {
 			arrayPedidos
 		);
 		
-		codPedido = 0;
+		codPedido = "";
 		
 		builder1.setMessage("Marcar esse pedido como...");
 
@@ -96,7 +100,8 @@ public class Home extends Activity {
     				URL url;
 					try 
 					{
-						url = new URL("http://192.168.1.8/Giovanellis/update_RealizarPedido.aspx?Cod_Pedido=" + codPedidoDesfecho);
+						Log.d("Login.ip",Login.ip);
+						url = new URL("http://"+ Login.ip +"/Giovanellis/update_RealizarPedido.aspx?Cod_Pedido=" + codPedidoDesfecho);
 						
 						URLConnection conexao = url.openConnection();
 
@@ -126,7 +131,7 @@ public class Home extends Activity {
 					URL url;
 					try 
 					{
-						url = new URL("http://192.168.1.8/Giovanellis/update_CancelarPedido.aspx?Cod_Pedido=" + codPedidoDesfecho);
+						url = new URL("http://"+ Login.ip +"/Giovanellis/update_CancelarPedido.aspx?Cod_Pedido=" + codPedidoDesfecho);
 						
 						URLConnection conexao = url.openConnection();
 
@@ -169,14 +174,19 @@ public class Home extends Activity {
 				long arg3
 			)
 			{
-				enderecoCompleto = getEndereco(position);
-
-	            codPedido = getCodEndereco(position);
-
-	            qtdeProdutos = getQtdeProdutos(position);
-				
-				Intent intent = new Intent(context, DetalhePedido.class);
-				startActivity(intent);
+				if(arrayPedidos.get(position).toString().charAt(0) != 'N')
+				{
+					codPedido = arrayObjetos.get(position)[0];
+					
+					enderecoCompleto = arrayObjetos.get(position)[1];
+					Home.meuLog(enderecoCompleto, enderecoCompleto);
+					
+		            qtdeProdutos = arrayObjetos.get(position)[4];
+		            Home.meuLog(enderecoCompleto, enderecoCompleto);
+		            
+					Intent i = new Intent(context, DetalhePedido.class);
+					startActivity(i);
+				}
 			}
 		}
 		);
@@ -188,16 +198,7 @@ public class Home extends Activity {
 			    {
 			    	if(arrayPedidos.get(pos).toString().charAt(0) != 'N')
 			    	{
-			    		int i = 1;
-				    	String numero = "";
-			    		
-			    		while(arrayPedidos.get(pos).toString().charAt(i) != ' ')
-				    	{
-				    		numero += arrayPedidos.get(pos).toString().charAt(i);
-				    		i++;
-				    	}
-
-				    	codPedidoDesfecho = Integer.parseInt(numero);
+				    	codPedidoDesfecho = arrayObjetos.get(pos)[0];
 				    	
 				    	alert11.show();	
 			    	}
@@ -213,8 +214,6 @@ public class Home extends Activity {
 		{
 			public void onClick(View v)
 			{
-				
-				
 				Intent i = new Intent(context, Historico.class);
 				startActivity(i);
 			}
@@ -225,22 +224,15 @@ public class Home extends Activity {
 	void updatePedidos()
 	  {
 		  arrayPedidos.clear();
+		  arrayObjetos.clear();
 		  
 		  String texto = "", aux = "";
 			try {
 				// ATENÇÃO A REDE DEVE ESTAR FUNCIONANDO COM O ENDEREÇO IP
 				// OK
 
-				// IP do curso
-				// 10.67.74.32
-				
-				// IP de casa
-				//192.168.1.14
-
-				// IP de casa
-
 				URL url = new URL(
-						"http://192.168.1.8/Giovanellis/consulta_listaPedidosAEntregar.aspx?Cod_Funcionario=" + Login.codFuncionario);
+						"http://"+ Login.ip +"/Giovanellis/consulta_listaPedidosAEntregar.aspx?Cod_Funcionario=" + Login.codFuncionario);
 
 				URLConnection conexao = url.openConnection();
 
@@ -292,79 +284,35 @@ public class Home extends Activity {
 
 					if (achou) 
 					{
-						if (texto.charAt(i) != ';' && texto.charAt(i) != ',')
+						if (texto.charAt(i) != ';' )
 							aux = aux + texto.charAt(i);
-						
-						else if (texto.charAt(i) == ',')
-						{
-							coluna++;
-							switch(coluna)
-							{
-							case 1:
-								numeroPedido = Integer.parseInt(aux);
-								break;
-								
-							case 2:
-								endereco = aux;
-								break;
-								
-							case 3:
-								numRes = aux;
-								break;
-								
-							case 4:
-								numAp = aux;
-								break;
 
-							case 5:
-								qtdProdutos = Integer.parseInt(aux);
-								break;
+						else
+						{
+							dadosPedido = aux.split(",");
+							
+							try
+							{
+								for(int j = 0; j < dadosPedido.length; j++)
+									Log.d("SplitDadosPedido", dadosPedido[j]);
 								
-							case 6:
-								enderecoAlt = aux;
-								break;
+								arrayPedidos.add(getMensagem(dadosPedido));
+								//Log.d("mensagem", getMensagem(dadosPedido));
 								
-							case 7:
-								numResAlt = aux;
-								break;
+								//arrayObjetos.add(getObjeto(dadosPedido));
 								
+								//for(int j = 0; j < (getObjeto(dadosPedido).length - 1); j++)
+									//Log.d("objeto", getObjeto(dadosPedido)[j]);
+								
+								aux = "";
+								
+								dadosPedido = null;	
+							}
+							catch(Exception e)
+							{
+								Log.d("try preenchimento arrays", e.getLocalizedMessage());
 							}
 							
-							/*TODO: 
-							 * Essa linha foi colocada aqui, porque o algoritmo acima, quando achava um ponto e virgula (;)
-							 * partia para o próximo campo, sem inserir o valor de aux à numApAlt, fazendo o número alternativo
-							 * do apartamento não aparecer.
-							 * 
-							 * Ficar ligado nisso aqui...
-							*/
-							numApAlt = aux;
-							
-							aux = "";
-						}
-						else if (texto.charAt(i) == ';')
-						{
-							coluna = 0;
-							
-							if(enderecoAlt.length() == 0)
-							
-								if(numAp.length() == 0)
-									mensagem = "#" + numeroPedido + " - " + endereco + ", "+ numRes + " (" + qtdProdutos + ")";
-								else
-									mensagem = "#" + numeroPedido + " - " + endereco + ", "+ numRes + ", Ap: " + numAp +" (" + qtdProdutos + ")";
-
-							else
-								
-								if(numApAlt.length() == 0)
-									mensagem = "#" + numeroPedido + " - " + enderecoAlt + ", "+ numResAlt + " (" + qtdProdutos + ")";
-								else
-									mensagem = "#" + numeroPedido + " - " + enderecoAlt + ", "+ numResAlt + ", Ap: " + numApAlt +" (" + qtdProdutos + ")";
-								
-							aux = "";
-							enderecoAlt = "";
-							numResAlt = "";
-							numApAlt = "";
-							
-							arrayPedidos.add(mensagem);
 						}
 					}
 				}
@@ -380,46 +328,81 @@ public class Home extends Activity {
 				arrayPedidos.add("Não há nenhum pedido pendente");
 	  }
 	
-	String getEndereco(int position)
-	 {
-		String resultado = "";	
-		enderecoCompleto = "";
-	
-		boolean comeco = false;
-		boolean fim = false;
-		int i = 0;
-	
-		while ((arrayPedidos.get(position).charAt(i) != '(')) {
-			if (arrayPedidos.get(position).charAt(i) == '-') {
-				comeco = true;
-				i++;
-			}
-	
-			if (comeco)
-				resultado += arrayPedidos.get(position).charAt(i);
+	String[] getObjeto(String[] dadosPedido)
+	{
+		String[] objeto = null;
+		
+		//Código do pedido
+		objeto[0] = dadosPedido[0];
+		
+		//Pegando endereço completo de entrega
+		//Se quantidade de campos trazida do banco não tiver dados de endereço alternativo
+		if(dadosPedido.length == 5)
+		{
+			//Colocando dados de endereço no arrayObjetos
+			objeto[1] += dadosPedido[1] + ", "+ dadosPedido[2];
+			
+			//Se tiver apartamento, adicionar também
+			if(dadosPedido[3].length() == 0)
+				objeto[1] += ", Ap: " + dadosPedido[3];
+		}
+		//Se pedido vier com endereço alternativo, pegar no lugar do endereço do cliente
+		else if(dadosPedido.length > 5)
+		{
+			//Colocando dados de endereço no arrayObjetos
+			objeto[1] += dadosPedido[5] + ", "+ dadosPedido[6];
 
-			i++;
+			//Se tiver apartamento, adicionar
+			if(dadosPedido[7].length() == 0)
+				objeto[1] += ", Ap: " + dadosPedido[7];
 		}
 		
-		return resultado;
+		//Pegar quantidade de produtos no pedido
+		
+		
+		return objeto;
 	}
-  
-	int getCodEndereco(int position)
-	  {
-			int i = 1;
-			
-			String resultado = "";
-			
-			while ((arrayPedidos.get(position).charAt(i) != ' ')) 
-			{
-				resultado += arrayPedidos.get(position).charAt(i);
+	
+	String getMensagem(String[] dadosPedido)
+	{
+		String mensagem = "";
+		
+		Home.meuLog("dadosPedido.length", dadosPedido.length+"");
+		
+		for(int j = 0; j <= dadosPedido.length - 1; j++)
+			Log.d("GetDadosPedido", j + " - " + dadosPedido[j]);
+		
+		//Pegar mensagem de quantidade de produtos
+		String mensagemQtdeProdutos = dadosPedido[4] + " produto";
 
-				i++;
-			}
+		if(Integer.parseInt(dadosPedido[4]) > 1)
+			mensagemQtdeProdutos += "s";
+		
+		mensagem = "#" + dadosPedido[0] + " - " + mensagemQtdeProdutos + "\n";
+		
+		//Pegando endereço do cliente
+		if(dadosPedido.length == 5)
+		{
+			mensagem += dadosPedido[1] + ", "+ dadosPedido[2];
+			
+			
+			//Se tiver apartamento, adicionar
+			if(dadosPedido[3].length() > 0)
+				mensagem += ", Ap: " + dadosPedido[3];
+		}
+		//Se pedido vier com endereço alternativo, pegar no lugar do endereço do cliente
+		else if(dadosPedido.length > 5)
+		{
+			mensagem += dadosPedido[5] + ", "+ dadosPedido[6];
 
-			return Integer.parseInt(resultado);
-	  }
-	  
+			//Se tiver apartamento, adicionar
+			if(dadosPedido[7].length() > 0)
+				mensagem += ", Ap: " + dadosPedido[7];
+		}
+		
+		return mensagem;
+	}
+	
 	int getQtdeProdutos(int position)
 	  {
 			int i = 1;

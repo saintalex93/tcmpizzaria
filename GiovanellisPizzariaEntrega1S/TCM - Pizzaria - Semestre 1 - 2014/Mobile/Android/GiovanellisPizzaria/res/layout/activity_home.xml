@@ -21,6 +21,8 @@
         android:id="@+id/lstPedidos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:divider="#999999"
+        android:dividerHeight="1dp"
         android:layout_below="@+id/Pedidos"
         android:paddingTop="20dp" >
 

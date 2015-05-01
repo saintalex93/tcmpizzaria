@@ -104,7 +104,7 @@ public class Historico extends Activity {
 	    				URL url;
 						try 
 						{
-							url = new URL("http://192.168.1.8/Giovanellis/update_CancelarPedido.aspx?Cod_Pedido=" + Home.codPedidoDesfecho);
+							url = new URL("http://"+ Login.ip +"/Giovanellis/update_CancelarPedido.aspx?Cod_Pedido=" + Home.codPedidoDesfecho);
 							
 							URLConnection conexao = url.openConnection();
 
@@ -136,7 +136,7 @@ public class Historico extends Activity {
 						URL url;
 						try 
 						{
-							url = new URL("http://192.168.1.8/Giovanellis/update_RealizarPedido.aspx?Cod_Pedido=" + Home.codPedidoDesfecho);
+							url = new URL("http://"+ Login.ip +"/Giovanellis/update_RealizarPedido.aspx?Cod_Pedido=" + Home.codPedidoDesfecho);
 							
 							URLConnection conexao = url.openConnection();
 
@@ -179,7 +179,7 @@ public class Historico extends Activity {
 					    		i++;
 					    	}
 					    	
-					    	Home.codPedidoDesfecho = Integer.parseInt(numero);
+					    	Home.codPedidoDesfecho = numero;
 					    	
 					    	alertFinalizado.show();
 				    	}
@@ -214,7 +214,7 @@ public class Historico extends Activity {
 				// IP de casa
 
 				URL url = new URL(
-						"http://192.168.1.8/Giovanellis/consulta_listaHistorico.aspx?Cod_Funcionario=" + Login.codFuncionario);
+						"http://"+ Login.ip +"/Giovanellis/consulta_listaHistorico.aspx?Cod_Funcionario=" + Login.codFuncionario);
 
 				URLConnection conexao = url.openConnection();
 
@@ -237,7 +237,7 @@ public class Historico extends Activity {
 				// REGISTROS############################
 
 				int tamanho = texto.length();
-				int numeroPedido = 0;
+				String numeroPedido = "";
 				int qtdProdutos = 0;
 				int coluna = 0;
 				
@@ -279,7 +279,7 @@ public class Historico extends Activity {
 							switch(coluna)
 							{
 							case 1:
-								numeroPedido = Integer.parseInt(aux);
+								numeroPedido = aux;
 								break;
 								
 							case 2:
@@ -343,21 +343,25 @@ public class Historico extends Activity {
 							if(qtdProdutos > 1)
 								mensagemQtdeProdutos += "s";
 							
+							mensagem = "#" + numeroPedido + " - " + mensagemQtdeProdutos + " - " + estado + "\n";
+							
 							//Se NÃO tiver endereço alternativo
 							if(enderecoAlt.length() == 0)
 								if(numAp.length() == 0)
-									mensagem = "#" + numeroPedido + "\n" + endereco + ", "+ numRes + "\n" + data + " - " + hora + "\n" + mensagemQtdeProdutos + " - " + estado;
+									mensagem += endereco + ", "+ numRes;
 								else
-									mensagem = "#" + numeroPedido + "\n" + endereco + ", "+ numRes + ", Ap: " + numAp + "\n" + data + " - " + hora + "\n" + mensagemQtdeProdutos + " - " + estado;
+									mensagem += endereco + ", "+ numRes + ", Ap: " + numAp;
 
 							//Se TIVER endereço alternativo
 							else
 								
 								if(numApAlt.length() == 0)
-									mensagem = "#" + numeroPedido + "\n" + enderecoAlt + ", "+ numResAlt + "\n" + data + " - " + hora + "\n" + mensagemQtdeProdutos + " - " + estado;
+									mensagem += enderecoAlt + ", "+ numResAlt;
 								else
-									mensagem = "#" + numeroPedido + "\n" + enderecoAlt + ", "+ numResAlt + ", Ap: " + numApAlt + "\n" + data + " - " + hora + "\n" + mensagemQtdeProdutos + " - " + estado;
+									mensagem += enderecoAlt + ", "+ numResAlt + ", Ap: " + numApAlt;
 								
+							mensagem += "\n" + data + " - " + hora; 
+							
 							aux = "";
 							enderecoAlt = "";
 							numResAlt = "";
@@ -404,7 +408,7 @@ public class Historico extends Activity {
 			// IP de casa
 
 			URL url = new URL(
-					"http://192.168.1.8/Giovanellis/consulta_estadoItemHistorico.aspx?Cod_Pedido=" + codPedido);
+					"http://"+ Login.ip +"/Giovanellis/consulta_estadoItemHistorico.aspx?Cod_Pedido=" + codPedido);
 
 			URLConnection conexao = url.openConnection();
 

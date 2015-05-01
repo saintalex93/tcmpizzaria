@@ -79,7 +79,7 @@ public class DetalhePedido extends Activity {
 			String produtosPreco = "";
 			produtosPreco = String.valueOf(Home.qtdeProdutos) + " produto";
 			
-			if(Home.qtdeProdutos > 1)
+			if(Integer.parseInt(Home.qtdeProdutos) > 1)
 				produtosPreco += "s";
 
 			tituloPedido.setText(produtosPreco);
@@ -168,7 +168,7 @@ public class DetalhePedido extends Activity {
 				Log.d("preencherproduto - codPedido", Home.codPedido + "");
 				
 				URL url = new URL(
-						"http://192.168.1.8/Giovanellis/consulta_Detalhes_listaProdutos.aspx?CodPedido=" + Home.codPedido);
+						"http://"+ Login.ip +"/Giovanellis/consulta_Detalhes_listaProdutos.aspx?CodPedido=" + Home.codPedido);
 
 				URLConnection conexao = url.openConnection();
 
@@ -246,7 +246,7 @@ public class DetalhePedido extends Activity {
 			Log.d("buscar detalhe - codPedido", Home.codPedido + "");
 			
 			URL url = new URL(
-					"http://192.168.1.8/Giovanellis/consulta_Detalhes_selectFormaPagamento.aspx?CodPedido=" + Home.codPedido);
+					"http://"+ Login.ip +"/Giovanellis/consulta_Detalhes_selectFormaPagamento.aspx?CodPedido=" + Home.codPedido);
 
 			URLConnection conexao = url.openConnection();
 
