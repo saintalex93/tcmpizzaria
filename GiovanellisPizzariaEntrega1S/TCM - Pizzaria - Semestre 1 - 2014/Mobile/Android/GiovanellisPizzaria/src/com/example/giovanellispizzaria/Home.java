@@ -293,8 +293,10 @@ public class Home extends Activity {
 							
 							try
 							{
-								for(int j = 0; j < dadosPedido.length; j++)
-									Log.d("SplitDadosPedido", dadosPedido[j]);
+//								for(int j = 0; j < (dadosPedido.length); j++)
+	//								Log.d("SplitDadosPedido", j + ") " + dadosPedido[j]);
+								
+								meuLog("aux", aux);
 								
 								arrayPedidos.add(getMensagem(dadosPedido));
 								//Log.d("mensagem", getMensagem(dadosPedido));
@@ -310,7 +312,7 @@ public class Home extends Activity {
 							}
 							catch(Exception e)
 							{
-								Log.d("try preenchimento arrays", e.getLocalizedMessage());
+								Log.d("try preenchimento arrays", "I got an error", e);
 							}
 							
 						}
@@ -369,8 +371,8 @@ public class Home extends Activity {
 		
 		Home.meuLog("dadosPedido.length", dadosPedido.length+"");
 		
-		for(int j = 0; j <= dadosPedido.length - 1; j++)
-			Log.d("GetDadosPedido", j + " - " + dadosPedido[j]);
+		//for(int j = 0; j <= dadosPedido.length; j++)
+			//meuLog("GetDadosPedido", j + " - " + dadosPedido[j]);
 		
 		//Pegar mensagem de quantidade de produtos
 		String mensagemQtdeProdutos = dadosPedido[4] + " produto";
@@ -381,7 +383,7 @@ public class Home extends Activity {
 		mensagem = "#" + dadosPedido[0] + " - " + mensagemQtdeProdutos + "\n";
 		
 		//Pegando endereço do cliente
-		if(dadosPedido.length == 5)
+		if(dadosPedido.length <= 5)
 		{
 			mensagem += dadosPedido[1] + ", "+ dadosPedido[2];
 			
@@ -395,9 +397,16 @@ public class Home extends Activity {
 		{
 			mensagem += dadosPedido[5] + ", "+ dadosPedido[6];
 
-			//Se tiver apartamento, adicionar
-			if(dadosPedido[7].length() > 0)
-				mensagem += ", Ap: " + dadosPedido[7];
+			try
+			{
+				//Se tiver apartamento, adicionar
+				if(dadosPedido[7].length() > 0)
+					mensagem += ", Ap: " + dadosPedido[7];
+			}
+			catch(Exception e)
+			{
+				Log.d("fdas","ERRO", e);
+			}
 		}
 		
 		return mensagem;
