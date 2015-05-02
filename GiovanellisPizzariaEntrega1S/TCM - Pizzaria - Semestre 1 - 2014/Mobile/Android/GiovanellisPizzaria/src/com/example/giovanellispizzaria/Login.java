@@ -42,6 +42,8 @@ public class Login extends Activity {
 	TextView tvLogin;
 	TextView tvSenha;
 
+	int usuario = 0;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -65,9 +67,7 @@ public class Login extends Activity {
 			{
 				public void onClick(View v)
 				{
-					Random r = new Random();
-					
-					switch(r.nextInt(4))
+					switch(usuario)
 					{
 					case 0:
 						tvLogin.setText("Maria");
@@ -85,6 +85,11 @@ public class Login extends Activity {
 						tvLogin.setText("Alex");
 						break;
 					}
+					
+					if(usuario < 3)
+						usuario++;
+					else
+						usuario = 0;
 					
 					tvSenha.setText("123");
 				}

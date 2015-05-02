@@ -47,15 +47,15 @@ public class Home extends Activity {
 	
 	String[] dadosPedido = null;
 	
-	public static String enderecoCompleto = "";
-
-	public static String qtdeProdutos;
-	public static String codPedido;
-	public static String codPedidoDesfecho;
 	
 	ArrayList<String[]> arrayObjetos = new ArrayList<String[]>();
 	
 	ArrayList<String> arrayPedidos = new ArrayList<String>();
+
+	public static String enderecoCompleto = "";
+	public static String qtdeProdutos;
+	public static String codPedido;
+	public static String codPedidoDesfecho;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
@@ -63,8 +63,8 @@ public class Home extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
 
-//		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-	//	StrictMode.setThreadPolicy(policy);
+		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+		StrictMode.setThreadPolicy(policy);
 		
 		user = (TextView) findViewById(R.id.txtUser);
 		
@@ -177,14 +177,10 @@ public class Home extends Activity {
 				if(arrayPedidos.get(position).toString().charAt(0) != 'N')
 				{
 					codPedido = arrayObjetos.get(position)[0];
-					
-					enderecoCompleto = arrayObjetos.get(position)[1];
-					Home.meuLog(enderecoCompleto, enderecoCompleto);
-					
-		            qtdeProdutos = arrayObjetos.get(position)[4];
-		            Home.meuLog(enderecoCompleto, enderecoCompleto);
-		            
-					Intent i = new Intent(context, DetalhePedido.class);
+					enderecoCompleto = arrayObjetos.get(position)[2];
+		            qtdeProdutos = arrayObjetos.get(position)[1];
+	
+		            Intent i = new Intent(context, DetalhePedido.class);
 					startActivity(i);
 				}
 			}
@@ -295,6 +291,8 @@ public class Home extends Activity {
 							{
 								
 								arrayPedidos.add(getMensagem(dadosPedido));
+								
+								arrayObjetos.add(getObjeto(dadosPedido));
 
 								aux = "";
 								
@@ -308,6 +306,7 @@ public class Home extends Activity {
 						}
 					}
 				}
+				
 				// FIM DA SEPARAÇÃO DOS
 				// REGISTROS##################################
 			}
@@ -322,35 +321,38 @@ public class Home extends Activity {
 	
 	String[] getObjeto(String[] dadosPedido)
 	{
-		String[] objeto = null;
+		String[] objeto = new String[3];
 		
-		objeto[0] = dadosPedido[0];
-		
-		meuLog("objeto[0]", objeto[0]);
-		
-		//Pegando endereço do cliente
-		if(dadosPedido.length <= 5)
-		{
-			objeto[1] += dadosPedido[1] + ", "+ dadosPedido[2];
-			
-			
-			//Se tiver apartamento, adicionar
-			if(dadosPedido[3].length() > 0)
-				objeto[1] += ", Ap: " + dadosPedido[3];
-		}
-		//Se pedido vier com endereço alternativo, pegar no lugar do endereço do cliente
-		else if(dadosPedido.length > 5)
-		{
-			objeto[1] += dadosPedido[5] + ", "+ dadosPedido[6];
+		for(int i = 0; i < objeto.length; i++)
+			objeto[i] = "";
 
-			//Se tiver apartamento, adicionar
-			if(dadosPedido.length == 7)
-				if(dadosPedido[7].length() > 0)
-					objeto[1] += ", Ap: " + dadosPedido[7];
-		}
-		//Pegar quantidade de produtos no pedido
-		
-		
+			//Código do pedido do objeto
+			objeto[0] = dadosPedido[0];
+
+			//Pegar quantidade de produtos no pedido
+			objeto[1] = dadosPedido[4];
+			
+			//Pegando endereço do cliente
+			if(dadosPedido.length <= 5)
+			{
+				objeto[2] += dadosPedido[1] + ", "+ dadosPedido[2];
+				
+				
+				//Se tiver apartamento, adicionar
+				if(dadosPedido[3].length() > 0)
+					objeto[2] += ", Ap: " + dadosPedido[3];
+			}
+			//Se pedido vier com endereço alternativo, pegar no lugar do endereço do cliente
+			else if(dadosPedido.length > 5)
+			{
+				objeto[2] += dadosPedido[5] + ", "+ dadosPedido[6];
+
+				//Se tiver apartamento, adicionar
+				if(dadosPedido.length == 8)
+					if(dadosPedido[7].length() > 0)
+						objeto[2] += ", Ap: " + dadosPedido[7];
+			}
+
 		return objeto;
 	}
 	
