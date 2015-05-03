@@ -21,6 +21,8 @@ namespace Giovanellis
 
         int resultado = 0;
 
+        int usuario = 0;
+
         public static string nomeFuncionario = "";
         public static int codFuncionario = 0;
 
@@ -29,7 +31,6 @@ namespace Giovanellis
         {
             InitializeComponent();
 
-            r = new Random();
         }
 
         // Simple button Click event handler to take us to the second page
@@ -90,28 +91,7 @@ namespace Giovanellis
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            int numero = r.Next(3);
-
-            switch (numero)
-            {
-                case 0:
-                    txtLogin.Text = "Maria";
-                    break;
-
-                case 1:
-                    txtLogin.Text = "Carlos";
-                    break;
-
-                case 2:
-                    txtLogin.Text = "Admin";
-                    break;
-
-                case 3:
-                    txtLogin.Text = "Alex";
-                    break;
-            }
-
-            txtSenha.Password = "123";
+            
 
         }
 
@@ -156,6 +136,32 @@ namespace Giovanellis
                 NavigationService.Navigate(new Uri("/Home.xaml", UriKind.Relative));
             else
                 MessageBox.Show("Não foi encontrado nenhum usuário com o LOGIN e SENHA fornecidos.\nPor favor, verifique se estes estão corretos e tente de novo.");
+        }
+
+        private void PageTitle_Tap(object sender, GestureEventArgs e)
+        {
+            switch (usuario)
+            {
+                case 0:
+                    txtLogin.Text = "Maria";
+                    break;
+
+                case 1:
+                    txtLogin.Text = "Carlos";
+                    break;
+
+                case 2:
+                    txtLogin.Text = "Admin";
+                    break;
+
+                case 3:
+                    txtLogin.Text = "Alex";
+                    break;
+            }
+
+            txtSenha.Password = "123";
+
+            usuario++;
         }
     }
 }

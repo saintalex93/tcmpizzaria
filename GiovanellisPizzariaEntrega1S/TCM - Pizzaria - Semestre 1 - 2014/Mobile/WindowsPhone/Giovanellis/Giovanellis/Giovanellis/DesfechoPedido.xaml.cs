@@ -25,45 +25,26 @@ namespace Giovanellis
             txtEndereco.Text = Home.enderecoCompleto;
         }
 
-        void wcRealizado_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
-        {
-            MessageBox.Show("Pedido marcado como Entregue!");
-
-            //NavigationService.Navigate(new Uri("/Home.xaml", UriKind.Relative));
-        }
-
-        void wcCancelado_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
-        {
-            MessageBox.Show("Pedido marcado como CANCELADO!");
-
-//            NavigationService.Navigate(new Uri("/Home.xaml", UriKind.Relative));
-        }
-
         private void btnEntregue_Click(object sender, RoutedEventArgs e)
         {
-            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(
-                "http://localhost/Giovanellis/update_RealizarPedido.aspx?Cod_Pedido=" + Home.codPedidoDesfecho
-                );
+            WebClient wcRealizado = new WebClient();
 
-            /*WebClient wcRealizado = new WebClient();
+            wcRealizado.DownloadStringAsync(new Uri("http://localhost/Giovanellis/update_RealizarPedido.aspx?Cod_Pedido=" + Home.codPedidoDesfecho + "&NoCache=" + Environment.TickCount));
 
-            wcRealizado.DownloadStringAsync(new Uri("http://localhost/Giovanellis/update_RealizarPedido.aspx?Cod_Pedido=" + Home.codPedidoDesfecho));
-
-            wcRealizado.DownloadStringCompleted += new DownloadStringCompletedEventHandler(wcRealizado_DownloadStringCompleted);*/
+            this.NavigationService.GoBack();
         }
 
         private void btnCancelado_Click(object sender, RoutedEventArgs e)
         {
             WebClient wcCancelado = new WebClient();
 
-            wcCancelado.DownloadStringAsync(new Uri("http://localhost/Giovanellis/update_CancelarPedido.aspx?Cod_Pedido=" + Home.codPedidoDesfecho));
+            wcCancelado.DownloadStringAsync(new Uri("http://localhost/Giovanellis/update_CancelarPedido.aspx?Cod_Pedido=" + Home.codPedidoDesfecho + "&NoCache=" + Environment.TickCount));
 
-            wcCancelado.DownloadStringCompleted += new DownloadStringCompletedEventHandler(wcCancelado_DownloadStringCompleted);
+            this.NavigationService.GoBack();
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
-
         }
     }
 }

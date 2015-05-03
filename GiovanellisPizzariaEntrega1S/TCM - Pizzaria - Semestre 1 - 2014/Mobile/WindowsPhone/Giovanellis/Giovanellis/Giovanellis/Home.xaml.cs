@@ -22,6 +22,8 @@ namespace Giovanellis
         public static int codPedido;
         public static int codPedidoDesfecho;
 
+        List<string[]> pedidos = new List<string[]>();
+
         public Home()
         {
             InitializeComponent();
@@ -35,7 +37,7 @@ namespace Giovanellis
 
             WebClient wc = new WebClient();
 
-            wc.DownloadStringAsync(new Uri("http://localhost/Giovanellis/consulta_listaPedidosAEntregar.aspx?Cod_Funcionario=" + MainPage.codFuncionario));
+            wc.DownloadStringAsync(new Uri("http://localhost/Giovanellis/consulta_listaPedidosAEntregar.aspx?Cod_Funcionario=" + MainPage.codFuncionario + "&NoCache=" + Environment.TickCount));
 
             try
             {
@@ -55,25 +57,16 @@ namespace Giovanellis
 
         private void lstPedidos_Hold(object sender, GestureEventArgs e)
         {
-            string text = (e.OriginalSource as TextBlock).Text;
-            
-            enderecoCompleto = getEndereco(text);
-
-            if (text[0] != 'N')
+            if (lstPedidos.Items[0].ToString()[0] != 'N')
             {
-                int i = 1;
-                String numero = "";
+                string text = (e.OriginalSource as TextBlock).Text;
 
-                while (text[i] != '-')
-                {
-                    numero += text[i];
-                    i++;
-                }
+                enderecoCompleto = getEnderecoHold(text);
 
-                codPedidoDesfecho = Int32.Parse(numero);
-            }
+                codPedidoDesfecho = getCodPedidoDesfechoHold(text);
 
-            NavigationService.Navigate(new Uri("/DesfechoPedido.xaml", UriKind.Relative));
+                NavigationService.Navigate(new Uri("/DesfechoPedido.xaml", UriKind.Relative));
+            } 
         }
 
         void wc_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
@@ -87,18 +80,7 @@ namespace Giovanellis
                 int tamanho = texto.Length;
                 bool achou = false;
 
-                int numeroPedido = 0;
-                int qtdProdutos = 0;
-                int coluna = 0;
-
-                string endereco = "";
-                string numRes = "";
-                string numAp = "";
-
-
-                string enderecoAlt = "";
-                string numResAlt = "";
-                string numApAlt = "";
+                string[] dadosPedidos = null;
 
                 string mensagem = "";
 
@@ -114,80 +96,22 @@ namespace Giovanellis
                         achou = false;
 
                     if (achou)
-                        if (texto[i] != ';' && texto[i] != ',')
+                        if (texto[i] != ';')
                             aux += texto[i];
 
-                        else if (texto[i] == ',')
+                        else if (texto[i] == ';')
                         {
-                            coluna++;
+                            dadosPedidos = aux.Split(',');
 
-                            switch (coluna)
-                            {
-                                case 1:
-                                    numeroPedido = Int32.Parse(aux);
-                                    break;
+                            lstPedidos.Items.Add(getItem(dadosPedidos));
 
-                                case 2:
-                                    endereco = aux;
-                                    break;
-
-                                case 3:
-                                    numRes = aux;
-                                    break;
-
-                                case 4:
-                                    numAp = aux;
-                                    break;
-
-                                case 5:
-                                    qtdProdutos = Int32.Parse(aux);
-                                    break;
-
-                                case 6:
-                                    enderecoAlt = aux;
-                                    break;
-
-                                case 7:
-                                    numResAlt = aux;
-                                    break;
-
-                            }
-
-                            /*TODO: 
-                             * Essa linha foi colocada aqui, porque o algoritmo acima, quando achava um ponto e virgula (;)
-                             * partia para o próximo campo, sem inserir o valor de aux à numApAlt, fazendo o número alternativo
-                             * do apartamento não aparecer.
-                             * 
-                             * Ficar ligado nisso aqui...
-                            */
-                            numApAlt = aux;
+                            pedidos.Add(getObjeto(dadosPedidos));
 
                             aux = "";
                         }
-                        else if (texto[i] == ';')
+                        else 
                         {
-                            coluna = 0;
-
-                            if (enderecoAlt.Length == 0)
-
-                                if (numAp.Length == 0)
-                                    mensagem = "#" + numeroPedido + " - " + endereco + ", " + numRes + " (" + qtdProdutos + ")";
-                                else
-                                    mensagem = "#" + numeroPedido + " - " + endereco + ", " + numRes + ", Ap: " + numAp + " (" + qtdProdutos + ")";
-
-                            else
-
-                                if (numApAlt.Length == 0)
-                                    mensagem = "#" + numeroPedido + " - " + enderecoAlt + ", " + numResAlt + " (" + qtdProdutos + ")";
-                                else
-                                    mensagem = "#" + numeroPedido + " - " + enderecoAlt + ", " + numResAlt + ", Ap: " + numApAlt + " (" + qtdProdutos + ")";
-
-                            aux = "";
-                            enderecoAlt = "";
-                            numResAlt = "";
-                            numApAlt = "";
-
-                            lstPedidos.Items.Add(mensagem);
+                            MessageBox.Show("Erro na busca de dados no banco.");
                         }
                 }
             }
@@ -196,119 +120,170 @@ namespace Giovanellis
                 lstPedidos.Items.Add("Não há pedidos a serem entregues.");
         }
 
-        string getEndereco(int position)
+        string [] getMensagem(String[] dadosPedido)
         {
-            string endereco = "";
+            String[] objeto = null;
 
-            try 
+            //Pegar objeto de quantidade de produtos
+            String objetoQtdeProdutos = dadosPedido[4] + " produto";
+
+            if (Int32.Parse(dadosPedido[4]) > 1)
+                objetoQtdeProdutos += "s";
+
+            objeto[0] = "#" + dadosPedido[0] + " - " + objetoQtdeProdutos + "\n";
+
+            //Pegando endereço do cliente
+            if (dadosPedido.Length <= 5)
             {
-                bool comeco = false;
+                objeto[1] += dadosPedido[1] + ", " + dadosPedido[2];
 
-                int i = 0;
 
-                while (lstPedidos.Items[position].ToString()[i] != '(')
-                {
-                    if (lstPedidos.Items[position].ToString()[i] == '-')
-                    {
-                        comeco = true;
-                        i++;
-                    }
-
-                    if (comeco)
-                        endereco += lstPedidos.Items[position].ToString()[i];
-
-                    i++;
-                }
+                //Se tiver apartamento, adicionar
+                if (dadosPedido[3].Length > 0)
+                    objeto[1] += ", Ap: " + dadosPedido[3];
             }
-            catch(Exception e)
+            //Se pedido vier com endereço alternativo, pegar no lugar do endereço do cliente
+            else if (dadosPedido.Length > 5)
             {
-            }
+                objeto[1] += dadosPedido[5] + ", " + dadosPedido[6];
 
-            return endereco;
-        }
-
-        string getEndereco(string itemValue)
-        {
-            string endereco = "";
-
-            try
-            {
-                bool comeco = false;
-
-                int i = 0;
-
-                while (itemValue[i] != '(')
-                {
-                    if (itemValue[i] == '-')
-                    {
-                        comeco = true;
-                        i++;
-                    }
-
-                    if (comeco)
-                        endereco += itemValue[i];
-
-                    i++;
-                }
-            }
-            catch (Exception e)
-            {
+                if (dadosPedido.Length == 8)
+                    if (dadosPedido[7].Length > 0)
+                        objeto[1] += ", Ap: " + dadosPedido[7];
             }
 
-            return endereco;
+            objeto[1] += "\n";
+
+            return objeto;
         }
 
         private void lstPedidos_Tap(object sender, GestureEventArgs e)
         {
-            enderecoCompleto = getEndereco(lstPedidos.SelectedIndex);
+            if (lstPedidos.Items[lstPedidos.SelectedIndex].ToString()[0] != 'N') 
+            {
+                enderecoCompleto = pedidos[lstPedidos.SelectedIndex][1];
 
-            codPedido = getCodEndereco(lstPedidos.SelectedIndex);
+                codPedido = Int32.Parse(pedidos[lstPedidos.SelectedIndex][0]);
 
-            qtdeProdutos = getQtdeProdutos(lstPedidos.SelectedIndex);
+                qtdeProdutos = Int32.Parse(pedidos[lstPedidos.SelectedIndex][2]);
 
-            NavigationService.Navigate(new Uri("/Detalhes.xaml", UriKind.Relative));
+                NavigationService.Navigate(new Uri("/Detalhes.xaml", UriKind.Relative));
+            }
+            
         }
 
-        private int getCodEndereco(int position) 
+        string getEnderecoHold(string text)
         {
             int i = 1;
 
+            bool comecou = false;
+
             String resultado = "";
 
-            while (lstPedidos.Items[position].ToString()[i] != ' ')
+            for (i = 1; i < text.Length - 2 ; i++)
             {
-                resultado += lstPedidos.Items[position].ToString()[i];
+                if (comecou)
+                    resultado += text[i];
 
+                if (text[i] == '\n')
+                    comecou = true;
+            }
+
+            return resultado;
+        }
+
+        String[] getObjeto(String[] registro)
+        {
+            string[] mensagem = new string[3];
+
+            //Primeira linha: dados gerais
+            mensagem[0] = registro[0];
+
+            //Segunda linha: dados de endereço
+            if (registro[7].Length == 0)
+            {
+                mensagem[1] += registro[1] + ", " + registro[2];
+
+                if (registro[3].Length > 0)
+                    mensagem[1] += ", Ap: " + registro[3];
+            }
+            else if (registro[5].Length > 0)
+            {
+                mensagem[1] += registro[5] + ", " + registro[6];
+
+                if (registro.Length == 7)
+                    if (registro[7].Length > 0)
+                        mensagem[1] += ", Ap: " + registro[7];
+            }
+            else
+            {
+                MessageBox.Show("Erro");
+            }
+
+            //Terceira linha: quantidade de produtos
+            mensagem[2] = registro[4];
+
+            return mensagem;
+        }
+        
+        ListBoxItem getItem(String[] dadosPedidos)
+        {
+            string mensagem = "";
+
+            //Pegar o código do pedido
+            mensagem = "#" + dadosPedidos[0];
+
+            //Pegar mensagem de quantidade de produtos
+            mensagem += " - " + dadosPedidos[4] + " produto";
+
+            //Checa se mensagem deve vir no plural ou singuçar
+            if (dadosPedidos[4] != "1")
+                mensagem += "s";
+
+            mensagem += "\n";
+
+            //Verifica se pedido veio sem endereço alternativo
+            //Se pedido vier sem endereço alternativo, pegar o endereço do cliente
+            if (dadosPedidos[5].Length == 0)
+            {
+                mensagem += dadosPedidos[1] + ", " + dadosPedidos[2];
+
+                //Se tiver apartamento, adicionar
+                if (dadosPedidos[3].Length > 0)
+                    mensagem += ", Ap: " + dadosPedidos[3];
+            }
+            //Se pedido vier com endereço alternativo, pegar no lugar do endereço do cliente
+            else if (dadosPedidos[5].Length > 0)
+            {
+                mensagem += dadosPedidos[5] + ", " + dadosPedidos[6];
+
+                //Se tiver apartamento, adicionar
+                if (dadosPedidos.Length == 8)
+                    if (dadosPedidos[7].Length > 0)
+                        mensagem += ", Ap: " + dadosPedidos[7];
+            }
+
+            mensagem += "\n";
+
+            var item = new ListBoxItem { Content = mensagem };
+
+            return item;
+        }
+
+        int getCodPedidoDesfechoHold(string text) 
+        {
+            int i = 1;
+
+            string resultado = "";
+
+            while(text[i] != '-')
+            {
+                resultado += text[i];
                 i++;
             }
 
             return Int32.Parse(resultado);
         }
 
-        private int getQtdeProdutos(int position)
-        {
-
-            int i = 1;
-
-            bool comeco = false;
-
-            String resultado = "";
-
-            while (lstPedidos.Items[position].ToString()[i] != ')')
-            {
-                if (lstPedidos.Items[position].ToString()[i] == '(')
-                {
-                    comeco = true;
-                    i++;
-                }
-
-                if (comeco)
-                    resultado += lstPedidos.Items[position].ToString()[i];
-
-                i++;
-            }
-
-            return Int32.Parse(resultado);
-        }
     }
 }
