@@ -47,7 +47,6 @@
                         </ul>
                     </li>
                     <li><asp:HyperLink ID="linkPromo" NavigateUrl="aspx/promocoes.aspx" runat="server">Promoções</asp:HyperLink></li>
-                    <%--<li><asp:HyperLink ID="linkPedir" NavigateUrl="pedir.aspx" runat="server">Fazer Pedido</asp:HyperLink></li>--%>
                 </ul>
             </nav>
                 <!-- PAINEL LOGIN -->

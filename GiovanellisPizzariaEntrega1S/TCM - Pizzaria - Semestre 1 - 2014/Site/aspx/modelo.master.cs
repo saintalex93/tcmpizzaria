@@ -11,7 +11,6 @@ public partial class modelo : System.Web.UI.MasterPage
 {
     int codcliente;
     string nome;
-    bool x = true;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -32,25 +31,29 @@ public partial class modelo : System.Web.UI.MasterPage
                 lblNomeUsuario.Text = Request.Cookies["nome"].Value;
                 linkCadastro_rodape.Text = "meus pedidos";
                 linkCadastro_rodape.NavigateUrl = "pedidos.aspx";
-                if (Request.Cookies["pizzas"] != null)
+                if (Session["carrinho"] != null)
                 {
                     try
                     {
-                        string numpizzas = Request.Cookies["pizzas"].Value;
-                        string[] numpizzas2 = numpizzas.Split('/');
-                        for (int i = 0; i <= numpizzas2.Length; i++)
-                        {
-                            lblProdutosCarrinho.Text = "Seu carrinho tem " + i.ToString() + " produto(s).";
-                        }
+                        DataTable dt = (DataTable)Session["carrinho"];
+                        int numprods = dt.Rows.Count;
+                            if (numprods == 1)
+                            {
+                                lblProdutosCarrinho.Text = "Seu carrinho tem " + numprods.ToString() + " produto.";
+                            }
+                            else
+                            {
+                                lblProdutosCarrinho.Text = "Seu carrinho tem " + numprods.ToString() + " produtos.";
+                            }
                     }
                     catch
                     {
-                        lblProdutosCarrinho.Text = "Não há pizzas no seu carrinho.";
+                        lblProdutosCarrinho.Text = "Não há produtos no seu carrinho.";
                     }
                 }
                 else
                 {
-                    lblProdutosCarrinho.Text = "Não há pizzas no seu carrinho.";
+                    lblProdutosCarrinho.Text = "Não há produtos no seu carrinho.";
                 }
             }
         }
@@ -65,7 +68,7 @@ public partial class modelo : System.Web.UI.MasterPage
     protected void btnLogar_Click(object sender, EventArgs e)
     {
         //Chamando o método de validação que torna os campos txtEmail e txtSenha obrigatórios.
-        validacao();
+        bool x = validacao();
         //Verifico se a variável global x é true.Se for, ele passou pela validação dos campos obrigatórios.
         if (x == true)
         {
@@ -89,26 +92,14 @@ public partial class modelo : System.Web.UI.MasterPage
                 con.command.Parameters.Add("@email", SqlDbType.VarChar).Value = email;
                 con.command.Parameters.Add("@senha", SqlDbType.VarChar).Value = senha;
                 
-                con.command.CommandText = "select Cod_Cliente from Cliente where Login_Cliente=@email and Senha_Cliente=@senha";
+                con.command.CommandText = "select Nome_Cliente,Cod_Cliente from Cliente where Login_Cliente=@email and Senha_Cliente=@senha";
                 dAdapter.SelectCommand = con.command;
                 dAdapter.Fill(dt);
                 con.fechaConexao();
 
-                //Conexão que vai recuperar o NOME do cliente pelo email e senha digitados.
-
-                Conexao con2 = new Conexao();
-                con2.conectar();
-
-                con2.command.Parameters.Add("@email", SqlDbType.VarChar).Value = email;
-                con2.command.Parameters.Add("@senha", SqlDbType.VarChar).Value = senha;
-                con2.command.CommandText = "select Nome_Cliente from Cliente where Login_Cliente=@email and Senha_Cliente=@senha";
-                dAdapter2.SelectCommand = con2.command;
-                dAdapter2.Fill(dt2);
-                con2.fechaConexao();
-
                 //Pegando as informações do DataSet e jogando em variáveis.
 
-                nome = dt2.Tables[0].DefaultView[0].Row["Nome_Cliente"].ToString();
+                nome = dt.Tables[0].DefaultView[0].Row["Nome_Cliente"].ToString();
                 codcliente = Convert.ToInt32(dt.Tables[0].DefaultView[0].Row["Cod_Cliente"]);
 
                 /*Verificando se o nome não é nulo.
@@ -138,19 +129,23 @@ public partial class modelo : System.Web.UI.MasterPage
         }
     }
 
-    protected void validacao()
+    protected bool validacao()
     {
         if (txtEmail.Text.Length < 1)
         {
-            x = false;
             Response.Write("<script>alert('Email não foi preenchido corretamente !!')</script>");
             txtEmail.Focus();
+            return false;
         }
         else if (txtSenha.Text.Length < 6)
         {
-            x = false;
             Response.Write("<script>alert('Senha não foi preenchida corretamente !!')</script>");
             txtSenha.Focus();
+            return false;
+        }
+        else
+        {
+            return true;
         }
     }
 

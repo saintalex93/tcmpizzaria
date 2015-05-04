@@ -45,6 +45,12 @@
                                     <HeaderStyle CssClass="colunaheader" />
                                     <ItemStyle CssClass="clmValorPed" />
                                 </asp:BoundColumn>
+
+                                <asp:BoundColumn DataField="Observacao" HeaderText="Observações" ReadOnly="True">
+                                    <HeaderStyle CssClass="colunaheader" />
+                                    <ItemStyle CssClass="clmObservacaoPed" />
+                                </asp:BoundColumn>
+
                             </Columns>
                         </asp:DataGrid>
 

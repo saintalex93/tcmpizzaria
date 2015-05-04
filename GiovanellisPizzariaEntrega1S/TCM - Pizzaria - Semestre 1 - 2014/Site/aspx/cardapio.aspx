@@ -12,29 +12,33 @@
         <article class="cardapio">
             <div class="wrapper">
                 <h2>Clique em um sabor para adicioná-lo ao seu pedido.</h2>
-                <asp:DataGrid ID="dtCardapio" runat="server" AutoGenerateColumns="False">
+                <%--<asp:DataGrid ID="dtCardapio" runat="server" AutoGenerateColumns="False">
+
                     <Columns>
+                        <asp:BoundColumn DataField="Nome_Produto" HeaderText="Produtos" ReadOnly="True">
+                            <HeaderStyle CssClass="colunaheader"></HeaderStyle>
 
-                    <asp:BoundColumn DataField="Nome_Produto" HeaderText="Sabores de Pizzas" ReadOnly="True">
-                        <HeaderStyle CssClass="colunaheader"></HeaderStyle>
+                            <ItemStyle CssClass="clmSabor"></ItemStyle>
+                        </asp:BoundColumn>
 
-                        <ItemStyle CssClass="clmSabor"></ItemStyle>
-                    </asp:BoundColumn>
+                        <asp:BoundColumn DataField="Nome_Insumo" HeaderText="Ingredientes" ReadOnly="True">
+                            <HeaderStyle CssClass="colunaheader"></HeaderStyle>
 
-                    <asp:BoundColumn DataField="Ingred_Prod" HeaderText="Ingredientes" ReadOnly="True">
-                        <HeaderStyle CssClass="colunaheader"></HeaderStyle>
+                            <ItemStyle CssClass="clmIngred"></ItemStyle>
+                        </asp:BoundColumn>
 
-                        <ItemStyle CssClass="clmIngred"></ItemStyle>
-                    </asp:BoundColumn>
+                        <asp:BoundColumn DataField="Valor_Venda" HeaderText="Preço" ReadOnly="True" DataFormatString="{0:c}">
+                            <HeaderStyle CssClass="colunaheader"></HeaderStyle>
 
-                    <asp:BoundColumn DataField="Valor_Venda" HeaderText="Preço" ReadOnly="True" DataFormatString="{0:c}">
-                        <HeaderStyle CssClass="colunaheader"></HeaderStyle>
+                            <ItemStyle CssClass="clmPreco"></ItemStyle>
+                        </asp:BoundColumn>
+                    </Columns>
 
-                        <ItemStyle CssClass="clmPreco"></ItemStyle>
-                    </asp:BoundColumn>
+                </asp:DataGrid>--%>
 
-                </Columns>
-                </asp:DataGrid>
+                <asp:GridView ID="gdCardapio" runat="server" AutoGenerateColumns="true" ShowHeaderWhenEmpty="true">
+
+                </asp:GridView>
             </div>
         </article>
     </section>

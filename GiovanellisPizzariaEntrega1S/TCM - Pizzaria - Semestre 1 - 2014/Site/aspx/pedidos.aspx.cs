@@ -37,7 +37,7 @@ public partial class aspx_pedidos : System.Web.UI.Page
         con.conectar();
         SqlDataAdapter dAdapter = new SqlDataAdapter();
         DataSet ds = new DataSet();
-        con.command.CommandText = "select Data,Valor from Pedido where " + codCli + "= Cod_Cliente order by Data desc";
+        con.command.CommandText = "select Data,Valor,Observacao from Pedido where " + codCli + "= Cod_Cliente order by Data desc";
         //dAdapter seleciona o comando con.command
         dAdapter.SelectCommand = con.command;
         //Preencho meu DataSet com informações que o dAdapter "traduziu" pra ele.
@@ -55,7 +55,7 @@ public partial class aspx_pedidos : System.Web.UI.Page
         con.conectar();
         SqlDataAdapter dAdapter = new SqlDataAdapter();
         DataSet ds = new DataSet();
-        con.command.CommandText = "select Data,Valor from Pedido where " + codCli + "= Cod_Cliente order by Data";
+        con.command.CommandText = "select Data,Valor,Observacao from Pedido where " + codCli + "= Cod_Cliente order by Data";
         //dAdapter seleciona o comando con.command
         dAdapter.SelectCommand = con.command;
         //Preencho meu DataSet com informações que o dAdapter "traduziu" pra ele.
@@ -73,7 +73,7 @@ public partial class aspx_pedidos : System.Web.UI.Page
         con2.conectar();
         SqlDataAdapter dAdapter2 = new SqlDataAdapter();
         DataSet ds2 = new DataSet();
-        con2.command.CommandText = "select Data,Valor from Pedido where " + codCli + "= Cod_Cliente order by Valor desc";
+        con2.command.CommandText = "select Data,Valor,Observacao from Pedido where " + codCli + "= Cod_Cliente order by Valor desc";
         //dAdapter seleciona o comando con.command
         dAdapter2.SelectCommand = con2.command;
         //Preencho meu DataSet com informações que o dAdapter "traduziu" pra ele.
@@ -91,7 +91,7 @@ public partial class aspx_pedidos : System.Web.UI.Page
         con2.conectar();
         SqlDataAdapter dAdapter2 = new SqlDataAdapter();
         DataSet ds2 = new DataSet();
-        con2.command.CommandText = "select Data,Valor from Pedido where " + codCli + "= Cod_Cliente order by Valor";
+        con2.command.CommandText = "select Data,Valor,Observacao from Pedido where " + codCli + "= Cod_Cliente order by Valor";
         //dAdapter seleciona o comando con.command
         dAdapter2.SelectCommand = con2.command;
         //Preencho meu DataSet com informações que o dAdapter "traduziu" pra ele.

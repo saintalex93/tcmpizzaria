@@ -11,7 +11,6 @@ public partial class index : System.Web.UI.Page
 {
     int codcliente;
     string nome;
-    bool x = true;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -32,21 +31,29 @@ public partial class index : System.Web.UI.Page
                 lblNomeUsuario.Text = Request.Cookies["nome"].Value;
                 linkCadastro_rodape.Text = "meus pedidos";
                 linkCadastro_rodape.NavigateUrl = "aspx/pedidos.aspx";
-                if (Request.Cookies["pizzas"] != null)
+                if (Session["carrinho"] != null)
                 {
                     try
                     {
-                        string numpizzas = Request.Cookies["pizzas"].Value;
-                        string[] numpizzas2 = numpizzas.Trim().Split('/');
-                        for (int i = 0; i <= numpizzas2.Length; i++)
+                        DataTable dt = (DataTable)Session["carrinho"];
+                        int numprods = dt.Rows.Count;
+                        if (numprods == 1)
                         {
-                            lblProdutosCarrinho.Text = "Seu carrinho tem " + i.ToString() + " produto(s).";
+                            lblProdutosCarrinho.Text = "Seu carrinho tem " + numprods.ToString() + " produto.";
+                        }
+                        else
+                        {
+                            lblProdutosCarrinho.Text = "Seu carrinho tem " + numprods.ToString() + " produtos.";
                         }
                     }
                     catch
                     {
-                        lblProdutosCarrinho.Text = "0";
+                        lblProdutosCarrinho.Text = "Não há produtos no seu carrinho.";
                     }
+                }
+                else
+                {
+                    lblProdutosCarrinho.Text = "Não há produtos no seu carrinho.";
                 }
             }
         }
@@ -60,7 +67,7 @@ public partial class index : System.Web.UI.Page
     protected void btnLogar_Click(object sender, EventArgs e)
     {
         //Chamando o método de validação que torna os campos txtEmail e txtSenha obrigatórios.
-        validacao();
+        bool x = validacao();
         //Verifico se a variável global x é true.Se for, ele passou pela validação dos campos obrigatórios.
         if (x == true)
         {
@@ -133,19 +140,23 @@ public partial class index : System.Web.UI.Page
             }
         }
     }
-    protected void validacao()
+    protected bool validacao()
     {
         if (txtEmail.Text.Length < 1)
         {
-            x = false;
             Response.Write("<script>alert('Email não foi preenchido corretamente !!')</script>");
             txtEmail.Focus();
+            return false;
         }
         else if (txtSenha.Text.Length < 6)
         {
-            x = false;
             Response.Write("<script>alert('Senha não foi preenchida corretamente !!')</script>");
             txtSenha.Focus();
+            return false;
+        }
+        else
+        {
+            return true;
         }
     }
     protected void btnLogout_Click(object sender, EventArgs e)
