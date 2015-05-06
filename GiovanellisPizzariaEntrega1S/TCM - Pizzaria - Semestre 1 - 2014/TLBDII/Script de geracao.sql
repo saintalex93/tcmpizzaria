@@ -250,6 +250,7 @@ create table Detalhe_Pedido
 (
 Cod_Detalhe INT IDENTITY(1,1) PRIMARY KEY,
 Cod_Produto INT FOREIGN KEY REFERENCES Produto(Cod_Produto),
+Cod_Produto2 INT FOREIGN KEY REFERENCES Produto(Cod_Produto),
 Cod_Pedido INT FOREIGN KEY REFERENCES Pedido(Cod_Pedido),
 )
 go
@@ -264,7 +265,16 @@ Cod_Funcionario INT FOREIGN KEY REFERENCES Funcionario(Cod_Funcionario)
 )
 go
 
-
+create table DetalheCompra
+(
+codcomprainsumo int identity (1,1) primary key,
+cod_compra int foreign key references comprafornecedor (cod_compra),
+cod_fornecedor int foreign key references Fornecedor (cod_fornecedor),
+cod_insumo int foreign key references insumo (cod_insumo),
+valor_insumo decimal (6,2),
+qdt_comprada int,
+)
+go
 
 	-------------------- *** INSERT'S *** ------------------------ 
 		
@@ -308,7 +318,9 @@ Cargo
 values
 ('Administrador'),
 ('Gerente'),
-('Atendente')
+('Atendente'),
+('Entregador'),
+('Operador')
 go
 
 insert into Funcionario
@@ -326,13 +338,16 @@ Email_Funcionario,
 Telefone_Funcionario,
 Celular_Funcionario,
 Login_Funcionario,
-Senha_Funcionario 
+Senha_Funcionario,
+Cod_Permissao
 )
 values
-('Maria do Carmo','128.589.519-87','Rua dos Funcionários',null,159,'12598-11','SP','São Paulo','Santa Cecília','maria_teste@hotmail.com','(11)4529-4196','(11)9-7988-4895','Maria','123'),
-('Joana Figueiredo','932.571.495-28','Rua Coronel Justino','Bloco D',1050,'28984-79','SP','São Paulo','Suzano','joana.fig@terra.com.br','(11)7819-4898','(11)9-6187-8959','Admin','123'),
-('Carlos Silva','475.427.106-85','Rua Juba da Jujuba',null,420,'59579-14','SP','São Paulo','Vila Mariana','carlos_silva@gmail.com','(11)4198-8274','(11)9-9658-9774','Carlos','123'),
-('Alex Santos','399.305.868-22','Rua Pindamonhangaba',null,666,'023654-14','SP','São Paulo','Vila Tupiniquim','alexsantos@gmail.com','(11)4578-8274','(11)9-9852-9774','Alex','123')
+('Roberto Carlos','128.589.519-87','Rua Roberto Carlos', null,159,'12598-11','SP','São Paulo','Roberto Carlos','roberto@carlos.rob.ca','(11)4529-4196','(11)9-7988-4895','Roberto','123', 1),
+('Maria do Carmo','128.589.519-87','Rua dos Funcionários',null,159,'12598-11','SP','São Paulo','Santa Cecília','maria_teste@hotmail.com','(11)4529-4196','(11)9-7988-4895','Maria','123', 4),
+('Joana Figueiredo','932.571.495-28','Rua Coronel Justino','Bloco D',1050,'28984-79','SP','São Paulo','Suzano','joana.fig@terra.com.br','(11)7819-4898','(11)9-6187-8959','Admin','123', 4),
+('Carlos Silva','475.427.106-85','Rua Juba da Jujuba',null,420,'59579-14','SP','São Paulo','Vila Mariana','carlos_silva@gmail.com','(11)4198-8274','(11)9-9658-9774','Carlos','123', 4),
+('Alex Santos','399.305.868-22','Rua Pindamonhangaba',null,666,'023654-14','SP','São Paulo','Vila Tupiniquim','alexsantos@gmail.com','(11)4578-8274','(11)9-9852-9774','Alex','123', 4),
+('Toninho Abreu','128.589.519-87','Rua das Dalágaras', null,159,'12598-11','SP','São Paulo','Vila Vira','tony@gmail.com','(11)4529-4196','(11)9-7988-4895','Tony','123', 2)
 
 
 insert into Insumo
@@ -560,7 +575,6 @@ values
 (7, 2, 0.30),
 (7, 9, 0.50),
 (8, 2, 0.30),
-(8, 2, 0.30),
 (8, 9, 1),
 (8, 14, 1),
 (9, 2, 0.30),
@@ -596,141 +610,142 @@ go
 insert into Detalhe_Pedido
 (
 cod_pedido,
+cod_produto2,
 cod_produto
 )
 values
-(1,1),
-(1,2),
-(1,3),
-(1,14),
+(1,null,1),
+(1,null,2),
+(1,null,3),
+(1,null,14),
 
-(2,1),
-(2,2),
-(2,2),
+(2,null,1),
+(2,null,2),
+(2,null,2),
 
-(3,1),
-(3,2),
-(3,3),
-(3,4),
-(3,5),
-(3,6),
-(3,14),
-(3,14),
-(3,15),
+(3,null,1),
+(3,null,2),
+(3,null,3),
+(3,null,4),
+(3,null,5),
+(3,null,6),
+(3,null,14),
+(3,null,14),
+(3,null,15),
 
-(4,1),
-(4,2),
-(4,3),
-(4,14),
+(4,null,1),
+(4,null,2),
+(4,null,3),
+(4,null,14),
 
-(5,1),
-(5,2),
-(5,3),
-(5,14),
+(5,null,1),
+(5,null,2),
+(5,null,3),
+(5,null,14),
 
-(6,1),
-(6,2),
-(6,2),
+(6,null,1),
+(6,null,2),
+(6,null,2),
 
-(7,1),
-(7,2),
-(7,3),
-(7,14),
-(7,15),
+(7,null,1),
+(7,null,2),
+(7,null,3),
+(7,null,14),
+(7,null,15),
 
-(8,1),
-(8,2),
-(8,3),
-(8,14),
+(8,null,1),
+(8,null,2),
+(8,null,3),
+(8,null,14),
 
-(9,1),
-(9,2),
-(9,3),
-(9,14),
+(9,null,1),
+(9,null,2),
+(9,null,3),
+(9,null,14),
 
-(10,1),
-(10,2),
-(10,2),
+(10,null,1),
+(10,null,2),
+(10,null,2),
 
-(10,1),
-(10,2),
-(10,3),
-(10,4),
-(10,5),
-(10,6),
-(10,14),
-(10,14),
-(10,15),
+(10,null,1),
+(10,null,2),
+(10,null,3),
+(10,null,4),
+(10,null,5),
+(10,null,6),
+(10,null,14),
+(10,null,14),
+(10,null,15),
 
-(11,1),
-(11,2),
-(11,3),
-(11,14),
+(11,null,1),
+(11,null,2),
+(11,null,3),
+(11,null,14),
 
-(12,1),
-(12,2),
-(12,3),
-(12,14),
+(12,null,1),
+(12,null,2),
+(12,null,3),
+(12,null,14),
 
-(13,1),
-(13,2),
-(13,2),
+(13,null,1),
+(13,null,2),
+(13,null,2),
 
-(14,1),
-(14,2),
-(14,3),
-(14,14),
-(14,15),
+(14,null,1),
+(14,null,2),
+(14,null,3),
+(14,null,14),
+(14,null,15),
 
-(15,1),
-(15,2),
-(15,3),
-(15,14),
+(15,null,1),
+(15,null,2),
+(15,null,3),
+(15,null,14),
 
-(16,1),
-(16,2),
-(16,3),
-(16,14),
+(16,null,1),
+(16,null,2),
+(16,null,3),
+(16,null,14),
 
-(17,1),
-(17,2),
-(17,2),
+(17,null,1),
+(17,null,2),
+(17,null,2),
 
-(18,1),
-(18,2),
-(18,3),
-(18,4),
-(18,5),
-(18,6),
-(18,14),
-(18,14),
-(18,15),
+(18,null,1),
+(18,null,2),
+(18,null,3),
+(18,null,4),
+(18,null,5),
+(18,null,6),
+(18,null,14),
+(18,null,14),
+(18,null,15),
 
-(19,1),
-(19,2),
-(19,3),
-(19,14),
+(19,null,1),
+(19,null,2),
+(19,null,3),
+(19,null,14),
 
-(21,1),
-(21,2),
-(21,3),
-(21,14),
+(21,null,1),
+(21,null,2),
+(21,null,3),
+(21,null,14),
 
-(22,1),
-(22,2),
-(22,2),
+(22,null,1),
+(22,null,2),
+(22,null,2),
 
-(23,1),
-(23,2),
-(23,3),
-(23,14),
-(23,15),
+(23,null,1),
+(23,null,2),
+(23,null,3),
+(23,null,14),
+(23,null,15),
 
-(24,1),
-(24,2),
-(24,3),
-(24,14),
-(24,15)
+(24,null,1),
+(24,null,2),
+(24,null,3),
+(24,null,14),
+(24,null,15)
 
 go
 
@@ -761,6 +776,19 @@ values
 (120.35, '13/06/2015', '17/06/2015', 3)
 go
 
+insert into DetalheCompra 
+values
+(
+1,2,2,35,2
+)
+go
+
+insert into DetalheCompra 
+values
+(
+3,3,3,35,3
+)
+go
 	-------------------- *** PROCEDURES *** ------------------------ 
 
 create procedure sp_Select_cliente
@@ -1127,6 +1155,38 @@ as
 			p.Cod_Cliente = c.Cod_Cliente
 	End
 go
+-----------------------------------------
+create proc USP_ANDROID_Login
+(
+	@Login_Funcionario varchar = null,
+	@Senha_Funcionario varchar = null
+)
+as
+	Begin
+		select 
+			f.Nome_Func,
+			f.Cod_Funcionario,
+			p.Cod_Permissao
 
-print 'Proc USP_ANDROID_DetalhesPedido_SelectInfoPedido criada'
+		from Funcionario f
+
+		inner join Permissao p on
+			f.Login_Funcionario like @Login_Funcionario and
+			f.Senha_Funcionario like @Senha_Funcionario and
+			f.Cod_Permissao = p.Cod_Permissao
+	End
 go
+
+/*select 
+			f.Nome_Func,
+			f.Cod_Funcionario,
+			p.Cod_Permissao
+
+		from Funcionario f
+
+		inner join Permissao p on
+			f.Login_Funcionario like 'Maria' and
+			f.Senha_Funcionario like '123' and
+			f.Cod_Permissao = p.Cod_Permissao
+			*/
+exec USP_ANDROID_Login 'Maria', '123'
