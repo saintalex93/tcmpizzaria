@@ -33,7 +33,6 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/txtTeste"
         android:orientation="vertical" >
-
     </LinearLayout>
 
 </RelativeLayout>

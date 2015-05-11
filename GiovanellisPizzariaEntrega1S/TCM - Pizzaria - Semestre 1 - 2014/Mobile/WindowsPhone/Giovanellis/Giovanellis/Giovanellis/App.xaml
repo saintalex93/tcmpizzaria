@@ -8,6 +8,13 @@
 
     <!--Application Resources-->
     <Application.Resources>
+        <Style x:Key="LayoutGridStyle" TargetType="Grid">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="/Assets/marca.png"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>

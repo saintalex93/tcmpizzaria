@@ -8,7 +8,13 @@
 	public void Page_Load()
 	{
 		int Cod_Pedido = int.Parse((Request.QueryString["Cod_Pedido"]));
-		String strConexao = "Password=peganomeupau; Persist Security Info=True; User ID=sa; Initial Catalog=Pizzaria; Data Source=TUCA\\SQLEXPRESS";
+		
+		//string casa
+		//String strConexao = "Password=peganomeupau; Persist Security Info=True; User ID=sa; Initial Catalog=Pizzaria; Data Source=TUCA\\SQLEXPRESS";
+
+		//string curso
+		String strConexao = "Password=etesp; Persist Security Info=True; User ID=aluno; Initial Catalog=Pizzaria; Data Source=LAB02T-11";
+
 		SqlConnection objConexao = new SqlConnection(strConexao);
 		String contato = "";
 		String strSQL = "EXEC USP_ANDROID_HISTORICO_SelectEstadoPedido " + Cod_Pedido;

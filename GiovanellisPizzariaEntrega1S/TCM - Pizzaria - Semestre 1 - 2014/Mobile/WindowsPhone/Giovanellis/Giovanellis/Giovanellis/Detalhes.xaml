@@ -14,7 +14,7 @@
     shell:SystemTray.IsVisible="True" Loaded="PhoneApplicationPage_Loaded">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot" Style="{StaticResource LayoutGridStyle}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -27,15 +27,38 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <TextBlock Height="30" HorizontalAlignment="Left" Margin="184,6,0,0" Name="txtEndereco" Text="Endereço" VerticalAlignment="Top" TextAlignment="Center" />
-            <TextBlock Height="Auto" HorizontalAlignment="Left" Margin="198,42,0,0" Name="txtNome" Text="Nome" VerticalAlignment="Top" FontSize="25" />
-            <TextBlock Height="30" HorizontalAlignment="Left" Margin="143,82,0,0" Name="txtHoraValor" Text="Hora - ValorPedido" VerticalAlignment="Top" />
-            <TextBlock Height="Auto" HorizontalAlignment="Left" Margin="143,133,0,0" Name="textBlock3" Text="Pagamento" VerticalAlignment="Top" FontSize="30" />
-            <TextBlock Height="30" HorizontalAlignment="Left" Margin="183,179,0,0" Name="txtForma" Text="Forma" VerticalAlignment="Top" />
-            <TextBlock Height="30" HorizontalAlignment="Left" Margin="170,229,0,0" Name="txtQtdeProdutos" Text="QtdeProdutos" VerticalAlignment="Top" />
-            <ListBox Height="285" HorizontalAlignment="Left" Margin="0,265,0,0" Name="lstProdutos" VerticalAlignment="Top" Width="460" />
-            <Button Content="Ligar celular" Height="72" HorizontalAlignment="Left" Margin="6,556,0,0" Name="btnCelular" VerticalAlignment="Top" Width="Auto" Click="btnCelular_Click" />
-            <Button Content="Ligar residência" Height="72" HorizontalAlignment="Left" Margin="220,556,0,0" Name="btnResidencia" VerticalAlignment="Top" Width="Auto" Click="btnResidencia_Click" />
+            <TextBlock Height="30" HorizontalAlignment="Center" Margin="0,6,0,0" Name="txtEndereco" Text="Endereço" VerticalAlignment="Top" TextAlignment="Center" />
+            <TextBlock Height="Auto" HorizontalAlignment="Center" Margin="0,42,0,0" Name="txtNome" Text="Nome" VerticalAlignment="Top" FontSize="25" />
+            <TextBlock Height="30" HorizontalAlignment="Center" Margin="0,82,0,0" Name="txtHoraValor" Text="Hora - ValorPedido" VerticalAlignment="Top" />
+            <TextBlock Height="Auto" HorizontalAlignment="Center" Margin="0,133,0,0" Name="textBlock3" Text="Pagamento" VerticalAlignment="Top" FontSize="30" />
+            <TextBlock Height="30" HorizontalAlignment="Center" Margin="0,179,0,0" Name="txtForma" Text="Forma" VerticalAlignment="Top" />
+            <TextBlock Height="30" HorizontalAlignment="Center" Margin="0,229,0,0" Name="txtQtdeProdutos" Text="QtdeProdutos" VerticalAlignment="Top" FontSize="25"/>
+            <ListBox 
+                Height="290" 
+                HorizontalAlignment="Stretch" 
+                Margin="0,265,0,0" 
+                Name="lstProdutos" 
+                VerticalAlignment="Top" 
+                Width="Auto">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    </Style>
+                </ListBox.ItemContainerStyle>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock  
+                            HorizontalAlignment="Center" 
+                            TextAlignment="Center" 
+                            Text="{Binding}" 
+                            FontSize="20" 
+                            Margin="0" 
+                            Style="{StaticResource PhoneTextNormalStyle}"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <Button Content="Ligar celular" Height="72" HorizontalAlignment="Left" Margin="0,556,0,0" Name="btnCelular" VerticalAlignment="Top" Width="Auto" Click="btnCelular_Click" />
+            <Button Content="Ligar residência" Height="72" HorizontalAlignment="Right" Margin="0,556,0,0" Name="btnResidencia" VerticalAlignment="Top" Width="Auto" Click="btnResidencia_Click" />
         </Grid>
     </Grid>
  

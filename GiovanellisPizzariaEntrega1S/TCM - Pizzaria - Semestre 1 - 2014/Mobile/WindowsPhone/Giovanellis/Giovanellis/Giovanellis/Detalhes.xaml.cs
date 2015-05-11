@@ -52,6 +52,8 @@ namespace Giovanellis
 
             if (Home.qtdeProdutos > 1)
                 txtQtdeProdutos.Text += "s";
+
+            txtQtdeProdutos.Text += ":";
         }
 
         //Preenche lista de produtos
@@ -68,21 +70,6 @@ namespace Giovanellis
                 int tamanho = texto.Length;
                 bool achou = false;
 
-                int numeroPedido = 0;
-                int qtdProdutos = 0;
-                int coluna = 0;
-
-                string endereco = "";
-                string numRes = "";
-                string numAp = "";
-
-
-                string enderecoAlt = "";
-                string numResAlt = "";
-                string numApAlt = "";
-
-                string mensagem = "";
-
                 for (i = 0; i < tamanho; i++)
                 {
                     if (texto[i] == '#')
@@ -96,7 +83,7 @@ namespace Giovanellis
 
                     if (achou)
                         if (texto[i] != ';')
-							aux = aux + texto[i];
+							aux += texto[i];
 
 						else
 						{

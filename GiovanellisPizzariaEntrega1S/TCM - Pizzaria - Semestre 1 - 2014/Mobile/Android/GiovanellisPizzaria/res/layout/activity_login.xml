@@ -2,51 +2,72 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#eeebe3"
+    android:gravity="center_horizontal"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".Login" >
 
-    <TextView
-        android:id="@+id/s"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Login"
-        android:textSize="32sp" />
-
-    <EditText
-        android:id="@+id/txtLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txtLoginHeader"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="69dp"
-        android:ems="10"
-        android:hint="Email"
-        android:inputType="textEmailAddress" >
-
-        <requestFocus />
-    </EditText>
-
     <EditText
         android:id="@+id/txtSenha"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtLogin"
         android:layout_below="@+id/txtLogin"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="79dp"
         android:ems="10"
+        android:gravity="center_horizontal"
         android:hint="Senha"
         android:inputType="textPassword" />
 
     <Button
         android:id="@+id/btnLogin"
-        android:layout_width="wrap_content"
+        style="@drawable/botao"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/txtSenha"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="59dp"
-        android:text="Entrar" />
+        android:background="@drawable/botao"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:text="Entrar"
+        android:textColor="#fff" />
+
+    <TextView
+        android:id="@+id/s"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="Login"
+        android:textColor="#ef6f53"
+        android:textSize="32sp" />
+
+    <EditText
+        android:id="@+id/txtLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/s"
+        android:layout_below="@+id/s"
+        android:ems="10"
+        android:gravity="center_horizontal"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:scrollHorizontally="false"
+        android:textAlignment="gravity" >
+        <requestFocus />
+    </EditText>
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnLogin"
+        android:layout_centerHorizontal="true"
+        android:adjustViewBounds="true"
+        android:baselineAlignBottom="true"
+        android:scaleType="fitCenter"
+        android:src="@drawable/marca" />
 
 </RelativeLayout>

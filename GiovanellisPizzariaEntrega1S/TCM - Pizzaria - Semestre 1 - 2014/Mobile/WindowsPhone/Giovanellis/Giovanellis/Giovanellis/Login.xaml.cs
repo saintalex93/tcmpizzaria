@@ -161,7 +161,10 @@ namespace Giovanellis
 
             txtSenha.Password = "123";
 
-            usuario++;
+            if(usuario != 3)
+                usuario++;
+            else
+                usuario = 0;
         }
     }
 }

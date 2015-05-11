@@ -4,11 +4,6 @@ import java.io.BufferedInputStream;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.ArrayList;
-import java.util.Random;
-
-import org.apache.http.client.HttpClient;
-import org.apache.http.impl.client.DefaultHttpClient;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -19,19 +14,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
-import android.widget.RelativeLayout.LayoutParams;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Login extends Activity {
 
 	public static String nomeFuncionario = "";
 
 	// IP do curso	
-	//public static String ip = "10.67.74.";
+//	public static String ip = "169.254.111.109";
 
 	// IP de casa
 	public static String ip = "192.168.1.8";
@@ -41,6 +34,8 @@ public class Login extends Activity {
 	TextView lbLogin;
 	TextView tvLogin;
 	TextView tvSenha;
+	
+	ImageView logo;
 
 	int usuario = 0;
 	
@@ -55,9 +50,10 @@ public class Login extends Activity {
 		Button logar = (Button) findViewById(R.id.btnLogin);
 
 		lbLogin = (TextView) findViewById(R.id.s);
-		
 		tvLogin = (TextView) findViewById(R.id.txtLogin);
 		tvSenha = (TextView) findViewById(R.id.txtSenha);
+		
+		logo = (ImageView) findViewById(R.drawable.marca);
 		
 		
 

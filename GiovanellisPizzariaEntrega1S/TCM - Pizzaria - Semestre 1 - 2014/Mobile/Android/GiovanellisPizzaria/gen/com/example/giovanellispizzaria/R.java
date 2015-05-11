@@ -21,39 +21,43 @@ public final class R {
 
          Customize dimensions originally defined in res/values/dimens.xml (such as
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
+
     
          */
         public static final int activity_horizontal_margin=0x7f050000;
         public static final int activity_vertical_margin=0x7f050001;
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
+        public static final int botao=0x7f020000;
+        public static final int ic_launcher=0x7f020001;
+        public static final int listborder=0x7f020002;
+        public static final int logo=0x7f020003;
+        public static final int marca=0x7f020004;
     }
     public static final class id {
-        public static final int Pedidos=0x7f0a000c;
-        public static final int action_settings=0x7f0a0017;
+        public static final int Pedidos=0x7f0a000b;
+        public static final int action_settings=0x7f0a0016;
         public static final int btnCel=0x7f0a0005;
-        public static final int btnHistorico=0x7f0a000d;
-        public static final int btnLogin=0x7f0a0012;
+        public static final int btnLogin=0x7f0a000f;
         public static final int btnRes=0x7f0a0008;
+        public static final int imageView1=0x7f0a0011;
         public static final int lstHistorico=0x7f0a0009;
-        public static final int lstPedidos=0x7f0a000b;
+        public static final int lstPedidos=0x7f0a000a;
         public static final int lstProdutos=0x7f0a0004;
-        public static final int rowtext=0x7f0a0016;
-        public static final int s=0x7f0a000e;
-        public static final int scrollView1=0x7f0a0015;
-        public static final int tvTeste=0x7f0a0013;
+        public static final int rowtext=0x7f0a0015;
+        public static final int s=0x7f0a0010;
+        public static final int scrollView1=0x7f0a0014;
+        public static final int tvTeste=0x7f0a0012;
         public static final int txtDetalhes=0x7f0a0000;
         public static final int txtHoraPreco=0x7f0a0003;
-        public static final int txtLogin=0x7f0a000f;
-        public static final int txtLoginHeader=0x7f0a0010;
+        public static final int txtLogin=0x7f0a000e;
         public static final int txtNome=0x7f0a0007;
         public static final int txtPagamento=0x7f0a0002;
-        public static final int txtSenha=0x7f0a0011;
-        public static final int txtTeste=0x7f0a0014;
+        public static final int txtSenha=0x7f0a000d;
+        public static final int txtTeste=0x7f0a0013;
         public static final int txtTituloPedido=0x7f0a0006;
         public static final int txtTroco=0x7f0a0001;
-        public static final int txtUser=0x7f0a000a;
+        public static final int txtUser=0x7f0a000c;
     }
     public static final class layout {
         public static final int activity_detalhe_pedido=0x7f030000;
@@ -112,21 +116,25 @@ public final class R {
         /** 
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+
     
 
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
             backward-compatibility can go here.
+
         
 
         Base application theme for API 11+. This theme completely replaces
         AppBaseTheme from res/values/styles.xml on API 11+ devices.
+
     
  API 11 theme customizations can go here. 
 
         Base application theme for API 14+. This theme completely replaces
         AppBaseTheme from BOTH res/values/styles.xml and
         res/values-v11/styles.xml on API 14+ devices.
+
     
  API 14 theme customizations can go here. 
          */

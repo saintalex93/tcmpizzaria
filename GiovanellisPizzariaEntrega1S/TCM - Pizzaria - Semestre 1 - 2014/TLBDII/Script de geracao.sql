@@ -1158,8 +1158,8 @@ go
 -----------------------------------------
 create proc USP_ANDROID_Login
 (
-	@Login_Funcionario varchar = null,
-	@Senha_Funcionario varchar = null
+	@Login_Funcionario varchar(30) = null,
+	@Senha_Funcionario varchar(10) = null
 )
 as
 	Begin
@@ -1176,17 +1176,3 @@ as
 			f.Cod_Permissao = p.Cod_Permissao
 	End
 go
-
-/*select 
-			f.Nome_Func,
-			f.Cod_Funcionario,
-			p.Cod_Permissao
-
-		from Funcionario f
-
-		inner join Permissao p on
-			f.Login_Funcionario like 'Maria' and
-			f.Senha_Funcionario like '123' and
-			f.Cod_Permissao = p.Cod_Permissao
-			*/
-exec USP_ANDROID_Login 'Maria', '123'

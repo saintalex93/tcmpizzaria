@@ -39,7 +39,8 @@ public class Home extends Activity {
 	
 	TextView historico;
 	TextView pedido;
-	TextView user;
+	
+	Button user;
 	
 	ListView pedidos;
 	
@@ -66,7 +67,7 @@ public class Home extends Activity {
 		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 		StrictMode.setThreadPolicy(policy);
 		
-		user = (TextView) findViewById(R.id.txtUser);
+		user = (Button) findViewById(R.id.txtUser);
 		
 		user.setText(Login.nomeFuncionario);
 		
@@ -74,7 +75,7 @@ public class Home extends Activity {
 		
 		context = getApplicationContext();
 		
-		historico = (Button) findViewById(R.id.btnHistorico);
+//		historico = (Button) findViewById(R.id.btnHistorico);
 		
 		pedidos = (ListView) findViewById(R.id.lstPedidos);
 		
@@ -86,6 +87,18 @@ public class Home extends Activity {
 			android.R.layout.simple_list_item_1, 
 			arrayPedidos
 		);
+		
+		user.setOnClickListener
+		(
+				new View.OnClickListener()
+				{
+					public void onClick(View v)
+					{
+						Intent i = new Intent(context, Historico.class);
+						startActivity(i);
+					}
+				}
+			);
 		
 		codPedido = "";
 		
@@ -204,7 +217,7 @@ public class Home extends Activity {
 			}
 		);
 
-		historico.setOnClickListener
+/*		historico.setOnClickListener
 		(
 		new View.OnClickListener()
 		{
@@ -215,7 +228,7 @@ public class Home extends Activity {
 			}
 		}
 	);
-	}
+-*/	}
 
 	void updatePedidos()
 	  {
