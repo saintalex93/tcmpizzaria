@@ -14,7 +14,7 @@
     shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot"  Style="{StaticResource LayoutGridStyle}">
+    <Grid x:Name="LayoutRoot"  Style="{StaticResource LayoutGridStyle}" Background="#2c2223">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -23,16 +23,69 @@
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
             <TextBlock x:Name="ApplicationTitle" Text="Giovanellis Pizzaria" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock x:Name="PageTitle" Text="Login" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" Tap="PageTitle_Tap"/>
+            <TextBlock x:Name="PageTitle" Text="Login" Margin="0,0,0,0" Style="{StaticResource PhoneTextTitle1Style}" Tap="PageTitle_Tap"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             
             <!--Create a single button to navigate to the second page which is rendered with the XNA Framework-->
-            <TextBox Height="72" HorizontalAlignment="Left" Margin="0,101,0,0" Name="txtLogin" Text="Login" VerticalAlignment="Top" Width="460" LayoutUpdated="txtLogin_LayoutUpdated" Tap="txtLogin_Tap" LostFocus="txtLogin_LostFocus"/>
-            <Button Content="Entrar" Height="72" HorizontalAlignment="Left" Margin="141,463,0,0" Name="btnEntrar" VerticalAlignment="Top" Width="160" Click="btnEntrar_Click" />
-            <PasswordBox Height="72" HorizontalAlignment="Left" Margin="-4,201,0,0" Name="txtSenha" VerticalAlignment="Top" Width="460" Tap="txtSenha_Tap" LostFocus="txtSenha_LostFocus" />
+            <TextBox 
+                Height="72" 
+                HorizontalAlignment="Left" 
+                Margin="-4,6,0,0" 
+                Name="txtLogin" 
+                Text="Login" 
+                TextAlignment="Left"
+                VerticalAlignment="Top" 
+                Width="460" 
+                LayoutUpdated="txtLogin_LayoutUpdated" 
+                Tap="txtLogin_Tap" 
+                LostFocus="txtLogin_LostFocus"
+                />
+
+            <Button 
+                Content="Entrar" 
+                BorderThickness="0" 
+                Height="72" 
+                HorizontalAlignment="Center" 
+                Margin="0,162,0,0" 
+                Name="btnEntrar" 
+                VerticalAlignment="Top" 
+                Width="160" 
+                Click="btnEntrar_Click" 
+                >
+                <Button.Background>
+                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                        <GradientStop Color="#ef6f53" Offset="0.0" />
+                        <GradientStop Color="#c85e47" Offset="1.0" />
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+
+            <PasswordBox 
+                Password="***"
+                Height="72" 
+                HorizontalAlignment="Center" 
+                Margin="0,84,0,0" 
+                Name="txtSenha" 
+                VerticalAlignment="Top" 
+                Width="460" 
+                Tap="txtSenha_Tap" 
+                LostFocus="txtSenha_LostFocus" 
+                HorizontalContentAlignment="Center" 
+                VerticalContentAlignment="Center" 
+                />
+            
+            <Image 
+                Height="Auto" 
+                HorizontalAlignment="Center" 
+                Margin="2,240,-2,0" 
+                Name="image1"  
+                Stretch="Uniform" 
+                VerticalAlignment="Top" 
+                Width="Auto" 
+                Source="marca.png"/>
         </Grid>
     </Grid>
  

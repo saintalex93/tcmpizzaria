@@ -33,7 +33,7 @@ namespace Giovanellis
         {
             lstPedidos.Items.Clear();
 
-            txtUsuario.Text = MainPage.nomeFuncionario;
+            btnHistorico.Content = MainPage.nomeFuncionario;
 
             WebClient wc = new WebClient();
 
@@ -262,8 +262,6 @@ namespace Giovanellis
                     if (dadosPedidos[7].Length > 0)
                         mensagem += ", Ap: " + dadosPedidos[7];
             }
-
-            mensagem += "\n";
 
             var item = new ListBoxItem { Content = mensagem };
 
