@@ -8,15 +8,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".DetalhePedido" >
+    
 
-    <TextView
-        android:id="@+id/txtDetalhes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:text="Detalhes - "
-        android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
         android:id="@+id/txtTroco"
@@ -40,22 +33,38 @@
     <ListView
         android:id="@+id/lstProdutos"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="fill_parent"
         android:layout_above="@+id/btnCel"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
         android:layout_below="@+id/txtTituloPedido"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp" >
-    </ListView>
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/listborder"
+        android:divider="#999999"
+        android:dividerHeight="1dp"
+        android:paddingBottom="3dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingTop="5dp"
+        android:textAlignment="center" />
 
     <TextView
         android:id="@+id/txtTituloPedido"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/txtTroco"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:text="QtdeProdutos"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium" 
+        
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:textColor="#fff"
+        android:textSize="20sp" 
+        android:background="@drawable/headerpedidos"
+        />
 
     <TextView
         android:id="@+id/txtHoraPreco"
@@ -79,11 +88,18 @@
 
     <Button
         android:id="@+id/btnCel"
+        android:background="@drawable/botao"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:text="Ligar celular" />
+        android:text="Ligar celular" 
+        android:textColor="#fff"
+        />
 
     <Button
         android:id="@+id/btnRes"
@@ -91,6 +107,28 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:text="Ligar residência" />
+        android:text="Ligar residência" 
+        android:background="@drawable/botao"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textColor="#fff"
+        />
+
+    <TextView
+        android:id="@+id/txtDetalhes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/headerpedidos"
+        android:gravity="center"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:text="Detalhes - "
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="#fff"
+        android:textSize="20sp" />
 
 </RelativeLayout>

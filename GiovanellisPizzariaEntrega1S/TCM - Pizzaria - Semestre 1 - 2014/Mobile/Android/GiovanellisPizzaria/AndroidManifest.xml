@@ -46,10 +46,5 @@
             android:label="@string/title_activity_teste"
             android:screenOrientation="portrait" >
         </activity>
-        <activity
-            android:name="com.example.giovanellispizzaria.Settings"
-            android:label="@string/title_activity_settings" >
-        </activity>
     </application>
-
 </manifest>

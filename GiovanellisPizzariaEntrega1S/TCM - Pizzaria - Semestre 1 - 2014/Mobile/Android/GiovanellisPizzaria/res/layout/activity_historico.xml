@@ -12,23 +12,32 @@
 
     <TextView
         android:id="@+id/txtPagamento"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+        android:background="@drawable/headerpedidos"
+        android:gravity="center"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
         android:text="Histórico de entregas"
-        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#fff"
         android:textSize="20sp" />
 
     <ListView
         android:id="@+id/lstHistorico"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_alignLeft="@+id/txtPagamento"
         android:layout_below="@+id/txtPagamento"
-        android:layout_marginTop="18dp"
+        android:background="@drawable/listborder"
         android:divider="#999999"
         android:dividerHeight="1dp"
-        android:textAlignment="center" >
-    </ListView>
+        android:paddingBottom="3dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingTop="5dp"
+        android:textAlignment="center" />
 
 </RelativeLayout>
