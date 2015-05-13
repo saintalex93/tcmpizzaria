@@ -9,26 +9,106 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
+    Background="#2c2223"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
     shell:SystemTray.IsVisible="True" Loaded="PhoneApplicationPage_Loaded">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid 
+        x:Name="LayoutRoot" 
+        Background="#2c2223"
+        >
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="PageTitle" Text="Histórico de entregas" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" FontSize="45" />
-        </StackPanel>
-
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <ListBox Height="Auto" FontSize="30" HorizontalAlignment="Center" Name="lstHistorico" VerticalAlignment="Top" Width="Auto" SelectionChanged="lstHistorico_SelectionChanged" Hold="lstHistorico_Hold" >
+            <ListBox 
+                
+                Height="Auto" 
+                HorizontalAlignment="Stretch" 
+                FontSize="35" 
+                Width="Auto" 
+                VerticalAlignment="Center"
+                >
             </ListBox>
+
+
+            <ListBox 
+                Name="lstHistorico" 
+                SelectionChanged="lstHistorico_SelectionChanged" 
+                Tap="lstHistorico_Hold"
+
+                Height="Auto" 
+                Margin="9,66,10,10"
+                HorizontalAlignment="Stretch" 
+                VerticalAlignment="Stretch" 
+                Width="Auto" 
+                FontSize="30"
+                BorderThickness="4"
+                BorderBrush="#ef6f53"
+                Background="#eeebe3"
+                Foreground="#000"
+                >
+
+                <ListBox.ItemContainerStyle>
+
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                        <Setter Property="BorderThickness" Value="1"/>
+                        <Setter Property="BorderBrush" Value="#999"/>
+                        <Setter Property="Padding" Value="10"/>
+                        <Setter Property="Height" Value="Auto"/>
+                    </Style>
+
+                </ListBox.ItemContainerStyle>
+
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock  
+                            HorizontalAlignment="Left" 
+                            Width="Auto"
+                            Height="Auto"
+                            TextAlignment="Left" 
+                            Text="{Binding}" 
+                            FontSize="200" 
+                            Margin="0" 
+                            Style="{StaticResource PhoneTextNormalStyle}"
+                            Foreground="#000"
+                            Padding="10"
+                            />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+
+
+
+            <Border                 
+                Height="Auto" 
+                HorizontalAlignment="Stretch" 
+                Margin="9,10,9,0" 
+                Background="#ef6f53" 
+                CornerRadius="10,10,0,0"
+                VerticalAlignment="Top"
+                Padding="5"
+                >
+                <TextBlock 
+                        Name="textBlock1" 
+                        Text="Histórico de entregas" 
+                
+                        Height="Auto" 
+                        HorizontalAlignment="Stretch"
+                        TextAlignment="Center"
+                        Margin="0,0,0,0" 
+                        VerticalAlignment="Top" 
+                        FontSize="35"
+                        Width="Auto"
+                    />
+            </Border>
         </Grid>
     </Grid>
  

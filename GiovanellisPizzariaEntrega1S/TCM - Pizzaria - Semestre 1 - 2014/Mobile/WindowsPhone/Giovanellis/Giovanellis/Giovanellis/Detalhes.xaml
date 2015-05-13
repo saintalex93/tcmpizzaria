@@ -9,12 +9,16 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
+    Background="#2c2223"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
     shell:SystemTray.IsVisible="True" Loaded="PhoneApplicationPage_Loaded">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Style="{StaticResource LayoutGridStyle}">
+    <Grid 
+        x:Name="LayoutRoot"
+        Style="{StaticResource LayoutGridStyle}" 
+        Background="#2c2223">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -27,38 +31,228 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <TextBlock Height="30" HorizontalAlignment="Center" Margin="0,6,0,0" Name="txtEndereco" Text="Endereço" VerticalAlignment="Top" TextAlignment="Center" />
-            <TextBlock Height="Auto" HorizontalAlignment="Center" Margin="0,42,0,0" Name="txtNome" Text="Nome" VerticalAlignment="Top" FontSize="25" />
-            <TextBlock Height="30" HorizontalAlignment="Center" Margin="0,82,0,0" Name="txtHoraValor" Text="Hora - ValorPedido" VerticalAlignment="Top" />
-            <TextBlock Height="Auto" HorizontalAlignment="Center" Margin="0,133,0,0" Name="textBlock3" Text="Pagamento" VerticalAlignment="Top" FontSize="30" />
-            <TextBlock Height="30" HorizontalAlignment="Center" Margin="0,179,0,0" Name="txtForma" Text="Forma" VerticalAlignment="Top" />
-            <TextBlock Height="30" HorizontalAlignment="Center" Margin="0,229,0,0" Name="txtQtdeProdutos" Text="QtdeProdutos" VerticalAlignment="Top" FontSize="25"/>
-            <ListBox 
-                Height="290" 
+           
+            <!-- Endereço -->
+            <Border                 
+                Height="Auto" 
                 HorizontalAlignment="Stretch" 
-                Margin="0,265,0,0" 
-                Name="lstProdutos" 
+                Margin="9,10,9,0" 
+                Background="#ef6f53" 
+                CornerRadius="10,10,0,0"
+                VerticalAlignment="Top"
+                Padding="5"
+                Canvas.ZIndex="0"
+                >
+                <TextBlock 
+                        Name="txtEndereco" 
+                        Text="Endereço" 
+                
+                        Height="235" 
+                        HorizontalAlignment="Stretch"
+                        TextAlignment="Center"
+                        Margin="0,0,0,0" 
+                        VerticalAlignment="Top" 
+                        FontSize="20"
+                        Width="Auto"
+                    />
+            </Border>
+
+            <!-- Nome -->
+            <Border                 
+                Height="Auto" 
+                HorizontalAlignment="Stretch" 
+                Margin="12,50,12,0"
+                Background="#fff"
+                VerticalAlignment="Top"
+                Padding="5"
+                >
+                <TextBlock 
+                    Name="txtNome" 
+                    Text="Nome"
+                        
+                    Foreground="Black"
+                    Height="Auto" 
+                    HorizontalAlignment="Stretch"
+                    TextAlignment="Center"
+                    Margin="0,0,0,0" 
+                    VerticalAlignment="Top" 
+                    FontSize="30"
+                    Width="Auto"
+                    />
+            </Border>
+
+            <!-- Hora e valor -->
+            <Border                 
+                Height="Auto" 
+                HorizontalAlignment="Stretch" 
+                Margin="12,102,12,0"
+                Background="#fff"
+                VerticalAlignment="Top"
+                Padding="5"
+                >
+                <TextBlock 
+                    Name="txtHoraValor" 
+                    Text="Hora - ValorPedido"
+                        
+                    Foreground="Black"
+                    Height="Auto" 
+                    HorizontalAlignment="Stretch"
+                    TextAlignment="Center"
+                    Margin="0,0,0,0" 
+                    VerticalAlignment="Top" 
+                    FontSize="20"
+                    Width="Auto"
+                    />
+            </Border>
+
+            <!-- Pagamento -->
+            <Border                 
+                Height="Auto" 
+                HorizontalAlignment="Stretch" 
+                Margin="12,141,12,0"
+                Background="#fff"
+                VerticalAlignment="Top"
+                Padding="5"
+                >
+                <TextBlock 
+                    Name="textBlock3" 
+                    Text="Pagamento" 
+                        
+                    Foreground="Black"
+                    Height="Auto" 
+                    HorizontalAlignment="Stretch"
+                    TextAlignment="Center"
+                    Margin="0,0,0,0" 
+                    VerticalAlignment="Top" 
+                    FontSize="25"
+                    Width="Auto"
+                    />
+            </Border>
+
+            <!-- Forma de pagamento -->
+            <Border                 
+                Height="Auto" 
+                HorizontalAlignment="Stretch" 
+                Margin="12,188,12,0"
+                Background="#fff"
+                VerticalAlignment="Top"
+                Padding="5"
+                >
+                <TextBlock 
+                    Name="txtForma" 
+                    Text="Forma"
+                        
+                    Foreground="Black"
+                    Height="Auto" 
+                    HorizontalAlignment="Stretch"
+                    TextAlignment="Center"
+                    Margin="0,0,0,0" 
+                    VerticalAlignment="Top" 
+                    FontSize="20"
+                    Width="Auto"
+                    />
+            </Border>
+
+            <!-- Quantidade de produtos -->
+            <TextBlock 
+                        Name="txtQtdeProdutos" 
+                        Text="QtdeProdutos"
+                
+                        Height="Auto" 
+                        HorizontalAlignment="Stretch"
+                        TextAlignment="Center"
+                        Margin="9,227,9,0"
+                        VerticalAlignment="Top" 
+                        FontSize="20"
+                        Width="Auto"
+                    />
+
+            <!-- Lista de produtos -->
+            <ListBox 
+                Height="300" 
+                HorizontalAlignment="Stretch" 
+                Margin="9,255,9,80" 
+                Name="lstProdutos"
                 VerticalAlignment="Top" 
-                Width="Auto">
+                Width="Auto" 
+                FontSize="30"
+                BorderThickness="4"
+                BorderBrush="#ef6f53"
+                Background="#eeebe3"
+                Foreground="#000"
+                Canvas.ZIndex="10"
+                >
+
                 <ListBox.ItemContainerStyle>
+
                     <Style TargetType="ListBoxItem">
-                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        <Setter Property="BorderThickness" Value="1"/>
+                        <Setter Property="BorderBrush" Value="#999"/>
+                        <Setter Property="Padding" Value="10"/>
+                        <Setter Property="Height" Value="Auto"/>
                     </Style>
+
                 </ListBox.ItemContainerStyle>
+
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock  
                             HorizontalAlignment="Center" 
-                            TextAlignment="Center" 
+                            Width="Auto"
+                            Height="Auto"
+                            TextAlignment="Center"
                             Text="{Binding}" 
                             FontSize="20" 
                             Margin="0" 
-                            Style="{StaticResource PhoneTextNormalStyle}"/>
+                            Style="{StaticResource PhoneTextNormalStyle}"
+                            Foreground="#000"
+                            Padding="10"
+                            />
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            <Button Content="Ligar celular" Height="72" HorizontalAlignment="Left" Margin="0,556,0,0" Name="btnCelular" VerticalAlignment="Top" Width="Auto" Click="btnCelular_Click" />
-            <Button Content="Ligar residência" Height="72" HorizontalAlignment="Right" Margin="0,556,0,0" Name="btnResidencia" VerticalAlignment="Top" Width="Auto" Click="btnResidencia_Click" />
+
+            <!-- Celular -->
+            <Button 
+                Content="Ligar celular" 
+                BorderThickness="0" 
+                Height="72" 
+                HorizontalAlignment="Left" 
+                Margin="0,556,0,0"
+                Name="btnCelular"
+                VerticalAlignment="Top" 
+                Width="Auto" 
+                Click="btnCelular_Click" 
+                >
+                <Button.Background>
+                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                        <GradientStop Color="#ef6f53" Offset="0.0" />
+                        <GradientStop Color="#c85e47" Offset="1.0" />
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+
+            <!-- Residencial -->
+            <Button 
+                Content="Ligar residência" 
+                BorderThickness="0" 
+                Height="72" 
+                HorizontalAlignment="Right" 
+                Margin="0,556,0,0"
+                Name="btnResidencia"
+                VerticalAlignment="Top" 
+                Width="Auto" 
+                Click="btnResidencia_Click" 
+                >
+                <Button.Background>
+                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                        <GradientStop Color="#ef6f53" Offset="0.0" />
+                        <GradientStop Color="#c85e47" Offset="1.0" />
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+        
         </Grid>
     </Grid>
  

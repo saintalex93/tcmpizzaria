@@ -185,10 +185,10 @@ namespace Giovanellis
                                 txtForma.Text += " - R$ " + valorPago + " (Troco: R$ " + (valorPago - valorPedido) + ")";
 
                             if (telefone.Length == 0)
-                                btnResidencia.IsEnabled = false;
+                                btnResidencia.Visibility = Visibility.Collapsed;
 
                             if (celular.Length == 0)
-                                btnCelular.IsEnabled = false;
+                                btnCelular.Visibility = Visibility.Collapsed;
                         }
                 }
             }

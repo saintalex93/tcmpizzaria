@@ -146,7 +146,7 @@ namespace Giovanellis
             mensagem += "\n";
 
             //Terceira linha: dia e hora do pedido
-            mensagem += registro[4] + " - " + registro[5] + "\n";
+            mensagem += registro[4] + " - " + registro[5];
 
             var item = new ListBoxItem { Content = mensagem };
 
