@@ -152,7 +152,10 @@ public class DetalhePedido extends Activity {
 	  {
 		arrayProdutos.clear();
 		  
-		  String texto = "", aux = "";
+		  String texto = "", aux = "", mensagem = "";
+		  
+		  String[] campos = new String[2];
+		  
 			try {
 				// ATENÇÃO A REDE DEVE ESTAR FUNCIONANDO COM O ENDEREÇO IP
 				// OK
@@ -212,8 +215,39 @@ public class DetalhePedido extends Activity {
 							aux = aux + texto.charAt(i);
 						else
 						{
-							arrayProdutos.add(aux);
+							try
+							{
+								Home.meuLog("aux", aux);
+								
+								campos = aux.split(",");
+								Home.meuLog("campos.length", campos.length+"");
+								
+								if(campos.length == 1)
+									mensagem = campos[0];
+									
+								else if(campos.length == 2)
+								{
+									campos[0] = campos[0].replace("Pizza ", "");
+									campos[1] = campos[1].replace("Pizza ", "");
+									
+									campos[1].replace(" Brotinho", "");
+
+									mensagem = "Pizza meia " + campos[0] + " e meia " + campos[1];
+								}
+								
+								Home.meuLog("mensagem", mensagem);
+							
+								arrayProdutos.add(mensagem);	
+
+							}
+							catch (Exception e)
+							{
+								//Log.d("Mensagem de produtos", "Erro:" ,e);
+							}
+
 							aux = "";
+							campos = null;
+							
 						}
 							
 					}
@@ -237,14 +271,6 @@ public class DetalhePedido extends Activity {
 			// ATENÇÃO A REDE DEVE ESTAR FUNCIONANDO COM O ENDEREÇO IP
 			// OK
 
-			// IP do curso
-			// 10.67.74.32
-			
-			// IP de casa
-			//192.168.1.14
-
-			Log.d("buscar detalhe - codPedido", Home.codPedido + "");
-			
 			URL url = new URL(
 					"http://"+ Login.ip +"/Giovanellis/consulta_Detalhes_selectFormaPagamento.aspx?CodPedido=" + Home.codPedido);
 
@@ -265,8 +291,6 @@ public class DetalhePedido extends Activity {
 
 			inputStream.close();
 
-			Log.d("buscar detalhe - texto", texto);
-			
 			// INÍCIO DA SEPARAÇÃO DOS
 			// REGISTROS############################
 
@@ -342,7 +366,6 @@ public class DetalhePedido extends Activity {
 						if(celular.length() == 0)
 							btnCelular.setVisibility(View.INVISIBLE);
 						
-						Log.d("troco", troco.getText().toString());
 					}
 						
 				}

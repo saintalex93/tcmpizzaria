@@ -66,19 +66,19 @@ public class Login extends Activity {
 					switch(usuario)
 					{
 					case 0:
-						tvLogin.setText("Maria");
+						tvLogin.setText("Roberto");
 						break;
 						
 					case 1:
-						tvLogin.setText("Carlos");
+						tvLogin.setText("Admin");
 						break;
 						
 					case 2:
-						tvLogin.setText("Admin");
+						tvLogin.setText("Maria");
 						break;
 
 					case 3:
-						tvLogin.setText("Alex");
+						tvLogin.setText("Carlos");
 						break;
 					}
 					
