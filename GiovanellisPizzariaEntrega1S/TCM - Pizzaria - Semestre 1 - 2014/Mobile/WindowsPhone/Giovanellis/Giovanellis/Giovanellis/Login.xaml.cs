@@ -143,19 +143,19 @@ namespace Giovanellis
             switch (usuario)
             {
                 case 0:
-                    txtLogin.Text = "Maria";
+                    txtLogin.Text = "Roberto";
                     break;
 
                 case 1:
-                    txtLogin.Text = "Carlos";
-                    break;
-
-                case 2:
                     txtLogin.Text = "Admin";
                     break;
 
+                case 2:
+                    txtLogin.Text = "Maria";
+                    break;
+
                 case 3:
-                    txtLogin.Text = "Alex";
+                    txtLogin.Text = "Carlos";
                     break;
             }
 

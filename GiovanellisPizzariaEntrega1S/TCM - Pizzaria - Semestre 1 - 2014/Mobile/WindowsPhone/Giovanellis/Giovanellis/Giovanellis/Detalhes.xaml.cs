@@ -63,12 +63,19 @@ namespace Giovanellis
 
             if (e.Error == null) //&& !e.Cancelled)
             {
-                string texto, aux = "";
-                int i;
-                texto = e.Result;
+                string texto = "";
+                string aux = "";
+                string mensagem = "";
 
+                int i;
+                
+                texto = e.Result;
+                
                 int tamanho = texto.Length;
+                
                 bool achou = false;
+
+                String[] campos = new String[2];
 
                 for (i = 0; i < tamanho; i++)
                 {
@@ -87,8 +94,33 @@ namespace Giovanellis
 
 						else
 						{
-							lstProdutos.Items.Add(aux);
-							aux = "";
+                            try
+                            {
+                                campos = aux.Split(',');
+
+                                if (campos[1].Length == 0)
+                                    mensagem = campos[0];
+
+                                else if (campos[1].Length > 0)
+                                {
+                                    campos[0] = campos[0].Replace("Pizza ", "");
+                                    campos[1] = campos[1].Replace("Pizza ", "");
+
+                                    campos[1].Replace(" Brotinho", "");
+
+                                    mensagem = "Pizza meia " + campos[0] + " e meia " + campos[1];
+                                }
+
+                                lstProdutos.Items.Add(mensagem);
+
+                            }
+                            catch (Exception f)
+                            {
+                                //Log.d("Mensagem de produtos", "Erro:" ,e);
+                            }
+
+                            aux = "";
+                            campos = null;
                         }
                 }
             }
