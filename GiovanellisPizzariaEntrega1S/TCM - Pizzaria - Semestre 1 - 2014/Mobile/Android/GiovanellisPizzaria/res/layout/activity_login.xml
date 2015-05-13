@@ -42,7 +42,12 @@
         android:layout_alignParentTop="true"
         android:text="Login"
         android:textColor="#ef6f53"
-        android:textSize="32sp" />
+        android:textSize="32sp" 
+        android:shadowColor="#aaa"
+        android:shadowDx="3"
+        android:shadowDy="3"
+        android:shadowRadius="3"
+        />
 
     <EditText
         android:id="@+id/txtLogin"
@@ -55,7 +60,9 @@
         android:hint="Email"
         android:inputType="textEmailAddress"
         android:scrollHorizontally="false"
-        android:textAlignment="gravity" >
+        android:textAlignment="gravity"
+        
+         >
         <requestFocus />
     </EditText>
 

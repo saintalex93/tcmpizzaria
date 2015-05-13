@@ -337,10 +337,10 @@ public class DetalhePedido extends Activity {
 							troco.setText(FormaDepagamentoString);
 						
 						if(telefone.length() == 0)
-							btnResidencial.setEnabled(false);
+							btnResidencial.setVisibility(View.INVISIBLE);
 					
 						if(celular.length() == 0)
-							btnCelular.setEnabled(false);
+							btnCelular.setVisibility(View.INVISIBLE);
 						
 						Log.d("troco", troco.getText().toString());
 					}

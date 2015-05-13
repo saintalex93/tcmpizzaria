@@ -24,7 +24,7 @@ public class Login extends Activity {
 	public static String nomeFuncionario = "";
 
 	// IP do curso	
-//	public static String ip = "169.254.111.109";
+	//public static String ip = "10.67.74.40";
 
 	// IP de casa
 	public static String ip = "192.168.1.8";

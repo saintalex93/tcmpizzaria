@@ -103,7 +103,12 @@
             android:paddingBottom="5dp"
             android:text="asdf"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#000" />
+            android:textColor="#000" 
+            android:shadowColor="#999"
+			android:shadowDx="3"
+			android:shadowDy="3"
+			android:shadowRadius="3"
+            />
 
         <TextView
             android:id="@+id/txtPagamento"
@@ -114,7 +119,11 @@
             android:layout_marginTop="10dp"
             android:text="Pagamento"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="#000" />
+            android:shadowColor="#999"
+            android:shadowDx="3"
+			android:shadowDy="3"
+			android:shadowRadius="3"
+            />
 
         <TextView
             android:id="@+id/txtHoraPreco"
@@ -125,7 +134,12 @@
             android:layout_marginTop="5dp"
             android:text="18:35 - R$ 54,73"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#000" />
+            android:textColor="#000"
+	        android:shadowColor="#999"
+	        android:shadowDx="3"
+	        android:shadowDy="3"
+	        android:shadowRadius="3"
+            />
 
         <TextView
             android:id="@+id/txtNome"
@@ -136,7 +150,12 @@
             android:layout_marginTop="5dp"
             android:text="Medium Text"
             android:textColor="#000"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textAppearance="?android:attr/textAppearanceMedium"
+	        android:shadowColor="#aaa"
+	        android:shadowDx="3"
+	        android:shadowDy="3"
+	        android:shadowRadius="3"
+			/>
 
     </RelativeLayout>
 
