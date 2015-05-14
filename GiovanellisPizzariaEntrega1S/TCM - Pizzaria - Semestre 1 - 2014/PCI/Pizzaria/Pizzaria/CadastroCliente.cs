@@ -11,7 +11,7 @@ using System.Data.SqlClient;
 using Microsoft.VisualBasic;
 
 using BLL;
-using DAL;
+using DAL.Model;
 
 namespace Pizzaria
 {
@@ -30,6 +30,7 @@ namespace Pizzaria
         string conexao = "";
         SqlConnection conn;
         string cod_cliente, nome = "", cep="",email = "", endereco = "", bairro = "", cidade = "", uf = "", complemento = "", telefone = "", cel = "", cpf = "",strIncluir = "";
+        DateTime datanasc;
         int num_endereco = 0;
         
         //Validar se e update ou insert
@@ -72,14 +73,14 @@ namespace Pizzaria
 
         private void CadastroCliente_Load_1(object sender, EventArgs e)
         {
-            conexao = Acesso.Conexao;
+            //conexao = Acesso.Conexao;
             
             preenchegrid();
             
-            this.StartPosition = FormStartPosition.CenterScreen;
+           // this.StartPosition = FormStartPosition.CenterScreen;
         }
 
-        public void atualizarRegistro()
+       /* public void atualizarRegistro()
         {
             cod_cliente = dtgw_dados.CurrentRow.Cells[0].Value.ToString();
 
@@ -89,7 +90,7 @@ namespace Pizzaria
             preencherGrid(strIncluir, dtgw_dados);
 
             
-        }
+        }*/
 
         private void btn_gravar_Click_1(object sender, EventArgs e)
         {
@@ -97,14 +98,35 @@ namespace Pizzaria
             if (!validaCampos())
                 return;
 
-            preencherGrid("insert into Cliente (Nome_Cliente,CPF_Cliente,Endereco_Cliente,Complemento_Cliente ,Numero_Residencia ,CEP_Cliente,Estado_Cliente,Cidade_Cliente ,Email_Cliente ,Telefone_Cliente ,Celular_Cliente ,Bairro_Cliente) values ('" + txt_nome.Text + "','" + mtxt_cpf.Text + "','" + txt_endereco.Text + "','" + txt_complemento.Text + "','" + txt_numero.Text + "','" + mtxt_cep.Text + "','" + cb_uf.Text + "','" + txt_cidade.Text + "','" + txtEmail.Text + "','" + mtxt_telefone.Text + "','" + mtxt_celular.Text + "','" + txt_bairro.Text + "')", dtgw_dados);
-            DAL.Model.clsCliente teste = new DAL.Model.clsCliente();
+            // preencherGrid("insert into Cliente (Nome_Cliente,CPF_Cliente,Endereco_Cliente,Complemento_Cliente ,Numero_Residencia ,CEP_Cliente,Estado_Cliente,Cidade_Cliente ,Email_Cliente ,Telefone_Cliente ,Celular_Cliente ,Bairro_Cliente) values ('" + txt_nome.Text + "','" + mtxt_cpf.Text + "','" + txt_endereco.Text + "','" + txt_complemento.Text + "','" + txt_numero.Text + "','" + mtxt_cep.Text + "','" + cb_uf.Text + "','" + txt_cidade.Text + "','" + txtEmail.Text + "','" + mtxt_telefone.Text + "','" + mtxt_celular.Text + "','" + txt_bairro.Text + "')", dtgw_dados);
+            // txt_bairro.Text + "')", dtgw_dados);
+            clsCliente teste = new clsCliente();
+            teste.Nome_Cliente = txt_nome.Text.ToString();
+            teste.Cpf_Cliente = mtxt_cpf.Text.ToString();
+            teste.Endereco_Cliente = txt_endereco.Text.ToString();
+            teste.Complemento_Cliente = txt_complemento.Text.ToString();
+            teste.Numero_Residencia = Int32.Parse(txt_numero.Text.ToString());
+            teste.Cep_Cliente = mtxt_cep.Text.ToString();
+            teste.Estado_Cliente = cb_uf.SelectedItem.ToString();
+            teste.Cidade_Cliente = txt_cidade.Text.ToString();
+            teste.Email_Cliente = txtEmail.Text.ToString();
+            teste.Telefone_Cliente = mtxt_telefone.Text.ToString();
+            teste.Celular_Cliente = mtxt_celular.Text.ToString();
+            teste.Bairro_Cliente = txt_bairro.Text.ToString();
+            teste.Numero_Apartamento = Int32.Parse(txt_Num_Apt.Text.ToString());
+            teste.DataCadastro = DateTime.Today.ToString("yyyy/MM/dd");
+            datanasc = dtp_datanasc.Value;
+            teste.DataNascimento = datanasc.ToString("yyyy/MM/dd");
+            teste.Senha_Cliente = textBox1.Text.ToString();
             clsClienteBLL teste1 = new clsClienteBLL();
-            dtgw_dados.DataSource = teste1.SelectCliente(teste);
+            
 
 
-            preencherGrid(
-                "SELECT * FROM Cliente WHERE CPF_Cliente = '" + mtxt_cpf.Text + "'", dtgw_dados);
+            dtgw_dados.DataSource = teste1.InsereCliente(teste);
+
+            btn_alterar.Enabled = false;
+
+            preenchegrid();
 
             limparCampos();
         }
@@ -144,17 +166,19 @@ namespace Pizzaria
             txt_nome.Text = dtgw_dados.CurrentRow.Cells[1].Value.ToString();
             mtxt_cpf.Text = dtgw_dados.CurrentRow.Cells[2].Value.ToString();
             txt_endereco.Text = dtgw_dados.CurrentRow.Cells[3].Value.ToString();
-            txt_complemento.Text = dtgw_dados.CurrentRow.Cells[4].Value.ToString();
-            txt_numero.Text = dtgw_dados.CurrentRow.Cells[5].Value.ToString();
+            txt_complemento.Text = dtgw_dados.CurrentRow.Cells[10].Value.ToString();
+            txt_Num_Apt.Text = dtgw_dados.CurrentRow.Cells[5].Value.ToString();
+            txt_numero.Text = dtgw_dados.CurrentRow.Cells[4].Value.ToString();
             mtxt_cep.Text = dtgw_dados.CurrentRow.Cells[6].Value.ToString();
             //Verificar logica para selecionar de acordo com o texto
             //cb_uf.SelectedText.Text = dtgw_dados.CurrentRow.Cells[7].Value.ToString();
-            txt_cidade.Text = dtgw_dados.CurrentRow.Cells[8].Value.ToString();
-            txtEmail.Text = dtgw_dados.CurrentRow.Cells[9].Value.ToString();
-            mtxt_telefone.Text = dtgw_dados.CurrentRow.Cells[10].Value.ToString();
-            mtxt_celular.Text = dtgw_dados.CurrentRow.Cells[11].Value.ToString();
-            txt_bairro.Text = dtgw_dados.CurrentRow.Cells[12].Value.ToString();
-
+            txt_cidade.Text = dtgw_dados.CurrentRow.Cells[9].Value.ToString();
+            txtEmail.Text = dtgw_dados.CurrentRow.Cells[13].Value.ToString();
+            textBox1.Text = dtgw_dados.CurrentRow.Cells[14].Value.ToString();
+            mtxt_telefone.Text = dtgw_dados.CurrentRow.Cells[11].Value.ToString();
+            mtxt_celular.Text = dtgw_dados.CurrentRow.Cells[12].Value.ToString();
+            txt_bairro.Text = dtgw_dados.CurrentRow.Cells[6].Value.ToString();
+            mtxt_cep.Text = dtgw_dados.CurrentRow.Cells[7].Value.ToString();
 
 
 
@@ -169,7 +193,7 @@ namespace Pizzaria
 
             //btn_excluir.Enabled = true;
             btn_alterar.Enabled = true;
-            
+            btn_alterar.Text = "Alterar";
 
 
         }
@@ -186,13 +210,38 @@ namespace Pizzaria
             }
             else 
             {
+                if (!validaCampos())
+                    return;
+
                 btn_alterar.Text = "Alterar";
 
                 string idCliente = dtgw_dados.CurrentRow.Cells[0].Value.ToString();
 
-                atualizarRegistro();
+                clsCliente teste = new clsCliente();
+                teste.Cod_Cliente = Int32.Parse(idCliente);
+                teste.Nome_Cliente = txt_nome.Text.ToString();
+                teste.Cpf_Cliente = mtxt_cpf.Text.ToString();
+                teste.Endereco_Cliente = txt_endereco.Text.ToString();
+                teste.Complemento_Cliente = txt_complemento.Text.ToString();
+                teste.Numero_Residencia = Int32.Parse(txt_numero.Text.ToString());
+                teste.Cep_Cliente = mtxt_cep.Text.ToString();
+                teste.Estado_Cliente = cb_uf.SelectedItem.ToString();
+                teste.Cidade_Cliente = txt_cidade.Text.ToString();
+                teste.Email_Cliente = txtEmail.Text.ToString();
+                teste.Telefone_Cliente = mtxt_telefone.Text.ToString();
+                teste.Celular_Cliente = mtxt_celular.Text.ToString();
+                teste.Bairro_Cliente = txt_bairro.Text.ToString();
+                teste.Numero_Apartamento = Int32.Parse(txt_Num_Apt.Text.ToString());
+                teste.DataCadastro = DateTime.Today.ToString("yyyy/MM/dd");
+                datanasc = dtp_datanasc.Value;
+                teste.DataNascimento = datanasc.ToString("yyyy/MM/dd");
+                teste.Senha_Cliente = textBox1.Text.ToString();
 
-                preencherGrid("SELECT * FROM cliente where cod_cliente = " + idCliente, dtgw_dados);
+                clsClienteBLL teste1 = new clsClienteBLL();
+                
+                dtgw_dados.DataSource = teste1.AtualizaCliente(teste);
+                btn_alterar.Enabled = false;
+                preenchegrid();
             }
 
         }
@@ -251,7 +300,7 @@ namespace Pizzaria
         public void preenchegrid()
         {
 
-            DAL.Model.clsCliente teste = new DAL.Model.clsCliente();     
+            clsCliente teste = new clsCliente();     
             clsClienteBLL teste1 = new clsClienteBLL();
             dtgw_dados.DataSource = teste1.SelectCliente(teste);
 
@@ -709,16 +758,19 @@ namespace Pizzaria
 
         private void txtBuscaPorNome_TextChanged(object sender, EventArgs e)
         {
-            mtxtBuscaPorCPF.Text = "";
+            clsCliente teste = new clsCliente();
+            clsClienteBLL teste1 = new clsClienteBLL();
+            teste.Nome_Cliente = txtBuscaPorNome.Text.ToString();
+            dtgw_dados.DataSource = teste1.SelectCliente(teste);
 
-            preencherGrid("select *"/*Cod_Cliente, Nome_Cliente ,CPF_Cliente*/+" from cliente where Nome_Cliente like ('%" + txtBuscaPorNome.Text + "%')", dtgw_dados);
         }
 
         private void mtxtBuscaPorCPF_TextChanged(object sender, EventArgs e)
         {
-            txtBuscaPorNome.Text = "";
+           /* txtBuscaPorNome.Text = "";
 
             string cpfOriginal = mtxtBuscaPorCPF.Text/*.Replace(" ", "").Replace(".", "").Replace(" ","")*/;
+            /*
             string cpfCorrigido = "";
             bool primeiroNumeroDoStringEncontardo = false;
             int i = 0;
@@ -740,7 +792,7 @@ namespace Pizzaria
             }
 
             preencherGrid("select Cod_Cliente, Nome_Cliente ,CPF_Cliente from cliente where CPF_Cliente like ('%" + cpfCorrigido + "%')", dtgw_dados);
-
+            */
             /*            txt_nome.Clear();
                         txtPalavraChave.Clear();
                         txtIDProduto.Clear();
@@ -748,6 +800,15 @@ namespace Pizzaria
                         limparGrid(gridProdutosEncontrados);
                         limparGrid(gridProdutosConsumidos);
                         btn_remover.Enabled = false;*/
+
+
+            clsCliente teste = new clsCliente();
+            clsClienteBLL teste1 = new clsClienteBLL();
+            //teste.Cpf_Cliente = mtxtBuscaPorCPF.Text.ToString().replace(replace(replace(Replace("-", ""), ".", ""), "_", ""), " ", "");
+            teste.Cpf_Cliente = mtxtBuscaPorCPF.Text.ToString().Replace("-","").Replace(".","").Replace("_","").Replace(" ","");
+            //teste1.SelectCliente(teste);
+
+            dtgw_dados.DataSource = teste1.SelectCliente(teste);
         }
 
     }

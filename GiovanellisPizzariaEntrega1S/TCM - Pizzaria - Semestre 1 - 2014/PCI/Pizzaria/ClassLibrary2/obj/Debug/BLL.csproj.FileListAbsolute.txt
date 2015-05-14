@@ -1,0 +1,35 @@
+C:\Users\Casa\Documents\TortoiseSVN\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\ClassLibrary2\obj\Debug\BLL.csprojResolveAssemblyReference.cache
+C:\Users\Casa\Documents\TortoiseSVN\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\ClassLibrary2\bin\Debug\ClassLibrary2.dll
+C:\Users\Casa\Documents\TortoiseSVN\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\ClassLibrary2\bin\Debug\ClassLibrary2.pdb
+C:\Users\Casa\Documents\TortoiseSVN\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\ClassLibrary2\bin\Debug\ClassLibrary1.dll
+C:\Users\Casa\Documents\TortoiseSVN\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\ClassLibrary2\bin\Debug\ClassLibrary1.pdb
+C:\Users\Casa\Documents\TortoiseSVN\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\ClassLibrary2\obj\Debug\ClassLibrary2.dll
+C:\Users\Casa\Documents\TortoiseSVN\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\ClassLibrary2\obj\Debug\ClassLibrary2.pdb
+G:\PCI\Pizzaria\ClassLibrary2\bin\Debug\ClassLibrary2.dll
+G:\PCI\Pizzaria\ClassLibrary2\bin\Debug\ClassLibrary2.pdb
+G:\PCI\Pizzaria\ClassLibrary2\bin\Debug\ClassLibrary1.dll
+G:\PCI\Pizzaria\ClassLibrary2\bin\Debug\ClassLibrary1.pdb
+G:\PCI\Pizzaria\ClassLibrary2\obj\Debug\BLL.csprojResolveAssemblyReference.cache
+G:\PCI\Pizzaria\ClassLibrary2\obj\Debug\ClassLibrary2.dll
+G:\PCI\Pizzaria\ClassLibrary2\obj\Debug\ClassLibrary2.pdb
+C:\Users\Casa\Desktop\izzaria\PCI\Pizzaria\ClassLibrary2\bin\Debug\ClassLibrary2.dll
+C:\Users\Casa\Desktop\izzaria\PCI\Pizzaria\ClassLibrary2\bin\Debug\ClassLibrary2.pdb
+C:\Users\Casa\Desktop\izzaria\PCI\Pizzaria\ClassLibrary2\bin\Debug\ClassLibrary1.dll
+C:\Users\Casa\Desktop\izzaria\PCI\Pizzaria\ClassLibrary2\bin\Debug\ClassLibrary1.pdb
+C:\Users\Casa\Desktop\izzaria\PCI\Pizzaria\ClassLibrary2\obj\Debug\BLL.csprojResolveAssemblyReference.cache
+C:\Users\Casa\Desktop\izzaria\PCI\Pizzaria\ClassLibrary2\obj\Debug\ClassLibrary2.dll
+C:\Users\Casa\Desktop\izzaria\PCI\Pizzaria\ClassLibrary2\obj\Debug\ClassLibrary2.pdb
+C:\Users\Casa\Desktop\izzaria\PCI\Pizzaria_Atualizada\ClassLibrary2\obj\Debug\BLL.csprojResolveAssemblyReference.cache
+C:\Users\Casa\Desktop\izzaria\PCI\Pizzaria_Atualizada\ClassLibrary2\obj\Debug\ClassLibrary2.dll
+C:\Users\Casa\Desktop\izzaria\PCI\Pizzaria_Atualizada\ClassLibrary2\obj\Debug\ClassLibrary2.pdb
+C:\Users\Casa\Desktop\izzaria\PCI\Pizzaria_Atualizada\ClassLibrary2\bin\Debug\ClassLibrary2.dll
+C:\Users\Casa\Desktop\izzaria\PCI\Pizzaria_Atualizada\ClassLibrary2\bin\Debug\ClassLibrary2.pdb
+C:\Users\Casa\Desktop\izzaria\PCI\Pizzaria_Atualizada\ClassLibrary2\bin\Debug\ClassLibrary1.dll
+C:\Users\Casa\Desktop\izzaria\PCI\Pizzaria_Atualizada\ClassLibrary2\bin\Debug\ClassLibrary1.pdb
+C:\Users\Casa\Downloads\Emerson\izzaria\PCI\Pizzaria_Atualizada\ClassLibrary2\bin\Debug\ClassLibrary2.dll
+C:\Users\Casa\Downloads\Emerson\izzaria\PCI\Pizzaria_Atualizada\ClassLibrary2\bin\Debug\ClassLibrary2.pdb
+C:\Users\Casa\Downloads\Emerson\izzaria\PCI\Pizzaria_Atualizada\ClassLibrary2\bin\Debug\ClassLibrary1.dll
+C:\Users\Casa\Downloads\Emerson\izzaria\PCI\Pizzaria_Atualizada\ClassLibrary2\bin\Debug\ClassLibrary1.pdb
+C:\Users\Casa\Downloads\Emerson\izzaria\PCI\Pizzaria_Atualizada\ClassLibrary2\obj\Debug\BLL.csprojResolveAssemblyReference.cache
+C:\Users\Casa\Downloads\Emerson\izzaria\PCI\Pizzaria_Atualizada\ClassLibrary2\obj\Debug\ClassLibrary2.dll
+C:\Users\Casa\Downloads\Emerson\izzaria\PCI\Pizzaria_Atualizada\ClassLibrary2\obj\Debug\ClassLibrary2.pdb

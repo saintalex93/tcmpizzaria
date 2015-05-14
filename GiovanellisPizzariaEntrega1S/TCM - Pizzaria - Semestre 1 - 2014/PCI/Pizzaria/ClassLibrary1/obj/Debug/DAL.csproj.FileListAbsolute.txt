@@ -1,0 +1,27 @@
+C:\Users\Casa\Documents\TortoiseSVN\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\ClassLibrary1\bin\Debug\ClassLibrary1.dll
+C:\Users\Casa\Documents\TortoiseSVN\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\ClassLibrary1\bin\Debug\ClassLibrary1.pdb
+C:\Users\Casa\Documents\TortoiseSVN\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\ClassLibrary1\obj\Debug\ClassLibrary1.dll
+C:\Users\Casa\Documents\TortoiseSVN\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\ClassLibrary1\obj\Debug\ClassLibrary1.pdb
+C:\Users\Casa\Documents\TortoiseSVN\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\ClassLibrary1\bin\Debug\ClassLibrary1.dll.config
+G:\PCI\Pizzaria\ClassLibrary1\bin\Debug\ClassLibrary1.dll.config
+G:\PCI\Pizzaria\ClassLibrary1\bin\Debug\ClassLibrary1.dll
+G:\PCI\Pizzaria\ClassLibrary1\bin\Debug\ClassLibrary1.pdb
+G:\PCI\Pizzaria\ClassLibrary1\obj\Debug\ClassLibrary1.dll
+G:\PCI\Pizzaria\ClassLibrary1\obj\Debug\ClassLibrary1.pdb
+C:\Users\Casa\Desktop\izzaria\PCI\Pizzaria\ClassLibrary1\bin\Debug\ClassLibrary1.dll.config
+C:\Users\Casa\Desktop\izzaria\PCI\Pizzaria\ClassLibrary1\bin\Debug\ClassLibrary1.dll
+C:\Users\Casa\Desktop\izzaria\PCI\Pizzaria\ClassLibrary1\bin\Debug\ClassLibrary1.pdb
+C:\Users\Casa\Desktop\izzaria\PCI\Pizzaria\ClassLibrary1\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+C:\Users\Casa\Desktop\izzaria\PCI\Pizzaria\ClassLibrary1\obj\Debug\ClassLibrary1.dll
+C:\Users\Casa\Desktop\izzaria\PCI\Pizzaria\ClassLibrary1\obj\Debug\ClassLibrary1.pdb
+C:\Users\Casa\Desktop\izzaria\PCI\Pizzaria_Atualizada\ClassLibrary1\bin\Debug\ClassLibrary1.dll.config
+C:\Users\Casa\Desktop\izzaria\PCI\Pizzaria_Atualizada\ClassLibrary1\bin\Debug\ClassLibrary1.dll
+C:\Users\Casa\Desktop\izzaria\PCI\Pizzaria_Atualizada\ClassLibrary1\bin\Debug\ClassLibrary1.pdb
+C:\Users\Casa\Desktop\izzaria\PCI\Pizzaria_Atualizada\ClassLibrary1\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+C:\Users\Casa\Desktop\izzaria\PCI\Pizzaria_Atualizada\ClassLibrary1\obj\Debug\ClassLibrary1.dll
+C:\Users\Casa\Desktop\izzaria\PCI\Pizzaria_Atualizada\ClassLibrary1\obj\Debug\ClassLibrary1.pdb
+C:\Users\Casa\Downloads\Emerson\izzaria\PCI\Pizzaria_Atualizada\ClassLibrary1\bin\Debug\ClassLibrary1.dll.config
+C:\Users\Casa\Downloads\Emerson\izzaria\PCI\Pizzaria_Atualizada\ClassLibrary1\bin\Debug\ClassLibrary1.dll
+C:\Users\Casa\Downloads\Emerson\izzaria\PCI\Pizzaria_Atualizada\ClassLibrary1\bin\Debug\ClassLibrary1.pdb
+C:\Users\Casa\Downloads\Emerson\izzaria\PCI\Pizzaria_Atualizada\ClassLibrary1\obj\Debug\ClassLibrary1.dll
+C:\Users\Casa\Downloads\Emerson\izzaria\PCI\Pizzaria_Atualizada\ClassLibrary1\obj\Debug\ClassLibrary1.pdb
