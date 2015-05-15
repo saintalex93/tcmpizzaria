@@ -1164,23 +1164,24 @@ as
 	End
 go
 -----------------------------------------
-create proc USP_CSP_Login
+create proc USP_CSP_LOGIN
 (
-	@Login_Funcionario varchar(30) = null,
-	@Senha_Funcionario varchar(10) = null
+	@Login varchar(20),
+	@Senha varchar(20)
 )
 as
-	Begin
+	begin
 		select 
-			Count(Cod_Funcionario)
+			Cod_Permissao,
+			Login_Funcionario,
+			Senha_Funcionario
 
-		from Funcionario f
-
-		inner join Permissao p on
-			f.Login_Funcionario like @Login_Funcionario and
-			f.Senha_Funcionario like @Senha_Funcionario and
-			f.Cod_Permissao = p.Cod_Permissao
-	End
+		from Funcionario
+		
+		where
+			Login_Funcionario = @Login and
+			Senha_Funcionario = @Senha
+	end
 go
 -----------------------------------------
 create procedure [dbo].[CSP_Atualiza_Cliente]
@@ -1623,5 +1624,144 @@ as
 		update Pedido 
 		set Estado = @Estado 
 		where Cod_Pedido = @cod_pedido
+	end
+go
+
+		create procedure SP_SelecionaCod
+		
+		@Nome_Funcionario Varchar (40)
+		
+		As
+		Begin
+		select cod_funcionario from funcionario
+		where nome_func like '%' + @Nome_Funcionario + '%'
+	End
+go
+------------------------------------------------
+create proc SP_JAVA_Rel
+(
+	@DataInicial Date,
+	@DataFinal Date
+)
+as
+	declare
+		@TotalDespesa float,
+		@TotalFuncionario float,
+		@TotalCompras float,
+		@TotalPedidos float,
+		@TotalPromocao float,
+		@TotalGeral float,
+		@TotalPrejuca float,
+		@TotalReceita float
+
+	begin
+		set @TotalFuncionario = (select SUM(ValorPagamento) from Pagamento where DataExpedido between @DataInicial and @DataFinal)
+		set @TotalDespesa = (select  sum(ValorDespesa) from despesa where DataPagamento between @DataInicial and @DataFinal)
+		set @TotalCompras = (select SUM (Valor_Compra) from CompraFornecedor where Data_Venda between @DataInicial and @DataFinal)
+		set @TotalPedidos = (select SUM (ValorPago) from Pedido where Data between @DataInicial and @DataFinal)
+		set @TotalPromocao = (select sum(Valor) from PedidoPromocao as p inner join Promocao as pr on pr.Cod_Promocao = p.Cod_Promocao inner join Pedido 
+		as pd on pd.Cod_Pedido = p.Cod_Pedido where Data between '01-01-2015' and '31-12-2015')
+
+		set @TotalPrejuca = (@TotalDespesa + @TotalFuncionario + @TotalCompras) 
+		Set @TotalReceita = @TotalPedidos
+		set @TotalGeral = @TotalReceita - @TotalPrejuca 
+
+		print 'Prejuizo: ' print @TotalPrejuca
+		print 'Receita: ' print @TotalReceita
+		print 'TotalGeral: ' print @TotalGeral 
+		print 'Promoções' print @TotalPromocao
+	end
+go
+------------------------------------------------
+create proc SP_JAVA_AlterarSenha
+	@Cod_Funcionario int,
+	@Login_funcionario Varchar (50),
+	@Senha_Funcionario Varchar (20),
+	@Cod_Permissao int
+as
+	begin
+		Update Funcionario 
+		set 
+			Login_funcionario = @Login_funcionario, 
+			Senha_Funcionario = @Senha_Funcionario, 
+			Cod_Permissao = @Cod_Permissao 
+		where 
+			Cod_Funcionario = @Cod_Funcionario
+	end
+go
+------------------------------------------------
+create proc SP_JAVA_InserirTipoDespesa
+	@NomeDespesa varchar (40)
+AS
+	declare @SituacaoDespesa varchar (20)
+	begin
+		set @SituacaoDespesa = 'Ativo'
+		insert into TipoDespesa (NomeDespesa, SituacaoDespesa) values (@NomeDespesa, @SituacaoDespesa)
+	end
+go
+------------------------------------------------
+create proc SP_JAVA_AlterarTipoDespesa
+	@CodDespesa int,
+	@NomeDespesa varchar (30),
+	@SituacaoDespesa varchar (20)
+as
+	begin
+		update TipoDespesa 
+
+		set 
+		NomeDespesa = @NomeDespesa, 
+		SituacaoDespesa = @SituacaoDespesa 
+
+		where codTipoDespesa = @CodDespesa
+	end
+go
+------------------------------------------------
+create proc SP_JAVA_LancarDespesa
+	@TipoDespesa int,
+	@ValorDespesa float,
+	@DataPagamento date,
+	@DataVencimento date
+as
+	begin
+		Insert into Despesa
+		(
+			TipoDespesa, 
+			ValorDespesa, 
+			DataPagamento, 
+			DataVencimento
+		)
+
+		values 
+		(
+			@TipoDespesa,
+			@ValorDespesa,
+			@DataPagamento,
+			@DataVencimento
+		)
+	end
+go
+------------------------------------------------
+create proc SP_JAVA_LancamentoFuncionario
+	@ValorPagamento float,
+	@DataExpedido date,
+	@TipoPagamento varchar (30),
+	@CodFuncionario int
+as
+	begin
+		insert into Pagamento 
+		(
+			ValorPagamento, 
+			DataExpedido, 
+			TipoPagamento, 
+			Cod_Funcionario
+		)
+
+		Values 
+		(
+			@ValorPagamento,
+			@DataExpedido,
+			@TipoPagamento,
+			@CodFuncionario
+		)
 	end
 go
