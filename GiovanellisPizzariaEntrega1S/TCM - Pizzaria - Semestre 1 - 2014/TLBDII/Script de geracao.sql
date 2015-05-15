@@ -131,7 +131,7 @@ go
 
 create table Produto
 (
-Cod_Produto INT IDENTITY(1,1) PRIMARY KEY,
+Cod_Produto INT IDENTITY(0,1) PRIMARY KEY,
 Nome_Produto VARCHAR(40),
 Valor_Venda DECIMAL(6,2),
 Sobe_Site INT
@@ -219,18 +219,17 @@ create table Promocao
 Cod_Promocao INT IDENTITY(1,1) PRIMARY KEY,
 Nome_Promocao VARCHAR(40),
 Descricao VARCHAR(150),
-Preco_Original DECIMAL(6,2),
-Preco_Promocao DECIMAL(6,2),
-Vigencia VARCHAR(10),
+PorcentagemDesconto DECIMAL(3,2),
+Vigencia Date,
 sobe_promocao INT,
 AcessivelATodos INT
 )
 go
 
-create table PedidoPromocao
+create table ProdutoPromocao
 (
-codPromoPedido INT IDENTITY(1,1) PRIMARY KEY,
-Cod_Pedido INT FOREIGN KEY REFERENCES Pedido(Cod_Pedido),
+codPromocaoProduto INT IDENTITY(1,1) PRIMARY KEY,
+Cod_Produto INT FOREIGN KEY REFERENCES Produto(Cod_Produto),
 Cod_Promocao INT FOREIGN KEY REFERENCES Promocao(Cod_Promocao)
 )
 go
@@ -248,7 +247,7 @@ go
 
 create table Detalhe_Pedido
 (
-Cod_Detalhe INT IDENTITY(1,1) PRIMARY KEY,
+Cod_Detalhe INT IDENTITY(0,1) PRIMARY KEY,
 Cod_Produto INT FOREIGN KEY REFERENCES Produto(Cod_Produto),
 Cod_Produto2 INT FOREIGN KEY REFERENCES Produto(Cod_Produto),
 Cod_Pedido INT FOREIGN KEY REFERENCES Pedido(Cod_Pedido),
@@ -275,10 +274,12 @@ valor_insumo decimal (6,2),
 qdt_comprada int,
 )
 go
-
+	-------------------------------------------------------------- 
+	-------------------------------------------------------------- 
 	-------------------- *** INSERT'S *** ------------------------ 
-		
-	
+	-------------------------------------------------------------- 
+	-------------------------------------------------------------- 
+
 insert into Cliente
 (
 Nome_Cliente,
@@ -388,6 +389,7 @@ values
 ('Queijos'),
 ('Vegetais'),
 ('Massas')
+go
 
 insert into Produto
 (
@@ -396,6 +398,7 @@ Valor_Venda,
 Sobe_Site
 )
 values
+('',0,0),
 ('Pizza Baiana',20.00,1),
 ('Pizza Mussarela',18.40,1),
 ('Pizza Bacon',20.20,1),
@@ -516,13 +519,15 @@ insert into Promocao
 (
 Nome_Promocao,
 Descricao,
+PorcentagemDesconto,
+Vigencia,
 sobe_promocao,
 AcessivelATodos
 )
 values
-('Final de semana','Nos finais de semana deste mês(Novembro), as pizzas de Mussarela,Calabresa e Baiana terão seu preço reduzido a R$16,00.<br /> Aproveite !!',1,0),
-('Cookie Promocional','Compras acima de R$25,00, você ganha dois deliciosos cookies de chocolate.',1,0),
-('Compras acima de R$50,00','Ao gastar R$50,00 ou mais em nossa Pizzaria, você concorre a um Iphone 9 !!',1,1)
+('Final de semana','Pizzas com 15% de desconto até dia 23 de Maio!',0.85, '2015-05-23', 1,0),
+('Super três queijos','Pizza de três queijos com 25% de desconto!.',0.75, '2016-01-01', 1,0),
+('Olha o refrigerante','Refrigerante agora está mais barato',0.90, '2016-01-01', 1, 1)
 go
 
 insert into insumo_fornecedor
@@ -582,15 +587,22 @@ values
 (9, 5, 1)
 go
 
-insert into PedidoPromocao
+insert into ProdutoPromocao
 (
 Cod_Promocao,
-Cod_Pedido
+Cod_Produto
 )
 values
 (1, 1),
-(2, 7),
-(3, 4)
+(1, 2),
+(1, 3),
+(1, 4),
+(1, 5),
+(1, 6),
+(1, 7),
+(1, 9),
+(2, 8),
+(3, 14)
 go
 
 insert into CompraFornecedor
@@ -614,138 +626,138 @@ cod_produto2,
 cod_produto
 )
 values
-(1,null,1),
-(1,null,2),
-(1,null,3),
-(1,null,14),
+(1,5,1),
+(1,0,2),
+(1,4,3),
+(1,0,14),
 
-(2,null,1),
-(2,null,2),
-(2,null,2),
+(2,0,1),
+(2,5,1),
+(2,0,2),
 
-(3,null,1),
-(3,null,2),
-(3,null,3),
-(3,null,4),
-(3,null,5),
-(3,null,6),
-(3,null,14),
-(3,null,14),
-(3,null,15),
+(3,0,1),
+(3,0,2),
+(3,5,3),
+(3,0,4),
+(3,9,5),
+(3,0,6),
+(3,0,14),
+(3,0,14),
+(3,0,15),
 
-(4,null,1),
-(4,null,2),
-(4,null,3),
-(4,null,14),
+(4,0,1),
+(4,0,2),
+(4,6,3),
+(4,0,14),
 
-(5,null,1),
-(5,null,2),
-(5,null,3),
-(5,null,14),
+(5,0,1),
+(5,0,2),
+(5,7,3),
+(5,0,14),
 
-(6,null,1),
-(6,null,2),
-(6,null,2),
+(6,0,1),
+(6,0,2),
+(6,0,2),
 
-(7,null,1),
-(7,null,2),
-(7,null,3),
-(7,null,14),
-(7,null,15),
+(7,0,1),
+(7,0,2),
+(7,0,3),
+(7,0,14),
+(7,0,15),
 
-(8,null,1),
-(8,null,2),
-(8,null,3),
-(8,null,14),
+(8,0,1),
+(8,0,2),
+(8,0,3),
+(8,0,14),
 
-(9,null,1),
-(9,null,2),
-(9,null,3),
-(9,null,14),
+(9,0,1),
+(9,0,2),
+(9,0,3),
+(9,0,14),
 
-(10,null,1),
-(10,null,2),
-(10,null,2),
+(10,0,1),
+(10,0,2),
+(10,0,2),
 
-(10,null,1),
-(10,null,2),
-(10,null,3),
-(10,null,4),
-(10,null,5),
-(10,null,6),
-(10,null,14),
-(10,null,14),
-(10,null,15),
+(10,0,1),
+(10,0,2),
+(10,0,3),
+(10,0,4),
+(10,0,5),
+(10,0,6),
+(10,0,14),
+(10,0,14),
+(10,0,15),
 
-(11,null,1),
-(11,null,2),
-(11,null,3),
-(11,null,14),
+(11,0,1),
+(11,0,2),
+(11,0,3),
+(11,0,14),
 
-(12,null,1),
-(12,null,2),
-(12,null,3),
-(12,null,14),
+(12,0,1),
+(12,0,2),
+(12,0,3),
+(12,0,14),
 
-(13,null,1),
-(13,null,2),
-(13,null,2),
+(13,0,1),
+(13,0,2),
+(13,0,2),
 
-(14,null,1),
-(14,null,2),
-(14,null,3),
-(14,null,14),
-(14,null,15),
+(14,0,1),
+(14,0,2),
+(14,0,3),
+(14,0,14),
+(14,0,15),
 
-(15,null,1),
-(15,null,2),
-(15,null,3),
-(15,null,14),
+(15,0,1),
+(15,0,2),
+(15,0,3),
+(15,0,14),
 
-(16,null,1),
-(16,null,2),
-(16,null,3),
-(16,null,14),
+(16,0,1),
+(16,0,2),
+(16,0,3),
+(16,0,14),
 
-(17,null,1),
-(17,null,2),
-(17,null,2),
+(17,0,1),
+(17,0,2),
+(17,0,2),
 
-(18,null,1),
-(18,null,2),
-(18,null,3),
-(18,null,4),
-(18,null,5),
-(18,null,6),
-(18,null,14),
-(18,null,14),
-(18,null,15),
+(18,0,1),
+(18,0,2),
+(18,0,3),
+(18,0,4),
+(18,0,5),
+(18,0,6),
+(18,0,14),
+(18,0,14),
+(18,0,15),
 
-(19,null,1),
-(19,null,2),
-(19,null,3),
-(19,null,14),
+(19,0,1),
+(19,0,2),
+(19,0,3),
+(19,0,14),
 
-(21,null,1),
-(21,null,2),
-(21,null,3),
-(21,null,14),
+(21,0,1),
+(21,0,2),
+(21,0,3),
+(21,0,14),
 
-(22,null,1),
-(22,null,2),
-(22,null,2),
+(22,0,1),
+(22,0,2),
+(22,0,2),
 
-(23,null,1),
-(23,null,2),
-(23,null,3),
-(23,null,14),
-(23,null,15),
+(23,0,1),
+(23,0,2),
+(23,0,3),
+(23,0,14),
+(23,0,15),
 
-(24,null,1),
-(24,null,2),
-(24,null,3),
-(24,null,14),
-(24,null,15)
+(24,0,1),
+(24,0,2),
+(24,0,3),
+(24,0,14),
+(24,0,15)
 
 go
 
@@ -1083,8 +1095,16 @@ create proc USP_ANDROID_DetalhesPedido_SelectProdutosPedido
 )
 as
 	Begin
-		select pr.Nome_Produto
-
+		select 
+			pr.Nome_Produto,
+			(
+				select pr.Nome_Produto
+				from Produto pr
+				where 
+					dp.Cod_Pedido = p.Cod_Pedido and
+					dp.Cod_Produto2 = pr.Cod_Produto
+			) AS 'Meia'
+			
 		from Produto pr
 		inner join Detalhe_Pedido dp on
 			dp.Cod_Produto = pr.Cod_Produto
@@ -1094,7 +1114,7 @@ as
 	End
 go
 
-print 'Proc USP_ANDROID_DetalhesPedido_SelectProdutosPedido criada'
+	print 'Proc USP_ANDROID_DetalhesPedido_SelectProdutosPedido criada'
 go
 
 -----------------------------------------
