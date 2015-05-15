@@ -82,7 +82,6 @@ public class Historico extends Activity {
 				}
 			};
 			
-			
 			historico.setAdapter(adapter);
 	        
 			updateHistorico();

@@ -100,11 +100,19 @@ namespace Giovanellis
             if (e.Error == null) //&& !e.Cancelled)
             {
                 string texto, aux = "";
-                int i;
-                texto = e.Result;
                 
+                string[] campos = null;
+
+                texto = e.Result;
+
                 int tamanho = texto.Length;
+                int i;
+
                 bool achou = false;
+
+                nomeFuncionario = "";
+                codFuncionario = 0;
+
                 for (i = 0; i < tamanho; i++)
                 {
                     if (texto[i] == '#')
@@ -117,16 +125,16 @@ namespace Giovanellis
                         achou = false;
 
                     if (achou)
-                        if (texto[i] != ';' && texto[i] != ',')
+                        if (texto[i] != ';')
                             aux = aux + texto[i];
-                        else if (texto[i] == ',')
-                        {
-                            codFuncionario = Int32.Parse(aux);
-                            aux = "";
-                        }
+
                         else if (texto[i] == ';')
                         {
-                            nomeFuncionario = aux;
+                            campos = aux.Split(',');
+
+                            codFuncionario = Int32.Parse(campos[1]);
+                            nomeFuncionario = campos[0];
+
                             aux = "";
                         }
                 }

@@ -8,7 +8,7 @@ import java.net.URLConnection;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.StrictMode;
+//import android.os.StrictMode;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,14 +21,14 @@ import android.widget.Toast;
 
 public class Login extends Activity {
 
-	public static String nomeFuncionario = "";
-
 	// IP do curso	
 	//public static String ip = "10.67.74.40";
 
 	// IP de casa
 	public static String ip = "192.168.1.8";
-
+	
+	public static String nomeFuncionario = "";
+	
 	public static int codFuncionario = 0;
 
 	TextView lbLogin;
@@ -44,8 +44,8 @@ public class Login extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 
-		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-		StrictMode.setThreadPolicy(policy);
+//		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+	//	StrictMode.setThreadPolicy(policy);
 
 		Button logar = (Button) findViewById(R.id.btnLogin);
 
@@ -54,8 +54,6 @@ public class Login extends Activity {
 		tvSenha = (TextView) findViewById(R.id.txtSenha);
 		
 		logo = (ImageView) findViewById(R.drawable.marca);
-		
-		
 
 		lbLogin.setOnClickListener
 		(
@@ -116,13 +114,21 @@ public class Login extends Activity {
 				}
 
 				String texto = "", aux = "";
+				
+				nomeFuncionario = "";
+				codFuncionario = 0;
+				
+				String[] campos = null;
+				
 				try
 				{
 					// ATENÇÃO A REDE DEVE ESTAR FUNCIONANDO COM O ENDEREÇO IP
 					// OK
 
+					Home.meuLog("Url", "http://"+ ip +"/Giovanellis/consulta_login.aspx?Login_Funcionario="+tvLogin.getText()+"&Senha_Funcionario="+tvSenha.getText());
+					
 					URL url = new URL("http://"+ ip +"/Giovanellis/consulta_login.aspx?Login_Funcionario="+tvLogin.getText()+"&Senha_Funcionario="+tvSenha.getText());
-
+						
 					URLConnection conexao = url.openConnection();
 
 					InputStream inputStream = conexao.getInputStream();
@@ -135,7 +141,7 @@ public class Login extends Activity {
 						texto += ((char) (byte) current + "");
 
 					inputStream.close();
-
+					
 					// INÍCIO DA SEPARAÇÃO DOS
 					// REGISTROS############################
 
@@ -155,18 +161,24 @@ public class Login extends Activity {
 
 						if (achou) 
 						{
-							if (texto.charAt(i) != ';'&& texto.charAt(i) != ',')
+							if (texto.charAt(i) != ';')
 								aux += texto.charAt(i);
 							
 							else if (texto.charAt(i) == ',') 
 							{
-								codFuncionario = Integer.parseInt(aux);
+								
 								aux = "";
+								Home.meuLog("codFuncionario", codFuncionario+"");
 							} 
 							else if (texto.charAt(i) == ';') 
 							{
-								nomeFuncionario = aux;
+								campos = aux.split(",");
+								
+								nomeFuncionario = campos[0];
+								codFuncionario = Integer.parseInt(campos[1]);
+								
 								aux = "";
+								Home.meuLog("nomeFuncionario", nomeFuncionario);
 							}
 						}
 					}
@@ -212,7 +224,7 @@ public class Login extends Activity {
 	}
 	
 	@Override
-	  public boolean onOptionsItemSelected(MenuItem item) {
+	public boolean onOptionsItemSelected(MenuItem item) {
 		
 //		Intent i = new Intent(getApplicationContext(), Settings.class);
 	//	startActivity(i);

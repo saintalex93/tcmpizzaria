@@ -10,10 +10,10 @@
 		int Cod_Pedido = int.Parse((Request.QueryString["Cod_Pedido"]));
 
 		//SRING CASA	
-		String strConexao = "Password=peganomeupau; Persist Security Info=True; User ID=sa; Initial Catalog=Pizzaria; Data Source=TUCA\\SQLEXPRESS";
+		//String strConexao = "Password=peganomeupau; Persist Security Info=True; User ID=sa; Initial Catalog=Pizzaria; Data Source=TUCA\\SQLEXPRESS";
 
 		//string curso
-		String strConexao = "Password=etesp; Persist Security Info=True; User ID=aluno; Initial Catalog=Pizzaria; Data Source=LAB02T-11";
+		String strConexao = "Password=etesp; Persist Security Info=True; User ID=aluno; Initial Catalog=Pizzaria; Data Source=LAB02T-20";
 		
 		SqlConnection objConexao = new SqlConnection(strConexao);
 		String contato = "";
