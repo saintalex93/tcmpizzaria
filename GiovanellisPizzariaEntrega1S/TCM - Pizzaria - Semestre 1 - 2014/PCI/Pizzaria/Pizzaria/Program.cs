@@ -16,7 +16,7 @@ namespace Pizzaria
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new CadastroCliente());
+            Application.Run(new Login());
         }
     }
 }

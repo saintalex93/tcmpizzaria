@@ -82,10 +82,10 @@ namespace Pizzaria
 
         private void label5_Click(object sender, EventArgs e)
         {
-            txtDataSource.Text = "";
+            txtDataSource.Text = "TUCA\\SQLEXPRESS";
             txtCatalog.Text = "Pizzaria";
             txtID.Text = "sa";
-            txtPassword.Text = "123456";
+            txtPassword.Text = "peganomeupau";
         }
     }
 }

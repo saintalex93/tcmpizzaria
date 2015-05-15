@@ -112,20 +112,24 @@ namespace Pizzaria
 
         private void txt_nome_TextChanged(object sender, EventArgs e)
         {
-            txtCPF.Text = "";
+            if (txtNome.TextLength != 0) 
+            {
+                txtCPF.Text = "";
 
-            preencherGrid("select Cod_Cliente, Nome_Cliente ,CPF_Cliente from cliente where Nome_Cliente like ('%" + txtNome.Text + "%')", gridClientesEncontrados);
+                preencherGrid("select Cod_Cliente, Nome_Cliente ,CPF_Cliente from cliente where Nome_Cliente like ('%" + txtNome.Text + "%')", gridClientesEncontrados);
 
-            txtCPF.Clear();
-            limparGrid(gridPedidosClientes);
-            txtPalavraChave.Clear();
-            txtPalavraChave.Enabled = false;
-            txtIDProduto.Clear();
-            txtIDProduto.Enabled = false;
-            btn_inserir.Enabled = false;
-            limparGrid(gridProdutosEncontrados);
-            limparGrid(gridProdutosConsumidos);
-            btn_remover.Enabled = false;
+                txtCPF.Clear();
+                limparGrid(gridPedidosClientes);
+                txtPalavraChave.Clear();
+                txtPalavraChave.Enabled = false;
+                txtIDProduto.Clear();
+                txtIDProduto.Enabled = false;
+                btn_inserir.Enabled = false;
+                limparGrid(gridProdutosEncontrados);
+                limparGrid(gridProdutosConsumidos);
+                btn_remover.Enabled = false;
+            }
+            
         }
 
         private void Pedidos_Shown(object sender, EventArgs e)
@@ -135,38 +139,42 @@ namespace Pizzaria
 
         private void txtCPF_TextChanged(object sender, EventArgs e)
         {
-            txtNome.Text = "";
-
-            string cpfOriginal = txtCPF.Text/*.Replace(" ", "").Replace(".", "").Replace(" ","")*/;
-            string cpfCorrigido = "";
-            bool primeiroNumeroDoStringEncontardo = false;
-            int i = 0;
-
-            if (txtCPF.Text != "   .   .   -")
+            if (txtCPF.TextLength != 0) 
             {
-                while (!primeiroNumeroDoStringEncontardo)
-                {
-                    if (char.IsNumber(cpfOriginal[i]))
-                        break;
-                    i++;
-                }
-               
-                for (int j = i; j < cpfOriginal.Length; j++)
-                    if (cpfOriginal[j].ToString() != " ")
-                        cpfCorrigido += cpfOriginal[j].ToString();
-                    else
-                        break;
-            }
-               
-            preencherGrid("select Cod_Cliente, Nome_Cliente ,CPF_Cliente from cliente where CPF_Cliente like ('%" + cpfCorrigido + "%')", gridClientesEncontrados);
+                txtNome.Text = "";
 
-            txtNome.Clear();
-            txtPalavraChave.Clear();
-            txtIDProduto.Clear();
-            btn_inserir.Enabled = false;
-            limparGrid(gridProdutosEncontrados);
-            limparGrid(gridProdutosConsumidos);
-            btn_remover.Enabled = false;
+                string cpfOriginal = txtCPF.Text/*.Replace(" ", "").Replace(".", "").Replace(" ","")*/;
+                string cpfCorrigido = "";
+                bool primeiroNumeroDoStringEncontardo = false;
+                int i = 0;
+
+                if (txtCPF.Text != "   .   .   -")
+                {
+                    while (!primeiroNumeroDoStringEncontardo)
+                    {
+                        if (char.IsNumber(cpfOriginal[i]))
+                            break;
+                        i++;
+                    }
+
+                    for (int j = i; j < cpfOriginal.Length; j++)
+                        if (cpfOriginal[j].ToString() != " ")
+                            cpfCorrigido += cpfOriginal[j].ToString();
+                        else
+                            break;
+                }
+
+                preencherGrid("select Cod_Cliente, Nome_Cliente ,CPF_Cliente from cliente where CPF_Cliente like ('%" + cpfCorrigido + "%')", gridClientesEncontrados);
+
+                txtNome.Clear();
+                txtPalavraChave.Clear();
+                txtIDProduto.Clear();
+                btn_inserir.Enabled = false;
+                limparGrid(gridProdutosEncontrados);
+                limparGrid(gridProdutosConsumidos);
+                btn_remover.Enabled = false;
+            }
+            
         }
 
         private void txtCPFTeste_TextChanged(object sender, EventArgs e)
@@ -409,6 +417,7 @@ namespace Pizzaria
         private void button1_Click(object sender, EventArgs e)
         {
             DialogResult decisao = MessageBox.Show("Tem certeza que deseja remover esse pedido?", "Remover Pedido", MessageBoxButtons.YesNo);
+
             if (decisao == DialogResult.Yes)
             {
                 int idCliente = Convert.ToInt32(gridClientesEncontrados.CurrentRow.Cells[0].Value);

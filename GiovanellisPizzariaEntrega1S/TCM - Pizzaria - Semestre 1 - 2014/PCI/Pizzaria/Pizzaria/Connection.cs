@@ -28,14 +28,14 @@ namespace Pizzaria
                 conexao = Acesso.Conexao;
 
                 SqlConnection conn = new SqlConnection(conexao);
-                string strIncluir = "select Cod_Func_Perm, Login_, senha from FuncPermissao where Login_= '" + usuario + "' and Senha= '" + senha + "'";
+                string strIncluir = "EXEC USP_CSP_LOGIN '" + usuario + "', '" + senha + "'";
                 conn.Open();
                 SqlCommand sqlComm = new SqlCommand(strIncluir, conn);
-
                 SqlDataAdapter da = new SqlDataAdapter();
                 DataTable dt = new DataTable();
                 da.SelectCommand = sqlComm;
                 da.Fill(dt);
+
                 if (dt.Rows.Count > 0)
                 {
                     if (dt.Rows[0][1].ToString() == usuario)
@@ -46,21 +46,32 @@ namespace Pizzaria
                             {
                                 case "1":
                                     nivelgeral = 1;
-
                                     Acesso.PermissAcesso = 1;
                                     return true;
 
-
                                     break;
+
                                 case "2":
                                     nivelgeral = 2;
                                     Acesso.PermissAcesso = 2;
                                     return true;
 
                                     break;
-                                case "3":
 
+                                case "3":
                                     Acesso.PermissAcesso = 3;
+                                    return true;
+
+                                    break;
+
+                                case "4":
+                                    Acesso.PermissAcesso = 4;
+                                    return true;
+
+                                    break;
+
+                                case "5":
+                                    Acesso.PermissAcesso = 5;
                                     return true;
 
                                     break;
@@ -81,7 +92,7 @@ namespace Pizzaria
 
             catch (Exception ex)
             {
-
+                Console.WriteLine(ex);
             }
 
             return false;

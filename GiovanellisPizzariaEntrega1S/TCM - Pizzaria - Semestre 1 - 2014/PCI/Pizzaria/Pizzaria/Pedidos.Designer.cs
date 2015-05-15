@@ -84,10 +84,10 @@
             this.gpb_detalhamento.Controls.Add(this.gridProdutosConsumidos);
             this.gpb_detalhamento.Location = new System.Drawing.Point(381, 12);
             this.gpb_detalhamento.Name = "gpb_detalhamento";
-            this.gpb_detalhamento.Size = new System.Drawing.Size(373, 499);
+            this.gpb_detalhamento.Size = new System.Drawing.Size(373, 481);
             this.gpb_detalhamento.TabIndex = 0;
             this.gpb_detalhamento.TabStop = false;
-            this.gpb_detalhamento.Text = "Detalhamento do Pedido";
+            this.gpb_detalhamento.Text = "Produtos do Pedido";
             // 
             // groupBox1
             // 
@@ -98,7 +98,7 @@
             this.groupBox1.Controls.Add(this.lbl_saldo);
             this.groupBox1.Controls.Add(this.lbl_ajuste);
             this.groupBox1.Controls.Add(this.lbl_total);
-            this.groupBox1.Location = new System.Drawing.Point(12, 416);
+            this.groupBox1.Location = new System.Drawing.Point(12, 393);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(350, 77);
             this.groupBox1.TabIndex = 22;
@@ -174,7 +174,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 188);
+            this.label1.Location = new System.Drawing.Point(9, 178);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(108, 13);
             this.label1.TabIndex = 13;
@@ -244,22 +244,22 @@
             // btn_inserir
             // 
             this.btn_inserir.Enabled = false;
-            this.btn_inserir.Location = new System.Drawing.Point(292, 178);
+            this.btn_inserir.Location = new System.Drawing.Point(172, 183);
             this.btn_inserir.Name = "btn_inserir";
-            this.btn_inserir.Size = new System.Drawing.Size(75, 23);
+            this.btn_inserir.Size = new System.Drawing.Size(20, 20);
             this.btn_inserir.TabIndex = 6;
-            this.btn_inserir.Text = "Inserir";
+            this.btn_inserir.Text = "V";
             this.btn_inserir.UseVisualStyleBackColor = true;
             this.btn_inserir.Click += new System.EventHandler(this.btn_inserir_Click);
             // 
             // btn_remover
             // 
             this.btn_remover.Enabled = false;
-            this.btn_remover.Location = new System.Drawing.Point(292, 380);
+            this.btn_remover.Location = new System.Drawing.Point(12, 194);
             this.btn_remover.Name = "btn_remover";
-            this.btn_remover.Size = new System.Drawing.Size(75, 23);
+            this.btn_remover.Size = new System.Drawing.Size(20, 20);
             this.btn_remover.TabIndex = 11;
-            this.btn_remover.Text = "Remover";
+            this.btn_remover.Text = "-";
             this.btn_remover.UseVisualStyleBackColor = true;
             this.btn_remover.Click += new System.EventHandler(this.btn_remover_Click);
             // 
@@ -268,7 +268,7 @@
             this.gridProdutosConsumidos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.gridProdutosConsumidos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.gridProdutosConsumidos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridProdutosConsumidos.Location = new System.Drawing.Point(12, 207);
+            this.gridProdutosConsumidos.Location = new System.Drawing.Point(12, 220);
             this.gridProdutosConsumidos.Name = "gridProdutosConsumidos";
             this.gridProdutosConsumidos.ReadOnly = true;
             this.gridProdutosConsumidos.Size = new System.Drawing.Size(355, 167);
@@ -288,7 +288,7 @@
             this.gpb_dadoscliente.Controls.Add(this.lbl_nome);
             this.gpb_dadoscliente.Location = new System.Drawing.Point(12, 12);
             this.gpb_dadoscliente.Name = "gpb_dadoscliente";
-            this.gpb_dadoscliente.Size = new System.Drawing.Size(363, 457);
+            this.gpb_dadoscliente.Size = new System.Drawing.Size(363, 455);
             this.gpb_dadoscliente.TabIndex = 1;
             this.gpb_dadoscliente.TabStop = false;
             this.gpb_dadoscliente.Text = "Dados do Cliente";
@@ -296,22 +296,22 @@
             // btnRemoverPedido
             // 
             this.btnRemoverPedido.Enabled = false;
-            this.btnRemoverPedido.Location = new System.Drawing.Point(168, 425);
+            this.btnRemoverPedido.Location = new System.Drawing.Point(37, 269);
             this.btnRemoverPedido.Name = "btnRemoverPedido";
-            this.btnRemoverPedido.Size = new System.Drawing.Size(96, 23);
-            this.btnRemoverPedido.TabIndex = 27;
-            this.btnRemoverPedido.Text = "Remover";
+            this.btnRemoverPedido.Size = new System.Drawing.Size(20, 20);
+            this.btnRemoverPedido.TabIndex = 20;
+            this.btnRemoverPedido.Text = "-";
             this.btnRemoverPedido.UseVisualStyleBackColor = true;
             this.btnRemoverPedido.Click += new System.EventHandler(this.button1_Click);
             // 
             // btnNovoPedido
             // 
             this.btnNovoPedido.Enabled = false;
-            this.btnNovoPedido.Location = new System.Drawing.Point(274, 425);
+            this.btnNovoPedido.Location = new System.Drawing.Point(11, 269);
             this.btnNovoPedido.Name = "btnNovoPedido";
-            this.btnNovoPedido.Size = new System.Drawing.Size(83, 23);
+            this.btnNovoPedido.Size = new System.Drawing.Size(20, 20);
             this.btnNovoPedido.TabIndex = 26;
-            this.btnNovoPedido.Text = "Novo Pedido";
+            this.btnNovoPedido.Text = "+";
             this.btnNovoPedido.UseVisualStyleBackColor = true;
             this.btnNovoPedido.Click += new System.EventHandler(this.txtNovoPedido_Click);
             // 
@@ -329,7 +329,7 @@
             this.gridPedidosClientes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.gridPedidosClientes.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.gridPedidosClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridPedidosClientes.Location = new System.Drawing.Point(11, 269);
+            this.gridPedidosClientes.Location = new System.Drawing.Point(11, 295);
             this.gridPedidosClientes.Name = "gridPedidosClientes";
             this.gridPedidosClientes.ReadOnly = true;
             this.gridPedidosClientes.Size = new System.Drawing.Size(346, 150);
@@ -400,7 +400,7 @@
             // 
             // btn_sair
             // 
-            this.btn_sair.Location = new System.Drawing.Point(679, 517);
+            this.btn_sair.Location = new System.Drawing.Point(679, 499);
             this.btn_sair.Name = "btn_sair";
             this.btn_sair.Size = new System.Drawing.Size(75, 23);
             this.btn_sair.TabIndex = 21;
@@ -412,7 +412,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(762, 550);
+            this.ClientSize = new System.Drawing.Size(762, 533);
             this.ControlBox = false;
             this.Controls.Add(this.btn_sair);
             this.Controls.Add(this.gpb_dadoscliente);

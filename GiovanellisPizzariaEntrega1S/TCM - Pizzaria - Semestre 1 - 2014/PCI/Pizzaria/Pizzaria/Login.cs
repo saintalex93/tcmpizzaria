@@ -113,8 +113,8 @@ namespace Pizzaria
 
         private void label1_Click(object sender, EventArgs e)
         {
-            txt_usuario.Text = "admin";
-            txt_senha.Text = "123456";
+            txt_usuario.Text = "Admin";
+            txt_senha.Text = "123";
         }
     }
 }

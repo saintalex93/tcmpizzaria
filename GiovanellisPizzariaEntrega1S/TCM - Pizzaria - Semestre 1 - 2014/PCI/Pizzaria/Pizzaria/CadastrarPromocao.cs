@@ -18,10 +18,17 @@ namespace Pizzaria
             InitializeComponent();
         }
 
-        string conexao = ""/*Data Source= USER-PC;Initial Catalog=Pizzaria; Persist Security Info = True; User ID=sa; Password=1234"*/;
+        string conexao = "";
         string strBusca = "";
 
         public Form FormHome { get; set; }
+
+        private void CadastrarPromocao_Load(object sender, EventArgs e)
+        {
+            conexao = Acesso.Conexao;
+
+            atualizarPromocoesEncontradas();
+        }
 
         public void preencherGrid(string busca, DataGridView tabela)
         {
@@ -58,95 +65,6 @@ namespace Pizzaria
         return 0;
         }
 
-/*        public void preencherGridView(string busca, DataGridView tabela)
-        {
-            SqlConnection conn = new SqlConnection(conexao);
-            conn.Open();
-
-            //            try
-            //          {
-            SqlCommand sqlComm = new SqlCommand(busca, conn);
-            sqlComm.ExecuteNonQuery();
-            SqlDataAdapter da = new SqlDataAdapter();
-            da.SelectCommand = sqlComm;
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            tabela.DataSource = dt;
-
-            /*            // 1. set DisplayMember and ValueMember
-                        lbBuscaProdutos.DisplayMember = dt.Columns[1].ColumnName;
-                        lbBuscaProdutos.ValueMember = dt.Columns[1].ColumnName;
-                        // 2. set DataSource
-                        lbBuscaProdutos.DataSource = dt;
-
-                        lbProdutosPromocao.DisplayMember = dt.Columns[1].ColumnName;
-                        lbProdutosPromocao.ValueMember = dt.Columns[1].ColumnName;
-                        // 2. set DataSource*/
-//            conn.Close();
-  //      }
-    
-/*
-        public void criarSegundaTabela()
-        {
-            List<int> visibleColumns = new List<int>();
-            
-            foreach (DataGridViewColumn col in gridBuscaProdutos.Columns)
-            {
-                if (col.Visible)
-                {
-                    gridProdutosNaPromocao.Columns.Add((DataGridViewColumn)col.Clone());
-
-                    visibleColumns.Add(col.Index);
-                }
-            }
-            
-            // Now add the data from the columns
-            // Set a counter for the current row index for the second DataGridView
-            int rowIndex = 0;
-            
-            DataTable DT = (DataTable)gridProdutosNaPromocao.DataSource;
-
-            foreach (DataGridViewRow row in gridBuscaProdutos.Rows)
-            {
-                // Add a new row to the DataGridView
-                gridProdutosNaPromocao.Rows.Add();
-                
-                // Loop through the visible columns
-                for (int i = 0; i < visibleColumns.Count; i++)
-                {
-                    // Use the index of the for loop for the column in the target data grid
-                    // Use the index value from the List<T> for the cell of the source target data grid
-                    gridProdutosNaPromocao.Rows[rowIndex].Cells[i].Value = row.Cells[visibleColumns[i]].Value;
-                }
-                
-                // Increment the rowIndex
-                rowIndex++;
-            }
-
-            gridProdutosNaPromocao.Rows.Clear();
-
-            do
-            {
-                foreach (DataGridViewRow row in gridProdutosNaPromocao.Rows)
-                {
-                    try
-                    {
-                        gridProdutosNaPromocao.Rows.Remove(row);
-                    }
-                    catch (Exception) { }
-                }
-            } while (gridProdutosNaPromocao.Rows.Count > 1);
-        }
-        */
-
-/*        public void formatarColunasDoGridDeBuscaDeProdutos() 
-        {
-            gridBuscaProdutos.Columns[0].Width = 20;
-            gridBuscaProdutos.Columns[1].Width = 150;
-            gridBuscaProdutos.Columns[2].Width = 50;
-        }
-        */
-        
         public void calcularSaldo()
         {
             double saldo = 0;
@@ -158,7 +76,7 @@ namespace Pizzaria
                 saldo += Convert.ToDouble(gridProdutosNaPromocao.Rows[x].Cells[3].Value);
             }
 
-            txtSaldo.Text = saldo.ToString();
+//            txtSaldo.Text = saldo.ToString();
         }
 
         public void atualizarPromocoesEncontradas() 
@@ -215,57 +133,46 @@ namespace Pizzaria
             return resultado;
         }
 
-        public bool validaPrecoOriginal() 
+        public bool validaDesconto() 
         {
-            bool resultado = true;
-
-            if (txtSaldo.Text.Length == 0)
+            if (txtDesconto.Text.Length == 0)
             {
-                Home.mensagemDeErro("Por favor, antes de adicionar uma Promoção ao banco, é preciso adicionar produtos a ela.","Promoção sem produtos");
+                Home.mensagemDeErro("É preciso fornecer um porcentual de desconto para a promoção.", "Erro no desconto");
+                return false;
+            }
+                
+            else
+            {
+                double s = 0;
+                Double.TryParse(txtDesconto.Text, out s);
 
-                txtBuscaPalavraChave.Focus();
-
-                resultado = false;
+                if (s == 0)
+                {
+                    Home.mensagemDeErro("O campo de porcentual do desconto tem que ser preenchido apenas com números.", "Erro no desconto");
+                    return false;
+                }
+                    
+                else if (s >= 1 || s <= 0)
+                {
+                    Home.mensagemDeErro("Por favor, insira um valor de desconto entre 1 e 0.", "Erro no desconto");
+                    return false;
+                }
             }
 
-            return resultado;
-        
-        }
-
-        public bool validaNovoPreco()
-        {
-            bool resultado = true;
-
-            if (txtNovoPreco.Text.Length == 0)
-            {
-                Home.mensagemDeErro("Não é permitido criar uma nova Promoção sem antes estabelecer um novo preço promocional.","Promoção sem preço promocional");
-
-                txtNovoPreco.Focus();
-
-                resultado = false;
-            }
-
-            return resultado;
-
+            return true;
         }
 
         public bool validaCampos() 
         {
-            bool resultado = true;
-
             if (!validaTitulo())
                 return false;
 
             if (!validaVigencia())
                 return false;
 
-/*            if (!validaPrecoOriginal())
+            if (!validaDesconto())
                 return false;
-
-            if (!validaNovoPreco())
-                return false;
-            */
-            return resultado;
+            return true;
         }
 
         public void limparGrid(DataGridView tabela)
@@ -358,12 +265,12 @@ namespace Pizzaria
 
         private void txtNovoPreco_Leave(object sender, EventArgs e)
         {
-            txtNovoPreco.BackColor = Color.White;
+//            txtNovoPreco.BackColor = Color.White;
         }
 
         private void txtNovoPreco_Enter(object sender, EventArgs e)
         {
-            txtNovoPreco.BackColor = Color.Aquamarine;
+            //txtNovoPreco.BackColor = Color.Aquamarine;
         }
 
         private void gridBuscaProdutos_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -403,8 +310,8 @@ namespace Pizzaria
             string
                 tituloPromocao = txtTituloPromocao.Text,
                 descricaoPromocao = txtDescricaoPromocao.Text,
-                precoOriginal = txtSaldo.Text,
-                precoPromocao = txtNovoPreco.Text,
+                //precoOriginal = txtSaldo.Text,
+                //precoPromocao = txtNovoPreco.Text,
                 vigencia = dataPrazo.Value.ToString("dd/MM/yyyy"),
                 visivelNoSite = "",
                 paraCadastrados = "";
@@ -464,7 +371,7 @@ namespace Pizzaria
 
             btnAlterar.Enabled = true;
 
-            btnProcessarNovoPreco.Enabled = false;
+            //btnProcessarNovoPreco.Enabled = false;
             btnRemoverProduto.Enabled = false;
             btnAdicionarProduto.Enabled = false;
 
@@ -475,25 +382,25 @@ namespace Pizzaria
 
         private void txtNovoPreco_TextChanged(object sender, EventArgs e)
         {
-            if (txtNovoPreco.Text.Contains("."))
+            /*if (txtNovoPreco.Text.Contains("."))
             {
                 Home.mensagemDeErro("Por favor, use vírgula (\",\") no lugar de ponto (\".\").","Utilização de símbolo errado");
                 return;
-            }
+            }*/
 
             decimal decSaldo = 0;
             decimal decNovoPreco = 0;
 
-            decSaldo = Convert.ToDecimal(txtSaldo.Text);
-            decNovoPreco = Convert.ToDecimal(txtNovoPreco.Text);
+            //decSaldo = Convert.ToDecimal(txtSaldo.Text);
+            //decNovoPreco = Convert.ToDecimal(txtNovoPreco.Text);
 
             if (decNovoPreco > decSaldo)
                 decNovoPreco = decSaldo;
             else if (decNovoPreco < 0)
                 decNovoPreco = 0;
 
-            txtNovoPreco.Text = decNovoPreco.ToString();
-            txtSaldo.Text = decSaldo.ToString();
+            //txtNovoPreco.Text = decNovoPreco.ToString();
+            //txtSaldo.Text = decSaldo.ToString();
 
             SqlConnection conn = new SqlConnection(conexao);
             
@@ -510,11 +417,11 @@ namespace Pizzaria
         {
             //tBuscaPromocaoPorID.Text = "";
 
-            preencherGrid("select Cod_Promocao as [ID], Nome_Promocao as [Título], Preco_Original as [Preço original], Preco_Promocao as [Preço promocional], Vigencia as [Vigência], Descricao as [Descrição], sobe_promocao as [Visível no site], usuario_cadastrado as [Acessibilidade] from Promocao where Nome_Promocao like ('%" + txtBuscaPorTitulo.Text + "%')", gridPromocoesEncontradas);
+            preencherGrid("exec USP_CSP_BuscarPromocoesPorPalavraChave " + txtBuscaPorTitulo.Text, gridPromocoesEncontradas);
 
             btnAlterar.Enabled = true;
 
-            btnProcessarNovoPreco.Enabled = false;
+            //btnProcessarNovoPreco.Enabled = false;
             btnRemoverProduto.Enabled = false;
             btnAdicionarProduto.Enabled = false;
 
@@ -595,7 +502,7 @@ namespace Pizzaria
 
         private void gridPromocoesEncontradas_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            preencherGrid("select ProdutoPromocao.codPromoProd as [ID], Produto.Cod_Produto as [ID Produto], Produto.Nome_Produto as [Produto], Produto.Valor_Venda as [Preço] from Promocao inner join ProdutoPromocao on Promocao.Cod_Promocao = ProdutoPromocao.Cod_Promocao inner join Produto on ProdutoPromocao.Cod_Produto = Produto.Cod_Produto where ProdutoPromocao.Cod_Promocao = " + gridPromocoesEncontradas.CurrentRow.Cells[0].Value.ToString(), gridProdutosNaPromocao);
+            preencherGrid("USP_CSP_BuscarProdutosNaPromocao " + gridPromocoesEncontradas.CurrentRow.Cells[0].Value.ToString(), gridProdutosNaPromocao);
 
             calcularSaldo();
 
@@ -605,7 +512,7 @@ namespace Pizzaria
             ckVisivelNoSite.Checked = false;
             dataPrazo.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day);
 
-            btnProcessarNovoPreco.Enabled = true;
+            //btnProcessarNovoPreco.Enabled = true;
             btnRemoverProduto.Enabled = true;
         }
 
@@ -754,31 +661,22 @@ namespace Pizzaria
 
         private void txtSaldo_Enter(object sender, EventArgs e)
         {
-            txtSaldo.BackColor = Color.Aquamarine;
+            //txtSaldo.BackColor = Color.Aquamarine;
         }
 
         private void txtSaldo_Leave(object sender, EventArgs e)
         {
-            txtSaldo.BackColor = Color.White;
+            //txtSaldo.BackColor = Color.White;
         }
 
         private void txtNovoPreco_Enter_1(object sender, EventArgs e)
         {
-            txtNovoPreco.BackColor = Color.Aquamarine;
+           // txtNovoPreco.BackColor = Color.Aquamarine;
         }
 
         private void txtNovoPreco_Leave_1(object sender, EventArgs e)
         {
-            txtNovoPreco.BackColor = Color.White;
-        }
-
-        private void CadastrarPromocao_Load(object sender, EventArgs e)
-        {
-            conexao = Acesso.Conexao;
-
-            atualizarPromocoesEncontradas();
-
-
+          //  txtNovoPreco.BackColor = Color.White;
         }
 
         private void label12_Click(object sender, EventArgs e)

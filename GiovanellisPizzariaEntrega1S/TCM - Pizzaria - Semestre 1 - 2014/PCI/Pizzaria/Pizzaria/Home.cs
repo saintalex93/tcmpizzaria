@@ -123,10 +123,12 @@ namespace Pizzaria
             {
                 
             }
+
             if (Acesso.PermissAcesso.ToString() == "1")
             {
   //              aplicativosToolStripMenuItem.Enabled = false;
             }
+
             if (Acesso.PermissAcesso.ToString() == "3")
             {
 //                novoCadastroToolStripMenuItem.Visible = false;
