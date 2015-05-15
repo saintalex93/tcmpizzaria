@@ -1,7 +1,12 @@
+	-------------------------------------------------------------- 
+	-------------------------------------------------------------- 
+	-------------------- *** SETUP INICIAL *** -------------------
+	-------------------------------------------------------------- 
+	-------------------------------------------------------------- 
+
 Use master
 go
-
---
+-----------------------------------
 set nocount on
 declare @databasename varchar(100)
 declare @query varchar(max)
@@ -13,9 +18,7 @@ begin
 	print 'system database connection cannot be killeed'
 return
 end
---
-
---
+-----------------------------------
 select @query=coalesce(@query,',' )+'kill '+convert(varchar, spid)+ '; '
 from master..sysprocesses where dbid=db_id(@databasename)
 
@@ -25,10 +28,16 @@ print @query
 	exec(@query)
 end
 go
---
+-----------------------------------
 IF EXISTS (SELECT * from sys.databases where name = 'Pizzaria')
 DROP DATABASE Pizzaria
 go
+
+	-------------------------------------------------------------- 
+	-------------------------------------------------------------- 
+	-------------------- *** CRIAÇÕES *** ------------------------ 
+	-------------------------------------------------------------- 
+	-------------------------------------------------------------- 
 
 create database Pizzaria
 go
@@ -106,8 +115,6 @@ Cod_Permissao INT FOREIGN KEY REFERENCES
 Permissao(Cod_Permissao)
 )
 go
-
-
 
 create table Categoria
 (
@@ -279,7 +286,6 @@ go
 	-------------------- *** INSERT'S *** ------------------------ 
 	-------------------------------------------------------------- 
 	-------------------------------------------------------------- 
-
 insert into Cliente
 (
 Nome_Cliente,
@@ -482,8 +488,6 @@ values
 ('06/06/2015','00:16',58.20,3,2,'Favor, ao chegar, ligar no meu celular e não pelo interfone nem campainha','Site','Cancelado','','','','Cartão',58.20),
 ('06/04/2015','21:15',42.30,2,5,'','In loco','Cancelado','','','','Cartão',42.30)
 go
-
-
 
 insert into Fornecedor
 (
@@ -801,7 +805,12 @@ values
 3,3,3,35,3
 )
 go
-	-------------------- *** PROCEDURES *** ------------------------ 
+
+	-------------------------------------------------------------- 
+	-------------------------------------------------------------- 
+	-------------------- *** PROCEDURES *** ----------------------
+	-------------------------------------------------------------- 
+	-------------------------------------------------------------- 
 
 create procedure sp_Select_cliente
 (
@@ -1765,3 +1774,70 @@ as
 		)
 	end
 go
+------------------------------------------------
+create proc USP_CSP_BuscarPromocoesPorPalavraChave
+(
+	@Palavra varchar(50)
+)
+as
+	Begin
+		select 
+			Cod_Promocao as 'Código',
+			Nome_Promocao as 'Nome da promoção',
+			Descricao as 'Descrição',
+			PorcentagemDesconto as 'Porcentual de desconto',
+			Vigencia as 'Vigência',
+			sobe_promocao as 'Visível no site',
+			AcessivelATodos as 'Acessível à todos'
+
+		from Promocao
+
+		where
+			Nome_Promocao like '%' + @Palavra + '%' 
+			or
+			Descricao like '%' + @Palavra + '%' 
+	End
+go
+------------------------------------------------
+create proc USP_CSP_BuscarProdutosNaPromocao
+(
+	@codPromocao int
+)
+as
+	Begin
+		select 
+			pd.Cod_Produto as [ID],
+			pd.Nome_Produto as [Produto], 
+			pd.Valor_Venda as [Preço original],
+			round(pd.Valor_Venda * pm.PorcentagemDesconto,2) as [Preço promocional]
+
+		from 
+			Promocao pm
+			inner join ProdutoPromocao pp  on 
+				pm.Cod_Promocao = pp.Cod_Promocao 
+			inner join Produto pd on 
+				pp.Cod_Produto = pd.Cod_Produto 
+		
+		where pp.Cod_Promocao = @codPromocao
+	End
+go
+------------------------------------------------
+create proc USP_CSP_RemoverProdutoDePromocao
+(
+	@CodProduto int,
+	@CodPromocao int
+)
+as
+	Begin
+		delete from ProdutoPromocao 
+			where 
+				Cod_Produto = @CodProduto and
+				Cod_Promocao = @CodPromocao
+	End
+go
+
+USP_CSP_BuscarProdutosNaPromocao 2
+go
+USP_CSP_RemoverProdutoDePromocao 8,2
+go
+USP_CSP_BuscarProdutosNaPromocao 2
