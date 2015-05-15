@@ -859,9 +859,6 @@ from Cliente where
 (DATANASCIMENTO =@DATA_NASCIMENTO or @DATA_NASCIMENTO is null)
 end
 go
-
-print 'Proc sp_Select_cliente criada'
-go
 -----------------------------------------
 /*
 create procedure [dbo].[sp_insert_cliente]
@@ -956,9 +953,6 @@ from Pedido where
 
 end
 go
-
-print 'Proc sp_Select_pedido criada'
-go
 -----------------------------------------
 create proc USP_ANDROID_HOME_SelectPedidosAEntregar
 (
@@ -994,9 +988,6 @@ as
 		p.NumeroApartamentoAlt
 	End
 go
-
-print 'Proc USP_ANDROID_HOME_SelectPedidosAEntregar criada'
-go
 -----------------------------------------
 create proc USP_ANDROID_CancelarPedido
 (@CodPedido varChar(10))
@@ -1006,12 +997,7 @@ as
 		set Estado = 'Cancelado'
 		where Cod_Pedido = @CodPedido
 	End
-
 go
-
-print 'Proc USP_ANDROID_CancelarPedido criada'
-go
-
 ----------------------------------------
 create proc USP_ANDROID_RealizarPedido
 (@CodPedido varChar(10))
@@ -1021,9 +1007,6 @@ as
 		set Estado = 'Realizado'
 		where Cod_Pedido = @CodPedido
 	End
-go
-
-print 'Proc USP_ANDROID_RealizarPedido criada'
 go
 -----------------------------------------
 create proc USP_ANDROID_HISTORICO_SelectHistorico
@@ -1072,9 +1055,6 @@ as
 		p.Cod_Pedido desc
 	End
 go
-
-print 'Proc USP_ANDROID_HISTORICO_SelectHistorico criada'
-go
 -----------------------------------------
 create proc USP_ANDROID_HISTORICO_SelectEstadoPedido
 (
@@ -1084,9 +1064,6 @@ as
 	Begin
 		select Estado from Pedido where Cod_Pedido = @Cod_Pedido
 	End
-go
-
-print 'Proc USP_ANDROID_HISTORICO_SelectEstadoPedido criada'
 go
 -----------------------------------------
 create proc USP_ANDROID_DetalhesPedido_SelectProdutosPedido
@@ -1113,10 +1090,6 @@ as
 			p.Cod_Pedido = dp.Cod_Pedido
 	End
 go
-
-	print 'Proc USP_ANDROID_DetalhesPedido_SelectProdutosPedido criada'
-go
-
 -----------------------------------------
 create proc USP_ANDROID_DetalhesPedido_SelectInfoCLiente
 (
@@ -1131,9 +1104,6 @@ as
 		where Cod_Cliente = @Cod_Cliente
 	End
 go
-print 'Proc USP_ANDROID_DetalhesPedido_SelectInfoCLiente criada'
-go
-
 -----------------------------------------
 create proc USP_ANDROID_DetalhesPedido_SelectFormaPagamento
 (
@@ -1148,9 +1118,6 @@ as
 		from Pedido
 		where Cod_Pedido = @Cod_Pedido
 	End
-go
-
-print 'Proc USP_ANDROID_DetalhesPedido_SelectFormaPagamento criada'
 go
 -----------------------------------------
 create proc USP_ANDROID_DetalhesPedido_SelectInfoPedido
@@ -1185,8 +1152,27 @@ as
 	Begin
 		select 
 			f.Nome_Func,
-			f.Cod_Funcionario,
-			p.Cod_Permissao
+			f.Cod_Funcionario
+
+		from Funcionario f
+
+		inner join Permissao p on
+			f.Login_Funcionario like @Login_Funcionario and
+			f.Senha_Funcionario like @Senha_Funcionario and
+			f.Cod_Permissao = p.Cod_Permissao and
+			f.Cod_Permissao = 4
+	End
+go
+-----------------------------------------
+create proc USP_CSP_Login
+(
+	@Login_Funcionario varchar(30) = null,
+	@Senha_Funcionario varchar(10) = null
+)
+as
+	Begin
+		select 
+			Count(Cod_Funcionario)
 
 		from Funcionario f
 
@@ -1195,4 +1181,447 @@ as
 			f.Senha_Funcionario like @Senha_Funcionario and
 			f.Cod_Permissao = p.Cod_Permissao
 	End
+go
+-----------------------------------------
+create procedure [dbo].[CSP_Atualiza_Cliente]
+(
+	@Cod_CLiente int = null,
+	@Nome_CLiente varchar(50) = null,
+	@CPF_Cliente varchar(40) = null,
+	@Endereco_Cliente varchar(40) = null,
+	@Numero_Residencia int = null,
+	@Numero_Apartamento int = null,
+	@Bairro_Cliente varchar(40) = null,
+	@CEP_Cliente varchar(15) = null,
+	@Estado_Cliente varchar(5) = null,
+	@Cidade_Cliente varchar(40) = null,
+	@Complemento_Cliente varchar(40) = null,
+	@Telefone_Cliente varchar(40) = null,
+	@Celular_Cliente varchar(40) = null,
+	@Login_Cliente varchar(40) = null,
+	@Senha_Cliente varchar(40) = null,
+	@DataNascimento date = null,
+	@DataCadastro date = null
+)
+as
+	begin
+		update Cliente
+
+		set 
+		Nome_Cliente = @Nome_CLiente,
+		CPF_Cliente = @CPF_Cliente,
+		Endereco_Cliente  = @Endereco_Cliente ,
+		Numero_Apartamento   =@Numero_Apartamento,
+		Numero_Residencia  =@Numero_Residencia,
+		Bairro_Cliente  =@Bairro_Cliente,
+		CEP_Cliente  =@CEP_Cliente ,
+		Estado_Cliente  = @Estado_Cliente  ,
+		Cidade_Cliente   =@Cidade_Cliente  ,
+		Complemento_Cliente  =@Complemento_Cliente ,
+		Telefone_Cliente  =@Telefone_Cliente  ,
+		Celular_Cliente  =@Celular_Cliente,
+		Login_Cliente  =@Login_Cliente,
+		Senha_Cliente  =@Senha_Cliente ,
+		DataNascimento  =@DataNascimento ,
+		DataCadastro   =@DataCadastro 
+
+		where Cod_Cliente = @Cod_CLiente
+	end
+go
+------------------------------------------------------------------
+create procedure [dbo].[CSP_Delete_Funcionario]
+(
+	@cod_Func int = null
+)
+as
+	Begin
+		delete from Funcionario where Cod_Funcionario = @cod_Func
+	end
+go
+------------------------------------------------------------------
+create proc [dbo].[CSP_Insere_Cliente]
+(
+	--@Cod_CLiente int = null,
+	@Nome_CLiente varchar(50) = null,
+	@CPF_Cliente varchar(40) = null,
+	@Endereco_Cliente varchar(40) = null,
+	@Numero_Residencia int = null,
+	@Numero_Apartamento int = null,
+	@Bairro_Cliente varchar(40) = null,
+	@CEP_Cliente varchar(15) = null,
+	@Estado_Cliente varchar(5) = null,
+	@Cidade_Cliente varchar(40) = null,
+	@Complemento_Cliente varchar(40) = null,
+	@Telefone_Cliente varchar(40) = null,
+	@Celular_Cliente varchar(40) = null,
+	@Login_Cliente varchar(40) = null,
+	@Senha_Cliente varchar(40) = null,
+	@DataNascimento date = null,
+	@DataCadastro date = null
+)
+as
+	begin
+		insert into Cliente
+		(
+			Nome_Cliente,
+			CPF_Cliente ,
+			Endereco_Cliente ,
+			Numero_Residencia ,
+			Numero_Apartamento ,
+			Bairro_Cliente ,
+			CEP_Cliente ,
+			Estado_Cliente ,
+			Cidade_Cliente ,
+			Complemento_Cliente ,
+			Telefone_Cliente ,
+			Celular_Cliente ,
+			Login_Cliente ,
+			Senha_Cliente ,
+			DataNascimento,
+			DataCadastro 
+		)
+		Values
+		(
+			--@Cod_CLiente,
+			@Nome_Cliente,
+			@CPF_Cliente ,
+			@Endereco_Cliente ,
+			@Numero_Residencia ,
+			@Numero_Apartamento ,
+			@Bairro_Cliente ,
+			@CEP_Cliente ,
+			@Estado_Cliente ,
+			@Cidade_Cliente ,
+			@Complemento_Cliente ,
+			@Telefone_Cliente ,
+			@Celular_Cliente ,
+			@Login_Cliente ,
+			@Senha_Cliente ,
+			@DataNascimento,
+			@DataCadastro 
+		)
+	end
+go
+-----------------------------------------------------
+create PROCEDURE [dbo].[CSP_Insere_Funcionario]
+(
+	@NOME_Funcionario VARCHAR(40) = null,
+	@CPF_Funcionario VARCHAR(15) = null,
+	@Cargo_Funcionario varchar(40) = null,
+	@ENDERECO_Funcionario VARCHAR(40) = null,
+	@NUMERO_RESIDENCIA INT  = null,
+	@BAIRRO_Funcionario VARCHAR(30) = null,
+	@CEP_Funcionario VARCHAR(9) = null,
+	@ESTADO_Funcionario VARCHAR(2) = null,
+	@CIDADE_Funcionario VARCHAR(20) = null,
+	@COMPLEMENTO_Funcionario VARCHAR(40) = null,
+	@TELEFONE_Funcionario VARCHAR(40) = null,
+	@CELULAR_Funcionario VARCHAR(15) = null,
+	@EMAIL_Funcionario VARCHAR(40) = null,
+	@Login_Funcionario varchar(30) = null,
+	@SENHA_Funcionario VARCHAR(15) = null,
+	@DATA_NASC date = null,
+	@Salario decimal(6,2) = null,
+	@cod_Permissao int = null
+)
+as
+	declare @testi int
+	Begin
+		set @testi = (select cod_permissao from Permissao where Cargo =  @Cargo_Funcionario)
+			Insert into Funcionario
+			(
+				nome_Func,
+				CPF_Funcionario ,
+				ENDERECO_Funcionario ,
+				COMPLEMENTO_Funcionario,
+				NUMERO_RESIDENCIA  ,
+				CEP_Funcionario,
+				ESTADO_Funcionario,
+				CIDADE_Funcionario,
+				BAIRRO_Funcionario,
+				EMAIL_Funcionario,
+				CELULAR_Funcionario,
+				TELEFONE_Funcionario,
+				DATA_NASC,
+				Salario,
+				Login_Funcionario,
+				SENHA_Funcionario,
+				cod_Permissao
+			)
+			 values
+			(
+				@nome_Funcionario,
+				@CPF_Funcionario ,
+				@ENDERECO_Funcionario ,
+				@COMPLEMENTO_Funcionario,
+				@NUMERO_RESIDENCIA  ,
+				@CEP_Funcionario,
+				@ESTADO_Funcionario,
+				@CIDADE_Funcionario,
+				@BAIRRO_Funcionario,
+				@EMAIL_Funcionario,
+				@CELULAR_Funcionario,
+				@TELEFONE_Funcionario,
+				@DATA_NASC,
+				@Salario,
+				@Login_Funcionario,
+				@SENHA_Funcionario,
+				@testi
+			)
+		end
+go
+------------------------------------
+create procedure [dbo].[CSP_Seleciona_Cargo]
+(
+	@teste int = null
+)
+as
+	Begin
+		select cargo 
+		from Permissao
+	end
+go
+------------------------------------------------------------
+create procedure [dbo].[CSP_Seleciona_Cliente]
+(
+	@Cod_CLiente int = null,
+	@Nome_CLiente varchar(50) = null,
+	@CPF_Cliente varchar(40) = null,
+	@Endereco_Cliente varchar(40) = null,
+	@Numero_Residencia int = null,
+	@Numero_Apartamento int = null,
+	@Bairro_Cliente varchar(40) = null,
+	@CEP_Cliente varchar(15) = null,
+	@Estado_Cliente varchar(5) = null,
+	@Cidade_Cliente varchar(40) = null,
+	@Complemento_Cliente varchar(40) = null,
+	@Telefone_Cliente varchar(40) = null,
+	@Celular_Cliente varchar(40) = null,
+	@Login_Cliente varchar(40) = null,
+	@Senha_Cliente varchar(40) = null,
+	@DataNascimento date = null,
+	@DataCadastro date = null
+)
+as
+	begin
+		select * 
+		
+		from Cliente
+
+		where
+		(Cod_Cliente = @Cod_CLiente  or @Cod_CLiente  is null) and
+		(Nome_Cliente  like ('%' + @Nome_CLiente  + '%') or @Nome_CLiente  IS Null)and
+		(replace(replace(replace(CPF_Cliente,'.',''),'_',''),'-','') like ('%' +  replace(replace(replace(replace(@CPF_Cliente,'.',''),'_',''),'-',''),' ','') + '%') or @CPF_Cliente   is null) and
+		(Endereco_Cliente = @Endereco_Cliente  or @Endereco_Cliente  is null) and
+		(Numero_Apartamento = @Numero_Apartamento or @Numero_Apartamento is null) and
+		(Numero_Residencia = @Numero_Residencia  or @Numero_Residencia  is null) and
+		(Bairro_Cliente = @Bairro_Cliente  or @Bairro_Cliente  is null) and
+		(CEP_Cliente = @CEP_Cliente  or @CEP_Cliente  is null) and
+		(Estado_Cliente = @Estado_Cliente  or @Estado_Cliente  IS Null)and
+		(Cidade_Cliente = @Cidade_Cliente  or @Cidade_Cliente   is null) and
+		(Complemento_Cliente = @Complemento_Cliente  or @Complemento_Cliente  is null) and
+		(Telefone_Cliente = @Telefone_Cliente  or @Telefone_Cliente  is null) and
+		(Celular_Cliente = @Celular_Cliente  or @Celular_Cliente  is null) and
+		(Login_Cliente = @Login_Cliente  or @Login_Cliente  is null) and
+		(Senha_Cliente = @Senha_Cliente  or @Senha_Cliente  is null) and
+		(DataNascimento = @DataNascimento  or @DataNascimento  is null) and
+		(DataCadastro = @DataCadastro or @DataCadastro is null)
+	end
+go
+-------------------------------------------------
+create procedure [dbo].[CSP_Seleciona_Produtos]
+(
+	@cod_Pedido int = null
+)
+as
+	begin
+
+	select 
+		prod.Cod_Produto,prod.Nome_Produto,
+		prod.Valor_Venda, COUNT(det.cod_produto) 
+
+	as 
+		Quantidade from Produto as prod
+		inner join Detalhe_Pedido as det
+		on prod.Cod_Produto = det.Cod_Produto and det.Cod_Pedido = @cod_Pedido
+		group by det.Cod_Pedido, prod.Cod_Produto,prod.Nome_Produto,prod.Valor_Venda
+	end
+go
+-----------------------------------------
+create procedure [dbo].[csp_Select_Funcionario]
+(
+	@Cod_Funcionario int = null,
+	@NOME_Funcionario VARCHAR(40) = null,
+	@CPF_Funcionario VARCHAR(15) = null,
+	@ENDERECO_Funcionario VARCHAR(40) = null,
+	@NUMERO_RESIDENCIA INT  = null,
+	@BAIRRO_Funcionario VARCHAR(30) = null,
+	@CEP_Funcionario VARCHAR(9) = null,
+	@ESTADO_Funcionario VARCHAR(2) = null,
+	@CIDADE_Funcionario VARCHAR(20) = null,
+	@COMPLEMENTO_Funcionario VARCHAR(40) = null,
+	@TELEFONE_Funcionario VARCHAR(40) = null,
+	@CELULAR_Funcionario VARCHAR(15) = null,
+	@EMAIL_Funcionario VARCHAR(40) = null,
+	@Login_Funcionario varchar(30) = null,
+	@SENHA_Funcionario VARCHAR(15) = null,
+	@DATA_NASC date = null,
+	@Salario decimal(6,2) = null,
+	@cod_Permissao int = null
+)
+as
+	Begin
+		select
+			Cod_Funcionario,
+			NOME_Func ,
+			CPF_Funcionario ,
+			ENDERECO_Funcionario,
+			NUMERO_RESIDENCIA ,
+			BAIRRO_Funcionario ,
+			CEP_Funcionario ,
+			ESTADO_Funcionario ,
+			CIDADE_Funcionario ,
+			COMPLEMENTO_Funcionario,
+			TELEFONE_Funcionario ,
+			CELULAR_Funcionario ,
+			EMAIL_Funcionario ,
+			Login_Funcionario ,
+			SENHA_Funcionario,
+			DATA_NASC ,
+			Salario ,
+			cod_Permissao 
+
+		from Funcionario
+		
+		where 
+			(Cod_Funcionario = @Cod_Funcionario or @Cod_Funcionario is null) and
+			(NOME_Func like ('%' + @NOME_Funcionario + '%') or @NOME_Funcionario IS Null)and
+			(replace(replace(replace(CPF_Funcionario,'.',''),'_',''),'-','') like ('%' +  replace(replace(replace(replace(@CPF_Funcionario,'.',''),'_',''),'-',''),' ','') + '%') or @CPF_Funcionario  is null) and
+			(ENDERECO_Funcionario =@ENDERECO_Funcionario or @ENDERECO_Funcionario is null) and
+			(NUMERO_RESIDENCIA =@NUMERO_RESIDENCIA or @NUMERO_RESIDENCIA is null) and
+			(BAIRRO_Funcionario =@BAIRRO_Funcionario or @BAIRRO_Funcionario is null) and
+			(CEP_Funcionario =@CEP_Funcionario or @CEP_Funcionario is null) and
+			(ESTADO_Funcionario = @ESTADO_Funcionario or @ESTADO_Funcionario IS Null)and
+			(CIDADE_Funcionario  =@CIDADE_Funcionario or @CIDADE_Funcionario  is null) and
+			(COMPLEMENTO_Funcionario =@COMPLEMENTO_Funcionario or @COMPLEMENTO_Funcionario is null) and
+			(TELEFONE_Funcionario =@TELEFONE_Funcionario or @TELEFONE_Funcionario is null) and
+			(CELULAR_Funcionario =@CELULAR_Funcionario or @CELULAR_Funcionario is null) and
+			(EMAIL_Funcionario =@EMAIL_Funcionario or @EMAIL_Funcionario is null) and
+			(Login_Funcionario  =@Login_Funcionario or @Login_Funcionario  is null) and
+			(SENHA_Funcionario =@SENHA_Funcionario or @SENHA_Funcionario is null) and
+			(DATA_NASC =@DATA_NASC or @DATA_NASC is null) and
+			(Salario =@Salario or @Salario is null) and
+			(cod_Permissao =@cod_Permissao or @cod_Permissao is null) 
+	end
+go
+--------------------------------------------
+create procedure [dbo].[csp_Select_pedido]
+(
+	@Cod_Pedido int = null,
+	@Data date = null, 
+	@DataFim date = null, 
+	@Hora varchar(5) = null, 
+	@HoraFim varchar(5) = null, 
+	@Valor numeric(5,2) = null,
+	@Cod_Funcionario int = null,
+	@Cod_Cliente INT = null,
+	@FormaDePagamento varchar(40) = null,
+	@Observacao varchar(40) = null,
+	@Estado_Entregue varchar(40) = null,
+	@Estado_Caminho varchar(40) = null,
+	@Estado_Preparo varchar(40) = null,
+	@Estado_Cancelado varchar(40) = null,
+	@Estado_Novo varchar(40) = null
+)
+as
+	Begin
+		select
+			Cod_Pedido ,
+			Data ,
+			Hora,
+			Valor,
+			Cod_Funcionario,
+			Cod_CLiente,
+			Estado
+		from Pedido 
+		where 
+			(Cod_Pedido = @Cod_Pedido or @Cod_Pedido IS Null)and
+			(Data>=@Data and Data <= @DataFim or @Data is null) and
+			(Hora>=@Hora and Hora <=@HoraFim or @Hora is null) and
+			(Valor  =@Valor or @Valor  is null) and
+			(Cod_Funcionario =@Cod_Funcionario or @Cod_Funcionario is null) and
+			(Cod_CLiente =@Cod_CLiente or @Cod_CLiente is null) and
+			(Observacao =@Observacao or @Observacao is null) and
+			(FormaDePagamento =@FormaDePagamento or @FormaDePagamento is null) and (
+			(Estado like @Estado_Entregue) or
+			(Estado like @Estado_Caminho) or
+			(Estado like @Estado_Preparo) or
+			(Estado like @Estado_Cancelado) or
+			(Estado like @Estado_Novo))
+	end
+go
+-------------------------------------
+create procedure [dbo].[CSP_Update_Funcionario]
+(
+	@cod_Funcionario int = null,
+	@NOME_Funcionario VARCHAR(40) = null,
+	@CPF_Funcionario VARCHAR(15) = null,
+	@Cargo_Funcionario varchar(40) = null,
+	@ENDERECO_Funcionario VARCHAR(40) = null,
+	@NUMERO_RESIDENCIA INT  = null,
+	@BAIRRO_Funcionario VARCHAR(30) = null,
+	@CEP_Funcionario VARCHAR(9) = null,
+	@ESTADO_Funcionario VARCHAR(2) = null,
+	@CIDADE_Funcionario VARCHAR(20) = null,
+	@COMPLEMENTO_Funcionario VARCHAR(40) = null,
+	@TELEFONE_Funcionario VARCHAR(40) = null,
+	@CELULAR_Funcionario VARCHAR(15) = null,
+	@EMAIL_Funcionario VARCHAR(40) = null,
+	@Login_Funcionario varchar(30) = null,
+	@SENHA_Funcionario VARCHAR(15) = null,
+	@DATA_NASC date = null,
+	@Salario decimal(6,2) = null,
+	@cod_Permissao int = null
+)
+as
+	Begin
+		declare @testi int
+		set @testi = (select cod_permissao from Permissao where Cargo =  @Cargo_Funcionario)
+
+		update Funcionario
+
+		Set 
+			Nome_Func = @NOME_Funcionario,
+			CPF_Funcionario = @CPF_Funcionario ,
+			ENDERECO_Funcionario = @ENDERECO_Funcionario,
+			COMPLEMENTO_Funcionario = @COMPLEMENTO_Funcionario,
+			NUMERO_RESIDENCIA  = @NUMERO_RESIDENCIA,
+			CEP_Funcionario = @CEP_Funcionario,
+			ESTADO_Funcionario = @ESTADO_Funcionario,
+			CIDADE_Funcionario = @CIDADE_Funcionario,
+			BAIRRO_Funcionario = @BAIRRO_Funcionario,
+			EMAIL_Funcionario = @EMAIL_Funcionario,
+			CELULAR_Funcionario = @CELULAR_Funcionario,
+			TELEFONE_Funcionario = @TELEFONE_Funcionario,
+			DATA_NASC = @DATA_NASC,
+			Salario = @Salario,
+			Login_Funcionario = @Login_Funcionario,
+			SENHA_Funcionario = @SENHA_Funcionario,
+			cod_Permissao = @testi
+
+		where Cod_Funcionario = @cod_Funcionario
+	end
+go
+------------------------------------------------
+create procedure [dbo].[csp_update_pedido]
+(
+	@Estado varchar(20) = null,
+	@cod_pedido int = null
+)
+as 
+	begin
+		update Pedido 
+		set Estado = @Estado 
+		where Cod_Pedido = @cod_pedido
+	end
 go
