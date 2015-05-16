@@ -41,9 +41,13 @@ public partial class modelo : System.Web.UI.MasterPage
                             {
                                 lblProdutosCarrinho.Text = "Seu carrinho tem " + numprods.ToString() + " produto.";
                             }
-                            else
+                            else if(numprods > 1)
                             {
                                 lblProdutosCarrinho.Text = "Seu carrinho tem " + numprods.ToString() + " produtos.";
+                            }
+                            else if(numprods == 0)
+                            {
+                                lblProdutosCarrinho.Text = "Não há produtos no seu carrinho.";
                             }
                     }
                     catch
@@ -153,6 +157,10 @@ public partial class modelo : System.Web.UI.MasterPage
     {
         Response.Cookies["nome"].Value = "0";
         Response.Cookies["cod"].Value = "0";
+
+        Session.Abandon();
+        Session.Clear();
+        Session.RemoveAll();
 
         lblLoginInc.Text = "";
         txtEmail.Text = "";

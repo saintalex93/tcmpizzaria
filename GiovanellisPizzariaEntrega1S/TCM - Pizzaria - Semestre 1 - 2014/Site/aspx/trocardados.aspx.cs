@@ -11,6 +11,7 @@ public partial class aspx_trocardados : System.Web.UI.Page
 {
     int codCli;
     bool validando = true;
+    string emailOriginal;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Request.Cookies["cod"] == null || Request.Cookies["cod"].Value == "0")
@@ -66,14 +67,23 @@ public partial class aspx_trocardados : System.Web.UI.Page
                     txtCpf.Text = ds.Tables[0].DefaultView[0].Row["CPF_Cliente"].ToString();
                     DateTime datanasc = Convert.ToDateTime(ds.Tables[0].DefaultView[0].Row["DataNascimento"]);
                     txtDtNasc.Text = datanasc.ToString("dd/MM/yyyy");
-                    DDLEstado.SelectedItem.Value = ds.Tables[0].DefaultView[0].Row["Estado_Cliente"].ToString();
+
+                    //Trazendo o Estado
+                    foreach (ListItem li in DDLEstado.Items)
+                    {
+                        if(li.Text == ds.Tables[0].DefaultView[0].Row["Estado_Cliente"].ToString())
+                        {
+                            li.Selected = true;
+                            break;
+                        }
+                    }
                     txtCidade.Text = ds.Tables[0].DefaultView[0].Row["Cidade_Cliente"].ToString();
                     txtRua.Text = ds.Tables[0].DefaultView[0].Row["Endereco_Cliente"].ToString();
                     txtComplemento.Text = ds.Tables[0].DefaultView[0].Row["Complemento_Cliente"].ToString();
                     txtNumCasa.Text = ds.Tables[0].DefaultView[0].Row["Numero_Residencia"].ToString();
                     //Trazendo número do apartamento(se foi cadastrado como "0", não mostra nada.)
                     string numapart = ds.Tables[0].DefaultView[0].Row["Numero_Apartamento"].ToString();
-                    if (numapart == "0")
+                    if (numapart == "0" || numapart == "")
                     {
 
                     }
@@ -83,11 +93,14 @@ public partial class aspx_trocardados : System.Web.UI.Page
                     }
                     txtBairro.Text = ds.Tables[0].DefaultView[0].Row["Bairro_Cliente"].ToString();
                     txtCep.Text = ds.Tables[0].DefaultView[0].Row["CEP_Cliente"].ToString();
+
+                    //Recebendo o email na variável global para verificar posteriormente se essa informação foi alterada.
+                    emailOriginal = txtEmail.Text;
                 }
                 catch (Exception ex)
                 {
                     Response.Write("<script>alert('Você não está autorizado.');</script>");
-                    Response.Write("<script>history.go(-1);</script>");
+                    Response.Write("<script>window.location.assign('"+  Request.ApplicationPath + "' / );</script>");
                 }
             }
         }
@@ -141,21 +154,29 @@ public partial class aspx_trocardados : System.Web.UI.Page
                 con.command.Parameters.Add("@email", SqlDbType.VarChar).Value = email;
                 con.command.Parameters.Add("@datanasc", SqlDbType.Date).Value = datanasc2;
                 con.command.CommandText = "update Cliente set Nome_Cliente=@nome, CPF_Cliente=@cpf, Endereco_Cliente=@rua, Numero_Residencia=@numcasa, Numero_Apartamento=@numapart, Bairro_Cliente=@bairro, CEP_Cliente=@cep, Estado_Cliente=@estado, Cidade_Cliente=@cidade, Complemento_Cliente=@complemento, Telefone_Cliente=@telefone, Celular_Cliente=@celular, Login_Cliente=@email, DataNascimento=@datanasc where Cod_Cliente=" + codCli;
-                int um = con.command.ExecuteNonQuery();
+                int resultado = con.command.ExecuteNonQuery();
                 con.fechaConexao();
-                if (um > 0)
+
+                if (resultado > 0 && email != emailOriginal)
                 {
-                    Response.Write("<script>alert('Dados alterados com sucesso !')</script>");
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "ScriptManager1", "alert('Dados alterados com sucesso !!');window.location='" + Request.ApplicationPath + "/index.aspx';", true);
+                    Response.Cookies["nome"].Value = "0";
+                    Response.Cookies["cod"].Value = "0";
                 }
-                else
+                else if(resultado > 0 && email == emailOriginal)
                 {
-                    Response.Write("<script>alert('Falha na alteração, tente novamente !')</script>");
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "ScriptManager1", "alert('Dados alterados com sucesso !!');", true);
                 }
+                else if (resultado <= 0)
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "ScriptManager1", "alert('Falha na alteração dos dados !!');", true);
+                }
+                
                 lblresposta.Text = "";
             }
             catch (Exception ex)
             {
-                Response.Write("<script>alert('Erro na alteração, tente novamente em alguns segundos !')</script>");
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "ScriptManager1", "alert('Falha na alteração dos dados !!');", true);
             }
             
         }

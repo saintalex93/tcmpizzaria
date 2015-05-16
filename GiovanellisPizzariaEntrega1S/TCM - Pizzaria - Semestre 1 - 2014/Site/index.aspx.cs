@@ -41,9 +41,13 @@ public partial class index : System.Web.UI.Page
                         {
                             lblProdutosCarrinho.Text = "Seu carrinho tem " + numprods.ToString() + " produto.";
                         }
-                        else
+                        else if(numprods > 1)
                         {
                             lblProdutosCarrinho.Text = "Seu carrinho tem " + numprods.ToString() + " produtos.";
+                        }
+                        else if (numprods == 0)
+                        {
+                            lblProdutosCarrinho.Text = "Não há produtos no seu carrinho.";
                         }
                     }
                     catch
@@ -96,20 +100,6 @@ public partial class index : System.Web.UI.Page
                 dAdapter.Fill(dt);
                 con.fechaConexao();
 
-                //Conexão que vai recuperar o NOME do cliente pelo email e senha digitados.
-
-                //conexao con2 = new conexao();
-                //con2.conectar();
-
-                //con2.command.Parameters.Add("@email", SqlDbType.VarChar).Value = email;
-                //con2.command.Parameters.Add("@senha", SqlDbType.VarChar).Value = senha;
-                //con2.command.CommandText = "select Nome_Cliente from Cliente where Email_Cliente=@email and Senha_Cliente=@senha";
-                //dAdapter2.SelectCommand = con2.command;
-                //dAdapter2.Fill(dt2);
-                //con2.fechaConexao();
-
-                //Pegando as informações do DataSet e jogando em variáveis.
-
                 nome = dt.Tables[0].DefaultView[0].Row["Nome_Cliente"].ToString();
                 codcliente = Convert.ToInt32(dt.Tables[0].DefaultView[0].Row["Cod_Cliente"]);
 
@@ -130,13 +120,13 @@ public partial class index : System.Web.UI.Page
                 else
                 {
                     Response.Cookies["nome"].Value = null;
-                    lblLoginInc.Text = "Login e/ou Senha incorreto(s)";
+                    lblLoginInc.Text = "Login e/ou Senha incorreto(s).";
                 }
 
             }
             catch (Exception ex)
             {
-                Response.Write("<script>alert('Sua string de conexão está errada cara, que loucura.')</script>");
+                Response.Write("<script>alert('Login e/ou senha incorreto(s).')</script>");
             }
         }
     }

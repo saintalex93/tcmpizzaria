@@ -168,9 +168,9 @@ header
 .boxLogin input[type="text"], .boxLogin input[type="password"] {
 	border-radius: 5px;
 	font-size: 16px;
-	max-width: 180px;
+	max-width: 175px;
 	color: #ef6f53;
-	padding: 1px;
+	padding: 1px 0 0 5px;
 }
 .boxLogin input[type="password"] {
 	letter-spacing: 3px;
@@ -814,8 +814,17 @@ footer p {
 }
 .pnlBebida {
     float: left;
-    margin: 15px 0;
-    min-width: 100%;
+    margin: 15px 0 15px 122px;
+    min-width: 60%;
+}
+.pnlBebida input[type="number"] {
+    padding: 2px 0 2px 6px;
+    width: 35px;
+    height: 25px;
+    color: #ef6f53;
+    border: 1px solid #583742;
+    background: #fff3e9;
+    font-weight: bold;
 }
 .pnlBebida span {
     display: block;
@@ -825,6 +834,9 @@ footer p {
 }
 .pnlBebida span.lblBebida {
     margin: 4px 0 0 0;
+}
+.pnlBebida span.lblQtd {
+    margin: 5px 10px 0 15px;
 }
 .pnlBebida select {
     float: left;
@@ -843,13 +855,17 @@ footer p {
     font-size: 15px;
     float: left;
     clear: left;
+    margin: 10px 5px 0 0;
 }
 .pnlBebida .lblPreco {
     display: block;
+    margin: 10px 0 0 0;
 }
 
 .buttonsAddBebida {
     clear: left;
+    float: left;
+    margin: 0 0 0 122px;
 }
 .buttonsAddBebida input[type="submit"] {
     padding: 5px;
@@ -857,11 +873,15 @@ footer p {
     background: #ef6f53;
     color: #583742;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 15px;
 }
 
 .carrinhoPedido h2 {
     color: #583742;
+    clear: left;
+}
+.carrinhoPedido h2:nth-child(5) {
+    float: left;
 }
 .carrinhoPedido {
     float: left;
@@ -895,7 +915,7 @@ footer p {
 }
 .pnlPrecoTotal {
     float: left;
-    margin: 0 385px;
+    margin: 0 375px;
 }
 .pnlPrecoTotal span{
     display: block;
@@ -965,6 +985,7 @@ footer p {
 
 .pnlEnd {
     clear: both;
+    float: left;
 }
 .pnlEnd h3 {
     text-align: center;
@@ -1008,6 +1029,52 @@ footer p {
     font-size: 18px;
     font-weight: bold;
     transition: all 0.6s;
+}
+.pnlPagamento {
+    float: right;
+    margin: 0 50px 0 0;
+}
+.pnlPagamento h2 {
+    margin: 0 0 20px 0;
+}
+.pnlPagamento span, p {
+    color: #583742;
+}
+.pnlPagamento label {
+    color: #ef6f53;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+.pnlPagamento p:nth-child(2) {
+    font-weight: bold;
+}
+.pnlPagamento span:nth-child(3) {
+    text-align: center;
+    font-size: 17px;
+    font-weight: bold;
+}
+.pnlPagamento span, p {
+    display: block;
+    margin: 0 0 10px 0;
+}
+.pnlPagamento input[type="text"] {
+    padding: 5px;
+    border-radius: 7px;
+    text-align: center;
+    color: #ef6f53;
+}
+.pnlPagamento .lblTroco {
+    text-align: center;
+    margin: 15px 0 0 0;
+    font-size: 17px;
+}
+ /* TextBox do Troco */
+.pnlPagamento input[type="text"]:last-child {
+    background: #ccc;
+}
+.pnlPagamento .lblSeuValor {
+    margin: 10px 0 5px 0;
+    text-align: center;
 }
 
 

@@ -10,6 +10,7 @@
             <h1>Trocar Dados</h1>
         </div>
     </div>
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <article class="dadosCliente">
             <div class="wrapper">          
                 <fieldset class="formTrocaDados1">

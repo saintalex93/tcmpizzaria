@@ -24,7 +24,6 @@ public class Conexao
 
     public void conectar()
     {
-
         conexao = new SqlConnection(strConexao);
         conexao.Open();
         command = new SqlCommand();

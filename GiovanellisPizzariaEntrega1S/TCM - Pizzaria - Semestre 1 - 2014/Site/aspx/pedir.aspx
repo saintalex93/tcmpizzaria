@@ -156,46 +156,70 @@
                         <asp:Panel ID="pnlBebida" CssClass="pnlBebida" runat="server">
                             <asp:Label ID="lblBebidas1" CssClass="lblBebida" runat="server" Text="Bebidas"></asp:Label>
 
-                            <asp:DropDownList ID="ddlBebidas" OnLoad="carregandoBebidas" runat="server"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlBebidas" AutoPostBack="true" OnLoad="carregandoBebidas" OnSelectedIndexChanged="trocaBebida" runat="server"></asp:DropDownList>
+
+                            <asp:Label ID="lblQtdBebida" runat="server" Text="Quantidade" CssClass="lblQtd"></asp:Label>
+
+                            <asp:TextBox ID="txtQtdBebida" runat="server" CssClass="txtQtd" Text="1" type="number" min="1" AutoPostBack="True" OnTextChanged="trocandoQtdBebida"></asp:TextBox>
+
                             <p>Preço: </p>
-                            <asp:Label ID="lblPrecoBebida" runat="server" Text=""></asp:Label>
+                            <asp:Label ID="lblPrecoBebida" CssClass="lblPreco" runat="server" Text="0"></asp:Label>
                         </asp:Panel>
 
                         <%-- SEGUNDA BEBIDA --%>
                         <asp:Panel ID="pnlBebidaDin1" CssClass="pnlBebida" runat="server" Visible="false">
                             <asp:Label ID="lblBebidas2" CssClass="lblBebida" runat="server" Text="Bebidas"></asp:Label>
 
-                            <asp:DropDownList ID="ddlBebidasDin1" OnLoad="carregandoBebidas" runat="server"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlBebidasDin1" AutoPostBack="true" OnLoad="carregandoBebidas" OnSelectedIndexChanged="trocaBebida" runat="server"></asp:DropDownList>
+
+                            <asp:Label ID="lblQtdBebida1" runat="server" Text="Quantidade" CssClass="lblQtd"></asp:Label>
+
+                            <asp:TextBox ID="txtQtdBebida1" runat="server" CssClass="txtQtd" Text="1" type="number" min="1" AutoPostBack="True" OnTextChanged="trocandoQtdBebida"></asp:TextBox>
 
                             <p>Preço: </p>
-                            <asp:Label ID="lblPrecoBebida1" CssClass="lblPreco" runat="server" Text=""></asp:Label>
+                            <asp:Label ID="lblPrecoBebida1" CssClass="lblPreco" runat="server" Text="0"></asp:Label>
                         </asp:Panel>
 
                         <%-- TERCEIRA BEBIDA --%>
                         <asp:Panel ID="pnlBebidaDin2" CssClass="pnlBebida" runat="server" Visible="false">
                             <asp:Label ID="lblBebidas3" CssClass="lblBebida" runat="server" Text="Bebidas"></asp:Label>
 
-                            <asp:DropDownList ID="ddlBebidasDin2" OnLoad="carregandoBebidas" runat="server"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlBebidasDin2" AutoPostBack="true" OnLoad="carregandoBebidas" OnSelectedIndexChanged="trocaBebida" runat="server"></asp:DropDownList>
+
+                            <asp:Label ID="lblQtdBebida2" runat="server" Text="Quantidade" CssClass="lblQtd"></asp:Label>
+
+                            <asp:TextBox ID="txtQtdBebida2" runat="server" CssClass="txtQtd" Text="1" type="number" min="1" AutoPostBack="True" OnTextChanged="trocandoQtdBebida"></asp:TextBox>
+
                             <p>Preço: </p>
-                            <asp:Label ID="lblPrecoBebida2" CssClass="lblPreco" runat="server" Text=""></asp:Label>
+                            <asp:Label ID="lblPrecoBebida2" CssClass="lblPreco" runat="server" Text="0"></asp:Label>
                         </asp:Panel>
 
                         <%-- QUARTA BEBIDA --%>
                         <asp:Panel ID="pnlBebidaDin3" CssClass="pnlBebida" runat="server" Visible="false">
                             <asp:Label ID="lblBebida4" CssClass="lblBebida" runat="server" Text="Bebidas"></asp:Label>
 
-                            <asp:DropDownList ID="ddlBebidasDin3" OnLoad="carregandoBebidas" runat="server"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlBebidasDin3" AutoPostBack="true" OnLoad="carregandoBebidas" OnSelectedIndexChanged="trocaBebida" runat="server"></asp:DropDownList>
+
+                            <asp:Label ID="lblQtdBebida3" runat="server" Text="Quantidade" CssClass="lblQtd"></asp:Label>
+
+                            <asp:TextBox ID="txtQtdBebida3" runat="server" CssClass="txtQtd" Text="1" type="number" min="1" AutoPostBack="True" OnTextChanged="trocandoQtdBebida"></asp:TextBox>
+
                             <p>Preço: </p>
-                            <asp:Label ID="lblPrecoBebida3" CssClass="lblPreco" runat="server" Text=""></asp:Label>
+                            <asp:Label ID="lblPrecoBebida3" CssClass="lblPreco" runat="server" Text="0"></asp:Label>
                         </asp:Panel>
 
                         <%-- QUINTA BEBIDA --%>
                         <asp:Panel ID="pnlBebidaDin4" CssClass="pnlBebida" runat="server" Visible="false">
                             <asp:Label ID="lblBebida5" CssClass="lblBebida" runat="server" Text="Bebidas"></asp:Label>
 
-                            <asp:DropDownList ID="ddlBebidasDin4" OnLoad="carregandoBebidas" runat="server"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlBebidasDin4" AutoPostBack="true" OnLoad="carregandoBebidas" OnSelectedIndexChanged="trocaBebida" runat="server"></asp:DropDownList>
+
+                            <asp:Label ID="lblQtdBebida4" runat="server" Text="Quantidade" CssClass="lblQtd"></asp:Label>
+
+                            <asp:TextBox ID="txtQtdBebida4" runat="server" CssClass="txtQtd" Text="1" type="number" min="1" AutoPostBack="True" OnTextChanged="trocandoQtdBebida"></asp:TextBox>
+
                             <p>Preço: </p>
-                            <asp:Label ID="lblPrecoBebida5" CssClass="lblPreco" runat="server" Text=""></asp:Label>
+                            <asp:Label ID="lblPrecoBebida5" CssClass="lblPreco" runat="server" Text="0"></asp:Label>
                         </asp:Panel>
 
                         <div class="buttonsAddBebida">
@@ -209,7 +233,7 @@
                 </div>
             </article>
 
-            <asp:Panel ID="pnlCarrinhoPedido" runat="server" CssClass="carrinhoPedido" Visible="false">
+            <asp:Panel ID="pnlCarrinhoPedido" ClientIDMode="Static" runat="server" CssClass="carrinhoPedido" Visible="false">
                 <div class="wrapper">
                     <h2>Seu Pedido</h2>
                     <asp:GridView ID="gdCarrinho" CssClass="produtosCarrinho" runat="server" AutoGenerateColumns="true">
@@ -217,15 +241,15 @@
                     </asp:GridView>
 
                     <asp:Panel ID="pnlPrecoTotal" CssClass="pnlPrecoTotal" runat="server">
-                        <asp:Label ID="lblPrecoTot" runat="server" Text="Preço Total: R$"></asp:Label>
+                        <asp:Label ID="lblPrecoTot" runat="server" Text="Preço Total: "></asp:Label>
                         <asp:Label ID="lblPrecoTotal" runat="server" Text="0"></asp:Label>
                     </asp:Panel>
 
                     <asp:Button ID="btnLimpaCarrinho" CssClass="btnLimpaCarrinho" runat="server" Text="Limpar Carrinho" OnClick="limparCarrinho" />
 
                    <!-- ENDEREÇO -->
-                    <h2>Confirmação de Endereço</h2>
                     <asp:Panel ID="pnlEndereco" runat="server" CssClass="pnlEnd">
+                        <h2>Confirmação de Endereço</h2>
                         <asp:RadioButtonList ID="rbtnEnd" CssClass="rbtnList" runat="server" OnSelectedIndexChanged="trocarEndereco" AutoPostBack="True">
                             <asp:ListItem Value="1" Text="Usar Endereço do Cadastro" Selected="True"></asp:ListItem>
                             <asp:ListItem Value="2" Text="Usar outro endereço"></asp:ListItem>
@@ -244,12 +268,30 @@
                             <asp:TextBox ID="txtNum" Visible="false" type="number" min="1" runat="server"></asp:TextBox>
                             <!--Número de apartamento alternativo(Não obrigatório) -->
                             <asp:Label ID="lblNumApartAlt" Visible="false" Text="Número do Apartamento" runat="server"></asp:Label>
-                            <asp:TextBox ID="txtNumApart" Visible="false" type="number" min="1" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtNumApart" Visible="false" Text="0" type="number" min="0" runat="server"></asp:TextBox>
 
                         </asp:Panel>
 
                         <h3>Observações Gerais sobre o seu Pedido</h3>
                         <asp:TextBox ID="txtObservacoes" runat="server" TextMode="MultiLine"></asp:TextBox>
+                    </asp:Panel>
+
+                    <asp:Panel ID="pnlPagamento" CssClass="pnlPagamento" runat="server">
+                        <h2>Pagamento</h2>
+                        <p>Preço Total:</p>
+                        <asp:Label ID="lblPrecoDoPedido" runat="server" Text="0"></asp:Label>
+
+                        <p>Forma de Pagamento: </p>
+                        <asp:RadioButtonList ID="rbtnPagamento" OnSelectedIndexChanged="trocaFormaPagamento" AutoPostBack="true" runat="server">
+                            <asp:ListItem Value="1" Text="Dinheiro" Selected="True"></asp:ListItem>
+                            <asp:ListItem Value="2" Text="Cartão"></asp:ListItem>
+                        </asp:RadioButtonList>
+
+                        <asp:Label ID="lblSeuValor" CssClass="lblSeuValor" runat="server" Text="Valor a ser pago:"></asp:Label>
+                        <asp:TextBox ID="txtValor" runat="server" OnTextChanged="trocarValor" AutoPostBack="true"></asp:TextBox>
+
+                        <asp:Label ID="lblTroco" CssClass="lblTroco" runat="server" Text="Troco"></asp:Label>
+                        <asp:TextBox ID="txtTroco" ReadOnly="true" runat="server" Text="R$ 00,00"></asp:TextBox>
                     </asp:Panel>
                     <!-- FIM ENDEREÇO -->
                     <asp:Button ID="btnFinalizaPedido" CssClass="btnFinaliza" runat="server" Text="Finalizar Pedido" OnClick="finalizaPedido" />

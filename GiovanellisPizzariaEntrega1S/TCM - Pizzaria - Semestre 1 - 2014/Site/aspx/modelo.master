@@ -61,7 +61,7 @@
                     <asp:Label ID="lblNomeUsuario" runat="server" CssClass="lblNomeUsuario" Text="" ></asp:Label>
                     
                     <div class="carrinho">
-                        <asp:Label ID="lblMeuCarrinho" runat="server" CssClass="lblMeuCarrinho" Text="Meu Carrinho"></asp:Label>
+                        <a href="pedir.aspx#pnlCarrinhoPedido"><asp:Label ID="lblMeuCarrinho" runat="server" CssClass="lblMeuCarrinho" Text="Meu Carrinho"></asp:Label></a>
                         <img src="../imagens/motoboy.png" />
                         <asp:Label ID="lblProdutosCarrinho" runat="server" Text=""></asp:Label>
                     </div>
