@@ -29,22 +29,25 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CadastrarPromocao));
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.grpProdutos = new System.Windows.Forms.GroupBox();
             this.gridProdutosNaPromocao = new System.Windows.Forms.DataGridView();
             this.btnRemoverProduto = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.gridBuscaProdutos = new System.Windows.Forms.DataGridView();
             this.btnAdicionarProduto = new System.Windows.Forms.Button();
-            this.txtBuscaProdutoPorID = new System.Windows.Forms.TextBox();
-            this.txtBuscaPalavraChave = new System.Windows.Forms.TextBox();
+            this.txtProdutoID = new System.Windows.Forms.TextBox();
+            this.txtProdutoPalavraChave = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnVoltar = new System.Windows.Forms.Button();
             this.grpDados = new System.Windows.Forms.GroupBox();
-            this.ckVisivelNoSite = new System.Windows.Forms.CheckBox();
-            this.ckAcessoCadastrado = new System.Windows.Forms.CheckBox();
-            this.dataPrazo = new System.Windows.Forms.DateTimePicker();
+            this.label12 = new System.Windows.Forms.Label();
+            this.txtDesconto = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.ckAcessivelATodos = new System.Windows.Forms.CheckBox();
+            this.ckSobeSite = new System.Windows.Forms.CheckBox();
+            this.dataVigencia = new System.Windows.Forms.DateTimePicker();
             this.btnCriarPromocoes = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.txtDescricaoPromocao = new System.Windows.Forms.TextBox();
@@ -55,14 +58,12 @@
             this.btnRemoverPromocao = new System.Windows.Forms.Button();
             this.btnAlterar = new System.Windows.Forms.Button();
             this.gridPromocoesEncontradas = new System.Windows.Forms.DataGridView();
-            this.txtBuscaPromocaoPorID = new System.Windows.Forms.TextBox();
+            this.txtPromocaoID = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.txtBuscaPorTitulo = new System.Windows.Forms.TextBox();
+            this.txtPromocaoPalavraChave = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.txtDesconto = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.groupBox1.SuspendLayout();
+            this.grpProdutos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridProdutosNaPromocao)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridBuscaProdutos)).BeginInit();
             this.grpDados.SuspendLayout();
@@ -70,24 +71,24 @@
             this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // grpProdutos
             // 
-            this.groupBox1.Controls.Add(this.gridProdutosNaPromocao);
-            this.groupBox1.Controls.Add(this.btnRemoverProduto);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.gridBuscaProdutos);
-            this.groupBox1.Controls.Add(this.btnAdicionarProduto);
-            this.groupBox1.Controls.Add(this.txtBuscaProdutoPorID);
-            this.groupBox1.Controls.Add(this.txtBuscaPalavraChave);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 326);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(678, 224);
-            this.groupBox1.TabIndex = 4;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Busca de Produtos";
+            this.grpProdutos.Controls.Add(this.gridProdutosNaPromocao);
+            this.grpProdutos.Controls.Add(this.btnRemoverProduto);
+            this.grpProdutos.Controls.Add(this.label6);
+            this.grpProdutos.Controls.Add(this.label2);
+            this.grpProdutos.Controls.Add(this.gridBuscaProdutos);
+            this.grpProdutos.Controls.Add(this.btnAdicionarProduto);
+            this.grpProdutos.Controls.Add(this.txtProdutoID);
+            this.grpProdutos.Controls.Add(this.txtProdutoPalavraChave);
+            this.grpProdutos.Controls.Add(this.label3);
+            this.grpProdutos.Controls.Add(this.label1);
+            this.grpProdutos.Location = new System.Drawing.Point(12, 326);
+            this.grpProdutos.Name = "grpProdutos";
+            this.grpProdutos.Size = new System.Drawing.Size(678, 224);
+            this.grpProdutos.TabIndex = 4;
+            this.grpProdutos.TabStop = false;
+            this.grpProdutos.Text = "Busca de Produtos";
             // 
             // gridProdutosNaPromocao
             // 
@@ -152,30 +153,30 @@
             this.btnAdicionarProduto.UseVisualStyleBackColor = true;
             this.btnAdicionarProduto.Click += new System.EventHandler(this.btnAdicionar_Click);
             // 
-            // txtBuscaProdutoPorID
+            // txtProdutoID
             // 
-            this.txtBuscaProdutoPorID.Location = new System.Drawing.Point(30, 19);
-            this.txtBuscaProdutoPorID.Name = "txtBuscaProdutoPorID";
-            this.txtBuscaProdutoPorID.Size = new System.Drawing.Size(71, 20);
-            this.txtBuscaProdutoPorID.TabIndex = 9999;
-            this.txtBuscaProdutoPorID.TextChanged += new System.EventHandler(this.txtBuscaProdutoPorID_TextChanged);
-            this.txtBuscaProdutoPorID.Enter += new System.EventHandler(this.txtBuscaProdutoPorID_Enter);
-            this.txtBuscaProdutoPorID.Leave += new System.EventHandler(this.txtBuscaProdutoPorID_Leave);
+            this.txtProdutoID.Location = new System.Drawing.Point(238, 19);
+            this.txtProdutoID.Name = "txtProdutoID";
+            this.txtProdutoID.Size = new System.Drawing.Size(71, 20);
+            this.txtProdutoID.TabIndex = 9999;
+            this.txtProdutoID.TextChanged += new System.EventHandler(this.txtBuscaProdutoPorID_TextChanged);
+            this.txtProdutoID.Enter += new System.EventHandler(this.txtBuscaProdutoPorID_Enter);
+            this.txtProdutoID.Leave += new System.EventHandler(this.txtBuscaProdutoPorID_Leave);
             // 
-            // txtBuscaPalavraChave
+            // txtProdutoPalavraChave
             // 
-            this.txtBuscaPalavraChave.Location = new System.Drawing.Point(209, 19);
-            this.txtBuscaPalavraChave.Name = "txtBuscaPalavraChave";
-            this.txtBuscaPalavraChave.Size = new System.Drawing.Size(100, 20);
-            this.txtBuscaPalavraChave.TabIndex = 999;
-            this.txtBuscaPalavraChave.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            this.txtBuscaPalavraChave.Enter += new System.EventHandler(this.txtBuscaPalavraChave_Enter_1);
-            this.txtBuscaPalavraChave.Leave += new System.EventHandler(this.txtBuscaPalavraChave_Leave_1);
+            this.txtProdutoPalavraChave.Location = new System.Drawing.Point(47, 19);
+            this.txtProdutoPalavraChave.Name = "txtProdutoPalavraChave";
+            this.txtProdutoPalavraChave.Size = new System.Drawing.Size(100, 20);
+            this.txtProdutoPalavraChave.TabIndex = 999;
+            this.txtProdutoPalavraChave.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.txtProdutoPalavraChave.Enter += new System.EventHandler(this.txtBuscaPalavraChave_Enter_1);
+            this.txtProdutoPalavraChave.Leave += new System.EventHandler(this.txtBuscaPalavraChave_Leave_1);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 22);
+            this.label3.Location = new System.Drawing.Point(214, 22);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(18, 13);
             this.label3.TabIndex = 1;
@@ -184,7 +185,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(168, 22);
+            this.label1.Location = new System.Drawing.Point(6, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 0;
@@ -202,11 +203,12 @@
             // 
             // grpDados
             // 
+            this.grpDados.Controls.Add(this.label12);
             this.grpDados.Controls.Add(this.txtDesconto);
             this.grpDados.Controls.Add(this.label5);
-            this.grpDados.Controls.Add(this.ckVisivelNoSite);
-            this.grpDados.Controls.Add(this.ckAcessoCadastrado);
-            this.grpDados.Controls.Add(this.dataPrazo);
+            this.grpDados.Controls.Add(this.ckAcessivelATodos);
+            this.grpDados.Controls.Add(this.ckSobeSite);
+            this.grpDados.Controls.Add(this.dataVigencia);
             this.grpDados.Controls.Add(this.btnCriarPromocoes);
             this.grpDados.Controls.Add(this.label11);
             this.grpDados.Controls.Add(this.txtDescricaoPromocao);
@@ -220,37 +222,63 @@
             this.grpDados.TabStop = false;
             this.grpDados.Text = "Dados da Promoção";
             // 
-            // ckVisivelNoSite
+            // label12
             // 
-            this.ckVisivelNoSite.AutoSize = true;
-            this.ckVisivelNoSite.Location = new System.Drawing.Point(419, 45);
-            this.ckVisivelNoSite.Name = "ckVisivelNoSite";
-            this.ckVisivelNoSite.Size = new System.Drawing.Size(223, 17);
-            this.ckVisivelNoSite.TabIndex = 3;
-            this.ckVisivelNoSite.Text = "Visível apenas para usuários cadastrados";
-            this.ckVisivelNoSite.UseVisualStyleBackColor = true;
-            this.ckVisivelNoSite.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(653, 16);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(15, 13);
+            this.label12.TabIndex = 9;
+            this.label12.Text = "%";
             // 
-            // ckAcessoCadastrado
+            // txtDesconto
             // 
-            this.ckAcessoCadastrado.AutoSize = true;
-            this.ckAcessoCadastrado.Location = new System.Drawing.Point(310, 45);
-            this.ckAcessoCadastrado.Name = "ckAcessoCadastrado";
-            this.ckAcessoCadastrado.Size = new System.Drawing.Size(103, 17);
-            this.ckAcessoCadastrado.TabIndex = 4;
-            this.ckAcessoCadastrado.Text = "Sobe para o site";
-            this.ckAcessoCadastrado.UseVisualStyleBackColor = true;
-            this.ckAcessoCadastrado.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.txtDesconto.Location = new System.Drawing.Point(628, 13);
+            this.txtDesconto.MaxLength = 3;
+            this.txtDesconto.Name = "txtDesconto";
+            this.txtDesconto.Size = new System.Drawing.Size(26, 20);
+            this.txtDesconto.TabIndex = 7;
             // 
-            // dataPrazo
+            // label5
             // 
-            this.dataPrazo.Checked = false;
-            this.dataPrazo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dataPrazo.Location = new System.Drawing.Point(403, 16);
-            this.dataPrazo.Name = "dataPrazo";
-            this.dataPrazo.Size = new System.Drawing.Size(100, 20);
-            this.dataPrazo.TabIndex = 2;
-            this.dataPrazo.ValueChanged += new System.EventHandler(this.dataPrazo_ValueChanged);
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(569, 16);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(59, 13);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "Desconto -";
+            // 
+            // ckAcessivelATodos
+            // 
+            this.ckAcessivelATodos.AutoSize = true;
+            this.ckAcessivelATodos.Location = new System.Drawing.Point(531, 45);
+            this.ckAcessivelATodos.Name = "ckAcessivelATodos";
+            this.ckAcessivelATodos.Size = new System.Drawing.Size(111, 17);
+            this.ckAcessivelATodos.TabIndex = 3;
+            this.ckAcessivelATodos.Text = "Acessível à todos";
+            this.ckAcessivelATodos.UseVisualStyleBackColor = true;
+            this.ckAcessivelATodos.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
+            // 
+            // ckSobeSite
+            // 
+            this.ckSobeSite.AutoSize = true;
+            this.ckSobeSite.Location = new System.Drawing.Point(422, 45);
+            this.ckSobeSite.Name = "ckSobeSite";
+            this.ckSobeSite.Size = new System.Drawing.Size(103, 17);
+            this.ckSobeSite.TabIndex = 4;
+            this.ckSobeSite.Text = "Sobe para o site";
+            this.ckSobeSite.UseVisualStyleBackColor = true;
+            this.ckSobeSite.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // dataVigencia
+            // 
+            this.dataVigencia.Checked = false;
+            this.dataVigencia.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dataVigencia.Location = new System.Drawing.Point(463, 13);
+            this.dataVigencia.Name = "dataVigencia";
+            this.dataVigencia.Size = new System.Drawing.Size(100, 20);
+            this.dataVigencia.TabIndex = 2;
+            this.dataVigencia.ValueChanged += new System.EventHandler(this.dataPrazo_ValueChanged);
             // 
             // btnCriarPromocoes
             // 
@@ -265,7 +293,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(349, 19);
+            this.label11.Location = new System.Drawing.Point(409, 16);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(54, 13);
             this.label11.TabIndex = 5;
@@ -283,7 +311,7 @@
             // 
             // txtTituloPromocao
             // 
-            this.txtTituloPromocao.Location = new System.Drawing.Point(243, 16);
+            this.txtTituloPromocao.Location = new System.Drawing.Point(303, 13);
             this.txtTituloPromocao.Name = "txtTituloPromocao";
             this.txtTituloPromocao.Size = new System.Drawing.Size(100, 20);
             this.txtTituloPromocao.TabIndex = 0;
@@ -303,7 +331,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(202, 19);
+            this.label7.Location = new System.Drawing.Point(262, 16);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(41, 13);
             this.label7.TabIndex = 0;
@@ -330,7 +358,6 @@
             // 
             // btnAlterar
             // 
-            this.btnAlterar.Enabled = false;
             this.btnAlterar.Location = new System.Drawing.Point(564, 19);
             this.btnAlterar.Name = "btnAlterar";
             this.btnAlterar.Size = new System.Drawing.Size(75, 23);
@@ -355,15 +382,15 @@
             this.gridPromocoesEncontradas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridPromocoesEncontradas_CellContentClick);
             this.gridPromocoesEncontradas.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridPromocoesEncontradas_CellDoubleClick);
             // 
-            // txtBuscaPromocaoPorID
+            // txtPromocaoID
             // 
-            this.txtBuscaPromocaoPorID.Location = new System.Drawing.Point(519, 19);
-            this.txtBuscaPromocaoPorID.Name = "txtBuscaPromocaoPorID";
-            this.txtBuscaPromocaoPorID.Size = new System.Drawing.Size(39, 20);
-            this.txtBuscaPromocaoPorID.TabIndex = 8;
-            this.txtBuscaPromocaoPorID.TextChanged += new System.EventHandler(this.txtBuscaPorID_TextChanged);
-            this.txtBuscaPromocaoPorID.Enter += new System.EventHandler(this.txtBuscaPromocaoPorID_Enter);
-            this.txtBuscaPromocaoPorID.Leave += new System.EventHandler(this.txtBuscaPromocaoPorID_Leave);
+            this.txtPromocaoID.Location = new System.Drawing.Point(519, 19);
+            this.txtPromocaoID.Name = "txtPromocaoID";
+            this.txtPromocaoID.Size = new System.Drawing.Size(39, 20);
+            this.txtPromocaoID.TabIndex = 8;
+            this.txtPromocaoID.TextChanged += new System.EventHandler(this.txtBuscaPorID_TextChanged);
+            this.txtPromocaoID.Enter += new System.EventHandler(this.txtBuscaPromocaoPorID_Enter);
+            this.txtPromocaoID.Leave += new System.EventHandler(this.txtBuscaPromocaoPorID_Leave);
             // 
             // label10
             // 
@@ -374,15 +401,15 @@
             this.label10.TabIndex = 2;
             this.label10.Text = "ID -";
             // 
-            // txtBuscaPorTitulo
+            // txtPromocaoPalavraChave
             // 
-            this.txtBuscaPorTitulo.Location = new System.Drawing.Point(389, 19);
-            this.txtBuscaPorTitulo.Name = "txtBuscaPorTitulo";
-            this.txtBuscaPorTitulo.Size = new System.Drawing.Size(100, 20);
-            this.txtBuscaPorTitulo.TabIndex = 7;
-            this.txtBuscaPorTitulo.TextChanged += new System.EventHandler(this.txtBuscaPorTitulo_TextChanged);
-            this.txtBuscaPorTitulo.Enter += new System.EventHandler(this.txtBuscaPorTitulo_Enter);
-            this.txtBuscaPorTitulo.Leave += new System.EventHandler(this.txtBuscaPorTitulo_Leave);
+            this.txtPromocaoPalavraChave.Location = new System.Drawing.Point(389, 19);
+            this.txtPromocaoPalavraChave.Name = "txtPromocaoPalavraChave";
+            this.txtPromocaoPalavraChave.Size = new System.Drawing.Size(100, 20);
+            this.txtPromocaoPalavraChave.TabIndex = 7;
+            this.txtPromocaoPalavraChave.TextChanged += new System.EventHandler(this.txtBuscaPorTitulo_TextChanged);
+            this.txtPromocaoPalavraChave.Enter += new System.EventHandler(this.txtBuscaPorTitulo_Enter);
+            this.txtPromocaoPalavraChave.Leave += new System.EventHandler(this.txtBuscaPorTitulo_Leave);
             // 
             // label9
             // 
@@ -397,10 +424,10 @@
             // 
             this.groupBox5.Controls.Add(this.gridPromocoesEncontradas);
             this.groupBox5.Controls.Add(this.label4);
-            this.groupBox5.Controls.Add(this.txtBuscaPromocaoPorID);
+            this.groupBox5.Controls.Add(this.txtPromocaoID);
             this.groupBox5.Controls.Add(this.label10);
             this.groupBox5.Controls.Add(this.btnRemoverPromocao);
-            this.groupBox5.Controls.Add(this.txtBuscaPorTitulo);
+            this.groupBox5.Controls.Add(this.txtPromocaoPalavraChave);
             this.groupBox5.Controls.Add(this.label9);
             this.groupBox5.Controls.Add(this.btnAlterar);
             this.groupBox5.Location = new System.Drawing.Point(12, 145);
@@ -409,22 +436,6 @@
             this.groupBox5.TabIndex = 14;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Buscar Promoções";
-            // 
-            // txtDesconto
-            // 
-            this.txtDesconto.Location = new System.Drawing.Point(568, 16);
-            this.txtDesconto.Name = "txtDesconto";
-            this.txtDesconto.Size = new System.Drawing.Size(100, 20);
-            this.txtDesconto.TabIndex = 7;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(509, 19);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(59, 13);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Desconto -";
             // 
             // CadastrarPromocao
             // 
@@ -435,7 +446,7 @@
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.grpDados);
             this.Controls.Add(this.btnVoltar);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.grpProdutos);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CadastrarPromocao";
@@ -443,8 +454,8 @@
             this.Text = "Gerenciamento de Promoções";
             this.Load += new System.EventHandler(this.CadastrarPromocao_Load);
             this.Shown += new System.EventHandler(this.CadastrarPromocao_Shown);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.grpProdutos.ResumeLayout(false);
+            this.grpProdutos.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridProdutosNaPromocao)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridBuscaProdutos)).EndInit();
             this.grpDados.ResumeLayout(false);
@@ -458,9 +469,9 @@
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox txtBuscaProdutoPorID;
-        private System.Windows.Forms.TextBox txtBuscaPalavraChave;
+        private System.Windows.Forms.GroupBox grpProdutos;
+        private System.Windows.Forms.TextBox txtProdutoID;
+        private System.Windows.Forms.TextBox txtProdutoPalavraChave;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView gridBuscaProdutos;
@@ -474,23 +485,24 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnCriarPromocoes;
         private System.Windows.Forms.DataGridView gridPromocoesEncontradas;
-        private System.Windows.Forms.TextBox txtBuscaPromocaoPorID;
+        private System.Windows.Forms.TextBox txtPromocaoID;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox txtBuscaPorTitulo;
+        private System.Windows.Forms.TextBox txtPromocaoPalavraChave;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.DateTimePicker dataPrazo;
+        private System.Windows.Forms.DateTimePicker dataVigencia;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button btnRemoverPromocao;
         private System.Windows.Forms.Button btnAlterar;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.CheckBox ckVisivelNoSite;
-        private System.Windows.Forms.CheckBox ckAcessoCadastrado;
+        private System.Windows.Forms.CheckBox ckAcessivelATodos;
+        private System.Windows.Forms.CheckBox ckSobeSite;
         private System.Windows.Forms.DataGridView gridProdutosNaPromocao;
         private System.Windows.Forms.Button btnRemoverProduto;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtDesconto;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label12;
 
     }
 }

@@ -32,7 +32,6 @@ namespace Pizzaria
 
         public void preencherGrid(string busca, DataGridView tabela)
         {
-
             SqlConnection conn = new SqlConnection(conexao);
             conn.Open();
             SqlCommand sqlComm = new SqlCommand(busca, conn);
@@ -81,7 +80,7 @@ namespace Pizzaria
 
         public void atualizarPromocoesEncontradas() 
         {
-            preencherGrid("select Cod_Promocao as [ID], Nome_Promocao as [Título], Preco_Original as [Preço original], Preco_Promocao as [Preço promocional], Vigencia as [Vigência], Descricao as [Descrição], sobe_promocao as [Visível no site], usuario_cadastrado as [Acessibilidade] from Promocao", gridPromocoesEncontradas);
+            preencherGrid("USP_CSP_Promocao_MostrarTodasPromocoes", gridPromocoesEncontradas);
         }
 
         public bool validaTitulo() 
@@ -102,14 +101,14 @@ namespace Pizzaria
         {
             bool resultado = true;
 
-            if (dataPrazo.Value == DateTime.Today)
+            if (dataVigencia.Value == DateTime.Today)
             {
                 Home.mensagemDeErro("Por favor, escolha uma data para a validade da Promoção.","Data inválida");
 
                 resultado = false;
             }
 
-            if(dataPrazo.Value < DateTime.Today)
+            if(dataVigencia.Value < DateTime.Today)
             {
                 Home.mensagemDeErro("Infelizmente, não é possível escolher uma data passada para a Promoção.\n\nPor favor, escolha uma data futura.","Data inválida");
 
@@ -137,14 +136,14 @@ namespace Pizzaria
         {
             if (txtDesconto.Text.Length == 0)
             {
-                Home.mensagemDeErro("É preciso fornecer um porcentual de desconto para a promoção.", "Erro no desconto");
+                Home.mensagemDeErro("É preciso fornecer valor para oporcentual de desconto da promoção.", "Erro no desconto");
                 return false;
             }
                 
             else
             {
-                double s = 0;
-                Double.TryParse(txtDesconto.Text, out s);
+                int s = 0;
+                Int32.TryParse(txtDesconto.Text, out s);
 
                 if (s == 0)
                 {
@@ -152,9 +151,9 @@ namespace Pizzaria
                     return false;
                 }
                     
-                else if (s >= 1 || s <= 0)
+                else if (s >= 100 || s <= 0)
                 {
-                    Home.mensagemDeErro("Por favor, insira um valor de desconto entre 1 e 0.", "Erro no desconto");
+                    Home.mensagemDeErro("Por favor, insira um valor de desconto entre 0 e 100.", "Erro no desconto");
                     return false;
                 }
             }
@@ -185,9 +184,9 @@ namespace Pizzaria
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            txtBuscaProdutoPorID.Text = "";
+            txtProdutoID.Text = "";
 
-            preencherGrid("select cod_Produto as [ID], Nome_Produto as [Produto], Valor_Venda as [Preço] from Produto where Nome_Produto LIKE ('%" + txtBuscaPalavraChave.Text + "%')", gridBuscaProdutos);
+            preencherGrid("select cod_Produto as [ID], Nome_Produto as [Produto], Valor_Venda as [Preço] from Produto where Nome_Produto LIKE ('%" + txtProdutoPalavraChave.Text + "%')", gridBuscaProdutos);
 
             if (gridProdutosNaPromocao.Rows.Count > 0)
                 btnAdicionarProduto.Enabled = true;
@@ -245,22 +244,22 @@ namespace Pizzaria
 
         private void txtBuscaPalavraChave_Leave(object sender, EventArgs e)
         {
-            txtBuscaPalavraChave.BackColor = Color.White;
+            txtProdutoPalavraChave.BackColor = Color.White;
         }
 
         private void txtBuscaPalavraChave_Enter(object sender, EventArgs e)
         {
-            txtBuscaPalavraChave.BackColor = Color.Aquamarine;
+            txtProdutoPalavraChave.BackColor = Color.Aquamarine;
         }
 
         private void txtBuscaID_Leave(object sender, EventArgs e)
         {
-            txtBuscaProdutoPorID.BackColor = Color.White;
+            txtProdutoID.BackColor = Color.White;
         }
 
         private void txtBuscaID_Enter(object sender, EventArgs e)
         {
-            txtBuscaProdutoPorID.BackColor = Color.Aquamarine;
+            txtProdutoID.BackColor = Color.Aquamarine;
         }
 
         private void txtNovoPreco_Leave(object sender, EventArgs e)
@@ -310,36 +309,39 @@ namespace Pizzaria
             string
                 tituloPromocao = txtTituloPromocao.Text,
                 descricaoPromocao = txtDescricaoPromocao.Text,
-                //precoOriginal = txtSaldo.Text,
-                //precoPromocao = txtNovoPreco.Text,
-                vigencia = dataPrazo.Value.ToString("dd/MM/yyyy"),
+                vigencia = dataVigencia.Value.ToString("yyyy-MM-dd"),
+                desconto = txtDesconto.Text,
                 visivelNoSite = "",
-                paraCadastrados = "";
+                acessivelATodos = "";
 
-            if (ckAcessoCadastrado.Checked)
-                paraCadastrados = "1";
+            if (ckSobeSite.Checked)
+                acessivelATodos = "1";
             else
-                paraCadastrados = "0";
+                acessivelATodos = "0";
 
-            if (ckVisivelNoSite.Checked)
+            if (ckAcessivelATodos.Checked)
                 visivelNoSite = "1";
             else
                 visivelNoSite = "0";
 
-            preencherGrid("insert into promocao (Nome_Promocao, Descricao, Vigencia, sobe_promocao, usuario_cadastrado) values("+ 
-                "'"+tituloPromocao+"', "+
-                "'" + descricaoPromocao + "', " +
-                "'" + vigencia + "', " +
-                "" + visivelNoSite + ", " +
-                "" + paraCadastrados +")", gridProdutosNaPromocao);
+            preencherGrid(
+                "USP_CSP_Promocao_InserirPromocao '" + 
+                    tituloPromocao+"', '" + 
+                    descricaoPromocao + "', " +
+                    desconto + ", '" + 
+                    vigencia + "', " +
+                    visivelNoSite + ", " +
+                    acessivelATodos, 
 
-            preencherGrid("select Cod_Promocao as [ID], Nome_Promocao as [Título], Vigencia as [Vigência], Descricao as [Descrição] from Promocao where Nome_Promocao = '" + txtTituloPromocao.Text + "'", gridPromocoesEncontradas);
+                    gridProdutosNaPromocao);
+
+            preencherGrid("USP_CSP_Promocao_BuscarPromocaoInserida", gridPromocoesEncontradas);
 
             txtTituloPromocao.Clear();
-            dataPrazo.Value = DateTime.Today;
+            dataVigencia.Value = DateTime.Today;
             txtDescricaoPromocao.Clear();
-            ckAcessoCadastrado.Checked = false;
-            ckVisivelNoSite.Checked = false;
+            ckSobeSite.Checked = false;
+            ckAcessivelATodos.Checked = false;
 
             btnAlterar.Enabled = true;
             btnRemoverPromocao.Enabled = true;
@@ -357,17 +359,20 @@ namespace Pizzaria
 
         private void txtBuscaPorID_TextChanged(object sender, EventArgs e)
         {
-            //txtBuscaPorTitulo.Text = "";
+            txtPromocaoPalavraChave.Text = "";
 
-            for (int i = 0; i < txtBuscaPromocaoPorID.Text.Length; i++)
-                if (!char.IsNumber(txtBuscaPromocaoPorID.Text[i]))
+            for (int i = 0; i < txtPromocaoID.Text.Length; i++)
+                if (!char.IsNumber(txtPromocaoID.Text[i]))
                 {
                     Home.mensagemDeErro("É permitido apenas o uso de números no campo \"Busca por ID\".","Símbolos proibidos nas busca");
-                    txtBuscaPromocaoPorID.Clear();
-                    txtBuscaPromocaoPorID.Focus();
+                    txtPromocaoID.Clear();
+                    txtPromocaoID.Focus();
                 }
 
-            preencherGrid("select Cod_Promocao as [ID], Nome_Promocao as [Título], Preco_Original as [Preço original], Preco_Promocao as [Preço promocional], Vigencia as [Vigência], Descricao as [Descrição], sobe_promocao as [Visível no site], usuario_cadastrado as [Acessibilidade] from Promocao where Cod_Promocao like '%" + txtBuscaPromocaoPorID.Text + "%'", gridPromocoesEncontradas);
+            if (txtPromocaoID.Text.Length == 0)
+                preencherGrid("USP_CSP_Promocao_MostrarTodasPromocoes", gridPromocoesEncontradas);
+            else
+                preencherGrid("USP_CSP_Promocoes_BuscarPromocoesPorID " + txtPromocaoID.Text, gridPromocoesEncontradas);
 
             btnAlterar.Enabled = true;
 
@@ -415,9 +420,12 @@ namespace Pizzaria
 
         private void txtBuscaPorTitulo_TextChanged(object sender, EventArgs e)
         {
-            //tBuscaPromocaoPorID.Text = "";
-
-            preencherGrid("exec USP_CSP_BuscarPromocoesPorPalavraChave " + txtBuscaPorTitulo.Text, gridPromocoesEncontradas);
+            txtPromocaoID.Text = "";
+            
+            if(txtPromocaoPalavraChave.Text.Length != 0)
+                preencherGrid("USP_CSP_Promocoes_BuscarPromocoesPorPalavraChave '" + txtPromocaoPalavraChave.Text + "'", gridPromocoesEncontradas);
+            else
+                preencherGrid("USP_CSP_Promocoes_MostrarTodasPromocoes", gridPromocoesEncontradas);
 
             btnAlterar.Enabled = true;
 
@@ -448,7 +456,7 @@ namespace Pizzaria
                 btnCriarPromocoes.Enabled = true;
                 txtTituloPromocao.Clear();
                 txtDescricaoPromocao.Clear();
-                dataPrazo.Value = DateTime.Today;
+                dataVigencia.Value = DateTime.Today;
                 grpDados.Enabled = true;
                 btnAlterar.Enabled = false;
             }
@@ -456,61 +464,34 @@ namespace Pizzaria
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
+            int idPromocao = (int)gridPromocoesEncontradas.CurrentRow.Cells[0].Value;
+
+            preencherGrid
+                (
+                "USP_CSP_Promocoes_BuscarPromocoesPorID " + idPromocao,
+                gridPromocoesEncontradas
+                );
+
             if (btnAlterar.Text == "Alterar")
-            {
-                btnAlterar.Text = "Gravar";
-
-                btnCriarPromocoes.Enabled = false;
-
-                ckVisivelNoSite.Enabled = true;
-                ckAcessoCadastrado.Enabled = true;
-
-                grpDados.Enabled = true;
-            }
+                iniciarModoEdicao();
             else if (btnAlterar.Text == "Gravar")
-            {
-                btnAlterar.Text = "Alterar";
-
-                btnCriarPromocoes.Enabled = true;
-
-                int acesso = 0, visivel = 0;
-
-                if (ckAcessoCadastrado.Checked)
-                    acesso = 1;
+                if (!validaCampos())
+                    return;
                 else
-                    acesso = 0;
-
-                if (ckVisivelNoSite.Checked)
-                    visivel = 1;
-                else
-                    visivel = 0;
-
-                int idPromocao = (int)gridPromocoesEncontradas.CurrentRow.Cells[0].Value;
-
-                preencherGrid("update Promocao set Nome_Promocao = '" + txtTituloPromocao.Text + "', Descricao = '" + txtDescricaoPromocao.Text + "', Vigencia = '" + dataPrazo.Value.ToShortDateString() + "', sobe_promocao = " + visivel + ", usuario_cadastrado = " + acesso + " where cod_Promocao = " + idPromocao, gridPromocoesEncontradas);
-
-                preencherGrid("select Cod_Promocao as [ID], Nome_Promocao as [Título], Preco_Original as [Preço original], Preco_Promocao as [Preço promocional], Vigencia as [Vigência], Descricao as [Descrição], sobe_promocao as [Visível no site], usuario_cadastrado as [Acessibilidade] from Promocao where cod_Promocao = " + idPromocao, gridPromocoesEncontradas);
-
-                txtTituloPromocao.Clear();
-                txtDescricaoPromocao.Clear();
-                dataPrazo.Value = DateTime.Today;
-                ckVisivelNoSite.Checked = false;
-                ckAcessoCadastrado.Checked = false;
-                btnAlterar.Enabled = false;
-            }
+                    finalizarModoEdicao();
         }
 
         private void gridPromocoesEncontradas_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            preencherGrid("USP_CSP_BuscarProdutosNaPromocao " + gridPromocoesEncontradas.CurrentRow.Cells[0].Value.ToString(), gridProdutosNaPromocao);
+            preencherGrid("USP_CSP_Promocao_BuscarProdutosNaPromocao " + gridPromocoesEncontradas.CurrentRow.Cells[0].Value.ToString(), gridProdutosNaPromocao);
 
             calcularSaldo();
 
             txtTituloPromocao.Clear();
             txtDescricaoPromocao.Clear();
-            ckAcessoCadastrado.Checked = false;
-            ckVisivelNoSite.Checked = false;
-            dataPrazo.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day);
+            ckSobeSite.Checked = false;
+            ckAcessivelATodos.Checked = false;
+            dataVigencia.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day);
 
             //btnProcessarNovoPreco.Enabled = true;
             btnRemoverProduto.Enabled = true;
@@ -518,17 +499,17 @@ namespace Pizzaria
 
         private void txtBuscaProdutoPorID_TextChanged(object sender, EventArgs e)
         {
-            txtBuscaPalavraChave.Text = "";
+            txtProdutoPalavraChave.Text = "";
 
-            for (int i = 0; i < txtBuscaProdutoPorID.Text.Length; i++)
-                if (!char.IsNumber(txtBuscaProdutoPorID.Text[i]))
+            for (int i = 0; i < txtProdutoID.Text.Length; i++)
+                if (!char.IsNumber(txtProdutoID.Text[i]))
                 {
                     Home.mensagemDeErro("É permitido apenas o uso de números no campo de busca de produtos por ID.","Utilização de símbolos proibidos na busca");
-                    txtBuscaProdutoPorID.Clear();
-                    txtBuscaProdutoPorID.Focus();
+                    txtProdutoID.Clear();
+                    txtProdutoID.Focus();
                 }
 
-            preencherGrid("select cod_Produto as [ID], Nome_Produto as [Produto], Valor_Venda as [Preço] from Produto where Cod_Produto like '%" + txtBuscaProdutoPorID.Text + "%'", gridBuscaProdutos);
+            preencherGrid("select cod_Produto as [ID], Nome_Produto as [Produto], Valor_Venda as [Preço] from Produto where Cod_Produto like '%" + txtProdutoID.Text + "%'", gridBuscaProdutos);
 
             if (gridProdutosNaPromocao.Rows.Count > 0)
                 btnAdicionarProduto.Enabled = true;
@@ -593,26 +574,26 @@ namespace Pizzaria
 
         private void txtBuscaPorTitulo_Enter(object sender, EventArgs e)
         {
-            txtBuscaPorTitulo.BackColor = Color.Aquamarine;
+            txtPromocaoPalavraChave.BackColor = Color.Aquamarine;
 
-            txtBuscaPromocaoPorID.Clear();
+            txtPromocaoID.Clear();
         }
 
         private void txtBuscaPorTitulo_Leave(object sender, EventArgs e)
         {
-            txtBuscaPorTitulo.BackColor = Color.White;
+            txtPromocaoPalavraChave.BackColor = Color.White;
         }
 
         private void txtBuscaPromocaoPorID_Enter(object sender, EventArgs e)
         {
-            txtBuscaPromocaoPorID.BackColor = Color.Aquamarine;
+            txtPromocaoID.BackColor = Color.Aquamarine;
 
-            txtBuscaPorTitulo.Clear();
+            txtPromocaoPalavraChave.Clear();
         }
 
         private void txtBuscaPromocaoPorID_Leave(object sender, EventArgs e)
         {
-            txtBuscaPromocaoPorID.BackColor = Color.White;
+            txtPromocaoID.BackColor = Color.White;
         }
 
         private void txtBuscaPalavraChave_Enter_1(object sender, EventArgs e)
@@ -621,20 +602,20 @@ namespace Pizzaria
             {
                 Home.mensagemDeErro("Por favor, antes de selecionar um Produto, selecione uma Promoção aonde inserir o Produto.", "Promoção não selecionada");
 
-                txtBuscaPorTitulo.Focus();
+                txtPromocaoPalavraChave.Focus();
             }
             else
             {
-                txtBuscaPalavraChave.BackColor = Color.Aquamarine;
+                txtProdutoPalavraChave.BackColor = Color.Aquamarine;
 
-                txtBuscaProdutoPorID.Clear();
+                txtProdutoID.Clear();
             }
                 
         }
 
         private void txtBuscaPalavraChave_Leave_1(object sender, EventArgs e)
         {
-            txtBuscaPalavraChave.BackColor = Color.White;
+            txtProdutoPalavraChave.BackColor = Color.White;
         }
 
         private void txtBuscaProdutoPorID_Enter(object sender, EventArgs e)
@@ -643,20 +624,20 @@ namespace Pizzaria
             {
                 Home.mensagemDeErro("Por favor, antes de selecionar um Produto, selecione uma Promoção aonde inserir o Produto.", "Promoção não selecionada");
 
-                txtBuscaPorTitulo.Focus();
+                txtPromocaoPalavraChave.Focus();
             }
             else 
             {
-                txtBuscaProdutoPorID.BackColor = Color.Aquamarine;
+                txtProdutoID.BackColor = Color.Aquamarine;
 
-                txtBuscaPalavraChave.Clear();
+                txtProdutoPalavraChave.Clear();
             }
                 
         }
 
         private void txtBuscaProdutoPorID_Leave(object sender, EventArgs e)
         {
-            txtBuscaProdutoPorID.BackColor = Color.White;
+            txtProdutoID.BackColor = Color.White;
         }
 
         private void txtSaldo_Enter(object sender, EventArgs e)
@@ -684,66 +665,107 @@ namespace Pizzaria
             txtTituloPromocao.Text = "3 por 2 natalino";
             //dataPrazo.Value = new DateTime(2014, 12, 25);
             txtDescricaoPromocao.Text = "Até o Natal, três pizzas e um refrigerante sairá por R$ 50! Ho ho ho!";
-            ckVisivelNoSite.Checked = true;
-            ckAcessoCadastrado.Checked = true;
+            ckAcessivelATodos.Checked = true;
+            ckSobeSite.Checked = true;
         }
 
         private void gridPromocoesEncontradas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            
+        }
+
+        DateTime getVigenciaPromocao() 
+        {
+            string[] arrayData = gridPromocoesEncontradas.CurrentRow.Cells[4].Value.ToString().Split('/');
+
+            arrayData[2] = arrayData[2].Remove(4);
+
+            return new DateTime
+                (
+                    Convert.ToInt32(arrayData[2]),
+                    Convert.ToInt32(arrayData[1]),
+                    Convert.ToInt32(arrayData[0])
+                );
+        }
+
+        void iniciarModoEdicao() 
+        {
+            btnAlterar.Text = "Gravar";
+            
+            //Desabilitando outros controles
+            btnCriarPromocoes.Enabled = false;
+            grpProdutos.Enabled = false;
+            txtPromocaoID.Enabled = false;
+            txtPromocaoPalavraChave.Enabled = false;
+            btnRemoverPromocao.Enabled = false;
+
             txtTituloPromocao.Text = gridPromocoesEncontradas.CurrentRow.Cells[1].Value.ToString();
 
-            string dia = "";
-            string mes = "";
-            string ano = "";
-            int sessao = 0;
+            txtDescricaoPromocao.Text = gridPromocoesEncontradas.CurrentRow.Cells[2].Value.ToString();
 
-            string valor = gridPromocoesEncontradas.CurrentRow.Cells[3].Value.ToString();
+            txtDesconto.Text = gridPromocoesEncontradas.CurrentRow.Cells[3].Value.ToString();
 
-            if (gridPromocoesEncontradas.CurrentRow.Cells[4].Value.ToString().Length > 0)
-            {
-                for (int i = 0; i < gridPromocoesEncontradas.CurrentRow.Cells[4].Value.ToString().Length; i++)
-                    if (gridPromocoesEncontradas.CurrentRow.Cells[4].Value.ToString()[i].ToString() == "/")
-                        sessao++;
-                    else
-                        switch (sessao)
-                        {
-                            case 0:
-                                dia += gridPromocoesEncontradas.CurrentRow.Cells[4].Value.ToString()[i];
-                                break;
+            dataVigencia.Value = getVigenciaPromocao();
 
-                            case 1:
-                                mes += gridPromocoesEncontradas.CurrentRow.Cells[4].Value.ToString()[i];
-                                break;
+            if ((int)gridPromocoesEncontradas.CurrentRow.Cells[5].Value == 1)
+                ckAcessivelATodos.Checked = true;
+            else
+                ckAcessivelATodos.Checked = false;
 
-                            case 2:
-                                ano += gridPromocoesEncontradas.CurrentRow.Cells[4].Value.ToString()[i];
-                                break;
-
-                            default:
-                                Home.mensagemDeErro("Aconteceu algo de errado na alteração das Promoções. Informe seu suporte para que o problema possa ser avaliado.", "Problema desconhecido");
-                                break;
-
-                        }
-
-                dataPrazo.Value = new DateTime(Convert.ToInt32(ano), Convert.ToInt32(mes), Convert.ToInt32(dia));
-            }
-
-            txtDescricaoPromocao.Text = gridPromocoesEncontradas.CurrentRow.Cells[5].Value.ToString();
-
-            Console.WriteLine("A coluna 6 da tabela de promoções é: " + gridPromocoesEncontradas.Columns[6].Name);
             if ((int)gridPromocoesEncontradas.CurrentRow.Cells[6].Value == 1)
-                ckVisivelNoSite.Checked = true;
+                ckSobeSite.Checked = true;
             else
-                ckVisivelNoSite.Checked = false;
+                ckSobeSite.Checked = false;
+        }
 
-            Console.WriteLine("A coluna 7 da tabela de promoções é: " + gridPromocoesEncontradas.Columns[7].Name);
-            if ((int)gridPromocoesEncontradas.CurrentRow.Cells[7].Value == 1)
-                ckAcessoCadastrado.Checked = true;
+        void finalizarModoEdicao() 
+        {
+            btnAlterar.Text = "Alterar";
+
+            int sobeSite = 0, acessivelATodos = 0;
+
+            if (ckSobeSite.Checked)
+                sobeSite = 1;
             else
-                ckAcessoCadastrado.Checked = false;
+                sobeSite = 0;
 
-            grpDados.Enabled = false;
-            btnAlterar.Enabled = true;
+            if (ckAcessivelATodos.Checked)
+                acessivelATodos = 1;
+            else
+                acessivelATodos = 0;
+
+            int idPromocao = (int)gridPromocoesEncontradas.CurrentRow.Cells[0].Value;
+
+            preencherGrid
+                (
+                "USP_CSP_Promocao_AtualizarPromocao '" + 
+                txtTituloPromocao.Text + "', '" + 
+                txtDescricaoPromocao.Text + "', " + 
+                txtDesconto.Text + ", '" + 
+                dataVigencia.Value.ToString("yyyy-MM-dd") + "', " + 
+                sobeSite + ", " + 
+                acessivelATodos + ", " + 
+                idPromocao
+                
+                ,gridPromocoesEncontradas
+                 );
+
+            preencherGrid("USP_CSP_Promocoes_BuscarPromocoesPorID " + idPromocao, gridPromocoesEncontradas);
+
+            //Limpando conteúdo anterior
+            txtTituloPromocao.Clear();
+            txtDescricaoPromocao.Clear();
+            dataVigencia.Value = DateTime.Today;
+            ckAcessivelATodos.Checked = false;
+            ckSobeSite.Checked = false;
+            txtDesconto.Clear();
+
+            //Habilitando controles anteriorente desabilitados
+            btnCriarPromocoes.Enabled = true;
+            grpProdutos.Enabled = true;
+            txtPromocaoID.Enabled = true;
+            txtPromocaoPalavraChave.Enabled = true;
+            btnRemoverPromocao.Enabled = true;
         }
     }
 }
