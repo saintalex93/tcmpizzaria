@@ -1,0 +1,41 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="modelo_painel.master.cs" Inherits="admin_modelo_painel" %>
+
+<!DOCTYPE html>
+
+<html lang="PT-BR">
+<head runat="server">
+    <title>Painel Giovanneli's</title>
+    <link rel="stylesheet" type="text/css" href="../css/estilo_painel.css" />
+
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="menuPainel">
+
+            <div class="pnlLogout">
+                <p>Seja bem vindo, </p>
+                <asp:Label ID="lblNome" runat="server" Text="Raphael Vieira"></asp:Label>
+                <asp:Button ID="btnLogout" runat="server" Text="Sair" />
+            </div>
+
+            <h4>Seu Painel</h4>
+            <nav>
+                <ul>
+                    <li><a href="gerenciaCategoria.aspx">Gerenciar Categorias</a></li>
+                    <li><a href="gerenciaArea.aspx">Gerenciar Áreas</a></li>
+                    <li><a href="gerenciaVaga.aspx">Gerenciar Vagas</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <section>
+            <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+            </asp:ContentPlaceHolder>
+        </section>
+
+    </form>
+</body>
+</html>
