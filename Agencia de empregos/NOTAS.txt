@@ -1,0 +1,3 @@
+1 - a pasta "admin" contém as páginas de login do Funcionário da AGENCIA
+2 - A pasta aspx contém todas as outras páginas do site.
+3 - A index fica na raiz para que ela abra inicialmente como padrão.
