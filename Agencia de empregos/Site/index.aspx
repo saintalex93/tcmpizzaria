@@ -6,7 +6,7 @@
 <head runat="server">
     <title>Giovanelli's Empregos</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" type="text/css" href="../css/estilo_agencia.css" />
+    <link rel="stylesheet" type="text/css" href="css/estilo_agencia.css" />
     <link rel="shortcut icon" type="image/x-icon" href="imagens/favicon.ico" />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <script>
@@ -77,8 +77,42 @@
 
             <article ID="pnlBuscarVagas" class="buscarVagas" runat="server" ClientIDMode="Static">
                 <div class="wrapper">
-                    <!-- AQUI ENTRA O GRID DE VAGAS -->
-                    <p>GRID DE VAGAS</p>
+                    <div class="grid">
+                        <!-- AQUI ENTRA O GRID DE VAGAS -->
+                        
+                    <asp:Label ID="label" runat="server" Text="Buscar vagas por título"></asp:Label>
+                    <br />
+                    <asp:TextBox ID="txtBuscarTitulo" style="margin-top: 5px;" runat="server"></asp:TextBox>
+                    <br />
+                    <asp:Button ID="btnBuscar" runat="server" Text="Buscar" OnClick="btnBuscar_Click" />
+                    <br />
+                    <br />
+                    <asp:GridView 
+                        ID="gridVagas" 
+                        runat="server" 
+                        OnSelectedIndexChanged="gridVagas_SelectedIndexChanged"
+                        name="gridVagas" 
+                        style="border-collapse: separate;"
+                        ShowHeaderWhenEmpty="true"
+                        >
+                        <EmptyDataTemplate>
+                             Oh noes! Nenhuma vaga foi encontrada! D:
+                        </EmptyDataTemplate>
+                    
+                    </asp:GridView>
+
+                    <asp:SqlDataSource 
+                        ID="SqlDataSource1" 
+                        runat="server" 
+                        ConnectionString="<%$ ConnectionStrings:conexaoGiovanelliEmpregos %>" 
+                        SelectCommand="USP_BuscarVagas" 
+                        SelectCommandType="StoredProcedure"
+                        >
+
+
+                    </asp:SqlDataSource>
+                    </div>
+                    
                 </div>
             </article>
         </section>
