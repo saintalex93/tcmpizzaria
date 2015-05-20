@@ -380,7 +380,6 @@
             this.gridPromocoesEncontradas.Size = new System.Drawing.Size(657, 114);
             this.gridPromocoesEncontradas.TabIndex = 32;
             this.gridPromocoesEncontradas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridPromocoesEncontradas_CellContentClick);
-            this.gridPromocoesEncontradas.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridPromocoesEncontradas_CellDoubleClick);
             // 
             // txtPromocaoID
             // 

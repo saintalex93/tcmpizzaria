@@ -30,18 +30,47 @@ namespace BLL
             List<SqlParameter> LstParametros = new List<SqlParameter>();
 
             SqlParameter parametro = new SqlParameter();
-            parametro.ParameterName = "Cod_Produto";
+            parametro.ParameterName = "@codProduto";
             parametro.Value = objProdutoPromocao.Cod_Produto;
-            parametro.DbType = System.Data.DbType.String;
+            parametro.DbType = System.Data.DbType.Int32;
             LstParametros.Add(parametro);
 
             parametro = new SqlParameter();
-            parametro.ParameterName = "Cod_Promocao";
+            parametro.ParameterName = "@codPromocao";
             parametro.Value = objProdutoPromocao.Cod_Promocao;
-            parametro.DbType = System.Data.DbType.String;
+            parametro.DbType = System.Data.DbType.Int32;
             LstParametros.Add(parametro);
 
-            ObjBanco.ExecuteProc("USP_CSP_Promocao_InserirProdutoEmPromocao", LstParametros);
+            ObjBanco.ExecuteProc("USP_CSharp_Promocao_InserirProdutoEmPromocao", LstParametros);
+        }
+
+        public DataTable BuscarProdutosNaPromocao(clsProdutoPromocao objProdutoPromocao)
+        {
+            SqlParameter parametro = new SqlParameter();
+            parametro.ParameterName = "@codPromocao";
+            parametro.Value = objProdutoPromocao.Cod_Promocao;
+            parametro.DbType = System.Data.DbType.Int32;
+
+            return ObjBanco.ExecuteProc("USP_CSharp_Promocao_BuscarProdutosNaPromocao", parametro);
+        }
+
+        public void RemoverProdutoDePromocao(clsProdutoPromocao objProdutoPromocao)
+        {
+            List<SqlParameter> LstParametros = new List<SqlParameter>();
+
+            SqlParameter parametro = new SqlParameter();
+            parametro.ParameterName = "@CodProduto";
+            parametro.Value = objProdutoPromocao.Cod_Produto;
+            parametro.DbType = System.Data.DbType.Int32;
+            LstParametros.Add(parametro);
+
+            parametro = new SqlParameter();
+            parametro.ParameterName = "@CodPromocao";
+            parametro.Value = objProdutoPromocao.Cod_Promocao;
+            parametro.DbType = System.Data.DbType.Int32;
+            LstParametros.Add(parametro);
+
+            ObjBanco.ExecuteProc("USP_CSharp_Promocao_RemoverProdutoDePromocao", LstParametros);
         }
     }
 }

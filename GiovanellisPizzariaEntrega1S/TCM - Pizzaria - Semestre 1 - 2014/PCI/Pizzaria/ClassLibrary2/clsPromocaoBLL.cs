@@ -13,7 +13,6 @@ namespace BLL
 {
     public class clsPromocaoBLL
     {
-
         private DAL.DAO.clsBanco ObjBanco;              
             public clsPromocaoBLL()
             {
@@ -29,16 +28,6 @@ namespace BLL
         public DataTable MostrarTodasAsPromocoes()
         {
             return ObjBanco.ExecuteProc("USP_CSharp_Promocao_BuscarTodasPromocoes");
-        }
-
-        public DataTable MostrarProdutosNaPromocoes(clsPromocao objPromocao)
-        {
-            SqlParameter parametro = new SqlParameter();
-            parametro.ParameterName = "Cod_Promocao";
-            parametro.Value = objPromocao.Cod_Promocao;
-            parametro.DbType = System.Data.DbType.Int32;
-
-            return ObjBanco.ExecuteProc("USP_CSharp_Promocao_BuscarProdutosNaPromocao", parametro);
         }
 
         public void InserirPromocoes(clsPromocao objPromocao)
@@ -87,26 +76,6 @@ namespace BLL
         public DataTable BuscarPromocaoInserida()
         {
             return ObjBanco.ExecuteProc("USP_CSharp_Promocao_BuscarPromocaoInserida");
-        }
-
-        public void InserirProdutoNaPromocoes(clsPromocao objPromocao)
-        {
-            List<SqlParameter> LstParametros = new List<SqlParameter>();
-
-            SqlParameter parametro = new SqlParameter();
-            parametro.ParameterName = "Cod_Produto";
-            parametro.Value = objPromocao.Nome_Promocao;
-            parametro.DbType = System.Data.DbType.String;
-            LstParametros.Add(parametro);
-
-            parametro = new SqlParameter();
-            parametro.ParameterName = "Cod_Promocao";
-            parametro.Value = objPromocao.Descricao;
-            parametro.DbType = System.Data.DbType.String;
-            LstParametros.Add(parametro);
-
-            
-            ObjBanco.ExecuteProc("USP_CSharp_Promocao_InserirProdutoEmPromocao", LstParametros);
         }
 
         public DataTable BuscarPromocoesPorPalavraChave(string palavraChave) 
@@ -176,6 +145,16 @@ namespace BLL
             LstParametros.Add(parametro);
 
             return ObjBanco.ExecuteProc("USP_CSharp_Promocao_AtualizarPromocao", LstParametros);
+        }
+
+        public void ExcluirPromocao(int id) 
+        {
+            SqlParameter parametro = new SqlParameter();
+            parametro.ParameterName = "@codPromocao";
+            parametro.Value = id;
+            parametro.DbType = System.Data.DbType.Int32;
+
+            ObjBanco.ExecuteProc("USP_CSharp_Promocao_ExcluirPromocao", parametro); 
         }
     }
 }

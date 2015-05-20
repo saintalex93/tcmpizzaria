@@ -1832,7 +1832,7 @@ as
 			pd.Cod_Produto as [ID],
 			pd.Nome_Produto as [Produto], 
 			pd.Valor_Venda as [Preço original],
-			round(pd.Valor_Venda * pm.PorcentagemDesconto,2) as [Preço promocional]
+			cast(round(pd.Valor_Venda * pm.PorcentagemDesconto/100,2) as decimal(4,2)) as [Preço promocional]
 
 		from 
 			Promocao pm
@@ -1843,6 +1843,9 @@ as
 		
 		where pp.Cod_Promocao = @codPromocao
 	End
+go
+
+USP_CSharp_Promocao_BuscarProdutosNaPromocao 1
 go
 ------------------------------------------------
 create proc USP_CSharp_Promocao_RemoverProdutoDePromocao
@@ -1967,5 +1970,16 @@ create proc USP_CSharp_Promocao_InserirProdutoEmPromocao
 As
 	Begin
 		insert into ProdutoPromocao (Cod_Produto, Cod_Promocao) values (@codProduto, @codPromocao) 
+	End
+Go
+------------------------------------------------
+create proc USP_CSharp_Promocao_ExcluirPromocao
+(
+	@codPromocao int
+)
+As
+	Begin
+		delete from ProdutoPromocao where cod_Promocao = @codPromocao
+		delete from Promocao where cod_Promocao = @codPromocao
 	End
 Go
