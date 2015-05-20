@@ -11,10 +11,9 @@ namespace DAL.Model
         public int Cod_Promocao { get; set; }
         public string Nome_Promocao { get; set; }
         public string Descricao { get; set; }
-        public double Preco_Original { get; set; }
-        public double Preco_Promocao { get; set; }
+        public int PorcentualDesconto { get; set; }
         public string Vigencia { get; set; }
-        public int sobe_promocao { get; set; }
-        public int usuario_cadastrado { get; set; }
+        public int SobeSite { get; set; }
+        public int AcessivelATodos { get; set; }
     }
 }

@@ -26,7 +26,8 @@ namespace Pizzaria
                 //e em seguinda verificar o nivel de acesso caso a autenticação esteja correta
                 //tendo o nivel de acesso define o valor do mesmo na classe niveldeacesso, onde fica armazenado.
                 Connection conec = new Connection();
-                if (conec.Permisso(txt_usuario.Text, txt_senha.Text))
+
+                if (conec.Permissao(txt_usuario.Text, txt_senha.Text))
                 {
                     Home home = new Home();
                     home.Show();
@@ -70,7 +71,9 @@ namespace Pizzaria
 
         private void Login_Load_1(object sender, EventArgs e)
         {
-
+            Rede.DEBUG_conectarAutomaticamente();
+            txt_usuario.Text = "Admin";
+            txt_senha.Text = "123";
         }
 
         private void Login_Shown_1(object sender, EventArgs e)

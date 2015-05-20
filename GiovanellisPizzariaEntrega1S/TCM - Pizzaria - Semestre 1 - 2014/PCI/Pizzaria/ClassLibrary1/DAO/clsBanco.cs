@@ -65,6 +65,7 @@ namespace DAL.DAO
             try
             {
                 DataTable dtDados = new DataTable();
+
                 using (SqlConnection sqlConexao = AbrirConexão())
                 {
                     using (SqlCommand sqlComando = new SqlCommand(strNomeProc, sqlConexao))
@@ -90,8 +91,8 @@ namespace DAL.DAO
                 throw ex;
             }
         }
-    
-        public DataTable ExecuteComando(string strComando)
+
+        public DataTable ExecuteProc(string strComando)
         {
             try
             {
@@ -123,6 +124,36 @@ namespace DAL.DAO
         }
 
 
+        public DataTable ExecuteProc(string strNomeProc, SqlParameter parametro)
+        {
+            try
+            {
+                DataTable dtDados = new DataTable();
 
+                using (SqlConnection sqlConexao = AbrirConexão())
+                {
+                    using (SqlCommand sqlComando = new SqlCommand(strNomeProc, sqlConexao))
+                    {
+                        sqlComando.CommandType = CommandType.StoredProcedure;
+
+                        if (parametro != null)
+                        {
+                            sqlComando.Parameters.Add(parametro);
+                        }
+
+                        using (SqlDataAdapter sqlAdaptador = new SqlDataAdapter(sqlComando))
+                        {
+                            sqlAdaptador.Fill(dtDados);
+                        }
+                    }
+                    return dtDados;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

@@ -39,6 +39,15 @@ namespace Pizzaria
 
         }
 
+        public static void DEBUG_conectarAutomaticamente()
+        {
+            //string de conexãode casa
+            Acesso.Conexao = "Data Source = TUCA\\SQLEXPRESS; Initial Catalog = Pizzaria; Persist Security Info = True; User ID = sa; Password = peganomeupau";
+
+            //string de conexãode casa
+            //Acesso.Conexao = "Data Source = LAB02T-11\\SQLEXPRESS; Initial Catalog = Pizzaria; Persist Security Info = True; User ID = aluno; Password = etesp";
+        }
+
         public void button1_Click(object sender, EventArgs e)
         {
             dataSource = txtDataSource.Text;
@@ -46,7 +55,11 @@ namespace Pizzaria
             id = txtID.Text;
             password = txtPassword.Text;
 
-            Acesso.Conexao = "Data Source=" + dataSource + " ;Initial Catalog=" + catalog + "; Persist Security Info = True; User ID=" + id + "; Password=" + password;
+            Acesso.Conexao = 
+                "Data Source = " + dataSource + 
+                "; Initial Catalog = " + catalog + 
+                "; Persist Security Info = True; User ID = " + id + 
+                "; Password=  " + password;
 
             Dispose();
         }

@@ -14,7 +14,7 @@ namespace Pizzaria
 
         int nivelgeral = 0;
 
-        public Boolean Permisso(string usuario, string senha)
+        public Boolean Permissao(string usuario, string senha)
         {
 
             int nivel = 0;
@@ -25,10 +25,11 @@ namespace Pizzaria
                 string conexao = "";
 
                 //      conexao = Rede.DataContainer.conexaoGlobal;
+
                 conexao = Acesso.Conexao;
 
                 SqlConnection conn = new SqlConnection(conexao);
-                string strIncluir = "EXEC USP_CSP_LOGIN '" + usuario + "', '" + senha + "'";
+                string strIncluir = "EXEC USP_CSharp_LOGIN '" + usuario + "', '" + senha + "'";
                 conn.Open();
                 SqlCommand sqlComm = new SqlCommand(strIncluir, conn);
                 SqlDataAdapter da = new SqlDataAdapter();

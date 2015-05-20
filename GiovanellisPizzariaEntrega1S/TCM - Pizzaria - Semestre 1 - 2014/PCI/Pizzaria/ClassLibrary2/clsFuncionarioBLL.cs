@@ -39,6 +39,7 @@ namespace BLL
 
 
               LstParametros.Add(ParametroCargo);
+
               SqlParameter ParametroNomeFuncionario = new SqlParameter();
               ParametroNomeFuncionario.ParameterName = "NOME_Funcionario";
               ParametroNomeFuncionario.Value = objPedido.Nome_Func;

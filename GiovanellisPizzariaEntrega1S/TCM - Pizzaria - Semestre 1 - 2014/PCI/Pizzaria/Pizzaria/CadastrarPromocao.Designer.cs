@@ -34,8 +34,8 @@
             this.btnRemoverProduto = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.gridBuscaProdutos = new System.Windows.Forms.DataGridView();
-            this.btnAdicionarProduto = new System.Windows.Forms.Button();
+            this.gridProdutosEncontrados = new System.Windows.Forms.DataGridView();
+            this.btnAdicionarProdutoEmPromocao = new System.Windows.Forms.Button();
             this.txtProdutoID = new System.Windows.Forms.TextBox();
             this.txtProdutoPalavraChave = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -48,7 +48,7 @@
             this.ckAcessivelATodos = new System.Windows.Forms.CheckBox();
             this.ckSobeSite = new System.Windows.Forms.CheckBox();
             this.dataVigencia = new System.Windows.Forms.DateTimePicker();
-            this.btnCriarPromocoes = new System.Windows.Forms.Button();
+            this.btnAdicionarPromocao = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.txtDescricaoPromocao = new System.Windows.Forms.TextBox();
             this.txtTituloPromocao = new System.Windows.Forms.TextBox();
@@ -65,7 +65,7 @@
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.grpProdutos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridProdutosNaPromocao)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridBuscaProdutos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridProdutosEncontrados)).BeginInit();
             this.grpDados.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridPromocoesEncontradas)).BeginInit();
             this.groupBox5.SuspendLayout();
@@ -77,8 +77,8 @@
             this.grpProdutos.Controls.Add(this.btnRemoverProduto);
             this.grpProdutos.Controls.Add(this.label6);
             this.grpProdutos.Controls.Add(this.label2);
-            this.grpProdutos.Controls.Add(this.gridBuscaProdutos);
-            this.grpProdutos.Controls.Add(this.btnAdicionarProduto);
+            this.grpProdutos.Controls.Add(this.gridProdutosEncontrados);
+            this.grpProdutos.Controls.Add(this.btnAdicionarProdutoEmPromocao);
             this.grpProdutos.Controls.Add(this.txtProdutoID);
             this.grpProdutos.Controls.Add(this.txtProdutoPalavraChave);
             this.grpProdutos.Controls.Add(this.label3);
@@ -131,27 +131,27 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Produtos na promoção";
             // 
-            // gridBuscaProdutos
+            // gridProdutosEncontrados
             // 
-            this.gridBuscaProdutos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
-            this.gridBuscaProdutos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
-            this.gridBuscaProdutos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridBuscaProdutos.Location = new System.Drawing.Point(9, 58);
-            this.gridBuscaProdutos.Name = "gridBuscaProdutos";
-            this.gridBuscaProdutos.ReadOnly = true;
-            this.gridBuscaProdutos.Size = new System.Drawing.Size(300, 150);
-            this.gridBuscaProdutos.TabIndex = 30;
+            this.gridProdutosEncontrados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
+            this.gridProdutosEncontrados.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
+            this.gridProdutosEncontrados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridProdutosEncontrados.Location = new System.Drawing.Point(9, 58);
+            this.gridProdutosEncontrados.Name = "gridProdutosEncontrados";
+            this.gridProdutosEncontrados.ReadOnly = true;
+            this.gridProdutosEncontrados.Size = new System.Drawing.Size(300, 150);
+            this.gridProdutosEncontrados.TabIndex = 30;
             // 
-            // btnAdicionarProduto
+            // btnAdicionarProdutoEmPromocao
             // 
-            this.btnAdicionarProduto.Enabled = false;
-            this.btnAdicionarProduto.Location = new System.Drawing.Point(315, 120);
-            this.btnAdicionarProduto.Name = "btnAdicionarProduto";
-            this.btnAdicionarProduto.Size = new System.Drawing.Size(30, 20);
-            this.btnAdicionarProduto.TabIndex = 13;
-            this.btnAdicionarProduto.Text = ">>";
-            this.btnAdicionarProduto.UseVisualStyleBackColor = true;
-            this.btnAdicionarProduto.Click += new System.EventHandler(this.btnAdicionar_Click);
+            this.btnAdicionarProdutoEmPromocao.Enabled = false;
+            this.btnAdicionarProdutoEmPromocao.Location = new System.Drawing.Point(315, 120);
+            this.btnAdicionarProdutoEmPromocao.Name = "btnAdicionarProdutoEmPromocao";
+            this.btnAdicionarProdutoEmPromocao.Size = new System.Drawing.Size(30, 20);
+            this.btnAdicionarProdutoEmPromocao.TabIndex = 13;
+            this.btnAdicionarProdutoEmPromocao.Text = ">>";
+            this.btnAdicionarProdutoEmPromocao.UseVisualStyleBackColor = true;
+            this.btnAdicionarProdutoEmPromocao.Click += new System.EventHandler(this.btnAdicionar_Click);
             // 
             // txtProdutoID
             // 
@@ -209,7 +209,7 @@
             this.grpDados.Controls.Add(this.ckAcessivelATodos);
             this.grpDados.Controls.Add(this.ckSobeSite);
             this.grpDados.Controls.Add(this.dataVigencia);
-            this.grpDados.Controls.Add(this.btnCriarPromocoes);
+            this.grpDados.Controls.Add(this.btnAdicionarPromocao);
             this.grpDados.Controls.Add(this.label11);
             this.grpDados.Controls.Add(this.txtDescricaoPromocao);
             this.grpDados.Controls.Add(this.txtTituloPromocao);
@@ -280,15 +280,15 @@
             this.dataVigencia.TabIndex = 2;
             this.dataVigencia.ValueChanged += new System.EventHandler(this.dataPrazo_ValueChanged);
             // 
-            // btnCriarPromocoes
+            // btnAdicionarPromocao
             // 
-            this.btnCriarPromocoes.Location = new System.Drawing.Point(648, 42);
-            this.btnCriarPromocoes.Name = "btnCriarPromocoes";
-            this.btnCriarPromocoes.Size = new System.Drawing.Size(20, 20);
-            this.btnCriarPromocoes.TabIndex = 6;
-            this.btnCriarPromocoes.Text = "+";
-            this.btnCriarPromocoes.UseVisualStyleBackColor = true;
-            this.btnCriarPromocoes.Click += new System.EventHandler(this.btnCriarPromocoes_Click);
+            this.btnAdicionarPromocao.Location = new System.Drawing.Point(648, 42);
+            this.btnAdicionarPromocao.Name = "btnAdicionarPromocao";
+            this.btnAdicionarPromocao.Size = new System.Drawing.Size(20, 20);
+            this.btnAdicionarPromocao.TabIndex = 6;
+            this.btnAdicionarPromocao.Text = "+";
+            this.btnAdicionarPromocao.UseVisualStyleBackColor = true;
+            this.btnAdicionarPromocao.Click += new System.EventHandler(this.btnCriarPromocoes_Click);
             // 
             // label11
             // 
@@ -457,7 +457,7 @@
             this.grpProdutos.ResumeLayout(false);
             this.grpProdutos.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridProdutosNaPromocao)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridBuscaProdutos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridProdutosEncontrados)).EndInit();
             this.grpDados.ResumeLayout(false);
             this.grpDados.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridPromocoesEncontradas)).EndInit();
@@ -474,8 +474,8 @@
         private System.Windows.Forms.TextBox txtProdutoPalavraChave;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView gridBuscaProdutos;
-        private System.Windows.Forms.Button btnAdicionarProduto;
+        private System.Windows.Forms.DataGridView gridProdutosEncontrados;
+        private System.Windows.Forms.Button btnAdicionarProdutoEmPromocao;
         private System.Windows.Forms.Button btnVoltar;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.GroupBox grpDados;
@@ -483,7 +483,7 @@
         private System.Windows.Forms.TextBox txtTituloPromocao;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button btnCriarPromocoes;
+        private System.Windows.Forms.Button btnAdicionarPromocao;
         private System.Windows.Forms.DataGridView gridPromocoesEncontradas;
         private System.Windows.Forms.TextBox txtPromocaoID;
         private System.Windows.Forms.Label label10;

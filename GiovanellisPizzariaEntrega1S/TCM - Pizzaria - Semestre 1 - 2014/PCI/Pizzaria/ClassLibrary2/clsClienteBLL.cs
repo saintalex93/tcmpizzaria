@@ -19,6 +19,7 @@ namespace BLL
                 ObjBanco = new clsBanco();
 
             }
+
             ~clsClienteBLL()
             {
                 ObjBanco = null;
@@ -394,15 +395,7 @@ namespace BLL
 
                 LstParametros.Add(ParametroDataCadastro);
                 DataTable dt = ObjBanco.ExecuteProc("CSP_Insere_Cliente", LstParametros);
-
-
                 return dt;
             }
-
-
-
-
-
-
     }
 }

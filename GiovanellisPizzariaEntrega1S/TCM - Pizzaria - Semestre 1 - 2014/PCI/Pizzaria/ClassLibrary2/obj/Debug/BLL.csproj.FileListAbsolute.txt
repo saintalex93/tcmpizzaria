@@ -33,3 +33,17 @@ C:\Users\Casa\Downloads\Emerson\izzaria\PCI\Pizzaria_Atualizada\ClassLibrary2\bi
 C:\Users\Casa\Downloads\Emerson\izzaria\PCI\Pizzaria_Atualizada\ClassLibrary2\obj\Debug\BLL.csprojResolveAssemblyReference.cache
 C:\Users\Casa\Downloads\Emerson\izzaria\PCI\Pizzaria_Atualizada\ClassLibrary2\obj\Debug\ClassLibrary2.dll
 C:\Users\Casa\Downloads\Emerson\izzaria\PCI\Pizzaria_Atualizada\ClassLibrary2\obj\Debug\ClassLibrary2.pdb
+F:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\ClassLibrary2\bin\Debug\ClassLibrary2.dll
+F:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\ClassLibrary2\bin\Debug\ClassLibrary2.pdb
+F:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\ClassLibrary2\bin\Debug\ClassLibrary1.dll
+F:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\ClassLibrary2\bin\Debug\ClassLibrary1.pdb
+F:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\ClassLibrary2\obj\Debug\BLL.csprojResolveAssemblyReference.cache
+F:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\ClassLibrary2\obj\Debug\ClassLibrary2.dll
+F:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\ClassLibrary2\obj\Debug\ClassLibrary2.pdb
+G:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\ClassLibrary2\bin\Debug\ClassLibrary2.dll
+G:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\ClassLibrary2\bin\Debug\ClassLibrary2.pdb
+G:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\ClassLibrary2\bin\Debug\ClassLibrary1.dll
+G:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\ClassLibrary2\bin\Debug\ClassLibrary1.pdb
+G:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\ClassLibrary2\obj\Debug\BLL.csprojResolveAssemblyReference.cache
+G:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\ClassLibrary2\obj\Debug\ClassLibrary2.dll
+G:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\ClassLibrary2\obj\Debug\ClassLibrary2.pdb
