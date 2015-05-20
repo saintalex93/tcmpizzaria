@@ -1,51 +1,51 @@
-	-------------------------------------------------------------- 
-	-------------------------------------------------------------- 
-	-------------------- *** SETUP INICIAL *** -------------------
-	-------------------------------------------------------------- 
-	-------------------------------------------------------------- 
+		-------------------------------------------------------------- 
+		-------------------------------------------------------------- 
+		-------------------- *** SETUP INICIAL *** -------------------
+		-------------------------------------------------------------- 
+		-------------------------------------------------------------- 
 
-Use master
-go
------------------------------------
-set nocount on
-declare @databasename varchar(100)
-declare @query varchar(max)
-set @query = ''
+	Use master
+	go
+	-----------------------------------
+	set nocount on
+	declare @databasename varchar(100)
+	declare @query varchar(max)
+	set @query = ''
 
-set @databasename = 'Pizzaria'
-if db_id(@databasename) < 4
-begin
-	print 'system database connection cannot be killeed'
-return
-end
------------------------------------
-select @query=coalesce(@query,',' )+'kill '+convert(varchar, spid)+ '; '
-from master..sysprocesses where dbid=db_id(@databasename)
+	set @databasename = 'Pizzaria'
+	if db_id(@databasename) < 4
+	begin
+		print 'system database connection cannot be killeed'
+	return
+	end
+	-----------------------------------
+	select @query=coalesce(@query,',' )+'kill '+convert(varchar, spid)+ '; '
+	from master..sysprocesses where dbid=db_id(@databasename)
 
-if len(@query) > 0
-begin
-print @query
-	exec(@query)
-end
-go
------------------------------------
-IF EXISTS (SELECT * from sys.databases where name = 'Pizzaria')
-DROP DATABASE Pizzaria
-go
+	if len(@query) > 0
+	begin
+	print @query
+		exec(@query)
+	end
+	go
+	-----------------------------------
+	IF EXISTS (SELECT * from sys.databases where name = 'Pizzaria')
+	DROP DATABASE Pizzaria
+	go
 
-	-------------------------------------------------------------- 
-	-------------------------------------------------------------- 
-	-------------------- *** CRIAÇÕES *** ------------------------ 
-	-------------------------------------------------------------- 
-	-------------------------------------------------------------- 
+		-------------------------------------------------------------- 
+		-------------------------------------------------------------- 
+		-------------------- *** CRIAÇÕES *** ------------------------ 
+		-------------------------------------------------------------- 
+		-------------------------------------------------------------- 
 
-create database Pizzaria
-go
+	create database Pizzaria
+	go
 
-use Pizzaria
-go
+	use Pizzaria
+	go
 
-create table Cliente
+	create table Cliente
 (
 Cod_Cliente INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 Nome_Cliente VARCHAR(40),
@@ -226,7 +226,7 @@ create table Promocao
 Cod_Promocao INT IDENTITY(1,1) PRIMARY KEY,
 Nome_Promocao VARCHAR(40),
 Descricao VARCHAR(150),
-PorcentagemDesconto DECIMAL(3,2),
+PorcentagemDesconto int,
 Vigencia Date,
 sobe_promocao INT,
 AcessivelATodos INT
@@ -529,9 +529,9 @@ sobe_promocao,
 AcessivelATodos
 )
 values
-('Final de semana','Pizzas com 15% de desconto até dia 23 de Maio!',0.85, '2015-05-23', 1,0),
-('Super três queijos','Pizza de três queijos com 25% de desconto!.',0.75, '2016-01-01', 1,0),
-('Olha o refrigerante','Refrigerante agora está mais barato',0.90, '2016-01-01', 1, 1)
+('Final de semana','Pizzas com 15% de desconto até dia 23 de Maio!',85, '2015-05-23', 1,0),
+('Super três queijos','Pizza de três queijos com 25% de desconto!.',75, '2016-01-01', 1,0),
+('Olha o refrigerante','Refrigerante agora está mais barato',90, '2016-01-01', 1, 1)
 go
 
 insert into insumo_fornecedor
@@ -1173,7 +1173,7 @@ as
 	End
 go
 -----------------------------------------
-create proc USP_CSP_LOGIN
+create proc USP_CSharp_LOGIN
 (
 	@Login varchar(20),
 	@Senha varchar(20)
@@ -1193,7 +1193,7 @@ as
 	end
 go
 -----------------------------------------
-create procedure [dbo].[CSP_Atualiza_Cliente]
+create procedure [dbo].[CSharp_Atualiza_Cliente]
 (
 	@Cod_CLiente int = null,
 	@Nome_CLiente varchar(50) = null,
@@ -1239,7 +1239,7 @@ as
 	end
 go
 ------------------------------------------------------------------
-create procedure [dbo].[CSP_Delete_Funcionario]
+create procedure [dbo].[CSharp_Delete_Funcionario]
 (
 	@cod_Func int = null
 )
@@ -1249,7 +1249,7 @@ as
 	end
 go
 ------------------------------------------------------------------
-create proc [dbo].[CSP_Insere_Cliente]
+create proc [dbo].[CSharp_Insere_Cliente]
 (
 	--@Cod_CLiente int = null,
 	@Nome_CLiente varchar(50) = null,
@@ -1313,7 +1313,7 @@ as
 	end
 go
 -----------------------------------------------------
-create PROCEDURE [dbo].[CSP_Insere_Funcionario]
+create PROCEDURE [dbo].[CSharp_Insere_Funcionario]
 (
 	@NOME_Funcionario VARCHAR(40) = null,
 	@CPF_Funcionario VARCHAR(15) = null,
@@ -1381,7 +1381,7 @@ as
 		end
 go
 ------------------------------------
-create procedure [dbo].[CSP_Seleciona_Cargo]
+create procedure [dbo].[CSharp_Seleciona_Cargo]
 (
 	@teste int = null
 )
@@ -1392,7 +1392,7 @@ as
 	end
 go
 ------------------------------------------------------------
-create procedure [dbo].[CSP_Seleciona_Cliente]
+create procedure [dbo].[CSharp_Seleciona_Cliente]
 (
 	@Cod_CLiente int = null,
 	@Nome_CLiente varchar(50) = null,
@@ -1439,7 +1439,7 @@ as
 	end
 go
 -------------------------------------------------
-create procedure [dbo].[CSP_Seleciona_Produtos]
+create procedure [dbo].[CSharp_Seleciona_Produtos]
 (
 	@cod_Pedido int = null
 )
@@ -1458,7 +1458,7 @@ as
 	end
 go
 -----------------------------------------
-create procedure [dbo].[csp_Select_Funcionario]
+create procedure [dbo].[CSharp_Select_Funcionario]
 (
 	@Cod_Funcionario int = null,
 	@NOME_Funcionario VARCHAR(40) = null,
@@ -1525,7 +1525,7 @@ as
 	end
 go
 --------------------------------------------
-create procedure [dbo].[csp_Select_pedido]
+create procedure [dbo].[CSharp_Select_pedido]
 (
 	@Cod_Pedido int = null,
 	@Data date = null, 
@@ -1571,7 +1571,7 @@ as
 	end
 go
 -------------------------------------
-create procedure [dbo].[CSP_Update_Funcionario]
+create procedure [dbo].[CSharp_Update_Funcionario]
 (
 	@cod_Funcionario int = null,
 	@NOME_Funcionario VARCHAR(40) = null,
@@ -1623,7 +1623,7 @@ as
 	end
 go
 ------------------------------------------------
-create procedure [dbo].[csp_update_pedido]
+create procedure [dbo].[CSharp_update_pedido]
 (
 	@Estado varchar(20) = null,
 	@cod_pedido int = null
@@ -1775,20 +1775,20 @@ as
 	end
 go
 ------------------------------------------------
-create proc USP_CSP_BuscarPromocoesPorPalavraChave
+create proc USP_CSharp_Promocao_BuscarPromocoesPorPalavraChave
 (
 	@Palavra varchar(50)
 )
 as
 	Begin
 		select 
-			Cod_Promocao as 'Código',
-			Nome_Promocao as 'Nome da promoção',
-			Descricao as 'Descrição',
-			PorcentagemDesconto as 'Porcentual de desconto',
-			Vigencia as 'Vigência',
-			sobe_promocao as 'Visível no site',
-			AcessivelATodos as 'Acessível à todos'
+			Cod_Promocao as [ID],
+			Nome_Promocao as [Título],
+			Descricao as [Descrição],
+			PorcentagemDesconto as [% Desconto],
+			Vigencia as [Vigência],
+			sobe_promocao as [Sobe para o site],
+			AcessivelATodos as [Acessível a todos] 
 
 		from Promocao
 
@@ -1798,8 +1798,31 @@ as
 			Descricao like '%' + @Palavra + '%' 
 	End
 go
+
+
 ------------------------------------------------
-create proc USP_CSP_BuscarProdutosNaPromocao
+create proc USP_CSharp_Promocao_BuscarPromocoesPorID
+(
+	@ID int
+)
+as
+	Begin
+		select 
+			Cod_Promocao as [ID],
+			Nome_Promocao as [Título],
+			Descricao as [Descrição],
+			PorcentagemDesconto as [% Desconto],
+			Vigencia as [Vigência],
+			sobe_promocao as [Sobe para o site],
+			AcessivelATodos as [Acessível a todos] 
+
+		from Promocao
+
+		where Cod_Promocao = @ID
+	End
+go
+------------------------------------------------
+create proc USP_CSharp_Promocao_BuscarProdutosNaPromocao
 (
 	@codPromocao int
 )
@@ -1822,7 +1845,7 @@ as
 	End
 go
 ------------------------------------------------
-create proc USP_CSP_RemoverProdutoDePromocao
+create proc USP_CSharp_Promocao_RemoverProdutoDePromocao
 (
 	@CodProduto int,
 	@CodPromocao int
@@ -1835,9 +1858,114 @@ as
 				Cod_Promocao = @CodPromocao
 	End
 go
+------------------------------------------------
+create proc USP_CSharp_Promocao_BuscarTodasPromocoes
+As
+	Begin
+		select 
+			Cod_Promocao as [ID],
+			Nome_Promocao as [Título],
+			Descricao as [Descrição],
+			PorcentagemDesconto as [% Desconto],
+			Vigencia as [Vigência],
+			sobe_promocao as [Sobe para o site],
+			AcessivelATodos as [Acessível a todos] 
+			
+			from Promocao
+	End
+Go
+------------------------------------------------
+create proc USP_CSharp_Promocao_InserirPromocao
+(
+	@Nome VARCHAR(40),
+	@Descricao VARCHAR(150),
+	@PorcentagemDesconto int,
+	@Vigencia Date,
+	@sobe_promocao INT,
+	@AcessivelATodos INT
+)
+As
+	Begin
+		Insert into Promocao values
+		(
+			@Nome,
+			@Descricao,
+			@PorcentagemDesconto,
+			@Vigencia,
+			@sobe_promocao,
+			@AcessivelATodos
+		)
+	End
+Go
+------------------------------------------------
+create proc USP_CSharp_Promocao_BuscarPromocaoInserida
+As
+	Begin
+		select 
+			Cod_Promocao as [ID],
+			Nome_Promocao as [Título],
+			Descricao as [Descrição],
+			PorcentagemDesconto as [% Desconto],
+			Vigencia as [Vigência],
+			sobe_promocao as [Visível no site],
+			AcessivelATodos as [Acessível a todos] 
+			
+			from Promocao
 
-USP_CSP_BuscarProdutosNaPromocao 2
-go
-USP_CSP_RemoverProdutoDePromocao 8,2
-go
-USP_CSP_BuscarProdutosNaPromocao 2
+			where Cod_Promocao = (select max(Cod_Promocao) from Promocao)
+	End
+Go
+------------------------------------------------
+create proc USP_CSharp_Promocao_AtualizarPromocao
+(
+	@Nome VARCHAR(40),
+	@Descricao VARCHAR(150),
+	@PorcentagemDesconto int,
+	@Vigencia Date,
+	@sobe_promocao INT,
+	@AcessivelATodos INT,
+	@CodPromocao int
+)
+As
+	Begin
+		Update Promocao 
+
+		set 
+			Nome_Promocao = @Nome,
+			Descricao = @Descricao,
+			Vigencia = @Vigencia,
+			PorcentagemDesconto = @PorcentagemDesconto,
+			sobe_promocao = @sobe_promocao,
+			AcessivelATodos = @AcessivelATodos
+			
+		where cod_Promocao = @CodPromocao
+	End
+Go
+------------------------------------------------
+create proc USP_CSharp_Promocao_BuscarProdutoPalavraChave
+(
+	@PalavraChave VARCHAR(40)
+)
+As
+	Begin
+		select 
+			cod_Produto as [ID], 
+			Nome_Produto as [Produto], 
+			Valor_Venda as [Preço] 
+			
+			from Produto 
+			
+			where Nome_Produto LIKE ('%' + @PalavraChave + '%')
+	End
+Go
+------------------------------------------------
+create proc USP_CSharp_Promocao_InserirProdutoEmPromocao
+(
+	@codProduto int,
+	@codPromocao int
+)
+As
+	Begin
+		insert into ProdutoPromocao (Cod_Produto, Cod_Promocao) values (@codProduto, @codPromocao) 
+	End
+Go
