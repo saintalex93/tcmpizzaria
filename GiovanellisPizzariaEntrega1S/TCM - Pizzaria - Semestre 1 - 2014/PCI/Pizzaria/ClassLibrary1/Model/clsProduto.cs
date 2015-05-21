@@ -11,8 +11,6 @@ namespace DAL.Model
         public int Cod_Produto { get; set; }
         public string Nome_Produto { get; set; }
         public double Valor_Venda { get; set; }
-        public string Ingred_Prod { get; set; }
         public int Sobe_Site { get; set; }
-        public int Categoria { get; set; }
     }
 }

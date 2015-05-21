@@ -71,6 +71,12 @@
       <DependentUpon>Confirmacao_Alterar_Status.cs</DependentUpon>
     </Compile>
     <Compile Include="Connection.cs" />
+    <Compile Include="Consumo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Consumo.Designer.cs">
+      <DependentUpon>Consumo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Fornecedores.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -144,6 +150,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Confirmacao_Alterar_Status.resx">
       <DependentUpon>Confirmacao_Alterar_Status.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Consumo.resx">
+      <DependentUpon>Consumo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Fornecedores.resx">
       <DependentUpon>Fornecedores.cs</DependentUpon>

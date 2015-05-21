@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="DAO\clsBanco.cs" />
     <Compile Include="Model\clsCliente.cs" />
+    <Compile Include="Model\clsConsumo.cs" />
     <Compile Include="Model\clsFornecedor.cs" />
     <Compile Include="Model\clsFuncionario.cs" />
     <Compile Include="Model\clsFuncPermissao.cs" />

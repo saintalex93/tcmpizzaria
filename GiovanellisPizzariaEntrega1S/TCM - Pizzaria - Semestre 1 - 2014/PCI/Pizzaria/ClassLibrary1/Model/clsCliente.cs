@@ -8,7 +8,6 @@ namespace DAL.Model
 {
     public class clsCliente
     {
-            
             public int Cod_Cliente {get; set; }
             public string Nome_Cliente { get; set; }
             public string Cpf_Cliente { get; set; }
@@ -26,7 +25,5 @@ namespace DAL.Model
             public string Senha_Cliente { get; set; }
             public string DataNascimento { get; set; }
             public string DataCadastro { get; set; }
-            
-
     }
 }

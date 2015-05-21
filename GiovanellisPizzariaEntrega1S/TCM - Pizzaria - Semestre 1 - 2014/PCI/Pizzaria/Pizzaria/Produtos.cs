@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
+
+using BLL;
+using DAL.Model;
 
 namespace Pizzaria
 {
@@ -17,6 +20,8 @@ namespace Pizzaria
         {
             InitializeComponent();
         }
+
+        clsProdutoBLL produto = new clsProdutoBLL();
 
         SqlConnection conn;
         string strsql = "", nome = "", cod_produto = "", categoria = "", medida = "";
@@ -93,14 +98,13 @@ namespace Pizzaria
             Dispose();
         }
 
-
         private void btn_atualizar_Click(object sender, EventArgs e)
         {
             if (btn_atualizar.Text == "Alterar")
             {
                 btn_atualizar.Text = "Gravar";
                 txt_nome.Enabled = true;
-                txt_vlrunitario.Enabled = true;
+//                txt_vlrunitario.Enabled = true;
                 chk_site.Enabled = true;
                 gbp_produtos.Enabled = true;
             }
@@ -112,11 +116,11 @@ namespace Pizzaria
 
                 int idProduto = (int)dtg_produtos.CurrentRow.Cells[0].Value;
 
-                preenchegrid("UPDATE Produto SET Nome_Produto = '" + txt_nome.Text + "', Valor_Venda = " + txt_vlrunitario.Text.Replace("R$", "").Replace(" ", "") + ", Sobe_Site = " + sobeProSite + " WHERE cod_Produto = " + dtg_produtos.CurrentRow.Cells[0].Value);
+//                preenchegrid("UPDATE Produto SET Nome_Produto = '" + txt_nome.Text + "', Valor_Venda = " + txt_vlrunitario.Text.Replace("R$", "").Replace(" ", "") + ", Sobe_Site = " + sobeProSite + " WHERE cod_Produto = " + dtg_produtos.CurrentRow.Cells[0].Value);
 
                 preenchegrid("select cod_Produto as [ID], Nome_Produto as [Produto], Valor_Venda as [Preço], Sobe_Site as [Visível no site] from Produto where Cod_Produto like (" + idProduto + ")");
 
-                txt_vlrunitario.Clear();
+               // txt_vlrunitario.Clear();
                 txt_nome.Clear();
                 chk_site.Checked = false;
                 btn_atualizar.Text = "Alterar";
@@ -133,84 +137,93 @@ namespace Pizzaria
 
         }
 
-        public bool ValidaCampos()
+        bool validaNome() 
         {
-            //valida nome
-            if (txt_nome.TextLength > 2)
+            if (txt_nome.TextLength == 0)
             {
-                nome = txt_nome.Text;
-                //Valida categoria
-                /*if (cmb_categoria.SelectedIndex > 0)
-                {
-                    categoria = cmb_categoria.SelectedItem.ToString();*/
-                   // Valida valor
-                        if (Convert.ToInt32(txt_vlrunitario.Text.Replace(",", "").Replace(".", "").Replace("_", "").Replace(" ", "").Replace("R$", "")) > 0)
-                        {
-                            valoruntd = Convert.ToDouble(txt_vlrunitario.Text.Replace(" ", "").Replace(".", "").Replace("_", "").Replace(" ", "").Replace("R$", "")) / 100;
+                Home.mensagemDeErro("Por favor, forneça um nome para esse produto.", "Erro no nome");
 
-                         
-                                if (chk_site.Checked == true)
-                                {
-                                    site = 1;
-                                    return true;
-                                }
-                                else
-                                {
-                                    site  = 0;
-                                    return true;
-                                }
-                                //  MessageBox.Show(Convert.ToString(dtp_datanasc.Value.Date.AddYears(18)));
-                           
-                        
-                           
-                        }
-                        /*else
-                        {
-                            MessageBox.Show("Valor Unitario Incorreta!");
-                        }*/
+                return false;
+            }
                 
-                
-                else
-                {
-                    MessageBox.Show("Categoria Incorreta!");
-                }
+
+            return true;
+        }
+
+        bool validaPreco() 
+        {
+            if (txtPreco.Text.Length == 0)
+            {
+                Home.mensagemDeErro("É preciso fornecer um valor no campo de preço.", "Erro no campo de preço");
+                    
+                return false;
+            }
+            else if (txtPreco.Text.Contains("."))
+            {
+                Home.mensagemDeErro("No campo de preço, utilize vírgula (,) ao invés de ponto (.) para separar os centavos.", "Erro no campo de preço");
+
+                return false;
             }
             else
             {
-                MessageBox.Show("Nome Incorreto!");
+                decimal x = 0;
+                decimal.TryParse(txtPreco.Text, out x);
+
+                if (x == 0)
+                {
+                    Home.mensagemDeErro("Não é possível utilizar o valor inserido no campo de preço. Por favor, certifique-se de que o valor seja válido e tente novamente.", "Erro no campo de preço");
+
+                    return false;
+                }
             }
-            return false;
+
+            return true;
+        }
+
+        public bool ValidaCampos()
+        {
+            if (!validaNome())
+                return false;
+
+            if (!validaPreco())
+                return false;
+
+            return true;
         }
 
         private void btn_inserir_Click(object sender, EventArgs e)
         {
-            if (ValidaCampos())
-            {
-                if (Validaexistente())
-                {
+            if (!ValidaCampos())
+                return;
+
+            if (!ValidaExistenciaNoBanco())
+                return;
+/*//                    Consumo consumo = new Consumo();
+//                  consumo.FormHome = this;
+//                this.Enabled = false;
+    //              consumo.Show();
+
 //                    inseredados();
-            //        preenchegrid();
-                    int sobeSite = 0;
-                    if (chk_site.Checked)
-                        sobeSite = 1;
-                    else
-                        sobeSite = 0;
+        //        preenchegrid();
 
-                    Home.preencherGrid("insert into produto(Nome_Produto, Valor_Venda, Sobe_Site) values('"+ txt_nome.Text +"', "+ txt_vlrunitario.Text +", " + sobeSite + ") ", dtg_produtos);
+   */
+            clsProduto objProduto = new clsProduto();
+            objProduto.Nome_Produto = txt_nome.Text;
+            objProduto.Valor_Venda = Double.Parse(txtPreco.Text);
 
-                    Home.preencherGrid("select cod_Produto as [ID], Nome_Produto as [Produto], Valor_Venda as [Preço], Sobe_Site as [Visível no site] from Produto where Nome_Produto like ('%" + txt_nome.Text + "%')", dtg_produtos);
+            int sobeSite = 0;
+            if (chk_site.Checked)
+                sobeSite = 1;
+            else
+                sobeSite = 0;
 
-                    txt_nome.Clear();
-                    txt_vlrunitario.Clear();
-                    chk_site.Checked = false;
+            produto.InserirProduto(objProduto);
 
-                }
-                else
-                {
-                    MessageBox.Show("Ja existe produto com este nome");
-                }
-            }
-
+            dtg_produtos.DataSource = produto.MostrarTodosProdutos();
+            
+                txt_nome.Clear();
+                txtPreco.Clear();
+                chk_site.Checked = false;
         }
 
         private void btn_excluir_Click(object sender, EventArgs e)
@@ -275,31 +288,21 @@ namespace Pizzaria
             sqlComm.ExecuteNonQuery();
         }
         
-        public Boolean Validaexistente()
+        public Boolean ValidaExistenciaNoBanco()
         {
+            clsProduto objproduto = new clsProduto();
+            objproduto.Nome_Produto = txt_nome.Text;
 
-            SqlConnection conn = new SqlConnection(conexao);
-            string strIncluir = "select * from Produto where Nome_Produto = '" + nome + "'";
-            conn.Open();
-            SqlCommand sqlComm = new SqlCommand(strIncluir, conn);
+            DataTable resultado = produto.ValidaExistenciaNoBanco(objproduto);
 
-            SqlDataAdapter da = new SqlDataAdapter();
-            DataTable dt = new DataTable();
-            da.SelectCommand = sqlComm;
-            da.Fill(dt);
-            if (dt.Rows.Count > 0)
+            if( (int) resultado.Rows[0][0] != 0)
             {
+                Home.mensagemDeErro("Já existe um produto com este nome no banco de dados.\n\nCertifique-se de que o nome do produto que deseja inserir esteja correto ou utilize o produto já registrado.","Produto existente");
+
                 return false;
             }
-            else
-            {
 
-
-
-                return true;
-            }
-
-
+            return true;
         }
         
         public void PreencheCatego()
@@ -315,14 +318,9 @@ namespace Pizzaria
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = sqlComm;
 
-
             da.Fill(dt);
 
-
-          
-
             conn.Close();
-
         }
 
         public void excluiprod(string produto)
@@ -400,7 +398,7 @@ namespace Pizzaria
         {
             txt_nome.Text = dtg_produtos.CurrentRow.Cells[1].Value.ToString();
 
-            txt_vlrunitario.Text = dtg_produtos.CurrentRow.Cells[2].Value.ToString();
+            //txt_vlrunitario.Text = dtg_produtos.CurrentRow.Cells[2].Value.ToString();
 
 
             if ((int)dtg_produtos.CurrentRow.Cells[3].Value == 1)
@@ -426,12 +424,13 @@ namespace Pizzaria
 
         private void txt_vlrunitario_Enter(object sender, EventArgs e)
         {
-            txt_vlrunitario.BackColor = Color.Aquamarine;
         }
 
         private void txt_vlrunitario_Leave(object sender, EventArgs e)
         {
-            txt_vlrunitario.BackColor = Color.White;
+          //  txt_vlrunitario.BackColor = Color.White;
+
+            //Console.WriteLine(txt_vlrunitario.Text);
         }
 
         private void cmb_categoria_SelectedIndexChanged(object sender, EventArgs e)
@@ -494,11 +493,10 @@ namespace Pizzaria
 
         private void txtBuscaPorNome_TextChanged(object sender, EventArgs e)
         {
-            dtg_produtos.DataSource = null;
+            clsProduto objProduto = new clsProduto();
+            objProduto.Nome_Produto = txtBuscaPorNome.Text;
 
-            dtg_produtos.Rows.Clear();
-
-            Home.preencherGrid("select cod_Produto as [ID], Nome_Produto as [Produto], Valor_Venda as [Preço], Sobe_Site as [Visível no site] from Produto where Nome_Produto like ('%" + txtBuscaPorNome.Text + "%')", dtg_produtos);
+            dtg_produtos.DataSource = produto.BuscarProdutoPorPalavraChave(objProduto);
         }
 
         private void txtBuscaPorID_TextChanged(object sender, EventArgs e)
@@ -518,13 +516,31 @@ namespace Pizzaria
         private void label5_Click(object sender, EventArgs e)
         {
             txt_nome.Text = "Pizza Quatro Queijos";
-            txt_vlrunitario.Text = "23,30";
+            //txt_vlrunitario.Text = "23,30";
             chk_site.Checked = true;
         }
 
         private void dtg_produtos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void textBox1_Leave(object sender, EventArgs e)
+        {
+            Console.WriteLine(txtPreco.Text);
+
+            decimal s = 0;
+
+            try
+            {
+                s = Decimal.Parse(txtPreco.Text);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+
+            Console.WriteLine("Parsed: " + s);
         }
     }
 }
