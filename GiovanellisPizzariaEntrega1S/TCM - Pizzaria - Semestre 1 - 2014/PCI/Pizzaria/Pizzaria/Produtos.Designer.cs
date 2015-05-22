@@ -203,6 +203,7 @@
             this.txtBuscaPorNome.Size = new System.Drawing.Size(100, 20);
             this.txtBuscaPorNome.TabIndex = 14;
             this.txtBuscaPorNome.TextChanged += new System.EventHandler(this.txtBuscaPorNome_TextChanged);
+            this.txtBuscaPorNome.Enter += new System.EventHandler(this.txtBuscaPorNome_Enter);
             // 
             // txtBuscaPorID
             // 
@@ -211,6 +212,7 @@
             this.txtBuscaPorID.Size = new System.Drawing.Size(100, 20);
             this.txtBuscaPorID.TabIndex = 15;
             this.txtBuscaPorID.TextChanged += new System.EventHandler(this.txtBuscaPorID_TextChanged);
+            this.txtBuscaPorID.Enter += new System.EventHandler(this.txtBuscaPorID_Enter);
             // 
             // groupBox1
             // 

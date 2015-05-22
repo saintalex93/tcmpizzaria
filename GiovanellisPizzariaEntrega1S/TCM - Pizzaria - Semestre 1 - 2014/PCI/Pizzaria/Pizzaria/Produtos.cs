@@ -180,6 +180,22 @@ namespace Pizzaria
             return true;
         }
 
+        public bool validaCampoNumerico(TextBox campo)
+        {
+            int s = 0;
+
+            Int32.TryParse(campo.Text, out s);
+
+            if (s == 0)
+            {
+                Home.mensagemDeErro("Por favor, insira apenas números no campo.", "Erro campo");
+
+                return false;
+            }
+
+            return true;
+        }
+
         public bool ValidaCampos()
         {
             if (!validaNome())
@@ -493,19 +509,18 @@ namespace Pizzaria
 
         private void txtBuscaPorNome_TextChanged(object sender, EventArgs e)
         {
-            clsProduto objProduto = new clsProduto();
-            objProduto.Nome_Produto = txtBuscaPorNome.Text;
-
-            dtg_produtos.DataSource = produto.BuscarProdutoPorPalavraChave(objProduto);
+            if (txtBuscaPorNome.Text.Length == 0)
+                dtg_produtos.DataSource = produto.MostrarTodosProdutos();
+            else
+                dtg_produtos.DataSource = produto.BuscarProdutoPorNome(txtBuscaPorNome.Text);
         }
 
         private void txtBuscaPorID_TextChanged(object sender, EventArgs e)
         {
-            dtg_produtos.DataSource = null;
-
-            dtg_produtos.Rows.Clear();
-            
-            Home.preencherGrid("select cod_Produto as [ID], Nome_Produto as [Produto], Valor_Venda as [Preço], Sobe_Site as [Visível no site] from Produto where cod_Produto like ('%" + txtBuscaPorID.Text + "%')", dtg_produtos);
+            if (txtBuscaPorID.Text.Length == 0 && !validaCampoNumerico(txtBuscaPorID))
+                dtg_produtos.DataSource = produto.MostrarTodosProdutos();
+            else
+                dtg_produtos.DataSource = produto.BuscarProdutoPorID(Int32.Parse(txtBuscaPorID.Text));
         }
 
         private void chk_site_CheckedChanged(object sender, EventArgs e)
@@ -541,6 +556,16 @@ namespace Pizzaria
             }
 
             Console.WriteLine("Parsed: " + s);
+        }
+
+        private void txtBuscaPorNome_Enter(object sender, EventArgs e)
+        {
+            txtBuscaPorID.Clear();
+        }
+
+        private void txtBuscaPorID_Enter(object sender, EventArgs e)
+        {
+            txtBuscaPorNome.Clear();
         }
     }
 }

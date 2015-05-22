@@ -404,7 +404,7 @@ Valor_Venda,
 Sobe_Site
 )
 values
-('',0,0),
+('(Campo vazio para utilização do sistema)',0,0),
 ('Pizza Baiana',20.00,1),
 ('Pizza Mussarela',18.40,1),
 ('Pizza Bacon',20.20,1),
@@ -1798,8 +1798,6 @@ as
 			Descricao like '%' + @Palavra + '%' 
 	End
 go
-
-
 ------------------------------------------------
 create proc USP_CSharp_Promocao_BuscarPromocoesPorID
 (
@@ -1843,9 +1841,6 @@ as
 		
 		where pp.Cod_Promocao = @codPromocao
 	End
-go
-
-USP_CSharp_Promocao_BuscarProdutosNaPromocao 1
 go
 ------------------------------------------------
 create proc USP_CSharp_Promocao_RemoverProdutoDePromocao
@@ -1983,3 +1978,156 @@ As
 		delete from Promocao where cod_Promocao = @codPromocao
 	End
 Go
+------------------------------------------------
+create proc USP_CSharp_Consumo_MostrarConsumo
+As
+	Begin
+		select * from Consumo
+	End
+Go
+------------------------------------------------
+create proc USP_CSharp_Produto_InserirProduto
+(
+	@Nome varchar(30),
+	@Preco decimal (4,2),
+	@SobeSite int
+)
+As
+	Begin
+		Insert into Produto values (@Nome, @Preco, @SobeSite)
+	End
+Go
+------------------------------------------------
+create proc USP_CSharp_Produto_ValidaExistenciaNoBanco
+(
+	@Nome varchar(30)
+)
+As
+	Begin
+		select count(*) from Produto where Nome_Produto like @Nome
+	End
+Go
+------------------------------------------------
+create proc USP_CSharp_Produto_MostrarTodosProdutos
+As
+	Begin
+		select 			
+			Cod_Produto as [ID],
+			Nome_Produto as [Produto],
+			Valor_Venda as [Preço],
+			Sobe_Site as [Sobe para o site]
+		from Produto 
+		where Cod_Produto > 0
+		order by Cod_Produto desc
+	End
+Go
+------------------------------------------------
+create proc USP_CSharp_Produto_BuscarProdutoPorNome
+(
+	@Palavra varchar(50)
+)
+as
+	Begin
+		select 
+			Cod_Produto as [ID],
+			Nome_Produto as [Produto],
+			Valor_Venda as [Preço],
+			Sobe_Site as [Sobe para o site]
+
+		from Produto
+
+		where
+			Nome_Produto like '%' + @Palavra + '%' and
+			Cod_Produto > 0
+	End
+go
+------------------------------------------------
+create proc USP_CSharp_Produto_BuscarProdutoPorID
+(
+	@ID int
+)
+as
+	Begin
+		select 
+			Cod_Produto as [ID],
+			Nome_Produto as [Produto],
+			Valor_Venda as [Preço],
+			Sobe_Site as [Sobe para o site]
+
+		from Produto
+
+		where
+			Cod_Produto like '%' + @ID + '%' and
+			Cod_Produto > 0
+	End
+go
+------------------------------------------------
+create proc USP_ASP_Pedidos_FiltraPedido
+(
+	@botaoClicado int,
+	@codCliente int
+)
+as
+	Begin
+		if @botaoClicado = 1
+			Begin
+				select Data,Valor,Observacao from Pedido where Cod_Cliente = @codCliente and Estado ='Realizado' order by Data desc
+			End
+		else if(@botaoClicado = 2)
+			Begin
+				select Data,Valor,Observacao from Pedido where Cod_Cliente = @codCliente and Estado = 'Realizado' order by Data
+			End
+		else if(@botaoClicado = 3)
+			Begin
+				select Data,Valor,Observacao from Pedido where Cod_Cliente = @codCliente and Estado = 'Realizado' order by Valor desc
+			End
+		else if(@botaoClicado = 4)
+			Begin
+				select Data,Valor,Observacao from Pedido where Cod_Cliente = @codCliente and Estado = 'Realizado' order by Valor
+			End
+	End
+go
+------------------------------------------------
+--TODO: mudar nome dessa proc pra se adequar à nomenclatura de entrega do Professor Luiz Ricardo
+create proc USP_JAVA_Rel
+(
+	@DataInicial Date,
+	@DataFinal Date
+)
+as
+declare 
+	@TotalDespesa float,
+	@TotalFuncionario float,
+	@TotalCompras float,
+	@TotalPedidos float,
+	@TotalPromocao float,
+	@TotalGeral float,
+	@TotalPrejuca float,
+	@TotalReceita float
+
+begin
+	set @TotalFuncionario = (select SUM(ValorPagamento) from Pagamento where DataExpedido between @DataInicial and @DataFinal)
+	set @TotalDespesa = (select  sum(ValorDespesa) from despesa where DataPagamento between @DataInicial and @DataFinal)
+	set @TotalCompras = (select SUM (Valor_Compra) from CompraFornecedor where Data_Venda between @DataInicial and @DataFinal)
+	set @TotalPedidos = (select SUM (ValorPago) from Pedido where estado <>  'Cancelado' and Data between @DataInicial and @DataFinal)
+	set @TotalPromocao = 
+	(
+		select  sum (produtos.Valor_Venda) as ValorTotal from 
+			Promocao as promocao 
+			inner join ProdutoPromocao as produtoPromo on produtoPromo.Cod_Promocao = promocao.Cod_Promocao 
+			inner join Produto as produtos on produtos.Cod_Produto = produtoPromo.Cod_Produto 
+			inner join Detalhe_Pedido as Dp on Dp.Cod_Produto = produtos.Cod_Produto 
+			inner join Pedido as pedido on pedido.Cod_Pedido = Dp.Cod_Pedido and 
+				pedido.Data Between @DataInicial and @DataFinal
+	)
+	set @TotalPrejuca = (@TotalDespesa + @TotalFuncionario + @TotalCompras) 
+	Set @TotalReceita = @TotalPedidos
+	set @TotalGeral = @TotalReceita - @TotalPrejuca 
+
+	Select 
+		@TotalPrejuca as Prejuizo, 
+		@TotalReceita as Receita, 
+		@TotalGeral as TotalGeral,
+		@TotalPromocao as Promocoes
+	end
+go
