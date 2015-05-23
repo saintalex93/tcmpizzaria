@@ -4,29 +4,47 @@
  * and open the template in the editor.
  */
 package Visao;
- import giovanellis.SqlServer;
+
+import Modelo.ModeloTabelas;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import giovanellis.SqlServer;
+import java.awt.Color;
+import java.text.DateFormat;
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
+import javax.swing.ListSelectionModel;
+import javax.swing.UIManager;
+
 /**
  *
  * @author Alex
  */
 public class frmProdutos extends javax.swing.JFrame {
-        SqlServer connCombo = new SqlServer();
-   
+
+    SqlServer conecta;
+    SqlServer connCombo;
+
     /**
      * Creates new form frmProdutos
      */
     public frmProdutos() throws Exception {
-         this.setIconImage(new ImageIcon(getClass().getResource("/giovanellis/Icone.png")).getImage());  
+
+        connCombo = new SqlServer();
+        this.setIconImage(new ImageIcon(getClass().getResource("/Imagens/Icone.png")).getImage());
+        Color Fundo = new Color(238, 235, 227);
+        getContentPane().setBackground(Fundo);
+        setAlwaysOnTop(true);
+        conecta = new SqlServer();
+        conecta.getCon();
         initComponents();
-        PreencherCombobox();
-        
+
+        //preencherTabela("select * from produto as p inner join detalhe_pedido as pe on p.cod_produto = pe.cod_produto inner join pedido as ped on pe.cod_pedido = ped.cod_pedido order by nome_produto asc");
     }
 
     /**
@@ -39,157 +57,270 @@ public class frmProdutos extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
-        JcomboPedidos = new javax.swing.JComboBox();
+        JdcInicio = new com.toedter.calendar.JDateChooser();
+        JdcFim = new com.toedter.calendar.JDateChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        JtableProdutos = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        lblTotal = new javax.swing.JLabel();
+        JcomboPedidos = new javax.swing.JComboBox();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        JTableOrigem = new javax.swing.JTable();
+        lblTotal2 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Produtos");
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Consulta de Produtos");
-
-        JcomboPedidos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JcomboPedidosActionPerformed(evt);
+        setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
             }
         });
+        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                formMouseMoved(evt);
+            }
+        });
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jLabel1.setBackground(new java.awt.Color(88, 55, 66));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(239, 111, 83));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Montante por Origem");
+        jLabel1.setOpaque(true);
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 350, 570, 30));
+
+        JdcInicio.setForeground(new java.awt.Color(239, 111, 83));
+        JdcInicio.setOpaque(false);
+        JdcInicio.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                JdcInicioPropertyChange(evt);
+            }
+        });
+        getContentPane().add(JdcInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 71, 119, -1));
+
+        JdcFim.setForeground(new java.awt.Color(239, 111, 83));
+        JdcFim.setOpaque(false);
+        JdcFim.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                JdcFimPropertyChange(evt);
+            }
+        });
+        getContentPane().add(JdcFim, new org.netbeans.lib.awtextra.AbsoluteConstraints(372, 71, 119, -1));
+
+        JtableProdutos.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        JtableProdutos.setForeground(new java.awt.Color(88, 55, 66));
+        JtableProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(JtableProdutos);
 
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 500, 126));
+
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(239, 111, 83));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/button.png"))); // NOI18N
         jButton1.setText("Voltar");
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.setOpaque(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 540, 100, 40));
 
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(239, 111, 83));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/button.png"))); // NOI18N
         jButton2.setText("Calcular");
+        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton2.setOpaque(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 540, 100, 40));
 
+        lblTotal.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblTotal.setForeground(new java.awt.Color(88, 55, 66));
+        lblTotal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTotal.setText("Total");
+        getContentPane().add(lblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 481, 27));
+
+        JcomboPedidos.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        JcomboPedidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JcomboPedidosActionPerformed(evt);
+            }
+        });
+        getContentPane().add(JcomboPedidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 220, -1));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(88, 55, 66));
+        jLabel3.setText("Data Inicial");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 76, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(88, 55, 66));
+        jLabel4.setText("Data Final");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(306, 76, -1, -1));
+
+        JTableOrigem.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        JTableOrigem.setForeground(new java.awt.Color(88, 55, 66));
+        JTableOrigem.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane2.setViewportView(JTableOrigem);
+
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 410, 500, 110));
+        getContentPane().add(lblTotal2, new org.netbeans.lib.awtextra.AbsoluteConstraints(144, 500, 200, 30));
+
+        jLabel2.setBackground(new java.awt.Color(88, 55, 66));
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(239, 111, 83));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Total");
+        jLabel2.setText("Consulta de Produtos");
+        jLabel2.setOpaque(true);
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, -6, 570, 50));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(JcomboPedidos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(73, 73, 73)
-                                .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addComponent(jButton2)
-                .addGap(62, 62, 62)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
-                .addComponent(JcomboPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(68, 68, 68)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(45, Short.MAX_VALUE))
-        );
-
-        setSize(new java.awt.Dimension(478, 461));
+        setSize(new java.awt.Dimension(526, 639));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         
-        try {
-            new frmHome().setVisible(true);
-        } catch (Exception ex) {
-            Logger.getLogger(frmProdutos.class.getName()).log(Level.SEVERE, null, ex);
-        }
         dispose();
-        timer.stop();;
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if (JcomboPedidos.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "Escolha um Produto ou Todos.");
+        } else if (ValidaDatas()) {
+
+            if (JcomboPedidos.getSelectedIndex() == 1) {
+                preencherTabela("select * from produto as p inner join detalhe_pedido as pe on p.cod_produto = pe.cod_produto inner join pedido as ped on pe.cod_pedido = ped.cod_pedido where "
+                        + "data between '" + datainicio + "' and '" + datafim + "' order by nome_produto asc");
+
+                preencherTabelaOrigem("select p.Cod_Produto, p.Nome_Produto, p.Valor_Venda, count (p.Cod_Produto) as Quantidade, sum(p.Valor_Venda) as Total, ped.Origem from produto as p inner"
+                        + " join detalhe_pedido as pe on p.cod_produto = pe.cod_produto inner join pedido as ped on pe.cod_pedido = ped.cod_pedido  where data between '" + datainicio + "' and '" + datafim + "'"
+                        + " group by p.Cod_Produto, p.Nome_Produto, p.Valor_Venda, ped.Origem order by ped.Origem asc");
+
+            } else {
+                preencherTabela("select * from produto as p inner join detalhe_pedido as pe on p.cod_produto = pe.cod_produto inner join pedido as ped on pe.cod_pedido = ped.cod_pedido where "
+                        + "nome_produto = '" + NomeProduto + "' and data between '" + datainicio + "' and '" + datafim + "' order by nome_produto asc");
+
+                preencherTabelaOrigem("select p.Cod_Produto, p.Nome_Produto, p.Valor_Venda, count (p.Cod_Produto) as Quantidade, sum(p.Valor_Venda) as Total, ped.Origem from produto as p inner join detalhe"
+                        + "_pedido as pe on p.cod_produto = pe.cod_produto inner join pedido as ped on pe.cod_pedido = ped.cod_pedido  where data between '" + datainicio + "' and '" + datafim + "' and p.Nome_Produto ="
+                        + " '" + NomeProduto + "' group by p.Cod_Produto, p.Nome_Produto, p.Valor_Venda, ped.Origem order by ped.Origem asc");
+            }
+
+            double T = 0.0;
+            for (int L = 0; L < JTableOrigem.getRowCount(); L++) {
+                T += Double.parseDouble(JTableOrigem.getModel().getValueAt(L, 4).toString().replace("R$", "").replace(".", "").replace(",", "."));
+            }
+            lblTotal.setText(z.format(T));
+
+        }
+
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void JdcFimPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_JdcFimPropertyChange
+        try {
+            data2 = JdcFim.getDate();
+            datafim = fmt.format(data(JdcFim.getDate()));
+            System.out.println(datafim);
+            // data receba um formato e formate o método data e guarde na varíável e guarde na caixa de combinação
+
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_JdcFimPropertyChange
+
+    private void JdcInicioPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_JdcInicioPropertyChange
+        try {
+            data1 = JdcInicio.getDate();
+            datainicio = fmt.format(datas(JdcInicio.getDate()));
+            System.out.println(datainicio);
+
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_JdcInicioPropertyChange
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        Color Roxo = new Color(88,55,66); 
+        Color Laranja = new Color(242,184,171);
+        JTableOrigem.setSelectionBackground(Roxo);  
+        JTableOrigem.setSelectionForeground(Laranja);
+        JtableProdutos.setSelectionBackground(Roxo);  
+        JtableProdutos.setSelectionForeground(Laranja);
+        
+        timer.start();
+        PreencherCombobox();
+
+    }//GEN-LAST:event_formWindowOpened
+
     private void JcomboPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JcomboPedidosActionPerformed
-        // TODO add your handling code here:
+        NomeProduto = (String) JcomboPedidos.getSelectedItem().toString().substring(53).replace("</span></html>", "");       // TODO add your handling code here:
     }//GEN-LAST:event_JcomboPedidosActionPerformed
 
-    
-    
-    int contador = 20;
-    
-    public void escreva()
-    {
+    private void formMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseMoved
+        frmHome.contador = 20;
+        contador = 10;
+    }//GEN-LAST:event_formMouseMoved
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        timer.stop();
+    }//GEN-LAST:event_formWindowClosing
+    int contador = 10;
+
+    public void escreva() {
         System.out.println(contador);
-       
+
     }
- 
-    private javax.swing.Timer timer = new javax.swing.Timer(60*1000,new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent e)
-        {
+
+    private javax.swing.Timer timer = new javax.swing.Timer(60 * 1000, new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent e) {
             escreva();
             contador--;
-            if(contador == 0)
-            {
-                
+            if (contador == 0) {
+
                 try {
-                    new frmLogin().setVisible(true);
+                    dispose();
+                    timer.stop();
                 } catch (Exception ex) {
-                    Logger.getLogger(frmProdutos.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(frmInsumos.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
-        
+
     });
+
     /**
      * @param args the command line arguments
      */
@@ -221,47 +352,181 @@ public class frmProdutos extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
+
                     new frmProdutos().setVisible(true);
+
                 } catch (Exception ex) {
                     Logger.getLogger(frmProdutos.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable JTableOrigem;
     private javax.swing.JComboBox JcomboPedidos;
+    private com.toedter.calendar.JDateChooser JdcFim;
+    private com.toedter.calendar.JDateChooser JdcInicio;
+    private javax.swing.JTable JtableProdutos;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblTotal;
+    private javax.swing.JLabel lblTotal2;
     // End of variables declaration//GEN-END:variables
+    String NomeProduto, datainicio, datafim, data;
+    Date data1, data2;
+    NumberFormat z = NumberFormat.getCurrencyInstance();
+    SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
 
+    public Date datas(Date i) {
+        // Método com retorno. Retorna data
+        datainicio = fmt.format(i);
+        DateFormat df = DateFormat.getDateInstance(DateFormat.LONG, new Locale("pt", "BR"));
 
-public void PreencherCombobox(){
-         connCombo.getCon();
-         connCombo.executaSql("select Nome_Produto from Produto order by Nome_Produto");
-         JcomboPedidos.removeAllItems();
-         try{
-         connCombo.rs.first();
-         do{
-         JcomboPedidos.addItem(connCombo.rs.getString("Nome_Produto"));
-         
-         }while(connCombo.rs.next());
-         
-         
-         }catch(Exception e){
-         JOptionPane.showMessageDialog(rootPane, "Erro ao preencher ComboBox"+e);
-         }
+        return i;
 
+    }
 
+    public Date data(Date f) {
+        // Método com retorno. Retorna data
+        datafim = fmt.format(f);
+        DateFormat df = DateFormat.getDateInstance(DateFormat.LONG, new Locale("pt", "BR"));
 
-}
+        return f;
 
+    }
 
+    public boolean ValidaDatas() {
+        try {
+
+            if ((data1.getDate() - data2.getDate()) > 0) {
+                JOptionPane.showMessageDialog(this, "Data inicial maior que a data final, ou data final menor que a inicial");
+                return false;
+            }
+
+        } catch (Exception e) {
+        }
+
+        if (JdcInicio.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "Informe a data Inicial");
+
+            return false;
+        }
+        if (JdcFim.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "Informe a data Final");
+
+            return false;
+        }
+
+        return true;
+
+    }
+
+    public void PreencherCombobox() {
+        connCombo.getCon();
+        connCombo.executaSql("select Nome_Produto from Produto order by Nome_Produto");
+
+        try {
+
+            connCombo.rs.first();
+
+            JcomboPedidos.addItem("<html><span style='color:#583742;font-weight: bold;'>Selecione o produto...</span></html>");
+            JcomboPedidos.addItem("<html><span style='color:#583742;font-weight: bold;'>Todos</span></html>");
+            do {
+
+                JcomboPedidos.addItem("<html><span style='color:#583742;font-weight: bold;'>" + (connCombo.rs.getString("Nome_Produto") + "</span></html>"));
+
+            } while (connCombo.rs.next());
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Erro ao preencher ComboBox" + e);
+        }
+
+    }
+
+    public void preencherTabela(String Sql) {
+        ArrayList dados = new ArrayList();
+
+        String[] Colunas = new String[]{("<html><span style='color:#ef6f53;font-weight: bold;'>Codigo</span></html>"), (("<html><span style='color:#ef6f53;font-weight: bold;'>Nome do Produto</span></html>")),
+            ("<html><span style='color:#ef6f53;font-weight: bold;'>Valor Venda</span></html>"), ("<html><span style='color:#ef6f53;font-weight: bold;'>Data Venda</span></html>"), ("<html><span style='color:#ef6f53;font-weight: bold;'>Origem</span></html>")};
+
+        conecta.executaSql(Sql);
+        try {
+            conecta.rs.first();
+            do {
+
+                dados.add(new Object[]{conecta.rs.getInt("Cod_Produto"), conecta.rs.getString("Nome_Produto"), z.format(conecta.rs.getDouble("Valor_Venda")),
+                    fmt.format(conecta.rs.getDate("Data")), conecta.rs.getString("Origem")});
+
+            } while (conecta.rs.next());
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Produto não lançado no intervalo de data escolhido");
+
+        }
+
+        ModeloTabelas modelo = new ModeloTabelas(dados, Colunas); //Instacia a classe do modelo da Tabela.
+        JtableProdutos.setModel(modelo);
+        JtableProdutos.getColumnModel().getColumn(0).setPreferredWidth(77); // Tamanho em pixel da coluna
+        JtableProdutos.getColumnModel().getColumn(0).setResizable(false);
+        JtableProdutos.getColumnModel().getColumn(1).setPreferredWidth(109);
+        JtableProdutos.getColumnModel().getColumn(1).setResizable(false);
+        JtableProdutos.getColumnModel().getColumn(2).setPreferredWidth(90);
+        JtableProdutos.getColumnModel().getColumn(2).setResizable(false);
+        JtableProdutos.getColumnModel().getColumn(3).setPreferredWidth(90);
+        JtableProdutos.getColumnModel().getColumn(3).setResizable(false);
+        JtableProdutos.getColumnModel().getColumn(4).setPreferredWidth(110);
+        JtableProdutos.getColumnModel().getColumn(4).setResizable(false);
+        JtableProdutos.getTableHeader().setReorderingAllowed(false);
+        JtableProdutos.setAutoResizeMode(JtableProdutos.AUTO_RESIZE_OFF);//Não pode ser redimensionada
+        JtableProdutos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+    }
+
+    public void preencherTabelaOrigem(String Sql) {
+        ArrayList dados = new ArrayList();
+        String[] Colunas = new String[]{("<html><span style='color:#ef6f53;font-weight: bold;'>Codigo</span></html>"), ("<html><span style='color:#ef6f53;font-weight: bold;'>Nome do Produto</span></html>"),
+            ("<html><span style='color:#ef6f53;font-weight: bold;'>Valor Venda</span></html>"), ("<html><span style='color:#ef6f53;font-weight: bold;'>Quantidade</span></html>"),
+            ("<html><span style='color:#ef6f53;font-weight: bold;'>Total</span></html>"), ("<html><span style='color:#ef6f53;font-weight: bold;'>Origem</span></html>")};
+
+        conecta.executaSql(Sql);
+        try {
+            conecta.rs.first();
+            do {
+
+                dados.add(new Object[]{conecta.rs.getInt("Cod_Produto"), conecta.rs.getString("Nome_Produto"), z.format(conecta.rs.getDouble("Valor_Venda")),
+                    conecta.rs.getInt("Quantidade"), z.format(conecta.rs.getDouble("Total")), conecta.rs.getString("Origem")});
+
+            } while (conecta.rs.next());
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Produto não lançado no intervalo de data escolhido");
+
+        }
+
+        ModeloTabelas modelo = new ModeloTabelas(dados, Colunas); //Instacia a classe do modelo da Tabela.
+        JTableOrigem.setModel(modelo);
+        JTableOrigem.getColumnModel().getColumn(0).setPreferredWidth(55); // Tamanho em pixel da coluna
+        JTableOrigem.getColumnModel().getColumn(0).setResizable(false);
+        JTableOrigem.getColumnModel().getColumn(1).setPreferredWidth(109);
+        JTableOrigem.getColumnModel().getColumn(1).setResizable(false);
+        JTableOrigem.getColumnModel().getColumn(2).setPreferredWidth(80);
+        JTableOrigem.getColumnModel().getColumn(2).setResizable(false);
+        JTableOrigem.getColumnModel().getColumn(3).setPreferredWidth(75);
+        JTableOrigem.getColumnModel().getColumn(3).setResizable(false);
+        JTableOrigem.getColumnModel().getColumn(4).setPreferredWidth(78);
+        JTableOrigem.getColumnModel().getColumn(4).setResizable(false);
+        JTableOrigem.getColumnModel().getColumn(5).setPreferredWidth(81);
+        JTableOrigem.getColumnModel().getColumn(5).setResizable(false);
+        JTableOrigem.getTableHeader().setReorderingAllowed(false);
+        JTableOrigem.setAutoResizeMode(JTableOrigem.AUTO_RESIZE_OFF);//Não pode ser redimensionada
+        JTableOrigem.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+    }
 
 }

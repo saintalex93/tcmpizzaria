@@ -7,56 +7,64 @@ package Visao;
 
 import Controlador.ControladorLogin;
 import Modelo.clsLogin;
-import giovanellis.SqlServer;
 import java.awt.Color;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import giovanellis.SqlServer;
+import java.awt.Font;
+import javax.swing.UIManager;
+import javax.swing.plaf.FontUIResource;
 
 /**
  *
  * @author Alex
  */
 public class frmLogin extends javax.swing.JFrame {
-   private clsLogin usuario;
-   
-   boolean result;
+
+    /**
+     * @return the PermissaoFunci
+     */
+    public static int getPermissaoFunci() {
+        return PermissaoFunci;
+    }
+
+    /**
+     * @param aPermissaoFunci the PermissaoFunci to set
+     */
+    public static void setPermissaoFunci(int aPermissaoFunci) {
+        PermissaoFunci = aPermissaoFunci;
+    }
+
+    private clsLogin usuario;
+
+    boolean result;
     Controlador.ControladorLogin DAO;
+    SqlServer conecta;
     
-    
+
     /**
      * Creates new form frmLogin
      */
     public frmLogin() throws Exception {
-        SqlServer connCombo = new SqlServer();
-        Color Preto = new Color(075,075,075); 
-          getContentPane().setBackground(Preto);
-          
-         this.setIconImage(new ImageIcon(getClass().getResource("/giovanellis/Icone.png")).getImage()); 
+         Color Roxo = new Color(88,55,66); 
+        UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Tahoma", Font.BOLD,16)));  
+        UIManager.put("OptionPane.messageForeground", Roxo);
+        conecta = new SqlServer();
+        Color Preto = new Color(075, 075, 075);
+        getContentPane().setBackground(Preto);
+
+        this.setIconImage(new ImageIcon(getClass().getResource("/Imagens/Icone.png")).getImage());
         initComponents();
-        try{
-        DAO = new ControladorLogin();
-        } catch(Exception e){
-          JOptionPane.showMessageDialog(this, e.getMessage());
+        setAlwaysOnTop(true);
+        try {
+            DAO = new ControladorLogin();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
         }
-        
-         connCombo.getCon();
-         connCombo.executaSql("select Login_Funcionario from Funcionario ");
-         
-         try{
-         connCombo.rs.first();
-         do{
-         cmb_Usuario.addItem(connCombo.rs.getString("Login_Funcionario"));
-         
-         }while(connCombo.rs.next());
-         
-         
-         }catch(Exception e){
-         JOptionPane.showMessageDialog(rootPane, "Erro ao preencher ComboBox"+e);
-         }
-        
-        
+
     }
 
     /**
@@ -75,16 +83,14 @@ public class frmLogin extends javax.swing.JFrame {
         mtxt_senha = new javax.swing.JPasswordField();
         btn_entrar = new javax.swing.JButton();
         btn_entrar1 = new javax.swing.JButton();
-        cmb_Usuario = new javax.swing.JComboBox();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        txtUsuario = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Giovanelli's Pizzaria");
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/giovanellis/Login2.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Login2.png"))); // NOI18N
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 260));
 
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
@@ -98,7 +104,7 @@ public class frmLogin extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Senha");
 
-        btn_entrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/giovanellis/enter3.png"))); // NOI18N
+        btn_entrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/enter3.png"))); // NOI18N
         btn_entrar.setText("Entrar");
         btn_entrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,15 +112,13 @@ public class frmLogin extends javax.swing.JFrame {
             }
         });
 
-        btn_entrar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/giovanellis/delete21.png"))); // NOI18N
+        btn_entrar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/delete21.png"))); // NOI18N
         btn_entrar1.setText("Cancelar");
         btn_entrar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_entrar1ActionPerformed(evt);
             }
         });
-
-        cmb_Usuario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione o usuário..." }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -133,8 +137,8 @@ public class frmLogin extends javax.swing.JFrame {
                             .addComponent(jLabel2))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cmb_Usuario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(mtxt_senha))))
+                            .addComponent(mtxt_senha)
+                            .addComponent(txtUsuario))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -143,7 +147,7 @@ public class frmLogin extends javax.swing.JFrame {
                 .addContainerGap(16, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(cmb_Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(16, 16, 16)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(mtxt_senha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -157,41 +161,48 @@ public class frmLogin extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 60, 250, 130));
 
-        jMenu1.setText("Alterar Senha");
-        jMenuBar1.add(jMenu1);
-        jMenuBar1.add(jMenu2);
-
-        setJMenuBar(jMenuBar1);
-
-        setSize(new java.awt.Dimension(616, 315));
+        setSize(new java.awt.Dimension(616, 297));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_entrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_entrarActionPerformed
-        if(validarCampos()){
-         if(usuarioExiste()){
-            JOptionPane.showMessageDialog(this, "Usuário autenticado com sucesso!");
+       NomeUsuario = txtUsuario.getText();
+        
+        if (validarCampos()) {
+            if (usuarioExiste()) {
+                JOptionPane.showMessageDialog(this, "Usuário autenticado com sucesso!");
+
+                limparLogin();
+                
+
+                result = true;
+                try {
+                    dispose();
+                    new frmHome().setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(frmLogin.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                limparLogin();
+                result = false;
+                txtUsuario.requestFocus();
+            }
             
-            limparLogin();
-            
-            result = true;
-             try {
-                 dispose();
-                 new frmHome().setVisible(true);
-             } catch (Exception ex) {
-                 Logger.getLogger(frmLogin.class.getName()).log(Level.SEVERE, null, ex);
-             }
-        } else {
-            limparLogin();
-            result = false;
-            cmb_Usuario.requestFocus();   
+            conecta.executaSql("select * from Funcionario where Login_Funcionario = '"+NomeUsuario+"'");
+            try {
+                conecta.rs.first();
+                nomeFuncionario = (conecta.rs.getString("Nome_Func"));
+                setPermissaoFunci(conecta.rs.getInt("Cod_Permissao"));
+
+            } catch (SQLException ex) {
+                Logger.getLogger(frmDespesas.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         }
-         
-     }
     }//GEN-LAST:event_btn_entrarActionPerformed
 
     private void btn_entrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_entrar1ActionPerformed
-        // TODO add your handling code here:
+    System.exit(0);
     }//GEN-LAST:event_btn_entrar1ActionPerformed
 
     /**
@@ -222,8 +233,6 @@ public class frmLogin extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-  
-           
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
@@ -238,77 +247,76 @@ public class frmLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_entrar;
     private javax.swing.JButton btn_entrar1;
-    private javax.swing.JComboBox cmb_Usuario;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField mtxt_senha;
+    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 
-    public boolean usuarioExiste(){
-      boolean opc = false;
-      try{
-            if(cmb_Usuario.getSelectedItem().equals("")){
-            JOptionPane.showMessageDialog(this,"Informe o usuário!", "Campo Obrigatório", 2);
-            cmb_Usuario.requestFocus();
-            } else{
-                    setUsuario(DAO.existe((String) cmb_Usuario.getSelectedItem()));
-                    if(getUsuario() == null){
-                     JOptionPane.showMessageDialog(this, "Usuário não encontrado!");
-                     //cmb_Usuario.setText("");
-                     mtxt_senha.setText("");
-                     cmb_Usuario.requestFocus();
-                    }else{
-                           setUsuario(DAO.existe((String) cmb_Usuario.getSelectedItem())); //O pesquisar deve retornar a senha 
-                           String senha = getUsuario().getSenha();
-                           if(mtxt_senha.getText().equals(senha)){
-                               opc = true;
-                           } else {
-                               JOptionPane.showMessageDialog(this, "Senha Inválida");
-                           }
-                          
-                       }
-                   } 
-            }catch(Exception erro){
-            JOptionPane.showMessageDialog(this, "Erro: " + erro.getMessage());
-           }
-      return opc;   
-   }  
+String NomeUsuario;
+    public boolean usuarioExiste() {
+        boolean opc = false;
+        try {
+            if (txtUsuario.getText().equals("")) {
+                JOptionPane.showMessageDialog(this, "Informe o usuário!", "Campo Obrigatório", 2);
+                txtUsuario.requestFocus();
+            } else {
+                setUsuario(DAO.existe((String) txtUsuario.getText()));
+                if (getUsuario() == null) {
+                    JOptionPane.showMessageDialog(this, "Usuário não encontrado!");
+                    //cmb_Usuario.setText("");
+                    mtxt_senha.setText("");
+                    txtUsuario.requestFocus();
+                } else {
+                    setUsuario(DAO.existe((String) txtUsuario.getText())); //O pesquisar deve retornar a senha 
+                    String senha = getUsuario().getSenha();
+                    if (mtxt_senha.getText().equals(senha)) {
+                        opc = true;
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Senha Inválida");
+                    }
 
-  public boolean validarCampos(){
-    if(cmb_Usuario.getSelectedItem().equals("")){
-       JOptionPane.showMessageDialog(this, "Informe o usuário!");
-       cmb_Usuario.requestFocus();
-       return false;
+                }
+            }
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(this, "Erro: " + erro.getMessage());
+        }
+        return opc;
     }
-    
-    if(mtxt_senha.getText().equals("")){
-       JOptionPane.showMessageDialog(this, "Informe a senha!");
-       mtxt_senha.requestFocus();
-       return false;
+
+    public boolean validarCampos() {
+        if (txtUsuario.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Informe o usuário!");
+            txtUsuario.requestFocus();
+            return false;
+        }
+
+        if (mtxt_senha.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Informe a senha!");
+            mtxt_senha.requestFocus();
+            return false;
+        }
+        return true;
     }
-    return true;
-   }  
-    
-  public void limparLogin(){
-     cmb_Usuario.setSelectedIndex(0);
-      mtxt_senha.setText("");
-  }
-  
-  public boolean getResult(){
-      return result;
-  }
-  
-  public boolean preencherObjeto(){
+
+    public void limparLogin() {
+        txtUsuario.setText("");
+        mtxt_senha.setText("");
+    }
+
+    public boolean getResult() {
+        return result;
+    }
+
+    public boolean preencherObjeto() {
         setUsuario(new clsLogin());
-        getUsuario().setUsuario((String) cmb_Usuario.getSelectedItem());
+        getUsuario().setUsuario((String) txtUsuario.getText());
         getUsuario().setSenha(mtxt_senha.getText());
-      return true;
-  }
+        
+        return true;
+    }
 
     /**
      * @return the usuario
@@ -323,6 +331,9 @@ public class frmLogin extends javax.swing.JFrame {
     public void setUsuario(clsLogin usuario) {
         this.usuario = usuario;
     }
-  
-  
+    
+    
+    public static String nomeFuncionario;
+    private static int PermissaoFunci;
+
 }

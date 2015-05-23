@@ -17,7 +17,8 @@ public class Conexao
     public SqlConnection conexao;
     public SqlCommand command;
 
-    string strConexao = "Server=localhost;DataBase=Pizzaria;user id=aluno;password=etesp";
+    string strConexao = "Server=localhost;DataBase=GiovanelliEmpregos;user id=aluno;password=etesp";
+    
 
     public void conectar()
     {

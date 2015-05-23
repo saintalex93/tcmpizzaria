@@ -353,7 +353,7 @@ values
 ('Maria do Carmo','128.589.519-87','Rua dos Funcionários',null,159,'12598-11','SP','São Paulo','Santa Cecília','maria_teste@hotmail.com','(11)4529-4196','(11)9-7988-4895','Maria','123', 4),
 ('Joana Figueiredo','932.571.495-28','Rua Coronel Justino','Bloco D',1050,'28984-79','SP','São Paulo','Suzano','joana.fig@terra.com.br','(11)7819-4898','(11)9-6187-8959','Admin','123', 4),
 ('Carlos Silva','475.427.106-85','Rua Juba da Jujuba',null,420,'59579-14','SP','São Paulo','Vila Mariana','carlos_silva@gmail.com','(11)4198-8274','(11)9-9658-9774','Carlos','123', 4),
-('Alex Santos','399.305.868-22','Rua Pindamonhangaba',null,666,'023654-14','SP','São Paulo','Vila Tupiniquim','alexsantos@gmail.com','(11)4578-8274','(11)9-9852-9774','Alex','123', 4),
+('Alex Santos','399.305.868-22','Rua Pindamonhangaba',null,666,'023654-14','SP','São Paulo','Vila Tupiniquim','alexsantos@gmail.com','(11)4578-8274','(11)9-9852-9774','Alex','123', 1),
 ('Toninho Abreu','128.589.519-87','Rua das Dalágaras', null,159,'12598-11','SP','São Paulo','Vila Vira','tony@gmail.com','(11)4529-4196','(11)9-7988-4895','Tony','123', 2)
 
 
@@ -379,7 +379,8 @@ values
 ('Palmito',18.90,20,1),
 ('Champignon',19.60,15,1),
 ('Provolone',19,20,18),
-('Bacon',18.30,25 ,8)
+('Bacon',18.30,25 ,8),
+('Embalagem para Pizza', 30.50, 50, 70)
 go
 
 insert into Categoria
@@ -458,35 +459,35 @@ go
 insert into Pedido
 (Data,Hora,Valor,Cod_Funcionario,Cod_Cliente, Observacao,Origem,Estado, EnderecoAlt, NumeroResidencialAlt, NumeroApartamentoAlt ,FormaDePagamento,ValorPago)
 values
-('05/01/2015','20:15',31.00,1,2,'','Site','A caminho','','','','Cheque',31.00),
-('05/01/2015','20:15',31.00,1,3,'','Site','A caminho','','','','Dinheiro',35.00),
-('05/01/2015','20:15',31.00,1,4,'','Site','A caminho','Alameda Itu','32','21','Cartão',31.00),
+('05/01/2015','20:15',31.00,1,2,'','Site','A caminho','','','','Cheque',65.60),
+('05/01/2015','20:15',31.00,1,3,'','Site','A caminho','','','','Dinheiro',58.40),
+('05/01/2015','20:15',31.00,1,4,'','Site','A caminho','Alameda Itu','32','21','Cartão',147.50),
 
-('05/01/2015','20:15',31.00,2,2,'','Site','A caminho','','','','Cartão',31.00),
-('05/01/2015','20:15',31.00,2,3,'','Site','A caminho','Travessa Dom Gaspar','666','','Cheque',31.00),
-('05/01/2015','20:15',31.00,2,4,'','Site','A caminho','','','','Dinheiro',35.00),
+('05/01/2015','20:15',31.00,2,2,'','Site','A caminho','','','','Cartão',65.60),
+('05/01/2015','20:15',31.00,2,3,'','Site','A caminho','Travessa Dom Gaspar','666','','Cheque',65.60),
+('05/01/2015','20:15',31.00,2,4,'','Site','A caminho','','','','Dinheiro',56.80),
 
-('05/01/2015','20:15',31.00,3,2,'','Site','A caminho','Avenida Paulista','756','35','Cheque',31.00),
-('05/01/2015','20:15',31.00,3,3,'','Site','A caminho','','','','Dinheiro',50.00),
-('05/01/2015','20:15',31.00,3,4,'','Site','A caminho','','','','Cartão',31.00),
+('05/01/2015','20:15',31.00,3,2,'','Site','Na Fila','Avenida Paulista','756','35','Cheque',75.00),
+('05/01/2015','20:15',31.00,3,3,'','Site','A caminho','','','','Dinheiro',65.60),
+('05/01/2015','20:15',31.00,3,4,'','Site','Em Preparo','','','','Cartão',65.60),
 
-('05/01/2015','20:15',31.00,4,2,'','Site','A caminho','','','','Cartão',31.00),
-('05/01/2015','20:15',31.00,4,3,'','Site','A caminho','','','','Cartão',31.00),
-('05/01/2015','20:15',31.00,4,4,'','Site','A caminho','','','','Cartão',31.00),
+('05/01/2015','20:15',31.00,4,2,'','Site','Na Fila','','','','Cartão',204.30),
+('05/01/2015','20:15',31.00,4,3,'','Site','Em Preparo','','','','Cartão',65.60),
+('05/01/2015','20:15',31.00,4,4,'','Site','A caminho','','','','Cartão',65.60),
 
-('05/01/2015','23:56',22.00,2,3,'','Site','A caminho','','','','Cartão',22.00),
-('05/01/2015','18:31',65.87,3,4,'','Site','A caminho','','','','Cartão',65.87),
-('22/02/2015','19:14',25.25,2,2,'','In loco','Cancelado','','','','Dinheiro', 30),
-('12/03/2015','22:57',38.89,3,3,'','Telefone','Realizado','Alameda Itu', '753', '', 'Cartão',38.89),
-('05/04/2015','22:22',68.98,1,5,'','Site','Realizado','', '', '', 'Cartão',68.98),
-('05/04/2015','21:40',78.98,4,3,'Manera na cebola','Site','Cancelado','' ,'' ,'','Cartão',78.98),
-('05/04/2015','22:22',55.32,1,5,'','Site','Cancelado','', '', '','Cartão',55.32),
-('06/04/2015','21:15',42.30,4,5,'','In loco','Cancelado', '', '', '','Cartão',42.30),
-('07/04/2015','20:22',67.90,3,5,'Sem azeitonas, pelo amor de Deus','Site','Realizado','','','','Cartão',67.90),
-('20/04/2015','22:57',84.20,2,5,'','In loco','Realizado','','','','Cartão',84.20),
-('22/05/2015','18:49',76.00,1,4,'','Site','Realizado','Rebouças', '32', '','Dinheiro',80),
-('06/06/2015','00:16',58.20,3,2,'Favor, ao chegar, ligar no meu celular e não pelo interfone nem campainha','Site','Cancelado','','','','Cartão',58.20),
-('06/04/2015','21:15',42.30,2,5,'','In loco','Cancelado','','','','Cartão',42.30)
+('05/01/2015','23:56',22.00,2,3,'','Site','Em Preparo','','','','Cartão',56.80),
+('05/01/2015','18:31',65.87,3,4,'','Site','Na Fila','','','','Cartão',75.00),
+('22/02/2015','19:14',25.25,2,2,'','In loco','Cancelado','','','','Dinheiro', 65.60),
+('12/03/2015','22:57',38.89,3,3,'','Telefone','Realizado','Alameda Itu', '753', '', 'Cartão',65.60),
+('05/04/2015','22:22',68.98,1,5,'','Site','Realizado','', '', '', 'Cartão',56.80),
+('05/04/2015','21:40',78.98,4,3,'Manera na cebola','Site','Cancelado','' ,'' ,'','Cartão',147.50),
+('05/04/2015','22:22',55.32,1,5,'','Site','Cancelado','', '', '','Cartão',65.60),
+('06/04/2015','21:15',42.30,4,5,'','In loco','Cancelado', '', '', '','Cartão',65.60),
+('07/04/2015','20:22',67.90,3,5,'Sem azeitonas, pelo amor de Deus','Site','Realizado','','','','Cartão',65.60),
+('20/04/2015','22:57',84.20,2,5,'','In loco','Realizado','','','','Cartão',56.80),
+('22/05/2015','18:49',76.00,1,4,'','Site','Realizado','Rebouças', '32', '','Dinheiro',75.00),
+('06/06/2015','00:16',58.20,3,2,'Favor, ao chegar, ligar no meu celular e não pelo interfone nem campainha','Site','Cancelado','','','','Cartão',75.00),
+('06/04/2015','21:15',42.30,2,5,'','In loco','Cancelado','','','','Cartão',75.00)
 go
 
 insert into Fornecedor
@@ -544,14 +545,6 @@ values
 (3, 4),
 (1, 4)
 go
-
-/*select distinct p.Nome_Produto,i.Nome_Insumo,p.Valor_Venda 
-from Consumo as c
-inner join Produto as p on p.Cod_Produto = c.CodProduto and p.Sobe_Site = 1
-		inner join Insumo as i on c.CodInsumo = i.Cod_Insumo
-			inner join ProdutoCategoria as pc on pc.CodProduto = p.Cod_Produto and pc.CodCategoria = 1 
-			order by p.Nome_Produto
-			*/
 
 insert into Consumo
 (
@@ -617,10 +610,10 @@ Cod_Fornecedor,
 Cod_Funcionario
 )
 values
-(170.00, '17/09/2015', 2,3),
-(235.00, '20/09/2015', 3,2),
-(150.00, '22/10/2015', 4,3),
-(199.00, '15/10/2015', 1,1)
+(450.00, '15/10/2015', 1,1),
+(290.00, '20/09/2015', 3,2),
+(200.00, '17/09/2015', 2,3),
+(350.00, '22/10/2015', 4,3)
 go
 
 insert into Detalhe_Pedido
@@ -794,16 +787,13 @@ go
 
 insert into DetalheCompra 
 values
-(
-1,2,2,35,2
-)
-go
-
-insert into DetalheCompra 
-values
-(
-3,3,3,35,3
-)
+(1,1,2,35,6),
+(1,1,9,16,15),
+(3,2,16,50,4),
+(4,4,3,15,10),
+(4,4,1,20,10),
+(2,3,13,20,10),
+(2,3,8,9,10)
 go
 
 	-------------------------------------------------------------- 
@@ -1999,16 +1989,29 @@ As
 Go
 ------------------------------------------------
 create proc USP_CSharp_Produto_ValidaExistenciaNoBanco
+
 (
+	@CodProduto int,
 	@Nome varchar(30)
 )
 As
 	Begin
-		select count(*) from Produto where Nome_Produto like @Nome
+		IF @CodProduto > 0
+			BEGIN
+    			select count(*) 
+				from Produto 
+				where 
+					Nome_Produto like @Nome and
+					Cod_Produto != @CodProduto
+			END
+		ELSE
+			select count(*) 
+			from Produto 
+			where Cod_Produto = @CodProduto
 	End
 Go
 ------------------------------------------------
-create proc USP_CSharp_Produto_MostrarTodosProdutos
+create proc USP_CSharp_Produto_MostrarTodosProdutosDesc
 As
 	Begin
 		select 			
@@ -2057,7 +2060,7 @@ as
 		from Produto
 
 		where
-			Cod_Produto like '%' + @ID + '%' and
+			Cod_Produto = @ID and
 			Cod_Produto > 0
 	End
 go
@@ -2131,3 +2134,71 @@ begin
 		@TotalPromocao as Promocoes
 	end
 go
+------------------------------------------------
+create proc USP_CSharp_Produto_MostrarTodosProdutos
+As
+	Begin
+		select 			
+			Cod_Produto as [ID],
+			Nome_Produto as [Produto],
+			Valor_Venda as [Preço],
+			Sobe_Site as [Sobe para o site]
+		from Produto 
+		where Cod_Produto > 0
+		order by Cod_Produto
+	End
+Go
+------------------------------------------------
+create proc USP_CSharp_Produto_AtualizarProduto
+(
+	@CodProduto int,
+	@Nome varchar(20),
+    @Preco decimal(4,2),
+	@SobeSite int
+)
+As
+	Begin
+		update Produto
+
+		set 
+			Nome_Produto = @Nome,
+			Valor_Venda = @Preco,
+			Sobe_Site = @SobeSite
+
+		where Cod_Produto = @CodProduto
+	End
+Go
+------------------------------------------------
+create proc USP_CSharp_Produto_RemoverProduto
+(
+	@codProduto int
+)
+as
+	Begin
+		/*
+		O código comentado abaixo foi mantido para caso seja decido
+		mudar os valores do produto nas outras tabelas ao invés de
+		deletar os registros com o código do produto
+		
+		update ProdutoCategoria set CodProduto = 0
+		update Consumo set CodProduto = 0
+		update ProdutoPromocao set Cod_Produto = 0
+		update Detalhe_Pedido set Cod_Produto = 0
+		*/
+
+		delete from ProdutoCategoria where CodProduto = @codProduto
+		delete from Consumo where CodProduto = @codProduto
+		delete from ProdutoPromocao where Cod_Produto = @codProduto
+		delete from Detalhe_Pedido where Cod_Produto = @codProduto or Cod_Produto2 = @codProduto
+
+		delete from Produto where Cod_Produto = @codProduto
+	End
+go
+
+/*select distinct p.Nome_Produto,i.Nome_Insumo,p.Valor_Venda 
+from Consumo as c
+inner join Produto as p on p.Cod_Produto = c.CodProduto and p.Sobe_Site = 1
+		inner join Insumo as i on c.CodInsumo = i.Cod_Insumo
+			inner join ProdutoCategoria as pc on pc.CodProduto = p.Cod_Produto and pc.CodCategoria = 1 
+			order by p.Nome_Produto
+			*/

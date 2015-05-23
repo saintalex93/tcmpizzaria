@@ -13,28 +13,48 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
+import Controlador.ControladorPedidos;
+import java.awt.Color;
+import java.text.NumberFormat;
+
+
 
 /**
  *
  * @author Alex
  */
 public class frmPedidos extends javax.swing.JFrame {
-   SqlServer conecta = new SqlServer();
+
+    SqlServer conecta;
+    ControladorPedidos DAO;
+  
+
     /**
      * Creates new form frmPedidos
+     * @throws java.lang.Exception
      */
     public frmPedidos() throws Exception {
-         this.setIconImage(new ImageIcon(getClass().getResource("/giovanellis/Icone.png")).getImage());  
-        initComponents();
-        conecta.getCon();
-         preencherTabela("select * from Pedido as P Inner join Detalhe_Pedido as DP On p.Cod_Pedido = DP.Cod_Pedido inner join Produto as Pro on Dp.Cod_Produto = Pro.Cod_Produto");
         
+         
+        Color Fundo = new Color(238,235,227); 
+        getContentPane().setBackground(Fundo); 
+        setAlwaysOnTop(true);
+        timer.start();
+        initComponents();
+       
+        this.setIconImage(new ImageIcon(getClass().getResource("/Imagens/Icone.png")).getImage()); 
+        conecta = new SqlServer();
+        conecta.getCon();
+        DAO = new ControladorPedidos();
+       
+        
+       
+        
+
     }
 
     /**
@@ -52,18 +72,18 @@ public class frmPedidos extends javax.swing.JFrame {
         JTablePedidos = new javax.swing.JTable();
         lblTotal = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        BtnCalcular = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         JTableProdutos = new javax.swing.JTable();
-        btnPesquisar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
-        RdCancelado = new javax.swing.JRadioButton();
+        ChkFila = new javax.swing.JCheckBox();
+        ChkEmpreparo = new javax.swing.JCheckBox();
+        ChkRealizados = new javax.swing.JCheckBox();
+        ChkACaminho = new javax.swing.JCheckBox();
+        ChkCancelado = new javax.swing.JCheckBox();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Pedidos");
@@ -74,26 +94,38 @@ public class frmPedidos extends javax.swing.JFrame {
             }
         });
         addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        JdcInicio.setForeground(new java.awt.Color(88, 55, 66));
+        JdcInicio.setOpaque(false);
         JdcInicio.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 JdcInicioPropertyChange(evt);
             }
         });
-        getContentPane().add(JdcInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 124, -1));
+        getContentPane().add(JdcInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 124, -1));
 
+        JdcFim.setForeground(new java.awt.Color(88, 55, 66));
+        JdcFim.setOpaque(false);
         JdcFim.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 JdcFimPropertyChange(evt);
             }
         });
-        getContentPane().add(JdcFim, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 60, 124, -1));
+        getContentPane().add(JdcFim, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 60, 124, -1));
 
+        JTablePedidos.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        JTablePedidos.setForeground(new java.awt.Color(88, 55, 66));
         JTablePedidos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -112,34 +144,51 @@ public class frmPedidos extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(JTablePedidos);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, 126));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 170, 470, 126));
 
+        lblTotal.setBackground(new java.awt.Color(255, 255, 255));
         lblTotal.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblTotal.setForeground(new java.awt.Color(88, 55, 66));
         lblTotal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTotal.setText("Total");
-        getContentPane().add(lblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 480, 540, -1));
+        getContentPane().add(lblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 490, -1));
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(239, 111, 83));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/button.png"))); // NOI18N
         jButton1.setText("Voltar");
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.setOpaque(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 510, 71, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 550, 100, 40));
 
-        jButton2.setText("Calcular");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        BtnCalcular.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        BtnCalcular.setForeground(new java.awt.Color(239, 111, 83));
+        BtnCalcular.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/button.png"))); // NOI18N
+        BtnCalcular.setText("Calcular");
+        BtnCalcular.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        BtnCalcular.setOpaque(false);
+        BtnCalcular.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                BtnCalcularActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 510, -1, -1));
+        getContentPane().add(BtnCalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 550, 100, 40));
 
+        jLabel1.setBackground(new java.awt.Color(88, 55, 66));
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(239, 111, 83));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Consulta de Pedidos");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 540, 27));
+        jLabel1.setText("Detalhe de Pedidos");
+        jLabel1.setOpaque(true);
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 350, 520, 40));
 
+        JTableProdutos.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        JTableProdutos.setForeground(new java.awt.Color(88, 55, 66));
         JTableProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -153,158 +202,251 @@ public class frmPedidos extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(JTableProdutos);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, -1, 120));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, 420, 120));
 
-        btnPesquisar.setText("Pesquisar");
-        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPesquisarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 130, 165, -1));
-
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(88, 55, 66));
         jLabel2.setText("Data Inicial");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 66, -1, -1));
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(88, 55, 66));
         jLabel3.setText("Data Final");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 60, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 66, -1, -1));
 
-        jCheckBox1.setText("Na Fila");
-        getContentPane().add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
-
-        jCheckBox2.setText("Em Preparo");
-        getContentPane().add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, -1, -1));
-
-        jCheckBox3.setText("Realizados");
-        getContentPane().add(jCheckBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, -1));
-
-        jCheckBox4.setText("A Caminho");
-        getContentPane().add(jCheckBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, -1, -1));
-
-        RdCancelado.setText("Cancelados");
-        RdCancelado.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                RdCanceladoMouseClicked(evt);
-            }
-        });
-        RdCancelado.addActionListener(new java.awt.event.ActionListener() {
+        ChkFila.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        ChkFila.setForeground(new java.awt.Color(88, 55, 66));
+        ChkFila.setText("Na Fila");
+        ChkFila.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RdCanceladoActionPerformed(evt);
+                ChkFilaActionPerformed(evt);
             }
         });
-        getContentPane().add(RdCancelado, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, -1, -1));
+        getContentPane().add(ChkFila, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, -1, -1));
 
-        setSize(new java.awt.Dimension(556, 595));
+        ChkEmpreparo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        ChkEmpreparo.setForeground(new java.awt.Color(88, 55, 66));
+        ChkEmpreparo.setText("Em Preparo");
+        ChkEmpreparo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChkEmpreparoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(ChkEmpreparo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, -1, -1));
+
+        ChkRealizados.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        ChkRealizados.setForeground(new java.awt.Color(88, 55, 66));
+        ChkRealizados.setText("Realizados");
+        ChkRealizados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChkRealizadosActionPerformed(evt);
+            }
+        });
+        getContentPane().add(ChkRealizados, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, -1, -1));
+
+        ChkACaminho.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        ChkACaminho.setForeground(new java.awt.Color(88, 55, 66));
+        ChkACaminho.setText("A Caminho");
+        ChkACaminho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChkACaminhoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(ChkACaminho, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 130, -1, -1));
+
+        ChkCancelado.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        ChkCancelado.setForeground(new java.awt.Color(88, 55, 66));
+        ChkCancelado.setText("Cancelado");
+        ChkCancelado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChkCanceladoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(ChkCancelado, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 110, -1, -1));
+
+        jLabel4.setBackground(new java.awt.Color(88, 55, 66));
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(239, 111, 83));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Consulta de Pedidos");
+        jLabel4.setOpaque(true);
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 520, 50));
+
+        setSize(new java.awt.Dimension(503, 641));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
-            new frmHome().setVisible(true);
-        } catch (Exception ex) {
-            Logger.getLogger(frmPedidos.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       dispose();
-       timer.stop();
+      dispose();
+     
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void BtnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCalcularActionPerformed
+       
         
-    }//GEN-LAST:event_jButton2ActionPerformed
+        if(ValidaDatas()){
+        if (ChkCancelado.isSelected() | ChkACaminho.isSelected() | ChkACaminho.isSelected() | ChkEmpreparo.isSelected() | ChkFila.isSelected() | ChkRealizados.isSelected()) {
+            preencherTabela("select distinct p.cod_pedido,p.Data, p.valor, p.estado,p.formadepagamento from Pedido as P Inner join Detalhe_Pedido as DP On p.Cod_Pedido = "
+                    + "DP.Cod_Pedido inner join Produto as Pro on Dp.Cod_Produto = Pro.Cod_Produto where Estado"
+                    + " = '" + nafila + "' or Estado = '" + acaminho + "' or Estado = '" + empreparo + "' or Estado"
+                    + " = '" + realizado + "'or Estado = '" + cancelado + "' and p.Data between '" + datainicio + "' and'" + datafim + "'");
+
+        } else {
+            preencherTabela("select distinct p.cod_pedido,p.Data, p.valor, p.estado,p.formadepagamento from Pedido as P Inner join Detalhe_Pedido as DP On p.Cod_Pedido = DP.Cod_Pedido inner join Produto as Pro on Dp.Cod_Produto = Pro.Cod_Produto where p.Data between '" + datainicio + "' and'" + datafim + "'");
+
+        }
+                            
+        double x = 0.0;
+        for(int y = 0; y< JTablePedidos.getRowCount();y++ ){
+            x+=Double.parseDouble(JTablePedidos.getModel().getValueAt(y, 2).toString().replace("R$","").replace(".","").replace(",","."));
+        }
+        lblTotal.setText(z.format(x));
+
+                           }
+    }//GEN-LAST:event_BtnCalcularActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-     
+         Color Roxo = new Color(88,55,66); 
+        Color Laranja = new Color(242,184,171);
+        JTablePedidos.setSelectionBackground(Roxo);  
+        JTablePedidos.setSelectionForeground(Laranja); 
+        JTableProdutos.setSelectionBackground(Roxo);  
+        JTableProdutos.setSelectionForeground(Laranja); 
+        setAlwaysOnTop(true);
+        preencherTabela("select distinct p.cod_pedido,p.Data, p.valor, p.estado,p.formadepagamento from Pedido as P Inner join Detalhe_Pedido as DP On p.Cod_Pedido = DP.Cod_Pedido inner join Produto as Pro on Dp.Cod_Produto = Pro.Cod_Produto");
+        
+
     }//GEN-LAST:event_formWindowOpened
 
     private void formMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseMoved
-     contador = 20;
+      
+       frmHome.contador = 20;
+       contador = 10;
+       
+       
     }//GEN-LAST:event_formMouseMoved
 
-    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        
-        if (RdCancelado.isSelected())
-        {
-        preencherTabela("select * from Pedido as P Inner join Detalhe_Pedido as DP On p.Cod_Pedido = DP.Cod_Pedido inner join Produto as Pro on Dp.Cod_Produto = Pro.Cod_Produto where P.Estado = 'Cancelado' and p.Data between '"+datainicio+"' and'"+datafim+"'");
-        
-        }
-        else{
-         preencherTabela("select * from Pedido as P Inner join Detalhe_Pedido as DP On p.Cod_Pedido = DP.Cod_Pedido inner join Produto as Pro on Dp.Cod_Produto = Pro.Cod_Produto where  p.Data between '"+datainicio+"' and'"+datafim+"'");
-        
-        }
-        
-        
-            
-        
-        
-        
-       
-    }//GEN-LAST:event_btnPesquisarActionPerformed
-
     private void JdcInicioPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_JdcInicioPropertyChange
-     try{ 
-        data1 = JdcFim.getDate();
-        datainicio = formato.format (datas(JdcInicio.getDate()));
-      System.out.println(datainicio);
-      // data receba um formato e formate o método data e guarde na varíável e guarde na caixa de combinação
-    
-  
-    }
-    catch (Exception e){}
+        try {
+            data1 = JdcInicio.getDate();
+            datainicio = fmt.format(datas(JdcInicio.getDate()));
+            System.out.println(datainicio);
+            // data receba um formato e formate o método data e guarde na varíável e guarde na caixa de combinação
+
+
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_JdcInicioPropertyChange
 
     private void JdcFimPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_JdcFimPropertyChange
-    try{ 
-        data2 = JdcFim.getDate();
-        datafim = formato.format (data(JdcFim.getDate()));
-      System.out.println(datafim);
-      // data receba um formato e formate o método data e guarde na varíável e guarde na caixa de combinação
-    
-  
-    }
-    catch (Exception e){}
+        try {
+            
+            data2 = JdcFim.getDate();
+            datafim = fmt.format(data(JdcFim.getDate()));
+            System.out.println(datafim);
+            // data receba um formato e formate o método data e guarde na varíável e guarde na caixa de combinação
+
+
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_JdcFimPropertyChange
 
     private void JTablePedidosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTablePedidosMouseClicked
-    int cod = (int) JTablePedidos.getValueAt(JTablePedidos.getSelectedRow(),0);
-    preencherTabelaDetalhe("select * from Pedido as P Inner join Detalhe_Pedido as DP On p.Cod_Pedido = DP.Cod_Pedido inner join Produto as Pro  on Dp.Cod_Produto = Pro.Cod_Produto where P.Cod_Pedido ="+cod);    
+        
+        int cod = (int) JTablePedidos.getValueAt(JTablePedidos.getSelectedRow(), 0);
+         
+        
+       
+//       preencherTabelaDetalhe("select  * from Pedido as P Inner join Detalhe_Pedido as DP On p.Cod_Pedido = DP.Cod_Pedido inner join Produto as Pro  on Dp.Cod_Produto = Pro.Cod_Produto where P.Cod_Pedido =" + cod);
+    preencherTabelaDetalhe( "select count(pd.Cod_Produto)as Quantidade,nome_produto,pd.Valor_Venda from produto as pd inner join Detalhe_pedido as dp on "+
+             "pd.cod_produto = dp.cod_produto inner join 	Pedido as p on dp.cod_pedido = p.cod_pedido  where P.Cod_Pedido = "+ cod +" group by nome_produto,Valor_Venda ");
 
     }//GEN-LAST:event_JTablePedidosMouseClicked
 
-    private void RdCanceladoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RdCanceladoMouseClicked
+    private void ChkEmpreparoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkEmpreparoActionPerformed
+        Rikimaru();
+        if (ChkEmpreparo.isSelected()) {
+            empreparo = "Em Preparo";
+        } else {
+            empreparo = "";
+        }
+
+    }//GEN-LAST:event_ChkEmpreparoActionPerformed
+
+    private void ChkFilaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkFilaActionPerformed
+        Rikimaru();
+        if (ChkFila.isSelected()) {
+            nafila = "Na Fila";
+        } else {
+            nafila = "";
+        }
+
+    }//GEN-LAST:event_ChkFilaActionPerformed
+
+    private void ChkRealizadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkRealizadosActionPerformed
+        Rikimaru();
+        if (ChkRealizados.isSelected()) {
+            realizado = "Realizado";
+        } else {
+            realizado = "";
+        }
+
+    }//GEN-LAST:event_ChkRealizadosActionPerformed
+
+    private void ChkACaminhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkACaminhoActionPerformed
+        Rikimaru();
+        if (ChkACaminho.isSelected()) {
+            acaminho = "A Caminho";
+        } else {
+            acaminho = "";
+        }
+
+
+
+    }//GEN-LAST:event_ChkACaminhoActionPerformed
+
+    private void ChkCanceladoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkCanceladoActionPerformed
+
+        if (ChkCancelado.isSelected()) {
+            cancelado = "Cancelado";
+            ChkACaminho.setEnabled(false);
+            ChkEmpreparo.setEnabled(false);
+            ChkFila.setEnabled(false);
+            ChkRealizados.setEnabled(false);
+        } else {
+            cancelado = "";
+            ChkACaminho.setEnabled(true);
+            ChkEmpreparo.setEnabled(true);
+            ChkFila.setEnabled(true);
+            ChkRealizados.setEnabled(true);
+        }
+    }//GEN-LAST:event_ChkCanceladoActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
        
+    }//GEN-LAST:event_formWindowClosing
 
-    }//GEN-LAST:event_RdCanceladoMouseClicked
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+      frmHome.flag = true; 
+      frmHome.contador = 10;
+    }//GEN-LAST:event_formWindowClosed
+    int contador = 10;
 
-    private void RdCanceladoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RdCanceladoActionPerformed
- 
-    }//GEN-LAST:event_RdCanceladoActionPerformed
-
-   int contador = 20;
-    
-    public void escreva()
-    {
+    public void escreva() {
         System.out.println(contador);
-       
+
     }
- 
-    private javax.swing.Timer timer = new javax.swing.Timer(60*1000,new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent e)
-        {
+    private javax.swing.Timer timer = new javax.swing.Timer(1000, new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent e) {
             escreva();
             contador--;
-            if(contador == 0)
-            {
-                
-                try {
-                    new frmLogin().setVisible(true);
-                } catch (Exception ex) {
-                    Logger.getLogger(frmPedidos.class.getName()).log(Level.SEVERE, null, ex);
-                }
+            if (contador == 10) {
+                timer.stop();
+                dispose();
             }
         }
-        
     });
-    
+
     /**
      * @param args the command line arguments
      */
@@ -343,131 +485,161 @@ public class frmPedidos extends javax.swing.JFrame {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnCalcular;
+    private javax.swing.JCheckBox ChkACaminho;
+    private javax.swing.JCheckBox ChkCancelado;
+    private javax.swing.JCheckBox ChkEmpreparo;
+    private javax.swing.JCheckBox ChkFila;
+    private javax.swing.JCheckBox ChkRealizados;
     private javax.swing.JTable JTablePedidos;
     private javax.swing.JTable JTableProdutos;
     private com.toedter.calendar.JDateChooser JdcFim;
     private com.toedter.calendar.JDateChooser JdcInicio;
-    private javax.swing.JRadioButton RdCancelado;
-    private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblTotal;
     // End of variables declaration//GEN-END:variables
-
-
-Date data1, data2;
-
- public void preencherTabela(String Sql){
-    ArrayList dados = new ArrayList();
-    String [] Colunas = new String[]{"Código","Data","Valor","Estado", };
+   NumberFormat z = NumberFormat.getCurrencyInstance();
+SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");  
     
-    conecta.executaSql(Sql);
-    try{
-        conecta.rs.first();
-        do{
-    dados.add(new Object[]{conecta.rs.getInt("Cod_Pedido"),conecta.rs.getDate("Data"),
-        conecta.rs.getDouble("Valor"), conecta.rs.getString("Estado")});
-          }while(conecta.rs.next());
+    String empreparo, acaminho, realizado, nafila, cancelado;
+    Double Total = 0.00;
+    Date data1, data2;
+
+    public void preencherTabela(String Sql) {
+        ArrayList dados = new ArrayList();
+        String[] Colunas = new String[]{"<html><span style='color:#ef6f53;font-weight: bold;'>Código</span></html>", "<html><span style='color:#ef6f53;font-weight: bold;'>Data</span></html>", 
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Valor</span></html>","<html><span style='color:#ef6f53;font-weight: bold;'>Estado</span></html>",
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Forma de Pagamento</span></html>"};
+
+        conecta.executaSql(Sql);
+        try {
+            conecta.rs.first();
+            do {
+                
+                dados.add(new Object[]{conecta.rs.getInt("Cod_Pedido"), fmt.format(conecta.rs.getDate("Data")),
+                            z.format(conecta.rs.getDouble("Valor")), conecta.rs.getString("Estado"), conecta.rs.getString("FormaDePagamento")});
+                
+                
+            } while (conecta.rs.next());
+            
+           
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Não há lançamentos");
+
         }
-    catch(Exception e){
-    JOptionPane.showMessageDialog(this,"Erro ao preencher o ArrayList");
-    
+
+        ModeloTabelas modelo = new ModeloTabelas(dados, Colunas); //Instacia a classe do modelo da Tabela.
+        JTablePedidos.setModel(modelo);
+        JTablePedidos.getColumnModel().getColumn(0).setPreferredWidth(60); // Tamanho em pixel da coluna
+        JTablePedidos.getColumnModel().getColumn(0).setResizable(false);
+        JTablePedidos.getColumnModel().getColumn(1).setPreferredWidth(85);
+        JTablePedidos.getColumnModel().getColumn(1).setResizable(true);
+        JTablePedidos.getColumnModel().getColumn(2).setPreferredWidth(78);
+        JTablePedidos.getColumnModel().getColumn(2).setResizable(false);
+        JTablePedidos.getColumnModel().getColumn(3).setPreferredWidth(85);
+        JTablePedidos.getColumnModel().getColumn(3).setResizable(false);
+        JTablePedidos.getColumnModel().getColumn(4).setPreferredWidth(140);
+        JTablePedidos.getColumnModel().getColumn(4).setResizable(false);
+        JTablePedidos.getTableHeader().setReorderingAllowed(false);
+        JTablePedidos.setAutoResizeMode(JTablePedidos.AUTO_RESIZE_OFF);//Não pode ser redimensionada
+        JTablePedidos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+
     }
+
+    void preencherTabelaDetalhe(String Sql) {
+        ArrayList dados = new ArrayList();
+        String[] Colunas = new String[]{ "<html><span style='color:#ef6f53;font-weight: bold;'>Nome do Produto</span></html>", 
+           "<html><span style='color:#ef6f53;font-weight: bold;'>Quantidade</span></html>",
+          "<html><span style='color:#ef6f53;font-weight: bold;'>Valor de Venda</span></html>"};
+
+        conecta.executaSql(Sql);
+        try {
+            conecta.rs.first();
+            do {
+                dados.add(new Object[]{conecta.rs.getString("Nome_Produto"), conecta.rs.getInt("Quantidade"), 
+                            z.format(conecta.rs.getDouble("Valor_Venda"))});
+            } while (conecta.rs.next());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro ao preencher o ArrayList");
+
+        }
+
+        ModeloTabelas modelo = new ModeloTabelas(dados, Colunas); //Instacia a classe do modelo da Tabela.
+        JTableProdutos.setModel(modelo);
+        JTableProdutos.getColumnModel().getColumn(0).setPreferredWidth(182); // Tamanho em pixel da coluna
+        JTableProdutos.getColumnModel().getColumn(0).setResizable(false);
+        JTableProdutos.getColumnModel().getColumn(1).setPreferredWidth(107);
+        JTableProdutos.getColumnModel().getColumn(1).setResizable(false);
+        JTableProdutos.getColumnModel().getColumn(2).setPreferredWidth(122);
+        JTableProdutos.getColumnModel().getColumn(2).setResizable(false);
+        JTableProdutos.setAutoResizeMode(JTablePedidos.AUTO_RESIZE_OFF);//Não pode ser redimensionada
+        JTableProdutos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+
+
+
+    }
+
+    public Date datas(Date i) {
+        // Método com retorno. Retorna data
+        datainicio = fmt.format(i);
+        DateFormat df = DateFormat.getDateInstance(DateFormat.LONG, new Locale("pt", "BR"));
+
+        return i;
+
+    }
+
+    public Date data(Date f) {
+        // Método com retorno. Retorna data
+        datafim = fmt.format(f);
+        DateFormat df = DateFormat.getDateInstance(DateFormat.LONG, new Locale("pt", "BR"));
+
+        return f;
+
+    }
+   
+    String datainicio, datafim, data;
+
+    public void Rikimaru() {
+        if (ChkACaminho.isSelected() | ChkEmpreparo.isSelected() | ChkFila.isSelected() | ChkRealizados.isSelected()) {
+            ChkCancelado.setEnabled(false);
+
+        } else {
+            ChkCancelado.setEnabled(true);
+        }
+     }
     
-    ModeloTabelas modelo = new ModeloTabelas(dados, Colunas); //Instacia a classe do modelo da Tabela.
-    JTablePedidos.setModel(modelo);
-    JTablePedidos.getColumnModel().getColumn(0).setPreferredWidth(80); // Tamanho em pixel da coluna
-    JTablePedidos.getColumnModel().getColumn(0).setResizable(false);
-    JTablePedidos.getColumnModel().getColumn(1).setPreferredWidth(80);
-    JTablePedidos.getColumnModel().getColumn(1).setResizable(false);
-    JTablePedidos.getColumnModel().getColumn(2).setPreferredWidth(100);
-    JTablePedidos.getColumnModel().getColumn(2).setResizable(false);
-    JTablePedidos.getColumnModel().getColumn(3).setPreferredWidth(170);
-    JTablePedidos.getColumnModel().getColumn(3).setResizable(false);
-    JTablePedidos.getTableHeader().setReorderingAllowed(false);
-    JTablePedidos.setAutoResizeMode(JTablePedidos.AUTO_RESIZE_OFF);//Não pode ser redimensionada
-    JTablePedidos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-    
+    public boolean ValidaDatas() {
+        try {
+
+            if ((data1.getDate() - data2.getDate()) > 0) {
+                JOptionPane.showMessageDialog(this, "Data inicial maior que a data final, ou data final menor que a inicial");
+                return false;
+            }
+
+        } catch (Exception e) {
+        }
+if (JdcInicio.getDate()==null){	
+    JOptionPane.showMessageDialog(this, "Informe a data Inicial");
+   
+   return false;
+}
+if (JdcFim.getDate()==null){	
+    JOptionPane.showMessageDialog(this, "Informe a data Final");
+   
+   return false;
+}
+
+return true;
 
 }
- void preencherTabelaDetalhe(String Sql){
-    ArrayList dados = new ArrayList();
-    String [] Colunas = new String[]{"Código do Pedido","Código do Produto","Nome do Produto","Valor_Venda"};
-    
-    conecta.executaSql(Sql);
-    try{
-        conecta.rs.first();
-        do{
-    dados.add(new Object[]{conecta.rs.getInt("Cod_Pedido"),conecta.rs.getInt("Cod_Produto"),conecta.rs.getString("Nome_Produto"),
-        conecta.rs.getDouble("Valor_Venda")});
-          }while(conecta.rs.next());
-        }
-    catch(Exception e){
-    JOptionPane.showMessageDialog(this,"Erro ao preencher o ArrayList");
-    
-    }
-    
-    ModeloTabelas modelo = new ModeloTabelas(dados, Colunas); //Instacia a classe do modelo da Tabela.
-    JTableProdutos.setModel(modelo);
-    JTableProdutos.getColumnModel().getColumn(0).setPreferredWidth(110); // Tamanho em pixel da coluna
-    JTableProdutos.getColumnModel().getColumn(0).setResizable(false);
-    JTableProdutos.getColumnModel().getColumn(1).setPreferredWidth(110);
-    JTableProdutos.getColumnModel().getColumn(1).setResizable(false);
-    JTableProdutos.getColumnModel().getColumn(2).setPreferredWidth(320);
-    JTableProdutos.getColumnModel().getColumn(2).setResizable(false);
-    JTableProdutos.getColumnModel().getColumn(2).setPreferredWidth(120);
-    JTableProdutos.getColumnModel().getColumn(2).setResizable(false);
-    JTableProdutos.setAutoResizeMode(JTablePedidos.AUTO_RESIZE_OFF);//Não pode ser redimensionada
-    JTableProdutos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
- 
- 
- 
- 
-}
-  public Date datas(Date i){ 
-    // Método com retorno. Retorna data
-        datainicio=formato.format(i);
-        DateFormat df = DateFormat.getDateInstance
-                (DateFormat.LONG, new Locale ("pt","BR"));
-        
-    //Cria um novo formatador para formatar as datas em formato longo escrito em português
-    
-        
-                return i;
-                
- }
-     public Date data(Date f){ 
-    // Método com retorno. Retorna data
-        datafim=formato.format(f);
-        DateFormat df = DateFormat.getDateInstance
-                (DateFormat.LONG, new Locale ("pt","BR"));
-        
-    //Cria um novo formatador para formatar as datas em formato longo escrito em português
-    
-        
-                return f;
-                
- }
- 
- 
- 
- SimpleDateFormat formato =
-            new SimpleDateFormat("dd/MM/yyyy");
-    //Define Formato de Data
-    
-    
-String datainicio, datafim, data;
-
-
+   
 }

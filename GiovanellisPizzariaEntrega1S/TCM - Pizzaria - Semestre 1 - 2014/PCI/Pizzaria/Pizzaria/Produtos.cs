@@ -85,6 +85,8 @@ namespace Pizzaria
         private void Insumo_Load(object sender, EventArgs e)
         {
             conexao = Acesso.Conexao;
+
+            dtg_produtos.DataSource = produto.MostrarTodosProdutos();
         }
         
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
@@ -98,36 +100,66 @@ namespace Pizzaria
             Dispose();
         }
 
+        void ativarModoEdicao() 
+        {
+            btn_atualizar.Text = "Gravar";
+
+            txt_nome.Text = (string) dtg_produtos.CurrentRow.Cells[1].Value;
+            txtPreco.Text = dtg_produtos.CurrentRow.Cells[2].Value.ToString();
+
+            if ((int)dtg_produtos.CurrentRow.Cells[3].Value == 0)
+                chk_site.Checked = false;
+            else
+                chk_site.Checked = true;
+
+            txtBuscaPorID.Enabled = false;
+            txtBuscaPorNome.Enabled = false;
+            btn_excluir.Enabled = false;
+            btn_inserir.Enabled = false;
+            dtg_produtos.Enabled = false;
+        }
+
+        void finalizarModoEdicao() 
+        {
+            if (!ValidaCampos())
+                return;
+
+            if (!ValidaExistenciaNoBanco())
+                return;
+
+            clsProduto objProduto = new clsProduto();
+            objProduto.Cod_Produto = (int)dtg_produtos.CurrentRow.Cells[0].Value;
+            objProduto.Nome_Produto = txt_nome.Text;
+            objProduto.Valor_Venda = double.Parse(txtPreco.Text);
+
+            if (chk_site.Checked)
+                objProduto.Sobe_Site = 1;
+            else
+                objProduto.Sobe_Site = 0;
+
+            produto.AtualizarProduto(objProduto);
+            dtg_produtos.DataSource = produto.BuscarProdutoPorID(objProduto.Cod_Produto);
+
+            txt_nome.Clear();
+            txtPreco.Clear();
+            chk_site.Checked = false;
+            
+            btn_inserir.Enabled = true;
+            txtBuscaPorID.Enabled = true;
+            txtBuscaPorNome.Enabled = true;
+            dtg_produtos.Enabled = true;
+
+            btn_atualizar.Text = "Alterar";
+        }
+
         private void btn_atualizar_Click(object sender, EventArgs e)
         {
             if (btn_atualizar.Text == "Alterar")
-            {
-                btn_atualizar.Text = "Gravar";
-                txt_nome.Enabled = true;
-//                txt_vlrunitario.Enabled = true;
-                chk_site.Enabled = true;
-                gbp_produtos.Enabled = true;
-            }
-            else 
-            {
-                int sobeProSite = 0;
-                if (chk_site.Checked)
-                    sobeProSite = 1;
-
-                int idProduto = (int)dtg_produtos.CurrentRow.Cells[0].Value;
-
-//                preenchegrid("UPDATE Produto SET Nome_Produto = '" + txt_nome.Text + "', Valor_Venda = " + txt_vlrunitario.Text.Replace("R$", "").Replace(" ", "") + ", Sobe_Site = " + sobeProSite + " WHERE cod_Produto = " + dtg_produtos.CurrentRow.Cells[0].Value);
-
-                preenchegrid("select cod_Produto as [ID], Nome_Produto as [Produto], Valor_Venda as [Preço], Sobe_Site as [Visível no site] from Produto where Cod_Produto like (" + idProduto + ")");
-
-               // txt_vlrunitario.Clear();
-                txt_nome.Clear();
-                chk_site.Checked = false;
-                btn_atualizar.Text = "Alterar";
-                btn_inserir.Enabled = true;
-            }
+                ativarModoEdicao();
+            else if (btn_atualizar.Text == "Gravar")
+                finalizarModoEdicao();
         }
-
+        
         private void btn_cancelar_Click(object sender, EventArgs e)
         {
             dtg_produtos.Enabled = true;
@@ -235,7 +267,7 @@ namespace Pizzaria
 
             produto.InserirProduto(objProduto);
 
-            dtg_produtos.DataSource = produto.MostrarTodosProdutos();
+            dtg_produtos.DataSource = produto.MostrarTodosProdutosDesc();
             
                 txt_nome.Clear();
                 txtPreco.Clear();
@@ -244,21 +276,20 @@ namespace Pizzaria
 
         private void btn_excluir_Click(object sender, EventArgs e)
         {
-           // strsql = "select cod_Produto from Produto where Nome_Produto = '" + dtg_produtos.CurrentRow.Cells[0].Value.ToString() + "'";
-            //obtem cod do produto antes de alterar
-            cod_produto = dtg_produtos.CurrentRow.Cells[0].Value.ToString();
+            DialogResult dialogResult = MessageBox.Show("Isso deletará o produto permanentemente do sistema. Deseja continuar?", "Aviso", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                produto.RemoverProduto
+                    (
+                        Int32.Parse
+                            (
+                                dtg_produtos.CurrentRow.Cells[0].Value.ToString()
+                            )
+                    );
 
-//            excluiprod(cod_produto);
+                dtg_produtos.DataSource = produto.MostrarTodosProdutos();
+            }
 
-            Home.preencherGrid("delete Produto_Insumo where cod_produto = '" + cod_produto +"'",dtg_produtos);
-
-            Home.preencherGrid("delete ProdutoPromocao where cod_produto = '" + cod_produto + "'", dtg_produtos);
-
-            Home.preencherGrid("delete Detalhe_Pedido where cod_produto = '" + cod_produto + "'", dtg_produtos);
-
-            Home.preencherGrid("delete Produto where cod_produto = '" + cod_produto + "'", dtg_produtos);
-
-            dtg_produtos.Enabled = true;
         }
 
         public void preenchegrid(string comandoSQL)
@@ -306,10 +337,11 @@ namespace Pizzaria
         
         public Boolean ValidaExistenciaNoBanco()
         {
-            clsProduto objproduto = new clsProduto();
-            objproduto.Nome_Produto = txt_nome.Text;
+            clsProduto objProduto = new clsProduto();
+            objProduto.Nome_Produto = txt_nome.Text;
+            objProduto.Cod_Produto = Int32.Parse(dtg_produtos.CurrentRow.Cells[0].Value.ToString());
 
-            DataTable resultado = produto.ValidaExistenciaNoBanco(objproduto);
+            DataTable resultado = produto.ValidaExistenciaNoBanco(objProduto);
 
             if( (int) resultado.Rows[0][0] != 0)
             {
@@ -517,7 +549,10 @@ namespace Pizzaria
 
         private void txtBuscaPorID_TextChanged(object sender, EventArgs e)
         {
-            if (txtBuscaPorID.Text.Length == 0 && !validaCampoNumerico(txtBuscaPorID))
+            if(txtBuscaPorID.Text.Length > 0 && !validaCampoNumerico(txtBuscaPorID))
+                return;
+
+            if (txtBuscaPorID.Text.Length == 0)
                 dtg_produtos.DataSource = produto.MostrarTodosProdutos();
             else
                 dtg_produtos.DataSource = produto.BuscarProdutoPorID(Int32.Parse(txtBuscaPorID.Text));
@@ -560,12 +595,10 @@ namespace Pizzaria
 
         private void txtBuscaPorNome_Enter(object sender, EventArgs e)
         {
-            txtBuscaPorID.Clear();
         }
 
         private void txtBuscaPorID_Enter(object sender, EventArgs e)
         {
-            txtBuscaPorNome.Clear();
         }
     }
 }

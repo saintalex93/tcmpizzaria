@@ -3,39 +3,52 @@
  * and open the template in the editor.
  */
 package Visao;
+
 import giovanellis.SqlServer;
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.QUESTION_MESSAGE;
+import javax.swing.UIManager;
+import javax.swing.plaf.FontUIResource;
 
-
+//import net.sf.jasperreports.engine.JRResultSetDataSource;
+//import net.sf.jasperreports.engine.JasperFillManager;
+//import net.sf.jasperreports.engine.JasperPrint;
+//import net.sf.jasperreports.view.JasperViewer;
 /**
  *
  * @author ETESP
  */
 public class frmHome extends javax.swing.JFrame {
-    
+
     SqlServer conn;
 
     /**
      * Creates new form frmHome
      */
     public frmHome() throws Exception {
-      
-        
-        Color Branco = new Color(255,255,255); 
-          getContentPane().setBackground(Branco);    
-          
-        // Maximizar this.setExtendedState(this.getExtendedState()|frmHome.MAXIMIZED_BOTH); 
-         
-         
+
+        setUndecorated(true);
+        //Color Branco = new Color(255,255,255); 
+        this.setExtendedState(MAXIMIZED_BOTH);
         SqlServer conn = new SqlServer();
-         this.setIconImage(new ImageIcon(getClass().getResource("/giovanellis/Icone.png")).getImage());  
+        this.setIconImage(new ImageIcon(getClass().getResource("/Imagens/Icone.png")).getImage());
         initComponents();
-        
+        Color Fundo = new Color(238, 235, 227);
+        Color Laranja = new Color(242, 184, 171);
+        Color Roxo = new Color(88, 55, 66);
+        getContentPane().setBackground(Fundo);
+        UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Tahoma", Font.BOLD, 16)));
+        UIManager.put("OptionPane.messageForeground", Roxo);
+
        
-        
     }
 
     /**
@@ -47,11 +60,10 @@ public class frmHome extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
+        lblTimer = new javax.swing.JLabel();
+        lblIcone = new javax.swing.JLabel();
         lblNomeFuncionario = new javax.swing.JLabel();
-        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 120), new java.awt.Dimension(0, 120), new java.awt.Dimension(32767, 120));
-        jPanel1 = new javax.swing.JPanel();
-        label = new javax.swing.JLabel();
-        lblNomeFuncionario1 = new javax.swing.JLabel();
         MenuTopo = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -59,17 +71,28 @@ public class frmHome extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
         jMenu6 = new javax.swing.JMenu();
+        GerenciarUsuario = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
         MenuCadastrar = new javax.swing.JCheckBoxMenuItem();
         MenuLancar = new javax.swing.JCheckBoxMenuItem();
         jMenu8 = new javax.swing.JMenu();
         jMenu9 = new javax.swing.JMenu();
 
+        jCheckBoxMenuItem1.setSelected(true);
+        jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Giovanelli's");
+        setResizable(false);
         addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 formMouseMoved(evt);
+            }
+        });
+        addWindowStateListener(new java.awt.event.WindowStateListener() {
+            public void windowStateChanged(java.awt.event.WindowEvent evt) {
+                formWindowStateChanged(evt);
             }
         });
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -79,34 +102,52 @@ public class frmHome extends javax.swing.JFrame {
         });
         getContentPane().setLayout(null);
 
-        lblNomeFuncionario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblNomeFuncionario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
+        lblTimer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTimer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/TimerFull.Png"))); // NOI18N
+        getContentPane().add(lblTimer);
+        lblTimer.setBounds(610, 420, 280, 270);
+
+        lblIcone.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblIcone.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/marca.png"))); // NOI18N
+        getContentPane().add(lblIcone);
+        lblIcone.setBounds(0, -30, 1310, 920);
+
+        lblNomeFuncionario.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
+        lblNomeFuncionario.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         getContentPane().add(lblNomeFuncionario);
-        lblNomeFuncionario.setBounds(-10, 0, 1450, 30);
-        getContentPane().add(filler1);
-        filler1.setBounds(240, 170, 20, 120);
+        lblNomeFuncionario.setBounds(0, 0, 1320, 30);
 
-        label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/giovanellis/marca.png"))); // NOI18N
-        jPanel1.add(label);
+        MenuTopo.setAutoscrolls(true);
+        MenuTopo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        MenuTopo.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        MenuTopo.setPreferredSize(new java.awt.Dimension(517, 70));
 
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(-40, 30, 1440, 880);
-
-        lblNomeFuncionario1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblNomeFuncionario1.setText("Funcionário");
-        lblNomeFuncionario1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
-        getContentPane().add(lblNomeFuncionario1);
-        lblNomeFuncionario1.setBounds(-10, 910, 1470, 30);
-
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/papers7.png"))); // NOI18N
         jMenu1.setText("Pedidos");
+        jMenu1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jMenu1.setPreferredSize(new java.awt.Dimension(130, 20));
         jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jMenu1MouseClicked(evt);
             }
         });
+        jMenu1.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentHidden(java.awt.event.ComponentEvent evt) {
+                jMenu1ComponentHidden(evt);
+            }
+        });
+        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1ActionPerformed(evt);
+            }
+        });
         MenuTopo.add(jMenu1);
 
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/discount4 cópia.png"))); // NOI18N
         jMenu2.setText("Promoções");
+        jMenu2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jMenu2.setMaximumSize(new java.awt.Dimension(150, 32767));
+        jMenu2.setPreferredSize(new java.awt.Dimension(140, 19));
         jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jMenu2MouseClicked(evt);
@@ -114,7 +155,10 @@ public class frmHome extends javax.swing.JFrame {
         });
         MenuTopo.add(jMenu2);
 
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/shopping-cart16.png"))); // NOI18N
         jMenu3.setText("Insumos");
+        jMenu3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jMenu3.setPreferredSize(new java.awt.Dimension(140, 55));
         jMenu3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jMenu3MouseClicked(evt);
@@ -122,7 +166,10 @@ public class frmHome extends javax.swing.JFrame {
         });
         MenuTopo.add(jMenu3);
 
+        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/italian1.png"))); // NOI18N
         jMenu4.setText("Produtos");
+        jMenu4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jMenu4.setPreferredSize(new java.awt.Dimension(140, 45));
         jMenu4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jMenu4MouseClicked(evt);
@@ -130,7 +177,11 @@ public class frmHome extends javax.swing.JFrame {
         });
         MenuTopo.add(jMenu4);
 
+        jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/delivery22.png"))); // NOI18N
         jMenu5.setText("Fornecedores");
+        jMenu5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jMenu5.setMaximumSize(new java.awt.Dimension(170, 32767));
+        jMenu5.setPreferredSize(new java.awt.Dimension(140, 50));
         jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jMenu5MouseClicked(evt);
@@ -138,21 +189,58 @@ public class frmHome extends javax.swing.JFrame {
         });
         MenuTopo.add(jMenu5);
 
+        jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/office.png"))); // NOI18N
         jMenu6.setText("Funcionários");
+        jMenu6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jMenu6.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        jMenu6.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        jMenu6.setMaximumSize(new java.awt.Dimension(170, 32767));
+        jMenu6.setPreferredSize(new java.awt.Dimension(145, 55));
         jMenu6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jMenu6MouseClicked(evt);
             }
         });
+
+        GerenciarUsuario.setText("Gerenciar de Permissões");
+        GerenciarUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                GerenciarUsuarioMouseClicked(evt);
+            }
+        });
+        GerenciarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GerenciarUsuarioActionPerformed(evt);
+            }
+        });
+        jMenu6.add(GerenciarUsuario);
+
+        jMenuItem2.setText("Lançamento de Despesa");
+        jMenuItem2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuItem2MouseClicked(evt);
+            }
+        });
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem2);
+
         MenuTopo.add(jMenu6);
 
+        jMenu7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/piggy10.png"))); // NOI18N
         jMenu7.setText("Despesas");
+        jMenu7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jMenu7.setPreferredSize(new java.awt.Dimension(140, 50));
         jMenu7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jMenu7MouseClicked(evt);
             }
         });
 
+        MenuCadastrar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         MenuCadastrar.setSelected(true);
         MenuCadastrar.setText("Cadastrar");
         MenuCadastrar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -167,6 +255,7 @@ public class frmHome extends javax.swing.JFrame {
         });
         jMenu7.add(MenuCadastrar);
 
+        MenuLancar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         MenuLancar.setSelected(true);
         MenuLancar.setText("Lançar/Consultar");
         MenuLancar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -183,10 +272,26 @@ public class frmHome extends javax.swing.JFrame {
 
         MenuTopo.add(jMenu7);
 
-        jMenu8.setText("Backup");
+        jMenu8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/data storage1.png"))); // NOI18N
+        jMenu8.setText("Relatórios");
+        jMenu8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jMenu8.setMaximumSize(new java.awt.Dimension(150, 250));
+        jMenu8.setName(""); // NOI18N
+        jMenu8.setPreferredSize(new java.awt.Dimension(120, 50));
+        jMenu8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu8MouseClicked(evt);
+            }
+        });
         MenuTopo.add(jMenu8);
 
+        jMenu9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icone_sair2.png"))); // NOI18N
         jMenu9.setText("Sair");
+        jMenu9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jMenu9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jMenu9.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        jMenu9.setMaximumSize(new java.awt.Dimension(150, 32767));
+        jMenu9.setPreferredSize(new java.awt.Dimension(130, 45));
         jMenu9.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jMenu9MouseClicked(evt);
@@ -196,107 +301,111 @@ public class frmHome extends javax.swing.JFrame {
 
         setJMenuBar(MenuTopo);
 
-        setSize(new java.awt.Dimension(1413, 1000));
+        setSize(new java.awt.Dimension(1319, 946));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
- 
+
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-  
-        try {
-              
-//timer.start();
-        } catch (Exception ex) {
-            Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
+        System.out.println(frmLogin.nomeFuncionario);
+        lblNomeFuncionario.setText("  Usuário: " + frmLogin.nomeFuncionario);
+        lblIcone.setSize(getWidth(), getHeight());
+        CodPermFun = frmLogin.getPermissaoFunci();
+        timer.start();
+        this.setEnabled(flag);
+
+        if (CodPermFun == 1) {
+            GerenciarUsuario.setVisible(true);
+        } else {
+            GerenciarUsuario.setVisible(false);
         }
-   
-      
-     
+
+
     }//GEN-LAST:event_formWindowOpened
 
     private void formMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseMoved
-    
-   //Usar a Thread Aqui System.out.println("YEAH");
-    
-    contador=20;
-        
-        
-        
+        //System.out.println("YEah");
+        System.out.println(contador);
+
+        contador = 20;
+
+
     }//GEN-LAST:event_formMouseMoved
 
     private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
-       try {
+
+        try {
+
             new frmPedidos().setVisible(true);
         } catch (Exception ex) {
             Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
         }
-     timer.stop();
-   
+
+
     }//GEN-LAST:event_jMenu1MouseClicked
 
     private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
-           try {
-               Desabilitarmenu();
+        try {
+
             new frmPromocoes().setVisible(true);
-           
-            
+
         } catch (Exception ex) {
             Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
         }
-       timer.stop();
+
     }//GEN-LAST:event_jMenu2MouseClicked
 
     private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
-       try {
-         
-            
+        try {
+
             new frmInsumos().setVisible(true);
         } catch (Exception ex) {
             Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
         }
-      timer.stop();
-     
+
+
     }//GEN-LAST:event_jMenu3MouseClicked
 
     private void jMenu4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MouseClicked
-       try {
-           new frmProdutos().setVisible(true);
+        try {
+            new frmProdutos().setVisible(true);
         } catch (Exception ex) {
             Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
         }
-         
-     timer.stop();
+
+
     }//GEN-LAST:event_jMenu4MouseClicked
 
     private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
-    try {
+        try {
             new frmFornecedores().setVisible(true);
         } catch (Exception ex) {
             Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
         }
-       timer.stop();
-    
+
+
     }//GEN-LAST:event_jMenu5MouseClicked
 
     private void jMenu6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu6MouseClicked
-         try {
-            new frmFuncionarios().setVisible(true);
-        } catch (Exception ex) {
-            Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
-        }
-     timer.stop();
-     
+
+
     }//GEN-LAST:event_jMenu6MouseClicked
 
     private void jMenu7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu7MouseClicked
-      
-    
+
+
     }//GEN-LAST:event_jMenu7MouseClicked
 
     private void jMenu9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu9MouseClicked
-       
-         
-       System.exit(0);     
-        
+        int opcao = JOptionPane.showConfirmDialog(null, "Deseja Sair do Sistema?", "Sair", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+        if (opcao == JOptionPane.YES_OPTION) {
+
+            System.exit(0);
+
+        }
+
+        // JOptionPane.showConfirmDialog(null, "Deseja Sair","Sair", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
+
     }//GEN-LAST:event_jMenu9MouseClicked
 
     private void MenuCadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuCadastrarMouseClicked
@@ -308,11 +417,7 @@ public class frmHome extends javax.swing.JFrame {
     }//GEN-LAST:event_MenuCadastrarMouseClicked
 
     private void MenuLancarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuLancarMouseClicked
-        try {
-            new frmDespesas().setVisible(true);
-        } catch (Exception ex) {
-            Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    
     }//GEN-LAST:event_MenuLancarMouseClicked
 
     private void MenuCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuCadastrarActionPerformed
@@ -326,43 +431,159 @@ public class frmHome extends javax.swing.JFrame {
     private void MenuLancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuLancarActionPerformed
         try {
             new frmDespesas().setVisible(true);
+            
         } catch (Exception ex) {
             Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_MenuLancarActionPerformed
+
+    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu1ActionPerformed
+
+    private void jMenuItem2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem2MouseClicked
+
+    }//GEN-LAST:event_jMenuItem2MouseClicked
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        try {
+            new frmFuncionarios().setVisible(true);
+        } catch (Exception ex) {
+            Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenu8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu8MouseClicked
+        try {
+            new frmRelatorios().setVisible(true);
+        } catch (Exception ex) {
+            Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenu8MouseClicked
+
+    private void jMenu1ComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jMenu1ComponentHidden
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu1ComponentHidden
+
+    private void GerenciarUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GerenciarUsuarioMouseClicked
+        try {
+            new frmSenhaFuncionarios().setVisible(true);
+
+        } catch (Exception ex) {
+            Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_GerenciarUsuarioMouseClicked
+
+    private void GerenciarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GerenciarUsuarioActionPerformed
+        try {
+            new frmSenhaFuncionarios().setVisible(true);
+
+        } catch (Exception ex) {
+            Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_GerenciarUsuarioActionPerformed
+
+    private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowStateChanged
+     
+    }//GEN-LAST:event_formWindowStateChanged
+    static boolean flag = true;
+    public static int binario = 0;
+    int CodPermFun = 0;
+    public static int contador = 20;
   
-    
-    int contador = 10;
-    
-    public void escreva()
-    {
-        System.out.println(contador);
-       
+
+      public void desativar() {
+        if (binario == 0) {
+            setEnabled(false);
+            
+        } else {
+            setEnabled(true);
+        }
+
     }
- 
-    private javax.swing.Timer timer = new javax.swing.Timer(1000,new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent e)
-        {
+    
+    public void escreva() {
+        System.out.println(contador);
+
+    }
+
+    private javax.swing.Timer timer = new javax.swing.Timer( 1000, new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+
+//            try {
+//                frmHome home = new frmHome();
+//                if (flag = false) {
+//                    home.setEnabled(false);
+//                }
+//                System.out.println(flag);
+//            } catch (Exception ex) {
+//                Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+
+            if (contador == 20) {
+                Image troca;
+                troca = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Imagens/TimerFull.Png"));
+                ImageIcon icone = new ImageIcon(troca);
+
+                lblTimer.setIcon(icone);
+
+            }
+            if (contador == 10) {
+                Image troca;
+                troca = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Imagens/TimerUm.png"));
+                ImageIcon icone = new ImageIcon(troca);
+
+                lblTimer.setIcon(icone);
+            }
+
+            if (contador == 5) {
+                Image troca;
+                troca = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Imagens/TimerDois.png"));
+                ImageIcon icone = new ImageIcon(troca);
+
+                lblTimer.setIcon(icone);
+            }
+
+            if (contador == 3) {
+                Image troca;
+                troca = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Imagens/TimerTres.png"));
+                ImageIcon icone = new ImageIcon(troca);
+
+                lblTimer.setIcon(icone);
+            }
+
+            if (contador == 2) {
+                Image troca;
+                troca = Toolkit.getDefaultToolkit().getImage(getClass().getResource(""));
+                ImageIcon icone = new ImageIcon(troca);
+                //  icone.setImage(troca.getScaledInstance(lblTimer.getWidth(), lblTimer.getHeight(), Image.SCALE_FAST));                
+                lblTimer.setIcon(icone);
+            }
+
             escreva();
             contador--;
-            if(contador == 0)
-            {
-                
+
+            if (contador == 0) {
+                Image troca;
+                troca = Toolkit.getDefaultToolkit().getImage(getClass().getResource(""));
+                ImageIcon icone = new ImageIcon(troca);
+
+                lblTimer.setIcon(icone);
+                JOptionPane.showMessageDialog(null, "Sistema Fechado por Inatividade");
                 timer.stop();
                 dispose();
-                
+
                 try {
                     new frmLogin().setVisible(true);
                 } catch (Exception ex) {
                     Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
+
             }
         }
-        
     });
- 
-    
+
     /**
      * @param args the command line arguments
      */
@@ -394,8 +615,7 @@ public class frmHome extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                   
-            
+
                     new frmHome().setVisible(true);
                 } catch (Exception ex) {
                     Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
@@ -404,10 +624,11 @@ public class frmHome extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem GerenciarUsuario;
     private javax.swing.JCheckBoxMenuItem MenuCadastrar;
     private javax.swing.JCheckBoxMenuItem MenuLancar;
     private javax.swing.JMenuBar MenuTopo;
-    private javax.swing.Box.Filler filler1;
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -417,34 +638,10 @@ public class frmHome extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
     private javax.swing.JMenu jMenu9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel label;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JLabel lblIcone;
     private javax.swing.JLabel lblNomeFuncionario;
-    private javax.swing.JLabel lblNomeFuncionario1;
+    private javax.swing.JLabel lblTimer;
     // End of variables declaration//GEN-END:variables
 
-   
-public void Desabilitarmenu(){
-
-MenuTopo.setEnabled(false);
-
 }
-
-public void HabilitarMenu(){
-
-MenuTopo.setEnabled(true);
-
-}
-   
-    
-    
-    
-    
-  
-  
-    }
-    
-    
-    
-
-

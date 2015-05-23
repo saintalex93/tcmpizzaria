@@ -5,24 +5,42 @@
  */
 package Visao;
 
+import Modelo.ModeloTabelas;
 import giovanellis.SqlServer;
+import java.awt.Color;
+import java.text.DateFormat;
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+
 /**
  *
  * @author Alex
  */
 public class frmPromocoes extends javax.swing.JFrame {
-    SqlServer conn;
-    /**
-     * Creates new form frmPromocoes
-     */
+
+    SqlServer conecta;
+    SqlServer connCombo;
+
+  
     public frmPromocoes() throws Exception {
-        
-        conn = new SqlServer();
-         this.setIconImage(new ImageIcon(getClass().getResource("/giovanellis/Icone.png")).getImage());  
+
+        this.setIconImage(new ImageIcon(getClass().getResource("/Imagens/Icone.png")).getImage());
+        conecta = new SqlServer();
+        connCombo = new SqlServer();
+        conecta.getCon();
         initComponents();
+        Color Fundo = new Color(238, 235, 227);
+        getContentPane().setBackground(Fundo);
+        setAlwaysOnTop(true);
     }
 
     /**
@@ -35,123 +53,249 @@ public class frmPromocoes extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
-        jComboBox1 = new javax.swing.JComboBox();
+        JdcInicio = new com.toedter.calendar.JDateChooser();
+        JdcFim = new com.toedter.calendar.JDateChooser();
+        JcomboPromocoes = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        JtablePromocao = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        lbltotal1 = new javax.swing.JLabel();
+        lblTotalTodos = new javax.swing.JLabel();
+        lblTotalTodosVal = new javax.swing.JLabel();
+        lblUnidade = new javax.swing.JLabel();
+        lbltotal = new javax.swing.JLabel();
+        lblpromocoes = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Promoções");
+        setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
+        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                formMouseMoved(evt);
+            }
+        });
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setBackground(new java.awt.Color(88, 55, 66));
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(239, 111, 83));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Consulta de Lançamentos de Promoções");
+        jLabel1.setOpaque(true);
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, -4, 620, 50));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        JdcInicio.setOpaque(false);
+        JdcInicio.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                JdcInicioPropertyChange(evt);
+            }
+        });
+        getContentPane().add(JdcInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 140, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        JdcFim.setOpaque(false);
+        JdcFim.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                JdcFimPropertyChange(evt);
+            }
+        });
+        getContentPane().add(JdcFim, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 80, 140, -1));
+
+        getContentPane().add(JcomboPromocoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 250, -1));
+
+        JtablePromocao.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        JtablePromocao.setForeground(new java.awt.Color(88, 55, 66));
+        JtablePromocao.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(JtablePromocao);
 
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 191, 570, 106));
+
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(239, 111, 83));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/button.png"))); // NOI18N
         jButton1.setText("Voltar");
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.setOpaque(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 410, 100, 40));
 
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(239, 111, 83));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/button.png"))); // NOI18N
         jButton2.setText("Calcular");
+        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton2.setOpaque(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 100, 40));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Total");
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(88, 55, 66));
+        jLabel3.setText("Data Inicial");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 85, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(67, 67, 67)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(89, 89, 89)
-                                .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(174, 174, 174)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
-                .addContainerGap(40, Short.MAX_VALUE))
-        );
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(88, 55, 66));
+        jLabel4.setText("Data Final");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 85, -1, -1));
 
-        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-434)/2, (screenSize.height-461)/2, 434, 461);
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.setOpaque(false);
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lbltotal1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lbltotal1.setForeground(new java.awt.Color(88, 55, 66));
+        lbltotal1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbltotal1.setText("Valor Total:");
+        jPanel1.add(lbltotal1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 140, 27));
+
+        lblTotalTodos.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblTotalTodos.setForeground(new java.awt.Color(88, 55, 66));
+        lblTotalTodos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTotalTodos.setText("Valor Total:");
+        jPanel1.add(lblTotalTodos, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 27, 140, 40));
+
+        lblTotalTodosVal.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblTotalTodosVal.setForeground(new java.awt.Color(88, 55, 66));
+        jPanel1.add(lblTotalTodosVal, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 38, 110, 20));
+
+        lblUnidade.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblUnidade.setForeground(new java.awt.Color(88, 55, 66));
+        lblUnidade.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblUnidade.setText("Quantidade:");
+        jPanel1.add(lblUnidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 20, 160, 27));
+
+        lbltotal.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lbltotal.setForeground(new java.awt.Color(88, 55, 66));
+        lbltotal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel1.add(lbltotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, 120, 27));
+
+        lblpromocoes.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblpromocoes.setForeground(new java.awt.Color(88, 55, 66));
+        lblpromocoes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel1.add(lblpromocoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, 60, 27));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 310, 310, 100));
+
+        setSize(new java.awt.Dimension(602, 495));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-        
-        try {
-            frmHome home = new frmHome();
-            home.HabilitarMenu();
-            dispose();
-            timer.stop();;
-        } catch (Exception ex) {
-            Logger.getLogger(frmPromocoes.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+
+        dispose();
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    
-     int contador = 20;
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        NomePromocao = (String) JcomboPromocoes.getSelectedItem().toString().substring(53).replace("</span></html>", "");
+        
+        if (JcomboPromocoes.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "Selecione uma promoção ou todas");
+        } else if (ValidaDatas()) {
+
+            if (JcomboPromocoes.getSelectedIndex() == 1) {
+                Todos();
+                preencherTabelaAgrupada("select pr.Cod_Promocao,pr.Nome_Promocao,count (pr.Cod_Promocao)as Quantidade, sum (Valor) as Total, Data from PedidoPromocao as p inner join Promocao as pr on pr.Cod_Promocao = p.Cod_Promocao inner join Pedido as pd on pd.Cod_Pedido = p.Cod_Pedido where Data Between '" + datainicio + "' and '" + datafim + "' group by p.Cod_Promocao, pr.Nome_Promocao, Data, pr.Cod_Promocao, Valor ");
+
+                double x = 0.0;
+                for (int y = 0; y < JtablePromocao.getRowCount(); y++) {
+                    x += Double.parseDouble(JtablePromocao.getModel().getValueAt(y, 3).toString().replace(",", ".").replace("R$", ""));
+                }
+                lblTotalTodosVal.setText(z.format(x));
+
+            } else {
+                Grupo();
+                preencherTabela("select p.Cod_Promocao, pr.Nome_Promocao,p.Cod_Pedido,pd.ValorPago, pd.Data"
+                        + " from PedidoPromocao as p inner join Promocao as pr on pr.Cod_Promocao = p.Cod_Promocao inner join Pedido "
+                        + "as pd on pd.Cod_Pedido = p.Cod_Pedido where nome_promocao = '" + NomePromocao + "' and pd.Data between '" + datainicio + "' and '" + datafim + "'");
+
+                int linhas;
+                linhas = (JtablePromocao.getRowCount());
+                lblpromocoes.setText("" + linhas);
+                double x = 0.0;
+                for (int y = 0; y < JtablePromocao.getRowCount(); y++) {
+                    x += Double.parseDouble(JtablePromocao.getModel().getValueAt(y, 3).toString().replace("R$","").replace(".","").replace(",","."));
+                }
+                lbltotal.setText(z.format(x));
+            }
+
+        }
+
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void JdcInicioPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_JdcInicioPropertyChange
+        try {
+            data1 = JdcInicio.getDate();
+            datainicio = fmt.format(datas(JdcInicio.getDate()));
+            System.out.println(datainicio);
+
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_JdcInicioPropertyChange
+
+    private void JdcFimPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_JdcFimPropertyChange
+        try {
+            data2 = JdcFim.getDate();
+            datafim = fmt.format(data(JdcFim.getDate()));
+            System.out.println(datafim);
+            // data receba um formato e formate o método data e guarde na varíável e guarde na caixa de combinação
+
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_JdcFimPropertyChange
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+         Color Roxo = new Color(88,55,66); 
+        Color Laranja = new Color(242,184,171);
+        JtablePromocao.setSelectionBackground(Roxo);  
+        JtablePromocao.setSelectionForeground(Laranja);
+        PreencherCombobox();
+        timer.start();
+        frmHome.contador = 10;
+        lblUnidade.setVisible(false);
+        lbltotal1.setVisible(false);
+       
+    }//GEN-LAST:event_formWindowOpened
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        timer.stop();
+    }//GEN-LAST:event_formWindowClosing
+
+    private void formMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseMoved
+     frmHome.contador = 20;
+     contador = 10;
+    }//GEN-LAST:event_formMouseMoved
+     int contador = 10;
     
     public void escreva()
     {
@@ -166,16 +310,19 @@ public class frmPromocoes extends javax.swing.JFrame {
             contador--;
             if(contador == 0)
             {
-                
+               
+               
                 try {
-                    new frmLogin().setVisible(true);
+                dispose();
+                timer.stop();
                 } catch (Exception ex) {
-                    Logger.getLogger(frmPromocoes.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(frmInsumos.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
         
     });
+    
     
     /**
      * @param args the command line arguments
@@ -215,16 +362,188 @@ public class frmPromocoes extends javax.swing.JFrame {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox JcomboPromocoes;
+    private com.toedter.calendar.JDateChooser JdcFim;
+    private com.toedter.calendar.JDateChooser JdcInicio;
+    private javax.swing.JTable JtablePromocao;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox jComboBox1;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblTotalTodos;
+    private javax.swing.JLabel lblTotalTodosVal;
+    private javax.swing.JLabel lblUnidade;
+    private javax.swing.JLabel lblpromocoes;
+    private javax.swing.JLabel lbltotal;
+    private javax.swing.JLabel lbltotal1;
     // End of variables declaration//GEN-END:variables
+    String NomePromocao, datainicio, datafim, data;
+    Date data1, data2;
+    NumberFormat z = NumberFormat.getCurrencyInstance();
+    SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
+
+    public Date datas(Date i) {
+        // Método com retorno. Retorna data
+        datainicio = fmt.format(i);
+        DateFormat df = DateFormat.getDateInstance(DateFormat.LONG, new Locale("pt", "BR"));
+
+        return i;
+
+    }
+
+    public Date data(Date f) {
+        // Método com retorno. Retorna data
+        datafim = fmt.format(f);
+        DateFormat df = DateFormat.getDateInstance(DateFormat.LONG, new Locale("pt", "BR"));
+
+        return f;
+
+    }
+
+    public boolean ValidaDatas() {
+        try {
+
+            if ((data1.getDate() - data2.getDate()) > 0) {
+                JOptionPane.showMessageDialog(this, "Data inicial maior que a data final, ou data final menor que a inicial");
+                return false;
+            }
+
+        } catch (Exception e) {
+        }
+
+        if (JdcInicio.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "Informe a data Inicial");
+
+            return false;
+        }
+        if (JdcFim.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "Informe a data Final");
+
+            return false;
+        }
+
+        return true;
+
+    }
+
+    public void Grupo() {
+        lblTotalTodosVal.setVisible(false);
+        lblTotalTodos.setVisible(false);
+        lblUnidade.setVisible(true);
+        lbltotal1.setVisible(true);
+        lblpromocoes.setVisible(true);
+        lbltotal.setVisible(true);
+    }
+
+    public void Todos() {
+        lblTotalTodosVal.setVisible(true);
+        lblTotalTodos.setVisible(true);
+        lblUnidade.setVisible(false);
+        lbltotal1.setVisible(false);
+        lblpromocoes.setVisible(false);
+        lbltotal.setVisible(false);
+    }
+
+    public void PreencherCombobox() {
+        connCombo.getCon();
+        connCombo.executaSql("select * from promocao order by Nome_Promocao");
+
+        try {
+            connCombo.rs.first();
+            JcomboPromocoes.addItem("<html><span style='color:#583742;font-weight: bold;'>Selecione a Promoção...</span></html>");
+            JcomboPromocoes.addItem("<html><span style='color:#583742;font-weight: bold;'>Todas</span></html>");
+            do {
+                JcomboPromocoes.addItem("<html><span style='color:#583742;font-weight: bold;'>" + connCombo.rs.getString("Nome_Promocao") + "</span></html>");
+
+            } while (connCombo.rs.next());
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Erro ao preencher ComboBox" + e);
+        }
+
+    }
+
+    public void preencherTabela(String Sql) {
+        ArrayList dados = new ArrayList();
+        String[] Colunas = new String[]{"<html><span style='color:#ef6f53;font-weight: bold;'>Código</span></html>",
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Nome da Promoção</span></html>",
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Código do Pedido</span></html>",
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Valor Pago</span></html>",
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Data</span></html>"};
+
+        conecta.executaSql(Sql);
+        try {
+            conecta.rs.first();
+            do {
+
+                dados.add(new Object[]{conecta.rs.getInt("Cod_Promocao"), conecta.rs.getString("Nome_Promocao"), conecta.rs.getInt("Cod_Pedido"),
+                            z.format(conecta.rs.getDouble("ValorPago")), fmt.format(conecta.rs.getDate("Data"))});
+
+            } while (conecta.rs.next());
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Produto não lançado no intervalo de data escolhida");
+
+        }
+
+        ModeloTabelas modelo = new ModeloTabelas(dados, Colunas); //Instacia a classe do modelo da Tabela.
+        JtablePromocao.setModel(modelo);
+        JtablePromocao.getColumnModel().getColumn(0).setPreferredWidth(60); // Tamanho em pixel da coluna
+        JtablePromocao.getColumnModel().getColumn(0).setResizable(false);
+        JtablePromocao.getColumnModel().getColumn(1).setPreferredWidth(220);
+        JtablePromocao.getColumnModel().getColumn(1).setResizable(false);
+        JtablePromocao.getColumnModel().getColumn(2).setPreferredWidth(105);
+        JtablePromocao.getColumnModel().getColumn(2).setResizable(false);
+        JtablePromocao.getColumnModel().getColumn(3).setPreferredWidth(90);
+        JtablePromocao.getColumnModel().getColumn(3).setResizable(false);
+        JtablePromocao.getColumnModel().getColumn(4).setPreferredWidth(90);
+        JtablePromocao.getColumnModel().getColumn(4).setResizable(false);
+        JtablePromocao.getTableHeader().setReorderingAllowed(false);
+        JtablePromocao.setAutoResizeMode(JtablePromocao.AUTO_RESIZE_OFF);//Não pode ser redimensionada
+        JtablePromocao.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+    }
+
+    public void preencherTabelaAgrupada(String Sql) {
+        ArrayList dados = new ArrayList();
+        String[] Colunas = new String[]{"<html><span style='color:#ef6f53;font-weight: bold;'>Código</span></html>",
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Nome da Promoção</span></html>",
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Quantidade de Vendas</span></html>",
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Total de Vendas</span></html>"};
+
+        conecta.executaSql(Sql);
+        try {
+            conecta.rs.first();
+            do {
+
+                dados.add(new Object[]{conecta.rs.getInt("Cod_Promocao"), conecta.rs.getString("Nome_Promocao"), conecta.rs.getInt("Quantidade"),
+                            z.format(conecta.rs.getDouble("Total"))});
+
+            } while (conecta.rs.next());
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Produto não lançado no intervalo de data escolhido");
+
+        }
+
+        ModeloTabelas modelo = new ModeloTabelas(dados, Colunas); //Instacia a classe do modelo da Tabela.
+        JtablePromocao.setModel(modelo);
+        JtablePromocao.getColumnModel().getColumn(0).setPreferredWidth(60); // Tamanho em pixel da coluna
+        JtablePromocao.getColumnModel().getColumn(0).setResizable(false);
+        JtablePromocao.getColumnModel().getColumn(1).setPreferredWidth(240);
+        JtablePromocao.getColumnModel().getColumn(1).setResizable(false);
+        JtablePromocao.getColumnModel().getColumn(2).setPreferredWidth(140);
+        JtablePromocao.getColumnModel().getColumn(2).setResizable(false);
+        JtablePromocao.getColumnModel().getColumn(3).setPreferredWidth(123);
+        JtablePromocao.getColumnModel().getColumn(3).setResizable(false);
+        JtablePromocao.getTableHeader().setReorderingAllowed(false);
+        JtablePromocao.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);//Não pode ser redimensionada
+        JtablePromocao.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+    }
+ 
 }

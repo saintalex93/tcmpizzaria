@@ -11,15 +11,15 @@
 		string Senha_Funcionario = (Request.QueryString["Senha_Funcionario"]);
 		
 		//String de casa
-		//String strConexao = "Password=peganomeupau; Persist Security Info=True; User ID=sa; Initial Catalog=Pizzaria; Data Source=TUCA\\SQLEXPRESS";
+		String strConexao = "Password=peganomeupau; Persist Security Info=True; User ID=sa; Initial Catalog=Pizzaria; Data Source=TUCA\\SQLEXPRESS";
 
 		//String do curso
-		String strConexao = "Password=etesp; Persist Security Info=True; User ID=aluno; Initial Catalog=Pizzaria; Data Source=" + System.Environment.MachineName;
+		//String strConexao = "Password=etesp; Persist Security Info=True; User ID=aluno; Initial Catalog=Pizzaria; Data Source=LAB02T-20";
 
 		
 		SqlConnection objConexao = new SqlConnection(strConexao);
 		String contato = "";
-		String strSQL = "SELECT Cod_Funcionario, Nome_Func FROM Funcionario WHERE Login_Funcionario like '" + Login_Funcionario + "' and Senha_Funcionario like '" + Senha_Funcionario+ "'";
+		String strSQL = "Exec USP_ANDROID_Login '" + Login_Funcionario + "', '" + Senha_Funcionario+ "'";
 		SqlCommand objCommand = new SqlCommand(strSQL, objConexao);
 		SqlDataReader dr;
 		objConexao.Open();

@@ -43,14 +43,11 @@ namespace Pizzaria
         {
             //string de conexão de casa
             //
-            //Acesso.Conexao = "Data Source = TUCA\\SQLEXPRESS; Initial Catalog = Pizzaria; Persist Security Info = True; User ID = sa; Password = peganomeupau";
+            Acesso.Conexao = "Data Source = TUCA\\SQLEXPRESS; Initial Catalog = Pizzaria; Persist Security Info = True; User ID = sa; Password = peganomeupau";
 
             //string de conexão do curso
-            Acesso.Conexao = "Data Source = LAB02T-17; Initial Catalog = Pizzaria; Persist Security Info = True; User ID = aluno; Password = etesp";
+            //Acesso.Conexao = "Data Source = LAB02T-20; Initial Catalog = Pizzaria; Persist Security Info = True; User ID = aluno; Password = etesp";
             
-
-            //string de conexãode casa
-            //Acesso.Conexao = "Data Source = LAB02T-11\\SQLEXPRESS; Initial Catalog = Pizzaria; Persist Security Info = True; User ID = aluno; Password = etesp";
         }
 
         public void button1_Click(object sender, EventArgs e)

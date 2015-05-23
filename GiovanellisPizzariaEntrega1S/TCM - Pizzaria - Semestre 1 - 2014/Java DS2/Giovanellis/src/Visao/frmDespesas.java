@@ -5,11 +5,11 @@
  */
 package Visao;
 
-import Controlador.ControladorLancamentoDespesas;
 import Modelo.ModeloTabelas;
-import Modelo.clsLancamentoDespesas;
 import java.util.Date;
 import giovanellis.SqlServer;
+import java.awt.Color;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -19,30 +19,42 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
+import Controlador.ControladorLancamentoDespesas;
+import Modelo.ModeloLancamentoDespesas;
+import java.util.Calendar;
+import Modelo.teclasPermitidas;
+import java.text.NumberFormat;
+import Modelo.LimitadorMoeda;
 
 /**
  *
  * @author Alex
  */
 public class frmDespesas extends javax.swing.JFrame {
+
+    LimitadorMoeda limitadormoeda;
+    teclasPermitidas teclaspermitidas;
     private ControladorLancamentoDespesas DAO;
-    private clsLancamentoDespesas ObjLancaDespesa;
-    SqlServer conecta = new SqlServer();
-     SqlServer connCombo = new SqlServer();
-   
-    
-        
-        
-    
+    private ModeloLancamentoDespesas ObjLancaDespesa;
+    SqlServer conecta;
+    SqlServer connCombo;
+    SqlServer conn;
+
     public frmDespesas() throws Exception {
-        SqlServer conn = new SqlServer();
-         this.setIconImage(new ImageIcon(getClass().getResource("/giovanellis/Icone.png")).getImage());  
+        limitadormoeda = new LimitadorMoeda();
+        teclaspermitidas = new teclasPermitidas();
+        conn = new SqlServer();
+        ObjLancaDespesa = new ModeloLancamentoDespesas();
+        DAO = new ControladorLancamentoDespesas();
+        conecta = new SqlServer();
+        connCombo = new SqlServer();
+        Color Fundo = new Color(238, 235, 227);
+        getContentPane().setBackground(Fundo);
+        setAlwaysOnTop(true);
+        this.setIconImage(new ImageIcon(getClass().getResource("/Imagens/Icone.png")).getImage());
         initComponents();
         conecta.getCon();
-        
-         preencherTabela("Select * from TipoDespesa order by NomeDespesa" );
-        
-       
+
     }
 
     /**
@@ -57,63 +69,91 @@ public class frmDespesas extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        txtCodesp = new javax.swing.JTextField();
-        jdtDatapagamento = new com.toedter.calendar.JDateChooser();
-        Jdcfim = new com.toedter.calendar.JDateChooser();
-        Jdcinicio = new com.toedter.calendar.JDateChooser();
+        JdcVencimento = new com.toedter.calendar.JDateChooser();
+        JdcFim = new com.toedter.calendar.JDateChooser();
+        JdcInicio = new com.toedter.calendar.JDateChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
-        JTable = new javax.swing.JTable();
+        JTableDespesas = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        BtnLancar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox();
+        lblTotal = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jdtDatapagamento1 = new com.toedter.calendar.JDateChooser();
+        JdcPagamento = new com.toedter.calendar.JDateChooser();
         jButton3 = new javax.swing.JButton();
-        txtValor1 = new javax.swing.JTextField();
+        TxtValor = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         CmbDespesa = new javax.swing.JComboBox();
+        jcbLancamentoDespesa = new javax.swing.JComboBox();
+        txtCodDesp = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Despesas");
+        setResizable(false);
+        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                formMouseMoved(evt);
+            }
+        });
         addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(88, 55, 66));
         jLabel1.setText("Nome da Despesa");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 113, -1, -1));
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(88, 55, 66));
         jLabel2.setText("Data de Vencimento");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 194, -1, -1));
 
-        jLabel6.setText("Valor");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
-        getContentPane().add(txtCodesp, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, 70, -1));
-        getContentPane().add(jdtDatapagamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, 114, -1));
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(88, 55, 66));
+        jLabel6.setText("Valor da Despesa");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 154, -1, -1));
 
-        Jdcfim.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+        JdcVencimento.setOpaque(false);
+        JdcVencimento.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                JdcfimPropertyChange(evt);
+                JdcVencimentoPropertyChange(evt);
             }
         });
-        getContentPane().add(Jdcfim, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 270, 140, -1));
+        getContentPane().add(JdcVencimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 190, 150, -1));
 
-        Jdcinicio.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+        JdcFim.setOpaque(false);
+        JdcFim.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                JdcinicioPropertyChange(evt);
+                JdcFimPropertyChange(evt);
             }
         });
-        getContentPane().add(Jdcinicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 140, -1));
+        getContentPane().add(JdcFim, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 400, 140, -1));
 
-        JTable.setModel(new javax.swing.table.DefaultTableModel(
+        JdcInicio.setOpaque(false);
+        JdcInicio.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                JdcInicioPropertyChange(evt);
+            }
+        });
+        getContentPane().add(JdcInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 400, 140, -1));
+
+        JTableDespesas.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        JTableDespesas.setForeground(new java.awt.Color(88, 55, 66));
+        JTableDespesas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -124,106 +164,134 @@ public class frmDespesas extends javax.swing.JFrame {
 
             }
         ));
-        JTable.addMouseListener(new java.awt.event.MouseAdapter() {
+        JTableDespesas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                JTableMouseClicked(evt);
+                JTableDespesasMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(JTable);
+        jScrollPane1.setViewportView(JTableDespesas);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 420, 106));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 480, 560, 106));
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(239, 111, 83));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/button.png"))); // NOI18N
         jButton1.setText("Voltar");
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.setOpaque(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 510, 80, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 630, 100, 40));
 
-        jButton2.setText("Consultar");
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(239, 111, 83));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/button.png"))); // NOI18N
+        jButton2.setText("Calcular");
+        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton2.setOpaque(false);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 510, -1, -1));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 630, 100, 40));
 
-        jButton4.setText("Lançar");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        BtnLancar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        BtnLancar.setForeground(new java.awt.Color(239, 111, 83));
+        BtnLancar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/button.png"))); // NOI18N
+        BtnLancar.setText("Lançar");
+        BtnLancar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        BtnLancar.setOpaque(false);
+        BtnLancar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                BtnLancarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, -1, -1));
+        getContentPane().add(BtnLancar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, 100, 40));
 
+        jLabel8.setBackground(new java.awt.Color(88, 55, 66));
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(239, 111, 83));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("Consulta de Lançamento de Despesas");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 420, 30));
+        jLabel8.setOpaque(true);
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 590, 40));
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("Total");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 480, -1, -1));
+        lblTotal.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblTotal.setForeground(new java.awt.Color(88, 55, 66));
+        lblTotal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTotal.setText("Total");
+        getContentPane().add(lblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 600, 580, -1));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Água", "Luz", "Telefone", "Internet", "Aluguel", "Outros" }));
-        jComboBox2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jComboBox2MouseClicked(evt);
-            }
-        });
-        getContentPane().add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 310, 150, -1));
-
+        jLabel5.setBackground(new java.awt.Color(88, 55, 66));
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(239, 111, 83));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Lançamentos de Despesas");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 420, -1));
+        jLabel5.setOpaque(true);
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -8, 590, 50));
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(88, 55, 66));
         jLabel3.setText("Data de Pagamento");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
-        getContentPane().add(jdtDatapagamento1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 114, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 234, -1, -1));
 
-        jButton3.setText("Cancelar");
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 200, -1, -1));
-        getContentPane().add(txtValor1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 70, -1));
-
-        CmbDespesa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        CmbDespesa.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                CmbDespesaItemStateChanged(evt);
-            }
-        });
-        CmbDespesa.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                CmbDespesaFocusGained(evt);
-            }
-        });
-        CmbDespesa.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CmbDespesaMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                CmbDespesaMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                CmbDespesaMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                CmbDespesaMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                CmbDespesaMouseReleased(evt);
-            }
-        });
-        CmbDespesa.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+        JdcPagamento.setOpaque(false);
+        JdcPagamento.setRequestFocusEnabled(false);
+        JdcPagamento.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                CmbDespesaPropertyChange(evt);
+                JdcPagamentoPropertyChange(evt);
             }
         });
-        getContentPane().add(CmbDespesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 100, -1));
+        getContentPane().add(JdcPagamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 230, 150, -1));
 
+        jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(239, 111, 83));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/button.png"))); // NOI18N
+        jButton3.setText("Cancelar");
+        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton3.setOpaque(false);
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 280, 100, 40));
+        getContentPane().add(TxtValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 100, -1));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(88, 55, 66));
+        jLabel4.setText("Codigo da Despesa");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 74, -1, -1));
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(88, 55, 66));
+        jLabel7.setText("Data Final");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 405, -1, -1));
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(88, 55, 66));
+        jLabel9.setText("Data Inicial");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 405, -1, -1));
+
+        CmbDespesa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CmbDespesaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(CmbDespesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 440, 240, -1));
+
+        jcbLancamentoDespesa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbLancamentoDespesaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jcbLancamentoDespesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 170, -1));
+
+        txtCodDesp.setEditable(false);
+        getContentPane().add(txtCodDesp, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 50, -1));
+
+        jMenu1.setForeground(new java.awt.Color(88, 55, 66));
         jMenu1.setText("Cadastrar Despesa");
+        jMenu1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jMenu1MouseClicked(evt);
@@ -239,26 +307,66 @@ public class frmDespesas extends javax.swing.JFrame {
 
         setJMenuBar(jMenuBar1);
 
-        setSize(new java.awt.Dimension(454, 593));
+        setSize(new java.awt.Dimension(587, 746));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-            try {
-                new frmHome().setVisible(true);
-            } catch (Exception ex) {
-                Logger.getLogger(frmDespesas.class.getName()).log(Level.SEVERE, null, ex);
-            }
+
         dispose();
         timer.stop();;
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-      validarCampos();
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void BtnLancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLancarActionPerformed
+        if (validarCampos()) {
+            if (preencheObjeto()) {
+                try {
+                    DAO.Incluir(ObjLancaDespesa);
+                    JOptionPane.showMessageDialog(this, "Dados Inseridos com sucesso");
+
+                    preencherTabela("select td.codTipoDespesa, td.NomeDespesa, td.SituacaoDespesa, d.ValorDespesa, d.DataPagamento, d.DataVencimento from Despesa as D inner join TipoDespesa as"
+                            + " TD on td.codTipoDespesa = D.TipoDespesa where td.NomeDespesa = '" + NomeDespesa + "'");
+
+                    double x = 0.0;
+                    for (int y = 0; y < JTableDespesas.getRowCount(); y++) {
+                        x += Double.parseDouble(JTableDespesas.getModel().getValueAt(y, 3).toString().replace("R$", "").replace(".", "").replace(",", "."));
+                    }
+                    lblTotal.setText(z.format(x));
+
+                    limparCampos();
+                    preencherCombo();
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(this, "Erro ao Lançar dados: "+ex);
+                }
+            }
+        }
+
+
+    }//GEN-LAST:event_BtnLancarActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    preencherTabela("select * from Pedido as P Inner join Detalhe_Pedido as DP On p.Cod_Pedido = DP.Cod_Pedido inner join Produto as Pro on Dp.Cod_Produto = Pro.Cod_Produto where  p.Data between '"+datainicio+"' and'"+datafim+"'");
+        NumberFormat z = NumberFormat.getCurrencyInstance();
+
+        if (CmbDespesa.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "Selecione uma Despesa");
+        } else if (ValidaDatas()) {
+            if (CmbDespesa.getSelectedIndex() == 1) {
+                preencherTabela("select td.codTipoDespesa, td.NomeDespesa, td.SituacaoDespesa, d.ValorDespesa, d.DataPagamento, d.DataVencimento from Despesa as D inner join TipoDespesa as TD"
+                        + " on td.codTipoDespesa = D.TipoDespesa where d.DataVencimento between '" + datainicio + "' and '" + datafim + "'");
+            } else {
+                preencherTabela("select td.codTipoDespesa, td.NomeDespesa, td.SituacaoDespesa, d.ValorDespesa, d.DataPagamento, d.DataVencimento from Despesa as D inner join TipoDespesa as"
+                        + " TD on td.codTipoDespesa = D.TipoDespesa where td.NomeDespesa = '" + Despesa + "' and d.DataVencimento between '" + datainicio + "' and '" + datafim + "'");
+            }
+
+            double x = 0.0;
+            for (int y = 0; y < JTableDespesas.getRowCount(); y++) {
+                x += Double.parseDouble(JTableDespesas.getModel().getValueAt(y, 3).toString().replace("R$", "").replace(".", "").replace(",", "."));
+            }
+            lblTotal.setText(z.format(x));
+
+        }
+
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
@@ -266,126 +374,128 @@ public class frmDespesas extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu1ActionPerformed
 
     private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
-       try {
-                new frmCadastrarDespesa().setVisible(true);
-            } catch (Exception ex) {
-                Logger.getLogger(frmDespesas.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        dispose();        
+        try {
+            new frmCadastrarDespesa().setVisible(true);
+        } catch (Exception ex) {
+            Logger.getLogger(frmDespesas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        dispose();
     }//GEN-LAST:event_jMenu1MouseClicked
 
-    private void JTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTableMouseClicked
-      int linha_selecionada = JTable.getSelectedRow(); // Pega a linha selecionada.
-      txtCodesp.setText(JTable.getValueAt(linha_selecionada, 0).toString());
-    }//GEN-LAST:event_JTableMouseClicked
-
-    private void jComboBox2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox2MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2MouseClicked
+    private void JTableDespesasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTableDespesasMouseClicked
+        int linha_selecionada = JTableDespesas.getSelectedRow(); // Pega a linha selecionada.
+        txtCodDesp.setText(JTableDespesas.getValueAt(linha_selecionada, 0).toString());
+    }//GEN-LAST:event_JTableDespesasMouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-    preencherCombo();
+        Color Roxo = new Color(88, 55, 66);
+        Color Laranja = new Color(242, 184, 171);
+        JTableDespesas.setSelectionBackground(Roxo);
+        JTableDespesas.setSelectionForeground(Laranja);
+        desabilitaCampos();
+        preencherCombo();
+        txtCodDesp.setEnabled(false);
+        timer.start();
+        preencherComboLancar();
+        TxtValor.setDocument(new teclasPermitidas());
+        frmHome.binario = 0;
+        TxtValor.setDocument(new LimitadorMoeda());
     }//GEN-LAST:event_formWindowOpened
 
-    private void JdcinicioPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_JdcinicioPropertyChange
-     try{ 
-        data1 = Jdcinicio.getDate();
-        datainicio = formato.format (data(Jdcinicio.getDate()));
-      System.out.println(datainicio);
-      // data receba um formato e formate o método data e guarde na varíável e guarde na caixa de combinação
-    
-  
+    private void JdcInicioPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_JdcInicioPropertyChange
+        try {
+            data1 = JdcInicio.getDate();
+            datainicio = fmt.format(data(JdcInicio.getDate()));
+            System.out.println(datainicio);
+            // data receba um formato e formate o método data e guarde na varíável e guarde na caixa de combinação
+
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_JdcInicioPropertyChange
+
+    private void JdcFimPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_JdcFimPropertyChange
+        try {
+            data2 = JdcFim.getDate();
+            datafim = fmt.format(data(JdcFim.getDate()));
+            System.out.println(datafim);
+            // data receba um formato e formate o método data e guarde na varíável e guarde na caixa de combinação
+
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_JdcFimPropertyChange
+
+    private void CmbDespesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmbDespesaActionPerformed
+        Despesa = (String) CmbDespesa.getSelectedItem().toString().substring(53).replace("</span></html>", "");
+
+    }//GEN-LAST:event_CmbDespesaActionPerformed
+
+    private void jcbLancamentoDespesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbLancamentoDespesaActionPerformed
+        NomeDespesa = (String) jcbLancamentoDespesa.getSelectedItem().toString().substring(53).replace("</span></html>", "");
+
+        System.out.println(NomeDespesa);
+        if (jcbLancamentoDespesa.getSelectedIndex() != 0) {
+
+            HabilitaCampos();
+
+            conecta.executaSql("select * from TipoDespesa where NomeDespesa = '" + NomeDespesa + "'");
+            try {
+                conecta.rs.first();
+                txtCodDesp.setText(conecta.rs.getString("codTipoDespesa"));
+
+            } catch (SQLException ex) {
+                Logger.getLogger(frmDespesas.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+    }//GEN-LAST:event_jcbLancamentoDespesaActionPerformed
+
+    private void JdcVencimentoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_JdcVencimentoPropertyChange
+
+
+    }//GEN-LAST:event_JdcVencimentoPropertyChange
+
+    private void JdcPagamentoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_JdcPagamentoPropertyChange
+
+
+    }//GEN-LAST:event_JdcPagamentoPropertyChange
+
+    private void formMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseMoved
+        frmHome.contador = 20;
+        contador = 10;          // TODO add your handling code here:
+    }//GEN-LAST:event_formMouseMoved
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        timer.stop();        // TODO add your handling code here:
+        frmHome.binario = 1;
+
+    }//GEN-LAST:event_formWindowClosing
+    int contador = 10;
+
+    public void escreva() {
+        System.out.println(contador);
+
     }
-    catch (Exception e){}
-    }//GEN-LAST:event_JdcinicioPropertyChange
 
-    private void JdcfimPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_JdcfimPropertyChange
-  try{ 
-        data2 = Jdcfim.getDate();
-        datafim = formato.format (data(Jdcfim.getDate()));
-      System.out.println(datafim);
-      // data receba um formato e formate o método data e guarde na varíável e guarde na caixa de combinação
-    
-  
-    }
-    catch (Exception e){}
-    }//GEN-LAST:event_JdcfimPropertyChange
+    private javax.swing.Timer timer = new javax.swing.Timer(60 * 1000, new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+            escreva();
+            contador--;
+            if (contador == 0) {
 
-    private void CmbDespesaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CmbDespesaMouseClicked
-int linha_selecionada = CmbDespesa.getSelectedIndex(); // Pega a linha selecionada.
-      txtCodesp.setText(JTable.getValueAt(linha_selecionada, 0).toString());
-      int cod = Integer.parseInt(txtCodesp.getText());
-      System.out.println(cod);
-      preencherTabela("Select * from TipoDespesa order by NomeDespesa  where codTipoDespesa ="+cod);     
-    }//GEN-LAST:event_CmbDespesaMouseClicked
+                try {
+                    dispose();
+                    timer.stop();
+                } catch (Exception ex) {
+                    Logger.getLogger(frmInsumos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
 
-    private void CmbDespesaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CmbDespesaMousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CmbDespesaMousePressed
-
-    private void CmbDespesaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CmbDespesaMouseEntered
- 
-        //Funciona, mas tem que voltar o mouse
-        
-        //int linha_selecionada = CmbDespesa.getSelectedIndex(); // Pega a linha selecionada.
-     // txtCodesp.setText(JTable.getValueAt(linha_selecionada, 0).toString());
-    //  int cod = Integer.parseInt(txtCodesp.getText());
-     // System.out.println(cod);
-     // preencherTabela("Select * from TipoDespesa order by NomeDespesa  where codTipoDespesa ="+cod);
-      //CmbDespesa.requestFocus();
-    }//GEN-LAST:event_CmbDespesaMouseEntered
-
-    private void CmbDespesaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CmbDespesaMouseExited
-      
-    }//GEN-LAST:event_CmbDespesaMouseExited
-
-    private void CmbDespesaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CmbDespesaMouseReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CmbDespesaMouseReleased
-
-    private void CmbDespesaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_CmbDespesaPropertyChange
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CmbDespesaPropertyChange
-
-    private void CmbDespesaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CmbDespesaItemStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CmbDespesaItemStateChanged
-
-    private void CmbDespesaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_CmbDespesaFocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CmbDespesaFocusGained
+    });
 
     /**
      * @param args the command line arguments
      */
-    
-    
-    int contador = 20;
-    
-    public void escreva()
-    {
-        System.out.println(contador);
-       
-    }
- 
-    private javax.swing.Timer timer = new javax.swing.Timer(60*1000,new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent e)
-        {
-            escreva();
-            contador--;
-            if(contador == 0)
-            {
-              
-                try {
-                    new frmLogin().setVisible(true);
-                } catch (Exception ex) {
-                    Logger.getLogger(frmDespesas.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
-        
-    });
-    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -421,144 +531,267 @@ int linha_selecionada = CmbDespesa.getSelectedIndex(); // Pega a linha seleciona
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnLancar;
     private javax.swing.JComboBox CmbDespesa;
-    private javax.swing.JTable JTable;
-    private com.toedter.calendar.JDateChooser Jdcfim;
-    private com.toedter.calendar.JDateChooser Jdcinicio;
+    private javax.swing.JTable JTableDespesas;
+    private com.toedter.calendar.JDateChooser JdcFim;
+    private com.toedter.calendar.JDateChooser JdcInicio;
+    private com.toedter.calendar.JDateChooser JdcPagamento;
+    private com.toedter.calendar.JDateChooser JdcVencimento;
+    private javax.swing.JTextField TxtValor;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
-    private com.toedter.calendar.JDateChooser jdtDatapagamento;
-    private com.toedter.calendar.JDateChooser jdtDatapagamento1;
-    private javax.swing.JTextField txtCodesp;
-    private javax.swing.JTextField txtValor1;
+    private javax.swing.JComboBox jcbLancamentoDespesa;
+    private javax.swing.JLabel lblTotal;
+    private javax.swing.JTextField txtCodDesp;
     // End of variables declaration//GEN-END:variables
-Date data1, data2;
-String datainicio, datafim, data;
+    NumberFormat z = NumberFormat.getCurrencyInstance();
+    SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
 
+    Date data1, data2, data3, data4;
+    String datainicio, datafim, data, Despesa, LancDesp, DataPag, DataVenc, NomeDespesa;
 
-  public Date datas(Date i){ 
-    // Método com retorno. Retorna data
-        datainicio=formato.format(i);
-        DateFormat df = DateFormat.getDateInstance
-                (DateFormat.LONG, new Locale ("pt","BR"));
-        
-    //Cria um novo formatador para formatar as datas em formato longo escrito em português
-    
-        
-                return i;
-                
- }
-     public Date data(Date f){ 
-    // Método com retorno. Retorna data
-        datafim=formato.format(f);
-        DateFormat df = DateFormat.getDateInstance
-                (DateFormat.LONG, new Locale ("pt","BR"));
-        
-    //Cria um novo formatador para formatar as datas em formato longo escrito em português
-    
-        
-                return f;
-                
- }
- 
- 
- 
- SimpleDateFormat formato =
-            new SimpleDateFormat("dd/MM/yyyy");
-    //Define Formato de Data
-    
- 
-public boolean validarCampos()
-{
-/*if (txtDespesa.getText().equals("")){	
-    JOptionPane.showMessageDialog(this, "Preencha o campo Despesa");
-   txtDespesa.requestFocus();
-   return false;
-}
-if (txtValor.getText().equals("")){	
-    JOptionPane.showMessageDialog(this, "Informe o Valor");
-   txtValor.requestFocus();
-   return false;
-}
-try{
-if (jdtDatapagamento.getDate().equals("")){	
-    JOptionPane.showMessageDialog(this, "Informe a data de Pagamento");
-   txtDespesa.requestFocus();
-   return false;
-}}catch(Exception erro){JOptionPane.showMessageDialog(this,"Informe a Data");}
-*/
-return true;
+    public boolean preencheObjeto() {
 
-}
-public void preencherTabela(String Sql){
-    ArrayList dados = new ArrayList();
-    String [] Colunas = new String[]{"Código","Nome da Despesa","Situação"};
-    
-    conecta.executaSql(Sql);
-    try{
-        conecta.rs.first();
-        do{
-    dados.add(new Object[]{conecta.rs.getInt("codTipoDespesa"),conecta.rs.getString("NomeDespesa"),conecta.rs.getString("SituacaoDespesa")});
-          }while(conecta.rs.next());
-        }
-    catch(Exception e){
-    JOptionPane.showMessageDialog(this,"Erro ao preencher o ArrayList");
-    
+        int ano = JdcPagamento.getCalendar().get(Calendar.YEAR);
+        int mes = JdcPagamento.getCalendar().get(Calendar.MONTH);
+        int dia = JdcPagamento.getCalendar().get(Calendar.DAY_OF_MONTH);
+        String DataPag = ano + "-" + mes + "-" + dia;
+
+        int ano1 = JdcVencimento.getCalendar().get(Calendar.YEAR);
+        int mes1 = JdcVencimento.getCalendar().get(Calendar.MONTH);
+        int dia1 = JdcVencimento.getCalendar().get(Calendar.DAY_OF_MONTH);
+        String DataVenc = ano1 + "-" + mes1 + "-" + dia1;
+
+        ObjLancaDespesa.setCodigo(Integer.parseInt(txtCodDesp.getText()));
+        ObjLancaDespesa.setValor(Double.parseDouble(TxtValor.getText().replace(".", "").replace(",", ".")));
+        ObjLancaDespesa.setDataPagamento(DataPag);
+        ObjLancaDespesa.setDataVencimento(DataVenc);
+
+        return true;
     }
-    
-    ModeloTabelas modelo = new ModeloTabelas(dados, Colunas); //Instacia a classe do modelo da Tabela.
-    JTable.setModel(modelo);
-    JTable.getColumnModel().getColumn(0).setPreferredWidth(80); // Tamanho em pixel da coluna
-    JTable.getColumnModel().getColumn(0).setResizable(false);
-    JTable.getColumnModel().getColumn(1).setPreferredWidth(299);
-    JTable.getColumnModel().getColumn(1).setResizable(false);
-    JTable.getColumnModel().getColumn(2).setPreferredWidth(123);
-    JTable.getColumnModel().getColumn(2).setResizable(false);
-    JTable.getTableHeader().setReorderingAllowed(false);
-    JTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);//Não pode ser redimensionada
-    JTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-    
-  
+
+    public Date datas(Date i) {
+        // Método com retorno. Retorna data
+        datainicio = fmt.format(i);
+        DateFormat df = DateFormat.getDateInstance(DateFormat.LONG, new Locale("pt", "BR"));
+
+        //Cria um novo formatador para formatar as datas em formato longo escrito em português
+        return i;
+
+    }
+
+    public Date data(Date f) {
+        // Método com retorno. Retorna data
+        datafim = fmt.format(f);
+        DateFormat df = DateFormat.getDateInstance(DateFormat.LONG, new Locale("pt", "BR"));
+
+        //Cria um novo formatador para formatar as datas em formato longo escrito em português
+        return f;
+
+    }
+
+    public boolean validarCampos() {
+        if (TxtValor.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Preencha o campo Despesa");
+            TxtValor.requestFocus();
+            return false;
+        }
+        if (TxtValor.getText().length() > 8) {
+            JOptionPane.showMessageDialog(this, "Salário Superior ao Permitido");
+            return false;
+        }
+        try {
+            if (JdcVencimento.getDate().equals("")) {
+                JOptionPane.showMessageDialog(this, "Informe a data de Vencimento");
+                JdcVencimento.requestFocus();
+                return false;
+            }
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(this, "Informe a Data");
+        }
+
+        try {
+            if (JdcPagamento.getDate().equals("")) {
+                JOptionPane.showMessageDialog(this, "Informe a data de Pagamento");
+                JdcPagamento.requestFocus();
+                return false;
+            }
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(this, "Informe a Data");
+        }
+
+        return true;
+
+    }
+
+    public void preencherTabela(String Sql) {
+        ArrayList dados = new ArrayList();
+        String[] Colunas = new String[]{
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Código</span></html>",
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Nome da Despesa</span></html>",
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Situação</span></html>",
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Valor</span></html>",
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Pagamento</span></html>",
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Vencimento</span></html>"
+        };
+
+        NumberFormat z = NumberFormat.getCurrencyInstance();
+        conecta.executaSql(Sql);
+        try {
+            conecta.rs.first();
+            do {
+                dados.add(new Object[]{conecta.rs.getInt("codTipoDespesa"), conecta.rs.getString("NomeDespesa"), conecta.rs.getString("SituacaoDespesa"), z.format(conecta.rs.getDouble("ValorDespesa")), fmt.format(conecta.rs.getDate("DataPagamento")), fmt.format(conecta.rs.getDate("DataVencimento"))});
+            } while (conecta.rs.next());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro ao preencher a Tabela" + e);
+
+        }
+
+        ModeloTabelas modelo = new ModeloTabelas(dados, Colunas); //Instacia a classe do modelo da Tabela.
+        JTableDespesas.setModel(modelo);
+        JTableDespesas.getColumnModel().getColumn(0).setPreferredWidth(50); // Tamanho em pixel da coluna
+        JTableDespesas.getColumnModel().getColumn(0).setResizable(false);
+        JTableDespesas.getColumnModel().getColumn(1).setPreferredWidth(130);
+        JTableDespesas.getColumnModel().getColumn(1).setResizable(false);
+        JTableDespesas.getColumnModel().getColumn(2).setPreferredWidth(60);
+        JTableDespesas.getColumnModel().getColumn(2).setResizable(false);
+        JTableDespesas.getColumnModel().getColumn(3).setPreferredWidth(120);
+        JTableDespesas.getColumnModel().getColumn(3).setResizable(false);
+        JTableDespesas.getColumnModel().getColumn(4).setPreferredWidth(90);
+        JTableDespesas.getColumnModel().getColumn(4).setResizable(false);
+        JTableDespesas.getColumnModel().getColumn(5).setPreferredWidth(90);
+        JTableDespesas.getColumnModel().getColumn(5).setResizable(false);
+        JTableDespesas.getTableHeader().setReorderingAllowed(false);
+        JTableDespesas.setAutoResizeMode(JTableDespesas.AUTO_RESIZE_OFF);//Não pode ser redimensionada
+        JTableDespesas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+    }
+
+    public void preencherCombo() {
+        connCombo.getCon();
+        connCombo.executaSql("select NomeDespesa from TipoDespesa as Td inner join Despesa as D on D.CodDespesa = Td.codTipoDespesa order by NomeDespesa");
+
+        try {
+            connCombo.rs.first();
+            CmbDespesa.addItem("<html><span style='color:#583742;font-weight: bold;'>Selecione a Despesa...</span></html>");
+            CmbDespesa.addItem("<html><span style='color:#583742;font-weight: bold;'>Todas</span></html>");
+
+            do {
+                CmbDespesa.addItem("<html><span style='color:#583742;font-weight: bold;'>" + (connCombo.rs.getString("NomeDespesa") + "</span></html>"));
+
+            } while (connCombo.rs.next());
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Erro ao preencher ComboBox" + e);
+        }
+    }
+
+    public void preencherComboLancar() {
+        connCombo.getCon();
+        connCombo.executaSql("select NomeDespesa from TipoDespesa where SituacaoDespesa = 'Ativo' order by NomeDespesa");
+
+        try {
+            connCombo.rs.first();
+            jcbLancamentoDespesa.addItem("<html><span style='color:#583742;font-weight: bold;'>Selecione a Despesa...</span></html>");
+            do {
+
+                jcbLancamentoDespesa.addItem("<html><span style='color:#583742;font-weight: bold;'>" + (connCombo.rs.getString("NomeDespesa") + "</span></html>"));
+
+            } while (connCombo.rs.next());
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Erro ao preencher ComboBox" + e);
+        }
+    }
+
+    public boolean ValidaDatas() {
+        try {
+
+            if ((data1.getDate() - data2.getDate()) > 0) {
+                JOptionPane.showMessageDialog(this, "Data inicial maior que a data final, ou data final menor que a inicial");
+                return false;
+            }
+
+        } catch (Exception e) {
+        }
+
+        if (JdcInicio.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "Informe a data Inicial");
+
+            return false;
+        }
+        if (JdcFim.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "Informe a data Final");
+
+            return false;
+        }
+
+        return true;
+
+    }
+
+    public void desabilitaCampos() {
+        TxtValor.setEnabled(false);
+        JdcPagamento.setEnabled(false);
+        JdcVencimento.setEnabled(false);
+        BtnLancar.setEnabled(true);
+    }
+
+    public void HabilitaCampos() {
+        TxtValor.setEnabled(true);
+        JdcPagamento.setEnabled(true);
+        JdcVencimento.setEnabled(true);
+        BtnLancar.setEnabled(true);
+    }
+
+    public void limparCampos() {
+        TxtValor.setText("");
+        JdcPagamento.setDate(null);
+        JdcVencimento.setDate(null);
+        jcbLancamentoDespesa.setSelectedIndex(0);
+        txtCodDesp.setText("");
+    }
+
+    public boolean ValidaCampos() {
+
+        if (JdcPagamento.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "Informe a Data de Pamento");
+
+            return false;
+        }
+        if (JdcVencimento.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "Informe a Data de Vencimento");
+
+            return false;
+        }
+
+        if (TxtValor.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Informe o valor da Despesa");
+            return false;
+        }
+        if (jcbLancamentoDespesa.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "Selecione uma Despesa");
+            return false;
+        }
+
+        return true;
+
+    }
 
 }
-public void preencherCombo()
-{
-         connCombo.getCon();
-         connCombo.executaSql("select NomeDespesa from TipoDespesa where SituacaoDespesa = 'Ativo' order by NomeDespesa");
-         CmbDespesa.removeAllItems();
-         try{
-         connCombo.rs.first();
-         do{
-         CmbDespesa.addItem(connCombo.rs.getString("NomeDespesa"));
-         
-         }while(connCombo.rs.next());
-         
-         
-         }catch(Exception e){
-         JOptionPane.showMessageDialog(rootPane, "Erro ao preencher ComboBox"+e);
-         }
-
-}
-
-
-}
-
-
-
-

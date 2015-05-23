@@ -123,7 +123,6 @@ namespace DAL.DAO
             }
         }
 
-
         public DataTable ExecuteProc(string strNomeProc, SqlParameter parametro)
         {
             try

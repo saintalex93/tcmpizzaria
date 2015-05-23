@@ -13,7 +13,7 @@
 		//String strConexao = "Password=peganomeupau; Persist Security Info=True; User ID=sa; Initial Catalog=Pizzaria; Data Source=TUCA\\SQLEXPRESS";
 
 		//String do curso
-		String strConexao = "Password=etesp; Persist Security Info=True; User ID=aluno; Initial Catalog=Pizzaria; Data Source=LAB02T-11";
+		String strConexao = "Password=etesp; Persist Security Info=True; User ID=aluno; Initial Catalog=Pizzaria; Data Source=LAB02T-20";
 
 		
 		SqlConnection objConexao = new SqlConnection(strConexao);
@@ -26,7 +26,8 @@
 		contato = "#";
 		while (dr.Read())
 		{
-			contato += (dr[0].ToString()) + ";";
+			contato += (dr[0].ToString()) + ",";
+			contato += (dr[1].ToString()) + ";";
 		}
 		contato+="^";
 		Label1.Text = contato;

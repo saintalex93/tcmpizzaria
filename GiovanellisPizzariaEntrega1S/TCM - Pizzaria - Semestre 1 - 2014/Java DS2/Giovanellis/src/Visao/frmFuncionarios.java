@@ -4,31 +4,70 @@
  * and open the template in the editor.
  */
 package Visao;
+
+import Modelo.ModeloTabelas;
+
 import giovanellis.SqlServer;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
+import Controlador.ControladorLancamentoFuncionario;
+import Modelo.ModeloFuncionario;
+import java.awt.Color;
+import java.util.Calendar;
+import Modelo.teclasPermitidas;
+import Modelo.DatasPermitidas;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import Modelo.TextDocument;
+import java.awt.event.KeyEvent;
+import static java.awt.event.KeyEvent.VK_BACK_SPACE;
+import Modelo.LimitadorMoeda;
 
 /**
  *
  * @author Alex
  */
 public class frmFuncionarios extends javax.swing.JFrame {
-   
-  
-  SqlServer connCombo = new SqlServer();
-  
+
+    LimitadorMoeda Moeda;
+    TextDocument Permitircasas;
+    teclasPermitidas ValidaTeclas;
+    DatasPermitidas ValidaDatas;
+    SqlServer conecta;
+    SqlServer connCombo;
+    ControladorLancamentoFuncionario ControladorFun;
+    ModeloFuncionario ModFun;
+
     /**
      * Creates new form frmFuncionarios
      */
     public frmFuncionarios() throws Exception {
-        
-          connCombo.getCon();
-         this.setIconImage(new ImageIcon(getClass().getResource("/giovanellis/Icone.png")).getImage());  
-        
-         initComponents();
+        Moeda = new LimitadorMoeda();
+        Permitircasas = new TextDocument();
+        ValidaTeclas = new teclasPermitidas();
+        ValidaDatas = new DatasPermitidas();
+        connCombo = new SqlServer();
+        conecta = new SqlServer();
+        ControladorFun = new ControladorLancamentoFuncionario();
+        ModFun = new ModeloFuncionario();
+        conecta.getCon();
+        connCombo.getCon();
+
+        Color Fundo = new Color(238, 235, 227);
+        getContentPane().setBackground(Fundo);
+        setAlwaysOnTop(true);
+        this.setIconImage(new ImageIcon(getClass().getResource("/Imagens/Icone.png")).getImage());
+
+        initComponents();
     }
 
     /**
@@ -44,174 +83,415 @@ public class frmFuncionarios extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         JdcInicio = new com.toedter.calendar.JDateChooser();
         JdcFim = new com.toedter.calendar.JDateChooser();
-        jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        lblTotal = new javax.swing.JLabel();
+        JcbFuncionari = new javax.swing.JComboBox();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        JtableFuncionarios = new javax.swing.JTable();
         jcbFuncionarioPagamento = new javax.swing.JComboBox();
         jdcSalario = new com.toedter.calendar.JDateChooser();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        mtxtVlrSalario = new javax.swing.JFormattedTextField();
         btnIncluirSalario = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        txtTipodePagamento = new javax.swing.JTextField();
+        txtCod = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        txtSalario = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Funcionários");
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowOpened(java.awt.event.WindowEvent evt) {
-                formWindowOpened(evt);
-            }
-        });
+        setResizable(false);
         addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 formMouseMoved(evt);
             }
         });
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        btnVoltar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnVoltar.setForeground(new java.awt.Color(239, 111, 83));
+        btnVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/button.png"))); // NOI18N
         btnVoltar.setText("Voltar");
+        btnVoltar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnVoltar.setOpaque(false);
         btnVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVoltarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 520, 70, -1));
+        getContentPane().add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 620, 100, 40));
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(239, 111, 83));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/button.png"))); // NOI18N
         jButton1.setText("Calcular");
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.setOpaque(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 520, 70, -1));
-        getContentPane().add(JdcInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 140, -1));
-        getContentPane().add(JdcFim, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 240, 140, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 620, 100, 40));
 
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Total");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 470, 70, 30));
+        JdcInicio.setOpaque(false);
+        JdcInicio.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                JdcInicioPropertyChange(evt);
+            }
+        });
+        getContentPane().add(JdcInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, 140, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 410, -1));
+        JdcFim.setOpaque(false);
+        JdcFim.setVerifyInputWhenFocusTarget(false);
+        JdcFim.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                JdcFimPropertyChange(evt);
+            }
+        });
+        getContentPane().add(JdcFim, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 350, 140, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        lblTotal.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblTotal.setForeground(new java.awt.Color(88, 55, 66));
+        lblTotal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTotal.setText("Total");
+        getContentPane().add(lblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 570, 640, 30));
+
+        JcbFuncionari.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JcbFuncionariActionPerformed(evt);
+            }
+        });
+        getContentPane().add(JcbFuncionari, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 400, 410, -1));
+
+        JtableFuncionarios.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        JtableFuncionarios.setForeground(new java.awt.Color(88, 55, 66));
+        JtableFuncionarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Nome", "Salário", "Mês de Pagamento"
+
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(JtableFuncionarios);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 410, 100));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 450, 620, 100));
 
-        jcbFuncionarioPagamento.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione..." }));
-        getContentPane().add(jcbFuncionarioPagamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 88, 260, -1));
-        getContentPane().add(jdcSalario, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 58, 140, -1));
+        jcbFuncionarioPagamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbFuncionarioPagamentoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jcbFuncionarioPagamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, 260, -1));
 
-        jLabel2.setText("Data de lançamento:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
+        jdcSalario.setOpaque(false);
+        jdcSalario.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jdcSalarioPropertyChange(evt);
+            }
+        });
+        getContentPane().add(jdcSalario, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, 140, -1));
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(88, 55, 66));
+        jLabel2.setText("Código Funcionário:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 83, -1, -1));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(88, 55, 66));
         jLabel3.setText("Valor:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 243, -1, -1));
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(88, 55, 66));
         jLabel4.setText("Funcionário:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 123, -1, -1));
 
-        mtxtVlrSalario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
-        getContentPane().add(mtxtVlrSalario, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 110, -1));
-
+        btnIncluirSalario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnIncluirSalario.setForeground(new java.awt.Color(239, 111, 83));
+        btnIncluirSalario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/button.png"))); // NOI18N
         btnIncluirSalario.setText("Incluir");
-        getContentPane().add(btnIncluirSalario, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, -1, -1));
+        btnIncluirSalario.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnIncluirSalario.setOpaque(false);
+        btnIncluirSalario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIncluirSalarioActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnIncluirSalario, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 190, 100, 40));
 
+        jLabel5.setBackground(new java.awt.Color(88, 55, 66));
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(239, 111, 83));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Lançamento de Salário");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 4, 480, 40));
+        jLabel5.setOpaque(true);
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 660, 50));
 
+        jLabel6.setBackground(new java.awt.Color(88, 55, 66));
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(239, 111, 83));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Consulta de Lançamentos");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 490, 30));
+        jLabel6.setOpaque(true);
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 280, 660, 40));
 
-        jLabel7.setText("Tipo de pagamento");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(88, 55, 66));
+        jLabel7.setText("Tipo de pagamento:");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 203, -1, -1));
+        getContentPane().add(txtTipodePagamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 200, 170, -1));
+        getContentPane().add(txtCod, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 80, 50, -1));
 
-        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-503)/2, (screenSize.height-598)/2, 503, 598);
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(88, 55, 66));
+        jLabel1.setText("Data Final");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(382, 356, 60, -1));
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(88, 55, 66));
+        jLabel8.setText("Data Inicial");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 356, -1, -1));
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(88, 55, 66));
+        jLabel9.setText("Data de lançamento:");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 163, -1, -1));
+
+        txtSalario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtSalarioKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtSalarioKeyTyped(evt);
+            }
+        });
+        getContentPane().add(txtSalario, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 240, 120, -1));
+
+        setSize(new java.awt.Dimension(648, 713));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
-        try {
-            new frmHome().setVisible(true);
-        } catch (Exception ex) {
-            Logger.getLogger(frmFuncionarios.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    timer.stop();
-    dispose();
+        dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void formMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseMoved
-contador=20;      
+        frmHome.contador = 20;
+        contador = 10;
     }//GEN-LAST:event_formMouseMoved
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-    timer.start();
-    PreencherCombobox();
-    jdcSalario.setDate(new Date());
+
+        txtSalario.setDocument(new LimitadorMoeda());
+        txtCod.setEnabled(false);
+        DesabilitaCampos();
+//      jdcSalario.setDocument(new DatasPermitidas());
+        Color Roxo = new Color(88, 55, 66);
+        Color Laranja = new Color(242, 184, 171);
+        JtableFuncionarios.setSelectionBackground(Roxo);
+        JtableFuncionarios.setSelectionForeground(Laranja);
+        timer.start();
+        PreencherCombobox();
+        jdcSalario.setDate(new Date());
+
     }//GEN-LAST:event_formWindowOpened
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        funcionarioConsulta = (String) JcbFuncionari.getSelectedItem().toString().substring(53).replace("</span></html>", "");
         data1 = JdcInicio.getDate();
         data2 = JdcFim.getDate();
-        try{
-        if((data1.getDate() - data2.getDate())>0 )  
-        {
-        
-        JOptionPane.showMessageDialog(null, "Data Incorreta");
-            
+        System.out.println(funcionarioConsulta);
+
+        if (JcbFuncionari.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "Escolha um Funcionário ou Todos.");
+        } else if (ValidaDatas()) {
+            if (JcbFuncionari.getSelectedIndex() == 1) {
+                preencherTabela("select f.cod_funcionario, f.Nome_func, p.tipoPagamento, p.dataExpedido, P.valorPagamento from "
+                        + "funcionario as F inner join pagamento as P on f.cod_funcionario = p.cod_funcionario where p.dataExpedido between '" + datainicio + "' and '" + datafim + "' ");
+            } else {
+                preencherTabela("select f.cod_funcionario, f.Nome_func, p.tipoPagamento, p.dataExpedido, P.valorPagamento from "
+                        + "funcionario as F inner join pagamento as P on f.cod_funcionario = p.cod_funcionario where p.dataExpedido between '" + datainicio + "' and '" + datafim + "' and f.Nome_func = '" + funcionarioConsulta + "' ");
+
+            }
+
+            try {
+                double x = 0.0;
+                for (int y = 0; y < JtableFuncionarios.getRowCount(); y++) {
+                    x += Double.parseDouble(JtableFuncionarios.getModel().getValueAt(y, 4).toString().replace("R$", "").replace(".", "").replace(",", "."));
+                }
+                lblTotal.setText(z.format(x));
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Erro: " + e);
+
+            }
+
         }
-        
-        }catch(Exception e){}
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
- 
-     int contador = 20;
-    
-    public void escreva()
-    {
-        System.out.println(contador);
+
+    private void jcbFuncionarioPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbFuncionarioPagamentoActionPerformed
+        funcionariolancamento = (String) jcbFuncionarioPagamento.getSelectedItem().toString().substring(53).replace("</span></html>", "");
+
+        System.out.println(funcionariolancamento);
+
+        if (jcbFuncionarioPagamento.getSelectedIndex() == 0) {
+
+            DesabilitaCampos();
+        } else {
+            HabilitarCampos();
+
+            try {
+                conecta.executaSql("select * from funcionario where nome_func = '" + funcionariolancamento + "'");
+                conecta.rs.first();
+                txtCod.setText(conecta.rs.getString("cod_funcionario"));
+
+            } catch (Exception ex) {
+                Logger.getLogger(frmFuncionarios.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+    }//GEN-LAST:event_jcbFuncionarioPagamentoActionPerformed
+
+    private void JcbFuncionariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JcbFuncionariActionPerformed
+
+
+    }//GEN-LAST:event_JcbFuncionariActionPerformed
+
+    private void JdcInicioPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_JdcInicioPropertyChange
+        try {
+            data1 = JdcInicio.getDate();
+            datainicio = fmt.format(datas(JdcInicio.getDate()));
+            System.out.println(datainicio);
+            // data receba um formato e formate o método data e guarde na varíável e guarde na caixa de combinação
+
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_JdcInicioPropertyChange
+
+    private void JdcFimPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_JdcFimPropertyChange
+        try {
+            data2 = JdcFim.getDate();
+            datafim = fmt.format(data(JdcFim.getDate()));
+            System.out.println(datafim);
+            // data receba um formato e formate o método data e guarde na varíável e guarde na caixa de combinação
+
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_JdcFimPropertyChange
+
+    private void btnIncluirSalarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncluirSalarioActionPerformed
        
-    }
- 
-    private javax.swing.Timer timer = new javax.swing.Timer(60*1000,new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent e)
-        {
-            escreva();
-            contador--;
-            if(contador == 0)
-            {
-                
-                
-                try {
-                    new frmLogin().setVisible(true);
-                } catch (Exception ex) {
-                    Logger.getLogger(frmFuncionarios.class.getName()).log(Level.SEVERE, null, ex);
+        if (jcbFuncionarioPagamento.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "Escolha um funcionário");
+
+        } else if (txtSalario.getText().length() > 8) {
+
+            JOptionPane.showMessageDialog(this, "Salário Superior ao Permitido");
+
+        } else {
+            if (ValidaCampos()) {
+                if (preencheObjeto()) {
+                    try {
+                        ControladorFun.InserirCliente(ModFun);
+                        JOptionPane.showMessageDialog(this, "Dados Inseridos com sucesso");
+
+                        preencherTabela("select f.cod_funcionario, f.Nome_func, p.tipoPagamento, p.dataExpedido, P.valorPagamento from "
+                                + "funcionario as F inner join pagamento as P on f.cod_funcionario = p.cod_funcionario where f.Nome_func = '" + funcionariolancamento + "' ");
+
+                        limpacampos();
+
+                    } catch (Exception ex) {
+                        Logger.getLogger(frmDespesas.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
             }
         }
+    }//GEN-LAST:event_btnIncluirSalarioActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        timer.stop();
         
+    }//GEN-LAST:event_formWindowClosing
+
+    private void txtSalarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSalarioKeyPressed
+
+//                if(evt.getKeyCode() != KeyEvent.VK_BACK_SPACE && txtSalario.getText().)
+//        {
+//          
+//            
+//        
+//        if (txtSalario.getText().length() ==4)
+//            {
+//               txtSalario.setText(txtSalario.getText()+".");
+//            }
+//                
+//        }
+//        
+    }//GEN-LAST:event_txtSalarioKeyPressed
+
+    private void txtSalarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSalarioKeyTyped
+        // O que retorna na Label como caracter
+
+        if (txtSalario.getText().length() == 7) {
+            evt.consume();
+        }
+
+
+    }//GEN-LAST:event_txtSalarioKeyTyped
+
+    private void jdcSalarioPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jdcSalarioPropertyChange
+try {
+            dataSalario = jdcSalario.getDate();
+            DataBanco = fmdb.format(datas(jdcSalario.getDate()));
+            System.out.println(DataBanco);
+            // data receba um formato e formate o método data e guarde na varíável e guarde na caixa de combinação
+
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_jdcSalarioPropertyChange
+    int contador = 10;
+
+    public void escreva() {
+        System.out.println(contador);
+
+    }
+
+    private javax.swing.Timer timer = new javax.swing.Timer(60 * 1000, new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+            escreva();
+            contador--;
+            if (contador == 0) {
+
+                try {
+                    dispose();
+                    timer.stop();
+                } catch (Exception ex) {
+                    Logger.getLogger(frmInsumos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+
     });
-    
-    
-    
+
     /**
      * @param args the command line arguments
      */
@@ -244,6 +524,11 @@ contador=20;
             public void run() {
                 try {
                     new frmFuncionarios().setVisible(true);
+
+                    try {
+
+                    } catch (Exception e) {
+                    }
                 } catch (Exception ex) {
                     Logger.getLogger(frmFuncionarios.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -252,12 +537,13 @@ contador=20;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox JcbFuncionari;
     private com.toedter.calendar.JDateChooser JdcFim;
     private com.toedter.calendar.JDateChooser JdcInicio;
+    private javax.swing.JTable JtableFuncionarios;
     private javax.swing.JButton btnIncluirSalario;
     private javax.swing.JButton btnVoltar;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -265,31 +551,187 @@ contador=20;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JComboBox jcbFuncionarioPagamento;
     private com.toedter.calendar.JDateChooser jdcSalario;
-    private javax.swing.JFormattedTextField mtxtVlrSalario;
+    private javax.swing.JLabel lblTotal;
+    private javax.swing.JTextField txtCod;
+    private javax.swing.JTextField txtSalario;
+    private javax.swing.JTextField txtTipodePagamento;
     // End of variables declaration//GEN-END:variables
+NumberFormat z = NumberFormat.getCurrencyInstance();
+    SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
+     SimpleDateFormat fmdb = new SimpleDateFormat("yyyy-MM-dd");
+    DecimalFormat df = new DecimalFormat("#,##0.00");
+    Date data1, data2, dataSalario;
 
-Date data1, data2;
+    String funcionario, funcionarioConsulta, funcionariolancamento, DataBanco;
+    int cod = 0;
 
+    public boolean ValidaCampos() {
+        if (txtTipodePagamento.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Preencha o campo Tipo de Pagamento");
+            return false;
+        }
+        if (txtSalario.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Preencha o campo Valor");
+            return false;
+        }
+        if (jdcSalario.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "Preencha o campo Data de Lançamento");
+            return false;
+        }
 
-public void PreencherCombobox(){
-         connCombo.getCon();
-         connCombo.executaSql("select Nome_Func from Funcionario order by Nome_Func");
-         jcbFuncionarioPagamento.removeAllItems();
-         
-         try{
-         connCombo.rs.first();
-         do{
-         jcbFuncionarioPagamento.addItem(connCombo.rs.getString("Nome_Func"));
-         
-        }while(connCombo.rs.next());
-         
-         
-         }catch(Exception e){
-         JOptionPane.showMessageDialog(rootPane, "Erro ao preencher ComboBox"+e);
-         }
+        return true;
+    }
 
-}}
+    public void DesabilitaCampos() {
+        jdcSalario.setEnabled(false);
+        txtSalario.setEnabled(false);
+        txtTipodePagamento.setEnabled(false);
+        btnIncluirSalario.setEnabled(false);
+    }
+
+    public void HabilitarCampos() {
+        jdcSalario.setEnabled(true);
+        txtSalario.setEnabled(true);
+        txtTipodePagamento.setEnabled(true);
+        btnIncluirSalario.setEnabled(true);
+    }
+
+    public void PreencherCombobox() {
+        connCombo.getCon();
+        connCombo.executaSql("select Nome_Func from Funcionario order by Nome_Func");
+
+        try {
+
+            connCombo.rs.first();
+            jcbFuncionarioPagamento.addItem("<html><span style='color:#583742;font-weight: bold;'>Selecione o Funcionário...</span></html>");
+            JcbFuncionari.addItem("<html><span style='color:#583742;font-weight: bold;'>Selecione o Funcionário...</span></html>");
+            JcbFuncionari.addItem("<html><span style='color:#583742;font-weight: bold;'>Todos</span></html>");
+
+            do {
+
+                jcbFuncionarioPagamento.addItem("<html><span style='color:#583742;font-weight: bold;'>" + (connCombo.rs.getString("Nome_Func") + "</span></html>"));
+                JcbFuncionari.addItem("<html><span style='color:#583742;font-weight: bold;'>" + (connCombo.rs.getString("Nome_Func") + "</span></html>"));
+
+            } while (connCombo.rs.next());
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Erro ao preencher ComboBox" + e);
+        }
+
+    }
+
+    public void preencherTabela(String Sql) {
+        ArrayList dados = new ArrayList();
+        String[] Colunas = new String[]{"<html><span style='color:#ef6f53;font-weight: bold;'>Código</span></html>",
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Nome</span></html>",
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Tipo Pagamento</span></html>",
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Data Pagamento</span></html>",
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Valor</span></html>"};
+
+        conecta.executaSql(Sql);
+        try {
+            conecta.rs.first();
+            do {
+
+                dados.add(new Object[]{conecta.rs.getInt("cod_funcionario"), conecta.rs.getString("Nome_func"),
+                    conecta.rs.getString("tipoPagamento"), fmt.format(conecta.rs.getDate("dataExpedido")), z.format(conecta.rs.getDouble("valorPagamento"))});
+
+            } while (conecta.rs.next());
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Não há lançamentos" +e);
+
+        }
+
+        ModeloTabelas modelo = new ModeloTabelas(dados, Colunas); //Instacia a classe do modelo da Tabela.
+        JtableFuncionarios.setModel(modelo);
+        JtableFuncionarios.getColumnModel().getColumn(0).setPreferredWidth(63); // Tamanho em pixel da coluna
+        JtableFuncionarios.getColumnModel().getColumn(0).setResizable(false);
+        JtableFuncionarios.getColumnModel().getColumn(1).setPreferredWidth(190);
+        JtableFuncionarios.getColumnModel().getColumn(1).setResizable(false);
+        JtableFuncionarios.getColumnModel().getColumn(2).setPreferredWidth(150);
+        JtableFuncionarios.getColumnModel().getColumn(2).setResizable(false);
+        JtableFuncionarios.getColumnModel().getColumn(3).setPreferredWidth(110);
+        JtableFuncionarios.getColumnModel().getColumn(3).setResizable(false);
+        JtableFuncionarios.getColumnModel().getColumn(4).setPreferredWidth(100);
+        JtableFuncionarios.getColumnModel().getColumn(4).setResizable(false);
+        JtableFuncionarios.getTableHeader().setReorderingAllowed(false);
+        JtableFuncionarios.setAutoResizeMode(JtableFuncionarios.AUTO_RESIZE_OFF);//Não pode ser redimensionada
+        JtableFuncionarios.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+    }
+
+    public boolean ValidaDatas() {
+        try {
+
+            if ((data1.getDate() - data2.getDate()) > 0) {
+                JOptionPane.showMessageDialog(this, "Data inicial maior que a data final, ou data final menor que a inicial");
+                return false;
+            }
+
+        } catch (Exception e) {
+        }
+
+        if (JdcInicio.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "Informe a data Inicial");
+
+            return false;
+        }
+        if (JdcFim.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "Informe a data Final");
+
+            return false;
+        }
+
+        return true;
+
+    }
+
+    String datainicio, datafim, data;
+
+    public Date datas(Date i) {
+        // Método com retorno. Retorna data
+        datainicio = fmt.format(i);
+        DateFormat df = DateFormat.getDateInstance(DateFormat.LONG, new Locale("pt", "BR"));
+
+        return i;
+
+    }
+
+    public Date data(Date f) {
+        // Método com retorno. Retorna data
+        datafim = fmt.format(f);
+        DateFormat df = DateFormat.getDateInstance(DateFormat.LONG, new Locale("pt", "BR"));
+
+        return f;
+
+    }
+
+    public boolean preencheObjeto() {
+
+        
+        
+
+        ModFun.setCodFuncionario(Integer.parseInt(txtCod.getText()));
+        ModFun.setValorPagamento(Double.parseDouble(txtSalario.getText().replace(".", "").replace(",", ".")));
+        ModFun.setDataExpedido(DataBanco);
+        ModFun.setTipodeDespesa(txtTipodePagamento.getText());
+
+        return true;
+    }
+
+    public void limpacampos() {
+        txtCod.setText("");
+        txtSalario.setText("");
+        txtTipodePagamento.setText("");
+        jdcSalario.setDate(null);
+        jcbFuncionarioPagamento.setSelectedIndex(0);
+
+    }
+
+}

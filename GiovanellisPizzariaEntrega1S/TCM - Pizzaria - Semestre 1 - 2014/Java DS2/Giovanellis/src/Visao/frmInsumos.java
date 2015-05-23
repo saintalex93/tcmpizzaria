@@ -4,24 +4,44 @@
  * and open the template in the editor.
  */
 package Visao;
+
+import Modelo.ModeloTabelas;
 import giovanellis.SqlServer;
+import java.awt.Color;
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
 
 /**
  *
  * @author Alex
  */
 public class frmInsumos extends javax.swing.JFrame {
-SqlServer conn;
+
+    SqlServer connCombo;
+    SqlServer conecta;
+
     /**
      * Creates new form frmInsumos
      */
     public frmInsumos() throws Exception {
-        conn = new SqlServer();
-         this.setIconImage(new ImageIcon(getClass().getResource("/giovanellis/Icone.png")).getImage());  
+        conecta = new SqlServer();
+        connCombo = new SqlServer();
+        this.setIconImage(new ImageIcon(getClass().getResource("/Imagens/Icone.png")).getImage());
         initComponents();
+        Color Fundo = new Color(238, 235, 227);
+        getContentPane().setBackground(Fundo);
+        //  setAlwaysOnTop(true);
     }
 
     /**
@@ -33,159 +53,226 @@ SqlServer conn;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        JdcInicio = new com.toedter.calendar.JDateChooser();
+        JdcFim = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        JTableInsumos = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        lblTotal = new javax.swing.JLabel();
+        JcbInsumos = new javax.swing.JComboBox();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Insumos");
         addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
         });
+        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                formMouseMoved(evt);
+            }
+        });
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        JdcInicio.setOpaque(false);
+        JdcInicio.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                JdcInicioPropertyChange(evt);
+            }
+        });
+        getContentPane().add(JdcInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 131, -1));
+
+        JdcFim.setOpaque(false);
+        JdcFim.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                JdcFimPropertyChange(evt);
+            }
+        });
+        getContentPane().add(JdcFim, new org.netbeans.lib.awtextra.AbsoluteConstraints(586, 70, 131, -1));
+
+        jLabel1.setBackground(new java.awt.Color(88, 55, 66));
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(239, 111, 83));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Consulta de Lançamentos");
+        jLabel1.setOpaque(true);
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -7, 727, 50));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        JTableInsumos.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        JTableInsumos.setForeground(new java.awt.Color(88, 55, 66));
+        JTableInsumos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(JTableInsumos);
 
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 141, 707, 149));
+
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(239, 111, 83));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/button.png"))); // NOI18N
         jButton1.setText("Voltar");
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.setOpaque(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 340, 100, 40));
 
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(239, 111, 83));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/button.png"))); // NOI18N
         jButton2.setText("Calcular");
+        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton2.setOpaque(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 100, 40));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Total");
+        lblTotal.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblTotal.setForeground(new java.awt.Color(88, 55, 66));
+        lblTotal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTotal.setText("Total");
+        getContentPane().add(lblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 308, 727, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        JcbInsumos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JcbInsumosActionPerformed(evt);
+            }
+        });
+        getContentPane().add(JcbInsumos, new org.netbeans.lib.awtextra.AbsoluteConstraints(259, 103, 210, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
-                .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(156, 156, 156)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(161, 161, 161)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(39, 39, 39)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addGap(44, 44, 44))
-        );
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(88, 55, 66));
+        jLabel3.setText("Data Final");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 76, -1, -1));
 
-        setSize(new java.awt.Dimension(416, 414));
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(88, 55, 66));
+        jLabel4.setText("Data Inicial");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 76, -1, -1));
+
+        setSize(new java.awt.Dimension(743, 428));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    try {
-       
-        
         dispose();
-        
-    } catch (Exception ex) {
-        Logger.getLogger(frmInsumos.class.getName()).log(Level.SEVERE, null, ex);
-    }
-       
-        timer.stop();;        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        // TODO add your handling code here:
+        Color Roxo = new Color(88, 55, 66);
+        Color Laranja = new Color(242, 184, 171);
+        JTableInsumos.setSelectionBackground(Roxo);
+        JTableInsumos.setSelectionForeground(Laranja);
+        timer.start();
+        PreencherCombobox();
+
     }//GEN-LAST:event_formWindowOpened
- 
-    
-    int contador = 20;
-    
-    public void escreva()
-    {
+
+    private void JdcInicioPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_JdcInicioPropertyChange
+        try {
+            data1 = JdcInicio.getDate();
+            datainicio = fmt.format(datas(JdcInicio.getDate()));
+            System.out.println(datainicio);
+            // data receba um formato e formate o método data e guarde na varíável e guarde na caixa de combinação
+
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_JdcInicioPropertyChange
+
+    private void JdcFimPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_JdcFimPropertyChange
+        try {
+            data2 = JdcFim.getDate();
+            datafim = fmt.format(data(JdcFim.getDate()));
+            System.out.println(datafim);
+            // data receba um formato e formate o método data e guarde na varíável e guarde na caixa de combinação
+
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_JdcFimPropertyChange
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
+        if (JcbInsumos.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(null, "Selecione um Insumo ou todos");
+        } else if (ValidaDatas()) {
+            if (JcbInsumos.getSelectedIndex() == 1) {
+                preencherTabela("select (qdt_comprada*valor_insumo) as Total , cf.Cod_Compra, dc.qdt_comprada,i.Cod_Insumo, i.Nome_Insumo, dc.valor_insumo, cf.Data_venda from DetalheCompra as DC inner join Insumo as I on i.cod_insumo = DC.cod_insumo inner join CompraFornecedor as CF on cf.Cod_Compra=DC.cod_compra where cf.Data_venda between '" + datainicio + "' and '" + datafim + "' group by i.Cod_Insumo, cf.Cod_Compra, dc.qdt_comprada, i.Nome_Insumo, dc.valor_insumo, cf.Data_Venda order by Cod_Compra asc");
+            } else {
+                preencherTabela("select (qdt_comprada*valor_insumo) as Total , cf.Cod_Compra, dc.qdt_comprada,i.Cod_Insumo, i.Nome_Insumo, dc.valor_insumo, cf.Data_venda from DetalheCompra as DC inner join Insumo as I on i.cod_insumo = DC.cod_insumo inner join CompraFornecedor as CF on cf.Cod_Compra=DC.cod_compra where cf.Data_venda between '" + datainicio + "' and '" + datafim + "'    and i.Nome_Insumo = '" + Insumo + "' group by i.Cod_Insumo, cf.Cod_Compra, dc.qdt_comprada, i.Nome_Insumo, dc.valor_insumo, cf.Data_Venda order by Cod_Compra asc");
+
+            }
+        }
+
+        double x = 0.0;
+        for (int y = 0; y < JTableInsumos.getRowCount(); y++) {
+
+            x += Double.parseDouble(JTableInsumos.getModel().getValueAt(y, 5).toString().replace("R$", "").replace(".", "").replace(",", "."));
+        }
+        lblTotal.setText(z.format(x));
+
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void JcbInsumosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JcbInsumosActionPerformed
+        Insumo = (String) JcbInsumos.getSelectedItem().toString().substring(53).replace("</span></html>", "");
+
+    }//GEN-LAST:event_JcbInsumosActionPerformed
+
+    private void formMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseMoved
+        frmHome.contador = 20;
+        contador = 10;
+    }//GEN-LAST:event_formMouseMoved
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        timer.stop();
+    }//GEN-LAST:event_formWindowClosing
+    int contador = 10;
+
+    public void escreva() {
         System.out.println(contador);
-       
+
     }
- 
-    private javax.swing.Timer timer = new javax.swing.Timer(60*1000,new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent e)
-        {
+
+    private javax.swing.Timer timer = new javax.swing.Timer(60 * 1000, new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent e) {
             escreva();
             contador--;
-            if(contador == 0)
-            {
-               
+            if (contador == 0) {
+
                 try {
-                    new frmLogin().setVisible(true);
+                    dispose();
+                    timer.stop();
                 } catch (Exception ex) {
                     Logger.getLogger(frmInsumos.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
-        
+
     });
+
     /**
      * @param args the command line arguments
      */
@@ -226,14 +313,136 @@ SqlServer conn;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable JTableInsumos;
+    private javax.swing.JComboBox JcbInsumos;
+    private com.toedter.calendar.JDateChooser JdcFim;
+    private com.toedter.calendar.JDateChooser JdcInicio;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox jComboBox1;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblTotal;
     // End of variables declaration//GEN-END:variables
+NumberFormat z = NumberFormat.getCurrencyInstance();
+    SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
+    DecimalFormat df = new DecimalFormat("#,##0.00");
+
+    String Insumo;
+
+    String datainicio, datafim, data;
+    Date data1, data2;
+
+    public Date datas(Date i) {
+        // Método com retorno. Retorna data
+        datainicio = fmt.format(i);
+        DateFormat df = DateFormat.getDateInstance(DateFormat.LONG, new Locale("pt", "BR"));
+
+        return i;
+
+    }
+
+    public Date data(Date f) {
+        // Método com retorno. Retorna data
+        datafim = fmt.format(f);
+        DateFormat df = DateFormat.getDateInstance(DateFormat.LONG, new Locale("pt", "BR"));
+
+        return f;
+
+    }
+
+    public void PreencherCombobox() {
+        connCombo.getCon();
+        connCombo.executaSql("select distinct Nome_Insumo from DetalheCompra as DC inner join Insumo as I on i.cod_insumo = DC.cod_insumo order by Nome_insumo asc");
+
+        try {
+
+            connCombo.rs.first();
+            JcbInsumos.addItem("<html><span style='color:#583742;font-weight: bold;'>Selecione o Insumo...</span></html>");
+            JcbInsumos.addItem("<html><span style='color:#583742;font-weight: bold;'>Todos</span></html>");
+            do {
+
+                JcbInsumos.addItem("<html><span style='color:#583742;font-weight: bold;'>" + (connCombo.rs.getString("Nome_Insumo") + "</span></html>"));
+
+            } while (connCombo.rs.next());
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Erro ao preencher ComboBox" + e);
+        }
+
+    }
+     
+    public void preencherTabela(String Sql) {
+        ArrayList dados = new ArrayList();
+        String[] Colunas = new String[]{"<html><span style='color:#ef6f53;font-weight: bold;'>Código Compra</span></html>",
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Nome Insumo</span></html>",
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Cod Insumo</span></html>",
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Valor</span></html>",
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Quantidade</span></html>", 
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Total</span></html>",
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Data Compra</span></html>"};
+        NumberFormat z = NumberFormat.getCurrencyInstance();
+        conecta.executaSql(Sql);
+        try {
+            conecta.rs.first();
+            do {
+
+                dados.add(new Object[]{conecta.rs.getInt("Cod_Compra"), conecta.rs.getString("Nome_Insumo"),
+                    conecta.rs.getInt("Cod_Insumo"), z.format(conecta.rs.getDouble("valor_insumo")), conecta.rs.getInt("qdt_comprada"), z.format(conecta.rs.getDouble("Total")), fmt.format(conecta.rs.getDate("Data_venda"))});
+
+            } while (conecta.rs.next());
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Insumo não lançado no período selecionado");
+
+        }
+
+        ModeloTabelas modelo = new ModeloTabelas(dados, Colunas); //Instacia a classe do modelo da Tabela.
+        JTableInsumos.setModel(modelo);
+        JTableInsumos.getColumnModel().getColumn(0).setPreferredWidth(98); // Tamanho em pixel da coluna
+        JTableInsumos.getColumnModel().getColumn(0).setResizable(false);
+        JTableInsumos.getColumnModel().getColumn(1).setPreferredWidth(190);
+        JTableInsumos.getColumnModel().getColumn(1).setResizable(false);
+        JTableInsumos.getColumnModel().getColumn(2).setPreferredWidth(80);
+        JTableInsumos.getColumnModel().getColumn(2).setResizable(false);
+        JTableInsumos.getColumnModel().getColumn(3).setPreferredWidth(74);
+        JTableInsumos.getColumnModel().getColumn(3).setResizable(false);
+        JTableInsumos.getColumnModel().getColumn(4).setPreferredWidth(80);
+        JTableInsumos.getColumnModel().getColumn(4).setResizable(false);
+        JTableInsumos.getColumnModel().getColumn(5).setPreferredWidth(90);
+        JTableInsumos.getColumnModel().getColumn(5).setResizable(false);
+        JTableInsumos.getColumnModel().getColumn(6).setPreferredWidth(90);
+        JTableInsumos.getColumnModel().getColumn(6).setResizable(false);
+        JTableInsumos.getTableHeader().setReorderingAllowed(false);
+        JTableInsumos.setAutoResizeMode(JTableInsumos.AUTO_RESIZE_OFF);//Não pode ser redimensionada
+        JTableInsumos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+    }
+
+    public boolean ValidaDatas() {
+        try {
+
+            if ((data1.getDate() - data2.getDate()) > 0) {
+                JOptionPane.showMessageDialog(this, "Data inicial maior que a data final, ou data final menor que a inicial");
+                return false;
+            }
+
+        } catch (Exception e) {
+        }
+        if (JdcInicio.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "Informe a data Inicial");
+
+            return false;
+        }
+        if (JdcFim.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "Informe a data Final");
+
+            return false;
+        }
+
+        return true;
+
+    }
+
 }
