@@ -11,6 +11,6 @@ namespace DAL.Model
         public int CodProdutoInsumo {get; set;}
         public int CodInsumo {get; set;}
         public int CodProduto {get; set;}
-        public float Quantidade {get; set;}
+        public decimal Quantidade {get; set;}
     }
 }

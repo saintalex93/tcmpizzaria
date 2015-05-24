@@ -218,13 +218,21 @@ namespace Pizzaria
 
             Int32.TryParse(campo.Text, out s);
 
-            if (s == 0)
+            if (campo.TextLength > 0 && campo.Text == "0")
             {
-                Home.mensagemDeErro("Por favor, insira apenas números no campo.", "Erro campo");
+                campo.Text = "";
 
                 return false;
             }
 
+            if (s == 0)
+            {
+                Home.mensagemDeErro("Por favor, insira apenas números no campo.", "Erro no campo");
+
+                campo.Text = campo.Text.Remove(campo.TextLength - 1);
+
+                return false;
+            }
             return true;
         }
 
@@ -246,15 +254,15 @@ namespace Pizzaria
 
             if (!ValidaExistenciaNoBanco())
                 return;
-/*//                    Consumo consumo = new Consumo();
-//                  consumo.FormHome = this;
-//                this.Enabled = false;
-    //              consumo.Show();
 
-//                    inseredados();
-        //        preenchegrid();
+            Consumo consumo = new Consumo();
+            consumo.FormHome = this;
+            this.Enabled = false;
+            consumo.Show();
 
-   */
+/*            inseredados();
+            preenchegrid();
+
             clsProduto objProduto = new clsProduto();
             objProduto.Nome_Produto = txt_nome.Text;
             objProduto.Valor_Venda = Double.Parse(txtPreco.Text);
@@ -272,7 +280,7 @@ namespace Pizzaria
                 txt_nome.Clear();
                 txtPreco.Clear();
                 chk_site.Checked = false;
-        }
+  */      }
 
         private void btn_excluir_Click(object sender, EventArgs e)
         {
