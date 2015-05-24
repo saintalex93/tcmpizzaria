@@ -112,6 +112,25 @@ namespace Pizzaria
             return true;
         }
 
+        bool ValidaExistenciaNoBanco() 
+        {
+            clsConsumo objConsumo = new clsConsumo();
+            objConsumo.CodProduto = Int32.Parse(cbProduto.SelectedValue.ToString());
+            objConsumo.CodInsumo = Int32.Parse(cbInsumo.SelectedValue.ToString());
+            objConsumo.Quantidade = Decimal.Parse(numQuantidade.Value.ToString());
+
+            DataTable resultado = consumo.ValidaExistenciaNoBanco(objConsumo);
+
+            if ((int)resultado.Rows[0][0] != 0)
+            {
+                Home.mensagemDeErro("Já existe um produto com este nome no banco de dados.\n\nCertifique-se de que o nome do produto que deseja inserir esteja correto ou utilize o produto já registrado.", "Produto existente");
+
+                return false;
+            }
+
+            return true;
+        }
+
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
             if (!ValidaCampos())
@@ -177,6 +196,67 @@ namespace Pizzaria
                     );
         }
 
+        private void btnAlterar_Click(object sender, EventArgs e)
+        {
+            if (btnAlterar.Text == "Alterar")
+                iniciarModoEdicao();
+            else
+                finalizarModoEdicao();
+        }
+
+        void iniciarModoEdicao() 
+        {
+            btnAlterar.Text = "Gravar";
+
+            cbProduto.SelectedIndex = Int32.Parse(gridConsumo.CurrentRow.Cells[1].Value.ToString()) - 1;
+
+            cbInsumo.SelectedIndex = Int32.Parse(gridConsumo.CurrentRow.Cells[3].Value.ToString()) - 1;
+
+            numQuantidade.Value = Decimal.Parse(gridConsumo.CurrentRow.Cells[5].Value.ToString());
+
+            btnAdicionar.Enabled = false;
+            btnExcluir.Enabled = false;
+
+            txtBuscaProdutoNome.Enabled = false;
+            txtBuscaProdutoID.Enabled = false;
+            txtBuscaInsumoNome.Enabled = false;
+            txtBuscaInsumoID.Enabled = false;
+
+            gridConsumo.Enabled = false;
+        }
+
+        void finalizarModoEdicao() 
+        {
+            if (!ValidaCampos())
+                return;
+
+            if (!ValidaExistenciaNoBanco())
+                return;
+
+            clsProduto objProduto = new clsProduto();
+            objProduto.Cod_Produto = (int)dtg_produtos.CurrentRow.Cells[0].Value;
+            objProduto.Nome_Produto = txt_nome.Text;
+            objProduto.Valor_Venda = double.Parse(txtPreco.Text);
+
+            if (chk_site.Checked)
+                objProduto.Sobe_Site = 1;
+            else
+                objProduto.Sobe_Site = 0;
+
+            produto.AtualizarProduto(objProduto);
+            dtg_produtos.DataSource = produto.BuscarProdutoPorID(objProduto.Cod_Produto);
+
+            txt_nome.Clear();
+            txtPreco.Clear();
+            chk_site.Checked = false;
+
+            btn_inserir.Enabled = true;
+            txtBuscaPorID.Enabled = true;
+            txtBuscaPorNome.Enabled = true;
+            dtg_produtos.Enabled = true;
+
+            btn_atualizar.Text = "Alterar";
+        }
         
     }
 }

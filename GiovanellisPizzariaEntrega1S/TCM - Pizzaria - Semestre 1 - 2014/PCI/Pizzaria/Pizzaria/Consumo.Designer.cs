@@ -31,6 +31,8 @@
             this.numQuantidade = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.grpDados = new System.Windows.Forms.GroupBox();
+            this.cbInsumo = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.btnAdicionar = new System.Windows.Forms.Button();
             this.cbProduto = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -42,14 +44,12 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtBuscaProdutoID = new System.Windows.Forms.TextBox();
             this.btnExcluir = new System.Windows.Forms.Button();
-            this.cbInsumo = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnAlterar = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.txtBuscaInsumoNome = new System.Windows.Forms.TextBox();
             this.txtBuscaInsumoID = new System.Windows.Forms.TextBox();
+            this.btnAlterar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numQuantidade)).BeginInit();
             this.grpDados.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridConsumo)).BeginInit();
@@ -101,6 +101,25 @@
             this.grpDados.TabIndex = 4;
             this.grpDados.TabStop = false;
             this.grpDados.Text = "Dados do consumo";
+            // 
+            // cbInsumo
+            // 
+            this.cbInsumo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.cbInsumo.FormattingEnabled = true;
+            this.cbInsumo.Location = new System.Drawing.Point(71, 46);
+            this.cbInsumo.Name = "cbInsumo";
+            this.cbInsumo.Size = new System.Drawing.Size(121, 21);
+            this.cbInsumo.TabIndex = 11;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.label6.Location = new System.Drawing.Point(21, 49);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(41, 13);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "Insumo";
             // 
             // btnAdicionar
             // 
@@ -209,25 +228,6 @@
             this.btnExcluir.Text = "-";
             this.btnExcluir.UseVisualStyleBackColor = true;
             // 
-            // cbInsumo
-            // 
-            this.cbInsumo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.cbInsumo.FormattingEnabled = true;
-            this.cbInsumo.Location = new System.Drawing.Point(71, 46);
-            this.cbInsumo.Name = "cbInsumo";
-            this.cbInsumo.Size = new System.Drawing.Size(121, 21);
-            this.cbInsumo.TabIndex = 11;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.label6.Location = new System.Drawing.Point(21, 49);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(41, 13);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "Insumo";
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label7);
@@ -247,16 +247,6 @@
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Busca";
-            // 
-            // btnAlterar
-            // 
-            this.btnAlterar.AutoSize = true;
-            this.btnAlterar.Location = new System.Drawing.Point(346, 68);
-            this.btnAlterar.Name = "btnAlterar";
-            this.btnAlterar.Size = new System.Drawing.Size(75, 23);
-            this.btnAlterar.TabIndex = 10;
-            this.btnAlterar.Text = "Alterar";
-            this.btnAlterar.UseVisualStyleBackColor = true;
             // 
             // label7
             // 
@@ -293,6 +283,17 @@
             this.txtBuscaInsumoID.Size = new System.Drawing.Size(100, 20);
             this.txtBuscaInsumoID.TabIndex = 14;
             this.txtBuscaInsumoID.TextChanged += new System.EventHandler(this.txtBuscaInsumoID_TextChanged);
+            // 
+            // btnAlterar
+            // 
+            this.btnAlterar.AutoSize = true;
+            this.btnAlterar.Location = new System.Drawing.Point(346, 68);
+            this.btnAlterar.Name = "btnAlterar";
+            this.btnAlterar.Size = new System.Drawing.Size(75, 23);
+            this.btnAlterar.TabIndex = 10;
+            this.btnAlterar.Text = "Alterar";
+            this.btnAlterar.UseVisualStyleBackColor = true;
+            this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
             // 
             // Consumo
             // 

@@ -217,7 +217,7 @@ create table Consumo
 CodProdutoInsumo int identity (1,1) Primary Key,
 CodInsumo INT FOREIGN KEY REFERENCES Insumo(Cod_Insumo),
 CodProduto INT FOREIGN KEY REFERENCES Produto(Cod_Produto),
-Quantidade DECIMAL (6,4)
+Quantidade DECIMAL (6,3)
 )
 go
 
@@ -365,6 +365,7 @@ QtdeRecomendavel,
 QtdeEmEstoque
 )
 values
+('Massa',20.00,12,30),
 ('Orégano',20.00,20,12),
 ('Queijo mussarela',35.00,30,19),
 ('Tomate',15.30,25,20),
@@ -379,8 +380,7 @@ values
 ('Palmito',18.90,20,1),
 ('Champignon',19.60,15,1),
 ('Provolone',19,20,18),
-('Bacon',18.30,25 ,8),
-('Embalagem para Pizza', 30.50, 50, 70)
+('Bacon',18.30,25 ,8)
 go
 
 insert into Categoria
@@ -1626,7 +1626,7 @@ as
 	end
 go
 
-		create procedure SP_SelecionaCod
+create procedure SP_SelecionaCod
 		
 		@Nome_Funcionario Varchar (40)
 		
@@ -1972,7 +1972,38 @@ Go
 create proc USP_CSharp_Consumo_MostrarConsumo
 As
 	Begin
-		select * from Consumo
+		select 
+			CodProdutoInsumo as [ID],
+			CodProduto as [#],
+			Nome_Produto as [Produto],
+			CodInsumo as [#],
+			Nome_Insumo as [Insumo],
+			Quantidade
+
+		from Consumo c
+		inner join Produto p on c.CodProduto = p.Cod_Produto
+		inner join Insumo i on i.Cod_Insumo = c.CodInsumo
+
+		order by CodProdutoInsumo
+	End
+Go
+------------------------------------------------
+create proc USP_CSharp_Consumo_MostrarConsumoDesc
+As
+	Begin
+		select 
+			CodProdutoInsumo as [ID],
+			CodProduto as [#],
+			Nome_Produto as [Produto],
+			CodInsumo as [#],
+			Nome_Insumo as [Insumo],
+			Quantidade
+
+		from Consumo c
+		inner join Produto p on c.CodProduto = p.Cod_Produto
+		inner join Insumo i on i.Cod_Insumo = c.CodInsumo
+
+		order by CodProdutoInsumo desc
 	End
 Go
 ------------------------------------------------
@@ -2194,11 +2225,160 @@ as
 		delete from Produto where Cod_Produto = @codProduto
 	End
 go
+------------------------------------------------
+create proc USP_CSharp_Consumo_PreencherProdutos
+as
+	Begin
+		select Nome_Produto, Cod_Produto
+		from Produto
+		where Cod_Produto > 0
+	End
+go
+------------------------------------------------
+create proc USP_CSharp_Consumo_PreencherInsumos
+as
+	Begin
+		select Nome_Insumo, Cod_Insumo
+		from Insumo
+	End
+go
+------------------------------------------------
+create proc USP_CSharp_Consumo_InserirConsumo
+(
+	@CodProduto int,
+	@CodInsumo int,
+	@Quantidade decimal (6,3)
+)
+as
+	Begin
+		Insert into Consumo Values
+		(
+			@CodInsumo,
+			@CodProduto,
+			@Quantidade
+		)
+	End
+go
+------------------------------------------------
+create proc USP_CSharp_Consumo_BuscarConsumosPorNomeProduto
+(
+	@Nome varchar(20)
+)
+as
+	Begin
+		select 
+			CodProdutoInsumo as [ID],
+			CodProduto as [#],
+			Nome_Produto as [Produto],
+			CodInsumo as [#],
+			Nome_Insumo as [Insumo],
+			Quantidade
 
-/*select distinct p.Nome_Produto,i.Nome_Insumo,p.Valor_Venda 
-from Consumo as c
-inner join Produto as p on p.Cod_Produto = c.CodProduto and p.Sobe_Site = 1
-		inner join Insumo as i on c.CodInsumo = i.Cod_Insumo
-			inner join ProdutoCategoria as pc on pc.CodProduto = p.Cod_Produto and pc.CodCategoria = 1 
-			order by p.Nome_Produto
-			*/
+		from Consumo c
+		
+		inner join 
+			Produto p on c.CodProduto = p.Cod_Produto
+		inner join 
+			Insumo i on i.Cod_Insumo = c.CodInsumo and
+			p.Nome_Produto like '%' + @Nome + '%'
+
+	End
+go
+------------------------------------------------
+create proc USP_CSharp_Consumo_BuscarConsumosPorIDProduto
+(
+	@id int
+)
+as
+	Begin
+		select 
+			CodProdutoInsumo as [ID],
+			CodProduto as [#],
+			Nome_Produto as [Produto],
+			CodInsumo as [#],
+			Nome_Insumo as [Insumo],
+			Quantidade
+
+		from Consumo c
+		
+		inner join 
+			Produto p on c.CodProduto = p.Cod_Produto
+		inner join 
+			Insumo i on i.Cod_Insumo = c.CodInsumo and
+			p.Cod_Produto = @id
+
+	End
+go
+------------------------------------------------
+create proc USP_CSharp_Consumo_BuscarConsumosPorNomeInsumo
+(
+	@Nome varchar(20)
+)
+as
+	Begin
+		select 
+			CodProdutoInsumo as [ID],
+			CodProduto as [#],
+			Nome_Produto as [Produto],
+			CodInsumo as [#],
+			Nome_Insumo as [Insumo],
+			Quantidade
+
+		from Consumo c
+		
+		inner join 
+			Produto p on c.CodProduto = p.Cod_Produto
+		inner join 
+			Insumo i on i.Cod_Insumo = c.CodInsumo and
+			i.Nome_Insumo like '%' + @Nome + '%'
+
+	End
+go
+------------------------------------------------
+create proc USP_CSharp_Consumo_BuscarConsumosPorIdInsumo
+(
+	@id int
+)
+as
+	Begin
+		select 
+			CodProdutoInsumo as [ID],
+			CodProduto as [#],
+			Nome_Produto as [Produto],
+			CodInsumo as [#],
+			Nome_Insumo as [Insumo],
+			Quantidade
+
+		from Consumo c
+		
+		inner join 
+			Produto p on c.CodProduto = p.Cod_Produto
+		inner join 
+			Insumo i on i.Cod_Insumo = c.CodInsumo and
+			i.Cod_Insumo = @id
+
+	End
+go
+------------------------------------------------
+create proc USP_CSharp_Consumo_ValidaExistenciaNoBanco
+
+(
+	@CodProduto int,
+	@CodInsumo int
+)
+As
+	Begin
+		IF @CodProduto > 0
+			BEGIN
+    			select count(*) 
+				from Produto 
+				where 
+					Nome_Produto like @Nome and
+					Cod_Produto != @CodProduto
+			END
+		ELSE
+			select count(*) 
+			from Produto 
+			where Cod_Produto = @CodProduto
+	End
+Go

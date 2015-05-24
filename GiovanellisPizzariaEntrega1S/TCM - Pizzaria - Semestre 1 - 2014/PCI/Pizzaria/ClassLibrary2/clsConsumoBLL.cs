@@ -113,5 +113,24 @@ namespace BLL
 
                 return Banco.ExecuteProc("USP_CSharp_Consumo_BuscarConsumosPorNomeInsumo", parametro);
             }
+
+            public DataTable ValidaExistenciaNoBanco(clsConsumo objConsumo)
+            {
+                List<SqlParameter> lstParametros = new List<SqlParameter>();
+
+                SqlParameter parametro = new SqlParameter();
+                parametro.ParameterName = "@CodProduto";
+                parametro.Value = objConsumo.CodProduto;
+                parametro.DbType = System.Data.DbType.Int32;
+                lstParametros.Add(parametro);
+
+                parametro = new SqlParameter();
+                parametro.ParameterName = "@CodInsumo";
+                parametro.Value = objConsumo.CodInsumo;
+                parametro.DbType = System.Data.DbType.Int32;
+                lstParametros.Add(parametro);
+
+                return Banco.ExecuteProc("USP_CSharp_Consumo_ValidaExistenciaNoBanco", lstParametros);
+            }
     }
 }

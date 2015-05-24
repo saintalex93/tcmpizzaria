@@ -284,7 +284,7 @@ namespace Pizzaria
 
         private void btn_excluir_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Isso deletará o produto permanentemente do sistema. Deseja continuar?", "Aviso", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("Remover um Produto afeta outras partes do sistema.\n\nTem certeza que deseja continuar?", "Aviso", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
                 produto.RemoverProduto
@@ -294,10 +294,8 @@ namespace Pizzaria
                                 dtg_produtos.CurrentRow.Cells[0].Value.ToString()
                             )
                     );
-
                 dtg_produtos.DataSource = produto.MostrarTodosProdutos();
             }
-
         }
 
         public void preenchegrid(string comandoSQL)
