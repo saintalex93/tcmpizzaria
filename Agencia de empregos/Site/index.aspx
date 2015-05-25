@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="index.aspx.cs" Inherits="index" %>
 
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br"> 
 
 <head runat="server">
     <title>Giovanelli's Empregos</title>
@@ -12,11 +12,12 @@
     <script>
         $(function () {
             $('a[href*=#]:not([href=#])').click(function () {
-                if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
-
+                if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname)
+                {
                     var target = $(this.hash);
                     target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-                    if (target.length) {
+                    if (target.length)
+                    {
                         $('html,body').animate({
                             scrollTop: target.offset().top
                         }, 1000);
@@ -74,47 +75,51 @@
                     <p>PARTE INSTITUCIONAL DA AGÊNCIA</p>
                 </div>
             </article>
+            <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                <ContentTemplate>
 
-            <article ID="pnlBuscarVagas" class="buscarVagas" runat="server" ClientIDMode="Static">
-                <div class="wrapper">
-                    <div class="grid">
-                        <!-- AQUI ENTRA O GRID DE VAGAS -->
+                    <article ID="pnlBuscarVagas" class="buscarVagas" runat="server" ClientIDMode="Static">
+                        <div class="wrapper">
+                            <div class="grid">
+                                <!-- AQUI ENTRA O GRID DE VAGAS -->
                         
-                    <asp:Label ID="label" runat="server" Text="Buscar vagas por título"></asp:Label>
-                    <br />
-                    <asp:TextBox ID="txtBuscarTitulo" style="margin-top: 5px;" runat="server"></asp:TextBox>
-                    <br />
-                    <asp:Button ID="btnBuscar" runat="server" Text="Buscar" OnClick="btnBuscar_Click" />
-                    <br />
-                    <br />
-                    <asp:GridView 
-                        ID="gridVagas" 
-                        runat="server" 
-                        OnSelectedIndexChanged="gridVagas_SelectedIndexChanged"
-                        name="gridVagas" 
-                        style="border-collapse: separate;"
-                        ShowHeaderWhenEmpty="true"
-                        >
-                        <EmptyDataTemplate>
-                             Oh noes! Nenhuma vaga foi encontrada! D:
-                        </EmptyDataTemplate>
+                            <asp:Label ID="label" runat="server" Text="Buscar vagas por título"></asp:Label>
+                            <br />
+                            <asp:TextBox ID="txtBuscarTitulo" style="margin-top: 5px;" runat="server"></asp:TextBox>
+                            <br />
+                            <asp:Button ID="btnBuscar" runat="server" Text="Buscar" OnClick="btnBuscar_Click" />
+                            <br />
+                            <br />
+                            <asp:GridView
+                                ID="gridVagas" 
+                                runat="server" 
+                                OnSelectedIndexChanged="gridVagas_SelectedIndexChanged"
+                                name="gridVagas"
+                                style="border-collapse: separate;"
+                                ShowHeaderWhenEmpty="true"
+                                >
+                                <EmptyDataTemplate>
+                                     Oh noes! Nenhuma vaga foi encontrada! D:
+                                </EmptyDataTemplate>
                     
-                    </asp:GridView>
+                            </asp:GridView>
 
-                    <asp:SqlDataSource 
-                        ID="SqlDataSource1" 
-                        runat="server" 
-                        ConnectionString="<%$ ConnectionStrings:conexaoGiovanelliEmpregos %>" 
-                        SelectCommand="USP_BuscarVagas" 
-                        SelectCommandType="StoredProcedure"
-                        >
+                            <asp:SqlDataSource 
+                                ID="SqlDataSource1"
+                                runat="server"
+                                ConnectionString="<%$ ConnectionStrings:conexaoGiovanelliEmpregos %>"
+                                SelectCommand="USP_BuscarVagas"
+                                SelectCommandType="StoredProcedure">
+                            </asp:SqlDataSource>
 
-
-                    </asp:SqlDataSource>
-                    </div>
+                            </div>
                     
-                </div>
-            </article>
+                        </div>
+                    </article>
+
+                </ContentTemplate>
+            </asp:UpdatePanel>
         </section>
 
         <!-- *** FIM DO CONTEÚDO *** -->

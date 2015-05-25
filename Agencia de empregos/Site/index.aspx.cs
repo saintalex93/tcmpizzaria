@@ -30,21 +30,28 @@ public partial class index : System.Web.UI.Page
 
     protected void btnBuscar_Click(object sender, EventArgs e)
     {
-        Conexao con = new Conexao();
-        con.conectar();
-        SqlDataAdapter dAdapter = new SqlDataAdapter();
-        DataSet ds = new DataSet();
+        if (txtBuscarTitulo.Text != "")
+        {
+            Conexao con = new Conexao();
+            con.conectar();
+            SqlDataAdapter dAdapter = new SqlDataAdapter();
+            DataSet ds = new DataSet();
 
-        con.command.CommandText = "USP_BuscarVagasPorTitulo " + txtBuscarTitulo.Text;
+            con.command.CommandText = "USP_BuscarVagasPorTitulo " + txtBuscarTitulo.Text;
 
-        dAdapter.SelectCommand = con.command;
-        dAdapter.Fill(ds);
+            dAdapter.SelectCommand = con.command;
+            dAdapter.Fill(ds);
 
-        gridVagas.DataSource = ds;
-        gridVagas.DataBind();
+            gridVagas.DataSource = ds;
+            gridVagas.DataBind();
 
-        con.command.ExecuteNonQuery();
-        con.fechaConexao();
+            con.command.ExecuteNonQuery();
+            con.fechaConexao();
+        }
+        else
+        {
+            txtBuscarTitulo.Attributes.Add("placeholder", "Digite algum título !");
+        }
     }
     protected void gridVagas_SelectedIndexChanged(object sender, EventArgs e)
     {

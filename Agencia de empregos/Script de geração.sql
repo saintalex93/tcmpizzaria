@@ -111,7 +111,7 @@ go
 insert into Categorias values
 ('Informática'),
 ('Administração'),
-('Construção Civil') 
+('Construção Civil')
 go
 
 insert into Areas values
@@ -180,4 +180,38 @@ AS
 			v.Data 
 				desc
 	End
+go
+
+alter procedure USP_AdicionarCategoria
+(
+	@nome varchar(20)
+)
+as
+	Begin
+		insert into Categorias values(@nome)
+	End
+
+go
+
+create procedure USP_EditarCategoria
+(
+	@novoNome varchar(20),
+	@codigoCategoria int
+)
+as
+	Begin
+		update Categorias set Nome = @novoNome where codCategoria = @codigoCategoria
+	End
+
+go
+
+create procedure USP_RemoverCategoria
+(
+	@codigoCategoria int
+)
+as
+	Begin
+		delete from Categorias where codCategoria = @codigoCategoria
+	End
+
 go
