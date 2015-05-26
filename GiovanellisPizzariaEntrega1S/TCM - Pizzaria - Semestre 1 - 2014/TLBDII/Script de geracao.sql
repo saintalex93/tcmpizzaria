@@ -251,7 +251,6 @@ Cod_Funcionario INT FOREIGN KEY REFERENCES Funcionario(Cod_Funcionario)
 )
 go
 
-
 create table Detalhe_Pedido
 (
 Cod_Detalhe INT IDENTITY(0,1) PRIMARY KEY,
@@ -356,7 +355,6 @@ values
 ('Alex Santos','399.305.868-22','Rua Pindamonhangaba',null,666,'023654-14','SP','São Paulo','Vila Tupiniquim','alexsantos@gmail.com','(11)4578-8274','(11)9-9852-9774','Alex','123', 1),
 ('Toninho Abreu','128.589.519-87','Rua das Dalágaras', null,159,'12598-11','SP','São Paulo','Vila Vira','tony@gmail.com','(11)4529-4196','(11)9-7988-4895','Tony','123', 2)
 
-
 insert into Insumo
 (
 Nome_Insumo,
@@ -380,7 +378,12 @@ values
 ('Palmito',18.90,20,1),
 ('Champignon',19.60,15,1),
 ('Provolone',19,20,18),
-('Bacon',18.30,25 ,8)
+('Bacon',18.30,25 ,8),
+('Cerveja',4.30,300,400),
+('Refrigerante',4.30,300,400),
+('Vinho',4.30,300,400),
+('Champagne',4.30,300,400),
+('Camarão',17.30,10,15)
 go
 
 insert into Categoria
@@ -581,7 +584,18 @@ values
 (8, 14, 1),
 (9, 2, 0.30),
 (9, 4, 1),
-(9, 5, 1)
+(9, 5, 1),
+(10, 2, 0.30),
+(11, 9, 0.50),
+(12, 2, 0.30),
+(13, 9, 1),
+(14, 18, 1),
+(15, 17, 1),
+(16, 19, 1),
+(17, 20, 1),
+(18, 21 , 0.250),
+(19, 5, 0.250),
+(20, 15, 0.250)
 go
 
 insert into ProdutoPromocao
@@ -1978,7 +1992,7 @@ As
 			Nome_Produto as [Produto],
 			CodInsumo as [#],
 			Nome_Insumo as [Insumo],
-			Quantidade
+			Quantidade as [Qtde]
 
 		from Consumo c
 		inner join Produto p on c.CodProduto = p.Cod_Produto
@@ -1997,7 +2011,7 @@ As
 			Nome_Produto as [Produto],
 			CodInsumo as [#],
 			Nome_Insumo as [Insumo],
-			Quantidade
+			Quantidade as [Qtde]
 
 		from Consumo c
 		inner join Produto p on c.CodProduto = p.Cod_Produto
@@ -2272,7 +2286,7 @@ as
 			Nome_Produto as [Produto],
 			CodInsumo as [#],
 			Nome_Insumo as [Insumo],
-			Quantidade
+			Quantidade as [Qtde]
 
 		from Consumo c
 		
@@ -2297,7 +2311,7 @@ as
 			Nome_Produto as [Produto],
 			CodInsumo as [#],
 			Nome_Insumo as [Insumo],
-			Quantidade
+			Quantidade as [Qtde]
 
 		from Consumo c
 		
@@ -2322,7 +2336,7 @@ as
 			Nome_Produto as [Produto],
 			CodInsumo as [#],
 			Nome_Insumo as [Insumo],
-			Quantidade
+			Quantidade as [Qtde]
 
 		from Consumo c
 		
@@ -2347,7 +2361,7 @@ as
 			Nome_Produto as [Produto],
 			CodInsumo as [#],
 			Nome_Insumo as [Insumo],
-			Quantidade
+			Quantidade as [Qtde]
 
 		from Consumo c
 		
@@ -2363,22 +2377,108 @@ go
 create proc USP_CSharp_Consumo_ValidaExistenciaNoBanco
 
 (
+	@CodProdutoInsumo int,
 	@CodProduto int,
 	@CodInsumo int
 )
 As
 	Begin
-		IF @CodProduto > 0
+		IF @CodProdutoInsumo = 0
 			BEGIN
     			select count(*) 
-				from Produto 
+				from Consumo
 				where 
-					Nome_Produto like @Nome and
-					Cod_Produto != @CodProduto
+					CodInsumo = @CodInsumo and
+					CodProduto = @CodProduto
 			END
 		ELSE
 			select count(*) 
-			from Produto 
-			where Cod_Produto = @CodProduto
+			from Consumo
+				where 
+					CodProdutoInsumo != @CodProdutoInsumo and
+					CodInsumo = @CodInsumo and
+					CodProduto = @CodProduto
 	End
 Go
+------------------------------------------------
+create proc USP_CSharp_Consumo_AtualizarConsumo
+(
+	@CodProdutoInsumo int,
+	@CodProduto int,
+	@CodInsumo int,
+	@Quantidade decimal (6,3)
+)
+as
+	Begin
+		update Consumo
+		
+		set 
+			CodInsumo = @CodInsumo,
+			CodProduto = @CodProduto,
+			Quantidade = @Quantidade
+
+		where CodProdutoInsumo = @CodProdutoInsumo
+	End
+go
+------------------------------------------------
+create proc USP_CSharp_Consumo_RemoverConsumo
+(
+	@id int
+)
+as
+	Begin
+		delete from Consumo where CodProdutoInsumo = @id
+	End
+go
+------------------------------------------------
+create proc USP_CSharp_Consumo_VerificaProdutoSemConsumo
+as
+	Begin
+		SELECT count(*)
+
+		FROM Produto p
+
+		WHERE p.Cod_Produto NOT IN
+		(
+			SELECT c.CodProduto
+
+			FROM Consumo c
+		)
+		and p.Cod_Produto != 0
+	End
+go
+------------------------------------------------
+create proc USP_CSharp_Consumo_VerificaConsumoVazio
+as
+	Begin
+		SELECT count(*)
+
+		FROM Consumo
+
+		WHERE 
+			CodProduto is null or
+			CodInsumo is null
+	End
+go
+------------------------------------------------
+create proc USP_CSharp_Consumo_MostrarProdutoInserido
+as
+	Begin
+		SELECT Cod_Produto
+
+		FROM Produto
+
+		WHERE 
+			Cod_Produto = (select max(Cod_Produto) from Produto)
+	End
+go
+------------------------------------------------
+create proc USP_CSharp_Categoria_BuscarCategorias
+as
+	Begin
+		SELECT NomeCategoria, CodCategoria
+
+		FROM Categoria
+	End
+go
+------------------------------------------------
