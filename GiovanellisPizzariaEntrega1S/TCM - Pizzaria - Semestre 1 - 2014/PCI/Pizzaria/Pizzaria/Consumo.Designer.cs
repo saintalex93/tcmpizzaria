@@ -139,6 +139,7 @@
             this.cbProduto.Name = "cbProduto";
             this.cbProduto.Size = new System.Drawing.Size(121, 21);
             this.cbProduto.TabIndex = 4;
+            this.cbProduto.SelectionChangeCommitted += new System.EventHandler(this.cbProduto_SelectionChangeCommitted);
             // 
             // label2
             // 
@@ -167,7 +168,7 @@
             this.btnVoltar.Name = "btnVoltar";
             this.btnVoltar.Size = new System.Drawing.Size(75, 23);
             this.btnVoltar.TabIndex = 5;
-            this.btnVoltar.Text = "Voltar";
+            this.btnVoltar.Text = "Seguinte";
             this.btnVoltar.UseVisualStyleBackColor = true;
             this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
             // 
@@ -177,10 +178,11 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.label3.Location = new System.Drawing.Point(9, 6);
             this.label3.Name = "label3";
+            this.label3.Padding = new System.Windows.Forms.Padding(10);
             this.label3.Size = new System.Drawing.Size(239, 136);
             this.label3.TabIndex = 6;
-            this.label3.Text = "Esta é a tela de consumo.\r\nNela é definido quanto de insumos serão usados em cada" +
-    " produto.\r\nEsta etapa é obrgatória para adicionar um produto no sistema.";
+            this.label3.Text = "Esta é a tela de consumo. Nela é definido quanto de insumos serão usados em cada " +
+    "produto.\r\n\r\nEsta etapa é obrgatória para adicionar um produto no sistema.";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtBuscaProdutoNome
@@ -227,6 +229,7 @@
             this.btnExcluir.TabIndex = 9;
             this.btnExcluir.Text = "-";
             this.btnExcluir.UseVisualStyleBackColor = true;
+            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
             // groupBox1
             // 

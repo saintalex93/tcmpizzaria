@@ -39,6 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="clsCategoria.cs" />
+    <Compile Include="clsCategoriaBLL.cs" />
     <Compile Include="clsClienteBLL.cs" />
     <Compile Include="clsConsumoBLL.cs" />
     <Compile Include="clsFuncionarioBLL.cs" />

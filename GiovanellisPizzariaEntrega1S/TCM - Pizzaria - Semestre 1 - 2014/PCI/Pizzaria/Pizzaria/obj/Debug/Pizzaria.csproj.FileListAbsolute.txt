@@ -602,3 +602,4 @@ G:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 
 G:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\bin\Debug\ClassLibrary2.pdb
 F:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Consumo.resources
 G:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Consumo.resources
+F:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Categorias.resources

@@ -17,8 +17,6 @@ namespace Pizzaria
 {
     public partial class Consumo : Form
     {
-        //TODO: Será preciso filtrar consumos pelos insumos?
-
         clsConsumoBLL consumo = new clsConsumoBLL();
 
         public Form FormHome { get; set; }
@@ -47,7 +45,7 @@ namespace Pizzaria
             cbProduto.DataSource = consumo.PreencherProdutos();
             cbProduto.ValueMember = "Cod_Produto";
             cbProduto.DisplayMember = "Nome_Produto";
-            cbProduto.SelectedIndex = -1;
+            cbProduto.SelectedIndex = consumo.MostrarProdutoInserido();
 
             cbInsumo.DataSource = consumo.PreencherInsumos();
             cbInsumo.ValueMember = "Cod_Insumo";
@@ -57,6 +55,28 @@ namespace Pizzaria
 
         private void btnVoltar_Click(object sender, EventArgs e)
         {
+            DataTable intao2 = consumo.VerificaConsumoVazio();
+
+            gridConsumo.DataSource = consumo.VerificaConsumoVazio();
+
+            int intao = (int) intao2.Rows[0][0];
+
+            if ((int)consumo.VerificaProdutoSemConsumo().Rows[0][0] != 0)
+            {
+                Home.mensagemDeErro("Consta no sistema que existem Produtos sem Insumos registrados para consumo.\n\nCertifique-se de que todos os Produtos tem pelo menos um Insumo associado para poder seguir para o próximo menu.", "Integridade no banco de dados");
+
+                return;
+            }
+
+            if ((int)consumo.VerificaConsumoVazio().Rows[0][0] != 0)
+            {
+                Home.mensagemDeErro("Consta no sistema que existem registros de Consumo com campos vazios.\n\nCertifique-se de que todos os Produtos tem pelo menos um Insumo associado para poder seguir para o próximo menu.","Integridade nos registros");
+
+                return;
+            }
+
+            //TODO: Linkar para abrir categorias
+            
             this.FormHome.Enabled = true;
             
             Dispose();
@@ -112,18 +132,13 @@ namespace Pizzaria
             return true;
         }
 
-        bool ValidaExistenciaNoBanco() 
+        bool ValidaExistenciaNoBanco(clsConsumo objConsumo) 
         {
-            clsConsumo objConsumo = new clsConsumo();
-            objConsumo.CodProduto = Int32.Parse(cbProduto.SelectedValue.ToString());
-            objConsumo.CodInsumo = Int32.Parse(cbInsumo.SelectedValue.ToString());
-            objConsumo.Quantidade = Decimal.Parse(numQuantidade.Value.ToString());
-
             DataTable resultado = consumo.ValidaExistenciaNoBanco(objConsumo);
 
             if ((int)resultado.Rows[0][0] != 0)
             {
-                Home.mensagemDeErro("Já existe um produto com este nome no banco de dados.\n\nCertifique-se de que o nome do produto que deseja inserir esteja correto ou utilize o produto já registrado.", "Produto existente");
+                Home.mensagemDeErro("Já existe um registro de consumo com este produto e este insumo no banco de dados.\n\nCertifique-se de que tudo esteja correto para poder continuar.", "Produto existente");
 
                 return false;
             }
@@ -137,21 +152,35 @@ namespace Pizzaria
                 return;
 
             clsConsumo objConsumo = new clsConsumo();
+            objConsumo.CodProdutoInsumo = 0;
             objConsumo.CodProduto = Int32.Parse(cbProduto.SelectedValue.ToString());
             objConsumo.CodInsumo = Int32.Parse(cbInsumo.SelectedValue.ToString());
             objConsumo.Quantidade = Decimal.Parse(numQuantidade.Value.ToString());
 
+            if (!ValidaExistenciaNoBanco(objConsumo))
+                return;
+
             consumo.InserirConsumo(objConsumo);
 
             gridConsumo.DataSource = consumo.MostrarConsumoDesc();
+
+            cbInsumo.SelectedIndex = -1;
+            cbProduto.SelectedIndex = -1;
+            numQuantidade.Value = 0;
         }
 
         private void txtBuscaNome_TextChanged(object sender, EventArgs e)
         {
             if (txtBuscaProdutoNome.Text.Length == 0)
                 gridConsumo.DataSource = consumo.MostrarConsumo();
-            else
-                gridConsumo.DataSource = consumo.BuscarConsumosPorNomeProduto(txtBuscaProdutoNome.Text);
+            else 
+            {
+                clsProduto objProduto = new clsProduto();
+                objProduto.Nome_Produto = txtBuscaProdutoNome.Text.ToString();
+
+                gridConsumo.DataSource = consumo.BuscarConsumosPorNomeProduto(objProduto);
+            }
+                
         }
 
         private void txtBuscaID_TextChanged(object sender, EventArgs e)
@@ -162,13 +191,12 @@ namespace Pizzaria
             if (txtBuscaProdutoID.Text.Length == 0)
                 gridConsumo.DataSource = consumo.MostrarConsumo();
             else
-                gridConsumo.DataSource = consumo.BuscarConsumosPorIDProduto
-                    (
-                        Int32.Parse
-                        (
-                            txtBuscaProdutoID.Text
-                        )
-                    );
+            {
+                clsProduto objProduto = new clsProduto();
+                objProduto.Cod_Produto = Int32.Parse(txtBuscaProdutoID.Text);
+
+                gridConsumo.DataSource = consumo.BuscarConsumosPorIDProduto(objProduto);
+            }
         }
 
         private void txtBuscaInsumoNome_TextChanged(object sender, EventArgs e)
@@ -176,7 +204,13 @@ namespace Pizzaria
             if (txtBuscaInsumoNome.Text.Length == 0)
                 gridConsumo.DataSource = consumo.MostrarConsumo();
             else
-                gridConsumo.DataSource = consumo.BuscarConsumosPorNomeInsumo(txtBuscaInsumoNome.Text);
+            {
+                clsInsumo objInsumo = new clsInsumo ();
+                objInsumo.Nome_Insumo = txtBuscaInsumoNome.Text;
+
+                gridConsumo.DataSource = consumo.BuscarConsumosPorNomeInsumo(objInsumo);
+            }
+                
         }
 
         private void txtBuscaInsumoID_TextChanged(object sender, EventArgs e)
@@ -186,14 +220,14 @@ namespace Pizzaria
 
             if (txtBuscaInsumoID.Text.Length == 0)
                 gridConsumo.DataSource = consumo.MostrarConsumo();
-            else
-                gridConsumo.DataSource = consumo.BuscarConsumosPorIdInsumo
-                    (
-                        Int32.Parse
-                        (
-                            txtBuscaInsumoID.Text
-                        )
-                    );
+            else 
+            {
+                clsInsumo insumo = new clsInsumo();
+                insumo.Cod_Insumo = Int32.Parse(txtBuscaInsumoID.Text);
+
+                gridConsumo.DataSource = consumo.BuscarConsumosPorIdInsumo(insumo);
+            }
+                
         }
 
         private void btnAlterar_Click(object sender, EventArgs e)
@@ -230,33 +264,57 @@ namespace Pizzaria
             if (!ValidaCampos())
                 return;
 
-            if (!ValidaExistenciaNoBanco())
+            clsConsumo objConsumo = new clsConsumo();
+            objConsumo.CodProdutoInsumo = (int)gridConsumo.CurrentRow.Cells[0].Value;
+            objConsumo.CodProduto = Int32.Parse(cbProduto.SelectedValue.ToString());
+            objConsumo.CodInsumo = Int32.Parse(cbInsumo.SelectedValue.ToString());
+            objConsumo.Quantidade = numQuantidade.Value;
+
+            if (!ValidaExistenciaNoBanco(objConsumo))
                 return;
 
-            clsProduto objProduto = new clsProduto();
-            objProduto.Cod_Produto = (int)dtg_produtos.CurrentRow.Cells[0].Value;
-            objProduto.Nome_Produto = txt_nome.Text;
-            objProduto.Valor_Venda = double.Parse(txtPreco.Text);
+            consumo.AtualizarConsumo(objConsumo);
+            gridConsumo.DataSource = consumo.BuscarConsumosPorIDProduto(objConsumo);
 
-            if (chk_site.Checked)
-                objProduto.Sobe_Site = 1;
-            else
-                objProduto.Sobe_Site = 0;
+            cbInsumo.SelectedIndex = -1;
+            cbProduto.SelectedIndex = -1;
+            numQuantidade.Value = 0;
 
-            produto.AtualizarProduto(objProduto);
-            dtg_produtos.DataSource = produto.BuscarProdutoPorID(objProduto.Cod_Produto);
+            btnAdicionar.Enabled = true;
+            btnExcluir.Enabled = true;
+            
+            txtBuscaInsumoID.Enabled = true;
+            txtBuscaInsumoNome.Enabled = true;
+            txtBuscaProdutoID.Enabled = true;
+            txtBuscaProdutoNome.Enabled = true;
 
-            txt_nome.Clear();
-            txtPreco.Clear();
-            chk_site.Checked = false;
+            gridConsumo.Enabled = true;
 
-            btn_inserir.Enabled = true;
-            txtBuscaPorID.Enabled = true;
-            txtBuscaPorNome.Enabled = true;
-            dtg_produtos.Enabled = true;
-
-            btn_atualizar.Text = "Alterar";
+            btnAlterar.Text = "Alterar";
         }
-        
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Deseja realmente remover esse registro?", "Aviso", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                clsConsumo objConsumo = new clsConsumo();
+                objConsumo.CodProdutoInsumo = (int) gridConsumo.CurrentRow.Cells[0].Value;
+                consumo.RemoverConsumo(objConsumo);
+                gridConsumo.DataSource = consumo.MostrarConsumo();
+            }
+        }
+
+        private void cbProduto_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if ((int)cbProduto.SelectedValue != -1)
+            {
+                clsConsumo objConsumo = new clsConsumo();
+                objConsumo.CodProduto = (int) cbProduto.SelectedValue;
+
+                gridConsumo.DataSource = consumo.BuscarConsumosPorIDProduto
+                    (objConsumo);
+            }
+        }
     }
 }

@@ -255,14 +255,6 @@ namespace Pizzaria
             if (!ValidaExistenciaNoBanco())
                 return;
 
-            Consumo consumo = new Consumo();
-            consumo.FormHome = this;
-            this.Enabled = false;
-            consumo.Show();
-
-/*            inseredados();
-            preenchegrid();
-
             clsProduto objProduto = new clsProduto();
             objProduto.Nome_Produto = txt_nome.Text;
             objProduto.Valor_Venda = Double.Parse(txtPreco.Text);
@@ -275,12 +267,17 @@ namespace Pizzaria
 
             produto.InserirProduto(objProduto);
 
+            Consumo consumo = new Consumo();
+            consumo.FormHome = this;
+            this.Enabled = false;
+            consumo.Show();
+
             dtg_produtos.DataSource = produto.MostrarTodosProdutosDesc();
             
-                txt_nome.Clear();
-                txtPreco.Clear();
-                chk_site.Checked = false;
-  */      }
+            txt_nome.Clear();
+            txtPreco.Clear();
+            chk_site.Checked = false;
+        }
 
         private void btn_excluir_Click(object sender, EventArgs e)
         {

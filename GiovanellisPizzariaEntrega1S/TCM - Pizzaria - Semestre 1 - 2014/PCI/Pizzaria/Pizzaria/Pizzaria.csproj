@@ -64,6 +64,12 @@
     <Compile Include="Caixa.Designer.cs">
       <DependentUpon>Caixa.cs</DependentUpon>
     </Compile>
+    <Compile Include="Categorias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Categorias.Designer.cs">
+      <DependentUpon>Categorias.cs</DependentUpon>
+    </Compile>
     <Compile Include="Confirmacao_Alterar_Status.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -147,6 +153,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Caixa.resx">
       <DependentUpon>Caixa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Categorias.resx">
+      <DependentUpon>Categorias.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Confirmacao_Alterar_Status.resx">
       <DependentUpon>Confirmacao_Alterar_Status.cs</DependentUpon>
