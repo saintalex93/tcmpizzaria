@@ -74,7 +74,8 @@ go
 create table Areas
 (
 codArea INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
-Nome varchar (20)
+Nome varchar (20),
+codCategoria int foreign key references Categorias(codCategoria)
 )
 go
 
@@ -115,9 +116,9 @@ insert into Categorias values
 go
 
 insert into Areas values
-('Informática'),
-('Administração'),
-('Construção Civil') 
+('Banco de Dados',1),
+('Desenvolvimento',1),
+('RH',2)
 go
 
 insert into Vagas values
@@ -182,7 +183,7 @@ AS
 	End
 go
 
-alter procedure USP_AdicionarCategoria
+create procedure USP_AdicionarCategoria
 (
 	@nome varchar(20)
 )
