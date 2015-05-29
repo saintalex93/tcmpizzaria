@@ -42,11 +42,32 @@ namespace Pizzaria
         {
             gridConsumo.DataSource = consumo.MostrarConsumo();
 
+            PreencherInsumo();
+
+            if (Produtos.sequenciaCadastro)
+            { 
+                btnVoltar.Text = "Seguinte";
+                btnCancelar.Visible = true;
+                cbProduto.Enabled = false;
+            }
+
+            PreencherProdutos();
+                
+        }
+
+        void PreencherProdutos() 
+        {
             cbProduto.DataSource = consumo.PreencherProdutos();
             cbProduto.ValueMember = "Cod_Produto";
             cbProduto.DisplayMember = "Nome_Produto";
-            cbProduto.SelectedIndex = consumo.MostrarProdutoInserido();
+            if (Produtos.sequenciaCadastro)
+                cbProduto.SelectedIndex = cbProduto.Items.Count;
+            else
+                cbProduto.SelectedIndex = -1;
+        }
 
+        void PreencherInsumo()
+        {
             cbInsumo.DataSource = consumo.PreencherInsumos();
             cbInsumo.ValueMember = "Cod_Insumo";
             cbInsumo.DisplayMember = "Nome_Insumo";
@@ -55,7 +76,7 @@ namespace Pizzaria
 
         private void btnVoltar_Click(object sender, EventArgs e)
         {
-            DataTable intao2 = consumo.VerificaConsumoVazio();
+            DataTable intao2 = consumo.VerificaProdutoSemConsumo()
 
             gridConsumo.DataSource = consumo.VerificaConsumoVazio();
 
@@ -75,9 +96,16 @@ namespace Pizzaria
                 return;
             }
 
-            //TODO: Linkar para abrir categorias
+            if (Produtos.sequenciaCadastro)
+            {
+                Categorias categoria = new Categorias();
+                categoria.Show();
+
+                categoria.FormHome = this.FormHome;
+            }
+            else
+                FormHome.Show();
             
-            this.FormHome.Enabled = true;
             
             Dispose();
         }
@@ -165,7 +193,6 @@ namespace Pizzaria
             gridConsumo.DataSource = consumo.MostrarConsumoDesc();
 
             cbInsumo.SelectedIndex = -1;
-            cbProduto.SelectedIndex = -1;
             numQuantidade.Value = 0;
         }
 
@@ -315,6 +342,20 @@ namespace Pizzaria
                 gridConsumo.DataSource = consumo.BuscarConsumosPorIDProduto
                     (objConsumo);
             }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            consumo.CancelarInsercao();
+
+            FormHome.Enabled = true;
+
+            Dispose();
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            gridConsumo.DataSource = consumo.VerificaProdutoSemConsumo();
         }
     }
 }

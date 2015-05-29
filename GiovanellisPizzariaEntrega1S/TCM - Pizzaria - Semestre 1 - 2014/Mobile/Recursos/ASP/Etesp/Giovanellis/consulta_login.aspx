@@ -10,11 +10,11 @@
 		string Login_Funcionario = (Request.QueryString["Login_Funcionario"]);
 		string Senha_Funcionario = (Request.QueryString["Senha_Funcionario"]);
 		
-		//String de casa
-		String strConexao = "Password=peganomeupau; Persist Security Info=True; User ID=sa; Initial Catalog=Pizzaria; Data Source=TUCA\\SQLEXPRESS";
+		//string casa
+		//String strConexao = "Password=peganomeupau; Persist Security Info=True; User ID=sa; Initial Catalog=Pizzaria; Data Source=TUCA\\SQLEXPRESS";
 
-		//String do curso
-		//String strConexao = "Password=etesp; Persist Security Info=True; User ID=aluno; Initial Catalog=Pizzaria; Data Source=LAB02T-20";
+		//string curso
+		String strConexao = "Password=etesp; Persist Security Info=True; User ID=aluno; Initial Catalog=Pizzaria; Data Source=LAB02T-20";
 
 		
 		SqlConnection objConexao = new SqlConnection(strConexao);

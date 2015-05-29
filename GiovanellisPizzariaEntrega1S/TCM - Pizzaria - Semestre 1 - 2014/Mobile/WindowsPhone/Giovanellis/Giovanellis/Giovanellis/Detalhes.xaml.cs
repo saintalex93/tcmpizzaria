@@ -91,22 +91,21 @@ namespace Giovanellis
                     if (achou)
                         if (texto[i] != ';')
 							aux += texto[i];
-
-						else
+    						else
 						{
                             try
                             {
                                 campos = aux.Split(',');
 
-                                if (campos[1].Length == 0)
+                                if (campos[1][0] == '(')
                                     mensagem = campos[0];
 
-                                else if (campos[1].Length > 0)
+                                else 
                                 {
                                     campos[0] = campos[0].Replace("Pizza ", "");
                                     campos[1] = campos[1].Replace("Pizza ", "");
 
-                                    campos[1].Replace(" Brotinho", "");
+                                    campos[1] = campos[1].Replace(" Brotinho", "");
 
                                     mensagem = "Pizza meia " + campos[0] + " e meia " + campos[1];
                                 }

@@ -9,7 +9,7 @@
 	{
 		int Cod_Pedido = int.Parse((Request.QueryString["Cod_Pedido"]));
 
-		//SRING CASA	
+		//string casa
 		//String strConexao = "Password=peganomeupau; Persist Security Info=True; User ID=sa; Initial Catalog=Pizzaria; Data Source=TUCA\\SQLEXPRESS";
 
 		//string curso

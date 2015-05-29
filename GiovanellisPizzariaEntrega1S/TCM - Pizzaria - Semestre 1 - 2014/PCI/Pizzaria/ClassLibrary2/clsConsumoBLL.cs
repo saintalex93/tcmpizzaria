@@ -206,5 +206,11 @@ namespace BLL
 
                 return (int) tabela.Rows[0][0] - 1;
             }
+
+            public void CancelarInsercao()
+            {
+                Banco.ExecuteProc("USP_CSharp_Consumo_CancelarInsercao");
+            }
+
     }
 }

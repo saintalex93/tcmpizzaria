@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 
+using BLL;
+using DAL.Model;
+
 namespace Pizzaria
 {
     public partial class Login : Form
@@ -18,44 +21,63 @@ namespace Pizzaria
             InitializeComponent();
         }
 
+        static public int acesso = 0;
+
+        clsLoginBLL login = new clsLoginBLL();
+
         private void btn_Acessa_Click(object sender, EventArgs e)
         {
+            if (!ValidarCampos())
+                return;
+
+            clsFuncionario objFuncionario = new clsFuncionario();
+            objFuncionario.Login_Funcionario = txt_usuario.Text;
+            objFuncionario.Senha_Funcionario = txt_senha.Text;
+
+            int codFuncionario = ValidarUsuario(objFuncionario);
+
+            if (codFuncionario == 0)
+                return;
+            else
+            {
+                acesso = codFuncionario;
+
+                Home home = new Home();
+                home.Show();
+                this.Visible = false;
+            }
+        }
+
+        bool ValidarCampos() 
+        {
+            if (txt_usuario.Text.Length == 0)
+            {
+                MessageBox.Show("Por favor, insira um LOGIN de usuário para entrar no sistema.","Falha de login");
+
+                return false;
+            }
+
+            return true;
+        }
+
+        int ValidarUsuario(clsFuncionario objFuncionario)
+        {
+            int codFuncionario = 0;
+
             try
             {
-                //istancia a classe Connection para acessar o banco com o parametros senha e usuario
-                //e em seguinda verificar o nivel de acesso caso a autenticação esteja correta
-                //tendo o nivel de acesso define o valor do mesmo na classe niveldeacesso, onde fica armazenado.
-                Connection conec = new Connection();
-
-                if (conec.Permissao(txt_usuario.Text, txt_senha.Text))
-                {
-                    Home home = new Home();
-                    home.Show();
-                    this.Visible = false;
-
-                }
-                else
-                {
-                    MessageBox.Show
-                    (
-                    "O nome de usuário e a senha fornecidos não correspondem às informações em nossos registros.\n\nVerifique-as e tente novamente.",
-                    "Falha na conexão com o servidor",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning
-                    );
-                }
-
+                codFuncionario = (int) login.ValidarUsuario(objFuncionario).Rows[0][0];
             }
-            catch (SqlException ee)
+            catch (Exception e){}
+
+
+            if (codFuncionario == 0)
             {
-                MessageBox.Show
-                    (
-                    "Servidor inacessível no momento, por favor tente mais tarde.\n\nCaso o problema prevaleça, entre em contato com seu suporte técnico.",
-                    "Erro no cadastro de Fornecedores",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning
-                    );
+                Home.mensagemDeErro("Não constam registros com o LOGIN e SENHA fornecidos.\n\nPor favor, certifique-se de que estão corretos e tente novamente.", "Falha de login");
+
+                return 0;
             }
+            return codFuncionario;
         }
 
         private void Login_Load(object sender, EventArgs e)

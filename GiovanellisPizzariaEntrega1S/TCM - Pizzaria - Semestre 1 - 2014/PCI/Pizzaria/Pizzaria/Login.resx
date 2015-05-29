@@ -143,30 +143,6 @@
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="btnConfiguracoes.Location" type="System.Drawing.Point, System.Drawing">
-    <value>405, 258</value>
-  </data>
-  <data name="btnConfiguracoes.Size" type="System.Drawing.Size, System.Drawing">
-    <value>55, 23</value>
-  </data>
-  <data name="btnConfiguracoes.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="btnConfiguracoes.Text" xml:space="preserve">
-    <value>Config.</value>
-  </data>
-  <data name="&gt;&gt;btnConfiguracoes.Name" xml:space="preserve">
-    <value>btnConfiguracoes</value>
-  </data>
-  <data name="&gt;&gt;btnConfiguracoes.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnConfiguracoes.Parent" xml:space="preserve">
-    <value>pnl_login</value>
-  </data>
-  <data name="&gt;&gt;btnConfiguracoes.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
   <data name="btn_Acessa.Location" type="System.Drawing.Point, System.Drawing">
     <value>185, 120</value>
   </data>
@@ -334,7 +310,7 @@
     <value>pnl_login</value>
   </data>
   <data name="&gt;&gt;tbp_Acesso.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>1</value>
   </data>
   <data name="pnl_login.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 12</value>

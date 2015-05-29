@@ -23,19 +23,34 @@ namespace Pizzaria
 
         clsProdutoBLL produto = new clsProdutoBLL();
 
-        SqlConnection conn;
-        string strsql = "", nome = "", cod_produto = "", categoria = "", medida = "";
-        DateTime datavalidade, datarecebimento, datafabricacao;
-        double valoruntd = 0;
-        Boolean valida = false;
-        int qtd = 0, site = 0;
+        string 
+            buscarPorNome = "", 
+            buscarPorID = "", 
+            strsql = "", 
+            nome = "", 
+            cod_produto = "", 
+            categoria = "", 
+            medida = "", 
+            conexao = "";
 
-        string buscarPorNome = "";
-        string buscarPorID = "";
+        SqlConnection conn;
+        
+        DateTime 
+            datavalidade, 
+            datarecebimento, 
+            datafabricacao;
+        
+        double valoruntd = 0;
+        
+        Boolean valida = false;
+        
+        int 
+            qtd = 0, 
+            site = 0;
+
+        public static bool sequenciaCadastro = false;
 
         public Form FormHome { get; set; }
-
-        String conexao = "";
 
         public void preencherGrid(string busca, DataGridView tabela)
         {
@@ -267,16 +282,12 @@ namespace Pizzaria
 
             produto.InserirProduto(objProduto);
 
+            sequenciaCadastro = true;
+
             Consumo consumo = new Consumo();
             consumo.FormHome = this;
             this.Enabled = false;
             consumo.Show();
-
-            dtg_produtos.DataSource = produto.MostrarTodosProdutosDesc();
-            
-            txt_nome.Clear();
-            txtPreco.Clear();
-            chk_site.Checked = false;
         }
 
         private void btn_excluir_Click(object sender, EventArgs e)
@@ -602,6 +613,12 @@ namespace Pizzaria
 
         private void txtBuscaPorID_Enter(object sender, EventArgs e)
         {
+        }
+
+        private void Produtos_EnabledChanged(object sender, EventArgs e)
+        {
+            if (this.Enabled == true)
+                dtg_produtos.DataSource = produto.MostrarTodosProdutosDesc();
         }
     }
 }

@@ -17,7 +17,6 @@ namespace BLL
             public clsClienteBLL()
             {
                 ObjBanco = new clsBanco();
-
             }
 
             ~clsClienteBLL()

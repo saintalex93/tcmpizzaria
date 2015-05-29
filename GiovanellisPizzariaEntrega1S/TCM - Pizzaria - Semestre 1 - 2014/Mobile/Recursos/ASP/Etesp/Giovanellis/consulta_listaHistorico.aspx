@@ -9,10 +9,10 @@
 	{
 		int Cod_Funcionario = int.Parse((Request.QueryString["Cod_Funcionario"]));
 
-		//String de casa
+		//string casa
 		//String strConexao = "Password=peganomeupau; Persist Security Info=True; User ID=sa; Initial Catalog=Pizzaria; Data Source=TUCA\\SQLEXPRESS";
 
-		//String do curso
+		//string curso
 		String strConexao = "Password=etesp; Persist Security Info=True; User ID=aluno; Initial Catalog=Pizzaria; Data Source=LAB02T-20";
 
 		SqlConnection objConexao = new SqlConnection(strConexao);

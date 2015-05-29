@@ -41,6 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAO\clsBanco.cs" />
+    <Compile Include="Model\clsCategoriaProduto.cs" />
+    <Compile Include="Model\clsCategoria.cs" />
     <Compile Include="Model\clsCliente.cs" />
     <Compile Include="Model\clsConsumo.cs" />
     <Compile Include="Model\clsFornecedor.cs" />

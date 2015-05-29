@@ -9,11 +9,11 @@
 	{
 		int Cod_Pedido = int.Parse((Request.QueryString["Cod_Pedido"]));
 			
-		//String casa	
+		//string casa
 		//String strConexao = "Password=peganomeupau; Persist Security Info=True; User ID=sa; Initial Catalog=Pizzaria; Data Source=TUCA\\SQLEXPRESS";
 
-		//String etesp
-		String strConexao = "Password=etesp; Persist Security Info=True; User ID=aluno; Initial Catalog=Pizzaria; Data Source=LAB02T-11";
+		//string curso
+		String strConexao = "Password=etesp; Persist Security Info=True; User ID=aluno; Initial Catalog=Pizzaria; Data Source=LAB02T-20";
 		
 		SqlConnection objConexao = new SqlConnection(strConexao);
 		String contato = "";

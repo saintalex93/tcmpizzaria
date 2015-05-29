@@ -360,30 +360,36 @@ insert into Insumo
 Nome_Insumo,
 ValorDeCompra,
 QtdeRecomendavel,
-QtdeEmEstoque
+QtdeEmEstoque,
+Medida
 )
 values
-('Massa',20.00,12,30),
-('Orégano',20.00,20,12),
-('Queijo mussarela',35.00,30,19),
-('Tomate',15.30,25,20),
-('Calabresa Moída',15,30,29),
-('Parmesão',17.20,20,18),
-('Ovos',12,25,17),
-('Presunto',16,15,10),
-('Cebola',9,50,12),
-('Catupiry',15.80,50,23),
-('Pimenta',7.90,30,1),
-('Lombo',21.70,25,1),
-('Palmito',18.90,20,1),
-('Champignon',19.60,15,1),
-('Provolone',19,20,18),
-('Bacon',18.30,25 ,8),
-('Cerveja',4.30,300,400),
-('Refrigerante',4.30,300,400),
-('Vinho',4.30,300,400),
-('Champagne',4.30,300,400),
-('Camarão',17.30,10,15)
+('Orégano', 20, 20, 12, 'Kg'),
+('Queijo mussarela', 35, 30, 19, 'Kg'),
+('Tomate', 15, 25, 20, 'Kg'),
+('Calabresa Moída', 15, 30, 29, 'Kg'),
+('Parmesão', 17, 20, 18, 'Kg'),
+('Ovos', 12, 25, 17, 'Un.'),
+('Presunto', 16, 15, 10, 'Kg'),
+('Cebola', 9, 50, 12, 'Kg'),
+('Catupiry', 16, 50, 23, 'Kg'),
+('Pimenta', 8, 30, 1, 'Kg'),
+('Lombo', 22, 25, 1, 'Kg'),
+('Palmito', 19, 20, 1, 'Kg'),
+('Champignon', 20, 15, 1, 'Kg'),
+('Provolone', 19, 20, 18, 'Kg'),
+('Bacon', 18, 25, 8, 'Kg'),
+('Embalagem para Pizza', 31, 50, 70, 'Un.'),
+('Massa para pizza', 50, 100, 200, 'Kg'),
+('Molho de tomate', 8, 10, 20, 'Kg'),
+('Azeitona', 15, 5, 15, 'Kg'),
+('frango', 10, 10, 15, 'Kg'),
+('Milho', 7, 5, 10, 'Kg'),
+('Refrigerante', 2, 50, 70, 'Un.'),
+('Cerveja', 2, 50, 90, 'Un.'),
+('Vinho', 15, 10, 20, 'Un.'),
+('Champagne', 15, 10, 20, 'Un.'),
+('Camarão', 25, 2, 5, 'Kg')
 go
 
 insert into Categoria
@@ -556,46 +562,125 @@ CodInsumo,
 Quantidade
 )
 values
-(1, 2, 0.30),
-(1, 4, 0.01),
-(1, 6, 0.5),
-(1, 8, 0.90),
-(1, 10, 0.2),
-(2, 1, 0.20),
-(2, 2, 0.30),
-(2, 8, 0.60),
-(3, 2, 0.30),
-(3, 6, 1),
-(3, 15, 0.7),
-(4, 2, 0.30),
-(4, 11, 1),
-(4, 12, 1),
-(4, 13, 1),
-(5, 2, 0.30),
-(5, 3, 1),
-(5, 7, 1),
-(6, 2, 0.30),
-(6, 4, 1),
-(6, 8, 1),
-(7, 2, 0.30),
-(7, 9, 0.50),
-(8, 2, 0.30),
-(8, 9, 1),
-(8, 14, 1),
-(9, 2, 0.30),
-(9, 4, 1),
-(9, 5, 1),
-(10, 2, 0.30),
-(11, 9, 0.50),
-(12, 2, 0.30),
-(13, 9, 1),
-(14, 18, 1),
-(15, 17, 1),
-(16, 19, 1),
-(17, 20, 1),
-(18, 21 , 0.250),
-(19, 5, 0.250),
-(20, 15, 0.250)
+(1,4,0.300),
+(1,10,0.50),
+(1,17,0.400),
+(1,18,0.100),
+(1,8,0.100),
+(1,19,0.050),
+(1,16,1),
+
+(2,17,0.400),
+(2,18,0.100),
+(2,2,0.400),
+(2,19,0.050),
+(2,1,0.50),
+(2,16,1),
+
+(3,17,0.400),
+(3,18,0.100),
+(3,2,0.300),
+(3,15,0.300),
+(3,19,0.050),
+(3,8,0.100),
+(3,16,1),
+
+(4,17,0.400),
+(4,18,0.100),
+(4,2,0.300),
+(4,4,0.300),
+(4,19,0.050),
+(4,10,0.100),
+(4,8,0.100),
+(4,16,1),
+
+(5,17,0.400),
+(5,18,0.100),
+(5,19,0.050),
+(5,2,0.300),
+(5,7,0.300),
+(5,8,0.100),
+(5,16,1),
+
+(6,17,0.400),
+(6,18,0.100),
+(6,19,0.050),
+(6,4,0.300),
+(6,8,0.100),
+(6,16,1),
+
+(7,17,0.400),
+(7,18,0.100),
+(7,19,0.050),
+(7,2,0.300),
+(7,9,0.200),
+(7,16,1),
+
+(8,17,0.400),
+(8,18,0.100),
+(8,19,0.050),
+(8,2,0.300),
+(8,9,0.200),
+(8,5,0.200),
+(8,16,1),
+
+(9,17,0.400),
+(9,18,0.100),
+(9,19,0.050),
+(9,8,0.100),
+(9,11,0.300),
+(9,2,0.300),
+(9,1,0.50),
+(9,16,1),
+
+(10,17,0.400),
+(10,18,0.100),
+(10,19,0.050),
+(10,20,0.300),
+(10,21,0.200),
+(10,12,0.200),
+(10,16,1),
+
+(11,17,0.400),
+(11,18,0.100),
+(11,19,0.050),
+(11,4,0.300),
+(11,10,0.100),
+(11,16,1),
+
+(12,17,0.400),
+(12,18,0.100),
+(12,19,0.050),
+(12,2,0.200),
+(12,1,0.50),
+(12,12,0.200),
+(12,5,0.300),
+(12,16,1),
+
+(13,17,0.400),
+(13,18,0.100),
+(13,19,0.050),
+(13,7,0.300),
+(13,6,3),
+(13,11,0.300),
+(13,2,0.300),
+(13,1,0.050),
+(13,16,1),
+
+(14,22,1),
+
+(15,23,1),
+
+(16,24,1),
+
+(17,25,1),
+
+(18,26,0.400),
+
+
+(19,4,0.400),
+
+(20,14,0.400)
 go
 
 insert into ProdutoPromocao
@@ -812,11 +897,11 @@ go
 
 	-------------------------------------------------------------- 
 	-------------------------------------------------------------- 
-	-------------------- *** PROCEDURES *** ----------------------
+	-------------------- *** procS *** ----------------------
 	-------------------------------------------------------------- 
 	-------------------------------------------------------------- 
 
-create procedure sp_Select_cliente
+create proc sp_Select_cliente
 (
 @NOME_CLIENTE VARCHAR(40) = null,
 @Param1 VARCHAR(40) = null, 
@@ -874,7 +959,7 @@ end
 go
 -----------------------------------------
 /*
-create procedure [dbo].[sp_insert_cliente]
+create proc [dbo].[sp_insert_cliente]
 (
 @NOME_CLIENTE VARCHAR(40)= null,
 @CPF_CLIENTE VARCHAR(15)= null,
@@ -935,7 +1020,7 @@ end
 go
 */
 -----------------------------------------
-create procedure sp_Select_pedido
+create proc sp_Select_pedido
 (
 @Cod_Pedido int = null,
 @Data DateTime = null, 
@@ -1197,7 +1282,7 @@ as
 	end
 go
 -----------------------------------------
-create procedure [dbo].[CSharp_Atualiza_Cliente]
+create proc [dbo].[CSharp_Atualiza_Cliente]
 (
 	@Cod_CLiente int = null,
 	@Nome_CLiente varchar(50) = null,
@@ -1242,8 +1327,8 @@ as
 		where Cod_Cliente = @Cod_CLiente
 	end
 go
-------------------------------------------------------------------
-create procedure [dbo].[CSharp_Delete_Funcionario]
+------------------------------------------------
+create proc [dbo].[CSharp_Delete_Funcionario]
 (
 	@cod_Func int = null
 )
@@ -1252,7 +1337,7 @@ as
 		delete from Funcionario where Cod_Funcionario = @cod_Func
 	end
 go
-------------------------------------------------------------------
+------------------------------------------------
 create proc [dbo].[CSharp_Insere_Cliente]
 (
 	--@Cod_CLiente int = null,
@@ -1316,8 +1401,8 @@ as
 		)
 	end
 go
------------------------------------------------------
-create PROCEDURE [dbo].[CSharp_Insere_Funcionario]
+------------------------------------------------
+create proc [dbo].[CSharp_Insere_Funcionario]
 (
 	@NOME_Funcionario VARCHAR(40) = null,
 	@CPF_Funcionario VARCHAR(15) = null,
@@ -1385,7 +1470,7 @@ as
 		end
 go
 ------------------------------------
-create procedure [dbo].[CSharp_Seleciona_Cargo]
+create proc [dbo].[CSharp_Seleciona_Cargo]
 (
 	@teste int = null
 )
@@ -1395,8 +1480,8 @@ as
 		from Permissao
 	end
 go
-------------------------------------------------------------
-create procedure [dbo].[CSharp_Seleciona_Cliente]
+------------------------------------------------
+create proc [dbo].[CSharp_Seleciona_Cliente]
 (
 	@Cod_CLiente int = null,
 	@Nome_CLiente varchar(50) = null,
@@ -1443,7 +1528,7 @@ as
 	end
 go
 -------------------------------------------------
-create procedure [dbo].[CSharp_Seleciona_Produtos]
+create proc [dbo].[CSharp_Seleciona_Produtos]
 (
 	@cod_Pedido int = null
 )
@@ -1461,8 +1546,8 @@ as
 		group by det.Cod_Pedido, prod.Cod_Produto,prod.Nome_Produto,prod.Valor_Venda
 	end
 go
------------------------------------------
-create procedure [dbo].[CSharp_Select_Funcionario]
+------------------------------------------------
+create proc [dbo].[CSharp_Select_Funcionario]
 (
 	@Cod_Funcionario int = null,
 	@NOME_Funcionario VARCHAR(40) = null,
@@ -1528,8 +1613,8 @@ as
 			(cod_Permissao =@cod_Permissao or @cod_Permissao is null) 
 	end
 go
---------------------------------------------
-create procedure [dbo].[CSharp_Select_pedido]
+------------------------------------------------
+create proc [dbo].[CSharp_Select_pedido]
 (
 	@Cod_Pedido int = null,
 	@Data date = null, 
@@ -1574,8 +1659,8 @@ as
 			(Estado like @Estado_Novo))
 	end
 go
--------------------------------------
-create procedure [dbo].[CSharp_Update_Funcionario]
+------------------------------------------------
+create proc [dbo].[CSharp_Update_Funcionario]
 (
 	@cod_Funcionario int = null,
 	@NOME_Funcionario VARCHAR(40) = null,
@@ -1627,7 +1712,7 @@ as
 	end
 go
 ------------------------------------------------
-create procedure [dbo].[CSharp_update_pedido]
+create proc [dbo].[CSharp_update_pedido]
 (
 	@Estado varchar(20) = null,
 	@cod_pedido int = null
@@ -1639,8 +1724,8 @@ as
 		where Cod_Pedido = @cod_pedido
 	end
 go
-
-create procedure SP_SelecionaCod
+------------------------------------------------
+create proc SP_SelecionaCod
 		
 		@Nome_Funcionario Varchar (40)
 		
@@ -1651,133 +1736,7 @@ create procedure SP_SelecionaCod
 	End
 go
 ------------------------------------------------
-create proc SP_JAVA_Rel
-(
-	@DataInicial Date,
-	@DataFinal Date
-)
-as
-	declare
-		@TotalDespesa float,
-		@TotalFuncionario float,
-		@TotalCompras float,
-		@TotalPedidos float,
-		@TotalPromocao float,
-		@TotalGeral float,
-		@TotalPrejuca float,
-		@TotalReceita float
 
-	begin
-		set @TotalFuncionario = (select SUM(ValorPagamento) from Pagamento where DataExpedido between @DataInicial and @DataFinal)
-		set @TotalDespesa = (select  sum(ValorDespesa) from despesa where DataPagamento between @DataInicial and @DataFinal)
-		set @TotalCompras = (select SUM (Valor_Compra) from CompraFornecedor where Data_Venda between @DataInicial and @DataFinal)
-		set @TotalPedidos = (select SUM (ValorPago) from Pedido where Data between @DataInicial and @DataFinal)
-		set @TotalPromocao = (select sum(Valor) from PedidoPromocao as p inner join Promocao as pr on pr.Cod_Promocao = p.Cod_Promocao inner join Pedido 
-		as pd on pd.Cod_Pedido = p.Cod_Pedido where Data between '01-01-2015' and '31-12-2015')
-
-		set @TotalPrejuca = (@TotalDespesa + @TotalFuncionario + @TotalCompras) 
-		Set @TotalReceita = @TotalPedidos
-		set @TotalGeral = @TotalReceita - @TotalPrejuca 
-
-		print 'Prejuizo: ' print @TotalPrejuca
-		print 'Receita: ' print @TotalReceita
-		print 'TotalGeral: ' print @TotalGeral 
-		print 'Promoções' print @TotalPromocao
-	end
-go
-------------------------------------------------
-create proc SP_JAVA_AlterarSenha
-	@Cod_Funcionario int,
-	@Login_funcionario Varchar (50),
-	@Senha_Funcionario Varchar (20),
-	@Cod_Permissao int
-as
-	begin
-		Update Funcionario 
-		set 
-			Login_funcionario = @Login_funcionario, 
-			Senha_Funcionario = @Senha_Funcionario, 
-			Cod_Permissao = @Cod_Permissao 
-		where 
-			Cod_Funcionario = @Cod_Funcionario
-	end
-go
-------------------------------------------------
-create proc SP_JAVA_InserirTipoDespesa
-	@NomeDespesa varchar (40)
-AS
-	declare @SituacaoDespesa varchar (20)
-	begin
-		set @SituacaoDespesa = 'Ativo'
-		insert into TipoDespesa (NomeDespesa, SituacaoDespesa) values (@NomeDespesa, @SituacaoDespesa)
-	end
-go
-------------------------------------------------
-create proc SP_JAVA_AlterarTipoDespesa
-	@CodDespesa int,
-	@NomeDespesa varchar (30),
-	@SituacaoDespesa varchar (20)
-as
-	begin
-		update TipoDespesa 
-
-		set 
-		NomeDespesa = @NomeDespesa, 
-		SituacaoDespesa = @SituacaoDespesa 
-
-		where codTipoDespesa = @CodDespesa
-	end
-go
-------------------------------------------------
-create proc SP_JAVA_LancarDespesa
-	@TipoDespesa int,
-	@ValorDespesa float,
-	@DataPagamento date,
-	@DataVencimento date
-as
-	begin
-		Insert into Despesa
-		(
-			TipoDespesa, 
-			ValorDespesa, 
-			DataPagamento, 
-			DataVencimento
-		)
-
-		values 
-		(
-			@TipoDespesa,
-			@ValorDespesa,
-			@DataPagamento,
-			@DataVencimento
-		)
-	end
-go
-------------------------------------------------
-create proc SP_JAVA_LancamentoFuncionario
-	@ValorPagamento float,
-	@DataExpedido date,
-	@TipoPagamento varchar (30),
-	@CodFuncionario int
-as
-	begin
-		insert into Pagamento 
-		(
-			ValorPagamento, 
-			DataExpedido, 
-			TipoPagamento, 
-			Cod_Funcionario
-		)
-
-		Values 
-		(
-			@ValorPagamento,
-			@DataExpedido,
-			@TipoPagamento,
-			@CodFuncionario
-		)
-	end
-go
 ------------------------------------------------
 create proc USP_CSharp_Promocao_BuscarPromocoesPorPalavraChave
 (
@@ -2136,50 +2095,6 @@ as
 	End
 go
 ------------------------------------------------
---TODO: mudar nome dessa proc pra se adequar à nomenclatura de entrega do Professor Luiz Ricardo
-create proc USP_JAVA_Rel
-(
-	@DataInicial Date,
-	@DataFinal Date
-)
-as
-declare 
-	@TotalDespesa float,
-	@TotalFuncionario float,
-	@TotalCompras float,
-	@TotalPedidos float,
-	@TotalPromocao float,
-	@TotalGeral float,
-	@TotalPrejuca float,
-	@TotalReceita float
-
-begin
-	set @TotalFuncionario = (select SUM(ValorPagamento) from Pagamento where DataExpedido between @DataInicial and @DataFinal)
-	set @TotalDespesa = (select  sum(ValorDespesa) from despesa where DataPagamento between @DataInicial and @DataFinal)
-	set @TotalCompras = (select SUM (Valor_Compra) from CompraFornecedor where Data_Venda between @DataInicial and @DataFinal)
-	set @TotalPedidos = (select SUM (ValorPago) from Pedido where estado <>  'Cancelado' and Data between @DataInicial and @DataFinal)
-	set @TotalPromocao = 
-	(
-		select  sum (produtos.Valor_Venda) as ValorTotal from 
-			Promocao as promocao 
-			inner join ProdutoPromocao as produtoPromo on produtoPromo.Cod_Promocao = promocao.Cod_Promocao 
-			inner join Produto as produtos on produtos.Cod_Produto = produtoPromo.Cod_Produto 
-			inner join Detalhe_Pedido as Dp on Dp.Cod_Produto = produtos.Cod_Produto 
-			inner join Pedido as pedido on pedido.Cod_Pedido = Dp.Cod_Pedido and 
-				pedido.Data Between @DataInicial and @DataFinal
-	)
-	set @TotalPrejuca = (@TotalDespesa + @TotalFuncionario + @TotalCompras) 
-	Set @TotalReceita = @TotalPedidos
-	set @TotalGeral = @TotalReceita - @TotalPrejuca 
-
-	Select 
-		@TotalPrejuca as Prejuizo, 
-		@TotalReceita as Receita, 
-		@TotalGeral as TotalGeral,
-		@TotalPromocao as Promocoes
-	end
-go
-------------------------------------------------
 create proc USP_CSharp_Produto_MostrarTodosProdutos
 As
 	Begin
@@ -2476,9 +2391,311 @@ go
 create proc USP_CSharp_Categoria_BuscarCategorias
 as
 	Begin
-		SELECT NomeCategoria, CodCategoria
-
-		FROM Categoria
+		SELECT NomeCategoria, CodCategoria FROM Categoria
 	End
 go
 ------------------------------------------------
+create proc USP_CSharp_Categoria_InserirCategoria
+(
+	@NomeCategoria varchar (20)
+)
+
+as
+	Begin
+		insert into Categoria values(@NomeCategoria)
+	End
+go
+------------------------------------------------
+create proc USP_JAVA_Relatorios
+(
+	@DataInicial Date,
+	@DataFinal Date,
+	@BinarioFuncionario Int,
+	@BinarioDespesa Int,
+	@BinarioCompras Int,
+	@BinarioPedidos Int,
+	@BinarioPromocao Int
+)	
+as
+
+declare 
+
+	@TotalDespesa float =0,
+	@TotalFuncionario float =0,
+	@TotalCompras float =0,
+	@TotalPedidos float =0,
+	@TotalPromocao float =0,
+	@TotalGeral float =0,
+	@TotalPrejuizo float =0,
+	@TotalReceita float =0
+
+begin
+	
+	if @BinarioFuncionario = 1
+	begin
+			set @TotalFuncionario = (select SUM(ValorPagamento) from Pagamento where DataExpedido between @DataInicial and @DataFinal)
+
+	end
+
+	if @BinarioDespesa = 1
+	begin
+		set @TotalDespesa = (select  sum(ValorDespesa) from despesa where DataPagamento between @DataInicial and @DataFinal)
+
+	end
+
+	if @BinarioCompras = 1
+	begin
+		set @TotalCompras = (select SUM (Valor_Compra) from CompraFornecedor where Data_Venda between @DataInicial and @DataFinal)
+
+	end
+
+	if @BinarioPedidos = 1
+	begin
+		set @TotalPedidos = (select SUM (ValorPago) from Pedido where estado <>  'Cancelado' and Data between @DataInicial and @DataFinal)
+
+	end
+
+	if @BinarioPromocao = 1
+	begin
+	set @TotalPromocao = (select sum (produtos.Valor_Venda) as ValorTotal from Promocao as promocao inner join ProdutoPromocao as produtoPromo on
+                        produtoPromo.Cod_Promocao = promocao.Cod_Promocao inner join Produto as produtos on produtos.Cod_Produto = 
+                        produtoPromo.Cod_Produto inner join Detalhe_Pedido as Dp on Dp.Cod_Produto = produtos.Cod_Produto inner join Pedido
+                        as pedido on pedido.Cod_Pedido = Dp.Cod_Pedido and Data Between @DataInicial and @DataFinal)
+	end
+
+	set @TotalPrejuizo = (@TotalDespesa + @TotalFuncionario + @TotalCompras) 
+	Set @TotalReceita = @TotalPedidos
+	set @TotalGeral = @TotalReceita - @TotalPrejuizo 
+	
+
+	Select 
+		@TotalPromocao as Promocoes,
+		@TotalPedidos as Pedidos,
+		@TotalCompras as Compras,
+		@TotalFuncionario as Funcionario,
+		@TotalDespesa as Despesa,
+		
+		@TotalPrejuizo as Prejuizo, 
+		@TotalReceita as Receita, 
+		@TotalGeral as TotalGeral
+		
+		
+	end
+go
+-------------------------------------------------------ProcInserirTipoDespesa------------------------------------------------------------
+create proc JAVA_USP_InserirTipoDespesa
+ @NomeDespesa varchar (40)
+ 
+ 
+ AS
+ 
+ declare @SituacaoDespesa varchar (20)
+ 
+ begin
+ 
+ 
+ set @SituacaoDespesa = 'Ativo'
+ 
+ insert into TipoDespesa (NomeDespesa, SituacaoDespesa) values (@NomeDespesa, @SituacaoDespesa)
+ 
+ end
+go
+-------------------------------------------------------ProcAlterarTipoDespesa------------------------------------------------------------
+create proc JAVA_USP_AlterarTipoDespesa
+
+@CodDespesa int,
+@NomeDespesa varchar (30),
+@SituacaoDespesa varchar (20)
+
+as
+begin
+
+update TipoDespesa set NomeDespesa = @NomeDespesa, SituacaoDespesa = @SituacaoDespesa where codTipoDespesa = @CodDespesa
+
+end
+go
+------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+--------------------------------------------------ProcAlterarSenha------------------------------------------------------------------- 
+create proc JAVA_USP_AlterarSenha
+ @Cod_Funcionario int,
+ @Login_funcionario Varchar (50),
+ @Senha_Funcionario Varchar (20),
+ @Cod_Permissao int
+ as
+ begin
+ 
+ Update Funcionario set Login_funcionario = @Login_funcionario, Senha_Funcionario = @Senha_Funcionario, Cod_Permissao = @Cod_Permissao where Cod_Funcionario = @Cod_Funcionario
+ 
+ 
+ end
+ 
+ 
+ 
+
+
+go
+--------------------------------------------------------ProcLançaValores------------------------------------------------------------------
+create proc JAVA_USP_LancarDespesa
+(
+@TipoDespesa int,
+@ValorDespesa float,
+@DataPagamento date,
+@DataVencimento date
+)
+as
+begin
+
+Insert into Despesa(TipoDespesa, ValorDespesa, DataPagamento, DataVencimento) values (@TipoDespesa,@ValorDespesa,@DataPagamento,@DataVencimento)
+
+end
+go
+---------------------------------------------------------PagamentoFuncionario-------------------------------------------------------------
+create proc JAVA_USP_LancamentoFuncionario
+@ValorPagamento float,
+@DataExpedido date,
+@TipoPagamento varchar (30),
+@CodFuncionario int
+as
+begin
+	insert into Pagamento (ValorPagamento, DataExpedido, TipoPagamento, Cod_Funcionario)
+	Values (@ValorPagamento, @DataExpedido, @TipoPagamento, @CodFuncionario)
+end
+go
+---------------------------------------------------
+create proc USP_CSharp_Categoria_RemoverCategoria
+
+	@codCategoria int
+
+as
+	Begin
+		delete from InsumoCategoria where CodCategoria = @codCategoria
+		delete from ProdutoCategoria where CodCategoria = @codCategoria
+		delete from Categoria where CodCategoria = @codCategoria
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Categoria_PreencherProdutos
+as
+	Begin
+		select Nome_Produto, Cod_Produto from Produto where Cod_Produto > 0
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Categoria_PreencherInsumos
+as
+	Begin
+		select Nome_Insumo, Cod_Insumo from Insumo 
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Categoria_AlterarCategoria
+
+	@NomeCategoria varchar(20),
+	@CodCategoria int
+
+as
+	Begin
+		update Categoria 
+		
+		set NomeCategoria = @NomeCategoria 
+		
+		where CodCategoria = @CodCategoria
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Categoria_PreencherProdutosNaCategoria
+
+	@CodCategoria int
+
+as
+	Begin
+		select p.Nome_Produto, p.Cod_Produto 
+		
+		from ProdutoCategoria pc
+
+		inner join Produto p on
+			pc.CodCategoria = @CodCategoria and
+			p.Cod_Produto = pc.CodProduto
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Categoria_PreencherInsumosNaCategoria
+
+	@CodCategoria int
+
+as
+	Begin
+		select i.Nome_Insumo, i.Cod_Insumo
+		
+		from InsumoCategoria ic
+
+		inner join Insumo i on
+			ic.CodCategoria = @CodCategoria and
+			i.Cod_Insumo = ic.CodInsumo
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Categoria_ValidarExistenciaNoBanco
+
+	@NomeCategoria varchar(20)
+
+as
+	Begin
+		select count(*) from Categoria where NomeCategoria = @NomeCategoria
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Categoria_InserirProdutoNaCategoria
+
+	@CodProduto int,
+	@CodCategoria int
+
+as
+	Begin
+		insert into ProdutoCategoria values (@CodProduto, @CodCategoria)
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Categoria_ValidaProdutoCategoria
+
+	@CodProduto int,
+	@CodCategoria int
+
+as
+	Begin
+		select count(*)
+		From ProdutoCategoria
+		where 
+			CodCategoria = @CodCategoria and
+			CodProduto = @CodProduto
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Login_ValidarUsuario
+
+	@Login varchar (20),
+	@Senha varchar (20)
+
+as
+	Begin
+		select Cod_Funcionario
+		from Funcionario
+		where 
+			Login_Funcionario = @Login and 
+			Senha_Funcionario = @Senha
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Consumo_CancelarInsercao
+as
+	Begin
+		delete from Consumo where CodProduto = (select max(Cod_Produto) from Produto)
+		delete from Produto where Cod_Produto = (select max(Cod_Produto) from Produto)
+	End
+go
+---------------------------------------------------

@@ -22,10 +22,10 @@ import android.widget.Toast;
 public class Login extends Activity {
 
 	// IP do curso	
-	//public static String ip = "10.67.74.40";
+	public static String ip = "10.67.74.40";
 
 	// IP de casa
-	public static String ip = "192.168.1.8";
+	//public static String ip = "192.168.1.6";
 	
 	public static String nomeFuncionario = "";
 	
@@ -125,16 +125,16 @@ public class Login extends Activity {
 					// ATENÇÃO A REDE DEVE ESTAR FUNCIONANDO COM O ENDEREÇO IP
 					// OK
 
-					Home.meuLog("Url", "http://"+ ip +"/Giovanellis/consulta_login.aspx?Login_Funcionario="+tvLogin.getText()+"&Senha_Funcionario="+tvSenha.getText());
+					String login = tvLogin.getText().toString();
+					String senha = tvSenha.getText().toString();
 					
-					URL url = new URL("http://"+ ip +"/Giovanellis/consulta_login.aspx?Login_Funcionario="+tvLogin.getText()+"&Senha_Funcionario="+tvSenha.getText());
-						
+					Home.meuLog("Url", "http://"+ ip +"/Giovanellis/consulta_login.aspx?Login_Funcionario=" + login + "&Senha_Funcionario=" + senha);
+					
+					URL url = new URL("http://"+ ip +"/Giovanellis/consulta_login.aspx?Login_Funcionario=" + login + "&Senha_Funcionario=" + senha);
 					URLConnection conexao = url.openConnection();
-
 					InputStream inputStream = conexao.getInputStream();
-
 					BufferedInputStream bufferedInput = new BufferedInputStream(inputStream);
-					
+
 					int current = 0;
 
 					while ((current = bufferedInput.read()) != -1) 

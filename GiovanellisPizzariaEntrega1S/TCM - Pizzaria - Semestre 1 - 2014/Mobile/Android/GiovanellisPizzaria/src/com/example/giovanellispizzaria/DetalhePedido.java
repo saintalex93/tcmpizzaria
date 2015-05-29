@@ -4,6 +4,7 @@ import java.io.BufferedInputStream;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -222,10 +223,10 @@ public class DetalhePedido extends Activity {
 								campos = aux.split(",");
 								Home.meuLog("campos.length", campos.length+"");
 								
-								if(campos.length == 1)
+								if(campos[1].charAt(0) == '(')
 									mensagem = campos[0];
 									
-								else if(campos.length == 2)
+								else
 								{
 									campos[0] = campos[0].replace("Pizza ", "");
 									campos[1] = campos[1].replace("Pizza ", "");
@@ -274,6 +275,8 @@ public class DetalhePedido extends Activity {
 			URL url = new URL(
 					"http://"+ Login.ip +"/Giovanellis/consulta_Detalhes_selectFormaPagamento.aspx?CodPedido=" + Home.codPedido);
 
+			Home.meuLog("Endereço de preço quebrado", url.toString());
+			
 			URLConnection conexao = url.openConnection();
 
 			InputStream inputStream = conexao.getInputStream();
@@ -354,6 +357,10 @@ public class DetalhePedido extends Activity {
 					{
 						telefone = aux.replace("-", "");
 						
+						double trocoValor = valorPago - valorPedido;
+						
+						Home.meuLog("Valores", "valorPago: " + valorPago + " / valorPedido: " + valorPedido + " troco:" + trocoValor);
+						
 						if(FormaDepagamentoString.equals("Dinheiro"))
 							troco.setText(FormaDepagamentoString + " - R$ " + valorPago + " (Troco: R$ " + (valorPago - valorPedido) + ")");
 
@@ -381,5 +388,11 @@ public class DetalhePedido extends Activity {
 		{
 			Log.d("DetalhePedido", "Message: " + e.getMessage());
 		}
+	}
+	
+	double roundTwoDecimals(double d)
+	{
+	    DecimalFormat twoDForm = new DecimalFormat("#.##");
+	    return Double.valueOf(twoDForm.format(d));
 	}
 }

@@ -91,7 +91,7 @@
                 <ListBox.ItemContainerStyle>
                 
                     <Style TargetType="ListBoxItem">
-                        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
                         <Setter Property="BorderThickness" Value="1"/>
                         <Setter Property="BorderBrush" Value="#999"/>
                         <Setter Property="Padding" Value="10"/>
@@ -108,7 +108,7 @@
                             Height="Auto"
                             TextAlignment="Left" 
                             Text="{Binding}" 
-                            FontSize="200" 
+                            FontSize="20" 
                             Margin="0" 
                             Style="{StaticResource PhoneTextNormalStyle}"
                             Foreground="#000"

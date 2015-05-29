@@ -243,6 +243,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Produtos";
             this.Load += new System.EventHandler(this.Insumo_Load);
+            this.EnabledChanged += new System.EventHandler(this.Produtos_EnabledChanged);
             this.gbp_produtos.ResumeLayout(false);
             this.gbp_produtos.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtg_produtos)).EndInit();

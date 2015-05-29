@@ -431,7 +431,7 @@ public class Home extends Activity {
 	  
 	public static void meuLog(String tag, String mensagem)
 	  {
-		  Log.d(tag, "'" + mensagem + "'");
+		  Log.e(tag, "'" + mensagem + "'");
 	  }
 	  
 	@Override

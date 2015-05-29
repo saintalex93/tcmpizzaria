@@ -60,7 +60,7 @@ namespace Giovanellis
 
             WebClient wc = new WebClient();
 
-            wc.DownloadStringAsync(new Uri("http://localhost/Giovanellis/consulta_login.aspx?Login_Funcionario=" + txtLogin.Text + "&Senha_Funcionario=" + txtSenha.Password));
+            wc.DownloadStringAsync(new Uri("http://localhost/Giovanellis/consulta_login.aspx?Login_Funcionario=" + txtLogin.Text.ToString() + "&Senha_Funcionario=" + txtSenha.Password.ToString()));
             
             wc.DownloadStringCompleted += new DownloadStringCompletedEventHandler(wc_DownloadStringCompleted);
         }

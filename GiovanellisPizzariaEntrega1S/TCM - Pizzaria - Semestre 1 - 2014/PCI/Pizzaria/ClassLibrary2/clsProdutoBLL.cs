@@ -139,5 +139,10 @@ namespace BLL
 
             Banco.ExecuteProc("USP_CSharp_Produto_RemoverProduto", parametro);
         }
+
+        public void CancelarInsercao() 
+        {
+            Banco.ExecuteProc("USP_CSharp_Produto_CancelarInsercao");
+        }
     }
 }

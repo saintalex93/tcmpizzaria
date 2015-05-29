@@ -43,19 +43,19 @@
             this.btnAdicionarProdutoCategoria = new System.Windows.Forms.Button();
             this.lstProdutosCategoria = new System.Windows.Forms.ListBox();
             this.grpDados = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.grpConteudo = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.cbInsumos = new System.Windows.Forms.ComboBox();
+            this.btnRemoverInsumoCategoria = new System.Windows.Forms.Button();
             this.lstInsumosCategoria = new System.Windows.Forms.ListBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.btnAdicionarInsumoCategoria = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.cbInsumos = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.btnRemoverInsumoCategoria = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.grpDados.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.grpConteudo.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label2
@@ -76,6 +76,7 @@
             this.btnAdicionarCategoria.TabIndex = 10;
             this.btnAdicionarCategoria.Text = "+";
             this.btnAdicionarCategoria.UseVisualStyleBackColor = true;
+            this.btnAdicionarCategoria.Click += new System.EventHandler(this.btnAdicionarCategoria_Click);
             // 
             // txtNomeCategoria
             // 
@@ -99,8 +100,9 @@
             this.btnFinalizar.Name = "btnFinalizar";
             this.btnFinalizar.Size = new System.Drawing.Size(75, 23);
             this.btnFinalizar.TabIndex = 11;
-            this.btnFinalizar.Text = "Finalizar";
+            this.btnFinalizar.Text = "Voltar";
             this.btnFinalizar.UseVisualStyleBackColor = true;
+            this.btnFinalizar.Click += new System.EventHandler(this.btnFinalizar_Click);
             // 
             // cbCategorias
             // 
@@ -110,6 +112,8 @@
             this.cbCategorias.Name = "cbCategorias";
             this.cbCategorias.Size = new System.Drawing.Size(255, 21);
             this.cbCategorias.TabIndex = 13;
+            this.cbCategorias.SelectedIndexChanged += new System.EventHandler(this.cbCategorias_SelectedIndexChanged);
+            this.cbCategorias.Leave += new System.EventHandler(this.cbCategorias_Leave);
             // 
             // btnRemoverCategoria
             // 
@@ -119,16 +123,17 @@
             this.btnRemoverCategoria.TabIndex = 16;
             this.btnRemoverCategoria.Text = "-";
             this.btnRemoverCategoria.UseVisualStyleBackColor = true;
+            this.btnRemoverCategoria.Click += new System.EventHandler(this.btnRemoverCategoria_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.label1.Location = new System.Drawing.Point(92, 79);
+            this.label1.Location = new System.Drawing.Point(170, 86);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(249, 13);
+            this.label1.Size = new System.Drawing.Size(116, 13);
             this.label1.TabIndex = 17;
-            this.label1.Text = "Escolha uma Categoria e o que deseja fazer depois";
+            this.label1.Text = "Escolha uma Categoria";
             // 
             // btnAlterar
             // 
@@ -139,6 +144,7 @@
             this.btnAlterar.TabIndex = 22;
             this.btnAlterar.Text = "Alterar";
             this.btnAlterar.UseVisualStyleBackColor = true;
+            this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
             // 
             // label4
             // 
@@ -177,6 +183,7 @@
             this.btnAdicionarProdutoCategoria.TabIndex = 27;
             this.btnAdicionarProdutoCategoria.Text = "+";
             this.btnAdicionarProdutoCategoria.UseVisualStyleBackColor = true;
+            this.btnAdicionarProdutoCategoria.Click += new System.EventHandler(this.btnAdicionarProdutoCategoria_Click);
             // 
             // lstProdutosCategoria
             // 
@@ -188,7 +195,7 @@
             // 
             // grpDados
             // 
-            this.grpDados.Controls.Add(this.groupBox2);
+            this.grpDados.Controls.Add(this.grpConteudo);
             this.grpDados.Controls.Add(this.btnAlterar);
             this.grpDados.Controls.Add(this.label1);
             this.grpDados.Controls.Add(this.btnRemoverCategoria);
@@ -204,17 +211,51 @@
             this.grpDados.TabStop = false;
             this.grpDados.Text = "Gerenciar categorias";
             // 
-            // groupBox2
+            // grpConteudo
             // 
-            this.groupBox2.Controls.Add(this.groupBox3);
-            this.groupBox2.Controls.Add(this.groupBox1);
-            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.groupBox2.Location = new System.Drawing.Point(9, 155);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(443, 218);
-            this.groupBox2.TabIndex = 19;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Conteúdo das categorias";
+            this.grpConteudo.Controls.Add(this.groupBox3);
+            this.grpConteudo.Controls.Add(this.groupBox1);
+            this.grpConteudo.Enabled = false;
+            this.grpConteudo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.grpConteudo.Location = new System.Drawing.Point(9, 155);
+            this.grpConteudo.Name = "grpConteudo";
+            this.grpConteudo.Size = new System.Drawing.Size(443, 218);
+            this.grpConteudo.TabIndex = 19;
+            this.grpConteudo.TabStop = false;
+            this.grpConteudo.Text = "Conteúdo das categorias";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.cbInsumos);
+            this.groupBox3.Controls.Add(this.btnRemoverInsumoCategoria);
+            this.groupBox3.Controls.Add(this.lstInsumosCategoria);
+            this.groupBox3.Controls.Add(this.label6);
+            this.groupBox3.Controls.Add(this.btnAdicionarInsumoCategoria);
+            this.groupBox3.Controls.Add(this.label3);
+            this.groupBox3.Location = new System.Drawing.Point(228, 19);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(206, 191);
+            this.groupBox3.TabIndex = 21;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Insumos";
+            // 
+            // cbInsumos
+            // 
+            this.cbInsumos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.cbInsumos.FormattingEnabled = true;
+            this.cbInsumos.Location = new System.Drawing.Point(8, 43);
+            this.cbInsumos.Name = "cbInsumos";
+            this.cbInsumos.Size = new System.Drawing.Size(117, 21);
+            this.cbInsumos.TabIndex = 32;
+            // 
+            // btnRemoverInsumoCategoria
+            // 
+            this.btnRemoverInsumoCategoria.Location = new System.Drawing.Point(176, 54);
+            this.btnRemoverInsumoCategoria.Name = "btnRemoverInsumoCategoria";
+            this.btnRemoverInsumoCategoria.Size = new System.Drawing.Size(23, 23);
+            this.btnRemoverInsumoCategoria.TabIndex = 28;
+            this.btnRemoverInsumoCategoria.Text = "-";
+            this.btnRemoverInsumoCategoria.UseVisualStyleBackColor = true;
             // 
             // lstInsumosCategoria
             // 
@@ -223,6 +264,16 @@
             this.lstInsumosCategoria.Name = "lstInsumosCategoria";
             this.lstInsumosCategoria.Size = new System.Drawing.Size(190, 95);
             this.lstInsumosCategoria.TabIndex = 29;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.label6.Location = new System.Drawing.Point(5, 67);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(109, 13);
+            this.label6.TabIndex = 30;
+            this.label6.Text = "Insumos na Categoria";
             // 
             // btnAdicionarInsumoCategoria
             // 
@@ -243,34 +294,6 @@
             this.label3.TabIndex = 31;
             this.label3.Text = "Adicionar insumo\r\n";
             // 
-            // cbInsumos
-            // 
-            this.cbInsumos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.cbInsumos.FormattingEnabled = true;
-            this.cbInsumos.Location = new System.Drawing.Point(8, 43);
-            this.cbInsumos.Name = "cbInsumos";
-            this.cbInsumos.Size = new System.Drawing.Size(117, 21);
-            this.cbInsumos.TabIndex = 32;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.label6.Location = new System.Drawing.Point(5, 67);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(109, 13);
-            this.label6.TabIndex = 30;
-            this.label6.Text = "Insumos na Categoria";
-            // 
-            // btnRemoverInsumoCategoria
-            // 
-            this.btnRemoverInsumoCategoria.Location = new System.Drawing.Point(176, 54);
-            this.btnRemoverInsumoCategoria.Name = "btnRemoverInsumoCategoria";
-            this.btnRemoverInsumoCategoria.Size = new System.Drawing.Size(23, 23);
-            this.btnRemoverInsumoCategoria.TabIndex = 28;
-            this.btnRemoverInsumoCategoria.Text = "-";
-            this.btnRemoverInsumoCategoria.UseVisualStyleBackColor = true;
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label5);
@@ -286,21 +309,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Produtos";
             // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.cbInsumos);
-            this.groupBox3.Controls.Add(this.btnRemoverInsumoCategoria);
-            this.groupBox3.Controls.Add(this.lstInsumosCategoria);
-            this.groupBox3.Controls.Add(this.label6);
-            this.groupBox3.Controls.Add(this.btnAdicionarInsumoCategoria);
-            this.groupBox3.Controls.Add(this.label3);
-            this.groupBox3.Location = new System.Drawing.Point(228, 19);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(206, 191);
-            this.groupBox3.TabIndex = 21;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Insumos";
-            // 
             // Categorias
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -313,11 +321,11 @@
             this.Load += new System.EventHandler(this.Categorias_Load);
             this.grpDados.ResumeLayout(false);
             this.grpDados.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.grpConteudo.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -339,7 +347,7 @@
         private System.Windows.Forms.ComboBox cbProdutos;
         private System.Windows.Forms.ListBox lstProdutosCategoria;
         private System.Windows.Forms.GroupBox grpDados;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox grpConteudo;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.ComboBox cbInsumos;
         private System.Windows.Forms.Button btnRemoverInsumoCategoria;

@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             this.pnl_login = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnConfiguracoes = new System.Windows.Forms.Button();
             this.tbp_Acesso = new System.Windows.Forms.TabControl();
             this.tbp_alterarLogin = new System.Windows.Forms.TabPage();
             this.btn_Acessa = new System.Windows.Forms.Button();
@@ -48,7 +47,6 @@
             // 
             resources.ApplyResources(this.pnl_login, "pnl_login");
             this.pnl_login.Controls.Add(this.label1);
-            this.pnl_login.Controls.Add(this.btnConfiguracoes);
             this.pnl_login.Controls.Add(this.tbp_Acesso);
             this.pnl_login.Name = "pnl_login";
             // 
@@ -57,13 +55,6 @@
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
             this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // btnConfiguracoes
-            // 
-            resources.ApplyResources(this.btnConfiguracoes, "btnConfiguracoes");
-            this.btnConfiguracoes.Name = "btnConfiguracoes";
-            this.btnConfiguracoes.UseVisualStyleBackColor = true;
-            this.btnConfiguracoes.Click += new System.EventHandler(this.btnRede_Click);
             // 
             // tbp_Acesso
             // 
@@ -143,7 +134,6 @@
         private System.Windows.Forms.TextBox txt_usuario;
         private System.Windows.Forms.Label lbl_Senha;
         private System.Windows.Forms.Label lbl_usuario;
-        private System.Windows.Forms.Button btnConfiguracoes;
         private System.Windows.Forms.Label label1;
 
     }

@@ -14,20 +14,144 @@ namespace BLL
     public class clsCategoriaBLL
     {
         private DAL.DAO.clsBanco Banco;              
-            public clsCategoriaBLL()
+            
+        public clsCategoriaBLL()
             {
                 Banco = new clsBanco();
             }
 
-            ~clsCategoriaBLL()
+         ~clsCategoriaBLL()
             {
                 Banco = null;
             }
 
-            public DataTable BuscarCategorias() 
+        public DataTable BuscarCategorias() 
             {
                 return Banco.ExecuteProc("USP_CSharp_Categoria_BuscarCategorias");
             }
 
+        public void InserirCategoria(clsCategoria objCategoria) 
+            {
+                SqlParameter parametro = new SqlParameter();
+                parametro.ParameterName = "@NomeCategoria";
+                parametro.Value = objCategoria.NomeCategoria;
+                parametro.DbType = System.Data.DbType.String;
+
+                Banco.ExecuteProc("USP_CSharp_Categoria_InserirCategoria",parametro);
+            }
+
+        public DataTable PreencherProdutos()
+            {
+                return Banco.ExecuteProc("USP_CSharp_Categoria_PreencherProdutos");
+            }
+
+        public DataTable PreencherInsumos()
+            {
+                return Banco.ExecuteProc("USP_CSharp_Categoria_PreencherInsumos");
+            }
+
+        public DataTable RemoverCategoria(clsCategoria objCategoria)
+            {
+                SqlParameter parametro = new SqlParameter();
+                parametro.ParameterName = "@CodCategoria";
+                parametro.Value = objCategoria.CodCategoria;
+                parametro.DbType = System.Data.DbType.Int32;
+
+                return Banco.ExecuteProc("USP_CSharp_Categoria_PreencherProdutos", parametro);
+            }
+
+        public void AlterarCategoria(clsCategoria objCategoria) 
+        {
+            List<SqlParameter> lstParametros = new List<SqlParameter>();
+
+            SqlParameter parametro = new SqlParameter();
+            parametro.ParameterName = "@NomeCategoria";
+            parametro.Value = objCategoria.NomeCategoria;
+            parametro.DbType = System.Data.DbType.String;
+
+            lstParametros.Add(parametro);
+
+            parametro = new SqlParameter();
+            parametro.ParameterName = "@CodCategoria";
+            parametro.Value = objCategoria.CodCategoria;
+            parametro.DbType = System.Data.DbType.Int32;
+
+            lstParametros.Add(parametro);
+
+            Banco.ExecuteProc("USP_CSharp_Categoria_AlterarCategoria", lstParametros);
+        }
+
+        public DataTable PreencherProdutosNaCategoria(clsCategoria objCategoria)
+        {
+            SqlParameter parametro = new SqlParameter();
+            parametro.ParameterName = "@CodCategoria";
+            parametro.Value = objCategoria.CodCategoria;
+            parametro.DbType = System.Data.DbType.Int32;
+
+            return Banco.ExecuteProc("USP_CSharp_Categoria_PreencherProdutosNaCategoria", parametro);
+        }
+
+        public DataTable PreencherInsumosNaCategoria(clsCategoria objCategoria)
+        {
+            SqlParameter parametro = new SqlParameter();
+            parametro.ParameterName = "@CodCategoria";
+            parametro.Value = objCategoria.CodCategoria;
+            parametro.DbType = System.Data.DbType.Int32;
+
+            return Banco.ExecuteProc("USP_CSharp_Categoria_PreencherInsumosNaCategoria", parametro);
+        }
+
+        public DataTable ValidarExistenciaNoBanco(clsCategoria objCategoria)
+        {
+            SqlParameter parametro = new SqlParameter();
+            parametro.ParameterName = "@NomeCategoria";
+            parametro.Value = objCategoria.NomeCategoria;
+            parametro.DbType = System.Data.DbType.String;
+
+            return Banco.ExecuteProc("USP_CSharp_Categoria_ValidarExistenciaNoBanco", parametro);
+        }
+
+        public void InserirProdutoNaCategoria(clsCategoriaProduto objCategoriaProduto)
+        {
+            List<SqlParameter> lista = new List<SqlParameter>();
+
+            SqlParameter parametro = new SqlParameter();
+            parametro.ParameterName = "@CodProduto";
+            parametro.Value = objCategoriaProduto.CodProduto;
+            parametro.DbType = System.Data.DbType.Int32;
+
+            lista.Add(parametro);
+
+            parametro = new SqlParameter();
+            parametro.ParameterName = "@CodCategoria";
+            parametro.Value = objCategoriaProduto.CodProduto;
+            parametro.DbType = System.Data.DbType.Int32;
+
+            lista.Add(parametro);
+
+            Banco.ExecuteProc("USP_CSharp_Categoria_InserirProdutoNaCategoria", lista);
+        }
+
+        public DataTable ValidaProdutoCategoria(clsCategoriaProduto objCategoriaProduto)
+        {
+            List<SqlParameter> lista = new List<SqlParameter>();
+
+            SqlParameter parametro = new SqlParameter();
+            parametro.ParameterName = "@CodProduto";
+            parametro.Value = objCategoriaProduto.CodProduto;
+            parametro.DbType = System.Data.DbType.Int32;
+
+            lista.Add(parametro);
+
+            parametro = new SqlParameter();
+            parametro.ParameterName = "@CodCategoria";
+            parametro.Value = objCategoriaProduto.CodCategoria;
+            parametro.DbType = System.Data.DbType.Int32;
+
+            lista.Add(parametro);
+
+            return Banco.ExecuteProc("USP_CSharp_Categoria_ValidaProdutoCategoria", lista);
+        }
+        
     }
 }
