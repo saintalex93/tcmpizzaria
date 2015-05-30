@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 
+using DAL.Model;
+using BLL;
+
 namespace Pizzaria
 {
     public partial class Insumo : Form
@@ -22,7 +25,13 @@ namespace Pizzaria
 
         private void Produtos_Load(object sender, EventArgs e)
         {
-            conexao = Acesso.Conexao;
+
+            //conexao = Acesso.Conexao;
+            clsInsumoBLL teste = new clsInsumoBLL();
+            clsInsumo teste1 = new clsInsumo();
+
+            dtg_gravacao.DataSource = teste.SelecionaInsumo(teste1);
+
             btn_alterar.Enabled = false;
             btn_excluir.Enabled = false;
             btn_gravar.Enabled = false;
@@ -34,10 +43,10 @@ namespace Pizzaria
         DateTime datavalidade, datarecebimento, datafabricacao;
         double valoruntd = 0;
         Boolean valida = false;
-        int qtd = 0,cod_categoria= 0;
+        int qtd = 0, cod_categoria = 0;
 
         //conexao DB
-       // string conexao = "Data Source=ALEX\\SQLEXPRESS ;Initial Catalog=Pizzaria; Persist Security Info = True; User ID=sa; Password=1234";
+        // string conexao = "Data Source=ALEX\\SQLEXPRESS ;Initial Catalog=Pizzaria; Persist Security Info = True; User ID=sa; Password=1234";
         /*string conexao = "Data Source=CASA-PC\\BPASERVER10 ;Initial Catalog=Pizzaria; Persist Security Info = True; User ID=sa; Password=AutoMateBPA10";*/
 
         string conexao = "";
@@ -50,6 +59,8 @@ namespace Pizzaria
         }
         private void btn_sair_Click(object sender, EventArgs e)
         {
+
+
             this.FormHome.Show();
             Dispose();
 
@@ -99,36 +110,36 @@ namespace Pizzaria
                 if (Validaexistente())
                 {
                     //Nome procurado não existe
-                  //  strsql = "select cod_Insumo from Insumo where Nome_Insumo = '" + dtg_gravacao.CurrentRow.Cells[0].Value.ToString() + "'";
+                    //  strsql = "select cod_Insumo from Insumo where Nome_Insumo = '" + dtg_gravacao.CurrentRow.Cells[0].Value.ToString() + "'";
                     //obtem cod do produto antes de alterar
-                 //   cod_produto = ValidaUpdate(strsql);
+                    //   cod_produto = ValidaUpdate(strsql);
                     //Verifica se o txt_nome é igual o que esta no grid se for atualiza se não o insumo ja exite
-                   
-                        atualizarproduto(dtg_gravacao.CurrentRow.Cells[0].Value.ToString());
-                        dtg_gravacao.Enabled = true;
-                        btn_excluir.Enabled = false;
-                        btn_gravar.Enabled = false;
-                        btn_cancelar.Enabled = false;
-                        btn_alterar.Enabled = false;
-                        btn_inserir.Enabled = true;
-                        preenchegrid();
-                 /*   }
-                    else
-                    {
-                        MessageBox.Show("Ja existe um insumo com este nome");
-                    }*/
+
+                    atualizarproduto(dtg_gravacao.CurrentRow.Cells[0].Value.ToString());
+                    dtg_gravacao.Enabled = true;
+                    btn_excluir.Enabled = false;
+                    btn_gravar.Enabled = false;
+                    btn_cancelar.Enabled = false;
+                    btn_alterar.Enabled = false;
+                    btn_inserir.Enabled = true;
+                    preenchegrid();
+                    /*   }
+                       else
+                       {
+                           MessageBox.Show("Ja existe um insumo com este nome");
+                       }*/
                 }
                 else
                 {
 
-                 //   strsql = "select cod_Insumo from Insumo where Nome_Insumo = '" + dtg_gravacao.CurrentRow.Cells[0].Value.ToString() + "'";
+                    //   strsql = "select cod_Insumo from Insumo where Nome_Insumo = '" + dtg_gravacao.CurrentRow.Cells[0].Value.ToString() + "'";
                     //obtem cod do produto antes de alterar
-                //    cod_produto = ValidaUpdate(strsql);
+                    //    cod_produto = ValidaUpdate(strsql);
                     //strsql = "select cod_Produto from Produto where Nome_Produto = '" + nome + "'";
                     //if (cod_produto == dtg_gravacao.CurrentRow.Cells[0].Value.ToString())
                     //{
-                        if (nome.ToString() == dtg_gravacao.CurrentRow.Cells[1].Value.ToString())
-                        {
+                    if (nome.ToString() == dtg_gravacao.CurrentRow.Cells[1].Value.ToString())
+                    {
                         atualizarproduto(dtg_gravacao.CurrentRow.Cells[0].Value.ToString());
                         dtg_gravacao.Enabled = true;
                         btn_excluir.Enabled = false;
@@ -137,7 +148,7 @@ namespace Pizzaria
                         btn_alterar.Enabled = false;
                         btn_inserir.Enabled = true;
                         preenchegrid();
-                        }
+                    }
 
                     else
                     {
@@ -156,7 +167,7 @@ namespace Pizzaria
             dtp_datavalidade.Value = Convert.ToDateTime(dtg_gravacao.CurrentRow.Cells[5].Value.ToString());
             dtp_datafabricacao.Value = Convert.ToDateTime(dtg_gravacao.CurrentRow.Cells[6].Value.ToString());
             dtp_datarecebimento.Value = Convert.ToDateTime(dtg_gravacao.CurrentRow.Cells[7].Value.ToString());
-           // txt_qdtcomprada.Text = dtg_gravacao.CurrentRow.Cells[3].Value.ToString();
+            // txt_qdtcomprada.Text = dtg_gravacao.CurrentRow.Cells[3].Value.ToString();
             gpb_compras.Enabled = false;
             btn_alterar.Enabled = true;
             btn_inserir.Enabled = false;
@@ -169,7 +180,7 @@ namespace Pizzaria
 
             //valida = true;
             //btn_gravar.Text = "Atualizar";
-            
+
             btn_excluir.Enabled = true;
             gpb_compras.Enabled = true;
             btn_cancelar.Enabled = true;
@@ -187,11 +198,11 @@ namespace Pizzaria
         }
         private void txt_vlrunitario_TextChanged(object sender, EventArgs e)
         {
-            string conteudoOriginal = txt_vlrunitario.Text.Replace(" ","_");
+            string conteudoOriginal = txt_vlrunitario.Text.Replace(" ", "_");
             string conteudoCorrigido = "";
-        
 
-        
+
+
         }
         private void dtg_gravacao_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -260,115 +271,115 @@ namespace Pizzaria
             {
                 nome = txt_nome.Text;
                 //Valida categoria
-             /*   if (cmb_categoria.SelectedIndex > 0)
+                /*   if (cmb_categoria.SelectedIndex > 0)
+                   {
+                       categoria = cmb_categoria.SelectedItem.ToString();
+                       // valida medida*/
+                if (cmb_medida.SelectedIndex > 0)
                 {
-                    categoria = cmb_categoria.SelectedItem.ToString();
-                    // valida medida*/
-                    if (cmb_medida.SelectedIndex > 0)
+                    medida = cmb_medida.SelectedItem.ToString();
+                    //Valida os campos de valores
+                    if (txt_vlrunitario.Text.Replace(",", "").Replace(".", "").Replace("_", "").Replace(" ", "").Replace("R$", "").Length == 0)
                     {
-                        medida = cmb_medida.SelectedItem.ToString();
-                        //Valida os campos de valores
-                        if (txt_vlrunitario.Text.Replace(",", "").Replace(".", "").Replace("_", "").Replace(" ", "").Replace("R$", "").Length == 0)
-                        {
-                            txt_vlrunitario.Text = "0";
-                        }
-                      /*  if (txt_qdtcomprada.Text.Replace(",", "").Replace(".", "").Replace("_", "").Replace(" ", "").Replace("R$", "").Length == 0)
-                        {
-                            txt_qdtcomprada.Text = "0";
-                        }*/
-                        if (txtbox_Recomendada.Text.Replace(",", "").Replace(".", "").Replace("_", "").Replace(" ", "").Replace("R$", "").Length == 0)
-                        {
-                            txtbox_Recomendada.Text = "0";
-                        }
+                        txt_vlrunitario.Text = "0";
+                    }
+                    /*  if (txt_qdtcomprada.Text.Replace(",", "").Replace(".", "").Replace("_", "").Replace(" ", "").Replace("R$", "").Length == 0)
+                      {
+                          txt_qdtcomprada.Text = "0";
+                      }*/
+                    if (txtbox_Recomendada.Text.Replace(",", "").Replace(".", "").Replace("_", "").Replace(" ", "").Replace("R$", "").Length == 0)
+                    {
+                        txtbox_Recomendada.Text = "0";
+                    }
 
-                        //Valida campo valor unitario
-                        if (Convert.ToInt32(txt_vlrunitario.Text.Replace(",", "").Replace(".", "").Replace("_", "").Replace(" ", "").Replace("R$", "")) > 0)
-                        {
-                            valoruntd = Convert.ToDouble(txt_vlrunitario.Text.Replace(" ", "").Replace(".", "").Replace("_", "").Replace(" ", "").Replace("R$", "")) / 100;
+                    //Valida campo valor unitario
+                    if (Convert.ToInt32(txt_vlrunitario.Text.Replace(",", "").Replace(".", "").Replace("_", "").Replace(" ", "").Replace("R$", "")) > 0)
+                    {
+                        valoruntd = Convert.ToDouble(txt_vlrunitario.Text.Replace(" ", "").Replace(".", "").Replace("_", "").Replace(" ", "").Replace("R$", "")) / 100;
 
-                            //Valida Quantidade
+                        //Valida Quantidade
                         /*    if (Convert.ToInt32(txt_qdtcomprada.Text.Replace(",", "").Replace(".", "")) > 0)
                             {
                                 qtd = Convert.ToInt32(txt_qdtcomprada.Text.Replace(",", "").Replace(".", ""));
                             */
-                                // Obtem os valores de data
+                        // Obtem os valores de data
 
-                                //Valida Campo Data
+                        //Valida Campo Data
 
-                               // if (dtp_datafabricacao.Value.Date.AddDays(-1) < DateTime.Today.ToLocalTime())
-                                if (dtp_datafabricacao.Value.Date < DateTime.Today.ToLocalTime())
+                        // if (dtp_datafabricacao.Value.Date.AddDays(-1) < DateTime.Today.ToLocalTime())
+                        if (dtp_datafabricacao.Value.Date < DateTime.Today.ToLocalTime())
+                        {
+                            datafabricacao = dtp_datafabricacao.Value;
+                            if (dtp_datavalidade.Value.Date > DateTime.Today.ToLocalTime())
+                            {
+
+
+                                datavalidade = dtp_datavalidade.Value;
+
+                                if (dtp_datarecebimento.Value.Date > dtp_datafabricacao.Value.Date)
                                 {
-                                    datafabricacao = dtp_datafabricacao.Value;
-                                    if (dtp_datavalidade.Value.Date > DateTime.Today.ToLocalTime())
+                                    datarecebimento = dtp_datarecebimento.Value;
+
+                                    if (cbox_Fornecedores.SelectedIndex > 0)
                                     {
-
-
-                                        datavalidade = dtp_datavalidade.Value;
-
-                                        if (dtp_datarecebimento.Value.Date > dtp_datafabricacao.Value.Date)
-                                        {
-                                            datarecebimento = dtp_datarecebimento.Value;
-
-                                            if (cbox_Fornecedores.SelectedIndex > 0)
-                                            {
-                                              /*  if (Convert.ToInt32(txt_qdtcomprada.Text.Replace(",", "").Replace(".", "")) > 0)
-                                                {*/
-                                                return true;    
-                                              /*  }
+                                        /*  if (Convert.ToInt32(txt_qdtcomprada.Text.Replace(",", "").Replace(".", "")) > 0)
+                                          {*/
+                                        return true;
+                                        /*  }
                                                 
-                                                   else
+                                             else
 
-                                                {
-                                                MessageBox.Show("Quantidade Recomendada incorreta!");
-                                                }*/
-                                            }
-                                            else
-                                            {
-                                                MessageBox.Show("Fornecedor incorreto!");
-                                            }
-                                        }
-                                        else
-                                        {
-                                            MessageBox.Show("Data de Recebimento incorreta!");
-                                        }
+                                          {
+                                          MessageBox.Show("Quantidade Recomendada incorreta!");
+                                          }*/
                                     }
-
                                     else
                                     {
-                                        MessageBox.Show("Data de Validade incorreta!");
+                                        MessageBox.Show("Fornecedor incorreto!");
                                     }
                                 }
-
-
-
                                 else
                                 {
-                                    MessageBox.Show("Data de Fabricação incorreta!");
+                                    MessageBox.Show("Data de Recebimento incorreta!");
                                 }
-                                
-                               
-                          /*  }
-                               
+                            }
+
                             else
                             {
-                                MessageBox.Show("Quantidade Incorreta!");
-                            }*/
-
+                                MessageBox.Show("Data de Validade incorreta!");
+                            }
                         }
+
+
+
                         else
                         {
-                            MessageBox.Show("Valor Unitario Incorreta!");
+                            MessageBox.Show("Data de Fabricação incorreta!");
                         }
+
+
+                        /*  }
+                               
+                          else
+                          {
+                              MessageBox.Show("Quantidade Incorreta!");
+                          }*/
+
                     }
                     else
                     {
-                        MessageBox.Show("Medida Incorreta!");
+                        MessageBox.Show("Valor Unitario Incorreta!");
                     }
-               /* }
+                }
                 else
                 {
-                    MessageBox.Show("Categoria Incorreta!");
-                }*/
+                    MessageBox.Show("Medida Incorreta!");
+                }
+                /* }
+                 else
+                 {
+                     MessageBox.Show("Categoria Incorreta!");
+                 }*/
             }
             else
             {
@@ -426,11 +437,11 @@ namespace Pizzaria
                     "Recebimento, Fabricacao,validade,QtdeRecomendavel) values ('"
                     + nome + "','" + medida + "','" + valoruntd.ToString().Replace(",", ".") + "','" +
                     txtQuantidadeEmEstoque.Text + "','" + datarecebimento.ToString("dd/MM/yyyy") + "','" + datafabricacao.ToString("dd/MM/yyyy") +
-                    "','" + datavalidade.ToString("dd/MM/yyyy") + "','" + txtbox_Recomendada.Text.ToString() +"')";
+                    "','" + datavalidade.ToString("dd/MM/yyyy") + "','" + txtbox_Recomendada.Text.ToString() + "')";
                 conn.Open();
                 SqlCommand sqlComm = new SqlCommand(strIncluir, conn);
                 sqlComm.ExecuteNonQuery();
-                
+
 
                 try
                 {
@@ -459,7 +470,7 @@ namespace Pizzaria
 
 
                 }
-                catch(Exception)
+                catch (Exception)
                 {
                     MessageBox.Show("Falha ao inserir Insumo!");
                     conn.Close();
@@ -468,7 +479,7 @@ namespace Pizzaria
 
 
             }
-            catch(Exception)
+            catch (Exception)
             {
                 MessageBox.Show("Falha ao inserir Insumo!");
                 conn.Close();
@@ -524,12 +535,12 @@ namespace Pizzaria
 
             //atualiza produto
             conn = new SqlConnection(conexao);
-            string strIncluir = "update Insumo set Nome_Insumo ='" + nome + 
-                "',ValorDeCompra='" + valoruntd.ToString().Replace(",", ".") + 
-                "',QtdeRecomendavel = '"+ txtbox_Recomendada.Text.ToString() +"',validade ='" + 
+            string strIncluir = "update Insumo set Nome_Insumo ='" + nome +
+                "',ValorDeCompra='" + valoruntd.ToString().Replace(",", ".") +
+                "',QtdeRecomendavel = '" + txtbox_Recomendada.Text.ToString() + "',validade ='" +
                 datavalidade.ToString("yyy/MM/dd") + "',qtdeemEstoque= qtdeemEstoque +" + qtd +
                 "',Fabricacao = '" + datafabricacao.ToString("yyy/MM/dd") +
-                "',Recebimento = '" + datarecebimento.ToString("yyy/MM/dd") + "', medida ='" + medida + "' where Cod_Insumo = '" + 
+                "',Recebimento = '" + datarecebimento.ToString("yyy/MM/dd") + "', medida ='" + medida + "' where Cod_Insumo = '" +
                 cod_prod + "'";
 
             conn.Open();
@@ -553,12 +564,12 @@ namespace Pizzaria
                 sqlComm.ExecuteNonQuery();
 
                 strIncluir = "delete Produto_Insumo where cod_Insumo= '" + produto + "'";
-              
+
                 sqlComm = new SqlCommand(strIncluir, conn);
                 sqlComm.ExecuteNonQuery();
 
                 strIncluir = "delete Insumo where cod_Insumo= '" + produto + "'";
-            
+
                 sqlComm = new SqlCommand(strIncluir, conn);
                 sqlComm.ExecuteNonQuery();
 
@@ -607,7 +618,7 @@ namespace Pizzaria
 
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                     cbox_Fornecedores.Items.Add((dt.Rows[i][0].ToString()));
+                    cbox_Fornecedores.Items.Add((dt.Rows[i][0].ToString()));
 
                 }
 
@@ -641,7 +652,7 @@ namespace Pizzaria
 
         private void cmb_categoria_Enter(object sender, EventArgs e)
         {
-          //  cmb_categoria.BackColor = Color.Aquamarine;
+            //  cmb_categoria.BackColor = Color.Aquamarine;
         }
 
         private void cmb_medida_Enter(object sender, EventArgs e)
@@ -717,8 +728,8 @@ namespace Pizzaria
 
         private void cbox_Fornecedores_DropDown(object sender, EventArgs e)
         {
-            if(cbox_Fornecedores.Items.Count == 1)
-            preenchefornecedores();
+            if (cbox_Fornecedores.Items.Count == 1)
+                preenchefornecedores();
         }
 
         private void txt_vlrunitario_MouseClick(object sender, MouseEventArgs e)
@@ -728,7 +739,12 @@ namespace Pizzaria
 
         private void txtBuscarPorNome_TextChanged(object sender, EventArgs e)
         {
-            Home.buscarPorNome(txtBuscarPorNome, txtBuscarPorID, "Insumo", "Nome_Insumo", dtg_gravacao);
+            //Home.buscarPorNome(txtBuscarPorNome, txtBuscarPorID, "Insumo", "Nome_Insumo", dtg_gravacao);
+            clsInsumoBLL teste = new clsInsumoBLL();
+            clsInsumo teste1 = new clsInsumo();
+            teste1.Nome_Insumo = txtBuscarPorNome.Text.ToString();
+
+            dtg_gravacao.DataSource = teste.SelecionaInsumo(teste1);
 
         }
 

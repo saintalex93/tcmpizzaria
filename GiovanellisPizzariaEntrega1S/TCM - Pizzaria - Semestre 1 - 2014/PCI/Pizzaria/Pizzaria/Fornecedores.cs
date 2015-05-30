@@ -10,13 +10,17 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 
+using DAL.Model;
+using BLL;
+
+
 namespace Pizzaria
 {
     public partial class Fornecedores : Form
     {
         //String com informações de acesso pro BD
         string conexao = "Data Source=LAB02T-15 ;Initial Catalog=Pizzaria; Persist Security Info = True; User ID=aluno; Password=etesp";
-       
+
 
         SqlCommand sqlComm;
 
@@ -568,7 +572,7 @@ namespace Pizzaria
         private bool validaCampos()
         {
 
-            if(!validaRazaoSocialNomeFantasia())
+            if (!validaRazaoSocialNomeFantasia())
                 return false;
 
             if (!validaTelefone())
@@ -613,27 +617,31 @@ namespace Pizzaria
             return true;
         }
 
-        private bool verificarSeExiste(string documento) 
+        private bool verificarSeExiste(string documento)
         {
             string strValida = "select * from Fornecedor where CNPJ_CPF = '" + documento + "'";
 
-            SqlConnection conn = new SqlConnection(conexao);
-            DataTable dt = new DataTable();
-            conn.Open();
-
+            /* SqlConnection conn = new SqlConnection(conexao);
+          
+             conn.Open();
+             */
             try
             {
-                SqlCommand sqlComm = new SqlCommand(strValida, conn);
+                /* SqlCommand sqlComm = new SqlCommand(strValida, conn);
 
-                sqlComm.ExecuteNonQuery();
-                SqlDataAdapter da = new SqlDataAdapter();
-                da.SelectCommand = sqlComm;
+                 sqlComm.ExecuteNonQuery();
+                 SqlDataAdapter da = new SqlDataAdapter();
+                 da.SelectCommand = sqlComm;
 
-                da.Fill(dt);
+                 da.Fill(dt);*/
+
+                DataTable dt = new DataTable();
+
+                dt = Buscar();
 
                 if (dt.Rows.Count > 0)
                     return false;
-                
+
             }
             catch (Exception)
             {
@@ -723,19 +731,24 @@ namespace Pizzaria
             }
 
             //Verificação de banco
-            string stringDeBusca = "select * from Fornecedor where CNPJ_CPF = '" + getDocumento() + "'";
+            /*            string stringDeBusca = "select * from Fornecedor where CNPJ_CPF = '" + getDocumento() + "'";
 
-            SqlConnection conn = new SqlConnection(conexao);
+                        SqlConnection conn = new SqlConnection(conexao);
 
 
-            SqlDataAdapter da = new SqlDataAdapter();
+                        SqlDataAdapter da = new SqlDataAdapter();
 
-            SqlCommand sqlComm = new SqlCommand(stringDeBusca, conn);            
+                        SqlCommand sqlComm = new SqlCommand(stringDeBusca, conn);            
             
-            da.SelectCommand = sqlComm;
+                        da.SelectCommand = sqlComm;
+                        */
+            clsFornecedor teste = new clsFornecedor();
+            clsFornecedorBLL teste1 = new clsFornecedorBLL();
+            teste.CNPJ_CPF = getDocumento();
 
             DataTable dt = new DataTable();
-            da.Fill(dt);
+            dt = teste1.SelecionaFornecedor(teste);
+            //da.Fill(dt);
 
             if (dt.Rows.Count == 0)
             {
@@ -744,10 +757,10 @@ namespace Pizzaria
                 setFocusDocumento();
 
                 preencherGrid();
-                
+
                 return false;
             }
-            else if (dt.Rows.Count > 1) 
+            else if (dt.Rows.Count > 1)
             {
                 mensagemDeErro("Foram detectados mais de um fornecedor com o número de documento fornecido.\n\n Verifique se não há alguma inconsistência nos registros.");
 
@@ -836,68 +849,77 @@ namespace Pizzaria
 
         public Boolean ValidaCPF(string strValida)
         {
-            strValida = "select * from Fornecedor where CNPJ_CPF = '" + strValida + "'";
+            /*strValida = "select * from Fornecedor where CNPJ_CPF = '" + strValida + "'";
 
             SqlConnection conn = new SqlConnection(conexao);
+          
+            conn.Open();*/
             DataTable dt = new DataTable();
-            conn.Open();
-
             try
             {
-                SqlCommand sqlComm = new SqlCommand(strValida, conn);
+                /*  SqlCommand sqlComm = new SqlCommand(strValida, conn);
 
-                sqlComm.ExecuteNonQuery();
-                SqlDataAdapter da = new SqlDataAdapter();
-                da.SelectCommand = sqlComm;
+                  sqlComm.ExecuteNonQuery();
+                  SqlDataAdapter da = new SqlDataAdapter();
+                  da.SelectCommand = sqlComm;*/
 
-                da.Fill(dt);
+                clsFornecedor teste = new clsFornecedor();
+                clsFornecedorBLL teste1 = new clsFornecedorBLL();
+                teste.CNPJ_CPF = strValida;
 
-                if (dt.Rows.Count > 0) 
+                dt = teste1.SelecionaFornecedor(teste);
+
+                if (dt.Rows.Count > 0)
                 {
                     mensagemDeErro("Um fornecedor com esse documento já existe. Certifique-se de que o número do documento esteja correto e tente de novo.");
 
                     return false;
                 }
-                    
+
             }
             catch (Exception)
             {
                 MessageBox.Show("Falha ao consultar o documento do Fornecedor");
             }
 
-            conn.Close();
 
             return true;
         }
 
         public void preencherGrid()
         {
+            /*
+                        string strIncluir = "select * from Fornecedor";
+                        SqlConnection conn = new SqlConnection(conexao);
+                        conn.Open();
 
-            string strIncluir = "select * from Fornecedor";
-            SqlConnection conn = new SqlConnection(conexao);
-            conn.Open();
+                        try
+                        {
+                            SqlCommand sqlComm = new SqlCommand(strIncluir, conn);
 
-            try
-            {
-                SqlCommand sqlComm = new SqlCommand(strIncluir, conn);
+                            //sqlComm.ExecuteNonQuery();
+                            SqlDataAdapter da = new SqlDataAdapter();
+                            da.SelectCommand = sqlComm;
+                            DataTable dt = new DataTable();
+                            da.Fill(dt);
+                            dtgvFornecedores.DataSource = dt;
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show("Falha ao conectar ao Bano de Dados, Contate seu suporte");
+                        }
 
-                //sqlComm.ExecuteNonQuery();
-                SqlDataAdapter da = new SqlDataAdapter();
-                da.SelectCommand = sqlComm;
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                dtgvFornecedores.DataSource = dt;
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Falha ao conectar ao Bano de Dados, Contate seu suporte");
-            }
+                        conn.Close();*/
 
-            conn.Close();
+            clsFornecedor teste = new clsFornecedor();
+            clsFornecedorBLL teste1 = new clsFornecedorBLL();
+            dtgvFornecedores.DataSource = teste1.SelecionaFornecedor(teste);
+
         }
 
         public string preencherComandoInsert(TextBox campo)
-        {string comando = "";
+        {
+            string comando = "";
 
             comando += ", '" + campo.Text + "'";
 
@@ -950,73 +972,6 @@ namespace Pizzaria
                 .Replace("_", "")
                 .Replace("/", "")
                 .Replace("-", "").Length > 0)
-                documento +=mtxtCPF.Text;
-
-            else if (mtxtCNPJ.Text
-                .Replace(" ", "")
-                .Replace(".", "")
-                .Replace(".", "")
-                .Replace("_", "")
-                .Replace("/", "")
-                .Replace("-", "").Length > 0)
-                documento += mtxtCNPJ.Text;
-
-            documento += "'";
-
-/*            string CEP =
-                mtxtCEP.Text
-                .Replace(" ", "")
-                .Replace(".", "")
-                .Replace(".", "")
-                .Replace("_", "")
-                .Replace("/", "")
-                .Replace("-", "");*/
-
-            strIncluir = "insert into Fornecedor (CNPJ_CPF, Razao_Social, Nome_Fantasia, Nome_Banco, Agencia, Conta_Corrente, Responsavel, Celular_Responsavel, Email_Responsavel, Telefone_Comercial, Endereco_Fornecedor, Numero_Residencia, CEP_Fornecedor, Estado_Fornecedor, Cidade_Fornecedor, Bairro_Fornecedor,Complemento) values (";
-
-
-            strIncluir += documento;
-            strIncluir += preencherComandoInsert(txtRazaoSocial);
-            strIncluir += preencherComandoInsert(txtNomeFantasia);
-            strIncluir += preencherComandoInsert(txtBanco);
-            strIncluir += preencherComandoInsert(txtAgencia);
-            strIncluir += preencherComandoInsert(txtConta);
-            strIncluir += preencherComandoInsert(txtResponsavel);
-            strIncluir += preencherComandoInsert(mtxtCelular);
-            strIncluir += preencherComandoInsert(txtEmailResponsavel);
-            strIncluir += preencherComandoInsert(mtxtTelefoneDeContato);
-            strIncluir += preencherComandoInsert(txtNomeDaRua);
-            strIncluir += preencherComandoInsert(txtNumero);
-            strIncluir += ", '" + mtxtCEP.Text + "'";
-            strIncluir += preencherComandoInsert(cbxUF);
-            strIncluir += preencherComandoInsert(txtCidade);
-            strIncluir += preencherComandoInsert(txtBairro);
-            strIncluir += preencherComandoInsert(txtComplemento);
-
-            strIncluir += ")";
-
-
-
-            conn.Open();
-            sqlComm = new SqlCommand(strIncluir, conn);
-            sqlComm.ExecuteNonQuery();
-        }
-
-        public void atualizarFornecedor()
-        {
-            conn = new SqlConnection(conexao);
-
-            string documento = "'";
-
-            string id = dtgvFornecedores.CurrentRow.Cells[0].Value.ToString();
-
-            if (mtxtCPF.Text
-                .Replace(" ", "")
-                .Replace(".", "")
-                .Replace(".", "")
-                .Replace("_", "")
-                .Replace("/", "")
-                .Replace("-", "").Length > 0)
                 documento += mtxtCPF.Text;
 
             else if (mtxtCNPJ.Text
@@ -1030,65 +985,119 @@ namespace Pizzaria
 
             documento += "'";
 
-            strIncluir = "update Fornecedor set " +
-                "CNPJ_CPF = " + documento +
-                ", Razao_Social = '" +
-                txtRazaoSocial.Text +
-                "', Nome_Fantasia = '" +
-                txtNomeFantasia.Text +
-                "', Nome_Banco = '" +
-                txtBanco.Text +
-                "', Agencia = '" +
-                txtAgencia.Text +
-                "', Conta_Corrente = '" +
-                txtConta.Text +
-                "', Responsavel = '" +
-                txtResponsavel.Text +
-                "', Celular_Responsavel = '" +
-                mtxtCelular.Text +
-                "', Email_Responsavel = '" +
-                txtEmailResponsavel.Text +
-                "', Telefone_Comercial = '" +
-            mtxtTelefoneDeContato.Text +
-                "', Endereco_Fornecedor = '" +
-                txtNomeDaRua.Text +
-                "', Numero_Residencia = '" +
-                txtNumero.Text +
-                "', CEP_Fornecedor = '" +
-                mtxtCEP.Text +
-                "', Estado_Fornecedor = '" +
-                cbxUF.Text +
-                "', Cidade_Fornecedor = '" +
-                txtCidade.Text +
-                "', Bairro_Fornecedor = '" +
-                txtBairro.Text +
-                "', Complemento = '" +
-                txtComplemento.Text +
+            /*            string CEP =
+                            mtxtCEP.Text
+                            .Replace(" ", "")
+                            .Replace(".", "")
+                            .Replace(".", "")
+                            .Replace("_", "")
+                            .Replace("/", "")
+                            .Replace("-", "")
+            
+                        strIncluir = "insert into Fornecedor (CNPJ_CPF, Razao_Social, Nome_Fantasia, Nome_Banco, Agencia, Conta_Corrente, Responsavel, Celular_Responsavel, Email_Responsavel, Telefone_Comercial, Endereco_Fornecedor, Numero_Residencia, CEP_Fornecedor, Estado_Fornecedor, Cidade_Fornecedor, Bairro_Fornecedor,Complemento) values (";
+                        */
+            clsFornecedor teste = new clsFornecedor();
+            clsFornecedorBLL teste1 = new clsFornecedorBLL();
 
-                "' WHERE Cod_Fornecedor = '"+ id +"'";
 
+
+            teste.CNPJ_CPF = documento;
+            teste.Razao_Social = txtRazaoSocial.Text;
+            teste.Nome_Fantasia = txtNomeFantasia.Text;
+            teste.Nome_Banco = txtBanco.Text;
+            teste.Agencia = txtAgencia.Text;
+            teste.Conta_Corrente = txtConta.Text;
+            teste.Responsavel = txtResponsavel.Text;
+            teste.Celular_Responsavel = mtxtCelular.Text;
+            teste.Email_Responsavel = txtEmailResponsavel.Text;
+            teste.Telefone_Comercial = mtxtTelefoneDeContato.Text;
+            teste.Endereco_Fornecedor = txtNomeDaRua.Text;
+            teste.Numero_Residencia = Int32.Parse(txtNumero.Text.ToString());
+            teste.CEP_Fornecedor = mtxtCEP.Text;
+            teste.Estado_Fornecedor = cbxUF.Text;
+            teste.Cidade_Fornecedor = txtCidade.Text;
+            teste.Bairro_Fornecedor = txtBairro.Text;
+            teste.Complemento = txtComplemento.Text;
+            teste1.InsereFornecedor(teste);
+            /* strIncluir += ")";
+             conn.Open();
+             sqlComm = new SqlCommand(strIncluir, conn);
+             sqlComm.ExecuteNonQuery();*/
+
+        }
+
+        public void atualizarFornecedor()
+        {
+            //  conn = new SqlConnection(conexao);
+
+            string documento = "'";
+
+            string id = dtgvFornecedores.CurrentRow.Cells[0].Value.ToString();
+
+            if (mtxtCPF.Text.Replace(" ", "").Replace(".", "").Replace(".", "").Replace("_", "").Replace("/", "")
+                .Replace("-", "").Length > 0)
+            {
+                documento += mtxtCPF.Text;
+            }
+            else if (mtxtCNPJ.Text.Replace(" ", "").Replace(".", "").Replace(".", "").Replace("_", "").Replace("/", "")
+                .Replace("-", "").Length > 0)
+            {
+                documento += mtxtCNPJ.Text;
+            }
+            clsFornecedor teste = new clsFornecedor();
+            clsFornecedorBLL teste1 = new clsFornecedorBLL();
+
+
+            //strIncluir = "update Fornecedor set " +
+            teste.CNPJ_CPF = documento;
+            teste.Razao_Social = txtRazaoSocial.Text;
+            teste.Nome_Fantasia = txtNomeFantasia.Text;
+            teste.Nome_Banco = txtBanco.Text;
+            teste.Agencia = txtAgencia.Text;
+            teste.Conta_Corrente = txtConta.Text;
+            teste.Responsavel = txtResponsavel.Text;
+            teste.Celular_Responsavel = mtxtCelular.Text;
+            teste.Responsavel = txtEmailResponsavel.Text;
+            teste.Telefone_Comercial = mtxtTelefoneDeContato.Text;
+            teste.Endereco_Fornecedor = txtNomeDaRua.Text;
+            teste.Numero_Residencia = Int32.Parse(txtNumero.Text);
+            teste.CEP_Fornecedor = mtxtCEP.Text;
+            teste.Estado_Fornecedor = cbxUF.Text;
+            teste.Cidade_Fornecedor = txtCidade.Text;
+            teste.Bairro_Fornecedor = txtBairro.Text;
+            teste.Complemento = txtComplemento.Text;
+            teste.Cod_Fornecedor = Int32.Parse(id);
+            /*
             conn.Open();
             sqlComm = new SqlCommand(strIncluir, conn);
             sqlComm.ExecuteNonQuery();
-
+            */
             cpf = "";
 
         }
 
         public DataTable Buscar()
         {
-            string stringDeBusca = "select * from Fornecedor where CNPJ_CPF = '" + cpf + "'"; ;
+            /* string stringDeBusca = "select * from Fornecedor where CNPJ_CPF = '" + cpf + "'"; ;
 
-            SqlConnection conn = new SqlConnection(conexao);
-            SqlCommand sqlComm = new SqlCommand(stringDeBusca, conn);
+             SqlConnection conn = new SqlConnection(conexao);
+             SqlCommand sqlComm = new SqlCommand(stringDeBusca, conn);
 
-            SqlDataAdapter da = new SqlDataAdapter();
-            da.SelectCommand = sqlComm;
+             SqlDataAdapter da = new SqlDataAdapter();
+             da.SelectCommand = sqlComm;
 
-            DataTable dt = new DataTable();
+             DataTable dt = new DataTable();
 
-            da.Fill(dt);
-            return dt;
+             da.Fill(dt);
+             return dt;
+             */
+
+            clsFornecedor teste = new clsFornecedor();
+            clsFornecedorBLL teste1 = new clsFornecedorBLL();
+            if (cpf.Length > 1)
+                teste.CNPJ_CPF = cpf;
+            return teste1.SelecionaFornecedor(teste);
+
 
             cpf = "";
         }
@@ -1115,7 +1124,7 @@ namespace Pizzaria
             func(Controls);
         }
 
-        public void estadoDosBotoes(bool estado) 
+        public void estadoDosBotoes(bool estado)
         {
             btnBuscar.Enabled = estado;
             btnExcluir.Enabled = estado;
@@ -1124,6 +1133,7 @@ namespace Pizzaria
 
         public void excluirFornecedor()
         {
+            /*
             conn = new SqlConnection(conexao);
             conn.Open();
             try
@@ -1148,11 +1158,16 @@ namespace Pizzaria
                 MessageBox.Show("Falha ao excluir o fornecedor.");
             }
             conn.Close();
+            */
+            clsFornecedor teste = new clsFornecedor();
+            clsFornecedorBLL teste1 = new clsFornecedorBLL();
+            teste.Cod_Fornecedor = Int32.Parse(dtgvFornecedores.CurrentRow.Cells[0].Value.ToString());
+            teste1.DeleteFornecedor(teste);
 
             preencherGrid();
         }
 
-        public bool verificarSeJaExisteFornecedor(string strDocumento) 
+        public bool verificarSeJaExisteFornecedor(string strDocumento)
         {
             strDocumento = "select * from Fornecedor where CNPJ_CPF = '" + strDocumento + "'";
             SqlConnection conn = new SqlConnection(conexao);
@@ -1270,7 +1285,7 @@ namespace Pizzaria
         private void btnSalvar_Click(object sender, EventArgs e)
         {
 
-            if(!validaCampos())
+            if (!validaCampos())
                 return;
 
             string documento = "";
@@ -1280,7 +1295,7 @@ namespace Pizzaria
             else
                 documento = mtxtCNPJ.Text;
 
-            if(ValidaCPF(documento))
+            if (ValidaCPF(documento))
                 inserirFornecedor();
 
             preencherGrid();
@@ -1300,6 +1315,7 @@ namespace Pizzaria
         private void Fornecedores_Load(object sender, EventArgs e)
         {
             rdCNPJ.Checked = true;
+            dtgvFornecedores.DataSource = Buscar();
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -1307,13 +1323,13 @@ namespace Pizzaria
             cpf = getDocumento();
 
             //Vê se CPF ou CNPJ foi preenchido
-            if(!validaBusca())
+            if (!validaBusca())
                 return;
 
             dtgvFornecedores.Columns.Clear();
 
             dtgvFornecedores.DataSource = Buscar();
-            
+
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
@@ -1442,14 +1458,14 @@ namespace Pizzaria
                 estadoDosBotoes(false);
 
             }
-            else 
+            else
             {
-                if (!verificarSeExiste(getDocumento())) 
+                if (!verificarSeExiste(getDocumento()))
                 {
                     mensagemDeErro("Já existe um registro com esse documento. Por favor, certifique-se de que tudo está certo antes de prosseguir.");
                     return;
                 }
-                    
+
 
                 atualizarFornecedor();
 
@@ -1457,7 +1473,7 @@ namespace Pizzaria
 
                 btnAlterar.Text = "Alterar";
 
-                preencherGrid();    
+                preencherGrid();
             }
         }
 

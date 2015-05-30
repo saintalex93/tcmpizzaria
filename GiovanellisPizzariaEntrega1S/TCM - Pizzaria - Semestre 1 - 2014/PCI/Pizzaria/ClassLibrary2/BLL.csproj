@@ -48,6 +48,7 @@
     <Compile Include="clsProdutoBLL.cs" />
     <Compile Include="clsProdutoPromocaoBLL.cs" />
     <Compile Include="clsPromocaoBLL.cs" />
+    <Compile Include="InsumoBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -26,11 +26,15 @@ namespace Pizzaria
 
         private void Funcionario_Load(object sender, EventArgs e)
         {
+            clsFuncionario teste = new clsFuncionario();
+            clsFuncionarioBLL testte1 = new clsFuncionarioBLL();
+            dtgv_gravacao.DataSource = testte1.SelecionaFuncionario(teste);
+
             btn_alterar.Enabled = false;
             btn_excluir.Enabled = false;
             valida_cargo = false;
             conexao = Acesso.Conexao;
-           
+
         }
 
         SqlConnection conn;
@@ -76,12 +80,12 @@ namespace Pizzaria
             this.FormHome.Show();
             Dispose();
         }
-    
+
         private void btn_salvar_Click_1(object sender, EventArgs e)
         {
 
-            
-            
+
+
             //conexao = Rede.DataContainer.conexaoGlobal;
 
 
@@ -92,15 +96,15 @@ namespace Pizzaria
                 switch (valida)
                 {
                     case true:
-                        
 
-//                            valida = false;
-                            Clear_Dados();
-                            btn_alterar.Enabled = false;
-                            btn_excluir.Enabled = false;
-                            mtxt_cpf.Enabled = true;
-//                            btn_salvar.Text = "Gravar";
-                            dtgv_gravacao.Enabled = true;
+
+                        //                            valida = false;
+                        Clear_Dados();
+                        btn_alterar.Enabled = false;
+                        btn_excluir.Enabled = false;
+                        mtxt_cpf.Enabled = true;
+                        //                            btn_salvar.Text = "Gravar";
+                        dtgv_gravacao.Enabled = true;
 
                         break;
 
@@ -115,7 +119,7 @@ namespace Pizzaria
                         strIncluir = "select * from Funcionario where CPF_Funcionario = '" + cpf + "'";
                         if (ValidaCPF(cpf))
                         {
-                           // se for verdadeiro nao encontrou cpf pode inserir
+                            // se for verdadeiro nao encontrou cpf pode inserir
 
                             clsFuncionarioBLL teste = new clsFuncionarioBLL();
                             clsFuncionario teste1 = new clsFuncionario();
@@ -126,7 +130,7 @@ namespace Pizzaria
                             teste1.Celular_Funcionario = cel;
                             teste1.CEP_Funcionario = cep;
                             teste1.Cidade_Funcionario = cidade;
-                            teste1.Numero_Residencia =  txt_numero.Text.ToString();
+                            teste1.Numero_Residencia = txt_numero.Text.ToString();
                             teste1.Login_Funcionario = txt_Usuario.Text.ToString();
                             teste1.Senha_Funcionario = txt_Senha.Text.ToString();
                             teste1.Telefone_Funcionario = telefone;
@@ -155,19 +159,19 @@ namespace Pizzaria
                 }
             }
         }
-        
+
         private void btn_excluir_MouseMove(object sender, MouseEventArgs e)
         {
 
         }
-        
+
         private void btn_alterar_Click(object sender, EventArgs e)
         {
             if (btn_alterar.Text == "Alterar")
             {
                 gp_dadosfunc.Enabled = true;
                 groupBox3.Enabled = true;
-//                dtgv_gravacao.Enabled = false;
+                //                dtgv_gravacao.Enabled = false;
                 //            valida = true;
                 btn_excluir.Enabled = true;
                 mtxt_cpf.Enabled = true;
@@ -175,7 +179,7 @@ namespace Pizzaria
 
                 btn_alterar.Text = "Salvar";
             }
-            else if (btn_alterar.Text == "Salvar") 
+            else if (btn_alterar.Text == "Salvar")
             {
                 if (ValidaCampos() == true)
                 {
@@ -213,7 +217,7 @@ namespace Pizzaria
             }
 
         }
-        
+
         private void btn_Cancelar_Click(object sender, EventArgs e)
         {
             dtgv_gravacao.Enabled = true;
@@ -224,7 +228,7 @@ namespace Pizzaria
             Clear_Dados();
 
         }
-        
+
         private void btn_excluir_Click(object sender, EventArgs e)
         {/*
             cpf = dtgv_gravacao.CurrentRow.Cells[0].Value.ToString();
@@ -249,15 +253,15 @@ namespace Pizzaria
             dtgv_gravacao.Enabled = true;
             gp_dadosfunc.Enabled = true;
             groupBox3.Enabled = true;
-          
-        
-         
+
+
+
             Clear_Dados();
             preenchegrid();
 
 
         }
-        
+
         private void dtgv_gravacao_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             string idFuncionario = dtgv_gravacao.CurrentRow.Cells[0].Value.ToString();
@@ -269,7 +273,7 @@ namespace Pizzaria
             txt_numero.Text = dtgv_gravacao.CurrentRow.Cells[4].Value.ToString();
             mtxt_cep.Text = dtgv_gravacao.CurrentRow.Cells[6].Value.ToString();
             //Verificar logica para selecionar de acordo com o texto
-//            cb_uf.SelectedText.Text = dtgw_dados.CurrentRow.Cells[7].Value.ToString();
+            //            cb_uf.SelectedText.Text = dtgw_dados.CurrentRow.Cells[7].Value.ToString();
             txt_cidade.Text = dtgv_gravacao.CurrentRow.Cells[8].Value.ToString();
             txt_email.Text = dtgv_gravacao.CurrentRow.Cells[12].Value.ToString();
             txt_bairro.Text = dtgv_gravacao.CurrentRow.Cells[5].Value.ToString();
@@ -292,7 +296,7 @@ namespace Pizzaria
 
 
         }
-        
+
         private void btn_Clear_Click(object sender, EventArgs e)
         {
             dtgv_gravacao.Enabled = true;
@@ -301,9 +305,9 @@ namespace Pizzaria
             valida = false;
             btn_excluir.Enabled = false;
             Clear_Dados();
-            
+
         }
-        
+
         private void btn_Buscar_Click(object sender, EventArgs e)
         {
             if (mtxt_cpf.Text.Replace(" ", "").Length == 14)
@@ -350,7 +354,7 @@ namespace Pizzaria
 
                     //btn_excluir.Enabled = true;
                     btn_alterar.Enabled = true;
-                    
+
 
                 }
 
@@ -572,7 +576,7 @@ namespace Pizzaria
             return false;
 
         }
-        
+
         public void Clear_Dados()
         {
 
@@ -595,7 +599,7 @@ namespace Pizzaria
             gp_dadosfunc.Enabled = true;
             groupBox3.Enabled = true;
         }
-        
+
         public DataTable Buscar(string strIncluir)
         {
 
@@ -636,7 +640,7 @@ namespace Pizzaria
 
 
         }
-        
+
         public void InsereFunc(string stringInc)
         {
             conn = new SqlConnection(conexao);
@@ -733,7 +737,7 @@ namespace Pizzaria
             preenchegrid();
             Clear_Dados();
         }
-        
+
         public void AtualizaFunc(string stringUpd)
         {
             conn = new SqlConnection(conexao);
@@ -770,11 +774,11 @@ namespace Pizzaria
                 sqlComm = new SqlCommand(stringUpd, conn);
                 sqlComm.ExecuteNonQuery();
 
-                stringUpd = "update Funcionario set cod_Permissao = '" + cod_permissao + "' where CPF_FUncionario ='" + cpf+ "'";
+                stringUpd = "update Funcionario set cod_Permissao = '" + cod_permissao + "' where CPF_FUncionario ='" + cpf + "'";
                 sqlComm = new SqlCommand(stringUpd, conn);
                 sqlComm.ExecuteNonQuery();
 
-                
+
 
 
                 MessageBox.Show("Dados do funcionario atualizado.");
@@ -791,17 +795,17 @@ namespace Pizzaria
             preenchegrid();
 
         }
-        
+
         public Boolean ValidaCPF(string strValida)
         {
 
             clsFuncionario teste = new clsFuncionario();
             clsFuncionarioBLL teste1 = new clsFuncionarioBLL();
-            teste.CPF_Funcionario = strValida;    
+            teste.CPF_Funcionario = strValida;
 
             DataTable dt = new DataTable();
             dt = teste1.SelecionaFuncionario(teste);
-            
+
             try
             {
 
@@ -820,7 +824,7 @@ namespace Pizzaria
 
 
         }
-        
+
         public void excluiFunc(string strExclui)
         {
             conn = new SqlConnection(conexao);
@@ -856,22 +860,22 @@ namespace Pizzaria
             preenchegrid();
             Clear_Dados();
         }
-        
+
         private void dtgv_gravacao_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
-        
+
         private void dtp(object sender, EventArgs e)
         {
 
         }
-        
+
         private void dtp_datanasc_ValueChanged(object sender, EventArgs e)
         {
 
         }
-        
+
         private void preenchecargo()
         {
 
@@ -881,7 +885,7 @@ namespace Pizzaria
                 clsFuncionarioBLL teste = new clsFuncionarioBLL();
                 clsFuncionario teste1 = new clsFuncionario();
 
-               dt = teste.SelecionaCargo(teste1);
+                dt = teste.SelecionaCargo(teste1);
 
                 for (int i = 0; dt.Rows.Count > i; i++)
                 {
@@ -898,175 +902,175 @@ namespace Pizzaria
 
         #region um_monte_de_eventos
 
-                private void lbl_telefone_Click(object sender, EventArgs e)
-                {
+        private void lbl_telefone_Click(object sender, EventArgs e)
+        {
 
-                }
+        }
 
-                private void Funcionario_Shown(object sender, EventArgs e)
-                {
-            
-                }
+        private void Funcionario_Shown(object sender, EventArgs e)
+        {
 
-                private void txt_nome_Leave(object sender, EventArgs e)
-                {
-                    txt_nome.BackColor = Color.White;
-                }
+        }
 
-                private void txt_nome_Enter(object sender, EventArgs e)
-                {
-                    txt_nome.BackColor = Color.Aquamarine;
-                }
+        private void txt_nome_Leave(object sender, EventArgs e)
+        {
+            txt_nome.BackColor = Color.White;
+        }
 
-                private void mtxt_cpf_Leave(object sender, EventArgs e)
-                {
-                    mtxt_cpf.BackColor = Color.White;
-                }
+        private void txt_nome_Enter(object sender, EventArgs e)
+        {
+            txt_nome.BackColor = Color.Aquamarine;
+        }
 
-                private void mtxt_cpf_Enter(object sender, EventArgs e)
-                {
-                    mtxt_cpf.BackColor = Color.Aquamarine;
-                }
+        private void mtxt_cpf_Leave(object sender, EventArgs e)
+        {
+            mtxt_cpf.BackColor = Color.White;
+        }
 
-                private void dtp_datanasc_Leave(object sender, EventArgs e)
-                {
-                    dtp_datanasc.BackColor = Color.White;
-                }
+        private void mtxt_cpf_Enter(object sender, EventArgs e)
+        {
+            mtxt_cpf.BackColor = Color.Aquamarine;
+        }
 
-                private void dtp_datanasc_Enter(object sender, EventArgs e)
-                {
-                    dtp_datanasc.BackColor = Color.Aquamarine;
-                }
+        private void dtp_datanasc_Leave(object sender, EventArgs e)
+        {
+            dtp_datanasc.BackColor = Color.White;
+        }
 
-                private void mtxt_telefone_Enter(object sender, EventArgs e)
-                {
-                    mtxt_telefone.BackColor = Color.Aquamarine;
-                }
+        private void dtp_datanasc_Enter(object sender, EventArgs e)
+        {
+            dtp_datanasc.BackColor = Color.Aquamarine;
+        }
 
-                private void mtxt_telefone_Leave(object sender, EventArgs e)
-                {
-                    mtxt_telefone.BackColor = Color.White;
-                }
+        private void mtxt_telefone_Enter(object sender, EventArgs e)
+        {
+            mtxt_telefone.BackColor = Color.Aquamarine;
+        }
 
-                private void mtxt_celular_Leave(object sender, EventArgs e)
-                {
-                    mtxt_celular.BackColor = Color.White;
-                }
+        private void mtxt_telefone_Leave(object sender, EventArgs e)
+        {
+            mtxt_telefone.BackColor = Color.White;
+        }
 
-                private void mtxt_celular_Enter(object sender, EventArgs e)
-                {
-                    mtxt_celular.BackColor = Color.Aquamarine;
-                }
+        private void mtxt_celular_Leave(object sender, EventArgs e)
+        {
+            mtxt_celular.BackColor = Color.White;
+        }
 
-                private void txt_email_Enter(object sender, EventArgs e)
-                {
-                    txt_email.BackColor = Color.Aquamarine;
-                }
+        private void mtxt_celular_Enter(object sender, EventArgs e)
+        {
+            mtxt_celular.BackColor = Color.Aquamarine;
+        }
 
-                private void txt_email_Leave(object sender, EventArgs e)
-                {
-                    txt_email.BackColor = Color.White;
-                }
+        private void txt_email_Enter(object sender, EventArgs e)
+        {
+            txt_email.BackColor = Color.Aquamarine;
+        }
 
-                private void cbox_Cargo_Leave(object sender, EventArgs e)
-                {
-                    cbox_Cargo.BackColor = Color.White;
-                }
+        private void txt_email_Leave(object sender, EventArgs e)
+        {
+            txt_email.BackColor = Color.White;
+        }
 
-                private void cbox_Cargo_Enter(object sender, EventArgs e)
-                {
-                    cbox_Cargo.BackColor = Color.Aquamarine;
-                }
+        private void cbox_Cargo_Leave(object sender, EventArgs e)
+        {
+            cbox_Cargo.BackColor = Color.White;
+        }
 
-                private void txt_Usuario_Leave(object sender, EventArgs e)
-                {
-                    txt_Usuario.BackColor = Color.White;
-                }
+        private void cbox_Cargo_Enter(object sender, EventArgs e)
+        {
+            cbox_Cargo.BackColor = Color.Aquamarine;
+        }
 
-                private void txt_Usuario_Enter(object sender, EventArgs e)
-                {
-                    txt_Usuario.BackColor = Color.Aquamarine;
-                }
+        private void txt_Usuario_Leave(object sender, EventArgs e)
+        {
+            txt_Usuario.BackColor = Color.White;
+        }
 
-                private void txt_Senha_Leave(object sender, EventArgs e)
-                {
-                    txt_Senha.BackColor = Color.White;
-                }
+        private void txt_Usuario_Enter(object sender, EventArgs e)
+        {
+            txt_Usuario.BackColor = Color.Aquamarine;
+        }
 
-                private void txt_Senha_Enter(object sender, EventArgs e)
-                {
-                    txt_Senha.BackColor = Color.Aquamarine;
-                }
+        private void txt_Senha_Leave(object sender, EventArgs e)
+        {
+            txt_Senha.BackColor = Color.White;
+        }
 
-                private void txt_endereco_Leave(object sender, EventArgs e)
-                {
-                    txt_endereco.BackColor = Color.White;
-                }
+        private void txt_Senha_Enter(object sender, EventArgs e)
+        {
+            txt_Senha.BackColor = Color.Aquamarine;
+        }
 
-                private void txt_endereco_Enter(object sender, EventArgs e)
-                {
-                    txt_endereco.BackColor = Color.Aquamarine;
-                }
+        private void txt_endereco_Leave(object sender, EventArgs e)
+        {
+            txt_endereco.BackColor = Color.White;
+        }
 
-                private void txt_numero_Leave(object sender, EventArgs e)
-                {
-                    txt_numero.BackColor = Color.White;
-                }
+        private void txt_endereco_Enter(object sender, EventArgs e)
+        {
+            txt_endereco.BackColor = Color.Aquamarine;
+        }
 
-                private void txt_numero_Enter(object sender, EventArgs e)
-                {
-                    txt_numero.BackColor = Color.Aquamarine;
-                }
+        private void txt_numero_Leave(object sender, EventArgs e)
+        {
+            txt_numero.BackColor = Color.White;
+        }
 
-                private void txt_bairro_Leave(object sender, EventArgs e)
-                {
-                    txt_bairro.BackColor = Color.White;
-                }
+        private void txt_numero_Enter(object sender, EventArgs e)
+        {
+            txt_numero.BackColor = Color.Aquamarine;
+        }
 
-                private void txt_bairro_Enter(object sender, EventArgs e)
-                {
-                    txt_bairro.BackColor = Color.Aquamarine;
-                }
+        private void txt_bairro_Leave(object sender, EventArgs e)
+        {
+            txt_bairro.BackColor = Color.White;
+        }
 
-                private void mtxt_cep_Leave(object sender, EventArgs e)
-                {
-                    mtxt_cep.BackColor = Color.White;
-                }
+        private void txt_bairro_Enter(object sender, EventArgs e)
+        {
+            txt_bairro.BackColor = Color.Aquamarine;
+        }
 
-                private void mtxt_cep_Enter(object sender, EventArgs e)
-                {
-                    mtxt_cep.BackColor = Color.Aquamarine;
-                }
+        private void mtxt_cep_Leave(object sender, EventArgs e)
+        {
+            mtxt_cep.BackColor = Color.White;
+        }
 
-                private void txt_cidade_Leave(object sender, EventArgs e)
-                {
-                    txt_cidade.BackColor = Color.White;
-                }
+        private void mtxt_cep_Enter(object sender, EventArgs e)
+        {
+            mtxt_cep.BackColor = Color.Aquamarine;
+        }
 
-                private void txt_cidade_Enter(object sender, EventArgs e)
-                {
-                    txt_cidade.BackColor = Color.Aquamarine;
-                }
+        private void txt_cidade_Leave(object sender, EventArgs e)
+        {
+            txt_cidade.BackColor = Color.White;
+        }
 
-                private void cb_uf_Enter(object sender, EventArgs e)
-                {
-                    cb_uf.BackColor = Color.Aquamarine;
-                }
+        private void txt_cidade_Enter(object sender, EventArgs e)
+        {
+            txt_cidade.BackColor = Color.Aquamarine;
+        }
 
-                private void cb_uf_Leave(object sender, EventArgs e)
-                {
-                    cb_uf.BackColor = Color.White;
-                }
+        private void cb_uf_Enter(object sender, EventArgs e)
+        {
+            cb_uf.BackColor = Color.Aquamarine;
+        }
 
-                private void txt_complemento_Leave(object sender, EventArgs e)
-                {
-                    txt_complemento.BackColor = Color.White;
-                }
+        private void cb_uf_Leave(object sender, EventArgs e)
+        {
+            cb_uf.BackColor = Color.White;
+        }
 
-                private void txt_complemento_Enter(object sender, EventArgs e)
-                {
-                    txt_complemento.BackColor = Color.Aquamarine;
-                }
+        private void txt_complemento_Leave(object sender, EventArgs e)
+        {
+            txt_complemento.BackColor = Color.White;
+        }
+
+        private void txt_complemento_Enter(object sender, EventArgs e)
+        {
+            txt_complemento.BackColor = Color.Aquamarine;
+        }
 
         #endregion
 
@@ -1078,7 +1082,7 @@ namespace Pizzaria
 
                 preenchecargo();
             }
-            
+
         }
 
         private void cbox_Cargo_SelectedIndexChanged(object sender, EventArgs e)
@@ -1093,12 +1097,12 @@ namespace Pizzaria
             clsFuncionarioBLL teste1 = new clsFuncionarioBLL();
 
             teste.Nome_Func = txtBuscaPorNome.Text.ToString();
-          dtgv_gravacao.DataSource =  teste1.SelecionaFuncionario(teste);
+            dtgv_gravacao.DataSource = teste1.SelecionaFuncionario(teste);
         }
 
         private void mtxtBuscaPorCPF_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
-           
+
         }
 
         private void mtxtBuscaPorCPF_TextChanged(object sender, EventArgs e)
