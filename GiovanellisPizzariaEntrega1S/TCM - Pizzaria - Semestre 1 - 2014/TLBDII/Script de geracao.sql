@@ -159,6 +159,7 @@ Estado VarChar(12),
 EnderecoAlt VarChar(140),
 NumeroResidencialAlt VarChar(5),
 NumeroApartamentoAlt VarChar(5),
+BairroAlt varchar(20),
 FormaDePagamento varchar(10),
 ValorPago dec (6,2)
 )
