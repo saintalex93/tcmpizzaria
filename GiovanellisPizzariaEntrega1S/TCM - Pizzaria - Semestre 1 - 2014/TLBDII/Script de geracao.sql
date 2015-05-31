@@ -119,14 +119,14 @@ go
 create table Categoria
 (
 CodCategoria int identity (1,1) Primary Key,
-NomeCategoria VarChar (20)
+NomeCategoria VarChar (40)
 )
 go
 
 create table Insumo
 (
 Cod_Insumo INT IDENTITY(1,1) PRIMARY KEY,
-Nome_Insumo VARCHAR(20),
+Nome_Insumo VARCHAR(40),
 ValorDeCompra DECIMAL,
 QtdeRecomendavel INT,
 QtdeEmEstoque INT,
@@ -400,12 +400,59 @@ NomeCategoria
 values
 ('Pizza'),
 ('Pizza Brotinho'),
-('Bebidas'),
+('Bebidas não Alcóolicas'),
 ('Porções'),
 ('Embalagens'),
 ('Queijos'),
 ('Vegetais'),
-('Massas')
+('Massas'),
+('Carnes'),
+('Embutidos'),
+('Frutas'),
+('Temperos'),
+('Carnes'),
+('Peixes'),
+('Frutos do Mar'),
+('Embalagens'),
+('Molhos'),
+('Conservas'),
+('Aves'),
+('Bebidas Alcóolicas')
+go
+
+insert into insumocategoria
+(
+codInsumo,
+codCategoria
+)
+values
+(1,12),
+(2,6),
+(3,11),
+(4,10),
+(5,6),
+(6,9),
+(7,10),
+(8,7),
+(9,6),
+(10,12),
+(11,10),
+(12,7),
+(13,7),
+(14,6),
+(15,9),
+(16,16),
+(17,8),
+(18,17),
+(19,18),
+(20,19),
+(21,18),
+(22,3),
+(23,20),
+(24,20),
+(25,20),
+(26,15)
+
 go
 
 insert into Produto
@@ -467,37 +514,37 @@ values
 go
 
 insert into Pedido
-(Data,Hora,Valor,Cod_Funcionario,Cod_Cliente, Observacao,Origem,Estado, EnderecoAlt, NumeroResidencialAlt, NumeroApartamentoAlt ,FormaDePagamento,ValorPago)
+(Data,Hora,Valor,Cod_Funcionario,Cod_Cliente, Observacao,Origem,Estado, EnderecoAlt, BairroAlt, NumeroResidencialAlt, NumeroApartamentoAlt ,FormaDePagamento,ValorPago)
 values
-('05/01/2015','20:15',31.00,1,2,'','Site','A caminho','','','','Cheque',65.60),
-('05/01/2015','20:15',31.00,1,3,'','Site','A caminho','','','','Dinheiro',58.40),
-('05/01/2015','20:15',31.00,1,4,'','Site','A caminho','Alameda Itu','32','21','Cartão',147.50),
+('05/01/2015','20:15',90.30,1,2,'','Site','A caminho','','','','','Cheque',90.30),
+('05/01/2015','20:15',58.40,1,3,'','Site','A caminho','','','','','Dinheiro',58.40),
+('05/01/2015','20:15',147.50,1,4,'','Site','A caminho','Alameda Itu','','32','21','Cartão',147.50),
 
-('05/01/2015','20:15',31.00,2,2,'','Site','A caminho','','','','Cartão',65.60),
-('05/01/2015','20:15',31.00,2,3,'','Site','A caminho','Travessa Dom Gaspar','666','','Cheque',65.60),
-('05/01/2015','20:15',31.00,2,4,'','Site','A caminho','','','','Dinheiro',56.80),
+('05/01/2015','20:15',65.60,2,2,'','Site','A caminho','','','','','Cartão',65.60),
+('05/01/2015','20:15',65.60,2,3,'','Site','A caminho','Travessa Dom Gaspar','','666','','Cheque',65.60),
+('05/01/2015','20:15',56.80,2,4,'','Site','A caminho','','','','','Dinheiro',56.80),
 
-('05/01/2015','20:15',31.00,3,2,'','Site','Na Fila','Avenida Paulista','756','35','Cheque',75.00),
-('05/01/2015','20:15',31.00,3,3,'','Site','A caminho','','','','Dinheiro',65.60),
-('05/01/2015','20:15',31.00,3,4,'','Site','Em Preparo','','','','Cartão',65.60),
+('05/01/2015','20:15',75.00,3,2,'','Site','Na Fila','Avenida Paulista', '','756','35','Cheque',75.00),
+('05/01/2015','20:15',65.60,3,3,'','Site','A caminho','','','','','Dinheiro',65.60),
+('05/01/2015','20:15',65.60,3,4,'','Site','Em Preparo','','','','','Cartão',65.60),
 
-('05/01/2015','20:15',31.00,4,2,'','Site','Na Fila','','','','Cartão',204.30),
-('05/01/2015','20:15',31.00,4,3,'','Site','Em Preparo','','','','Cartão',65.60),
-('05/01/2015','20:15',31.00,4,4,'','Site','A caminho','','','','Cartão',65.60),
+('05/01/2015','20:15',204.30,4,2,'','Site','Na Fila','','','','','Cartão',204.30),
+('05/01/2015','20:15',65.60,4,3,'','Site','Em Preparo','','','','','Cartão',65.60),
+('05/01/2015','20:15',65.60,4,4,'','Site','A caminho','','','','','Cartão',65.60),
 
-('05/01/2015','23:56',22.00,2,3,'','Site','Em Preparo','','','','Cartão',56.80),
-('05/01/2015','18:31',65.87,3,4,'','Site','Na Fila','','','','Cartão',75.00),
-('22/02/2015','19:14',25.25,2,2,'','In loco','Cancelado','','','','Dinheiro', 65.60),
-('12/03/2015','22:57',38.89,3,3,'','Telefone','Realizado','Alameda Itu', '753', '', 'Cartão',65.60),
-('05/04/2015','22:22',68.98,1,5,'','Site','Realizado','', '', '', 'Cartão',56.80),
-('05/04/2015','21:40',78.98,4,3,'Manera na cebola','Site','Cancelado','' ,'' ,'','Cartão',147.50),
-('05/04/2015','22:22',55.32,1,5,'','Site','Cancelado','', '', '','Cartão',65.60),
-('06/04/2015','21:15',42.30,4,5,'','In loco','Cancelado', '', '', '','Cartão',65.60),
-('07/04/2015','20:22',67.90,3,5,'Sem azeitonas, pelo amor de Deus','Site','Realizado','','','','Cartão',65.60),
-('20/04/2015','22:57',84.20,2,5,'','In loco','Realizado','','','','Cartão',56.80),
-('22/05/2015','18:49',76.00,1,4,'','Site','Realizado','Rebouças', '32', '','Dinheiro',75.00),
-('06/06/2015','00:16',58.20,3,2,'Favor, ao chegar, ligar no meu celular e não pelo interfone nem campainha','Site','Cancelado','','','','Cartão',75.00),
-('06/04/2015','21:15',42.30,2,5,'','In loco','Cancelado','','','','Cartão',75.00)
+('05/01/2015','23:56',22.00,2,3,'','Site','Em Preparo','','','','','Cartão',56.80),
+('05/01/2015','18:31',65.87,3,4,'','Site','Na Fila','','','','','Cartão',75.00),
+('22/02/2015','19:14',65.60,2,2,'','In loco','Cancelado','','','','','Dinheiro', 65.60),
+('12/03/2015','22:57',38.89,3,3,'','Telefone','Realizado','Alameda Itu','', '753', '', 'Cartão',65.60),
+('05/04/2015','22:22',68.98,1,5,'','Site','Realizado','', '', '', '', 'Cartão',56.80),
+('05/04/2015','21:40',78.98,4,3,'Manera na cebola','Site','Cancelado','' ,'' , '','','Cartão',147.50),
+('05/04/2015','22:22',65.60,1,5,'','Site','Cancelado','', '', '', '','Cartão',65.60),
+('06/04/2015','21:15',65.60,4,5,'','In loco','Cancelado', '', '', '', '','Cartão',65.60),
+('07/04/2015','20:22',65.60,3,5,'Sem azeitonas, pelo amor de Deus','Site','Realizado','','','', '','Cartão',65.60),
+('20/04/2015','22:57',56.60,2,5,'','In loco','Realizado','','','', '','Cartão',56.80),
+('22/05/2015','18:49',70.00,1,4,'','Site','Realizado','Rebouças', '', '32', '','Dinheiro',75.00),
+('06/06/2015','00:16',75.00,3,2,'Favor, ao chegar, ligar no meu celular e não pelo interfone nem campainha','Site','Cancelado','','','', '','Cartão',75.00),
+('06/04/2015','21:15',75.00,2,5,'','In loco','Cancelado','','','', '','Cartão',75.00)
 go
 
 insert into Fornecedor
@@ -585,6 +632,9 @@ values
 (3,19,0.050),
 (3,8,0.100),
 (3,16,1),
+(3,3,0.100),
+(3,13,0.100),
+
 
 (4,17,0.400),
 (4,18,0.100),
@@ -678,7 +728,6 @@ values
 
 (18,26,0.400),
 
-
 (19,4,0.400),
 
 (20,14,0.400)
@@ -727,6 +776,7 @@ values
 (1,0,2),
 (1,4,3),
 (1,0,14),
+(1,0,8),
 
 (2,0,1),
 (2,5,1),
@@ -883,6 +933,19 @@ values
 (87.35, '15/04/2015', '17/04/2015', 4),
 (182.35, '14/05/2015', '17/05/2015', 5),
 (120.35, '13/06/2015', '17/06/2015', 3)
+go
+
+insert into Pagamento
+(
+ValorPagamento,
+DataExpedido,
+TipoPagamento,
+Cod_Funcionario
+)
+Values
+(
+2500.00,'2015-01-11', 'Salário', 2
+)
 go
 
 insert into DetalheCompra 
@@ -2406,168 +2469,7 @@ as
 		insert into Categoria values(@NomeCategoria)
 	End
 go
-------------------------------------------------
-create proc USP_JAVA_Relatorios
-(
-	@DataInicial Date,
-	@DataFinal Date,
-	@BinarioFuncionario Int,
-	@BinarioDespesa Int,
-	@BinarioCompras Int,
-	@BinarioPedidos Int,
-	@BinarioPromocao Int
-)	
-as
 
-declare 
-
-	@TotalDespesa float =0,
-	@TotalFuncionario float =0,
-	@TotalCompras float =0,
-	@TotalPedidos float =0,
-	@TotalPromocao float =0,
-	@TotalGeral float =0,
-	@TotalPrejuizo float =0,
-	@TotalReceita float =0
-
-begin
-	
-	if @BinarioFuncionario = 1
-	begin
-			set @TotalFuncionario = (select SUM(ValorPagamento) from Pagamento where DataExpedido between @DataInicial and @DataFinal)
-
-	end
-
-	if @BinarioDespesa = 1
-	begin
-		set @TotalDespesa = (select  sum(ValorDespesa) from despesa where DataPagamento between @DataInicial and @DataFinal)
-
-	end
-
-	if @BinarioCompras = 1
-	begin
-		set @TotalCompras = (select SUM (Valor_Compra) from CompraFornecedor where Data_Venda between @DataInicial and @DataFinal)
-
-	end
-
-	if @BinarioPedidos = 1
-	begin
-		set @TotalPedidos = (select SUM (ValorPago) from Pedido where estado <>  'Cancelado' and Data between @DataInicial and @DataFinal)
-
-	end
-
-	if @BinarioPromocao = 1
-	begin
-	set @TotalPromocao = (select sum (produtos.Valor_Venda) as ValorTotal from Promocao as promocao inner join ProdutoPromocao as produtoPromo on
-                        produtoPromo.Cod_Promocao = promocao.Cod_Promocao inner join Produto as produtos on produtos.Cod_Produto = 
-                        produtoPromo.Cod_Produto inner join Detalhe_Pedido as Dp on Dp.Cod_Produto = produtos.Cod_Produto inner join Pedido
-                        as pedido on pedido.Cod_Pedido = Dp.Cod_Pedido and Data Between @DataInicial and @DataFinal)
-	end
-
-	set @TotalPrejuizo = (@TotalDespesa + @TotalFuncionario + @TotalCompras) 
-	Set @TotalReceita = @TotalPedidos
-	set @TotalGeral = @TotalReceita - @TotalPrejuizo 
-	
-
-	Select 
-		@TotalPromocao as Promocoes,
-		@TotalPedidos as Pedidos,
-		@TotalCompras as Compras,
-		@TotalFuncionario as Funcionario,
-		@TotalDespesa as Despesa,
-		
-		@TotalPrejuizo as Prejuizo, 
-		@TotalReceita as Receita, 
-		@TotalGeral as TotalGeral
-		
-		
-	end
-go
--------------------------------------------------------ProcInserirTipoDespesa------------------------------------------------------------
-create proc JAVA_USP_InserirTipoDespesa
- @NomeDespesa varchar (40)
- 
- 
- AS
- 
- declare @SituacaoDespesa varchar (20)
- 
- begin
- 
- 
- set @SituacaoDespesa = 'Ativo'
- 
- insert into TipoDespesa (NomeDespesa, SituacaoDespesa) values (@NomeDespesa, @SituacaoDespesa)
- 
- end
-go
--------------------------------------------------------ProcAlterarTipoDespesa------------------------------------------------------------
-create proc JAVA_USP_AlterarTipoDespesa
-
-@CodDespesa int,
-@NomeDespesa varchar (30),
-@SituacaoDespesa varchar (20)
-
-as
-begin
-
-update TipoDespesa set NomeDespesa = @NomeDespesa, SituacaoDespesa = @SituacaoDespesa where codTipoDespesa = @CodDespesa
-
-end
-go
-------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
-
-
---------------------------------------------------ProcAlterarSenha------------------------------------------------------------------- 
-create proc JAVA_USP_AlterarSenha
- @Cod_Funcionario int,
- @Login_funcionario Varchar (50),
- @Senha_Funcionario Varchar (20),
- @Cod_Permissao int
- as
- begin
- 
- Update Funcionario set Login_funcionario = @Login_funcionario, Senha_Funcionario = @Senha_Funcionario, Cod_Permissao = @Cod_Permissao where Cod_Funcionario = @Cod_Funcionario
- 
- 
- end
- 
- 
- 
-
-
-go
---------------------------------------------------------ProcLançaValores------------------------------------------------------------------
-create proc JAVA_USP_LancarDespesa
-(
-@TipoDespesa int,
-@ValorDespesa float,
-@DataPagamento date,
-@DataVencimento date
-)
-as
-begin
-
-Insert into Despesa(TipoDespesa, ValorDespesa, DataPagamento, DataVencimento) values (@TipoDespesa,@ValorDespesa,@DataPagamento,@DataVencimento)
-
-end
-go
----------------------------------------------------------PagamentoFuncionario-------------------------------------------------------------
-create proc JAVA_USP_LancamentoFuncionario
-@ValorPagamento float,
-@DataExpedido date,
-@TipoPagamento varchar (30),
-@CodFuncionario int
-as
-begin
-	insert into Pagamento (ValorPagamento, DataExpedido, TipoPagamento, Cod_Funcionario)
-	Values (@ValorPagamento, @DataExpedido, @TipoPagamento, @CodFuncionario)
-end
-go
----------------------------------------------------
 create proc USP_CSharp_Categoria_RemoverCategoria
 
 	@codCategoria int
@@ -2700,3 +2602,201 @@ as
 	End
 go
 ---------------------------------------------------
+
+---------------------------------------Procedures Java------------------------------------------------
+--------------------------------------RELATÓRIO---------------------------------------------
+---TODO: mudar nome dessa proc pra se adequar à nomenclatura de entrega do Professor Luiz Ricardo
+
+create proc USP_JAVA_Relatorios
+(
+	@DataInicial Date,
+	@DataFinal Date,
+	@BinarioFuncionario Int,
+	@BinarioDespesa Int,
+	@BinarioCompras Int,
+	@BinarioPedidos Int,
+	@BinarioPromocao Int
+)	
+as
+
+declare 
+
+	@TotalDespesa float =0.00,
+	@TotalFuncionario float =0.00,
+	@TotalCompras float =0.00,
+	@TotalPedidos float =0.00,
+	@TotalPromocao float =0.00,
+	@TotalGeral float =0.00,
+	@TotalPrejuizo float =0.00,
+	@TotalReceita float =0.00
+
+begin
+	
+	if @BinarioFuncionario = 1
+	begin
+			set @TotalFuncionario = (select SUM  (ValorPagamento) from Pagamento where DataExpedido between @DataInicial and @DataFinal)
+
+			if @TotalFuncionario is null
+			begin
+			set @TotalFuncionario = 0
+			end
+
+	end
+	
+
+	if @BinarioDespesa = 1
+	begin
+
+			set @TotalDespesa = (select  sum(ValorDespesa) from despesa where DataPagamento between @DataInicial and @DataFinal)
+
+			if @TotalDespesa is null
+			begin
+			set @TotalDespesa = 0
+			end
+
+	end
+
+	if @BinarioCompras = 1
+	begin
+
+			set @TotalCompras = (select SUM (Valor_Compra) from CompraFornecedor where Data_Venda between @DataInicial and @DataFinal)
+
+			if @TotalCompras is null
+			begin
+			set @TotalCompras = 0
+			end
+
+	end
+
+	if @BinarioPedidos = 1
+	begin
+			set @TotalPedidos = (select SUM (ValorPago) from Pedido where estado <>  'Cancelado' and Data between @DataInicial and @DataFinal)
+
+			if @TotalPedidos is null
+			begin
+			set @TotalPedidos = 0
+			end
+
+	end
+
+	if @BinarioPromocao = 1
+	begin
+			set @TotalPromocao = (select sum (produtos.Valor_Venda) as ValorTotal from Promocao as promocao inner join ProdutoPromocao as produtoPromo on
+                        produtoPromo.Cod_Promocao = promocao.Cod_Promocao inner join Produto as produtos on produtos.Cod_Produto = 
+                        produtoPromo.Cod_Produto inner join Detalhe_Pedido as Dp on Dp.Cod_Produto = produtos.Cod_Produto inner join Pedido
+                        as pedido on pedido.Cod_Pedido = Dp.Cod_Pedido and Data Between @DataInicial and @DataFinal)
+
+
+			if @TotalPromocao is null
+			begin
+			set @TotalPromocao = 0
+			end
+			
+	end
+
+	set @TotalPrejuizo = (@TotalDespesa + @TotalFuncionario + @TotalCompras) 
+	Set @TotalReceita = @TotalPedidos
+	set @TotalGeral = @TotalReceita - @TotalPrejuizo 
+	
+
+		Select 
+
+		@TotalPromocao as Promocoes,
+		@TotalPedidos as Pedidos,
+		@TotalCompras as Compras,
+		@TotalFuncionario as Funcionario,
+		@TotalDespesa as Despesa,
+		
+		@TotalPrejuizo as Prejuizo, 
+		@TotalReceita as Receita, 
+		@TotalGeral as TotalGeral
+		
+		
+		end
+	go
+-------------------------------------------------------ProcInserirTipoDespesa------------------------------------------------------------
+create proc JAVA_USP_InserirTipoDespesa
+ @NomeDespesa varchar (40)
+ 
+ 
+ AS
+ 
+ declare @SituacaoDespesa varchar (20)
+ 
+ begin
+ 
+ 
+ set @SituacaoDespesa = 'Ativo'
+ 
+ insert into TipoDespesa (NomeDespesa, SituacaoDespesa) values (@NomeDespesa, @SituacaoDespesa)
+ 
+ end
+go
+-------------------------------------------------------ProcAlterarTipoDespesa------------------------------------------------------------
+create proc JAVA_USP_AlterarTipoDespesa
+
+@CodDespesa int,
+@NomeDespesa varchar (30),
+@SituacaoDespesa varchar (20)
+
+as
+begin
+
+update TipoDespesa set NomeDespesa = @NomeDespesa, SituacaoDespesa = @SituacaoDespesa where codTipoDespesa = @CodDespesa
+
+end
+go
+------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+--------------------------------------------------ProcAlterarSenha------------------------------------------------------------------- 
+create proc JAVA_USP_AlterarSenha
+ @Cod_Funcionario int,
+ @Login_funcionario Varchar (50),
+ @Senha_Funcionario Varchar (20),
+ @Cod_Permissao int
+ as
+ begin
+ 
+ Update Funcionario set Login_funcionario = @Login_funcionario, Senha_Funcionario = @Senha_Funcionario, Cod_Permissao = @Cod_Permissao where Cod_Funcionario = @Cod_Funcionario
+ 
+ 
+ end
+ 
+ 
+ 
+
+
+go
+--------------------------------------------------------ProcLançaValores------------------------------------------------------------------
+create proc JAVA_USP_LancarDespesa
+(
+@TipoDespesa int,
+@ValorDespesa float,
+@DataPagamento date,
+@DataVencimento date
+)
+as
+begin
+
+Insert into Despesa(TipoDespesa, ValorDespesa, DataPagamento, DataVencimento) values (@TipoDespesa,@ValorDespesa,@DataPagamento,@DataVencimento)
+
+end
+go
+---------------------------------------------------------PagamentoFuncionario-------------------------------------------------------------
+create proc JAVA_USP_LancamentoFuncionario
+@ValorPagamento float,
+@DataExpedido date,
+@TipoPagamento varchar (30),
+@CodFuncionario int
+as
+begin
+	insert into Pagamento (ValorPagamento, DataExpedido, TipoPagamento, Cod_Funcionario)
+	Values (@ValorPagamento, @DataExpedido, @TipoPagamento, @CodFuncionario)
+end
+go
+-----------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------------
