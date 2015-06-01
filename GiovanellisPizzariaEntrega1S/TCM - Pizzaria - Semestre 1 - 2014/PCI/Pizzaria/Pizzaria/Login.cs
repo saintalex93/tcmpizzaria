@@ -63,7 +63,7 @@ namespace Pizzaria
         int ValidarUsuario(clsFuncionario objFuncionario)
         {
             int codFuncionario = 0;
-
+ 
             try
             {
                 codFuncionario = (int) login.ValidarUsuario(objFuncionario).Rows[0][0];

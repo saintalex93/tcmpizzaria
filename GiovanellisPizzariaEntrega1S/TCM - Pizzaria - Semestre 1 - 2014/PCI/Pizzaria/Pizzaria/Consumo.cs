@@ -44,26 +44,41 @@ namespace Pizzaria
 
             PreencherInsumo();
 
+            PreencheProdutos();
+
             if (Produtos.sequenciaCadastro)
             { 
                 btnVoltar.Text = "Seguinte";
                 btnCancelar.Visible = true;
                 cbProduto.Enabled = false;
-            }
+              
+                cbProduto.SelectedIndex = 
+                    cbProduto.FindStringExact
+                    (
+                       (string) consumo.BuscarUltimoProduto().Rows[0][0]
+                    );
 
-            PreencherProdutos();
-                
+                btnAlterar.Enabled = false;
+            }
         }
 
-        void PreencherProdutos() 
+        int PreencheProdutos() 
         {
             cbProduto.DataSource = consumo.PreencherProdutos();
             cbProduto.ValueMember = "Cod_Produto";
             cbProduto.DisplayMember = "Nome_Produto";
+
             if (Produtos.sequenciaCadastro)
-                cbProduto.SelectedIndex = cbProduto.Items.Count;
+            {
+                int x = 0;
+                
+                //for (int i = 0; i < cbProduto.Items.Count; i++)
+                    //if(x < cbProduto.DataSource.
+
+                    return 0;
+            }
             else
-                cbProduto.SelectedIndex = -1;
+                return cbProduto.SelectedIndex = -1;
         }
 
         void PreencherInsumo()
@@ -76,20 +91,20 @@ namespace Pizzaria
 
         private void btnVoltar_Click(object sender, EventArgs e)
         {
-            DataTable intao2 = consumo.VerificaProdutoSemConsumo()
+            DataTable semConsumo = consumo.VerificaProdutoSemConsumo();
+            DataTable consumoVazio = consumo.VerificaConsumoVazio();
 
-            gridConsumo.DataSource = consumo.VerificaConsumoVazio();
+            int intSemConsumo = (int) semConsumo.Rows[0][0];
+            int intConsumoVazio =  (int) consumoVazio.Rows[0][0];
 
-            int intao = (int) intao2.Rows[0][0];
-
-            if ((int)consumo.VerificaProdutoSemConsumo().Rows[0][0] != 0)
+            if (intSemConsumo  != 0)
             {
                 Home.mensagemDeErro("Consta no sistema que existem Produtos sem Insumos registrados para consumo.\n\nCertifique-se de que todos os Produtos tem pelo menos um Insumo associado para poder seguir para o próximo menu.", "Integridade no banco de dados");
 
                 return;
             }
 
-            if ((int)consumo.VerificaConsumoVazio().Rows[0][0] != 0)
+            if (intConsumoVazio != 0)
             {
                 Home.mensagemDeErro("Consta no sistema que existem registros de Consumo com campos vazios.\n\nCertifique-se de que todos os Produtos tem pelo menos um Insumo associado para poder seguir para o próximo menu.","Integridade nos registros");
 
@@ -104,7 +119,10 @@ namespace Pizzaria
                 categoria.FormHome = this.FormHome;
             }
             else
+            { 
                 FormHome.Show();
+                FormHome.Focus();
+            }
             
             
             Dispose();
@@ -349,6 +367,7 @@ namespace Pizzaria
             consumo.CancelarInsercao();
 
             FormHome.Enabled = true;
+            FormHome.Focus();
 
             Dispose();
         }

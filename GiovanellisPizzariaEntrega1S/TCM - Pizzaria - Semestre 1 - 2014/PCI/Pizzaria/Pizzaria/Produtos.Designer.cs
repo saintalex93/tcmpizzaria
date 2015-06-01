@@ -258,7 +258,6 @@
         private System.Windows.Forms.GroupBox gbp_produtos;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txt_nome;
         private System.Windows.Forms.CheckBox chk_site;
         private System.Windows.Forms.Button btn_inserir;
         private System.Windows.Forms.DataGridView dtg_produtos;
@@ -272,5 +271,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox txtPreco;
+        private System.Windows.Forms.TextBox txt_nome;
     }
 }

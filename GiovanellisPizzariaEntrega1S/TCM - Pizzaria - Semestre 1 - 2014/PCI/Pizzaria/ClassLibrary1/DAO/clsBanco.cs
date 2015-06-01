@@ -17,12 +17,8 @@ namespace DAL.DAO
         {
             try
             {
-                //string de conexão de casa
-                //TODO: Tirar string de conexão antes de entregar aplicação
-                string strConn = "Data Source = TUCA\\SQLEXPRESS; Initial Catalog = Pizzaria; Persist Security Info = True; User ID = sa; Password = peganomeupau";
 
-                //string de conexão do curso
-                //string strConn  = "Data Source = LAB02T-20; Initial Catalog = Pizzaria; Persist Security Info = True; User ID = aluno; Password = etesp";
+                string strConn = ConfigurationManager.ConnectionStrings["CONEXAO"].ConnectionString;
 
                 if (!string.IsNullOrEmpty(strConn))
                 {
@@ -93,7 +89,8 @@ namespace DAL.DAO
             }
             catch (Exception ex)
             {
-                throw ex;
+                Console.WriteLine(ex);
+                return null;
             }
         }
 

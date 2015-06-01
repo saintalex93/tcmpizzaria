@@ -139,18 +139,17 @@ namespace Pizzaria
             if (!ValidaCampos())
                 return;
 
-            if (!ValidaExistenciaNoBanco())
-                return;
-
             clsProduto objProduto = new clsProduto();
             objProduto.Cod_Produto = (int)dtg_produtos.CurrentRow.Cells[0].Value;
             objProduto.Nome_Produto = txt_nome.Text;
+
+            if (!ValidaExistenciaNoBanco(objProduto))
+                return;
+            
             objProduto.Valor_Venda = double.Parse(txtPreco.Text);
 
             if (chk_site.Checked)
                 objProduto.Sobe_Site = 1;
-            else
-                objProduto.Sobe_Site = 0;
 
             produto.AtualizarProduto(objProduto);
             dtg_produtos.DataSource = produto.BuscarProdutoPorID(objProduto.Cod_Produto);
@@ -267,18 +266,17 @@ namespace Pizzaria
             if (!ValidaCampos())
                 return;
 
-            if (!ValidaExistenciaNoBanco())
-                return;
-
             clsProduto objProduto = new clsProduto();
             objProduto.Nome_Produto = txt_nome.Text;
+            objProduto.Cod_Produto = 0;
+
+            if (!ValidaExistenciaNoBanco(objProduto))
+                return;
+
             objProduto.Valor_Venda = Double.Parse(txtPreco.Text);
 
-            int sobeSite = 0;
             if (chk_site.Checked)
-                sobeSite = 1;
-            else
-                sobeSite = 0;
+                objProduto.Sobe_Site = 1;
 
             produto.InserirProduto(objProduto);
 
@@ -348,16 +346,10 @@ namespace Pizzaria
             SqlCommand sqlComm = new SqlCommand(strIncluir, conn);
             sqlComm.ExecuteNonQuery();
         }
-        
-        public Boolean ValidaExistenciaNoBanco()
+
+        public Boolean ValidaExistenciaNoBanco(clsProduto objProduto)
         {
-            clsProduto objProduto = new clsProduto();
-            objProduto.Nome_Produto = txt_nome.Text;
-            objProduto.Cod_Produto = Int32.Parse(dtg_produtos.CurrentRow.Cells[0].Value.ToString());
-
-            DataTable resultado = produto.ValidaExistenciaNoBanco(objProduto);
-
-            if( (int) resultado.Rows[0][0] != 0)
+            if( (int) produto.ValidaExistenciaNoBanco(objProduto).Rows[0][0] != 0)
             {
                 Home.mensagemDeErro("Já existe um produto com este nome no banco de dados.\n\nCertifique-se de que o nome do produto que deseja inserir esteja correto ou utilize o produto já registrado.","Produto existente");
 

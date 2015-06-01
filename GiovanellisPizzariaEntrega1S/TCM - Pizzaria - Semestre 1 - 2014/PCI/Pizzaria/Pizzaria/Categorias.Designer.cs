@@ -93,6 +93,7 @@
             this.btnRemoverProdutoCategoria.TabIndex = 15;
             this.btnRemoverProdutoCategoria.Text = "-";
             this.btnRemoverProdutoCategoria.UseVisualStyleBackColor = true;
+            this.btnRemoverProdutoCategoria.Click += new System.EventHandler(this.btnRemoverProdutoCategoria_Click);
             // 
             // btnFinalizar
             // 
@@ -106,6 +107,7 @@
             // 
             // cbCategorias
             // 
+            this.cbCategorias.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCategorias.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.cbCategorias.FormattingEnabled = true;
             this.cbCategorias.Location = new System.Drawing.Point(95, 102);
@@ -168,6 +170,7 @@
             // 
             // cbProdutos
             // 
+            this.cbProdutos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbProdutos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.cbProdutos.FormattingEnabled = true;
             this.cbProdutos.Location = new System.Drawing.Point(9, 43);
@@ -241,6 +244,7 @@
             // 
             // cbInsumos
             // 
+            this.cbInsumos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbInsumos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.cbInsumos.FormattingEnabled = true;
             this.cbInsumos.Location = new System.Drawing.Point(8, 43);
@@ -256,6 +260,7 @@
             this.btnRemoverInsumoCategoria.TabIndex = 28;
             this.btnRemoverInsumoCategoria.Text = "-";
             this.btnRemoverInsumoCategoria.UseVisualStyleBackColor = true;
+            this.btnRemoverInsumoCategoria.Click += new System.EventHandler(this.btnRemoverInsumoCategoria_Click);
             // 
             // lstInsumosCategoria
             // 
@@ -283,6 +288,7 @@
             this.btnAdicionarInsumoCategoria.TabIndex = 33;
             this.btnAdicionarInsumoCategoria.Text = "+";
             this.btnAdicionarInsumoCategoria.UseVisualStyleBackColor = true;
+            this.btnAdicionarInsumoCategoria.Click += new System.EventHandler(this.btnAdicionarInsumoCategoria_Click);
             // 
             // label3
             // 

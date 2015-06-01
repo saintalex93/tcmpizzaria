@@ -40,11 +40,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="clsCategoriaBLL.cs" />
+    <Compile Include="clsCategoriaInsumo.cs" />
     <Compile Include="clsClienteBLL.cs" />
     <Compile Include="clsConsumoBLL.cs" />
     <Compile Include="clsFuncionarioBLL.cs" />
     <Compile Include="clsGerenciamentoEntregaBLL.cs" />
-    <Compile Include="clsLoginBLL.cs" />
+    <Compile Include="clsLogjnBLL.cs" />
     <Compile Include="clsProdutoBLL.cs" />
     <Compile Include="clsProdutoPromocaoBLL.cs" />
     <Compile Include="clsPromocaoBLL.cs" />

@@ -24,6 +24,17 @@ namespace Pizzaria
 
         public Form FormHome { get; set; }
 
+        private void Categorias_Load(object sender, EventArgs e)
+        {
+            if (Produtos.sequenciaCadastro)
+                btnFinalizar.Text = "Finalizar";
+
+            btnAlterar.Enabled = false;
+            btnRemoverCategoria.Enabled = false;
+
+            PreencherComboBox(0);
+        }
+        
         void PreencherComboBox(int cb) 
         {
             switch (cb)
@@ -51,37 +62,26 @@ namespace Pizzaria
             }
         }
 
-
-
-        private void Categorias_Load(object sender, EventArgs e)
-        {
-            if (Produtos.sequenciaCadastro)
-                btnFinalizar.Text = "Finalizar";
-            
-            PreencherComboBox(0);
-        }
-
         void PreencherListas() 
         {
-            if (cbCategorias.SelectedIndex != 0)
+            try
             {
-                clsCategoria objCategoria = new clsCategoria();
-                objCategoria.CodCategoria = (int) cbCategorias.SelectedValue;
-
-                if (cbProdutos.SelectedIndex != 0) 
+                if (cbCategorias.SelectedIndex != -1)
                 {
+                    clsCategoria objCategoria = new clsCategoria();
+                    objCategoria.CodCategoria = (int) cbCategorias.SelectedValue;
+
                     lstProdutosCategoria.DataSource = categoria.PreencherProdutosNaCategoria(objCategoria);
                     lstProdutosCategoria.DisplayMember = "Nome_Produto";
                     lstProdutosCategoria.ValueMember = "Cod_Produto";
-                }
 
-                if (cbInsumos.SelectedIndex != 0)
-                {
                     lstInsumosCategoria.DataSource = categoria.PreencherInsumosNaCategoria(objCategoria);
                     lstInsumosCategoria.DisplayMember = "Nome_Insumo";
                     lstInsumosCategoria.ValueMember = "Cod_Insumo";
                 }
             }
+            catch (Exception e) { }
+            
         }
 
         void CategoriaNaoSelecionada() 
@@ -96,6 +96,10 @@ namespace Pizzaria
         void CategoriaSelecionada()
         {
             grpConteudo.Enabled = true;
+            
+            btnAlterar.Enabled = true;
+            btnRemoverCategoria.Enabled = true;
+            
             PreencherComboBox(1);
             PreencherComboBox(2);
             PreencherListas();
@@ -121,12 +125,9 @@ namespace Pizzaria
             return true;
         }
 
-        bool ValidaExistenciaNoBanco()
+        bool ValidarCategoriaNoBanco(clsCategoria objCategoria)
         {
-            clsCategoria objCategoria = new clsCategoria();
-            objCategoria.NomeCategoria = txtNomeCategoria.Text;
-
-            if ( (int) categoria.ValidarExistenciaNoBanco(objCategoria).Rows[0][0] != 0)
+            if ((int)categoria.ValidarCategoriaNoBanco(objCategoria).Rows[0][0] != 0)
             {
                 Home.mensagemDeErro("Já existe uma Categoria com esse nome no sistema. Certifique-se de que o nome esteja correto e tente novamente.", "Nome inválido");
 
@@ -141,15 +142,19 @@ namespace Pizzaria
             if (!ValidaNome())
                 return;
 
-            if (!ValidaExistenciaNoBanco())
-                return;
-
             clsCategoria objCategoria = new clsCategoria();
             objCategoria.NomeCategoria = txtNomeCategoria.Text;
+
+            if (!ValidarCategoriaNoBanco(objCategoria))
+                return;
 
             categoria.InserirCategoria(objCategoria);
 
             PreencherComboBox(0);
+
+            cbCategorias.SelectedIndex = cbCategorias.FindStringExact(txtNomeCategoria.Text);
+
+            txtNomeCategoria.Clear();
         }
 
         private void cbCategorias_Leave(object sender, EventArgs e)
@@ -160,36 +165,32 @@ namespace Pizzaria
 
         private void btnRemoverCategoria_Click(object sender, EventArgs e)
         {
-            if (cbCategorias.Text.Length > 0) 
+            if (cbCategorias.Text.Length > 0)
             {
-                DialogResult dialogResult = MessageBox.Show("Deseja mesmo remover essa categoria?", "Aviso", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes)
+                clsCategoria objCategoria = new clsCategoria();
+                objCategoria.CodCategoria = Convert.ToInt32(cbCategorias.SelectedValue);
+
+                if ((int)categoria.ValidaExclusaoCategoria(objCategoria).Rows[0][0] > 0)
                 {
-                    clsCategoria objCategoria = new clsCategoria();
-                    objCategoria.CodCategoria = (int)cbCategorias.SelectedValue;
+                    Home.mensagemDeErro("Não é possível excluir essa categoria, porque ela possui registros associados a ela.", "Exclusão não permitida");
 
-                    categoria.RemoverCategoria(objCategoria);
-
-                    MessageBox.Show("Categoria \"" + cbCategorias.Text + "\" e todos os dados referentes a ela foram excluídos.");
-
-                    cbCategorias.DataSource = categoria.BuscarCategorias();
+                    return;
                 }
-            }
-            
+
+                categoria.RemoverCategoria(objCategoria);
+
+                PreencherComboBox(0);
+            } 
         }
 
         private void btnFinalizar_Click(object sender, EventArgs e)
         {
             if (Produtos.sequenciaCadastro)
-            {
                 Produtos.sequenciaCadastro = false;
 
-                FormHome.Enabled = true;
-            }
-            else
-            {
-                FormHome.Show();
-            }
+            FormHome.Enabled = true;
+            FormHome.Show();
+            FormHome.Focus();
 
             Dispose();
         }
@@ -208,15 +209,20 @@ namespace Pizzaria
 
         void finalizarModoEdicao() 
         {
-            txtNomeCategoria.Clear();
-
             clsCategoria objCategoria = new clsCategoria();
             objCategoria.NomeCategoria = txtNomeCategoria.Text;
-            objCategoria.CodCategoria = (int) cbCategorias.SelectedValue;
+            objCategoria.CodCategoria = (int)cbCategorias.SelectedValue;
+
+            if (!ValidarCategoriaNoBanco(objCategoria))
+                return;
 
             categoria.AlterarCategoria(objCategoria);
 
             PreencherComboBox(0);
+
+            cbCategorias.SelectedIndex = cbCategorias.FindStringExact(txtNomeCategoria.Text);
+
+            txtNomeCategoria.Clear();
 
             cbCategorias.Enabled = true;
             btnAdicionarCategoria.Enabled = true;
@@ -236,30 +242,87 @@ namespace Pizzaria
            
         }
 
-        bool ValidaProdutoCategoria(clsCategoriaProduto objCategoriaProduto)
+        bool ValidaProdutoNaCategoria(clsCategoriaProduto objCategoriaProduto)
         {
-            if ( (int) categoria.ValidaProdutoCategoria(objCategoriaProduto).Rows[0][0] != 0) ;
-            
+            if ((int)categoria.ValidaProdutoNaCategoria(objCategoriaProduto).Rows[0][0] != 0)
+            {
+                Home.mensagemDeErro("Esse produto já está registrado nessa categoria.","Produto já na categoria");
+                
+                return false;
+            }
+
+            return true;
+        }
+
+        bool ValidaInsumoNaCategoria(clsCategoriaInsumo objCategoriaInsumo)
+        {
+            if ((int)categoria.ValidaInsumoNaCategoria(objCategoriaInsumo).Rows[0][0] != 0)
+            {
+                Home.mensagemDeErro("Esse insumo já está registrado nessa categoria.", "Produto já na categoria");
+
+                return false;
+            }
             return true;
         }
 
         private void btnAdicionarProdutoCategoria_Click(object sender, EventArgs e)
         {
-            if (cbProdutos.SelectedIndex != 0)
+            if (cbProdutos.Text.Length > 0) 
             {
                 clsCategoriaProduto objCategoriaProduto = new clsCategoriaProduto();
-                objCategoriaProduto.CodProduto = (int) cbProdutos.SelectedValue;
-                objCategoriaProduto.CodCategoria = (int) cbCategorias.SelectedValue;
+                objCategoriaProduto.CodProduto = (int)cbProdutos.SelectedValue;
+                objCategoriaProduto.CodCategoria = (int)cbCategorias.SelectedValue;
 
-                if (!ValidaProdutoCategoria(objCategoriaProduto))
+                if (!ValidaProdutoNaCategoria(objCategoriaProduto))
                     return;
-
-                
 
                 categoria.InserirProdutoNaCategoria(objCategoriaProduto);
 
                 PreencherListas();
             }
+        }
+
+        private void btnRemoverProdutoCategoria_Click(object sender, EventArgs e)
+        {
+            try 
+            {
+                clsCategoriaProduto objCategoriaProduto = new clsCategoriaProduto();
+                objCategoriaProduto.CodProduto = (int)lstProdutosCategoria.SelectedValue;
+                objCategoriaProduto.CodCategoria = (int) cbCategorias.SelectedValue;
+
+                categoria.RemoverProdutoDaCategoria(objCategoriaProduto);
+
+                PreencherListas();
+            }
+            catch (Exception ex) { }
+        }
+
+        private void btnAdicionarInsumoCategoria_Click(object sender, EventArgs e)
+        {
+            if (cbInsumos.Text.Length > 0)
+            {
+                clsCategoriaInsumo objCategoriaInsumo = new clsCategoriaInsumo();
+                objCategoriaInsumo.CodInsumo = (int) cbInsumos.SelectedValue;
+                objCategoriaInsumo.CodCategoria = (int) cbCategorias.SelectedValue;
+
+                if (!ValidaInsumoNaCategoria(objCategoriaInsumo))
+                    return;
+
+                categoria.InserirInsumoNaCategoria(objCategoriaInsumo);
+
+                PreencherListas();
+            }
+        }
+
+        private void btnRemoverInsumoCategoria_Click(object sender, EventArgs e)
+        {
+            clsCategoriaInsumo objCategoriaInsumo = new clsCategoriaInsumo();
+            objCategoriaInsumo.CodInsumo = (int) lstInsumosCategoria.SelectedValue;
+            objCategoriaInsumo.CodCategoria = (int) cbCategorias.SelectedValue;
+
+            categoria.RemoverInsumoDaCategoria(objCategoriaInsumo);
+
+            PreencherListas();
         }
     }
 }

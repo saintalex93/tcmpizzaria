@@ -212,5 +212,10 @@ namespace BLL
                 Banco.ExecuteProc("USP_CSharp_Consumo_CancelarInsercao");
             }
 
+            public DataTable BuscarUltimoProduto() 
+            {
+                return Banco.ExecuteProc("USP_CSharp_Consumo_BuscarUltimoProduto");
+            }
+        
     }
 }

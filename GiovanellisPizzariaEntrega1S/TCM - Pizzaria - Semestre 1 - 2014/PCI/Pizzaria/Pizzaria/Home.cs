@@ -315,6 +315,14 @@ namespace Pizzaria
 
             Home.preencherGrid("select * from " + tabelaNoBanco + " where " + colunaNaTabela + " like ('%" + campoDoNome.Text + "%')", tabelaNoPrograma);
         }
+
+        private void consumoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Consumo consumo = new Consumo();
+            consumo.FormHome = this;
+            this.Enabled = false;
+            consumo.Show();
+        }
         
 
     }
