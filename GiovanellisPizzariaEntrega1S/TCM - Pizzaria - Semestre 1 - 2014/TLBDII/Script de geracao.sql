@@ -2798,5 +2798,21 @@ begin
 	Values (@ValorPagamento, @DataExpedido, @TipoPagamento, @CodFuncionario)
 end
 go
------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------Procedure BackupSQL----------------------------------------------------------------
+create procedure USP_JAVA_BACKUP
+(@Caminho varchar (200))
+
+as
+
+begin
+
+
+BACKUP DATABASE Pizzaria TO DISK = @Caminho
+ WITH FORMAT, MEDIANAME = 'GiovanellisBackup', NAME = 'GiovanellisBackup';
+
+end
+
+
+
+
 -----------------------------------------------------------------------------------------------------------------------------------------------
