@@ -11,7 +11,6 @@ public partial class admin_gerenciaCategoria : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        
         DataSet ds = new DataSet();
         SqlDataAdapter dAdapter = new SqlDataAdapter();
 

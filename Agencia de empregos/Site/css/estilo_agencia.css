@@ -86,7 +86,7 @@ header, section, article, footer
 
 section 
 {
-    min-height: 250px;
+    min-height: 800px;
 }
 
 article 
@@ -144,13 +144,11 @@ header
 {
     float: right;
 }
-
 .pnlLogin p 
 {
     color: #cfcfcf;
     margin: 0 0 3px 0;
 }
-
 .pnlLogin input[type="text"], .pnlLogin input[type="password"] 
 {
     float: left;
@@ -159,17 +157,14 @@ header
     border-radius: 4px;
     letter-spacing: 1px;
 }
-
 .pnlLogin input[type="password"] 
 {
     letter-spacing: 2px !important;
 }
-
 .pnlLogin input[type="text"]:hover, .pnlLogin input[type="password"]:hover 
 {
     background: linear-gradient(to bottom, #eee, #fff);
 }
-
 .pnlLogin input[type="submit"] 
 {
     float: left;
@@ -180,6 +175,31 @@ header
     background: #e67e22;
     border-radius: 5px;
 }
+
+
+/* PAINEL DE LOGOUT */
+
+.pnlLogout
+{
+    float: right;
+}
+.pnlLogout p, span
+{
+    float: left;
+    clear: left;
+    color: #fff;
+}
+.pnlLogout input[type="submit"]
+{
+    float: right;
+    clear: both;
+    padding: 5px;
+    font-weight: bold;
+    background: #e67e22;
+    color: #fff;
+    margin: 10px 0px 0 0;
+}
+
 
 /* SECTION */
 

@@ -50,8 +50,15 @@
                     <asp:TextBox ID="txtLogin" runat="server"></asp:TextBox>
                     <p>Senha :</p>
                     <asp:TextBox ID="txtSenha" runat="server" TextMode="Password"></asp:TextBox>
-                    <asp:Button ID="btnLogar" runat="server" Text="Login" />
+                    <asp:Button ID="btnLogar" runat="server" OnClick="Logar" Text="Login" />
                 </asp:Panel>
+
+                <asp:Panel ID="pnlLogout" CssClass="pnlLogout" runat="server" Visible="false">
+                    <p>Seja bem vindo,</p>
+                    <asp:Label ID="lblNomeFunc" runat="server"></asp:Label>
+                    <asp:Button ID="btnLogout" runat="server" OnClick="Logout" Text="Logout" />
+                </asp:Panel>
+
             </div>
         </header>
 
@@ -94,7 +101,6 @@
                             <asp:GridView
                                 ID="gridVagas" 
                                 runat="server" 
-                                OnSelectedIndexChanged="gridVagas_SelectedIndexChanged"
                                 name="gridVagas"
                                 style="border-collapse: separate;"
                                 ShowHeaderWhenEmpty="true"

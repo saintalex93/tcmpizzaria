@@ -17,7 +17,7 @@
                 <asp:TextBox ID="txtLoginAdm" runat="server"></asp:TextBox>
                 <p>Senha:</p>
                 <asp:TextBox ID="txtSenhaAdm" runat="server" TextMode="Password"></asp:TextBox>
-                <asp:Button ID="btnLoginAdm" runat="server" Text="Login" />
+                <asp:Button ID="btnLoginAdm" runat="server" Text="Login" OnClick="Login" />
             </div>
         </asp:Panel>
     </form>

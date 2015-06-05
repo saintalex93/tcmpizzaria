@@ -1,5 +1,4 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin/modelo_painel.master" AutoEventWireup="true" CodeFile="gerenciaCategoria.aspx.cs" Inherits="admin_gerenciaCategoria" %>
-<%@ MasterType VirtualPath="/admin/modelo_painel.master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>

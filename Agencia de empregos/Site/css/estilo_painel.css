@@ -216,20 +216,23 @@ article[class*="gerencia"] {
 
 /* CSS DAS TABELAS */
 
-.painelCategoria th {
+div[class*="painel"] table{
+    margin: 0 auto;
+}
+div[class*="painel"] th {
     font-size: 20px;
     color: #3498db;
     text-shadow: 1px 1px 2px #ccc;
 }
-.painelCategoria tr td, th {
+div[class*="painel"] tr td, th {
     text-align: center;
     padding: 5px;
     font-size: 18px;
 }
-.painelCategoria tr td {
+div[class*="painel"] tr td {
     border: 1px solid #3498db;
 }
-.painelCategoria tr td:first-child a {
+div[class*="painel"] tr td:first-child a {
     text-decoration: none;
     font-weight: bold;
     font-size: 17px;
@@ -239,4 +242,96 @@ article[class*="gerencia"] {
 .linhaSelecionada{
     background: #333;
     color: #fff;
+}
+
+
+
+/* ÁREAS */
+
+.gerenciaArea .painelArea {
+    border-top: 1px solid #3498db;
+    padding: 20px 8px;
+    overflow: auto;
+}
+.gerenciaArea div h2 {
+    text-align: center;
+}
+.gerenciaArea .painelArea div{
+    width: 580px;
+    margin: 30px auto 0 auto;
+    padding: 0;
+}
+
+/* PAINEL DE ADIÇÃO DE ÁREAS */
+
+.gerenciaArea div.painelArea:nth-child(1) span {
+    float: left;
+    font-weight: bold;
+}
+.gerenciaArea div.painelArea:nth-child(1) input[type="text"] {
+    float: left;
+    border: 1px solid #3498db;
+    border-radius: 5px;
+    padding: 2px;
+    color: #333;
+    letter-spacing: 1px;
+    margin: 0 0 0 7px;
+}
+.gerenciaArea div.painelArea:nth-child(1) input[type="submit"] {
+    float: left;
+    clear: left;
+    margin: 30px 0 0 43%;
+    padding: 7px;
+    font-weight: bold;
+    color: #fff;
+    background: #3498db;
+}
+.gerenciaArea div.painelArea:nth-child(1) select{
+    padding: 3px;
+    margin: 0 0 0 8px;
+}
+
+/* PAINEL DE EDIÇÃO DE CATEGORIAS */
+
+.gerenciaArea div.painelArea:nth-child(2) input[type="text"] {
+    float: left;
+    margin: 20px 0 20px 42%;
+    padding: 2px;
+    border: 1px solid #3498db;
+    border-radius: 5px;
+    text-align: center;
+    color: #333;
+    letter-spacing: 1px;
+}
+.gerenciaArea div.painelArea:nth-child(2) input[type="submit"] {
+    float: left;
+    clear: left;
+    margin: 0 0 0 45%;
+    padding: 7px;
+    font-weight: bold;
+    color: #fff;
+    background: #3498db;
+}
+
+/* PAINEL DE REMOÇÃO DE CATEGORIAS */
+
+.gerenciaArea div.painelArea:nth-child(3) input[type="text"] {
+    float: left;
+    margin: 20px 0 20px 42%;
+    padding: 2px;
+    border: 1px solid #3498db;
+    border-radius: 5px;
+    text-align: center;
+    color: #fff;
+    letter-spacing: 1px;
+    background: #808080;
+}
+.gerenciaArea div.painelArea:nth-child(3) input[type="submit"] {
+    float: left;
+    clear: left;
+    margin: 0 0 0 44%;
+    padding: 7px;
+    font-weight: bold;
+    color: #fff;
+    background: #3498db;
 }

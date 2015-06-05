@@ -18,7 +18,7 @@
             <div class="pnlLogout">
                 <p>Seja bem vindo, </p>
                 <asp:Label ID="lblNome" runat="server" Text="Raphael Vieira"></asp:Label>
-                <asp:Button ID="btnLogout" runat="server" Text="Sair" />
+                <asp:Button ID="btnLogout" runat="server" Text="Sair" OnClick="Logout" />
             </div>
 
             <h4>Seu Painel</h4>
