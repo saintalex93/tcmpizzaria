@@ -127,9 +127,9 @@ create table Insumo
 (
 Cod_Insumo INT IDENTITY(1,1) PRIMARY KEY,
 Nome_Insumo VARCHAR(40),
-ValorDeCompra DECIMAL,
-QtdeRecomendavel INT,
-QtdeEmEstoque INT,
+ValorDeCompra DECIMAL (6,2),
+QtdeRecomendavel decimal (6,3),
+QtdeEmEstoque decimal(6,3),
 Fabricacao DATE,
 Validade VarChar(10),
 Medida VARCHAR(10)
@@ -215,7 +215,7 @@ go
 
 create table Consumo
 (
-CodProdutoInsumo int identity (1,1) Primary Key,
+CodConsumo int identity (1,1) Primary Key,
 CodInsumo INT FOREIGN KEY REFERENCES Insumo(Cod_Insumo),
 CodProduto INT FOREIGN KEY REFERENCES Produto(Cod_Produto),
 Quantidade DECIMAL (6,3)
@@ -961,7 +961,7 @@ go
 
 	-------------------------------------------------------------- 
 	-------------------------------------------------------------- 
-	-------------------- *** procS *** ----------------------
+	-------------------- *** PROCEDURES *** ----------------------
 	-------------------------------------------------------------- 
 	-------------------------------------------------------------- 
 
@@ -1678,7 +1678,7 @@ as
 	end
 go
 ------------------------------------------------
-create proc [dbo].[CSharp_Select_pedido]
+create proc USP_CSharp_Entregas_SelectPedidos
 (
 	@Cod_Pedido int = null,
 	@Data date = null, 
@@ -2010,7 +2010,7 @@ create proc USP_CSharp_Consumo_MostrarConsumo
 As
 	Begin
 		select 
-			CodProdutoInsumo as [ID],
+			CodConsumo as [ID],
 			CodProduto as [#],
 			Nome_Produto as [Produto],
 			CodInsumo as [#],
@@ -2021,7 +2021,7 @@ As
 		inner join Produto p on c.CodProduto = p.Cod_Produto
 		inner join Insumo i on i.Cod_Insumo = c.CodInsumo
 
-		order by CodProdutoInsumo
+		order by CodConsumo
 	End
 Go
 ------------------------------------------------
@@ -2029,7 +2029,7 @@ create proc USP_CSharp_Consumo_MostrarConsumoDesc
 As
 	Begin
 		select 
-			CodProdutoInsumo as [ID],
+			CodConsumo as [ID],
 			CodProduto as [#],
 			Nome_Produto as [Produto],
 			CodInsumo as [#],
@@ -2040,7 +2040,7 @@ As
 		inner join Produto p on c.CodProduto = p.Cod_Produto
 		inner join Insumo i on i.Cod_Insumo = c.CodInsumo
 
-		order by CodProdutoInsumo desc
+		order by CodConsumo desc
 	End
 Go
 ------------------------------------------------
@@ -2075,7 +2075,7 @@ As
 		ELSE
 			select count(*) 
 			from Produto 
-			where Cod_Produto = @CodProduto
+			where Nome_Produto = @Nome
 	End
 Go
 ------------------------------------------------
@@ -2089,7 +2089,7 @@ As
 			Sobe_Site as [Sobe para o site]
 		from Produto 
 		where Cod_Produto > 0
-		order by Cod_Produto desc
+		order by Nome_Produto
 	End
 Go
 ------------------------------------------------
@@ -2110,6 +2110,8 @@ as
 		where
 			Nome_Produto like '%' + @Palavra + '%' and
 			Cod_Produto > 0
+
+		order by Nome_Produto
 	End
 go
 ------------------------------------------------
@@ -2130,6 +2132,8 @@ as
 		where
 			Cod_Produto = @ID and
 			Cod_Produto > 0
+
+		order by Nome_Produto
 	End
 go
 ------------------------------------------------
@@ -2169,7 +2173,7 @@ As
 			Sobe_Site as [Sobe para o site]
 		from Produto 
 		where Cod_Produto > 0
-		order by Cod_Produto
+		order by Nome_Produto
 	End
 Go
 ------------------------------------------------
@@ -2219,6 +2223,14 @@ as
 	End
 go
 ------------------------------------------------
+create proc USP_CSharp_Consumo_BuscarUltimoProduto
+as
+	Begin
+		select Nome_Produto from Produto
+			where Cod_Produto = (select max(Cod_Produto) from Produto)
+	End
+go
+------------------------------------------------
 create proc USP_CSharp_Consumo_PreencherProdutos
 as
 	Begin
@@ -2260,7 +2272,7 @@ create proc USP_CSharp_Consumo_BuscarConsumosPorNomeProduto
 as
 	Begin
 		select 
-			CodProdutoInsumo as [ID],
+			CodConsumo as [ID],
 			CodProduto as [#],
 			Nome_Produto as [Produto],
 			CodInsumo as [#],
@@ -2285,7 +2297,7 @@ create proc USP_CSharp_Consumo_BuscarConsumosPorIDProduto
 as
 	Begin
 		select 
-			CodProdutoInsumo as [ID],
+			CodConsumo as [ID],
 			CodProduto as [#],
 			Nome_Produto as [Produto],
 			CodInsumo as [#],
@@ -2310,7 +2322,7 @@ create proc USP_CSharp_Consumo_BuscarConsumosPorNomeInsumo
 as
 	Begin
 		select 
-			CodProdutoInsumo as [ID],
+			CodConsumo as [ID],
 			CodProduto as [#],
 			Nome_Produto as [Produto],
 			CodInsumo as [#],
@@ -2335,7 +2347,7 @@ create proc USP_CSharp_Consumo_BuscarConsumosPorIdInsumo
 as
 	Begin
 		select 
-			CodProdutoInsumo as [ID],
+			CodConsumo as [ID],
 			CodProduto as [#],
 			Nome_Produto as [Produto],
 			CodInsumo as [#],
@@ -2356,13 +2368,13 @@ go
 create proc USP_CSharp_Consumo_ValidaExistenciaNoBanco
 
 (
-	@CodProdutoInsumo int,
+	@CodConsumo int,
 	@CodProduto int,
 	@CodInsumo int
 )
 As
 	Begin
-		IF @CodProdutoInsumo = 0
+		IF @CodConsumo = 0
 			BEGIN
     			select count(*) 
 				from Consumo
@@ -2374,7 +2386,7 @@ As
 			select count(*) 
 			from Consumo
 				where 
-					CodProdutoInsumo != @CodProdutoInsumo and
+					CodConsumo != @CodConsumo and
 					CodInsumo = @CodInsumo and
 					CodProduto = @CodProduto
 	End
@@ -2382,7 +2394,7 @@ Go
 ------------------------------------------------
 create proc USP_CSharp_Consumo_AtualizarConsumo
 (
-	@CodProdutoInsumo int,
+	@CodConsumo int,
 	@CodProduto int,
 	@CodInsumo int,
 	@Quantidade decimal (6,3)
@@ -2396,7 +2408,7 @@ as
 			CodProduto = @CodProduto,
 			Quantidade = @Quantidade
 
-		where CodProdutoInsumo = @CodProdutoInsumo
+		where CodConsumo = @CodConsumo
 	End
 go
 ------------------------------------------------
@@ -2406,7 +2418,7 @@ create proc USP_CSharp_Consumo_RemoverConsumo
 )
 as
 	Begin
-		delete from Consumo where CodProdutoInsumo = @id
+		delete from Consumo where CodConsumo = @id
 	End
 go
 ------------------------------------------------
@@ -2455,7 +2467,7 @@ go
 create proc USP_CSharp_Categoria_BuscarCategorias
 as
 	Begin
-		SELECT NomeCategoria, CodCategoria FROM Categoria
+		SELECT NomeCategoria, CodCategoria FROM Categoria order by NomeCategoria
 	End
 go
 ------------------------------------------------
@@ -2469,15 +2481,13 @@ as
 		insert into Categoria values(@NomeCategoria)
 	End
 go
-
+------------------------------------------------
 create proc USP_CSharp_Categoria_RemoverCategoria
 
 	@codCategoria int
 
 as
 	Begin
-		delete from InsumoCategoria where CodCategoria = @codCategoria
-		delete from ProdutoCategoria where CodCategoria = @codCategoria
 		delete from Categoria where CodCategoria = @codCategoria
 	End
 go
@@ -2524,6 +2534,8 @@ as
 		inner join Produto p on
 			pc.CodCategoria = @CodCategoria and
 			p.Cod_Produto = pc.CodProduto
+
+			order by Nome_Produto
 	End
 go
 ---------------------------------------------------
@@ -2539,17 +2551,9 @@ as
 
 		inner join Insumo i on
 			ic.CodCategoria = @CodCategoria and
-			i.Cod_Insumo = ic.CodInsumo
-	End
-go
----------------------------------------------------
-create proc USP_CSharp_Categoria_ValidarExistenciaNoBanco
-
-	@NomeCategoria varchar(20)
-
-as
-	Begin
-		select count(*) from Categoria where NomeCategoria = @NomeCategoria
+			i.Cod_Insumo = ic.CodInsumo 
+			
+		order by Nome_Insumo
 	End
 go
 ---------------------------------------------------
@@ -2606,7 +2610,6 @@ go
 ---------------------------------------Procedures Java------------------------------------------------
 --------------------------------------RELATÓRIO---------------------------------------------
 ---TODO: mudar nome dessa proc pra se adequar à nomenclatura de entrega do Professor Luiz Ricardo
-
 create proc USP_JAVA_Relatorios
 (
 	@DataInicial Date,
@@ -2713,7 +2716,7 @@ begin
 		
 		
 		end
-	go
+go
 -------------------------------------------------------ProcInserirTipoDespesa------------------------------------------------------------
 create proc JAVA_USP_InserirTipoDespesa
  @NomeDespesa varchar (40)
@@ -2798,21 +2801,141 @@ begin
 	Values (@ValorPagamento, @DataExpedido, @TipoPagamento, @CodFuncionario)
 end
 go
---------------------------------------------------------Procedure BackupSQL----------------------------------------------------------------
-create procedure USP_JAVA_BACKUP
-(@Caminho varchar (200))
+-----------------------------------------------------------------------------------------------------------------------------------------------
+create proc USP_CSharp_Categoria_ValidarCategoriaNoBanco
+
+	@CodCategoria int,
+	@NomeCategoria varchar(20)
 
 as
+	Begin
+		if @CodCategoria = 0
+			select count(*) 
+			from Categoria 
+			where NomeCategoria = @NomeCategoria
+		else
+			select count(*) 
+			from Categoria 
+			where 
+				NomeCategoria = @NomeCategoria and
+				CodCategoria != @CodCategoria
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Categoria_ValidaProdutoNaCategoria
 
-begin
+	@CodProduto int,
+	@CodCategoria int
 
+as
+	Begin
+		select count(*)
+		From ProdutoCategoria
+		where 
+			CodCategoria = @CodCategoria and
+			CodProduto = @CodProduto
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Categoria_RemoverProdutoDaCategoria
 
-BACKUP DATABASE Pizzaria TO DISK = @Caminho
- WITH FORMAT, MEDIANAME = 'GiovanellisBackup', NAME = 'GiovanellisBackup';
+	@CodCategoria int,
+	@CodProduto int
 
-end
+as
+	Begin
+		delete from ProdutoCategoria
+		where 
+			CodProduto = @CodProduto and
+			CodCategoria = @CodCategoria
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Categoria_ValidaExclusaoCategoria
 
+	@CodCategoria int
 
+as
+	Begin
+		select
+		(select count(*) from ProdutoCategoria where CodCategoria = @CodCategoria)
+		+
+		(select count(*) from InsumoCategoria where CodCategoria = @CodCategoria)
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Categoria_ValidaInsumoNaCategoria
 
+	@CodInsumo int,
+	@CodCategoria int
 
------------------------------------------------------------------------------------------------------------------------------------------------
+as
+	Begin
+		select count(*)
+		From InsumoCategoria
+		where 
+			CodCategoria = @CodCategoria and
+			CodInsumo = @CodInsumo
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Categoria_InserirInsumoNaCategoria
+
+	@CodInsumo int,
+	@CodCategoria int
+
+as
+	Begin
+		insert into InsumoCategoria values (@CodInsumo, @CodCategoria)
+	End
+go
+
+---------------------------------------------------
+create proc USP_CSharp_Categoria_RemoverInsumoDaCategoria
+
+	@CodCategoria int,
+	@CodInsumo int
+
+as
+	Begin
+		delete from InsumoCategoria
+		where 
+			CodInsumo = @CodInsumo and
+			CodCategoria = @CodCategoria
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Categoria_CancelarSequenciaDeCadastroDeProduto
+as
+	Begin
+		delete from ProdutoCategoria where CodProduto = (select max(Cod_Produto) from Produto)
+		delete from Consumo where CodProduto = (select max(Cod_Produto) from Produto)
+		delete from Produto where Cod_Produto = (select max(Cod_Produto) from Produto)
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_ConfirmacaoAlterarStatus_AbaterInsumo
+
+	@CodProduto int
+
+as
+	Begin
+		update i
+		set QtdeEmEstoque -= c.Quantidade
+		from Insumo i
+		inner join Consumo c on
+			i.Cod_Insumo = c.CodConsumo and c.CodProduto = @CodProduto
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_ConfirmaAlterarStatus_ProdutosNoPedido
+
+	@CodPedido int
+
+as
+	Begin
+		Select Cod_Produto From Detalhe_Pedido where Cod_Pedido = @CodPedido
+	End
+go
+---------------------------------------------------
+select * from Insumo
