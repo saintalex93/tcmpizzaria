@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+//using 
+
 namespace Pizzaria
 {
     public partial class Alterar_Status : Form
@@ -21,9 +23,6 @@ namespace Pizzaria
 
             teste =  frm1;
             txtCod_Pedido.Text = teste.cod;
-            
-
-
         }
 
         private void Alterar_Status_Load(object sender, EventArgs e)

@@ -37,6 +37,8 @@
             this.usuáriosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.insumosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.funcionáriosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.consumoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.compasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
@@ -44,8 +46,7 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.consumoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.compasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.entregasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -80,7 +81,8 @@
             this.insumosToolStripMenuItem,
             this.funcionáriosToolStripMenuItem,
             this.consumoToolStripMenuItem,
-            this.compasToolStripMenuItem});
+            this.compasToolStripMenuItem,
+            this.entregasToolStripMenuItem});
             this.toolStripDropDownButton1.Image = global::Pizzaria.Properties.Resources.Gerenciamento_mini;
             this.toolStripDropDownButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -130,6 +132,19 @@
             this.funcionáriosToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.funcionáriosToolStripMenuItem.Text = "Funcionários";
             this.funcionáriosToolStripMenuItem.Click += new System.EventHandler(this.funcionarioToolStripMenuItem_Click);
+            // 
+            // consumoToolStripMenuItem
+            // 
+            this.consumoToolStripMenuItem.Name = "consumoToolStripMenuItem";
+            this.consumoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.consumoToolStripMenuItem.Text = "Consumo";
+            this.consumoToolStripMenuItem.Click += new System.EventHandler(this.consumoToolStripMenuItem_Click);
+            // 
+            // compasToolStripMenuItem
+            // 
+            this.compasToolStripMenuItem.Name = "compasToolStripMenuItem";
+            this.compasToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.compasToolStripMenuItem.Text = "Compras";
             // 
             // toolStripSeparator2
             // 
@@ -188,18 +203,12 @@
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
             // 
-            // consumoToolStripMenuItem
+            // entregasToolStripMenuItem
             // 
-            this.consumoToolStripMenuItem.Name = "consumoToolStripMenuItem";
-            this.consumoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.consumoToolStripMenuItem.Text = "Consumo";
-            this.consumoToolStripMenuItem.Click += new System.EventHandler(this.consumoToolStripMenuItem_Click);
-            // 
-            // compasToolStripMenuItem
-            // 
-            this.compasToolStripMenuItem.Name = "compasToolStripMenuItem";
-            this.compasToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.compasToolStripMenuItem.Text = "Compras";
+            this.entregasToolStripMenuItem.Name = "entregasToolStripMenuItem";
+            this.entregasToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.entregasToolStripMenuItem.Text = "Entregas";
+            this.entregasToolStripMenuItem.Click += new System.EventHandler(this.entregasToolStripMenuItem_Click);
             // 
             // Home
             // 
@@ -243,5 +252,6 @@
         private System.Windows.Forms.ToolStripButton toolStripButton4;
         private System.Windows.Forms.ToolStripMenuItem consumoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem compasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem entregasToolStripMenuItem;
     }
 }

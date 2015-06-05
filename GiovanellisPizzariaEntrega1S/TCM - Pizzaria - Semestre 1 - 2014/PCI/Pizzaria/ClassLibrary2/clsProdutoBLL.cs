@@ -74,21 +74,21 @@ namespace BLL
             return Banco.ExecuteProc("USP_CSharp_Produto_MostrarTodosProdutos");
         }
 
-        public DataTable BuscarProdutoPorNome(string nome)
+        public DataTable BuscarProdutoPorNome(clsProduto objProduto)
         { 
             SqlParameter parametro = new SqlParameter();
             parametro.ParameterName = "@Palavra";
-            parametro.Value = nome;
+            parametro.Value = objProduto.Nome_Produto;
             parametro.DbType = System.Data.DbType.String;
 
             return Banco.ExecuteProc("USP_CSharp_Produto_BuscarProdutoPorNome", parametro);
         }
 
-        public DataTable BuscarProdutoPorID(int id)
+        public DataTable BuscarProdutoPorID(clsProduto objProduto)
         {
             SqlParameter parametro = new SqlParameter();
             parametro.ParameterName = "@ID";
-            parametro.Value = id;
+            parametro.Value = objProduto.Cod_Produto;
             parametro.DbType = System.Data.DbType.Int32;
 
             return Banco.ExecuteProc("USP_CSharp_Produto_BuscarProdutoPorID", parametro);

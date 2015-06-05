@@ -28,13 +28,10 @@ namespace BLL
         {
             List<SqlParameter> LstParametros = new List<SqlParameter>();
 
-
             SqlParameter ParametroCodCliente = new SqlParameter();
             ParametroCodCliente.ParameterName = "Cod_Cliente";
-           ParametroCodCliente.Value = objPedido.Cod_Cliente;
+            ParametroCodCliente.Value = objPedido.Cod_Cliente;
             ParametroCodCliente.DbType = System.Data.DbType.String;
-
-
 
             LstParametros.Add(ParametroCodCliente);
             SqlParameter ParametroCodFuncionario = new SqlParameter();
@@ -122,7 +119,7 @@ namespace BLL
 
             LstParametros.Add(ParametroFormaDePagamento);
 
-            DataTable dt = ObjBanco.ExecuteProc("csp_Select_pedido", LstParametros);
+            DataTable dt = ObjBanco.ExecuteProc("USP_CSharp_Entregas_SelectPedidos", LstParametros);
 
 
             return dt;
@@ -170,7 +167,32 @@ namespace BLL
             return dt;
         }
 
-    
+        public DataTable ProdutosNoPedido(clsPedido objPedido) 
+        {
+            List<SqlParameter> lista = new List<SqlParameter>();
 
+            SqlParameter parametro = new SqlParameter();
+            parametro.ParameterName = "@CodPedido";
+            parametro.Value = objPedido.Cod_Pedido;
+            parametro.DbType = System.Data.DbType.Int32;
+
+            lista.Add(parametro);
+
+            return ObjBanco.ExecuteProc("USP_CSharp_ConfirmacaoAlterarStatus_ProdutosNoPedido", lista);
+        }
+
+        public DataTable AbaterInsumo(clsProduto objProduto) 
+        {
+            List<SqlParameter> lista = new List<SqlParameter>();
+
+            SqlParameter parametro = new SqlParameter();
+            parametro.ParameterName = "@CodProduto";
+            parametro.Value = objProduto.Cod_Produto;
+            parametro.DbType = System.Data.DbType.Int32;
+
+            lista.Add(parametro);
+
+            return ObjBanco.ExecuteProc("USP_CSharp_ConfirmacaoAlterarStatus_AbaterInsumo", lista);
+        }
     }
 }

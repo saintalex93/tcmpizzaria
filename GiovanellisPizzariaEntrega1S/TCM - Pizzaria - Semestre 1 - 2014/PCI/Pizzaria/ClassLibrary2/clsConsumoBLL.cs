@@ -141,12 +141,14 @@ namespace BLL
                 lstParametros.Add(parametro);
 
                 parametro = new SqlParameter();
-                parametro.ParameterName = "@CodProdutoInsumo";
+                parametro.ParameterName = "@CodConsumo";
                 parametro.Value = objConsumo.CodProdutoInsumo;
                 parametro.DbType = System.Data.DbType.Int32;
                 lstParametros.Add(parametro);
 
-                return Banco.ExecuteProc("USP_CSharp_Consumo_ValidaExistenciaNoBanco", lstParametros);
+                DataTable dt = Banco.ExecuteProc("USP_CSharp_Consumo_ValidaExistenciaNoBanco", lstParametros);
+
+                return dt;
             }
 
             public void AtualizarConsumo(clsConsumo objConsumo) 

@@ -324,5 +324,17 @@ namespace Pizzaria
 
             PreencherListas();
         }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            categoria.CancelarSequenciaDeCadastroDeProduto();
+
+            FormHome.Enabled = true;
+            FormHome.Show();
+            
+            Dispose();
+
+            FormHome.Focus();
+        }
     }
 }

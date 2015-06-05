@@ -60,9 +60,9 @@
             this.label1.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(55, 30);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(231, 20);
+            this.label1.Size = new System.Drawing.Size(223, 20);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Deseja Alterar o Número do Pedido?";
+            this.label1.Text = "Deseja alterar o estado do Pedido?";
             // 
             // Confirmacao_Alterar_Status
             // 

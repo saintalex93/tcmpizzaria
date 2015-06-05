@@ -52,6 +52,7 @@
             this.btnAdicionarInsumoCategoria = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.grpDados.SuspendLayout();
             this.grpConteudo.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -315,11 +316,22 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Produtos";
             // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Location = new System.Drawing.Point(320, 399);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelar.TabIndex = 12;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
             // Categorias
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(488, 431);
+            this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.grpDados);
             this.Controls.Add(this.btnFinalizar);
             this.Name = "Categorias";
@@ -362,6 +374,7 @@
         private System.Windows.Forms.Button btnAdicionarInsumoCategoria;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button btnCancelar;
 
     }
 }

@@ -25,6 +25,7 @@ namespace Pizzaria
         string strBusca = "";
 
         clsPromocaoBLL promocao = new clsPromocaoBLL();
+        clsProdutoBLL produto = new clsProdutoBLL();
         clsProdutoPromocaoBLL produtoPromocao = new clsProdutoPromocaoBLL();
 
         public Form FormHome { get; set; }
@@ -204,13 +205,13 @@ namespace Pizzaria
         {
             txtProdutoID.Text = "";
 
-            // TODO Grid de produtos - Promoção: fazer buscar de produtos por palavra chave pela clsProdutoBLL
+            clsProduto objProduto = new clsProduto();
+            objProduto.Nome_Produto = txtProdutoPalavraChave.Text;
 
-            preencherGrid("USP_CSharp_Promocao_BuscarProdutoPalavraChave '" + txtProdutoPalavraChave.Text + "'", gridProdutosEncontrados);
+            gridProdutosEncontrados.DataSource = produto.BuscarProdutoPorNome(objProduto);
 
             if (gridProdutosNaPromocao.Rows.Count > 0)
                 btnAdicionarProdutoEmPromocao.Enabled = true;
-
         }
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
@@ -490,18 +491,21 @@ namespace Pizzaria
         {
             txtProdutoPalavraChave.Text = "";
 
-            // TODO Grid de produtos - Promoção: fazer buscar de produtos por ID pela clsProdutoBLL
-
             for (int i = 0; i < txtProdutoID.Text.Length; i++)
                 if (!char.IsNumber(txtProdutoID.Text[i]))
                 {
                     Home.mensagemDeErro("É permitido apenas o uso de números no campo de busca de produtos por ID.","Utilização de símbolos proibidos na busca");
+                    
                     txtProdutoID.Clear();
+                    
                     txtProdutoID.Focus();
                 }
 
-            preencherGrid("select cod_Produto as [ID], Nome_Produto as [Produto], Valor_Venda as [Preço] from Produto where Cod_Produto like '%" + txtProdutoID.Text + "%'", gridProdutosEncontrados);
+            clsProduto objProduto = new clsProduto();
+            objProduto.Cod_Produto = Int32.Parse(txtProdutoID.Text);
 
+            produto.BuscarProdutoPorID(objProduto);
+            
             if (gridProdutosNaPromocao.Rows.Count > 0)
                 btnAdicionarProdutoEmPromocao.Enabled = true;
         }

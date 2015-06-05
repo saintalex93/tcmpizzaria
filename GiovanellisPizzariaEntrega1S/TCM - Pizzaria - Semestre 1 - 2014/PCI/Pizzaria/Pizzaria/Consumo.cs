@@ -40,7 +40,8 @@ namespace Pizzaria
 
         private void Consumo_Load(object sender, EventArgs e)
         {
-            gridConsumo.DataSource = consumo.MostrarConsumo();
+            if(!Produtos.sequenciaCadastro)
+                gridConsumo.DataSource = consumo.MostrarConsumo();
 
             PreencherInsumo();
 
@@ -96,7 +97,7 @@ namespace Pizzaria
 
             int intSemConsumo = (int) semConsumo.Rows[0][0];
             int intConsumoVazio =  (int) consumoVazio.Rows[0][0];
-
+            
             if (intSemConsumo  != 0)
             {
                 Home.mensagemDeErro("Consta no sistema que existem Produtos sem Insumos registrados para consumo.\n\nCertifique-se de que todos os Produtos tem pelo menos um Insumo associado para poder seguir para o próximo menu.", "Integridade no banco de dados");
@@ -182,7 +183,7 @@ namespace Pizzaria
         {
             DataTable resultado = consumo.ValidaExistenciaNoBanco(objConsumo);
 
-            if ((int)resultado.Rows[0][0] != 0)
+            if ( (int) resultado.Rows[0][0] != 0)
             {
                 Home.mensagemDeErro("Já existe um registro de consumo com este produto e este insumo no banco de dados.\n\nCertifique-se de que tudo esteja correto para poder continuar.", "Produto existente");
 
@@ -208,7 +209,7 @@ namespace Pizzaria
 
             consumo.InserirConsumo(objConsumo);
 
-            gridConsumo.DataSource = consumo.MostrarConsumoDesc();
+            gridConsumo.DataSource = consumo.BuscarConsumosPorIDProduto(objConsumo);
 
             cbInsumo.SelectedIndex = -1;
             numQuantidade.Value = 0;
@@ -340,14 +341,19 @@ namespace Pizzaria
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Deseja realmente remover esse registro?", "Aviso", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
+            if ((int)gridConsumo.CurrentRow.Cells[1].Value == (int)cbProduto.SelectedValue)
             {
-                clsConsumo objConsumo = new clsConsumo();
-                objConsumo.CodProdutoInsumo = (int) gridConsumo.CurrentRow.Cells[0].Value;
-                consumo.RemoverConsumo(objConsumo);
-                gridConsumo.DataSource = consumo.MostrarConsumo();
+                DialogResult dialogResult = MessageBox.Show("Deseja realmente remover esse registro?", "Aviso", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    clsConsumo objConsumo = new clsConsumo();
+                    objConsumo.CodProdutoInsumo = (int)gridConsumo.CurrentRow.Cells[0].Value;
+                    consumo.RemoverConsumo(objConsumo);
+                    gridConsumo.DataSource = consumo.MostrarConsumo();
+                }
             }
+            else
+                Home.mensagemDeErro("Na sequência de cadastro não é permitido remover itens de outros produtos no banco.","Problema no fluxo");
         }
 
         private void cbProduto_SelectionChangeCommitted(object sender, EventArgs e)

@@ -68,6 +68,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.btnAlterar_StatusF = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.button1 = new System.Windows.Forms.Button();
             this.tabGerenciamento_entrega.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridProdutosP)).BeginInit();
@@ -84,15 +85,16 @@
             this.tabGerenciamento_entrega.Controls.Add(this.tabPage1);
             this.tabGerenciamento_entrega.Controls.Add(this.tabPage2);
             this.tabGerenciamento_entrega.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabGerenciamento_entrega.Location = new System.Drawing.Point(1, 3);
+            this.tabGerenciamento_entrega.Location = new System.Drawing.Point(5, 3);
             this.tabGerenciamento_entrega.Name = "tabGerenciamento_entrega";
             this.tabGerenciamento_entrega.SelectedIndex = 0;
-            this.tabGerenciamento_entrega.Size = new System.Drawing.Size(538, 738);
+            this.tabGerenciamento_entrega.Size = new System.Drawing.Size(538, 654);
             this.tabGerenciamento_entrega.TabIndex = 0;
             this.tabGerenciamento_entrega.SelectedIndexChanged += new System.EventHandler(this.tabGerenciamento_entrega_SelectedIndexChanged_1);
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.dateAteHora);
             this.tabPage1.Controls.Add(this.dateDeData);
             this.tabPage1.Controls.Add(this.dateDeHora);
@@ -111,7 +113,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(530, 705);
+            this.tabPage1.Size = new System.Drawing.Size(530, 621);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Pendentes";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -490,11 +492,21 @@
             this.timer1.Interval = 5000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(449, 583);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 32);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Voltar\r\n";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Gerenciamento_Entregas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(541, 663);
+            this.ClientSize = new System.Drawing.Size(551, 666);
             this.Controls.Add(this.tabGerenciamento_entrega);
             this.IsMdiContainer = true;
             this.Name = "Gerenciamento_Entregas";
@@ -558,5 +570,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.DataGridView GridPedidosF;
+        private System.Windows.Forms.Button button1;
     }
 }

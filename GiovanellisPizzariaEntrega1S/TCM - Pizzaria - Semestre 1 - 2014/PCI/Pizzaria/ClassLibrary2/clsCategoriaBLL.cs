@@ -258,6 +258,10 @@ namespace BLL
             Banco.ExecuteProc("USP_CSharp_Categoria_RemoverInsumoDaCategoria", lista);
         }
 
-        
+        public void CancelarSequenciaDeCadastroDeProduto() 
+        {
+            Banco.ExecuteProc("USP_CSharp_Categoria_CancelarSequenciaDeCadastroDeProduto");
+        }
+
     }
 }

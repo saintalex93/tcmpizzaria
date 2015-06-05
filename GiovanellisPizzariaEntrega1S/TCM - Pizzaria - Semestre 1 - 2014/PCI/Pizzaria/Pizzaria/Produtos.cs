@@ -152,7 +152,7 @@ namespace Pizzaria
                 objProduto.Sobe_Site = 1;
 
             produto.AtualizarProduto(objProduto);
-            dtg_produtos.DataSource = produto.BuscarProdutoPorID(objProduto.Cod_Produto);
+            dtg_produtos.DataSource = produto.BuscarProdutoPorID(objProduto);
 
             txt_nome.Clear();
             txtPreco.Clear();
@@ -550,7 +550,12 @@ namespace Pizzaria
             if (txtBuscaPorNome.Text.Length == 0)
                 dtg_produtos.DataSource = produto.MostrarTodosProdutos();
             else
-                dtg_produtos.DataSource = produto.BuscarProdutoPorNome(txtBuscaPorNome.Text);
+            {
+                clsProduto objProduto = new clsProduto();
+                objProduto.Nome_Produto = txtBuscaPorNome.Text;
+
+                dtg_produtos.DataSource = produto.BuscarProdutoPorNome(objProduto);
+            }
         }
 
         private void txtBuscaPorID_TextChanged(object sender, EventArgs e)
@@ -561,7 +566,12 @@ namespace Pizzaria
             if (txtBuscaPorID.Text.Length == 0)
                 dtg_produtos.DataSource = produto.MostrarTodosProdutos();
             else
-                dtg_produtos.DataSource = produto.BuscarProdutoPorID(Int32.Parse(txtBuscaPorID.Text));
+            {
+                clsProduto objProduto = new clsProduto();
+                objProduto.Cod_Produto = Int32.Parse(txtBuscaPorID.Text);
+                
+                dtg_produtos.DataSource = produto.BuscarProdutoPorID(objProduto); 
+            }
         }
 
         private void chk_site_CheckedChanged(object sender, EventArgs e)

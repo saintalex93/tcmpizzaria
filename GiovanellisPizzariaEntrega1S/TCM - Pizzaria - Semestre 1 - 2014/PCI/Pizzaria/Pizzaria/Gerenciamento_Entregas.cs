@@ -22,6 +22,9 @@ namespace Pizzaria
             InitializeComponent();
            
         }
+
+        public Form FormHome { get; set; }
+
         public string cod;// { get; set; }
         private void Gerenciamento_Entregas_Load(object sender, EventArgs e)
         {
@@ -268,6 +271,12 @@ namespace Pizzaria
         private void tabGerenciamento_entrega_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             preenche_grid();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FormHome.Visible = true;
+            Dispose();
         }
 
        

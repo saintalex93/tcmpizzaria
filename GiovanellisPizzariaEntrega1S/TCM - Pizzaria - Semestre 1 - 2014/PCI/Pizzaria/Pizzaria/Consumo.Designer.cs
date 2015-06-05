@@ -51,7 +51,6 @@
             this.txtBuscaInsumoID = new System.Windows.Forms.TextBox();
             this.btnAlterar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numQuantidade)).BeginInit();
             this.grpDados.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridConsumo)).BeginInit();
@@ -235,7 +234,6 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.checkBox1);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.txtBuscaInsumoNome);
@@ -312,17 +310,6 @@
             this.btnCancelar.Visible = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(229, 61);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(106, 30);
-            this.checkBox1.TabIndex = 15;
-            this.checkBox1.Text = "Apenas produtos\r\nsem insumos";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-            // 
             // Consumo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -372,7 +359,6 @@
         private System.Windows.Forms.TextBox txtBuscaInsumoNome;
         private System.Windows.Forms.TextBox txtBuscaInsumoID;
         private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.CheckBox checkBox1;
 
     }
 }

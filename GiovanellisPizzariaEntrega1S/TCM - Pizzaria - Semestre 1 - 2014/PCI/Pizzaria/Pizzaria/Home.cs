@@ -323,7 +323,13 @@ namespace Pizzaria
             this.Enabled = false;
             consumo.Show();
         }
-        
 
+        private void entregasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Gerenciamento_Entregas entregas = new Gerenciamento_Entregas();
+            entregas.FormHome = this;
+            this.Visible = false;
+            entregas.Show();
+        }
     }
 }
