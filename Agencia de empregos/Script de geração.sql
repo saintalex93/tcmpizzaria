@@ -66,7 +66,7 @@ go
 create table Categorias
 (
 codCategoria INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
-Nome varchar(20)
+Nome varchar(40)
 )
 
 go
@@ -74,7 +74,7 @@ go
 create table Areas
 (
 codArea INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
-Nome varchar (20),
+Nome varchar (40),
 codCategoria int foreign key references Categorias(codCategoria)
 )
 go
@@ -92,6 +92,14 @@ Data Date,
 Estado int
 )
 go
+
+create table AiDeMim
+(
+codAdmin int identity(1,1) primary key,
+nomeAdmin varchar(40),
+emailAdmin varchar(30),
+senhaAdmin varchar(20)
+)
 
 	-------------------------------------------------------------- 
 	-------------------------------------------------------------- 
@@ -117,8 +125,18 @@ go
 
 insert into Areas values
 ('Banco de Dados',1),
+('Técnico de Infra Estrutura',1),
+('Help Desk',1),
+('Analista de Sistema',1),
 ('Desenvolvimento',1),
-('RH',2)
+('RH',2),
+('Auxiliar Administrativo',2),
+('Técnico Bancário',2),
+('Almoxarifado',2),
+('Arquiteto',3),
+('Projetista',3),
+('Engenheiro',3)
+
 go
 
 insert into Vagas values
@@ -127,6 +145,9 @@ insert into Vagas values
 ('Avalista de sistemas', 'Análise, desenvolvimento, acompanhamento e evolução de sistemas em ASP.NET', 2, 'Alameda da Lambranda, 388, Vila Odin, São Paulo', 1, 1, CONVERT(VARCHAR(10),GETDATE()- ABS(Checksum(NewID()) % 50),103) , 1),
 ('Engenheiro de produção', 'Análise, desenvolvimento, acompanhamento e evolução de sistemas de produção', 3, 'Alameda Suzano, 388, Vila Suzano, Suzano', 1, 1, CONVERT(VARCHAR(10),GETDATE()- ABS(Checksum(NewID()) % 365),103) , 1)
 go
+
+insert into AiDeMim values
+('Emerson','emerson@sos.com.br','123456')
 
 go
 	-------------------------------------------------------------- 
@@ -185,7 +206,7 @@ go
 
 create procedure USP_AdicionarCategoria
 (
-	@nome varchar(20)
+	@nome varchar(40)
 )
 as
 	Begin
@@ -196,7 +217,7 @@ go
 
 create procedure USP_EditarCategoria
 (
-	@novoNome varchar(20),
+	@novoNome varchar(40),
 	@codigoCategoria int
 )
 as
@@ -216,3 +237,93 @@ as
 	End
 
 go
+
+
+create procedure USP_AdicionarArea
+(
+	@NomeArea varchar(40),
+	@codigoCategoria int
+)
+as
+	Begin
+		insert into Areas (Nome,codCategoria) values (@NomeArea,@codigoCategoria)
+	End
+
+go
+
+
+create procedure USP_DeletarArea
+
+(
+@codArea int
+)
+
+as
+
+begin
+
+delete from Areas where codArea = @codArea
+
+end
+
+
+
+go
+
+
+create procedure USP_EditarNomeArea
+
+(
+@NomeArea varchar (40),
+@codArea int
+)
+
+as
+
+begin
+
+	update Areas set Nome = @NomeArea where codArea = @codArea
+
+end
+
+go
+
+create procedure USP_Login_Func
+(
+	@email varchar(40),
+	@senha varchar(30)
+)
+as
+	Declare @codigo as int
+	
+	Begin
+		set @codigo = 0
+
+		select @codigo = codFuncionario from Funcionarios where Email = @email and Senha = @senha
+
+		if (@codigo > 0)
+			Begin
+				select codFuncionario, Nome from Funcionarios where Email = @email and Senha = @senha
+			End
+	End
+
+go
+
+create procedure USP_Login_Admin
+(
+	@email varchar(40),
+	@senha varchar(30)
+)
+as
+	Declare @codigo as int
+	
+	Begin
+		set @codigo = 0
+
+		select @codigo = codAdmin from AiDeMim where emailAdmin = @email and senhaAdmin = @senha
+
+		if (@codigo > 0)
+			Begin
+				select codAdmin, nomeAdmin from AiDeMim where emailAdmin = @email and senhaAdmin = @senha
+			End
+	End
