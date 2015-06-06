@@ -1592,7 +1592,7 @@ as
 	end
 go
 -------------------------------------------------
-create proc [dbo].[CSharp_Seleciona_Produtos]
+create proc USP_CSharp_GerenciamentoEntregas_Seleciona_Produtos
 (
 	@cod_Pedido int = null
 )
@@ -1776,7 +1776,7 @@ as
 	end
 go
 ------------------------------------------------
-create proc [dbo].[CSharp_update_pedido]
+create proc USP_CSharp_GerenciamentoEntrega_UpdatePedido
 (
 	@Estado varchar(20) = null,
 	@cod_pedido int = null
@@ -2928,13 +2928,23 @@ as
 	End
 go
 ---------------------------------------------------
-create proc USP_CSharp_ConfirmaAlterarStatus_ProdutosNoPedido
+create proc USP_CSharp_ConfirmacaoAlterarStatus_ProdutosNoPedido
 
 	@CodPedido int
 
 as
 	Begin
 		Select Cod_Produto From Detalhe_Pedido where Cod_Pedido = @CodPedido
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_ConfirmacaoAlterarStatus_ChecarEstadoPedido
+
+	@CodPedido int
+
+as
+	Begin
+		Select Estado From Pedido where Cod_Pedido = @CodPedido
 	End
 go
 ---------------------------------------------------

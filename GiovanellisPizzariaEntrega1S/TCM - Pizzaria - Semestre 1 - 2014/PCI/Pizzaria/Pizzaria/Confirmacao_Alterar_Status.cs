@@ -29,26 +29,14 @@ namespace Pizzaria
             this.alterar_Status = alterar_Status;
         }*/
 
+        
+
         private void btnSim_Click(object sender, EventArgs e)
         {
-            clsGerenciamentoEntregaBLL teste = new clsGerenciamentoEntregaBLL();
-            clsPedido teste1 = new clsPedido();
+        }
 
-            teste1.Estado = alterar_Status.status;
-            teste1.Cod_Pedido = alterar_Status.cod;
-            teste.UpdatePedidos(teste1);
-            
-            DataTable produtosNoPedido = teste.ProdutosNoPedido(teste1);
-
-            clsProduto objProduto = new clsProduto();
-
-            for (int i = 0; i < produtosNoPedido.Rows.Count; i++)
-            {
-                objProduto.Cod_Produto = (int) produtosNoPedido.Rows[0][i];
-
-                teste.AbaterInsumo(objProduto);
-            }
-            this.Dispose();
+        private void btnNao_Click(object sender, EventArgs e)
+        {
         }
     }
 }

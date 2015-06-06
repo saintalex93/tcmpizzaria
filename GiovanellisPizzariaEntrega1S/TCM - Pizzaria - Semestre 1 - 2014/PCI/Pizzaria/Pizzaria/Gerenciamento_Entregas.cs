@@ -57,36 +57,27 @@ namespace Pizzaria
 
         private void btnAterar_StatusP_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (GridPedidosP.SelectedCells[0].Value.ToString().Length > 0)
-                {
-                    Alterar_Status altera_status = new Alterar_Status(this);
-                    //altera_status.MdiParent = this;
-                    altera_status.Show();
-                }
-            }
-            catch (Exception ex)
-            {
-            }
+            JanelaAlerarStatus(GridPedidosP);
         }
 
         private void btnAlterar_StatusF_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (GridPedidosF.SelectedCells[0].Value.ToString().Length > 0)
-                {
-                    Alterar_Status altera_status = new Alterar_Status(this);
-                    //altera_status.MdiParent = this;
-                    altera_status.Show();
-                }
-            }
-            catch (Exception ex)
-            { 
-            }
+            JanelaAlerarStatus(GridPedidosF);
         }
 
+        void JanelaAlerarStatus(DataGridView tabela) 
+        {
+            if (tabela.SelectedCells[0].Value.ToString().Length > 0)
+            {
+                Alterar_Status altera_status = new Alterar_Status(this);
+
+                altera_status.FormHome = this;
+
+                altera_status.Show();
+
+                this.Enabled = false;
+            }
+        }
 
         #region Valida_CheckBoxs
 
@@ -217,7 +208,7 @@ namespace Pizzaria
                         if (chcPreparo.Checked)
                             teste.Estado_Preparo = chcPreparo.Text.ToString();
                         if (chcNovos_Pedidos.Checked)
-                            teste.Estado_Novo = "Novo";
+                            teste.Estado_Novo = "Na fila";
 
                         GridPedidosP.DataSource = teste1.SelectPedido(teste);
                         GridPedidosP.Columns["Cod_Funcionario"].Visible = false;
@@ -279,6 +270,6 @@ namespace Pizzaria
             Dispose();
         }
 
-       
+
     }
 }

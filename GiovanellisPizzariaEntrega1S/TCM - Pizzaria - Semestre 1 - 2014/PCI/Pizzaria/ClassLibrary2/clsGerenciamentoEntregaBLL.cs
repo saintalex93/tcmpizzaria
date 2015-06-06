@@ -120,8 +120,6 @@ namespace BLL
             LstParametros.Add(ParametroFormaDePagamento);
 
             DataTable dt = ObjBanco.ExecuteProc("USP_CSharp_Entregas_SelectPedidos", LstParametros);
-
-
             return dt;
         }
 
@@ -136,9 +134,7 @@ namespace BLL
 
             LstParametros.Add(ParametroCodCliente);
 
-            DataTable dt = ObjBanco.ExecuteProc("CSP_Seleciona_Produtos", LstParametros);
-
-
+            DataTable dt = ObjBanco.ExecuteProc("USP_CSharp_GerenciamentoEntregas_Seleciona_Produtos", LstParametros);
             return dt;
         }
 
@@ -161,7 +157,7 @@ namespace BLL
             LstParametros.Add(ParametroEstado);
 
 
-            DataTable dt = ObjBanco.ExecuteProc("csp_update_pedido", LstParametros);
+            DataTable dt = ObjBanco.ExecuteProc("USP_CSharp_GerenciamentoEntrega_UpdatePedido", LstParametros);
 
 
             return dt;
@@ -178,7 +174,9 @@ namespace BLL
 
             lista.Add(parametro);
 
-            return ObjBanco.ExecuteProc("USP_CSharp_ConfirmacaoAlterarStatus_ProdutosNoPedido", lista);
+            DataTable asdf = ObjBanco.ExecuteProc("USP_CSharp_ConfirmacaoAlterarStatus_ProdutosNoPedido", lista);
+
+            return asdf;
         }
 
         public DataTable AbaterInsumo(clsProduto objProduto) 
@@ -194,5 +192,22 @@ namespace BLL
 
             return ObjBanco.ExecuteProc("USP_CSharp_ConfirmacaoAlterarStatus_AbaterInsumo", lista);
         }
+
+
+        public DataTable ChecarEstadoPedido(clsPedido objPedido) 
+        {
+            List<SqlParameter> lista = new List<SqlParameter>();
+
+            SqlParameter parametro = new SqlParameter();
+            parametro.ParameterName = "@CodPedido";
+            parametro.Value = objPedido.Cod_Pedido;
+            parametro.DbType = System.Data.DbType.Int32;
+
+            lista.Add(parametro);
+
+            return ObjBanco.ExecuteProc("USP_CSharp_ConfirmacaoAlterarStatus_ChecarEstadoPedido", lista);
+        }
+
+
     }
 }

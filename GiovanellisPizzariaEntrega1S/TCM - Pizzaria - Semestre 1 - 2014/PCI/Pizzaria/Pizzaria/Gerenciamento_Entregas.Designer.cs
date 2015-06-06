@@ -507,6 +507,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(551, 666);
+            this.ControlBox = false;
             this.Controls.Add(this.tabGerenciamento_entrega);
             this.IsMdiContainer = true;
             this.Name = "Gerenciamento_Entregas";

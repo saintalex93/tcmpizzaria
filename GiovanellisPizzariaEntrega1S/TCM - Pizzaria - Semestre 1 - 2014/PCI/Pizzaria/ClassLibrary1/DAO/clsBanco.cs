@@ -90,7 +90,7 @@ namespace DAL.DAO
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-                return null;
+                throw ex;
             }
         }
 

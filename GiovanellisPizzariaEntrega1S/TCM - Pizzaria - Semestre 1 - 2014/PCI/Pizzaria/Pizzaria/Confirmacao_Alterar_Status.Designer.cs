@@ -53,6 +53,7 @@
             this.btnNao.TabIndex = 1;
             this.btnNao.Text = "Não";
             this.btnNao.UseVisualStyleBackColor = true;
+            this.btnNao.Click += new System.EventHandler(this.btnNao_Click);
             // 
             // label1
             // 
