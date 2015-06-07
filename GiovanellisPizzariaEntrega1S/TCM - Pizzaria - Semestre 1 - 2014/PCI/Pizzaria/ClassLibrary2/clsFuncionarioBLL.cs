@@ -464,5 +464,15 @@ namespace BLL
               return dt;
           }
 
+          public DataTable SelecionaEntregadores()
+          {
+              List<SqlParameter> LstParametros = new List<SqlParameter>();
+
+              DataTable dt = ObjBanco.ExecuteProc("USP_CSharp_Entregas_SelecionaEntregadores", LstParametros);
+
+              return dt;
+          }
+
+      
     }
 }

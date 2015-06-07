@@ -2948,4 +2948,24 @@ as
 	End
 go
 ---------------------------------------------------
-select * from Insumo
+create proc USP_CSharp_Entregas_SelecionaEntregadores
+as
+	Begin
+		Select Nome_Func, Cod_Funcionario 
+		From Funcionario 
+		where Cod_Permissao = 4
+		order by Nome_Func
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Entregas_AtribuirEntregador
+
+	@CodPedido int,
+	@CodFuncionario int
+
+as
+	Begin
+		update Pedido set Cod_Funcionario = @CodFuncionario where Cod_Pedido = @CodPedido
+	End
+go
+---------------------------------------------------

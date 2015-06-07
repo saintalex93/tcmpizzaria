@@ -193,7 +193,6 @@ namespace BLL
             return ObjBanco.ExecuteProc("USP_CSharp_ConfirmacaoAlterarStatus_AbaterInsumo", lista);
         }
 
-
         public DataTable ChecarEstadoPedido(clsPedido objPedido) 
         {
             List<SqlParameter> lista = new List<SqlParameter>();
@@ -208,6 +207,25 @@ namespace BLL
             return ObjBanco.ExecuteProc("USP_CSharp_ConfirmacaoAlterarStatus_ChecarEstadoPedido", lista);
         }
 
+        public void AtribuirEntregador(clsPedido objPedido)
+        {
+            List<SqlParameter> lista = new List<SqlParameter>();
 
+            SqlParameter parametro = new SqlParameter();
+            parametro.ParameterName = "@CodPedido";
+            parametro.Value = objPedido.Cod_Pedido;
+            parametro.DbType = System.Data.DbType.Int32;
+
+            lista.Add(parametro);
+
+            parametro = new SqlParameter();
+            parametro.ParameterName = "@CodFuncionario";
+            parametro.Value = objPedido.Cod_Funcionario;
+            parametro.DbType = System.Data.DbType.Int32;
+
+            lista.Add(parametro);
+
+            ObjBanco.ExecuteProc("USP_CSharp_Entregas_AtribuirEntregador", lista);
+        }
     }
 }

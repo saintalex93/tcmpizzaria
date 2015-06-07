@@ -17,7 +17,9 @@ namespace Pizzaria
     public partial class Alterar_Status : Form
     {
         Gerenciamento_Entregas teste; // = new Gerenciamento_Entregas();
-        
+
+        clsFuncionarioBLL funcionario = new clsFuncionarioBLL();
+
         public Form FormHome { get; set; }
         
         public string cod;
@@ -42,10 +44,12 @@ namespace Pizzaria
             status = cmbStatus_Pedido.SelectedItem.ToString();
             cod = txtCod_Pedido.Text;
 
-            DialogResult resultado = MessageBox.Show(
+            DialogResult resultado = MessageBox.Show
+                (
                 "Alterar estado do Pedido para \"" + status + "\"?",
                 "Alterar estado",
-                MessageBoxButtons.YesNo);
+                MessageBoxButtons.YesNo
+                );
 
             if (resultado == System.Windows.Forms.DialogResult.Yes)
                 AlterarEstado();
@@ -58,6 +62,14 @@ namespace Pizzaria
 
             objPedido.Estado = status;
             objPedido.Cod_Pedido = cod;
+
+            if (objPedido.Estado.ToLower() == "a caminho")
+            {
+                objPedido.Cod_Funcionario = cbEntregador.SelectedValue.ToString();
+
+                entrega.AtribuirEntregador(objPedido);
+            }
+                
 
             if (!ValidaAlteracao(objPedido, entrega))
                 return;
@@ -84,12 +96,20 @@ namespace Pizzaria
 
         private void button2_Click(object sender, EventArgs e)
         {
+            FormHome.Enabled = true;
+
             this.Dispose();
         }
 
-        string mensagemErroSequencia(string inicial, string final)
+        void mensagemErroSequencia(string inicial, string final)
         {
-            return "Pedidos marcados como \"" + inicial + " só podem ser alterados para \"" + final + "\".";
+            MessageBox.Show
+                (
+                    "Pedidos marcados como \"" + inicial + "\" só podem ser alterados para \"" + final + "\".",
+                    "Erro na sequência",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
         }
 
         bool ValidaAlteracao(clsPedido objPedido, clsGerenciamentoEntregaBLL entrega)
@@ -97,9 +117,17 @@ namespace Pizzaria
             string estadoBanco = (string)entrega.ChecarEstadoPedido(objPedido).Rows[0][0];
 
             if
-            (estadoBanco.ToLower() == "na fila" && objPedido.Estado.ToLower() != "em preparo")
+            (
+                estadoBanco.ToLower() == "na fila" 
+                && 
+                (
+                    objPedido.Estado.ToLower() != "em preparo" 
+                    || 
+                    objPedido.Estado.ToLower() != "cancelado"
+                )
+            )
             {
-                mensagemErroSequencia("na fila", "em preparo");
+                mensagemErroSequencia("Na fila", "Em preparo");
 
                 return false;
             }
@@ -108,7 +136,7 @@ namespace Pizzaria
             (estadoBanco.ToLower() == "em preparo" && objPedido.Estado.ToLower() != "a caminho"
             )
             {
-                mensagemErroSequencia("em preparo", "e caminho");
+                mensagemErroSequencia("Em preparo", "A caminho");
 
                 return false;
             }
@@ -122,7 +150,7 @@ namespace Pizzaria
                 )
             )
             {
-                mensagemErroSequencia("a caminho", "cancelado\" ou \"realizado");
+                mensagemErroSequencia("A caminho", "Cancelado\" ou \"Realizado");
 
                 return false;
             }
@@ -130,7 +158,7 @@ namespace Pizzaria
             else if
             (estadoBanco.ToLower() == "cancelado" && objPedido.Estado.ToLower() != "realizado")
             {
-                mensagemErroSequencia("cancelado", "realizado");
+                mensagemErroSequencia("Cancelado", "Realizado");
 
                 return false;
             }
@@ -138,12 +166,30 @@ namespace Pizzaria
             else if
             (estadoBanco.ToLower() == "realizado" && objPedido.Estado.ToLower() != "cancelado")
             {
-                mensagemErroSequencia("realizado", "cancelado");
+                mensagemErroSequencia("Realizado", "Cancelado");
 
                 return false;
             }
 
             return true;
+        }
+
+        private void cmbStatus_Pedido_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbStatus_Pedido.Text.ToLower() == "a caminho")
+            {
+                cbEntregador.Enabled = true;
+
+                cbEntregador.DataSource = funcionario.SelecionaEntregadores();
+                cbEntregador.DisplayMember = "Nome_Func";
+                cbEntregador.ValueMember = "Cod_Funcionario";
+            }
+            else
+            {
+                cbEntregador.Enabled = false;
+                cbEntregador.DataSource = null;
+            }
+                
         }
     }
 }

@@ -29,6 +29,7 @@ namespace Pizzaria
         private void Gerenciamento_Entregas_Load(object sender, EventArgs e)
         {
             preenche_grid();
+
             timer1.Start();
         }        
      
@@ -57,26 +58,39 @@ namespace Pizzaria
 
         private void btnAterar_StatusP_Click(object sender, EventArgs e)
         {
-            JanelaAlerarStatus(GridPedidosP);
+            JanelaAlterarStatus(GridPedidosP);
         }
 
         private void btnAlterar_StatusF_Click(object sender, EventArgs e)
         {
-            JanelaAlerarStatus(GridPedidosF);
+            JanelaAlterarStatus(GridPedidosF);
         }
 
-        void JanelaAlerarStatus(DataGridView tabela) 
+        void JanelaAlterarStatus(DataGridView tabela) 
         {
-            if (tabela.SelectedCells[0].Value.ToString().Length > 0)
+            if (cod != null)
             {
+                preenche_grid();
+
                 Alterar_Status altera_status = new Alterar_Status(this);
+
 
                 altera_status.FormHome = this;
 
+
                 altera_status.Show();
+
 
                 this.Enabled = false;
             }
+            else
+                MessageBox.Show
+                    (
+                    "Selecione um Pedido para mudar seu estado.",
+                    "Pedido não selecionado",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                    );
         }
 
         #region Valida_CheckBoxs
@@ -85,31 +99,40 @@ namespace Pizzaria
                 {
                     if (chcCaminho.Checked == false && chcPreparo.Checked == false && chcNovos_Pedidos.Checked == false)
                         chcNovos_Pedidos.Checked = true;
+
+                    preenche_grid();
                 }
 
                 private void chcPreparo_CheckedChanged(object sender, EventArgs e)
                 {
                     if (chcCaminho.Checked == false && chcPreparo.Checked == false && chcNovos_Pedidos.Checked == false)
                         chcPreparo.Checked = true;
+                    
+                    preenche_grid();
                 }
 
                 private void chcCaminho_CheckedChanged(object sender, EventArgs e)
                 {
-
                     if (chcCaminho.Checked == false && chcPreparo.Checked == false && chcNovos_Pedidos.Checked == false)
                         chcCaminho.Checked = true;
+
+                    preenche_grid();
                 }
 
                 private void chcEntregue_CheckedChanged(object sender, EventArgs e)
                 {
                     if (chcEntregue.Checked == false && chcCancelado.Checked == false)
                         chcEntregue.Checked = true;
+
+                    preenche_grid();
                 }
 
                 private void chcCancelado_CheckedChanged(object sender, EventArgs e)
                 {
                     if (chcEntregue.Checked == false && chcCancelado.Checked == false)
                         chcCancelado.Checked = true;
+
+                    preenche_grid();
                 }
         #endregion
 
@@ -119,7 +142,6 @@ namespace Pizzaria
                 private void GridPedidosF_CellClick(object sender, DataGridViewCellEventArgs e)
                 {
                     seleciona_produto();
-                    txtTotalF.Text = GridPedidosF.SelectedCells[3].Value.ToString();
                     cod = GridPedidosF.SelectedCells[0].Value.ToString();
 
                 }
@@ -127,7 +149,6 @@ namespace Pizzaria
                 private void GridPedidosP_CellClick(object sender, DataGridViewCellEventArgs e)
                 {
                     seleciona_produto();
-                    txtTotalP.Text = GridPedidosP.SelectedCells[3].Value.ToString();
                     cod = GridPedidosP.SelectedCells[0].Value.ToString();
                 }
 
@@ -228,6 +249,7 @@ namespace Pizzaria
                             teste.Estado_Cancelado = chcCancelado.Text.ToString();
                         if (chcEntregue.Checked)
                             teste.Estado_Entregue = "Finalizado";
+
                         GridPedidosF.DataSource = teste1.SelectPedido(teste);
                         GridPedidosF.Columns["Cod_Funcionario"].Visible = false;
                         GridPedidosF.Columns["Cod_Cliente"].Visible = false;
@@ -270,6 +292,19 @@ namespace Pizzaria
             Dispose();
         }
 
+        private void GridPedidosP_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
+        }
+
+        private void Gerenciamento_Entregas_EnabledChanged(object sender, EventArgs e)
+        {
+            preenche_grid();
+        }
+
+        private void txtTotalP_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

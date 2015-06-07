@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.tabGerenciamento_entrega = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
             this.dateAteHora = new System.Windows.Forms.DateTimePicker();
             this.dateDeData = new System.Windows.Forms.DateTimePicker();
             this.dateDeHora = new System.Windows.Forms.DateTimePicker();
@@ -38,8 +39,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.dateAteData = new System.Windows.Forms.DateTimePicker();
-            this.txtTotalP = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.GridProdutosP = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.GridPedidosP = new System.Windows.Forms.DataGridView();
@@ -60,15 +59,13 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.chcEntregue = new System.Windows.Forms.CheckBox();
             this.chcCancelado = new System.Windows.Forms.CheckBox();
-            this.txtTotalF = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.GridProdutosF = new System.Windows.Forms.DataGridView();
             this.label5 = new System.Windows.Forms.Label();
             this.GridPedidosF = new System.Windows.Forms.DataGridView();
             this.label6 = new System.Windows.Forms.Label();
             this.btnAlterar_StatusF = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.tabGerenciamento_entrega.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridProdutosP)).BeginInit();
@@ -102,8 +99,6 @@
             this.tabPage1.Controls.Add(this.label8);
             this.tabPage1.Controls.Add(this.label7);
             this.tabPage1.Controls.Add(this.dateAteData);
-            this.tabPage1.Controls.Add(this.txtTotalP);
-            this.tabPage1.Controls.Add(this.label3);
             this.tabPage1.Controls.Add(this.GridProdutosP);
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.GridPedidosP);
@@ -117,6 +112,16 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Pendentes";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(449, 583);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 32);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Voltar\r\n";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // dateAteHora
             // 
@@ -177,22 +182,6 @@
             this.dateAteData.Size = new System.Drawing.Size(83, 26);
             this.dateAteData.TabIndex = 8;
             // 
-            // txtTotalP
-            // 
-            this.txtTotalP.Location = new System.Drawing.Point(82, 583);
-            this.txtTotalP.Name = "txtTotalP";
-            this.txtTotalP.Size = new System.Drawing.Size(100, 26);
-            this.txtTotalP.TabIndex = 7;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(33, 583);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(37, 20);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Total";
-            // 
             // GridProdutosP
             // 
             this.GridProdutosP.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -228,6 +217,7 @@
             this.GridPedidosP.Size = new System.Drawing.Size(478, 150);
             this.GridPedidosP.TabIndex = 3;
             this.GridPedidosP.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridPedidosP_CellClick);
+            this.GridPedidosP.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridPedidosP_CellContentClick);
             this.GridPedidosP.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.GridPedidosP_CellFormatting);
             // 
             // label1
@@ -298,6 +288,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.button2);
             this.tabPage2.Controls.Add(this.label10);
             this.tabPage2.Controls.Add(this.label11);
             this.tabPage2.Controls.Add(this.label12);
@@ -306,8 +297,6 @@
             this.tabPage2.Controls.Add(this.dateAteData2);
             this.tabPage2.Controls.Add(this.DateDeData2);
             this.tabPage2.Controls.Add(this.groupBox2);
-            this.tabPage2.Controls.Add(this.txtTotalF);
-            this.tabPage2.Controls.Add(this.label4);
             this.tabPage2.Controls.Add(this.GridProdutosF);
             this.tabPage2.Controls.Add(this.label5);
             this.tabPage2.Controls.Add(this.GridPedidosF);
@@ -316,7 +305,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 29);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(530, 705);
+            this.tabPage2.Size = new System.Drawing.Size(530, 621);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Finalizados";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -415,22 +404,6 @@
             this.chcCancelado.UseVisualStyleBackColor = true;
             this.chcCancelado.CheckedChanged += new System.EventHandler(this.chcCancelado_CheckedChanged);
             // 
-            // txtTotalF
-            // 
-            this.txtTotalF.Location = new System.Drawing.Point(83, 568);
-            this.txtTotalF.Name = "txtTotalF";
-            this.txtTotalF.Size = new System.Drawing.Size(100, 26);
-            this.txtTotalF.TabIndex = 15;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(34, 568);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(37, 20);
-            this.label4.TabIndex = 14;
-            this.label4.Text = "Total";
-            // 
             // GridProdutosF
             // 
             this.GridProdutosF.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -489,18 +462,18 @@
             // 
             // timer1
             // 
+            this.timer1.Enabled = true;
             this.timer1.Interval = 5000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // button1
+            // button2
             // 
-            this.button1.Location = new System.Drawing.Point(449, 583);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 32);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Voltar\r\n";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button2.Location = new System.Drawing.Point(429, 547);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 32);
+            this.button2.TabIndex = 23;
+            this.button2.Text = "Voltar\r\n";
+            this.button2.UseVisualStyleBackColor = true;
             // 
             // Gerenciamento_Entregas
             // 
@@ -513,6 +486,7 @@
             this.Name = "Gerenciamento_Entregas";
             this.Text = "Gerenciamento de Entregas";
             this.Load += new System.EventHandler(this.Gerenciamento_Entregas_Load);
+            this.EnabledChanged += new System.EventHandler(this.Gerenciamento_Entregas_EnabledChanged);
             this.tabGerenciamento_entrega.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -535,8 +509,6 @@
         private System.Windows.Forms.TabControl tabGerenciamento_entrega;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TextBox txtTotalP;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridView GridProdutosP;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView GridPedidosP;
@@ -549,8 +521,6 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.CheckBox chcEntregue;
         private System.Windows.Forms.CheckBox chcCancelado;
-        private System.Windows.Forms.TextBox txtTotalF;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DataGridView GridProdutosF;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
@@ -572,5 +542,6 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.DataGridView GridPedidosF;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }
