@@ -1,0 +1,410 @@
+﻿
+/* **** INFORMAÇÕES **** */
+
+/*
+
+TOM DE LARANJA: #e67e22
+TOM DE AZUL: #3498db;
+
+FONTE UTILIZADA EM TODO O SITE: Constantia (Não é necessário declarar, ela vai ser usada automaticamente)
+
+Pra que serve a div wrapper?
+    Para conter o conteúdo, e centralizá-lo na página... seu animal.
+*/
+
+
+
+*
+{
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+*::selection 
+{
+    background: #ccc;
+}
+
+.wrapper 
+{
+    width: 960px;
+    margin: 0 auto;
+}
+
+body 
+{
+    -webkit-animation: fade 1s;
+    font-family: Constantia;
+}
+
+@keyframes fade 
+{
+    0% 
+    {
+        opacity: 0;
+    }
+    
+    100% 
+    {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fade 
+{
+    0% 
+    {
+        opacity: 0;
+    }
+    
+    100% 
+    {
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes fade 
+{
+    0% 
+    {
+        opacity: 0;
+    }
+
+    100% 
+    {
+        opacity: 1;
+    }
+}
+
+header, section, article, footer 
+{
+    clear: both;
+    min-width: 100%;
+    float: left;
+}
+
+section 
+{
+    min-height: 800px;
+}
+
+article 
+{
+    padding: 50px 0;
+}
+
+/* CSS DO CABEÇALHO DO SITE (header) */
+
+header 
+{
+    padding: 15px 0;
+    background: #333;
+}
+
+.logo 
+{
+    float: left;
+    margin: 23px 0 0 0;
+}
+
+.menuTopo 
+{
+    float: left;
+    margin: 45px 0 0 130px;
+}
+
+.menuTopo ul 
+{
+    list-style: none;
+}
+
+.menuTopo ul li 
+{
+    display: inline-block;
+    float: left;
+    padding: 0 10px;
+}
+
+.menuTopo ul li a 
+{
+    text-decoration: none;
+    color: #fff;
+    font-size: 17px;
+    font-weight: bold;
+    transition: all 0.4s;
+}
+
+.menuTopo ul li a:hover 
+{
+    text-shadow: 0 0 3px #fff;
+}
+
+.pnlLogin 
+{
+    float: right;
+}
+.pnlLogin p 
+{
+    color: #cfcfcf;
+    margin: 0 0 3px 0;
+}
+.pnlLogin input[type="text"], .pnlLogin input[type="password"] 
+{
+    float: left;
+    padding: 3px;
+    margin: 0 0 5px 0;
+    border-radius: 4px;
+    letter-spacing: 1px;
+}
+.pnlLogin input[type="password"] 
+{
+    letter-spacing: 2px !important;
+}
+.pnlLogin input[type="text"]:hover, .pnlLogin input[type="password"]:hover 
+{
+    background: linear-gradient(to bottom, #eee, #fff);
+}
+.pnlLogin input[type="submit"] 
+{
+    float: left;
+    clear: left;
+    padding: 5px;
+    font-weight: bold;
+    color: #fff;
+    background: #e67e22;
+    border-radius: 5px;
+}
+
+
+/* PAINEL DE LOGOUT */
+
+.pnlLogout
+{
+    float: right;
+}
+.pnlLogout p, span
+{
+    float: left;
+    clear: left;
+    color: #fff;
+}
+.pnlLogout input[type="submit"]
+{
+    float: right;
+    clear: both;
+    padding: 5px;
+    font-weight: bold;
+    background: #e67e22;
+    color: #fff;
+    margin: 10px 0px 0 0;
+}
+
+
+/* SECTION */
+
+/* ESTILO ARTICLE PROCURANDO */
+
+.procurando 
+{
+    border-bottom: 2px solid #e67e22;
+}
+
+.procurando h2, h3
+{
+    text-align: center;
+    color: #333;
+    font-family: Tahoma;
+}
+
+.procurando h2 
+{
+    font-size: 28px;
+    margin: 0 0 8px 0;
+}
+
+.procurando h3 
+{
+    font-size: 23px;
+    letter-spacing: 2px;
+}
+
+.procurando .buttonGroup 
+{
+    margin: 30px auto 0 auto;
+    width: 430px;
+}
+
+.procurando .buttonGroup a 
+{
+    width: 200px;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 22px;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.procurando .buttonGroup a:nth-child(odd) 
+{
+    float: left;
+    background: #e67e22;
+    border-bottom: 3px solid #bc6518;
+}
+
+.procurando .buttonGroup a:nth-child(even) 
+{
+    float: right;
+    background: #3498db;
+    border-bottom: 3px solid #2a80b9;
+}
+
+.institucional 
+{
+    border-bottom: 2px solid #e67e22;
+    text-align: center;
+}
+
+.buscarVagas 
+{
+    text-align: center;
+}
+
+/* FIM SECTION */
+
+/* ESTILO DO RODAPÉ DA PÁGINA (footer) */
+
+footer 
+{
+    padding: 30px 0;
+    background: #333;
+}
+
+.infosRodape p 
+{
+    text-align: center;
+    margin: 0 0 7px 0;
+    color: #fff;
+}
+
+/* ESTILO PÁGINA DE LOGIN ADMINISTRADOR */
+
+.painelAdm 
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    height: 300px;
+    margin: -150px 0 0 -150px;
+    border: 1px solid #e67e22;
+    box-shadow: 0 0 8px #333;
+}
+
+.painelAdm div 
+{
+    margin: 50px 50px 0 50px;
+}
+
+.painelAdm h2 
+{
+    text-align: center;
+    font-size: 25px;
+    margin: 0 0 25px 0;
+}
+
+.painelAdm p 
+{
+    margin: 10px 0 5px 0;
+    color: #1c1c1c;
+}
+
+.painelAdm input[type="text"], .painelAdm input[type="password"] 
+{
+    border: 1px solid #3498db;
+    width: 192px;
+    padding: 3px;
+    letter-spacing: 1px;
+    color: #333;
+    border-radius: 4px;
+}
+
+.painelAdm input[type="password"] 
+{
+    letter-spacing: 3px !important;
+}
+
+.painelAdm input[type="submit"]
+{
+    padding: 6px 10px;
+    margin: 15px 70px 0 70px;
+    font-size: 15px;
+    font-weight: bold;
+    background: #e67e22;
+    border-radius: 6px;
+    color: #fff;
+}
+
+/* Formatação da grid de vagas na home */
+
+tbody
+{
+    border-radius: 10px;
+    border: 1px solid black;
+
+}
+
+th 
+{
+    background-color: #e67e22;
+    padding: 5px 10px;
+}
+
+td
+{
+    background-color: #AED6F1;
+    border-top: 1px solid black;
+    padding: 5px 10px;
+}
+
+.grid #gridVagas
+{
+    box-shadow: 10px 10px 5px #888888;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid black;
+    margin: 0 auto;
+}
+
+.grid input[type="text"], .grid input[type="password"] 
+{
+    border: 1px solid #3498db;
+    width: 192px;
+    padding: 3px;
+    letter-spacing: 1px;
+    color: #333;
+    border-radius: 4px;
+}
+
+.grid input[type="submit"]
+{
+    padding: 6px 10px;
+    margin: 15px 70px 0 70px;
+    font-size: 15px;
+    font-weight: bold;
+    background: #e67e22;
+    border-radius: 6px;
+    color: #fff;
+}
+
+/*
+
+TOM DE LARANJA: 
+TOM DE AZUL: #3498db;
+
+FONTE UTILIZADA EM TODO O SITE: Constantia (Não é necessário declarar, ela vai ser usada automaticamente)
+
+Pra que serve a div wrapper?
+    Para conter o conteúdo, e centralizá-lo na página... seu animal.
+*/

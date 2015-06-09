@@ -3017,26 +3017,26 @@ values (@codFuncionario, @Assunto, @Mensagem, @DataCriacao, @DataAviso, @Aviso )
 end
 
 
---create procedure USP_JAVA_INSERELEMBRETE
---(
---@codLembrente
---@codFuncionario int,
---@Assunto varchar (100),
---@Mensagem varchar (500),
---@DataCriacao date,
---@DataAviso date, 
---@Aviso int
+create procedure USP_JAVA_ALTERALEMBRETE
+(
+@codLembrente
+@codFuncionario int,
+@Assunto varchar (100),
+@Mensagem varchar (500),
+@DataCriacao date,
+@DataAviso date, 
+@Aviso int
 
 
---)
---as
+)
+as
 
---begin
+begin
 
---insert into Lembretes (codFuncionario,Assunto,Mensagem,DataCriacao,DataAviso,Aviso) 
---values (@codFuncionario, @Assunto, @Mensagem, @DataCriacao, @DataAviso, @Aviso )
+Update Lembretes set (codFuncionario,Assunto,Mensagem,DataCriacao,DataAviso,Aviso) 
+values (@codFuncionario, @Assunto, @Mensagem, @DataCriacao, @DataAviso, @Aviso )
 
---end
+end
 
 
 --create 

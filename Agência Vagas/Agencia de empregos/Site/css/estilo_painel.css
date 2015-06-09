@@ -1,0 +1,337 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+*::selection {
+    background: #ccc;
+}
+
+.wrapper {
+    width: 960px;
+    margin: 0 auto;
+}
+
+html, body, form {
+    -webkit-animation: fade 1s;
+    font-family: Constantia;
+    height: 100%;
+    min-width: 100%;
+}
+body {
+    background: linear-gradient(to bottom, #dedede, #fff) no-repeat;
+    overflow-x: hidden;
+}
+
+@keyframes fade {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@-webkit-keyframes fade {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@-moz-keyframes fade {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.menuPainel {
+    position: relative;
+    z-index: 1;
+    float: left;
+    background: #333;
+    height: 100%;
+    width: 15%;
+    min-height: 650px;
+    min-width: 110px;
+}
+
+.pnlLogout {
+    margin: 30px 10px;
+    overflow: auto;
+}
+.pnlLogout p {
+    color: #ccc;
+    text-align: center;
+}
+.pnlLogout span {
+    display: block;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+}
+.pnlLogout input[type="submit"] {
+    float: left;
+    clear: left;
+    margin: 10px 0 0 0;
+    padding: 7px;
+    font-weight: bold;
+    color: #fff;
+    background: #3498db;
+}
+
+.menuPainel h4 {
+    font-size: 1.1em;
+    margin: 0 5%;
+    color: #fff;
+    text-align: center;
+}
+
+.menuPainel nav ul {
+    list-style: none;
+    margin: 20px 8% 0 8%;
+}
+.menuPainel nav ul li {
+    margin: 0 0 10px 0;
+    font-size: 1em;
+}
+.menuPainel nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.5s;
+}
+.menuPainel nav ul li a:hover {
+    color: #0094ff;
+}
+
+section {
+    height: 100%;
+    width: 85%;
+    float: left;
+    position: relative;
+    z-index: 2;
+    background: linear-gradient(to bottom,rgba(0,0,0,0), rgba(0,0,0,0));
+    min-height: 410px;
+    min-width: 298px;
+}
+section h1 {
+    font-size: 30px;
+    text-align: center;
+    color: #333;
+    margin: 0 0 30px 0;
+}
+
+article[class*="gerencia"] {
+    padding: 30px 0;
+}
+
+.gerenciaCategoria .painelCategoria {
+    border-top: 1px solid #3498db;
+    padding: 20px 8px;
+    overflow: auto;
+}
+.gerenciaCategoria div h2 {
+    text-align: center;
+}
+.gerenciaCategoria .painelCategoria div{
+    width: 428px;
+    margin: 30px auto 0 auto;
+    padding: 0;
+}
+
+/* PAINEL DE ADIÇÃO DE CATEGORIAS */
+
+.gerenciaCategoria div.painelCategoria:nth-child(1) span {
+    float: left;
+    font-weight: bold;
+}
+.gerenciaCategoria div.painelCategoria:nth-child(1) input[type="text"] {
+    float: left;
+    border: 1px solid #3498db;
+    border-radius: 5px;
+    padding: 2px;
+    color: #333;
+    letter-spacing: 1px;
+    margin: 0 0 0 7px;
+}
+.gerenciaCategoria div.painelCategoria:nth-child(1) input[type="submit"] {
+    float: left;
+    clear: left;
+    margin: 30px 0 0 43%;
+    padding: 7px;
+    font-weight: bold;
+    color: #fff;
+    background: #3498db;
+}
+
+/* PAINEL DE EDIÇÃO DE CATEGORIAS */
+
+.gerenciaCategoria div.painelCategoria:nth-child(2) input[type="text"] {
+    float: left;
+    margin: 20px 0 20px 42%;
+    padding: 2px;
+    border: 1px solid #3498db;
+    border-radius: 5px;
+    text-align: center;
+    color: #333;
+    letter-spacing: 1px;
+}
+.gerenciaCategoria div.painelCategoria:nth-child(2) input[type="submit"] {
+    float: left;
+    clear: left;
+    margin: 0 0 0 45%;
+    padding: 7px;
+    font-weight: bold;
+    color: #fff;
+    background: #3498db;
+}
+
+/* PAINEL DE REMOÇÃO DE CATEGORIAS */
+
+.gerenciaCategoria div.painelCategoria:nth-child(3) input[type="text"] {
+    float: left;
+    margin: 20px 0 20px 42%;
+    padding: 2px;
+    border: 1px solid #3498db;
+    border-radius: 5px;
+    text-align: center;
+    color: #fff;
+    letter-spacing: 1px;
+    background: #808080;
+}
+.gerenciaCategoria div.painelCategoria:nth-child(3) input[type="submit"] {
+    float: left;
+    clear: left;
+    margin: 0 0 0 44%;
+    padding: 7px;
+    font-weight: bold;
+    color: #fff;
+    background: #3498db;
+}
+
+
+/* CSS DAS TABELAS */
+
+div[class*="painel"] table{
+    margin: 0 auto;
+}
+div[class*="painel"] th {
+    font-size: 20px;
+    color: #3498db;
+    text-shadow: 1px 1px 2px #ccc;
+}
+div[class*="painel"] tr td, th {
+    text-align: center;
+    padding: 5px;
+    font-size: 18px;
+}
+div[class*="painel"] tr td {
+    border: 1px solid #3498db;
+}
+div[class*="painel"] tr td:first-child a {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 17px;
+    color: inherit;
+}
+
+.linhaSelecionada{
+    background: #333;
+    color: #fff;
+}
+
+
+
+/* ÁREAS */
+
+.gerenciaArea .painelArea {
+    border-top: 1px solid #3498db;
+    padding: 20px 8px;
+    overflow: auto;
+}
+.gerenciaArea div h2 {
+    text-align: center;
+}
+.gerenciaArea .painelArea div{
+    width: 580px;
+    margin: 30px auto 0 auto;
+    padding: 0;
+}
+
+/* PAINEL DE ADIÇÃO DE ÁREAS */
+
+.gerenciaArea div.painelArea:nth-child(1) span {
+    float: left;
+    font-weight: bold;
+}
+.gerenciaArea div.painelArea:nth-child(1) input[type="text"] {
+    float: left;
+    border: 1px solid #3498db;
+    border-radius: 5px;
+    padding: 2px;
+    color: #333;
+    letter-spacing: 1px;
+    margin: 0 0 0 7px;
+}
+.gerenciaArea div.painelArea:nth-child(1) input[type="submit"] {
+    float: left;
+    clear: left;
+    margin: 30px 0 0 43%;
+    padding: 7px;
+    font-weight: bold;
+    color: #fff;
+    background: #3498db;
+}
+.gerenciaArea div.painelArea:nth-child(1) select{
+    padding: 3px;
+    margin: 0 0 0 8px;
+}
+
+/* PAINEL DE EDIÇÃO DE CATEGORIAS */
+
+.gerenciaArea div.painelArea:nth-child(2) input[type="text"] {
+    float: left;
+    margin: 20px 0 20px 42%;
+    padding: 2px;
+    border: 1px solid #3498db;
+    border-radius: 5px;
+    text-align: center;
+    color: #333;
+    letter-spacing: 1px;
+}
+.gerenciaArea div.painelArea:nth-child(2) input[type="submit"] {
+    float: left;
+    clear: left;
+    margin: 0 0 0 45%;
+    padding: 7px;
+    font-weight: bold;
+    color: #fff;
+    background: #3498db;
+}
+
+/* PAINEL DE REMOÇÃO DE CATEGORIAS */
+
+.gerenciaArea div.painelArea:nth-child(3) input[type="text"] {
+    float: left;
+    margin: 20px 0 20px 42%;
+    padding: 2px;
+    border: 1px solid #3498db;
+    border-radius: 5px;
+    text-align: center;
+    color: #fff;
+    letter-spacing: 1px;
+    background: #808080;
+}
+.gerenciaArea div.painelArea:nth-child(3) input[type="submit"] {
+    float: left;
+    clear: left;
+    margin: 0 0 0 44%;
+    padding: 7px;
+    font-weight: bold;
+    color: #fff;
+    background: #3498db;
+}

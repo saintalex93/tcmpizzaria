@@ -59,8 +59,7 @@ codFuncionario INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 codEmpresa INT FOREIGN KEY REFERENCES Empresas(codEmpresa),
 Nome varchar (50),
 Email varchar(50) UNIQUE,
-Senha varchar(20),
-
+Senha varchar(20)
 )
 go
 
@@ -304,7 +303,7 @@ as
 
 		if (@codigo > 0)
 			Begin
-				select codFuncionario, Nome, codEmpresa from Funcionarios where Email = @email and Senha = @senha
+				select codFuncionario, Nome from Funcionarios where Email = @email and Senha = @senha
 			End
 	End
 
