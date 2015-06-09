@@ -27,9 +27,9 @@ public class ControladorLancamentoFuncionario {
     public void InserirCliente (ModeloFuncionario fun) throws SQLException, Exception
     {
         conn = new SqlServer();
-            String sql = "Insert into Pagamento (ValorPagamento, DataExpedido, TipoPagamento, Cod_Funcionario)"
-                +"values(?,?,?,?)";
-        PreparedStatement pst = conn.getCon().prepareStatement(sql);
+            //String sql = "Insert into Pagamento (ValorPagamento, DataExpedido, TipoPagamento, Cod_Funcionario)"
+          //      +"values(?,?,?,?)";
+        PreparedStatement pst = conn.getConexao().prepareCall("{call JAVA_USP_LancamentoFuncionario (?,?,?,?)}");
         pst.setDouble(1, fun.getValorPagamento()); 
         pst.setString(2, fun.getDataExpedido());
         pst.setString(3, fun.getTipodeDespesa());

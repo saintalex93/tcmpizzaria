@@ -73,6 +73,11 @@ public class frmPromocoes extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Promoções");
         setResizable(false);
+        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                formMouseMoved(evt);
+            }
+        });
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -81,18 +86,13 @@ public class frmPromocoes extends javax.swing.JFrame {
                 formWindowOpened(evt);
             }
         });
-        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                formMouseMoved(evt);
-            }
-        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setBackground(new java.awt.Color(88, 55, 66));
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(239, 111, 83));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Consulta de Lançamentos de Promoções");
+        jLabel1.setText("Consulta de Lançamentos de Produtos em Promoção");
         jLabel1.setOpaque(true);
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, -4, 620, 50));
 
@@ -175,35 +175,35 @@ public class frmPromocoes extends javax.swing.JFrame {
         lbltotal1.setForeground(new java.awt.Color(88, 55, 66));
         lbltotal1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbltotal1.setText("Valor Total:");
-        jPanel1.add(lbltotal1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 140, 27));
+        jPanel1.add(lbltotal1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 140, 27));
 
         lblTotalTodos.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblTotalTodos.setForeground(new java.awt.Color(88, 55, 66));
         lblTotalTodos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTotalTodos.setText("Valor Total:");
-        jPanel1.add(lblTotalTodos, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 27, 140, 40));
+        jPanel1.add(lblTotalTodos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 140, 40));
 
         lblTotalTodosVal.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblTotalTodosVal.setForeground(new java.awt.Color(88, 55, 66));
-        jPanel1.add(lblTotalTodosVal, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 38, 110, 20));
+        jPanel1.add(lblTotalTodosVal, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, 110, 20));
 
         lblUnidade.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblUnidade.setForeground(new java.awt.Color(88, 55, 66));
         lblUnidade.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblUnidade.setText("Quantidade:");
-        jPanel1.add(lblUnidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 20, 160, 27));
+        jPanel1.add(lblUnidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 160, 27));
 
         lbltotal.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbltotal.setForeground(new java.awt.Color(88, 55, 66));
         lbltotal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jPanel1.add(lbltotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, 120, 27));
+        jPanel1.add(lbltotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 120, 27));
 
         lblpromocoes.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblpromocoes.setForeground(new java.awt.Color(88, 55, 66));
         lblpromocoes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jPanel1.add(lblpromocoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, 60, 27));
+        jPanel1.add(lblpromocoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 40, 27));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 310, 310, 100));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, 280, 100));
 
         setSize(new java.awt.Dimension(602, 495));
         setLocationRelativeTo(null);
@@ -224,19 +224,26 @@ public class frmPromocoes extends javax.swing.JFrame {
 
             if (JcomboPromocoes.getSelectedIndex() == 1) {
                 Todos();
-                preencherTabelaAgrupada("select pr.Cod_Promocao,pr.Nome_Promocao,count (pr.Cod_Promocao)as Quantidade, sum (Valor) as Total, Data from PedidoPromocao as p inner join Promocao as pr on pr.Cod_Promocao = p.Cod_Promocao inner join Pedido as pd on pd.Cod_Pedido = p.Cod_Pedido where Data Between '" + datainicio + "' and '" + datafim + "' group by p.Cod_Promocao, pr.Nome_Promocao, Data, pr.Cod_Promocao, Valor ");
+                preencherTabelaAgrupada("select promocao.Cod_Promocao,Promocao.Nome_Promocao, count (produtos.Cod_Produto) as Qdt_Vendida,"+
+                        " sum (produtos.Valor_Venda) as ValorTotal from Promocao as promocao inner join ProdutoPromocao as produtoPromo on"+
+                        " produtoPromo.Cod_Promocao = promocao.Cod_Promocao inner join Produto as produtos on produtos.Cod_Produto = "+
+                        "produtoPromo.Cod_Produto inner join Detalhe_Pedido as Dp on Dp.Cod_Produto = produtos.Cod_Produto inner join Pedido"+
+                        " as pedido on pedido.Cod_Pedido = Dp.Cod_Pedido and pedido.Data Between '"+datainicio+"' and '"+datafim+"' group by "+
+                        "promocao.Nome_Promocao, promocao.Cod_Promocao ");
 
                 double x = 0.0;
                 for (int y = 0; y < JtablePromocao.getRowCount(); y++) {
-                    x += Double.parseDouble(JtablePromocao.getModel().getValueAt(y, 3).toString().replace(",", ".").replace("R$", ""));
+                    x += Double.parseDouble(JtablePromocao.getModel().getValueAt(y, 3).toString().replace(".", "").replace(",", ".").replace("R$", ""));
                 }
                 lblTotalTodosVal.setText(z.format(x));
 
             } else {
                 Grupo();
-                preencherTabela("select p.Cod_Promocao, pr.Nome_Promocao,p.Cod_Pedido,pd.ValorPago, pd.Data"
-                        + " from PedidoPromocao as p inner join Promocao as pr on pr.Cod_Promocao = p.Cod_Promocao inner join Pedido "
-                        + "as pd on pd.Cod_Pedido = p.Cod_Pedido where nome_promocao = '" + NomePromocao + "' and pd.Data between '" + datainicio + "' and '" + datafim + "'");
+                preencherTabela("select promocao.Cod_Promocao,Promocao.Nome_Promocao,produtos.Nome_Produto,produtos.Valor_Venda, pedido.Data  from Promocao"+
+                        " as promocao inner join ProdutoPromocao as produtoPromo on produtoPromo.Cod_Promocao = promocao.Cod_Promocao inner join Produto as "+
+                        "produtos on produtos.Cod_Produto = produtoPromo.Cod_Produto inner join Detalhe_Pedido as Dp on Dp.Cod_Produto = produtos.Cod_Produto "+
+                        "inner join Pedido as pedido on pedido.Cod_Pedido = Dp.Cod_Pedido and promocao.Nome_Promocao like '"+NomePromocao+"' and pedido.Data between "+""
+                        + "'"+datainicio+"' and '"+datafim+"'  order by Data, Nome_Produto asc");
 
                 int linhas;
                 linhas = (JtablePromocao.getRowCount());
@@ -288,7 +295,9 @@ public class frmPromocoes extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        timer.stop();
+   timer.stop();
+        frmHome.contador = 10;
+        frmHome.binario = 0;
     }//GEN-LAST:event_formWindowClosing
 
     private void formMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseMoved
@@ -450,7 +459,7 @@ public class frmPromocoes extends javax.swing.JFrame {
 
     public void PreencherCombobox() {
         connCombo.getCon();
-        connCombo.executaSql("select * from promocao order by Nome_Promocao");
+        connCombo.executaSql(" select distinct Nome_Promocao from promocao as pro inner join ProdutoPromocao as pp on pp.Cod_Promocao = pro.Cod_Promocao inner join Detalhe_Pedido as dp on dp.Cod_Produto = pp.Cod_Produto order by Nome_Promocao ");
 
         try {
             connCombo.rs.first();
@@ -471,7 +480,7 @@ public class frmPromocoes extends javax.swing.JFrame {
         ArrayList dados = new ArrayList();
         String[] Colunas = new String[]{"<html><span style='color:#ef6f53;font-weight: bold;'>Código</span></html>",
             "<html><span style='color:#ef6f53;font-weight: bold;'>Nome da Promoção</span></html>",
-            "<html><span style='color:#ef6f53;font-weight: bold;'>Código do Pedido</span></html>",
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Nome do Produto</span></html>",
             "<html><span style='color:#ef6f53;font-weight: bold;'>Valor Pago</span></html>",
             "<html><span style='color:#ef6f53;font-weight: bold;'>Data</span></html>"};
 
@@ -479,14 +488,14 @@ public class frmPromocoes extends javax.swing.JFrame {
         try {
             conecta.rs.first();
             do {
-
-                dados.add(new Object[]{conecta.rs.getInt("Cod_Promocao"), conecta.rs.getString("Nome_Promocao"), conecta.rs.getInt("Cod_Pedido"),
-                            z.format(conecta.rs.getDouble("ValorPago")), fmt.format(conecta.rs.getDate("Data"))});
+//  
+                dados.add(new Object[]{conecta.rs.getInt("Cod_Promocao"), conecta.rs.getString("Nome_Promocao"), conecta.rs.getString("Nome_Produto"),
+                            z.format(conecta.rs.getDouble("Valor_Venda")), fmt.format(conecta.rs.getDate("Data"))});
 
             } while (conecta.rs.next());
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Produto não lançado no intervalo de data escolhida");
+            JOptionPane.showMessageDialog(this, "Produto não lançado no intervalo de data escolhida: "+e);
 
         }
 
@@ -494,11 +503,11 @@ public class frmPromocoes extends javax.swing.JFrame {
         JtablePromocao.setModel(modelo);
         JtablePromocao.getColumnModel().getColumn(0).setPreferredWidth(60); // Tamanho em pixel da coluna
         JtablePromocao.getColumnModel().getColumn(0).setResizable(false);
-        JtablePromocao.getColumnModel().getColumn(1).setPreferredWidth(220);
+        JtablePromocao.getColumnModel().getColumn(1).setPreferredWidth(161);
         JtablePromocao.getColumnModel().getColumn(1).setResizable(false);
-        JtablePromocao.getColumnModel().getColumn(2).setPreferredWidth(105);
+        JtablePromocao.getColumnModel().getColumn(2).setPreferredWidth(150);
         JtablePromocao.getColumnModel().getColumn(2).setResizable(false);
-        JtablePromocao.getColumnModel().getColumn(3).setPreferredWidth(90);
+        JtablePromocao.getColumnModel().getColumn(3).setPreferredWidth(102);
         JtablePromocao.getColumnModel().getColumn(3).setResizable(false);
         JtablePromocao.getColumnModel().getColumn(4).setPreferredWidth(90);
         JtablePromocao.getColumnModel().getColumn(4).setResizable(false);
@@ -507,6 +516,7 @@ public class frmPromocoes extends javax.swing.JFrame {
         JtablePromocao.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
     }
+//promocao.Cod_Promocao,Promocao.Nome_Promocao, count (produtos.Cod_Produto) as Qdt_Vendida, sum (produtos.Valor_Venda) as ValorTotal from " +
 
     public void preencherTabelaAgrupada(String Sql) {
         ArrayList dados = new ArrayList();
@@ -520,13 +530,13 @@ public class frmPromocoes extends javax.swing.JFrame {
             conecta.rs.first();
             do {
 
-                dados.add(new Object[]{conecta.rs.getInt("Cod_Promocao"), conecta.rs.getString("Nome_Promocao"), conecta.rs.getInt("Quantidade"),
-                            z.format(conecta.rs.getDouble("Total"))});
+                dados.add(new Object[]{conecta.rs.getInt("Cod_Promocao"), conecta.rs.getString("Nome_Promocao"), conecta.rs.getInt("Qdt_Vendida"),
+                            z.format(conecta.rs.getDouble("ValorTotal"))});
 
             } while (conecta.rs.next());
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Produto não lançado no intervalo de data escolhido");
+            JOptionPane.showMessageDialog(this, "Produto não lançado no intervalo de data escolhido : "+ e);
 
         }
 

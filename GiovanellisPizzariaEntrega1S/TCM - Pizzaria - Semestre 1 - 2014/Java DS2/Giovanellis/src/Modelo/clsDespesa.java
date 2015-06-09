@@ -13,6 +13,7 @@ public class clsDespesa {
     private String NomeDespesa;
     private String SituacaoDespesa;
     private int CodDespesa;
+   
     
     
 

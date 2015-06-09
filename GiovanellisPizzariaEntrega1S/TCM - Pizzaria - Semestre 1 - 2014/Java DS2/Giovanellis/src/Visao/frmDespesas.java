@@ -54,6 +54,7 @@ public class frmDespesas extends javax.swing.JFrame {
         this.setIconImage(new ImageIcon(getClass().getResource("/Imagens/Icone.png")).getImage());
         initComponents();
         conecta.getCon();
+        connCombo.getCon();
 
     }
 
@@ -184,7 +185,7 @@ public class frmDespesas extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 630, 100, 40));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 630, 100, 40));
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(239, 111, 83));
@@ -197,7 +198,7 @@ public class frmDespesas extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 630, 100, 40));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 630, 100, 40));
 
         BtnLancar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         BtnLancar.setForeground(new java.awt.Color(239, 111, 83));
@@ -210,7 +211,7 @@ public class frmDespesas extends javax.swing.JFrame {
                 BtnLancarActionPerformed(evt);
             }
         });
-        getContentPane().add(BtnLancar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, 100, 40));
+        getContentPane().add(BtnLancar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, 100, 40));
 
         jLabel8.setBackground(new java.awt.Color(88, 55, 66));
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -254,7 +255,12 @@ public class frmDespesas extends javax.swing.JFrame {
         jButton3.setText("Cancelar");
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton3.setOpaque(false);
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 280, 100, 40));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 280, 100, 40));
         getContentPane().add(TxtValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 100, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -318,35 +324,55 @@ public class frmDespesas extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void BtnLancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLancarActionPerformed
+
+        
         if (validarCampos()) {
             if (preencheObjeto()) {
                 try {
                     DAO.Incluir(ObjLancaDespesa);
+                    
                     JOptionPane.showMessageDialog(this, "Dados Inseridos com sucesso");
 
                     preencherTabela("select td.codTipoDespesa, td.NomeDespesa, td.SituacaoDespesa, d.ValorDespesa, d.DataPagamento, d.DataVencimento from Despesa as D inner join TipoDespesa as"
                             + " TD on td.codTipoDespesa = D.TipoDespesa where td.NomeDespesa = '" + NomeDespesa + "'");
-
+                     
+                   preencherCombo();
                     double x = 0.0;
                     for (int y = 0; y < JTableDespesas.getRowCount(); y++) {
                         x += Double.parseDouble(JTableDespesas.getModel().getValueAt(y, 3).toString().replace("R$", "").replace(".", "").replace(",", "."));
                     }
                     lblTotal.setText(z.format(x));
-
+                    
+                    
+               
                     limparCampos();
-                    preencherCombo();
+                    
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(this, "Erro ao Lançar dados: "+ex);
                 }
             }
         }
 
+        
 
     }//GEN-LAST:event_BtnLancarActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         NumberFormat z = NumberFormat.getCurrencyInstance();
+         Despesa = (String) CmbDespesa.getSelectedItem().toString().substring(53).replace("</span></html>", "");
+         
+          conecta.executaSql("select * from TipoDespesa where NomeDespesa like '" + Despesa + "'");
+            try {
+                conecta.rs.first();
+                 CodigoDespesa = (conecta.rs.getString("codTipoDespesa"));
+                
 
+            } catch (SQLException ex) {
+                Logger.getLogger(frmDespesas.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            System.out.println(Despesa);
+            System.out.println(CodigoDespesa);
+         
         if (CmbDespesa.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(this, "Selecione uma Despesa");
         } else if (ValidaDatas()) {
@@ -354,8 +380,8 @@ public class frmDespesas extends javax.swing.JFrame {
                 preencherTabela("select td.codTipoDespesa, td.NomeDespesa, td.SituacaoDespesa, d.ValorDespesa, d.DataPagamento, d.DataVencimento from Despesa as D inner join TipoDespesa as TD"
                         + " on td.codTipoDespesa = D.TipoDespesa where d.DataVencimento between '" + datainicio + "' and '" + datafim + "'");
             } else {
-                preencherTabela("select td.codTipoDespesa, td.NomeDespesa, td.SituacaoDespesa, d.ValorDespesa, d.DataPagamento, d.DataVencimento from Despesa as D inner join TipoDespesa as"
-                        + " TD on td.codTipoDespesa = D.TipoDespesa where td.NomeDespesa = '" + Despesa + "' and d.DataVencimento between '" + datainicio + "' and '" + datafim + "'");
+                preencherTabela("select td.codTipoDespesa, td.NomeDespesa, td.SituacaoDespesa, d.ValorDespesa, d.DataPagamento, d.DataVencimento from TipoDespesa as Td inner join Despesa as D on "+
+             "D.TipoDespesa = Td.codTipoDespesa and td.codTipoDespesa = "+CodigoDespesa+" and d.DataVencimento between '"+datainicio+"' and '"+datafim+"' order by td.NomeDespesa desc");
             }
 
             double x = 0.0;
@@ -398,7 +424,7 @@ public class frmDespesas extends javax.swing.JFrame {
         timer.start();
         preencherComboLancar();
         TxtValor.setDocument(new teclasPermitidas());
-        frmHome.binario = 0;
+       
         TxtValor.setDocument(new LimitadorMoeda());
     }//GEN-LAST:event_formWindowOpened
 
@@ -425,7 +451,8 @@ public class frmDespesas extends javax.swing.JFrame {
     }//GEN-LAST:event_JdcFimPropertyChange
 
     private void CmbDespesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmbDespesaActionPerformed
-        Despesa = (String) CmbDespesa.getSelectedItem().toString().substring(53).replace("</span></html>", "");
+       
+        
 
     }//GEN-LAST:event_CmbDespesaActionPerformed
 
@@ -441,6 +468,7 @@ public class frmDespesas extends javax.swing.JFrame {
             try {
                 conecta.rs.first();
                 txtCodDesp.setText(conecta.rs.getString("codTipoDespesa"));
+                
 
             } catch (SQLException ex) {
                 Logger.getLogger(frmDespesas.class.getName()).log(Level.SEVERE, null, ex);
@@ -465,10 +493,15 @@ public class frmDespesas extends javax.swing.JFrame {
     }//GEN-LAST:event_formMouseMoved
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        timer.stop();        // TODO add your handling code here:
-        frmHome.binario = 1;
-
+        timer.stop();
+        frmHome.contador = 10;
+        frmHome.binario = 0;      
+   
     }//GEN-LAST:event_formWindowClosing
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+
+    }//GEN-LAST:event_jButton3ActionPerformed
     int contador = 10;
 
     public void escreva() {
@@ -562,6 +595,7 @@ public class frmDespesas extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     NumberFormat z = NumberFormat.getCurrencyInstance();
     SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
+     String CodigoDespesa;
 
     Date data1, data2, data3, data4;
     String datainicio, datafim, data, Despesa, LancDesp, DataPag, DataVenc, NomeDespesa;
@@ -667,7 +701,7 @@ public class frmDespesas extends javax.swing.JFrame {
         JTableDespesas.setModel(modelo);
         JTableDespesas.getColumnModel().getColumn(0).setPreferredWidth(50); // Tamanho em pixel da coluna
         JTableDespesas.getColumnModel().getColumn(0).setResizable(false);
-        JTableDespesas.getColumnModel().getColumn(1).setPreferredWidth(130);
+        JTableDespesas.getColumnModel().getColumn(1).setPreferredWidth(143);
         JTableDespesas.getColumnModel().getColumn(1).setResizable(false);
         JTableDespesas.getColumnModel().getColumn(2).setPreferredWidth(60);
         JTableDespesas.getColumnModel().getColumn(2).setResizable(false);
@@ -682,12 +716,18 @@ public class frmDespesas extends javax.swing.JFrame {
         JTableDespesas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
     }
+    
+   
 
     public void preencherCombo() {
+       
+        
         connCombo.getCon();
-        connCombo.executaSql("select NomeDespesa from TipoDespesa as Td inner join Despesa as D on D.CodDespesa = Td.codTipoDespesa order by NomeDespesa");
+        connCombo.executaSql("select distinct NomeDespesa from TipoDespesa as Td inner join Despesa as D on D.TipoDespesa = Td.codTipoDespesa order by NomeDespesa");
 
         try {
+            
+            CmbDespesa.removeAllItems();
             connCombo.rs.first();
             CmbDespesa.addItem("<html><span style='color:#583742;font-weight: bold;'>Selecione a Despesa...</span></html>");
             CmbDespesa.addItem("<html><span style='color:#583742;font-weight: bold;'>Todas</span></html>");
@@ -793,5 +833,6 @@ public class frmDespesas extends javax.swing.JFrame {
         return true;
 
     }
+    
 
 }

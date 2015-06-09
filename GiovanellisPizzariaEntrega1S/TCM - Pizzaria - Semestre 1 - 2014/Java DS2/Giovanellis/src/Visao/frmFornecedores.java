@@ -37,7 +37,7 @@ public class frmFornecedores extends javax.swing.JFrame {
     public frmFornecedores() throws Exception {
         Color Fundo = new Color(238, 235, 227);
         getContentPane().setBackground(Fundo);
-        //setAlwaysOnTop(true);
+        setAlwaysOnTop(true);
         conecta = new SqlServer();
         this.setIconImage(new ImageIcon(getClass().getResource("/Imagens/Icone.png")).getImage());
         initComponents();
@@ -165,12 +165,12 @@ public class frmFornecedores extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Detalhamento de compra dos Insumos");
         jLabel2.setOpaque(true);
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 410, 660, 40));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 410, 680, 40));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(88, 55, 66));
         jLabel4.setText("Data Final");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 94, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 95, -1, -1));
 
         JtableDetalhe.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         JtableDetalhe.setForeground(new java.awt.Color(88, 55, 66));
@@ -200,7 +200,7 @@ public class frmFornecedores extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(88, 55, 66));
         jLabel7.setText("Data Inicial");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 94, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 95, -1, -1));
 
         setSize(new java.awt.Dimension(671, 704));
         setLocationRelativeTo(null);
@@ -305,6 +305,8 @@ public class frmFornecedores extends javax.swing.JFrame {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         timer.stop();
+        frmHome.contador = 10;
+        frmHome.binario = 0;
 
     }//GEN-LAST:event_formWindowClosing
 
@@ -394,7 +396,7 @@ public class frmFornecedores extends javax.swing.JFrame {
 
     public void PreencherCombobox() {
         connCombo.getCon();
-        connCombo.executaSql("select Nome_Fantasia from Fornecedor order by Nome_Fantasia asc ");
+        connCombo.executaSql("select distinct Nome_Fantasia from Fornecedor as forn inner join DetalheCompra as dp on dp.cod_fornecedor = forn.Cod_Fornecedor order by Nome_Fantasia asc");
 
         try {
             connCombo.rs.first();

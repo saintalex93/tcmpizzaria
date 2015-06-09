@@ -26,7 +26,7 @@ public class SqlServer {
         Class.forName("net.sourceforge.jtds.jdbc.Driver");
         con = DriverManager.getConnection(url, usuario, senha);
 
-//        String usuario = "aluno", senha = "etesp", url = "jdbc:jtds:sqlserver://LAB23T-17:1433/Pizzaria";
+//        String usuario = "aluno", senha = "etesp", url = "jdbc:jtds:sqlserver://LAB02T-19:1433/Pizzaria";
 //        Class.forName("net.sourceforge.jtds.jdbc.Driver");
 //        con = DriverManager.getConnection(url, usuario, senha);
     }

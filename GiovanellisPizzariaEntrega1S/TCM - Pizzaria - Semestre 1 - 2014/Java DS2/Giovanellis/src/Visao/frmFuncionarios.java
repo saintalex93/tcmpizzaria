@@ -59,12 +59,11 @@ public class frmFuncionarios extends javax.swing.JFrame {
         conecta = new SqlServer();
         ControladorFun = new ControladorLancamentoFuncionario();
         ModFun = new ModeloFuncionario();
-        conecta.getCon();
-        connCombo.getCon();
+        
 
         Color Fundo = new Color(238, 235, 227);
         getContentPane().setBackground(Fundo);
-        setAlwaysOnTop(true);
+       setAlwaysOnTop(true);
         this.setIconImage(new ImageIcon(getClass().getResource("/Imagens/Icone.png")).getImage());
 
         initComponents();
@@ -112,6 +111,9 @@ public class frmFuncionarios extends javax.swing.JFrame {
             }
         });
         addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
             }
@@ -168,7 +170,7 @@ public class frmFuncionarios extends javax.swing.JFrame {
         lblTotal.setForeground(new java.awt.Color(88, 55, 66));
         lblTotal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTotal.setText("Total");
-        getContentPane().add(lblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 570, 640, 30));
+        getContentPane().add(lblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 580, 640, 30));
 
         JcbFuncionari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -192,7 +194,7 @@ public class frmFuncionarios extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(JtableFuncionarios);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 450, 620, 100));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 450, 620, 120));
 
         jcbFuncionarioPagamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -309,7 +311,8 @@ public class frmFuncionarios extends javax.swing.JFrame {
         JtableFuncionarios.setSelectionBackground(Roxo);
         JtableFuncionarios.setSelectionForeground(Laranja);
         timer.start();
-        PreencherCombobox();
+        PreencherComboboxConsultar();
+        PreencherComboboxPagamento();
         jdcSalario.setDate(new Date());
 
     }//GEN-LAST:event_formWindowOpened
@@ -413,6 +416,9 @@ public class frmFuncionarios extends javax.swing.JFrame {
                     try {
                         ControladorFun.InserirCliente(ModFun);
                         JOptionPane.showMessageDialog(this, "Dados Inseridos com sucesso");
+                        
+                        PreencherComboboxConsultar();
+                       
 
                         preencherTabela("select f.cod_funcionario, f.Nome_func, p.tipoPagamento, p.dataExpedido, P.valorPagamento from "
                                 + "funcionario as F inner join pagamento as P on f.cod_funcionario = p.cod_funcionario where f.Nome_func = '" + funcionariolancamento + "' ");
@@ -428,7 +434,9 @@ public class frmFuncionarios extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIncluirSalarioActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        timer.stop();
+      timer.stop();
+        frmHome.contador = 10;
+        frmHome.binario = 0;
         
     }//GEN-LAST:event_formWindowClosing
 
@@ -446,14 +454,16 @@ public class frmFuncionarios extends javax.swing.JFrame {
 //                
 //        }
 //        
+        
+     
     }//GEN-LAST:event_txtSalarioKeyPressed
 
     private void txtSalarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSalarioKeyTyped
         // O que retorna na Label como caracter
 
-        if (txtSalario.getText().length() == 7) {
-            evt.consume();
-        }
+//        if (txtSalario.getText().length() == 7) {
+//            evt.consume();
+//        }
 
 
     }//GEN-LAST:event_txtSalarioKeyTyped
@@ -468,6 +478,11 @@ try {
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jdcSalarioPropertyChange
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+ 
+
+    }//GEN-LAST:event_formWindowClosed
     int contador = 10;
 
     public void escreva() {
@@ -601,7 +616,7 @@ NumberFormat z = NumberFormat.getCurrencyInstance();
         btnIncluirSalario.setEnabled(true);
     }
 
-    public void PreencherCombobox() {
+    public void PreencherComboboxPagamento() {
         connCombo.getCon();
         connCombo.executaSql("select Nome_Func from Funcionario order by Nome_Func");
 
@@ -609,21 +624,52 @@ NumberFormat z = NumberFormat.getCurrencyInstance();
 
             connCombo.rs.first();
             jcbFuncionarioPagamento.addItem("<html><span style='color:#583742;font-weight: bold;'>Selecione o Funcionário...</span></html>");
-            JcbFuncionari.addItem("<html><span style='color:#583742;font-weight: bold;'>Selecione o Funcionário...</span></html>");
-            JcbFuncionari.addItem("<html><span style='color:#583742;font-weight: bold;'>Todos</span></html>");
 
             do {
 
                 jcbFuncionarioPagamento.addItem("<html><span style='color:#583742;font-weight: bold;'>" + (connCombo.rs.getString("Nome_Func") + "</span></html>"));
-                JcbFuncionari.addItem("<html><span style='color:#583742;font-weight: bold;'>" + (connCombo.rs.getString("Nome_Func") + "</span></html>"));
-
+              
             } while (connCombo.rs.next());
+            
+            
+            
+            
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, "Erro ao preencher ComboBox" + e);
         }
 
     }
+    
+     public void PreencherComboboxConsultar() {
+        connCombo.getCon();
+        connCombo.executaSql("select distinct Nome_Func from Funcionario as fun inner join Pagamento as p on p.Cod_Funcionario = fun.Cod_Funcionario order by Nome_Func");
+
+        try {
+            JcbFuncionari.removeAllItems();
+            connCombo.rs.first();
+            JcbFuncionari.addItem("<html><span style='color:#583742;font-weight: bold;'>Selecione o Funcionário...</span></html>");
+            JcbFuncionari.addItem("<html><span style='color:#583742;font-weight: bold;'>Todos</span></html>");
+
+            do {
+
+                JcbFuncionari.addItem("<html><span style='color:#583742;font-weight: bold;'>" + (connCombo.rs.getString("Nome_Func") + "</span></html>"));
+               
+
+            } while (connCombo.rs.next());
+            
+            
+            
+            
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Erro ao preencher ComboBox" + e);
+        }
+
+    }
+    
+    
+    
 
     public void preencherTabela(String Sql) {
         ArrayList dados = new ArrayList();
@@ -644,7 +690,7 @@ NumberFormat z = NumberFormat.getCurrencyInstance();
             } while (conecta.rs.next());
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Não há lançamentos" +e);
+            JOptionPane.showMessageDialog(this, "Não há lançamentos na data informada");
 
         }
 

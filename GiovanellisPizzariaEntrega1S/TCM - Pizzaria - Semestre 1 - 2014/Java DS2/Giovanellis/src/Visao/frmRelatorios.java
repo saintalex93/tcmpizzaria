@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Visao;
+
 import Modelo.ModeloRelatorio;
 import Controlador.ControladorRelatorio;
 import java.awt.Color;
@@ -26,9 +27,9 @@ import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Calendar;
 
 import javax.mail.Address;
 import javax.mail.Message;
@@ -39,14 +40,22 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
+import javafx.stage.FileChooser;
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
+import javax.swing.JFileChooser;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.ChartUtilities;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.general.DefaultPieDataset;
 
 /**
  *
  * @author Alex
  */
 public class frmRelatorios extends javax.swing.JFrame {
+
     ModeloRelatorio ModeloRelatorio;
     ControladorRelatorio ControladorRelatorio;
     SqlServer conecta;
@@ -60,9 +69,10 @@ public class frmRelatorios extends javax.swing.JFrame {
         ControladorRelatorio = new ControladorRelatorio();
         Color Fundo = new Color(238, 235, 227);
         getContentPane().setBackground(Fundo);
-        //setAlwaysOnTop(true);
+        setAlwaysOnTop(true);
         this.setIconImage(new ImageIcon(getClass().getResource("/Imagens/Icone.png")).getImage());
         initComponents();
+       
     }
 
     /**
@@ -85,35 +95,31 @@ public class frmRelatorios extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jLabel29 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         lblInicio1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         lblFim1 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
-        JlblTotalPromocao = new javax.swing.JLabel();
+        lblRelPromocao = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         lblInicio2 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
         lblFim2 = new javax.swing.JLabel();
         jLabel40 = new javax.swing.JLabel();
-        JlblTotalPedidos = new javax.swing.JLabel();
-        jButton8 = new javax.swing.JButton();
+        lblRelPedidos = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         lblInicio3 = new javax.swing.JLabel();
         jLabel42 = new javax.swing.JLabel();
         lblFim3 = new javax.swing.JLabel();
         jLabel44 = new javax.swing.JLabel();
-        JlblTotalCompras = new javax.swing.JLabel();
-        jButton9 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
+        lblRelCompras = new javax.swing.JLabel();
         lblInicio4 = new javax.swing.JLabel();
         lblFim4 = new javax.swing.JLabel();
         jLabel48 = new javax.swing.JLabel();
         jLabel49 = new javax.swing.JLabel();
-        JlblTotalFuncionarios = new javax.swing.JLabel();
+        lblRelFuncionario = new javax.swing.JLabel();
         jLabel56 = new javax.swing.JLabel();
         jLabel57 = new javax.swing.JLabel();
         jLabel58 = new javax.swing.JLabel();
@@ -122,8 +128,12 @@ public class frmRelatorios extends javax.swing.JFrame {
         jLabel61 = new javax.swing.JLabel();
         lblFim5 = new javax.swing.JLabel();
         jLabel63 = new javax.swing.JLabel();
-        JlblTotalDespesas = new javax.swing.JLabel();
-        jButton13 = new javax.swing.JButton();
+        lblRelatorioDespesas = new javax.swing.JLabel();
+        RD_Pedidos = new javax.swing.JRadioButton();
+        RD_Promocao = new javax.swing.JRadioButton();
+        RD_Compras = new javax.swing.JRadioButton();
+        RD_Funcionarios = new javax.swing.JRadioButton();
+        RD_Despesas = new javax.swing.JRadioButton();
         jButton10 = new javax.swing.JButton();
         BtnPdf = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -132,11 +142,11 @@ public class frmRelatorios extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel65 = new javax.swing.JLabel();
-        JlblTotalReceitas = new javax.swing.JLabel();
+        LblTotalReceitas = new javax.swing.JLabel();
         jLabel66 = new javax.swing.JLabel();
-        JlblTotalGeralDespesas = new javax.swing.JLabel();
+        lblTotalDespesas = new javax.swing.JLabel();
         jLabel68 = new javax.swing.JLabel();
-        JlblTotalGeral = new javax.swing.JLabel();
+        lblTotalGeral = new javax.swing.JLabel();
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -226,6 +236,9 @@ public class frmRelatorios extends javax.swing.JFrame {
             }
         });
         addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
             }
@@ -233,6 +246,7 @@ public class frmRelatorios extends javax.swing.JFrame {
                 formWindowOpened(evt);
             }
         });
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel7.setOpaque(false);
@@ -243,12 +257,6 @@ public class frmRelatorios extends javax.swing.JFrame {
         jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel29.setText("Relatório de Promoções");
         jLabel29.setOpaque(true);
-
-        jButton5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(239, 111, 83));
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/BotaoRel.png"))); // NOI18N
-        jButton5.setText("Limpar");
-        jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(88, 55, 66));
@@ -269,10 +277,10 @@ public class frmRelatorios extends javax.swing.JFrame {
         jLabel35.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel35.setText("Valor Total");
 
-        JlblTotalPromocao.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        JlblTotalPromocao.setForeground(new java.awt.Color(239, 111, 83));
-        JlblTotalPromocao.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        JlblTotalPromocao.setText("R$");
+        lblRelPromocao.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblRelPromocao.setForeground(new java.awt.Color(239, 111, 83));
+        lblRelPromocao.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblRelPromocao.setText("R$");
 
         jLabel32.setBackground(new java.awt.Color(88, 55, 66));
         jLabel32.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -300,16 +308,10 @@ public class frmRelatorios extends javax.swing.JFrame {
         jLabel40.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel40.setText("Valor Total");
 
-        JlblTotalPedidos.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        JlblTotalPedidos.setForeground(new java.awt.Color(239, 111, 83));
-        JlblTotalPedidos.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        JlblTotalPedidos.setText("R$");
-
-        jButton8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton8.setForeground(new java.awt.Color(239, 111, 83));
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/BotaoRel.png"))); // NOI18N
-        jButton8.setText("Limpar");
-        jButton8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lblRelPedidos.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblRelPedidos.setForeground(new java.awt.Color(239, 111, 83));
+        lblRelPedidos.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblRelPedidos.setText("R$");
 
         jLabel33.setBackground(new java.awt.Color(88, 55, 66));
         jLabel33.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -337,22 +339,10 @@ public class frmRelatorios extends javax.swing.JFrame {
         jLabel44.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel44.setText("Valor Total");
 
-        JlblTotalCompras.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        JlblTotalCompras.setForeground(new java.awt.Color(239, 111, 83));
-        JlblTotalCompras.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        JlblTotalCompras.setText("R$");
-
-        jButton9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton9.setForeground(new java.awt.Color(239, 111, 83));
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/BotaoRel.png"))); // NOI18N
-        jButton9.setText("Limpar");
-        jButton9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        jButton12.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton12.setForeground(new java.awt.Color(239, 111, 83));
-        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/BotaoRel.png"))); // NOI18N
-        jButton12.setText("Limpar");
-        jButton12.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lblRelCompras.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblRelCompras.setForeground(new java.awt.Color(239, 111, 83));
+        lblRelCompras.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblRelCompras.setText("R$");
 
         lblInicio4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblInicio4.setForeground(new java.awt.Color(239, 111, 83));
@@ -369,10 +359,10 @@ public class frmRelatorios extends javax.swing.JFrame {
         jLabel49.setForeground(new java.awt.Color(88, 55, 66));
         jLabel49.setText("Data Inicial");
 
-        JlblTotalFuncionarios.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        JlblTotalFuncionarios.setForeground(new java.awt.Color(239, 111, 83));
-        JlblTotalFuncionarios.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        JlblTotalFuncionarios.setText("R$");
+        lblRelFuncionario.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblRelFuncionario.setForeground(new java.awt.Color(239, 111, 83));
+        lblRelFuncionario.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblRelFuncionario.setText("R$");
 
         jLabel56.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel56.setForeground(new java.awt.Color(88, 55, 66));
@@ -411,16 +401,60 @@ public class frmRelatorios extends javax.swing.JFrame {
         jLabel63.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel63.setText("Valor Total");
 
-        JlblTotalDespesas.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        JlblTotalDespesas.setForeground(new java.awt.Color(239, 111, 83));
-        JlblTotalDespesas.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        JlblTotalDespesas.setText("R$");
+        lblRelatorioDespesas.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblRelatorioDespesas.setForeground(new java.awt.Color(239, 111, 83));
+        lblRelatorioDespesas.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblRelatorioDespesas.setText("R$");
 
-        jButton13.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton13.setForeground(new java.awt.Color(239, 111, 83));
-        jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/BotaoRel.png"))); // NOI18N
-        jButton13.setText("Limpar");
-        jButton13.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        RD_Pedidos.setBackground(new java.awt.Color(88, 55, 66));
+        RD_Pedidos.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        RD_Pedidos.setForeground(new java.awt.Color(239, 111, 83));
+        RD_Pedidos.setText("Relatório?");
+        RD_Pedidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RD_PedidosActionPerformed(evt);
+            }
+        });
+
+        RD_Promocao.setBackground(new java.awt.Color(88, 55, 66));
+        RD_Promocao.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        RD_Promocao.setForeground(new java.awt.Color(239, 111, 83));
+        RD_Promocao.setText("Relatório?");
+        RD_Promocao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RD_PromocaoActionPerformed(evt);
+            }
+        });
+
+        RD_Compras.setBackground(new java.awt.Color(88, 55, 66));
+        RD_Compras.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        RD_Compras.setForeground(new java.awt.Color(239, 111, 83));
+        RD_Compras.setText("Relatório?");
+        RD_Compras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RD_ComprasActionPerformed(evt);
+            }
+        });
+
+        RD_Funcionarios.setBackground(new java.awt.Color(88, 55, 66));
+        RD_Funcionarios.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        RD_Funcionarios.setForeground(new java.awt.Color(239, 111, 83));
+        RD_Funcionarios.setText("Relatório?");
+        RD_Funcionarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RD_FuncionariosActionPerformed(evt);
+            }
+        });
+
+        RD_Despesas.setBackground(new java.awt.Color(88, 55, 66));
+        RD_Despesas.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        RD_Despesas.setForeground(new java.awt.Color(239, 111, 83));
+        RD_Despesas.setText("Relatório?");
+        RD_Despesas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RD_DespesasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -433,6 +467,20 @@ public class frmRelatorios extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(jLabel59)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblInicio5, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel61)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblFim5, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel63, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblRelatorioDespesas, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(RD_Despesas))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addGap(18, 18, 18)
                         .addComponent(lblInicio1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -443,9 +491,9 @@ public class frmRelatorios extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(JlblTotalPromocao, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblRelPromocao, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(RD_Promocao))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel23)
                         .addGap(18, 18, 18)
@@ -457,9 +505,9 @@ public class frmRelatorios extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel40, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(JlblTotalPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblRelPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(RD_Pedidos))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel27)
                         .addGap(18, 18, 18)
@@ -471,9 +519,9 @@ public class frmRelatorios extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(JlblTotalCompras, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblRelCompras, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(RD_Compras))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel49)
                         .addGap(18, 18, 18)
@@ -485,24 +533,10 @@ public class frmRelatorios extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel48, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(JlblTotalFuncionarios, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(jLabel59)
+                        .addComponent(lblRelFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(lblInicio5, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel61)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblFim5, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel63, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(JlblTotalDespesas, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addComponent(RD_Funcionarios)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jLabel32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 708, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -513,15 +547,15 @@ public class frmRelatorios extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(0, 0, 0)
                 .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
+                .addGap(11, 11, 11)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(lblInicio1)
                     .addComponent(jLabel6)
                     .addComponent(lblFim1)
                     .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JlblTotalPromocao, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblRelPromocao, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(RD_Promocao, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
                 .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15)
@@ -531,43 +565,45 @@ public class frmRelatorios extends javax.swing.JFrame {
                     .addComponent(jLabel25)
                     .addComponent(lblFim2)
                     .addComponent(jLabel40, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JlblTotalPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblRelPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(RD_Pedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
                 .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
+                .addGap(11, 11, 11)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel27)
                     .addComponent(lblInicio3)
                     .addComponent(jLabel42)
                     .addComponent(lblFim3)
                     .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JlblTotalCompras, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblRelCompras, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(RD_Compras, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
                 .addComponent(jLabel57, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
+                .addGap(11, 11, 11)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel49)
                     .addComponent(lblInicio4)
                     .addComponent(jLabel56)
                     .addComponent(lblFim4)
                     .addComponent(jLabel48, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JlblTotalFuncionarios, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblRelFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(RD_Funcionarios, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
                 .addComponent(jLabel58, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
+                .addGap(11, 11, 11)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel59)
                     .addComponent(lblInicio5)
                     .addComponent(jLabel61)
                     .addComponent(lblFim5)
                     .addComponent(jLabel63, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JlblTotalDespesas, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblRelatorioDespesas, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(RD_Despesas, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
+
+        getContentPane().add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
 
         jButton10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton10.setForeground(new java.awt.Color(239, 111, 83));
@@ -579,6 +615,7 @@ public class frmRelatorios extends javax.swing.JFrame {
                 jButton10ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(198, 568, 100, 40));
 
         BtnPdf.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         BtnPdf.setForeground(new java.awt.Color(239, 111, 83));
@@ -590,6 +627,7 @@ public class frmRelatorios extends javax.swing.JFrame {
                 BtnPdfActionPerformed(evt);
             }
         });
+        getContentPane().add(BtnPdf, new org.netbeans.lib.awtextra.AbsoluteConstraints(407, 568, 104, 40));
 
         jLabel1.setBackground(new java.awt.Color(88, 55, 66));
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -597,6 +635,7 @@ public class frmRelatorios extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Relatórios Gerenciais");
         jLabel1.setOpaque(true);
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 33));
 
         JdcInicio.setOpaque(false);
         JdcInicio.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -604,6 +643,7 @@ public class frmRelatorios extends javax.swing.JFrame {
                 JdcInicioPropertyChange(evt);
             }
         });
+        getContentPane().add(JdcInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(131, 68, 120, -1));
 
         JdcFinal.setOpaque(false);
         JdcFinal.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -611,160 +651,188 @@ public class frmRelatorios extends javax.swing.JFrame {
                 JdcFinalPropertyChange(evt);
             }
         });
+        getContentPane().add(JdcFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(569, 68, 120, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(88, 55, 66));
         jLabel2.setText("Data Inicial");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 70, 86, 20));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(88, 55, 66));
         jLabel3.setText("Data Final");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(486, 70, 79, 20));
 
         jLabel65.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel65.setForeground(new java.awt.Color(88, 55, 66));
         jLabel65.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel65.setText("Total Despesas");
+        getContentPane().add(jLabel65, new org.netbeans.lib.awtextra.AbsoluteConstraints(273, 642, 158, 34));
 
-        JlblTotalReceitas.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        JlblTotalReceitas.setForeground(new java.awt.Color(239, 111, 83));
-        JlblTotalReceitas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        JlblTotalReceitas.setText("R$");
+        LblTotalReceitas.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        LblTotalReceitas.setForeground(new java.awt.Color(239, 111, 83));
+        LblTotalReceitas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        LblTotalReceitas.setText("R$");
+        getContentPane().add(LblTotalReceitas, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 682, 158, 27));
 
         jLabel66.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel66.setForeground(new java.awt.Color(88, 55, 66));
         jLabel66.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel66.setText("Total Receitas");
+        getContentPane().add(jLabel66, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 642, 158, 34));
 
-        JlblTotalGeralDespesas.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        JlblTotalGeralDespesas.setForeground(new java.awt.Color(239, 111, 83));
-        JlblTotalGeralDespesas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        JlblTotalGeralDespesas.setText("R$");
+        lblTotalDespesas.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblTotalDespesas.setForeground(new java.awt.Color(239, 111, 83));
+        lblTotalDespesas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTotalDespesas.setText("R$");
+        getContentPane().add(lblTotalDespesas, new org.netbeans.lib.awtextra.AbsoluteConstraints(273, 682, 158, 27));
 
         jLabel68.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel68.setForeground(new java.awt.Color(88, 55, 66));
         jLabel68.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel68.setText("Total Geral");
+        getContentPane().add(jLabel68, new org.netbeans.lib.awtextra.AbsoluteConstraints(483, 642, 159, 34));
 
-        JlblTotalGeral.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        JlblTotalGeral.setForeground(new java.awt.Color(239, 111, 83));
-        JlblTotalGeral.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        JlblTotalGeral.setText("R$");
+        lblTotalGeral.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblTotalGeral.setForeground(new java.awt.Color(239, 111, 83));
+        lblTotalGeral.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTotalGeral.setText("R$");
+        getContentPane().add(lblTotalGeral, new org.netbeans.lib.awtextra.AbsoluteConstraints(483, 682, 158, 27));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 730, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
-                .addComponent(JdcInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(235, 235, 235)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
-                .addComponent(JdcFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(198, 198, 198)
-                .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(109, 109, 109)
-                .addComponent(BtnPdf, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(73, 73, 73)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel66, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42)
-                        .addComponent(jLabel65, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(52, 52, 52)
-                        .addComponent(jLabel68, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(JlblTotalReceitas, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42)
-                        .addComponent(JlblTotalGeralDespesas, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(52, 52, 52)
-                        .addComponent(JlblTotalGeral, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(JdcInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JdcFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(30, 30, 30)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnPdf, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel66, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel65, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel68, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(JlblTotalReceitas, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JlblTotalGeralDespesas, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JlblTotalGeral, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        setSize(new java.awt.Dimension(738, 766));
+        setSize(new java.awt.Dimension(737, 766));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnPdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPdfActionPerformed
-        NomeRelatorio = null;
-        destinatario = null;
-        int Binario = 0;
+       this.setAlwaysOnTop(false);
+        
+        DefaultPieDataset dpd = new DefaultPieDataset();
+        dpd.setValue("Promoções", GPromocoes); 
+        dpd.setValue("Pedidos", GPedidos); 
+        dpd.setValue("Compras", GCompras); 
+        dpd.setValue("Funcionários", GFuncionarios); 
+        dpd.setValue("Despesas", GDespesas); 
 
-        for (int i = 0; i <= 3; i++) {
+        JFreeChart grafico = ChartFactory.createPieChart("Resumo por setor",dpd,true, true, false);
 
-            NomeRelatorio = JOptionPane.showInputDialog(this, "Nome do Relatório:", "Relatório", JOptionPane.PLAIN_MESSAGE);
-            if (NomeRelatorio == null || NomeRelatorio.equals("")) {
-                JOptionPane.showMessageDialog(this, "Você não inseriu um nome.");
-                if (i == 2) {
-                    Binario = 1;
-                    JOptionPane.showMessageDialog(this, "Relatório Cancelado.");
-                    break;
+        ChartPanel chartPanel = new ChartPanel(grafico);
 
-                }
-            } else {
-                Binario = 0;
-                gerapdf(datainicio, datafim, JlblTotalPromocao.getText(), JlblTotalCompras.getText(),
-                        JlblTotalPedidos.getText(), JlblTotalFuncionarios.getText(), JlblTotalDespesas.getText(),
-                        JlblTotalReceitas.getText(), JlblTotalGeralDespesas.getText(), JlblTotalGeral.getText());
-
-                break;
-
-            }
+        try { 
+            ChartUtilities.saveChartAsJPEG(new java.io.File("../Giovanellis/Relatorios/PizzaSetor.jpg"), grafico, 700, 600);
+        } catch (IOException ex) {
+            Logger.getLogger(frmRelatorios.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        
+        
+         DefaultPieDataset dpd1 = new DefaultPieDataset();
+        dpd1.setValue("Total Despesas", GTotalDespesas); 
+        dpd1.setValue("Total Receitas", GTotalReceitas); 
+        dpd1.setValue("Total Geral", GTotalGeral); 
+        
 
-        if (Binario == 0) {
+        JFreeChart grafico1 = ChartFactory.createPieChart("Resumo Geral",dpd1,true, true, false);
+
+        ChartPanel chartPanel1 = new ChartPanel(grafico1);
+
+              
+        try { 
+            ChartUtilities.saveChartAsJPEG(new java.io.File("../Giovanellis/Relatorios/PizzaTotal.jpg"), grafico1, 700, 600);
+        } catch (IOException ex) {
+            Logger.getLogger(frmRelatorios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+        
+        if (BinarioCompras !=0 || BinarioDespesa !=0 || BinarioFuncionario !=0 || BinarioPedidos !=0 || BinarioPromocao!=0)
+
+      {
+          int Binario = 0;
+          destinatario = null;
+          caminho = null;
+        
+     
+          
+File pdf = null;
+JFileChooser chooser = null;
+//int res = chooser.showSaveDialog(home);
+try {
+  pdf = File.createTempFile("NomedoArquivoSemExtensão",".pdf");            
+} catch (IOException e1) {            
+  e1.printStackTrace();
+}
+
+//Geração do arquivo
+
+chooser = new JFileChooser();
+chooser.setCurrentDirectory(pdf);
+chooser.setSelectedFile(pdf);
+javax.swing.filechooser.FileFilter filter = new javax.swing.filechooser.FileFilter() {  
+  
+    public boolean accept(File f) {  
+        return f.isDirectory()  
+                || f.getName().toLowerCase().endsWith(  
+                ".pdf");  
+    }  
+  
+    public String getDescription() {  
+        return "(*.pdf)";  
+        // return "(*.xls)";  
+    }  
+};  
+chooser.addChoosableFileFilter(filter);  
+chooser.setAcceptAllFileFilterUsed(false);
+chooser.setMultiSelectionEnabled(false);
+
+caminho = "";
+
+int retorno = chooser.showSaveDialog(null);
+if (retorno==JFileChooser.APPROVE_OPTION){
+  caminho = chooser.getSelectedFile().getAbsolutePath();
+}
+
+if(!caminho.equals("")){
+  boolean ok = pdf.renameTo(new File(caminho));
+  if(ok) {
+    
+    gerapdf(datainicio, datafim, lblRelPromocao.getText(), lblRelCompras.getText(),
+                        lblRelPedidos.getText(), lblRelFuncionario.getText(), lblRelatorioDespesas.getText(),
+                        LblTotalReceitas.getText(), lblTotalDespesas.getText(), lblTotalGeral.getText());
+    
+    
+  }
+  else
+  {
+   JOptionPane.showMessageDialog(this, "Erro ao salvar documento"); 
+   Binario = 1;  
+   this.setAlwaysOnTop(true);
+  }
+}else{
+  //throw new FileNaoSelecionadoException();
+}
+
+} else 
+      {
+      JOptionPane.showMessageDialog(this, "Escolher no mínimo um valor para o relatório");
+      }
+
+if (!caminho.equals("")) {
+    this.setAlwaysOnTop(false);
             int opcao = JOptionPane.showConfirmDialog(null, "Enviar Relatório por Email?", "Sair", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
             if (opcao == JOptionPane.NO_OPTION) {
                 JOptionPane.showMessageDialog(this, "Envio de email cancelado.");
-
+                this.setAlwaysOnTop(true);
             } else if (opcao == JOptionPane.YES_OPTION) {
-
+                this.setAlwaysOnTop(false);
                 for (int e = 0; e <= 3; e++) {
                     destinatario = JOptionPane.showInputDialog(this, "Nome do Destinatário:", "Destinatário", JOptionPane.PLAIN_MESSAGE);
-
-                    if (destinatario == null || destinatario.equals("")) {
-                        JOptionPane.showMessageDialog(this, "Você não inseriu um nome.");
+                    
+                    if (destinatario.contains("@") && destinatario.contains(".")){
+                        
+                         if (destinatario == null || destinatario.equals("")) {
+                        JOptionPane.showMessageDialog(this, "Você não inseriu um e-mail válido.");
                         if (e == 2) {
                             JOptionPane.showMessageDialog(this, "Email não enviado.");
                             break;
@@ -774,7 +842,10 @@ public class frmRelatorios extends javax.swing.JFrame {
                         try {
                             EnviarEmail();
                             JOptionPane.showMessageDialog(this, "Email Enviado com Sucesso");
+                            BtnPdf.setEnabled(false);
+                            this.setAlwaysOnTop(true);
                             break;
+                            
 
                         } catch (Exception ex) {
                             JOptionPane.showMessageDialog(this, "O Email não foi enviado.\n Motivo: " + ex);
@@ -782,20 +853,74 @@ public class frmRelatorios extends javax.swing.JFrame {
                         }
 
                     }
+                    
+                    }else
+                    {
+                    JOptionPane.showMessageDialog(this, "Destinatário Inválido");
+                    }
+                   
                 }
-            }
-        }
-
+            }}
+ 
 
     }//GEN-LAST:event_BtnPdfActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        try {
-            ControladorRelatorio.Incluir(ModeloRelatorio);
-        } catch (Exception ex) {
-            Logger.getLogger(frmRelatorios.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
+        if (RD_Compras.isSelected()|| RD_Despesas.isSelected() || RD_Funcionarios.isSelected() || RD_Pedidos.isSelected() || RD_Promocao.isSelected())
+
+      {
+          
+     
+      
+        
+        try {
+            if (ValidaDatas()){
+            if (preencheObjeto()) {
+                ControladorRelatorio.Incluir(ModeloRelatorio);
+                double TotalPromocoes = ControladorRelatorio.getRs().getDouble("Promocoes");
+                double TotalPedidos = ControladorRelatorio.getRs().getDouble("Pedidos");
+                double TotalCompras = ControladorRelatorio.getRs().getDouble("Compras");
+                double TotalFuncionario = ControladorRelatorio.getRs().getDouble("Funcionario");
+                double TotalDespesa = ControladorRelatorio.getRs().getDouble("Despesa");
+
+                double Prejuizo = ControladorRelatorio.getRs().getDouble("Prejuizo");
+                 double Receita = ControladorRelatorio.getRs().getDouble("Receita");
+                 double Geral = ControladorRelatorio.getRs().getDouble("TotalGeral");
+                 
+                 GCompras = TotalCompras;
+                 GDespesas = TotalDespesa;
+                 GFuncionarios = TotalFuncionario;
+                 GPedidos = TotalPedidos;
+                 GPromocoes = TotalPromocoes;
+                 
+                 GTotalDespesas = Prejuizo;
+                 GTotalReceitas = Receita;
+                 GTotalGeral = Geral;
+
+                lblRelPromocao.setText(z.format(TotalPromocoes));
+                lblRelPedidos.setText(z.format(TotalPedidos));
+                lblRelCompras.setText(z.format(TotalCompras));
+                lblRelFuncionario.setText(z.format(TotalFuncionario));
+                lblRelatorioDespesas.setText(z.format(TotalDespesa));
+
+                lblTotalDespesas.setText(z.format(Prejuizo));
+                LblTotalReceitas.setText(z.format(Receita));
+                lblTotalGeral.setText(z.format(Geral));
+                BtnPdf.setEnabled(true);
+            }   
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Erro: "+ex);
+        }
+}
+else
+{
+ BtnPdf.setEnabled(false);
+ lblTotalDespesas.setText("R$ 0,00");
+ LblTotalReceitas.setText("R$ 0,00");
+ lblTotalGeral.setText("R$ 0,00");
+}
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void JdcInicioPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_JdcInicioPropertyChange
@@ -815,7 +940,7 @@ public class frmRelatorios extends javax.swing.JFrame {
         try {
             data2 = JdcFinal.getDate();
             datafim = fmt.format(data(JdcFinal.getDate()));
-           dataProcFim = fmbd.format(JdcFinal.getDate());
+            dataProcFim = fmbd.format(JdcFinal.getDate());
             System.out.println(dataProcFim);
             SetarDatasFinais();
             // data receba um formato e formate o método data e guarde na varíável e guarde na caixa de combinação
@@ -826,8 +951,11 @@ public class frmRelatorios extends javax.swing.JFrame {
     }//GEN-LAST:event_JdcFinalPropertyChange
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+       
         timer.stop();
         frmHome.contador = 10;
+         frmHome.binario=0;       
+   
     }//GEN-LAST:event_formWindowClosing
 
     private void formMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseMoved
@@ -837,7 +965,64 @@ public class frmRelatorios extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         timer.start();
+        Radio();
+        BtnPdf.setEnabled(false);
+       
     }//GEN-LAST:event_formWindowOpened
+
+    private void RD_PromocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RD_PromocaoActionPerformed
+        if (RD_Promocao.isSelected()) {
+            BinarioPromocao = 1;
+        } else {
+            BinarioPromocao = 0;
+            lblRelPromocao.setText("R$ 0,00");
+
+        }
+    }//GEN-LAST:event_RD_PromocaoActionPerformed
+
+    private void RD_PedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RD_PedidosActionPerformed
+        if (RD_Pedidos.isSelected()) {
+            BinarioPedidos = 1;
+        } else {
+            BinarioPedidos = 0;
+            lblRelPedidos.setText("R$ 0,00");
+
+        }
+    }//GEN-LAST:event_RD_PedidosActionPerformed
+
+    private void RD_ComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RD_ComprasActionPerformed
+        if (RD_Compras.isSelected()) {
+            BinarioCompras = 1;
+        } else {
+            BinarioCompras = 0;
+            lblRelCompras.setText("R$ 0,00");
+
+        }
+    }//GEN-LAST:event_RD_ComprasActionPerformed
+
+    private void RD_FuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RD_FuncionariosActionPerformed
+        if (RD_Funcionarios.isSelected()) {
+            BinarioFuncionario = 1;
+        } else {
+            BinarioFuncionario = 0;
+            lblRelFuncionario.setText("R$ 0,00");
+
+        }
+    }//GEN-LAST:event_RD_FuncionariosActionPerformed
+
+    private void RD_DespesasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RD_DespesasActionPerformed
+        if (RD_Despesas.isSelected()) {
+            BinarioDespesa = 1;
+        } else {
+            BinarioDespesa = 0;
+            lblRelatorioDespesas.setText("R$ 0,00");
+
+        }
+    }//GEN-LAST:event_RD_DespesasActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+    
+    }//GEN-LAST:event_formWindowClosed
     int contador = 10;
 
     public void escreva() {
@@ -898,21 +1083,14 @@ public class frmRelatorios extends javax.swing.JFrame {
     private javax.swing.JButton BtnPdf;
     private com.toedter.calendar.JDateChooser JdcFinal;
     private com.toedter.calendar.JDateChooser JdcInicio;
-    private javax.swing.JLabel JlblTotalCompras;
-    private javax.swing.JLabel JlblTotalDespesas;
-    private javax.swing.JLabel JlblTotalFuncionarios;
-    private javax.swing.JLabel JlblTotalGeral;
-    private javax.swing.JLabel JlblTotalGeralDespesas;
-    private javax.swing.JLabel JlblTotalPedidos;
-    private javax.swing.JLabel JlblTotalPromocao;
-    private javax.swing.JLabel JlblTotalReceitas;
+    private javax.swing.JLabel LblTotalReceitas;
+    private javax.swing.JRadioButton RD_Compras;
+    private javax.swing.JRadioButton RD_Despesas;
+    private javax.swing.JRadioButton RD_Funcionarios;
+    private javax.swing.JRadioButton RD_Pedidos;
+    private javax.swing.JRadioButton RD_Promocao;
     private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -958,6 +1136,13 @@ public class frmRelatorios extends javax.swing.JFrame {
     private javax.swing.JLabel lblInicio3;
     private javax.swing.JLabel lblInicio4;
     private javax.swing.JLabel lblInicio5;
+    private javax.swing.JLabel lblRelCompras;
+    private javax.swing.JLabel lblRelFuncionario;
+    private javax.swing.JLabel lblRelPedidos;
+    private javax.swing.JLabel lblRelPromocao;
+    private javax.swing.JLabel lblRelatorioDespesas;
+    private javax.swing.JLabel lblTotalDespesas;
+    private javax.swing.JLabel lblTotalGeral;
     // End of variables declaration//GEN-END:variables
 NumberFormat z = NumberFormat.getCurrencyInstance();
     SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
@@ -966,6 +1151,13 @@ NumberFormat z = NumberFormat.getCurrencyInstance();
     Date data1, data2;
     String NomeRelatorio, destinatario;
     String datainicio, datafim, data, dataProcInicio, dataProcFim;
+    double Promocao;
+    int BinarioFuncionario = 1, BinarioDespesa = 1, BinarioCompras = 1, BinarioPedidos = 1, BinarioPromocao = 1;
+    String caminho;
+    int Binario;
+    double GPromocoes, GFuncionarios, GDespesas, GCompras, GPedidos, GTotalReceitas, GTotalDespesas, GTotalGeral;
+    
+ 
 
     public boolean ValidaDatas() {
         try {
@@ -1028,10 +1220,16 @@ NumberFormat z = NumberFormat.getCurrencyInstance();
         lblFim5.setText(datafim);
 
     }
-
+    
+    
+    
+    
     public void gerapdf(String dataInicial, String dataFinal, String TotalPromoCoes, String TotalCompras, String TotalPedidos,
-            String TotalFuncionarios, String TotalDespesas, String TotalReceitas, String TotalDespesasGeral, String TotalGeral) {
+            String TotalFuncionarios, String TotalDespesas, String Receita,String Prejuizo, String Geral ) {
 
+        
+      
+        
         // cria o documento vazio 
         Document DocumentPdf = new Document();
 
@@ -1044,9 +1242,10 @@ NumberFormat z = NumberFormat.getCurrencyInstance();
             Font h1 = new Font(Font.FontFamily.COURIER, 36, Font.BOLD);
             Font h2 = new Font(Font.FontFamily.COURIER, 25, Font.BOLD);
             Font h3 = new Font(Font.FontFamily.COURIER, 18, Font.BOLD);
-            Font h4 = new Font(Font.FontFamily.COURIER, 14, Font.BOLD);
+
             // Cria uma instancia e dá o nome para o pdf    
-            PdfWriter.getInstance(DocumentPdf, new FileOutputStream("../Giovanellis/Relatorios/" + NomeRelatorio + ".pdf"));
+           // PdfWriter.getInstance(DocumentPdf, new FileOutputStream("../Giovanellis/Relatorios/" + NomeRelatorio + ".pdf"));
+            PdfWriter.getInstance(DocumentPdf, new FileOutputStream(caminho));
             // abrir o documento
             DocumentPdf.open();
 
@@ -1058,9 +1257,12 @@ NumberFormat z = NumberFormat.getCurrencyInstance();
             Titulo.setAlignment(Element.ALIGN_CENTER);
             DocumentPdf.add(Titulo);
 
+            
+            
             // Mencionando a instância da Imagem
             Image Cabecalho = Image.getInstance("../Giovanellis/Marca.png");
-
+            
+            
             //Setar o tamanho em pixels da imagem
             Cabecalho.scaleToFit(400, 200);
 
@@ -1070,40 +1272,98 @@ NumberFormat z = NumberFormat.getCurrencyInstance();
             // Adicionar a imagem ao PDF
             DocumentPdf.add(Cabecalho);
 
-            Paragraph datas = new Paragraph("Data Inicial: " + dataInicial + "             Data Final: " + dataFinal + "\n" + "\n", h4);
-            datas.setAlignment(Element.ALIGN_LEFT);
+            Paragraph datas = new Paragraph("Data Inicial: " + dataInicial + "  Data Final: " + dataFinal + "\n" + "\n", h3);
+            datas.setAlignment(Element.ALIGN_CENTER);
             DocumentPdf.add(datas);
 
-            Paragraph Promocao = new Paragraph("Descritivos de Promoções: " + TotalPromoCoes + "\n", h3);
-            Promocao.setAlignment(Element.ALIGN_CENTER);
-            DocumentPdf.add(Promocao);
+            Paragraph Setor = new Paragraph("Resumo por Setor:" + "\n" + "\n", h2);
+            Setor.setAlignment(Element.ALIGN_CENTER);
+            DocumentPdf.add(Setor);
 
-            Paragraph Pedidos = new Paragraph("Descritivos de Pedidos: " + TotalPedidos + "\n", h3);
-            Pedidos.setAlignment(Element.ALIGN_CENTER);
-            DocumentPdf.add(Pedidos);
+            if (BinarioPromocao == 1) {
+                Paragraph Promocao = new Paragraph("Descritivos de Promoções: " + TotalPromoCoes + "\n", h3);
+                Promocao.setAlignment(Element.ALIGN_CENTER);
+                DocumentPdf.add(Promocao);
 
-            Paragraph Compras = new Paragraph("Descritivos de Compras: " + TotalCompras + "\n", h3);
-            Compras.setAlignment(Element.ALIGN_CENTER);
-            DocumentPdf.add(Compras);
+            }
 
-            Paragraph Funcioarios = new Paragraph("Descritivos de Funcionarios: " + TotalFuncionarios + "\n", h3);
-            Funcioarios.setAlignment(Element.ALIGN_CENTER);
-            DocumentPdf.add(Funcioarios);
+            if (BinarioPedidos == 1) {
+                Paragraph Pedidos = new Paragraph("Descritivos de Pedidos: " + TotalPedidos + "\n", h3);
+                Pedidos.setAlignment(Element.ALIGN_CENTER);
+                DocumentPdf.add(Pedidos);
+            }
 
-            Paragraph Despesa = new Paragraph("Descritivos de Despesas: " + TotalDespesas + "\n", h3);
-            Despesa.setAlignment(Element.ALIGN_CENTER);
-            DocumentPdf.add(Despesa);
+            if (BinarioCompras == 1) {
 
+                Paragraph Compras = new Paragraph("Descritivos de Compras: " + TotalCompras + "\n", h3);
+                Compras.setAlignment(Element.ALIGN_CENTER);
+                DocumentPdf.add(Compras);
+            }
+
+            if (BinarioFuncionario == 1) {
+                Paragraph Funcioarios = new Paragraph("Descritivos de Funcionarios: " + TotalFuncionarios + "\n", h3);
+                Funcioarios.setAlignment(Element.ALIGN_CENTER);
+                DocumentPdf.add(Funcioarios);
+            }
+
+            if (BinarioDespesa == 1) {
+                Paragraph Despesa = new Paragraph("Descritivos de Despesas: " + TotalDespesas + "\n", h3);
+                Despesa.setAlignment(Element.ALIGN_CENTER);
+                DocumentPdf.add(Despesa);
+            }
+            
+            
+            Paragraph Total = new Paragraph("\n Resumo Geral:", h2);
+            Total.setAlignment(Element.ALIGN_CENTER);
+            DocumentPdf.add(Total);
+
+            Paragraph DescritivoDespesa = new Paragraph("\n Total de Despesas: " + Prejuizo + "\n", h3);
+            DescritivoDespesa.setAlignment(Element.ALIGN_CENTER);
+            DocumentPdf.add(DescritivoDespesa);
+
+            Paragraph DescritivoReceitas = new Paragraph("Total de Receitas: " + Receita + "\n", h3);
+            DescritivoReceitas.setAlignment(Element.ALIGN_CENTER);
+            DocumentPdf.add(DescritivoReceitas);
+           
+            Paragraph TotalGeralR = new Paragraph("Total Geral: " + Geral + "\n", h3);
+            TotalGeralR.setAlignment(Element.ALIGN_CENTER);
+            DocumentPdf.add(TotalGeralR);
+
+            
+            Paragraph Espaço = new Paragraph("\n\n");
+            
             //Cria uma Nova Página
-            DocumentPdf.newPage();
+             DocumentPdf.newPage();
+             
+             DocumentPdf.add(Titulo);
+            
+             DocumentPdf.add(Espaço);
+             
+            Image Grafico1 = Image.getInstance("../Giovanellis/Relatorios/PizzaSetor.jpg");
+           
+            Grafico1.scaleToFit(500, 300);
 
-            DocumentPdf.add(Titulo);
+            Grafico1.setAlignment(Element.ALIGN_CENTER);
+                    
+            Image Grafico2 = Image.getInstance("../Giovanellis/Relatorios/PizzaTotal.jpg");
+            
+            Grafico2.scaleToFit(500, 300);
 
-            DocumentPdf.add(Cabecalho);
+            Grafico2.setAlignment(Element.ALIGN_CENTER);
+             
+             
 
-            DocumentPdf.add(datas);
-
-            JOptionPane.showMessageDialog(this, "Arquivo Gerado com Sucesso \nCaminho: Giovanellis/Relatorios/" + NomeRelatorio + ".pdf");
+            
+            DocumentPdf.add(Grafico1);
+            
+            DocumentPdf.add(Espaço);
+            
+            DocumentPdf.add(Grafico2);
+            
+            
+             
+            JOptionPane.showMessageDialog(this, "Arquivo Gerado com Sucesso \nCaminho:" + caminho);
+            this.setAlwaysOnTop(true);
 
         } catch (DocumentException e) {
             e.printStackTrace();
@@ -1153,7 +1413,7 @@ NumberFormat z = NumberFormat.getCurrencyInstance();
             message.setText("Anexo do Giovaneli's Relatório's do período solicitado");
 
             FileDataSource source = new FileDataSource(
-                    "../Giovanellis/Relatorios/" + NomeRelatorio + ".pdf");
+                    caminho);
             message.setDataHandler(new DataHandler(source));
             message.setFileName(source.getName());
 
@@ -1162,20 +1422,46 @@ NumberFormat z = NumberFormat.getCurrencyInstance();
              */
             Transport.send(message);
 
-           // JOptionPane.showMessageDialog(null, "E-mail Enviado com Sucesso");
+            // JOptionPane.showMessageDialog(null, "E-mail Enviado com Sucesso");
         } catch (MessagingException e) {
             throw new RuntimeException(e);
 
         }
 
     }
-    
-  public boolean preencheObjeto() {
-  
+
+    public void Binarios() {
+        BinarioCompras = 1;
+        BinarioDespesa = 1;
+        BinarioFuncionario = 1;
+        BinarioPedidos = 1;
+        BinarioPromocao = 1;
+
+    }
+
+    public boolean preencheObjeto() {
+
         ModeloRelatorio.setDataInicial(dataProcInicio);
         ModeloRelatorio.setDataFinal(dataProcFim);
+        ModeloRelatorio.setBinarioCompras(BinarioCompras);
+        ModeloRelatorio.setBinarioDespesa(BinarioDespesa);
+        ModeloRelatorio.setBinarioFuncionario(BinarioFuncionario);
+        ModeloRelatorio.setBinarioPedidos(BinarioPedidos);
+        ModeloRelatorio.setBinarioPromocao(BinarioPromocao);
 
         return true;
     }
 
+    public void Radio() {
+        RD_Compras.setSelected(true);
+        RD_Despesas.setSelected(true);
+        RD_Funcionarios.setSelected(true);
+        RD_Pedidos.setSelected(true);
+        RD_Promocao.setSelected(true);
+
+    }
+  
+    
 }
+
+

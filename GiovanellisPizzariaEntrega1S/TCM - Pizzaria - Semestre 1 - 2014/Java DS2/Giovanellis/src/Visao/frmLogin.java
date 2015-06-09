@@ -55,7 +55,7 @@ public class frmLogin extends javax.swing.JFrame {
         conecta = new SqlServer();
         Color Preto = new Color(075, 075, 075);
         getContentPane().setBackground(Preto);
-
+        
         this.setIconImage(new ImageIcon(getClass().getResource("/Imagens/Icone.png")).getImage());
         initComponents();
         setAlwaysOnTop(true);

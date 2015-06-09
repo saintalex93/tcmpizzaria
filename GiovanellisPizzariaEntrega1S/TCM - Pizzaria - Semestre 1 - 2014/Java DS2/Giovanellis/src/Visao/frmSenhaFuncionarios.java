@@ -40,6 +40,7 @@ public class frmSenhaFuncionarios extends javax.swing.JFrame {
         getContentPane().setBackground(Fundo);
         ModFun = new ModeloAlterarSenha();
         ControladorFunc = new ControladorAlterarSenhaFuncionario();
+        setAlwaysOnTop(true);
     }
 
     /**
@@ -208,8 +209,12 @@ public class frmSenhaFuncionarios extends javax.swing.JFrame {
         NomeFuncionario = (String) JCmbNomeFuncionario.getSelectedItem().toString().substring(53).replace("</span></html>", "");
 
         if (JCmbNomeFuncionario.getSelectedIndex() != 0) {
-
-            // HabilitaCampos();
+           
+        
+     
+        
+            
+            AtivarCampos();
             conecta.executaSql("select * from Funcionario where Nome_Func = '" + NomeFuncionario + "'");
             try {
                 conecta.rs.first();
@@ -220,6 +225,10 @@ public class frmSenhaFuncionarios extends javax.swing.JFrame {
                 Logger.getLogger(frmDespesas.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        else
+        {
+         DesativarCampos();
+        }
     }//GEN-LAST:event_JCmbNomeFuncionarioActionPerformed
 
     private void JcmbPermissaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JcmbPermissaoActionPerformed
@@ -227,7 +236,7 @@ public class frmSenhaFuncionarios extends javax.swing.JFrame {
 
         if (JcmbPermissao.getSelectedIndex() != 0) {
 
-            // HabilitaCampos();
+           
             conecta.executaSql("select * from Permissao where Cargo = '" + Permissao + "'");
             try {
                 conecta.rs.first();
@@ -240,6 +249,7 @@ public class frmSenhaFuncionarios extends javax.swing.JFrame {
     }//GEN-LAST:event_JcmbPermissaoActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        DesativarCampos();
         timer.start();
         Color Roxo = new Color(88, 55, 66);
         Color Laranja = new Color(242, 184, 171);
@@ -258,7 +268,8 @@ public class frmSenhaFuncionarios extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    LimparCampos();
+        DesativarCampos();
+        LimparCampos();
      preencherTabela("select F.Cod_Funcionario, F.Nome_Func, F.Login_Funcionario, F.Senha_Funcionario,"
                 + " P.Cargo from Funcionario as F inner join Permissao as P on P.Cod_Permissao = F.Cod_Permissao");
     
@@ -275,6 +286,7 @@ public class frmSenhaFuncionarios extends javax.swing.JFrame {
                 preencherTabela("select F.Cod_Funcionario, F.Nome_Func, F.Login_Funcionario, F.Senha_Funcionario,"
                 + " P.Cargo from Funcionario as F inner join Permissao as P on P.Cod_Permissao = F.Cod_Permissao where Cod_Funcionario ='"+TxtCodigo.getText()+"'");
                 LimparCampos();
+                DesativarCampos();
                 }
         else{
             JOptionPane.showMessageDialog(this, "Não foi Possivel Alterar os Dados");
@@ -286,8 +298,7 @@ public class frmSenhaFuncionarios extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-    timer.stop();
-    frmHome.contador = 10;
+    
     }//GEN-LAST:event_formWindowClosed
 
     private void formMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseMoved
@@ -296,8 +307,9 @@ public class frmSenhaFuncionarios extends javax.swing.JFrame {
     }//GEN-LAST:event_formMouseMoved
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-     timer.stop();
-    frmHome.contador = 10;   
+    timer.stop();
+        frmHome.contador = 10;
+        frmHome.binario = 0;
     }//GEN-LAST:event_formWindowClosing
 
          int contador = 10;
@@ -453,15 +465,15 @@ String NomeFuncionario, Permissao;
 
         ModeloTabelas modelo = new ModeloTabelas(dados, Colunas); //Instacia a classe do modelo da Tabela.
         JTableFuncionario.setModel(modelo);
-        JTableFuncionario.getColumnModel().getColumn(0).setPreferredWidth(60); // Tamanho em pixel da coluna
+        JTableFuncionario.getColumnModel().getColumn(0).setPreferredWidth(55); // Tamanho em pixel da coluna
         JTableFuncionario.getColumnModel().getColumn(0).setResizable(false);
         JTableFuncionario.getColumnModel().getColumn(1).setPreferredWidth(110);
         JTableFuncionario.getColumnModel().getColumn(1).setResizable(false);
         JTableFuncionario.getColumnModel().getColumn(2).setPreferredWidth(80);
         JTableFuncionario.getColumnModel().getColumn(2).setResizable(false);
-        JTableFuncionario.getColumnModel().getColumn(3).setPreferredWidth(90);
+        JTableFuncionario.getColumnModel().getColumn(3).setPreferredWidth(82);
         JTableFuncionario.getColumnModel().getColumn(3).setResizable(false);
-        JTableFuncionario.getColumnModel().getColumn(4).setPreferredWidth(113);
+        JTableFuncionario.getColumnModel().getColumn(4).setPreferredWidth(126);
         JTableFuncionario.getColumnModel().getColumn(4).setResizable(false);
         JTableFuncionario.getTableHeader().setReorderingAllowed(false);
         JTableFuncionario.setAutoResizeMode(JTableFuncionario.AUTO_RESIZE_OFF);//Não pode ser redimensionada
@@ -535,5 +547,22 @@ String NomeFuncionario, Permissao;
        txtLogin.setText("");
        txtSenha.setText("");
        txtConfirmaSenha.setText("");
+       }
+       
+       public void DesativarCampos()
+               
+       {
+       txtLogin.setEnabled(false);
+       txtSenha.setEnabled(false);
+       txtConfirmaSenha.setEnabled(false);
+       
+       }
+       
+       public void AtivarCampos()
+       {
+          txtLogin.setEnabled(true);
+       txtSenha.setEnabled(true);
+       txtConfirmaSenha.setEnabled(true);
+       
        }
 }

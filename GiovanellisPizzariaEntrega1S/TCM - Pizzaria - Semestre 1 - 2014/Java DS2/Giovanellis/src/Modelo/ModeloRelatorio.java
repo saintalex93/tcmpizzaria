@@ -5,28 +5,25 @@
  */
 package Modelo;
 
+
+
 /**
  *
  * @author Alex
  */
 public class ModeloRelatorio {
 
-    public ModeloRelatorio(String DataInicial, String DataFinal, double TotalDespesa, double TotalFuncionario, double TotalCompras, double TotalPedidos, double TotalPromocao, double TotalGeral, double TotalGastos, double TotalReceita) {
+    public ModeloRelatorio(String DataInicial, String DataFinal, int BinarioFuncionario, int BinarioDespesa, int BinarioCompras, int BinarioPedidos, int BinarioPromocao) {
         this.DataInicial = DataInicial;
         this.DataFinal = DataFinal;
-        this.TotalDespesa = TotalDespesa;
-        this.TotalFuncionario = TotalFuncionario;
-        this.TotalCompras = TotalCompras;
-        this.TotalPedidos = TotalPedidos;
-        this.TotalPromocao = TotalPromocao;
-        this.TotalGeral = TotalGeral;
-        this.TotalGastos = TotalGastos;
-        this.TotalReceita = TotalReceita;
+        this.BinarioFuncionario = BinarioFuncionario;
+        this.BinarioDespesa = BinarioDespesa;
+        this.BinarioCompras = BinarioCompras;
+        this.BinarioPedidos = BinarioPedidos;
+        this.BinarioPromocao = BinarioPromocao;
     }
-    private String DataInicial, DataFinal;
-    private double TotalDespesa, TotalFuncionario, TotalCompras, TotalPedidos, TotalPromocao, TotalGeral, TotalGastos, TotalReceita;
-            
-      
+    private int BinarioFuncionario, BinarioDespesa, BinarioCompras, BinarioPedidos,BinarioPromocao;      
+      private String DataInicial, DataFinal;
 
     public ModeloRelatorio() {
     }
@@ -60,115 +57,78 @@ public class ModeloRelatorio {
     }
 
     /**
+     * @return the BinarioFuncionario
+     */
+    public int getBinarioFuncionario() {
+        return BinarioFuncionario;
+    }
+
+    /**
+     * @param BinarioFuncionario the BinarioFuncionario to set
+     */
+    public void setBinarioFuncionario(int BinarioFuncionario) {
+        this.BinarioFuncionario = BinarioFuncionario;
+    }
+
+    /**
+     * @return the BinarioDespesa
+     */
+    public int getBinarioDespesa() {
+        return BinarioDespesa;
+    }
+
+    /**
+     * @param BinarioDespesa the BinarioDespesa to set
+     */
+    public void setBinarioDespesa(int BinarioDespesa) {
+        this.BinarioDespesa = BinarioDespesa;
+    }
+
+    /**
+     * @return the BinarioCompras
+     */
+    public int getBinarioCompras() {
+        return BinarioCompras;
+    }
+
+    /**
+     * @param BinarioCompras the BinarioCompras to set
+     */
+    public void setBinarioCompras(int BinarioCompras) {
+        this.BinarioCompras = BinarioCompras;
+    }
+
+    /**
+     * @return the BinarioPedidos
+     */
+    public int getBinarioPedidos() {
+        return BinarioPedidos;
+    }
+
+    /**
+     * @param BinarioPedidos the BinarioPedidos to set
+     */
+    public void setBinarioPedidos(int BinarioPedidos) {
+        this.BinarioPedidos = BinarioPedidos;
+    }
+
+    /**
+     * @return the BinarioPromocao
+     */
+    public int getBinarioPromocao() {
+        return BinarioPromocao;
+    }
+
+    /**
+     * @param BinarioPromocao the BinarioPromocao to set
+     */
+    public void setBinarioPromocao(int BinarioPromocao) {
+        this.BinarioPromocao = BinarioPromocao;
+    }
+
+    /**
      * @return the TotalDespesa
      */
-    public double getTotalDespesa() {
-        return TotalDespesa;
-    }
-
-    /**
-     * @param TotalDespesa the TotalDespesa to set
-     */
-    public void setTotalDespesa(double TotalDespesa) {
-        this.TotalDespesa = TotalDespesa;
-    }
-
-    /**
-     * @return the TotalFuncionario
-     */
-    public double getTotalFuncionario() {
-        return TotalFuncionario;
-    }
-
-    /**
-     * @param TotalFuncionario the TotalFuncionario to set
-     */
-    public void setTotalFuncionario(double TotalFuncionario) {
-        this.TotalFuncionario = TotalFuncionario;
-    }
-
-    /**
-     * @return the TotalCompras
-     */
-    public double getTotalCompras() {
-        return TotalCompras;
-    }
-
-    /**
-     * @param TotalCompras the TotalCompras to set
-     */
-    public void setTotalCompras(double TotalCompras) {
-        this.TotalCompras = TotalCompras;
-    }
-
-    /**
-     * @return the TotalPedidos
-     */
-    public double getTotalPedidos() {
-        return TotalPedidos;
-    }
-
-    /**
-     * @param TotalPedidos the TotalPedidos to set
-     */
-    public void setTotalPedidos(double TotalPedidos) {
-        this.TotalPedidos = TotalPedidos;
-    }
-
-    /**
-     * @return the TotalPromocao
-     */
-    public double getTotalPromocao() {
-        return TotalPromocao;
-    }
-
-    /**
-     * @param TotalPromocao the TotalPromocao to set
-     */
-    public void setTotalPromocao(double TotalPromocao) {
-        this.TotalPromocao = TotalPromocao;
-    }
-
-    /**
-     * @return the TotalGeral
-     */
-    public double getTotalGeral() {
-        return TotalGeral;
-    }
-
-    /**
-     * @param TotalGeral the TotalGeral to set
-     */
-    public void setTotalGeral(double TotalGeral) {
-        this.TotalGeral = TotalGeral;
-    }
-
-    /**
-     * @return the TotalGastos
-     */
-    public double getTotalGastos() {
-        return TotalGastos;
-    }
-
-    /**
-     * @param TotalGastos the TotalGastos to set
-     */
-    public void setTotalGastos(double TotalGastos) {
-        this.TotalGastos = TotalGastos;
-    }
-
-    /**
-     * @return the TotalReceita
-     */
-    public double getTotalReceita() {
-        return TotalReceita;
-    }
-
-    /**
-     * @param TotalReceita the TotalReceita to set
-     */
-    public void setTotalReceita(double TotalReceita) {
-        this.TotalReceita = TotalReceita;
-    }
+  
     
 }

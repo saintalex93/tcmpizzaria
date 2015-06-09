@@ -5,7 +5,6 @@
  */
 package Visao;
 
-import Modelo.ModeloTabelas;
 import giovanellis.SqlServer;
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -20,8 +19,7 @@ import java.util.Locale;
 import Controlador.ControladorPedidos;
 import java.awt.Color;
 import java.text.NumberFormat;
-
-
+import Modelo.ModeloTabelas;
 
 /**
  *
@@ -31,29 +29,23 @@ public class frmPedidos extends javax.swing.JFrame {
 
     SqlServer conecta;
     ControladorPedidos DAO;
-  
 
     /**
      * Creates new form frmPedidos
+     *
      * @throws java.lang.Exception
      */
     public frmPedidos() throws Exception {
-        
-         
-        Color Fundo = new Color(238,235,227); 
-        getContentPane().setBackground(Fundo); 
+
+        this.setIconImage(new ImageIcon(getClass().getResource("/Imagens/Icone.png")).getImage());
+        Color Fundo = new Color(238, 235, 227);
+        getContentPane().setBackground(Fundo);
         setAlwaysOnTop(true);
         timer.start();
         initComponents();
-       
-        this.setIconImage(new ImageIcon(getClass().getResource("/Imagens/Icone.png")).getImage()); 
         conecta = new SqlServer();
         conecta.getCon();
         DAO = new ControladorPedidos();
-       
-        
-       
-        
 
     }
 
@@ -88,20 +80,20 @@ public class frmPedidos extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Pedidos");
         setResizable(false);
-        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                formMouseMoved(evt);
-            }
-        });
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
             }
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
             }
-            public void windowOpened(java.awt.event.WindowEvent evt) {
-                formWindowOpened(evt);
+        });
+        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                formMouseMoved(evt);
             }
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -202,7 +194,7 @@ public class frmPedidos extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(JTableProdutos);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, 420, 120));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, 420, 120));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(88, 55, 66));
@@ -277,53 +269,46 @@ public class frmPedidos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      dispose();
-     
+        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void BtnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCalcularActionPerformed
-       
-        
-        if(ValidaDatas()){
-        if (ChkCancelado.isSelected() | ChkACaminho.isSelected() | ChkACaminho.isSelected() | ChkEmpreparo.isSelected() | ChkFila.isSelected() | ChkRealizados.isSelected()) {
-            preencherTabela("select distinct p.cod_pedido,p.Data, p.valor, p.estado,p.formadepagamento from Pedido as P Inner join Detalhe_Pedido as DP On p.Cod_Pedido = "
-                    + "DP.Cod_Pedido inner join Produto as Pro on Dp.Cod_Produto = Pro.Cod_Produto where Estado"
-                    + " = '" + nafila + "' or Estado = '" + acaminho + "' or Estado = '" + empreparo + "' or Estado"
-                    + " = '" + realizado + "'or Estado = '" + cancelado + "' and p.Data between '" + datainicio + "' and'" + datafim + "'");
 
-        } else {
-            preencherTabela("select distinct p.cod_pedido,p.Data, p.valor, p.estado,p.formadepagamento from Pedido as P Inner join Detalhe_Pedido as DP On p.Cod_Pedido = DP.Cod_Pedido inner join Produto as Pro on Dp.Cod_Produto = Pro.Cod_Produto where p.Data between '" + datainicio + "' and'" + datafim + "'");
+
+        if (ValidaDatas()) {
+            if (ChkCancelado.isSelected() | ChkACaminho.isSelected() | ChkACaminho.isSelected() | ChkEmpreparo.isSelected() | ChkFila.isSelected() | ChkRealizados.isSelected()) {
+                preencherTabela("select distinct p.cod_pedido,p.Data, p.valorpago, p.estado,p.formadepagamento from Pedido as P Inner join Detalhe_Pedido as DP On p.Cod_Pedido = "
+                        + "DP.Cod_Pedido inner join Produto as Pro on Dp.Cod_Produto = Pro.Cod_Produto where Estado"
+                        + " = '" + nafila + "' or Estado = '" + acaminho + "' or Estado = '" + empreparo + "' or Estado"
+                        + " = '" + realizado + "'or Estado = '" + cancelado + "' and p.Data between '" + datainicio + "' and'" + datafim + "'");
+
+            } else {
+                preencherTabela("select distinct p.cod_pedido,p.Data, p.valorpago, p.estado,p.formadepagamento from Pedido as P Inner join Detalhe_Pedido as DP On p.Cod_Pedido = DP.Cod_Pedido inner join Produto as Pro on Dp.Cod_Produto = Pro.Cod_Produto where p.Data between '" + datainicio + "' and'" + datafim + "'");
+
+            }
+
+            double x = 0.0;
+            for (int y = 0; y < JTablePedidos.getRowCount(); y++) {
+                x += Double.parseDouble(JTablePedidos.getModel().getValueAt(y, 2).toString().replace("R$", "").replace(".", "").replace(",", "."));
+            }
+            lblTotal.setText(z.format(x));
 
         }
-                            
-        double x = 0.0;
-        for(int y = 0; y< JTablePedidos.getRowCount();y++ ){
-            x+=Double.parseDouble(JTablePedidos.getModel().getValueAt(y, 2).toString().replace("R$","").replace(".","").replace(",","."));
-        }
-        lblTotal.setText(z.format(x));
-
-                           }
     }//GEN-LAST:event_BtnCalcularActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-         Color Roxo = new Color(88,55,66); 
-        Color Laranja = new Color(242,184,171);
-        JTablePedidos.setSelectionBackground(Roxo);  
-        JTablePedidos.setSelectionForeground(Laranja); 
-        JTableProdutos.setSelectionBackground(Roxo);  
-        JTableProdutos.setSelectionForeground(Laranja); 
+        Color Roxo = new Color(88, 55, 66);
+        Color Laranja = new Color(242, 184, 171);
+        JTablePedidos.setSelectionBackground(Roxo);
+        JTablePedidos.setSelectionForeground(Laranja);
+        JTableProdutos.setSelectionBackground(Roxo);
+        JTableProdutos.setSelectionForeground(Laranja);
         setAlwaysOnTop(true);
-        preencherTabela("select distinct p.cod_pedido,p.Data, p.valor, p.estado,p.formadepagamento from Pedido as P Inner join Detalhe_Pedido as DP On p.Cod_Pedido = DP.Cod_Pedido inner join Produto as Pro on Dp.Cod_Produto = Pro.Cod_Produto");
-        
-
     }//GEN-LAST:event_formWindowOpened
 
     private void formMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseMoved
-      
-       frmHome.contador = 20;
-       contador = 10;
-       
-       
+        frmHome.contador = 20;
+        contador = 10;
     }//GEN-LAST:event_formMouseMoved
 
     private void JdcInicioPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_JdcInicioPropertyChange
@@ -333,33 +318,29 @@ public class frmPedidos extends javax.swing.JFrame {
             System.out.println(datainicio);
             // data receba um formato e formate o método data e guarde na varíável e guarde na caixa de combinação
 
-
         } catch (Exception e) {
+           
         }
     }//GEN-LAST:event_JdcInicioPropertyChange
 
     private void JdcFimPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_JdcFimPropertyChange
         try {
-            
+
             data2 = JdcFim.getDate();
             datafim = fmt.format(data(JdcFim.getDate()));
             System.out.println(datafim);
             // data receba um formato e formate o método data e guarde na varíável e guarde na caixa de combinação
 
-
         } catch (Exception e) {
+        
         }
     }//GEN-LAST:event_JdcFimPropertyChange
 
     private void JTablePedidosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTablePedidosMouseClicked
-        
+
         int cod = (int) JTablePedidos.getValueAt(JTablePedidos.getSelectedRow(), 0);
-         
-        
-       
-//       preencherTabelaDetalhe("select  * from Pedido as P Inner join Detalhe_Pedido as DP On p.Cod_Pedido = DP.Cod_Pedido inner join Produto as Pro  on Dp.Cod_Produto = Pro.Cod_Produto where P.Cod_Pedido =" + cod);
-    preencherTabelaDetalhe( "select count(pd.Cod_Produto)as Quantidade,nome_produto,pd.Valor_Venda from produto as pd inner join Detalhe_pedido as dp on "+
-             "pd.cod_produto = dp.cod_produto inner join 	Pedido as p on dp.cod_pedido = p.cod_pedido  where P.Cod_Pedido = "+ cod +" group by nome_produto,Valor_Venda ");
+
+        preencherTabelaDetalhe("select count(pd.Cod_Produto)as Quantidade,Cod_Produto2, pd.nome_produto as Produto1,produts.Nome_Produto as Produto2,pd.Valor_Venda as ValorVenda from produto as pd inner join Detalhe_pedido as dp on pd.cod_produto = dp.cod_produto inner join 	Pedido as p on dp.cod_pedido = p.cod_pedido inner join Produto as produts on produts.Cod_Produto = dp.Cod_Produto2 where p.Cod_Pedido = '"+cod+"'  group by pd.nome_produto,pd.Valor_Venda, Cod_Produto2, produts.Nome_Produto");
 
     }//GEN-LAST:event_JTablePedidosMouseClicked
 
@@ -370,7 +351,6 @@ public class frmPedidos extends javax.swing.JFrame {
         } else {
             empreparo = "";
         }
-
     }//GEN-LAST:event_ChkEmpreparoActionPerformed
 
     private void ChkFilaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkFilaActionPerformed
@@ -380,7 +360,6 @@ public class frmPedidos extends javax.swing.JFrame {
         } else {
             nafila = "";
         }
-
     }//GEN-LAST:event_ChkFilaActionPerformed
 
     private void ChkRealizadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkRealizadosActionPerformed
@@ -390,7 +369,6 @@ public class frmPedidos extends javax.swing.JFrame {
         } else {
             realizado = "";
         }
-
     }//GEN-LAST:event_ChkRealizadosActionPerformed
 
     private void ChkACaminhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkACaminhoActionPerformed
@@ -400,9 +378,6 @@ public class frmPedidos extends javax.swing.JFrame {
         } else {
             acaminho = "";
         }
-
-
-
     }//GEN-LAST:event_ChkACaminhoActionPerformed
 
     private void ChkCanceladoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkCanceladoActionPerformed
@@ -413,7 +388,9 @@ public class frmPedidos extends javax.swing.JFrame {
             ChkEmpreparo.setEnabled(false);
             ChkFila.setEnabled(false);
             ChkRealizados.setEnabled(false);
-        } else {
+
+        } else 
+        {
             cancelado = "";
             ChkACaminho.setEnabled(true);
             ChkEmpreparo.setEnabled(true);
@@ -423,12 +400,14 @@ public class frmPedidos extends javax.swing.JFrame {
     }//GEN-LAST:event_ChkCanceladoActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-       
+        timer.stop();
+        frmHome.contador = 10;
+        frmHome.binario = 0;
+
     }//GEN-LAST:event_formWindowClosing
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-      frmHome.flag = true; 
-      frmHome.contador = 10;
+       
     }//GEN-LAST:event_formWindowClosed
     int contador = 10;
 
@@ -436,11 +415,11 @@ public class frmPedidos extends javax.swing.JFrame {
         System.out.println(contador);
 
     }
-    private javax.swing.Timer timer = new javax.swing.Timer(1000, new java.awt.event.ActionListener() {
+    private javax.swing.Timer timer = new javax.swing.Timer(60 * 1000, new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent e) {
             escreva();
             contador--;
-            if (contador == 10) {
+            if (contador == 0) {
                 timer.stop();
                 dispose();
             }
@@ -505,31 +484,31 @@ public class frmPedidos extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblTotal;
     // End of variables declaration//GEN-END:variables
-   NumberFormat z = NumberFormat.getCurrencyInstance();
-SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");  
-    
+    NumberFormat z = NumberFormat.getCurrencyInstance();
+    SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
     String empreparo, acaminho, realizado, nafila, cancelado;
     Double Total = 0.00;
     Date data1, data2;
+    String datainicio, datafim, data;
 
     public void preencherTabela(String Sql) {
         ArrayList dados = new ArrayList();
-        String[] Colunas = new String[]{"<html><span style='color:#ef6f53;font-weight: bold;'>Código</span></html>", "<html><span style='color:#ef6f53;font-weight: bold;'>Data</span></html>", 
-            "<html><span style='color:#ef6f53;font-weight: bold;'>Valor</span></html>","<html><span style='color:#ef6f53;font-weight: bold;'>Estado</span></html>",
+        String[] Colunas = new String[]{"<html><span style='color:#ef6f53;font-weight: bold;'>Código</span></html>", "<html><span style='color:#ef6f53;font-weight: bold;'>Data</span></html>",
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Valor</span></html>", "<html><span style='color:#ef6f53;font-weight: bold;'>Estado</span></html>",
             "<html><span style='color:#ef6f53;font-weight: bold;'>Forma de Pagamento</span></html>"};
 
         conecta.executaSql(Sql);
         try {
             conecta.rs.first();
             do {
-                
+
                 dados.add(new Object[]{conecta.rs.getInt("Cod_Pedido"), fmt.format(conecta.rs.getDate("Data")),
-                            z.format(conecta.rs.getDouble("Valor")), conecta.rs.getString("Estado"), conecta.rs.getString("FormaDePagamento")});
-                
-                
+                            z.format(conecta.rs.getDouble("valorpago")), conecta.rs.getString("Estado"), conecta.rs.getString("FormaDePagamento")});
+
+
             } while (conecta.rs.next());
-            
-           
+
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Não há lançamentos");
 
@@ -539,13 +518,13 @@ SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
         JTablePedidos.setModel(modelo);
         JTablePedidos.getColumnModel().getColumn(0).setPreferredWidth(60); // Tamanho em pixel da coluna
         JTablePedidos.getColumnModel().getColumn(0).setResizable(false);
-        JTablePedidos.getColumnModel().getColumn(1).setPreferredWidth(85);
+        JTablePedidos.getColumnModel().getColumn(1).setPreferredWidth(90);
         JTablePedidos.getColumnModel().getColumn(1).setResizable(true);
-        JTablePedidos.getColumnModel().getColumn(2).setPreferredWidth(78);
+        JTablePedidos.getColumnModel().getColumn(2).setPreferredWidth(90);
         JTablePedidos.getColumnModel().getColumn(2).setResizable(false);
-        JTablePedidos.getColumnModel().getColumn(3).setPreferredWidth(85);
+        JTablePedidos.getColumnModel().getColumn(3).setPreferredWidth(83);
         JTablePedidos.getColumnModel().getColumn(3).setResizable(false);
-        JTablePedidos.getColumnModel().getColumn(4).setPreferredWidth(140);
+        JTablePedidos.getColumnModel().getColumn(4).setPreferredWidth(142);
         JTablePedidos.getColumnModel().getColumn(4).setResizable(false);
         JTablePedidos.getTableHeader().setReorderingAllowed(false);
         JTablePedidos.setAutoResizeMode(JTablePedidos.AUTO_RESIZE_OFF);//Não pode ser redimensionada
@@ -556,16 +535,30 @@ SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
 
     void preencherTabelaDetalhe(String Sql) {
         ArrayList dados = new ArrayList();
-        String[] Colunas = new String[]{ "<html><span style='color:#ef6f53;font-weight: bold;'>Nome do Produto</span></html>", 
-           "<html><span style='color:#ef6f53;font-weight: bold;'>Quantidade</span></html>",
-          "<html><span style='color:#ef6f53;font-weight: bold;'>Valor de Venda</span></html>"};
+        String[] Colunas = new String[]{"<html><span style='color:#ef6f53;font-weight: bold;'>Nome do Produto</span></html>",
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Quantidade</span></html>",
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Valor de Venda</span></html>"};
 
         conecta.executaSql(Sql);
         try {
             conecta.rs.first();
             do {
-                dados.add(new Object[]{conecta.rs.getString("Nome_Produto"), conecta.rs.getInt("Quantidade"), 
-                            z.format(conecta.rs.getDouble("Valor_Venda"))});
+                
+                if(conecta.rs.getInt("Cod_Produto2")==0)
+                {
+                
+                dados.add(new Object[]{conecta.rs.getString("Produto1"), conecta.rs.getInt("Quantidade"),
+                            z.format(conecta.rs.getDouble("ValorVenda"))});
+                
+                }
+                else
+                {
+                 dados.add(new Object[]{conecta.rs.getString("Produto1")+" / "+conecta.rs.getString("Produto2"), conecta.rs.getInt("Quantidade"),
+                            z.format(conecta.rs.getDouble("ValorVenda"))});
+                
+                }
+                
+                
             } while (conecta.rs.next());
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Erro ao preencher o ArrayList");
@@ -574,17 +567,14 @@ SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
 
         ModeloTabelas modelo = new ModeloTabelas(dados, Colunas); //Instacia a classe do modelo da Tabela.
         JTableProdutos.setModel(modelo);
-        JTableProdutos.getColumnModel().getColumn(0).setPreferredWidth(182); // Tamanho em pixel da coluna
-        JTableProdutos.getColumnModel().getColumn(0).setResizable(false);
-        JTableProdutos.getColumnModel().getColumn(1).setPreferredWidth(107);
+        JTableProdutos.getColumnModel().getColumn(0).setPreferredWidth(210); // Tamanho em pixel da coluna
+        JTableProdutos.getColumnModel().getColumn(0).setResizable(true);
+        JTableProdutos.getColumnModel().getColumn(1).setPreferredWidth(80);
         JTableProdutos.getColumnModel().getColumn(1).setResizable(false);
-        JTableProdutos.getColumnModel().getColumn(2).setPreferredWidth(122);
+        JTableProdutos.getColumnModel().getColumn(2).setPreferredWidth(124);
         JTableProdutos.getColumnModel().getColumn(2).setResizable(false);
         JTableProdutos.setAutoResizeMode(JTablePedidos.AUTO_RESIZE_OFF);//Não pode ser redimensionada
         JTableProdutos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-
-
-
 
     }
 
@@ -605,8 +595,6 @@ SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
         return f;
 
     }
-   
-    String datainicio, datafim, data;
 
     public void Rikimaru() {
         if (ChkACaminho.isSelected() | ChkEmpreparo.isSelected() | ChkFila.isSelected() | ChkRealizados.isSelected()) {
@@ -615,8 +603,8 @@ SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
         } else {
             ChkCancelado.setEnabled(true);
         }
-     }
-    
+    }
+
     public boolean ValidaDatas() {
         try {
 
@@ -627,19 +615,18 @@ SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
 
         } catch (Exception e) {
         }
-if (JdcInicio.getDate()==null){	
-    JOptionPane.showMessageDialog(this, "Informe a data Inicial");
-   
-   return false;
-}
-if (JdcFim.getDate()==null){	
-    JOptionPane.showMessageDialog(this, "Informe a data Final");
-   
-   return false;
-}
+        if (JdcInicio.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "Informe a data Inicial");
 
-return true;
+            return false;
+        }
+        if (JdcFim.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "Informe a data Final");
 
-}
-   
+            return false;
+        }
+
+        return true;
+
+    }
 }

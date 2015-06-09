@@ -8,7 +8,6 @@ package Visao;
 import Modelo.ModeloTabelas;
 import giovanellis.SqlServer;
 import java.awt.Color;
-import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -21,6 +20,9 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
+
 
 /**
  *
@@ -41,7 +43,7 @@ public class frmInsumos extends javax.swing.JFrame {
         initComponents();
         Color Fundo = new Color(238, 235, 227);
         getContentPane().setBackground(Fundo);
-        //  setAlwaysOnTop(true);
+          setAlwaysOnTop(true);
     }
 
     /**
@@ -64,20 +66,24 @@ public class frmInsumos extends javax.swing.JFrame {
         JcbInsumos = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        JTableProdutos = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Insumos");
+        setResizable(false);
+        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                formMouseMoved(evt);
+            }
+        });
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
             }
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
-            }
-        });
-        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                formMouseMoved(evt);
             }
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -102,9 +108,9 @@ public class frmInsumos extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(239, 111, 83));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Consulta de Lançamentos");
+        jLabel1.setText("Produto por Insumo");
         jLabel1.setOpaque(true);
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -7, 727, 50));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, 727, 30));
 
         JTableInsumos.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         JTableInsumos.setForeground(new java.awt.Color(88, 55, 66));
@@ -119,6 +125,11 @@ public class frmInsumos extends javax.swing.JFrame {
 
             }
         ));
+        JTableInsumos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JTableInsumosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(JTableInsumos);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 141, 707, 149));
@@ -134,7 +145,7 @@ public class frmInsumos extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 340, 100, 40));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 530, 100, 40));
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(239, 111, 83));
@@ -147,13 +158,13 @@ public class frmInsumos extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 100, 40));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 530, 100, 40));
 
         lblTotal.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblTotal.setForeground(new java.awt.Color(88, 55, 66));
         lblTotal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTotal.setText("Total");
-        getContentPane().add(lblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 308, 727, -1));
+        getContentPane().add(lblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 500, 727, -1));
 
         JcbInsumos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -172,7 +183,32 @@ public class frmInsumos extends javax.swing.JFrame {
         jLabel4.setText("Data Inicial");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 76, -1, -1));
 
-        setSize(new java.awt.Dimension(743, 428));
+        JTableProdutos.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        JTableProdutos.setForeground(new java.awt.Color(88, 55, 66));
+        JTableProdutos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane2.setViewportView(JTableProdutos);
+
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 350, 390, 140));
+
+        jLabel2.setBackground(new java.awt.Color(88, 55, 66));
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(239, 111, 83));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Consulta de Lançamentos");
+        jLabel2.setOpaque(true);
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -7, 727, 50));
+
+        setSize(new java.awt.Dimension(731, 619));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -186,8 +222,12 @@ public class frmInsumos extends javax.swing.JFrame {
         Color Laranja = new Color(242, 184, 171);
         JTableInsumos.setSelectionBackground(Roxo);
         JTableInsumos.setSelectionForeground(Laranja);
+        JTableProdutos.setSelectionBackground(Roxo);
+        JTableProdutos.setSelectionForeground(Laranja);
         timer.start();
         PreencherCombobox();
+       
+        
 
     }//GEN-LAST:event_formWindowOpened
 
@@ -247,8 +287,19 @@ public class frmInsumos extends javax.swing.JFrame {
     }//GEN-LAST:event_formMouseMoved
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        timer.stop();
+          timer.stop();
+        frmHome.contador = 10;
+        frmHome.binario = 0;
+        
     }//GEN-LAST:event_formWindowClosing
+
+    private void JTableInsumosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTableInsumosMouseClicked
+ int cod = (int) JTableInsumos.getValueAt(JTableInsumos.getSelectedRow(), 2);
+
+        preencherTabelaProdutos("select p.Cod_Produto, p.Nome_Produto from Consumo as Con inner join Insumo as Ins on ins.Cod_Insumo "
+                + "= Con.CodInsumo inner join Produto as p on p.Cod_Produto = con.CodProduto where Cod_Insumo = '" + cod + "' order by Nome_Produto asc");
+
+    }//GEN-LAST:event_JTableInsumosMouseClicked
     int contador = 10;
 
     public void escreva() {
@@ -314,15 +365,18 @@ public class frmInsumos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable JTableInsumos;
+    private javax.swing.JTable JTableProdutos;
     private javax.swing.JComboBox JcbInsumos;
     private com.toedter.calendar.JDateChooser JdcFim;
     private com.toedter.calendar.JDateChooser JdcInicio;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblTotal;
     // End of variables declaration//GEN-END:variables
 NumberFormat z = NumberFormat.getCurrencyInstance();
@@ -351,6 +405,7 @@ NumberFormat z = NumberFormat.getCurrencyInstance();
         return f;
 
     }
+
 
     public void PreencherCombobox() {
         connCombo.getCon();
@@ -402,7 +457,7 @@ NumberFormat z = NumberFormat.getCurrencyInstance();
         JTableInsumos.setModel(modelo);
         JTableInsumos.getColumnModel().getColumn(0).setPreferredWidth(98); // Tamanho em pixel da coluna
         JTableInsumos.getColumnModel().getColumn(0).setResizable(false);
-        JTableInsumos.getColumnModel().getColumn(1).setPreferredWidth(190);
+        JTableInsumos.getColumnModel().getColumn(1).setPreferredWidth(188);
         JTableInsumos.getColumnModel().getColumn(1).setResizable(false);
         JTableInsumos.getColumnModel().getColumn(2).setPreferredWidth(80);
         JTableInsumos.getColumnModel().getColumn(2).setResizable(false);
@@ -420,6 +475,43 @@ NumberFormat z = NumberFormat.getCurrencyInstance();
 
     }
 
+     public void preencherTabelaProdutos(String Sql) {
+//         DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();
+//        centralizado.setHorizontalAlignment(SwingConstants.CENTER);
+//       JTableProdutos.getTableHeader().setDefaultRenderer(centralizado);
+        ArrayList dados = new ArrayList();
+        String[] Colunas = new String[]{"<html><span style='color:#ef6f53;font-weight: bold;'>Código do Produto</span></html>",
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Nome do Produto</span></html>"};
+     
+        conecta.executaSql(Sql);
+        try {
+            conecta.rs.first();
+            do {
+
+                dados.add(new Object[]{conecta.rs.getInt("Cod_Produto"), conecta.rs.getString("Nome_Produto")});
+
+            } while (conecta.rs.next());
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Produto não localizado");
+
+        }
+
+        ModeloTabelas modelo = new ModeloTabelas(dados, Colunas); //Instacia a classe do modelo da Tabela.
+        JTableProdutos.setModel(modelo);
+        JTableProdutos.getColumnModel().getColumn(0).setPreferredWidth(125); // Tamanho em pixel da coluna
+        JTableProdutos.getColumnModel().getColumn(0).setResizable(false);
+       // JTableProdutos.getColumnModel().getColumn(0).setCellRenderer(centralizado);
+        JTableProdutos.getColumnModel().getColumn(1).setPreferredWidth(258);
+        JTableProdutos.getColumnModel().getColumn(1).setResizable(false);
+      //  JTableProdutos.getColumnModel().getColumn(1).setCellRenderer(centralizado);
+        JTableProdutos.getTableHeader().setReorderingAllowed(false);
+        JTableProdutos.setAutoResizeMode(JTableProdutos.AUTO_RESIZE_OFF);//Não pode ser redimensionada
+        JTableProdutos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+    }
+    
+    
     public boolean ValidaDatas() {
         try {
 
