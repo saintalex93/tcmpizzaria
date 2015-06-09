@@ -327,3 +327,90 @@ as
 				select codAdmin, nomeAdmin from AiDeMim where emailAdmin = @email and senhaAdmin = @senha
 			End
 	End
+	
+	go
+	
+	create procedure USP_AdicionarVaga
+(
+	@Titulo varchar(50),
+	@Descricao varchar (100),
+	@CodEmpresa int,
+	@Endereco varchar (100),
+	@CodCategoria int,
+	@CodArea int,
+	@Data date
+	
+	
+)
+
+as
+declare @Estado int
+set @Estado = 1
+
+	Begin
+		insert into Vagas (Titulo, Descricao, codEmpresa, Endereco,codCategoria, codArea, Data, Estado)
+		 values(@Titulo, @Descricao, @CodEmpresa, @Endereco, @CodCategoria, @CodArea, @Data, @Estado)
+	End
+
+
+go
+
+create procedure USP_EditarVaga
+(
+	@CodVaga int,
+	@NovoTitulo varchar(50),
+	@NovaDescricao varchar (100),
+	@CodEmpresa int,
+	@NovoEndereco varchar (100),
+	@CodCategoria int,
+	@CodArea int,
+	@NovaData date,
+	@Estado int
+)
+as
+	Begin
+		update Vagas set Titulo = @NovoTitulo, Descricao = @NovaDescricao, codEmpresa = @CodEmpresa, Endereco = @NovoEndereco
+		,codCategoria = @CodCategoria, codArea = @CodArea, Data = @NovaData, Estado = @Estado
+		 where codVaga = @CodVaga
+	End
+	
+	
+
+go
+
+create procedure USP_RemoverVaga
+(
+	@CodVaga int
+)
+as
+	Begin
+		delete from Vagas where codVaga = @CodVaga
+	End
+	
+	
+	go
+	
+	create procedure USP_AtivarInativarVagas
+	
+	(
+	@CodVaga int,
+	@Estado int
+	)
+	
+	as
+	declare @Estado2 int
+	
+	Begin
+	
+	set @Estado2 = (select Estado from Vagas where codVaga = @CodVaga)
+	
+	
+	if (@Estado2 = 1)
+	begin
+	Update Vagas set Estado = 0 where codVaga = @CodVaga
+	end
+	else
+	begin
+	Update Vagas set Estado = 1 where codVaga = @CodVaga
+	end
+	end

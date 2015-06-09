@@ -281,6 +281,31 @@ valor_insumo decimal (6,2),
 qdt_comprada int,
 )
 go
+create table Lembretes
+(
+codLembrente int identity (1,1) primary key,
+codFuncionario int foreign key references Funcionario (Cod_Funcionario),
+Assunto varchar (100),
+Mensagem varchar (500),
+DataCriacao date,
+DataAviso date, 
+Aviso int
+
+)
+go
+
+create table Mensagens
+(
+CodMensagem int identity (1,1) primary key,
+CodRemetente int foreign key references Funcionario (Cod_Funcionario),
+CodDestinatario int foreign key references Funcionario (Cod_Funcionario),
+Assunto varchar (100),
+Mensagem varchar (500),
+DataCriacao date,
+Aviso int
+)
+go
+
 	-------------------------------------------------------------- 
 	-------------------------------------------------------------- 
 	-------------------- *** INSERT'S *** ------------------------ 
@@ -2969,3 +2994,76 @@ as
 	End
 go
 ---------------------------------------------------
+
+create procedure USP_JAVA_INSERELEMBRETE
+(
+
+@codFuncionario int,
+@Assunto varchar (100),
+@Mensagem varchar (500),
+@DataCriacao date,
+@DataAviso date, 
+@Aviso int
+
+
+)
+as
+
+begin
+
+insert into Lembretes (codFuncionario,Assunto,Mensagem,DataCriacao,DataAviso,Aviso) 
+values (@codFuncionario, @Assunto, @Mensagem, @DataCriacao, @DataAviso, @Aviso )
+
+end
+
+
+--create procedure USP_JAVA_INSERELEMBRETE
+--(
+--@codLembrente
+--@codFuncionario int,
+--@Assunto varchar (100),
+--@Mensagem varchar (500),
+--@DataCriacao date,
+--@DataAviso date, 
+--@Aviso int
+
+
+--)
+--as
+
+--begin
+
+--insert into Lembretes (codFuncionario,Assunto,Mensagem,DataCriacao,DataAviso,Aviso) 
+--values (@codFuncionario, @Assunto, @Mensagem, @DataCriacao, @DataAviso, @Aviso )
+
+--end
+
+
+--create 
+
+
+
+
+--create table Lembretes
+--(
+--codLembrente int identity (1,1) primary key,
+--codFuncionario int foreign key references Funcionario (Cod_Funcionario),
+--Assunto varchar (100),
+--Mensagem varchar (500),
+--DataCriacao date,
+--DataAviso date, 
+--Aviso int
+
+
+
+
+--create table Mensagens
+--(
+--CodMensagem int identity (1,1) primary key,
+--CodRemetente int foreign key references Funcionario (Cod_Funcionario),
+--CodDestinatario int foreign key references Funcionario (Cod_Funcionario),
+--Assunto varchar (100),
+--Mensagem varchar (500),
+--DataCriacao date,
+--Aviso int
+--)
