@@ -283,10 +283,10 @@ qdt_comprada int,
 go
 create table Lembretes
 (
-codLembrente int identity (1,1) primary key,
+codLembrete int identity (1,1) primary key,
 codFuncionario int foreign key references Funcionario (Cod_Funcionario),
 Assunto varchar (100),
-Mensagem varchar (500),
+Mensagem varchar (1000),
 DataCriacao date,
 DataAviso date, 
 Aviso int
@@ -300,7 +300,7 @@ CodMensagem int identity (1,1) primary key,
 CodRemetente int foreign key references Funcionario (Cod_Funcionario),
 CodDestinatario int foreign key references Funcionario (Cod_Funcionario),
 Assunto varchar (100),
-Mensagem varchar (500),
+Mensagem varchar (1000),
 DataCriacao date,
 Aviso int
 )
@@ -3015,28 +3015,30 @@ insert into Lembretes (codFuncionario,Assunto,Mensagem,DataCriacao,DataAviso,Avi
 values (@codFuncionario, @Assunto, @Mensagem, @DataCriacao, @DataAviso, @Aviso )
 
 end
+go
+
+select * from Lembretes where codFuncionario = 1
+
+--create procedure USP_JAVA_ALTERALEMBRETE
+--(
+--@codLembrente
+--@codFuncionario int,
+--@Assunto varchar (100),
+--@Mensagem varchar (500),
+--@DataCriacao date,
+--@DataAviso date, 
+--@Aviso int
 
 
-create procedure USP_JAVA_ALTERALEMBRETE
-(
-@codLembrente
-@codFuncionario int,
-@Assunto varchar (100),
-@Mensagem varchar (500),
-@DataCriacao date,
-@DataAviso date, 
-@Aviso int
+--)
+--as
 
+--begin
 
-)
-as
+--Update Lembretes set codFuncionario,Assunto,Mensagem,DataCriacao,DataAviso,Aviso 
+--values (@codFuncionario, @Assunto, @Mensagem, @DataCriacao, @DataAviso, @Aviso )
 
-begin
-
-Update Lembretes set (codFuncionario,Assunto,Mensagem,DataCriacao,DataAviso,Aviso) 
-values (@codFuncionario, @Assunto, @Mensagem, @DataCriacao, @DataAviso, @Aviso )
-
-end
+--end
 
 
 --create 
@@ -3046,7 +3048,7 @@ end
 
 --create table Lembretes
 --(
---codLembrente int identity (1,1) primary key,
+--codLembrete int identity (1,1) primary key,
 --codFuncionario int foreign key references Funcionario (Cod_Funcionario),
 --Assunto varchar (100),
 --Mensagem varchar (500),
@@ -3067,3 +3069,6 @@ end
 --DataCriacao date,
 --Aviso int
 --)
+
+
+
