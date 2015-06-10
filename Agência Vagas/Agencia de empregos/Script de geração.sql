@@ -303,7 +303,7 @@ as
 
 		if (@codigo > 0)
 			Begin
-				select codFuncionario, Nome from Funcionarios where Email = @email and Senha = @senha
+				select codFuncionario, Nome, codEmpresa from Funcionarios where Email = @email and Senha = @senha
 			End
 	End
 
@@ -414,3 +414,5 @@ as
 	Update Vagas set Estado = 1 where codVaga = @CodVaga
 	end
 	end
+
+	select * from Vagas

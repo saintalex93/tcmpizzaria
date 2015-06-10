@@ -82,7 +82,7 @@ public partial class aspx_lancarVaga : System.Web.UI.Page
         DataSet ds = new DataSet();
          SqlDataAdapter dAdapter = new SqlDataAdapter();
 
-        if (ddl.ID.Contains("Categoria"))
+        if (ddl.ID.Contains("Categoria") && !IsPostBack)
         {
             Conexao con = new Conexao();
             con.conectar();
@@ -97,6 +97,7 @@ public partial class aspx_lancarVaga : System.Web.UI.Page
             
             ddlCategorias.DataBind();
             ddlCategorias.Items.Insert(0, "Selecione uma Categoria");
+            ddlCategorias.SelectedIndex = 0;
 
             con.fechaConexao();
         }
@@ -104,16 +105,16 @@ public partial class aspx_lancarVaga : System.Web.UI.Page
 
     protected void carregarArea(object sender, EventArgs e)
     {
-        //if (ddlCategorias.SelectedIndex != 0)
-        //{
-            ddlAreas.Visible = true;
-
+        if (ddlCategorias.SelectedIndex > 0)
+        {
             Conexao con = new Conexao();
             DataSet ds = new DataSet();
             SqlDataAdapter dAdapter = new SqlDataAdapter();
 
+            int codigoCategoria = Convert.ToInt32(ddlCategorias.SelectedItem.Value);
+
             con.conectar();
-            con.command.CommandText = "select * from Areas where Nome like %" + ddlCategorias.SelectedItem.Text + "%";
+            con.command.CommandText = "select * from Areas where codCategoria = " + codigoCategoria;
 
             dAdapter.SelectCommand = con.command;
             dAdapter.Fill(ds, "Areas");
@@ -122,12 +123,22 @@ public partial class aspx_lancarVaga : System.Web.UI.Page
             ddlAreas.DataTextField = "Nome";
             ddlAreas.DataValueField = "codArea";
 
+            ddlAreas.DataBind();
+
+            if (ddlAreas.Items[0].Text != "Selecione uma área")
+            {
+                ddlAreas.Items.Insert(0, "Selecione uma área");
+                ddlAreas.SelectedIndex = 0;
+            }
+
             con.fechaConexao();
-        //}
+
+            pnlSelecionaArea.Visible = true;
+        }
         //Se ele não selecionou nada
-        //else
-        //{
-            //Response.Write("Seleciona alguma coisa filho da puta");
-        //}
+        else
+        {
+            pnlSelecionaArea.Visible = false;
+        }
     }
 }
