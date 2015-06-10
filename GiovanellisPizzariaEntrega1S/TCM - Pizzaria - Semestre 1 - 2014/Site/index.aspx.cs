@@ -111,9 +111,9 @@ public partial class index : System.Web.UI.Page
                 if (nome != null)
                 {
                     Response.Cookies["nome"].Value = nome;
-                    Response.Cookies["nome"].Expires = DateTime.Now.AddDays(10);
+                    Response.Cookies["nome"].Expires = DateTime.Now.AddDays(2);
                     Response.Cookies["cod"].Value = codcliente.ToString();
-                    Response.Cookies["cod"].Expires = DateTime.Now.AddDays(10);
+                    Response.Cookies["cod"].Expires = DateTime.Now.AddDays(2);
                     lblNomeUsuario.Text = Request.Cookies["nome"].Value;
                     Response.Redirect("index.aspx");
                 }

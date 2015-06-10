@@ -87,7 +87,7 @@ public partial class aspx_cardapio : System.Web.UI.Page
                 DataRow linha = dt.NewRow();
                 linha["Sabores"] = row["Nome_Produto"].ToString();
                 linha["Ingredientes"] = insumos;
-                linha["Preço"] = row["Valor_Venda"].ToString();
+                linha["Preço"] = "R$ " + row["Valor_Venda"].ToString();
                 //Adicionando as linhas no DataTable
                 dt.Rows.Add(linha);
                 contador++;

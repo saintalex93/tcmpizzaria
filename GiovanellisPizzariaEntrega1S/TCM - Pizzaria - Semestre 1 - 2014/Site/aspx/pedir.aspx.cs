@@ -19,7 +19,7 @@ public partial class aspx_pedir2 : System.Web.UI.Page
         if (Request.Cookies["cod"] == null || Request.Cookies["cod"].Value == "0")
         {
             Response.Write("<script>alert('Você deve estar logado para acessar esta página.')</script>");
-            Response.Write("<script>window.location.assign('http://localhost:1237/Site/index.aspx');</script>");
+            Response.Write("<script>window.location.assign('" + Request.ApplicationPath + "/index.aspx');</script>");
         }
         else
         {
@@ -329,7 +329,7 @@ public partial class aspx_pedir2 : System.Web.UI.Page
         //Verificando se algum sabor foi selecionado no Dropdown
         if (drop.SelectedIndex != 0)
         {
-            selecionado1 = Convert.ToDouble(ds.Tables[0].DefaultView[Convert.ToInt32(drop.SelectedValue) - 1].Row["Valor_Venda"]);
+            selecionado1 = Convert.ToDouble(ds.Tables[0].DefaultView[Convert.ToInt32(drop.SelectedValue)].Row["Valor_Venda"]);
         }
 
 
@@ -558,7 +558,7 @@ public partial class aspx_pedir2 : System.Web.UI.Page
 
         if (drop.SelectedIndex != 0)
         {
-            selecionado = Convert.ToDouble(ds.Tables[0].DefaultView[Convert.ToInt32(drop.SelectedValue) - 1].Row["Valor_Venda"]);
+            selecionado = Convert.ToDouble(ds.Tables[0].DefaultView[Convert.ToInt32(drop.SelectedValue)].Row["Valor_Venda"]);
             return (selecionado * qtd).ToString();
         }
         else
@@ -594,6 +594,7 @@ public partial class aspx_pedir2 : System.Web.UI.Page
     //Método para adicionar pizzas no carrinho
     protected void AdicionarProdutosCarrinho(object sender, EventArgs e)
     {
+        txtTroco.Text = "R$ 00,00";
         DataTable dt = (DataTable)Session["carrinho"];
         DataSet ds = (DataSet)Session["valorPizza"];
 
@@ -638,7 +639,10 @@ public partial class aspx_pedir2 : System.Web.UI.Page
                                             if (drop.SelectedItem.Value == "Selecione uma Pizza")
                                             {
                                                 ScriptManager.RegisterStartupScript(Page, GetType(), "ScriptManager1", "alert('Selecione uma pizza, por favor !');", true);
-                                                pnlCarrinhoPedido.Visible = false;
+                                                if (dt.Rows.Count <= 0)
+                                                {
+                                                    pnlCarrinhoPedido.Visible = false;
+                                                }
                                                 break;
                                             }
                                             else
@@ -736,7 +740,10 @@ public partial class aspx_pedir2 : System.Web.UI.Page
                                             if (drop.SelectedItem.Value == "Selecione uma Pizza")
                                             {
                                                 ScriptManager.RegisterStartupScript(Page, GetType(), "ScriptManager1", "alert('Selecione uma pizza, por favor !');", true);
-                                                pnlCarrinhoPedido.Visible = false;
+                                                if (dt.Rows.Count <= 0)
+                                                {
+                                                    pnlCarrinhoPedido.Visible = false;
+                                                }
                                                 break;
                                             }
                                             else
@@ -775,15 +782,15 @@ public partial class aspx_pedir2 : System.Web.UI.Page
                                         {
                                             for (int i = numLinhas - 1; i >= 0; i--)
                                             {
-                                                DataRow linha2 = dt.Rows[i];
-                                                if (linha2["Produtos"].ToString() == nomePizzaMeio || linha2["Produtos"].ToString() == nomePizzaInvertido && contadorVolta <= contadorPainel)
+                                                DataRow linha = dt.Rows[i];
+                                                if (linha["Produtos"].ToString() == nomePizzaMeio || linha["Produtos"].ToString() == nomePizzaInvertido && contadorVolta <= contadorPainel)
                                                 {
                                                     double valorFinal = 0;
-                                                    int qtd = Convert.ToInt32(linha2["Quantidade"]) + Convert.ToInt32(quantidade);
+                                                    int qtd = Convert.ToInt32(linha["Quantidade"]) + Convert.ToInt32(quantidade);
                                                     double valor = Convert.ToDouble(preco.Substring(2).Trim()) / Convert.ToInt32(quantidade);
                                                     valorFinal += valor * qtd;
-                                                    linha2["Quantidade"] = qtd;
-                                                    linha2["Valor"] = valorFinal.ToString("C");
+                                                    linha["Quantidade"] = qtd;
+                                                    linha["Valor"] = valorFinal.ToString("C");
                                                     contadorVolta++;
                                                     contadorRepetido++;
                                                     break;
@@ -819,8 +826,8 @@ public partial class aspx_pedir2 : System.Web.UI.Page
                                         double precoTotal = 0;
                                         foreach (GridViewRow row in gdCarrinho.Rows)
                                         {
-                                            string teste = row.Cells[2].Text;
-                                            precoTotal += Convert.ToDouble(teste.Substring(2));
+                                            string celula = row.Cells[2].Text;
+                                            precoTotal += Convert.ToDouble(celula.Substring(2));
                                             lblPrecoTotal.Text = precoTotal.ToString("C");
                                             lblPrecoDoPedido.Text = precoTotal.ToString("C");
                                             txtValor.Text = precoTotal.ToString("C");
@@ -836,6 +843,13 @@ public partial class aspx_pedir2 : System.Web.UI.Page
             //Se for o painel de bebidas
             else if (ctr.Parent.ID.Contains("pnlPedindoBebidas"))
             {
+                string nomeBebida = "";
+                string precoBebida = "";
+                string quantidadeBebida = "";
+                int contadorVolta = 1;
+                int contadorPainel = 0;
+
+                Label lblBebidaPrec = new Label();
                 if (ctr is Panel && ctr.Visible == true)
                 {
                     foreach (Control ctr2 in ctr.Controls)
@@ -843,16 +857,94 @@ public partial class aspx_pedir2 : System.Web.UI.Page
                         if (ctr2 is DropDownList)
                         {
                             DropDownList dropBebida = (DropDownList)ctr2;
-                            dropBebida.SelectedIndex = 5;
+                            if (dropBebida.SelectedIndex != 0)
+                            {
+                                nomeBebida = dropBebida.SelectedItem.Text;
+                            }
+                            else
+                            {
+                                ScriptManager.RegisterStartupScript(Page, GetType(), "ScriptManager1", "alert('Selecione uma bebida, por favor !');", true);
+                                if (dt.Rows.Count <= 0)
+                                {
+                                    pnlCarrinhoPedido.Visible = false;
+                                }
+                            }
+                            contadorPainel++;
+                        }
+                        if (ctr2 is TextBox && ctr2.ID.Contains("txtQtdBebida"))
+                        {
+                            txt = (TextBox)ctr2;
+                            quantidadeBebida = txt.Text;
                         }
                         if (ctr2 is Label && ctr2.ID.Contains("lblPrecoBebida"))
                         {
+                            lblBebidaPrec = (Label)ctr2;
+                            precoBebida = lblBebidaPrec.Text;
+                            pnlCarrinhoPedido.Visible = true;
+                        }
 
+                        if (pnlCarrinhoPedido.Visible == true && nomeBebida != "" && precoBebida != "")
+                        {
+                            int contadorRepetido = 0;
+                            int numLinhas = dt.Rows.Count;
+                            if (numLinhas >= 1)
+                            {
+                                for (int i = numLinhas - 1; i >= 0; i--)
+                                {
+                                    //Verificando se não há repetição de bebidas, se houver é somado na quantidade.
+                                    DataRow linha = dt.Rows[i];
+                                    if (linha["Produtos"].ToString() == nomeBebida && contadorVolta <= contadorPainel)
+                                    {
+                                        double valorFinal = 0;
+                                        int qtd = Convert.ToInt32(linha["Quantidade"]) + Convert.ToInt32(quantidadeBebida);
+                                        double valor = Convert.ToDouble(precoBebida.Substring(2).Trim()) / Convert.ToInt32(quantidadeBebida);
+                                        valorFinal += valor * qtd;
+                                        linha["Quantidade"] = qtd;
+                                        linha["Valor"] = valorFinal.ToString("C");
+                                        contadorVolta++;
+                                        contadorRepetido++;
+                                        break;
+                                    }
+                                }
+                            }
+                            //Se for a primeira vez que ele está adicionando pizzas
+                            else if (numLinhas == 0)
+                            {
+                                DataRow linha = dt.NewRow();
+                                linha["Produtos"] = nomeBebida;
+                                linha["Quantidade"] = quantidadeBebida;
+                                linha["Valor"] = precoBebida;
+                                dt.Rows.Add(linha);
+                                contadorVolta++;
+                            }
+                            //Se não houve repetição, e se não é mais a primeira pizza que o usuário tenta adicionar
+                            if (contadorRepetido == 0 && contadorVolta >= 1 && numLinhas >= 1)
+                            {
+                                DataRow linha = dt.NewRow();
+                                linha["Produtos"] = nomeBebida;
+                                linha["Quantidade"] = quantidadeBebida;
+                                linha["Valor"] = precoBebida;
+                                dt.Rows.Add(linha);
+                                contadorVolta++;
+                            }
+
+                            Session["carrinho"] = dt;
+
+                            gdCarrinho.DataSource = dt;
+                            gdCarrinho.DataBind();
+
+                            double precoTotal = 0;
+                            foreach (GridViewRow row in gdCarrinho.Rows)
+                            {
+                                string celula = row.Cells[2].Text;
+                                precoTotal += Convert.ToDouble(celula.Substring(2));
+                                lblPrecoTotal.Text = precoTotal.ToString("C");
+                                lblPrecoDoPedido.Text = precoTotal.ToString("C");
+                                txtValor.Text = precoTotal.ToString("C");
+                            }
+                            break;
                         }
                     }
-
-                    ScriptManager.RegisterStartupScript(Page, GetType(), "ScriptManager1", "alert('Bebidas');", true);
-                    break;
                 }
             }
         }
@@ -911,7 +1003,7 @@ public partial class aspx_pedir2 : System.Web.UI.Page
 
     protected void limparCarrinho(object sender, EventArgs e)
     {
-        Session.Clear();
+        Session["carrinho"] = null;
         Response.Redirect("pedir.aspx");
     }
 
@@ -921,7 +1013,6 @@ public partial class aspx_pedir2 : System.Web.UI.Page
         if (rbtnPagamento.SelectedItem.Value == "1")
         {
             txtValor.Text = valor.ToString("C");
-            txtValor.Visible = true;
             txtValor.ReadOnly = false;
             txtValor.Text = "";
             txtValor.Attributes.Add("placeholder","Exemplo: 50,00");
@@ -929,6 +1020,7 @@ public partial class aspx_pedir2 : System.Web.UI.Page
         else if (rbtnPagamento.SelectedItem.Value == "2")
         {
             txtValor.Text = valor.ToString("C");
+            txtValor.ReadOnly = true;
             txtTroco.Text = "R$ 00,00";
         }
     }
@@ -1027,10 +1119,10 @@ public partial class aspx_pedir2 : System.Web.UI.Page
         con.command.Parameters.Add("@pagamento", SqlDbType.VarChar).Value = formaPag;
         con.command.Parameters.Add("@valorPago", SqlDbType.Decimal).Value = valorPago;
         int qtd = con.command.ExecuteNonQuery();
-        if (qtd >= 1)
+        if (qtd <= 0)
         {
-            //Session.Clear();
-            //ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect","alert('Pedido Realizado com Sucesso'); window.location='" + Request.ApplicationPath + "/aspx/pedir.aspx';", true);
+            Session.Clear();
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect","alert('Problema ao Registrar seu pedido'); window.location='" + Request.ApplicationPath + "/aspx/pedir.aspx';", true);
         }
         con.fechaConexao();
 
@@ -1060,7 +1152,7 @@ public partial class aspx_pedir2 : System.Web.UI.Page
 
             foreach (DataRow row in dt.Rows)
             {
-                for (int i = 0; i < numLinhas; i++)
+                for (int i = 0; i < numLinhas && contadorVolta < numLinhas; i++)
                 {
                     produto = dt.Rows[i]["Produtos"].ToString();
                     quantidade = Convert.ToInt32(dt.Rows[i]["Quantidade"]);
@@ -1108,12 +1200,24 @@ public partial class aspx_pedir2 : System.Web.UI.Page
                     }
                     for (int j = 1; j <= quantidade; j++)
                     {
-                        con3.command.Parameters.Add("@CodPedido" + j.ToString(), SqlDbType.Int).Value = codUltimoPedido;
-                        con3.command.Parameters.Add("@CodProduto" + j.ToString(), SqlDbType.Int).Value = codProduto1;
-                        con3.command.Parameters.Add("@CodProdutoMeio" + j.ToString(), SqlDbType.Int).Value = codProduto2;
-                        con3.command.CommandText = "insert into Detalhe_Pedido(Cod_Pedido,Cod_Produto,Cod_Produto2)" + "values(@CodPedido" + j.ToString() + ",@CodProduto" + j.ToString() + ",@CodProdutoMeio" + j.ToString() + ")";
-                        con3.command.ExecuteNonQuery();
-                        contadorVolta++;
+                        if (codProduto2 == 0)
+                        {
+                            con3.command.Parameters.Add("@CodPedido" + contadorVolta.ToString(), SqlDbType.Int).Value = codUltimoPedido;
+                            con3.command.Parameters.Add("@CodProduto" + contadorVolta.ToString(), SqlDbType.Int).Value = codProduto1;
+                            con3.command.Parameters.Add("@CodProdutoMeio" + contadorVolta.ToString(), SqlDbType.Int).Value = DBNull.Value;
+                            con3.command.CommandText = "insert into Detalhe_Pedido(Cod_Pedido,Cod_Produto,Cod_Produto2)" + "values(@CodPedido" + contadorVolta.ToString() + ",@CodProduto" + contadorVolta.ToString() + ",@CodProdutoMeio" + contadorVolta.ToString() + ")";
+                            con3.command.ExecuteNonQuery();
+                            contadorVolta++;
+                        }
+                        else
+                        {
+                            con3.command.Parameters.Add("@CodPedido" + contadorVolta.ToString(), SqlDbType.Int).Value = codUltimoPedido;
+                            con3.command.Parameters.Add("@CodProduto" + contadorVolta.ToString(), SqlDbType.Int).Value = codProduto1;
+                            con3.command.Parameters.Add("@CodProdutoMeio" + contadorVolta.ToString(), SqlDbType.Int).Value = codProduto2;
+                            con3.command.CommandText = "insert into Detalhe_Pedido(Cod_Pedido,Cod_Produto,Cod_Produto2)" + "values(@CodPedido" + contadorVolta.ToString() + ",@CodProduto" + contadorVolta.ToString() + ",@CodProdutoMeio" + contadorVolta.ToString() + ")";
+                            con3.command.ExecuteNonQuery();
+                            contadorVolta++;
+                        }
                     }
                 }
         }
