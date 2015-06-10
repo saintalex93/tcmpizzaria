@@ -38,7 +38,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.gridConsumo = new System.Windows.Forms.DataGridView();
             this.btnVoltar = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
             this.txtBuscaProdutoNome = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -66,7 +65,7 @@
             0,
             0,
             131072});
-            this.numQuantidade.Location = new System.Drawing.Point(138, 73);
+            this.numQuantidade.Location = new System.Drawing.Point(314, 34);
             this.numQuantidade.Maximum = new decimal(new int[] {
             1,
             0,
@@ -80,7 +79,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.label1.Location = new System.Drawing.Point(9, 75);
+            this.label1.Location = new System.Drawing.Point(283, 18);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(123, 13);
             this.label1.TabIndex = 3;
@@ -92,13 +91,13 @@
             this.grpDados.Controls.Add(this.label6);
             this.grpDados.Controls.Add(this.btnAdicionar);
             this.grpDados.Controls.Add(this.numQuantidade);
-            this.grpDados.Controls.Add(this.cbProduto);
             this.grpDados.Controls.Add(this.label1);
+            this.grpDados.Controls.Add(this.cbProduto);
             this.grpDados.Controls.Add(this.label2);
             this.grpDados.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.grpDados.Location = new System.Drawing.Point(257, 12);
+            this.grpDados.Location = new System.Drawing.Point(12, 12);
             this.grpDados.Name = "grpDados";
-            this.grpDados.Size = new System.Drawing.Size(205, 130);
+            this.grpDados.Size = new System.Drawing.Size(450, 64);
             this.grpDados.TabIndex = 4;
             this.grpDados.TabStop = false;
             this.grpDados.Text = "Dados do consumo";
@@ -107,7 +106,7 @@
             // 
             this.cbInsumo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.cbInsumo.FormattingEnabled = true;
-            this.cbInsumo.Location = new System.Drawing.Point(71, 46);
+            this.cbInsumo.Location = new System.Drawing.Point(138, 34);
             this.cbInsumo.Name = "cbInsumo";
             this.cbInsumo.Size = new System.Drawing.Size(121, 21);
             this.cbInsumo.TabIndex = 11;
@@ -116,7 +115,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.label6.Location = new System.Drawing.Point(21, 49);
+            this.label6.Location = new System.Drawing.Point(135, 18);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(41, 13);
             this.label6.TabIndex = 12;
@@ -124,7 +123,7 @@
             // 
             // btnAdicionar
             // 
-            this.btnAdicionar.Location = new System.Drawing.Point(169, 99);
+            this.btnAdicionar.Location = new System.Drawing.Point(421, 32);
             this.btnAdicionar.Name = "btnAdicionar";
             this.btnAdicionar.Size = new System.Drawing.Size(23, 23);
             this.btnAdicionar.TabIndex = 10;
@@ -136,7 +135,7 @@
             // 
             this.cbProduto.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.cbProduto.FormattingEnabled = true;
-            this.cbProduto.Location = new System.Drawing.Point(71, 19);
+            this.cbProduto.Location = new System.Drawing.Point(11, 34);
             this.cbProduto.Name = "cbProduto";
             this.cbProduto.Size = new System.Drawing.Size(121, 21);
             this.cbProduto.TabIndex = 4;
@@ -146,7 +145,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.label2.Location = new System.Drawing.Point(21, 22);
+            this.label2.Location = new System.Drawing.Point(8, 18);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(44, 13);
             this.label2.TabIndex = 5;
@@ -165,26 +164,13 @@
             // 
             // btnVoltar
             // 
-            this.btnVoltar.Location = new System.Drawing.Point(395, 409);
+            this.btnVoltar.Location = new System.Drawing.Point(395, 343);
             this.btnVoltar.Name = "btnVoltar";
             this.btnVoltar.Size = new System.Drawing.Size(75, 23);
             this.btnVoltar.TabIndex = 5;
             this.btnVoltar.Text = "Voltar";
             this.btnVoltar.UseVisualStyleBackColor = true;
             this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
-            // 
-            // label3
-            // 
-            this.label3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.label3.Location = new System.Drawing.Point(9, 6);
-            this.label3.Name = "label3";
-            this.label3.Padding = new System.Windows.Forms.Padding(10);
-            this.label3.Size = new System.Drawing.Size(239, 136);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Esta é a tela de consumo. Nela é definido quanto de insumos serão usados em cada " +
-    "produto.\r\n\r\nEsta etapa é obrgatória para adicionar um produto no sistema.";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtBuscaProdutoNome
             // 
@@ -245,7 +231,7 @@
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.txtBuscaProdutoNome);
             this.groupBox1.Controls.Add(this.txtBuscaProdutoID);
-            this.groupBox1.Location = new System.Drawing.Point(12, 148);
+            this.groupBox1.Location = new System.Drawing.Point(12, 82);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(458, 255);
             this.groupBox1.TabIndex = 10;
@@ -301,7 +287,7 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(314, 409);
+            this.btnCancelar.Location = new System.Drawing.Point(314, 343);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 11;
@@ -314,11 +300,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(474, 436);
+            this.ClientSize = new System.Drawing.Size(474, 373);
             this.ControlBox = false;
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.btnVoltar);
             this.Controls.Add(this.grpDados);
             this.Name = "Consumo";
@@ -343,7 +328,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView gridConsumo;
         private System.Windows.Forms.Button btnVoltar;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnAdicionar;
         private System.Windows.Forms.TextBox txtBuscaProdutoNome;
         private System.Windows.Forms.Label label4;

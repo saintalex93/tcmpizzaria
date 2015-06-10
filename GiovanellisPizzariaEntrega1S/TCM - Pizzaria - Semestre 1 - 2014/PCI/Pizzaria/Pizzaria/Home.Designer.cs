@@ -39,6 +39,7 @@
             this.funcionáriosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.consumoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.compasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.entregasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
@@ -46,7 +47,6 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.entregasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -74,15 +74,15 @@
             // toolStripDropDownButton1
             // 
             this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.compasToolStripMenuItem,
+            this.consumoToolStripMenuItem,
+            this.entregasToolStripMenuItem,
+            this.funcionáriosToolStripMenuItem,
+            this.insumosToolStripMenuItem,
+            this.pedidosToolStripMenuItem,
             this.produtosToolStripMenuItem,
             this.promoçõesToolStripMenuItem,
-            this.pedidosToolStripMenuItem,
-            this.usuáriosToolStripMenuItem,
-            this.insumosToolStripMenuItem,
-            this.funcionáriosToolStripMenuItem,
-            this.consumoToolStripMenuItem,
-            this.compasToolStripMenuItem,
-            this.entregasToolStripMenuItem});
+            this.usuáriosToolStripMenuItem});
             this.toolStripDropDownButton1.Image = global::Pizzaria.Properties.Resources.Gerenciamento_mini;
             this.toolStripDropDownButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -145,6 +145,14 @@
             this.compasToolStripMenuItem.Name = "compasToolStripMenuItem";
             this.compasToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.compasToolStripMenuItem.Text = "Compras";
+            this.compasToolStripMenuItem.Click += new System.EventHandler(this.compasToolStripMenuItem_Click);
+            // 
+            // entregasToolStripMenuItem
+            // 
+            this.entregasToolStripMenuItem.Name = "entregasToolStripMenuItem";
+            this.entregasToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.entregasToolStripMenuItem.Text = "Entregas";
+            this.entregasToolStripMenuItem.Click += new System.EventHandler(this.entregasToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
@@ -202,13 +210,6 @@
             this.pictureBox1.Size = new System.Drawing.Size(346, 275);
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
-            // 
-            // entregasToolStripMenuItem
-            // 
-            this.entregasToolStripMenuItem.Name = "entregasToolStripMenuItem";
-            this.entregasToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.entregasToolStripMenuItem.Text = "Entregas";
-            this.entregasToolStripMenuItem.Click += new System.EventHandler(this.entregasToolStripMenuItem_Click);
             // 
             // Home
             // 

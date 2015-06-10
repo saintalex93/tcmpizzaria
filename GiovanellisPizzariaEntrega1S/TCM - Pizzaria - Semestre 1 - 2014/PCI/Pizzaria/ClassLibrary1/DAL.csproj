@@ -44,6 +44,7 @@
     <Compile Include="Model\clsCategoria.cs" />
     <Compile Include="Model\clsCategoriaProduto.cs" />
     <Compile Include="Model\clsCliente.cs" />
+    <Compile Include="Model\clsCompra.cs" />
     <Compile Include="Model\clsConsumo.cs" />
     <Compile Include="Model\clsFornecedor.cs" />
     <Compile Include="Model\clsFuncionario.cs" />

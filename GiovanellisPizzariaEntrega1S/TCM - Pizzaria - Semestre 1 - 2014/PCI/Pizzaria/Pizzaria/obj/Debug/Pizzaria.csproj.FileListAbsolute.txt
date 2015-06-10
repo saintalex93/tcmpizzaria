@@ -26,3 +26,4 @@ F:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 
 F:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.csproj.GenerateResource.Cache
 F:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.exe
 F:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.pdb
+F:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\Pizzaria\obj\Debug\Pizzaria.Compras.resources

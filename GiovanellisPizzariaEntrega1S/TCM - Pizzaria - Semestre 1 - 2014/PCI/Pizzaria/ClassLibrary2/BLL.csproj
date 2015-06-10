@@ -43,12 +43,15 @@
     <Compile Include="clsCategoriaInsumo.cs" />
     <Compile Include="clsClienteBLL.cs" />
     <Compile Include="clsConsumoBLL.cs" />
+    <Compile Include="clsFornecedorBLL.cs" />
     <Compile Include="clsFuncionarioBLL.cs" />
     <Compile Include="clsGerenciamentoEntregaBLL.cs" />
+    <Compile Include="clsInsumoBLL.cs" />
     <Compile Include="clsLogjnBLL.cs" />
     <Compile Include="clsProdutoBLL.cs" />
     <Compile Include="clsProdutoPromocaoBLL.cs" />
     <Compile Include="clsPromocaoBLL.cs" />
+    <Compile Include="clsComprasBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

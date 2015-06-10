@@ -20,7 +20,7 @@ namespace DAL.Model
         public string Email_Responsavel { get; set; }
         public string Telefone_Comercial { get; set; }
         public string Endereco_Fornecedor { get; set; }
-        public string Numero_Residencia { get; set; }
+        public int Numero_Residencia { get; set; }
         public string CEP_Fornecedor { get; set; }
         public string Estado_Fornecedor { get; set; }
         public string Cidade_Fornecedor { get; set; }

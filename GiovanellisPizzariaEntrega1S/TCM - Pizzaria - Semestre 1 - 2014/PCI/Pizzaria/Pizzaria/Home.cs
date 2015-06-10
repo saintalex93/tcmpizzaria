@@ -331,5 +331,13 @@ namespace Pizzaria
             this.Visible = false;
             entregas.Show();
         }
+
+        private void compasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Compras compras = new Compras();
+            compras.FormHome = this;
+            this.Visible = false;
+            compras.Show();
+        }
     }
 }
