@@ -68,7 +68,6 @@ create table Categorias
 codCategoria INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 Nome varchar(40)
 )
-
 go
 
 create table Areas
@@ -170,7 +169,8 @@ AS
 		from Vagas v
 		inner join Empresas e on
 			v.codEmpresa = e.codEmpresa and
-			DATEDIFF(day,v.Data, GETDATE()) < 30
+			DATEDIFF(day,v.Data, GETDATE()) < 30 and
+			v.Estado = 1
 
 		order by
 			v.Data
@@ -196,7 +196,8 @@ AS
 		inner join Empresas e on
 			v.codEmpresa = e.codEmpresa and
 			DATEDIFF(day,v.Data, GETDATE()) < 30 and
-			v.Titulo like '%' + @Titulo + '%'
+			v.Titulo like '%' + @Titulo + '%' and
+			v.Estado = 1
 			
 		order by
 			v.Data 
