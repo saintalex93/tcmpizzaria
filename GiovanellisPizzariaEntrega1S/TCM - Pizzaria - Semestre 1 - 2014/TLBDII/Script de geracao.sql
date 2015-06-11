@@ -3017,44 +3017,57 @@ values (@codFuncionario, @Assunto, @Mensagem, @DataCriacao, @DataAviso, @Aviso )
 end
 go
 
-select * from Lembretes where codFuncionario = 1
-
---create procedure USP_JAVA_ALTERALEMBRETE
---(
---@codLembrente
---@codFuncionario int,
---@Assunto varchar (100),
---@Mensagem varchar (500),
---@DataCriacao date,
---@DataAviso date, 
---@Aviso int
-
-
---)
---as
-
---begin
-
---Update Lembretes set codFuncionario,Assunto,Mensagem,DataCriacao,DataAviso,Aviso 
---values (@codFuncionario, @Assunto, @Mensagem, @DataCriacao, @DataAviso, @Aviso )
-
---end
-
-
---create 
 
 
 
 
---create table Lembretes
---(
---codLembrete int identity (1,1) primary key,
---codFuncionario int foreign key references Funcionario (Cod_Funcionario),
---Assunto varchar (100),
---Mensagem varchar (500),
---DataCriacao date,
---DataAviso date, 
---Aviso int
+create procedure USP_JAVA_ALTERALEMBRETE
+(
+@codLembrete int,
+@codFuncionario int,
+@Assunto varchar (100),
+@Mensagem varchar (500),
+@DataAviso date, 
+@Aviso int
+
+)
+as
+
+begin
+
+Update Lembretes set codFuncionario = @codFuncionario,Assunto = @Assunto,
+Mensagem = @Mensagem,DataAviso = @DataAviso, Aviso = @Aviso where codLembrete = @codLembrete
+
+
+end
+
+
+go
+
+create procedure USP_JAVA_EXCLUILEMBRETE
+(
+@codLembrete int
+
+)
+as
+
+begin
+
+delete Lembretes where codLembrete = @codLembrete
+
+
+end
+
+
+
+
+
+
+
+
+
+
+
 
 
 
