@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="css/estilo_agencia.css" />
     <link rel="shortcut icon" type="image/x-icon" href="imagens/favicon.ico" />
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <%--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>--%>
     <script>
         $(function () {
             $('a[href*=#]:not([href=#])').click(function () {
@@ -102,6 +102,7 @@
                                 ID="gridVagas" 
                                 runat="server" 
                                 name="gridVagas"
+                                CssClass="gridHome" 
                                 style="border-collapse: separate;"
                                 ShowHeaderWhenEmpty="true"
                                 >

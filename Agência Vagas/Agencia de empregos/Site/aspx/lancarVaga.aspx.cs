@@ -11,7 +11,27 @@ public partial class aspx_lancarVaga : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["funcionario"] != null && !IsPostBack)
+        {
+            string sessao = Session["funcionario"].ToString();
+            string[] codEmpresa = sessao.Split('/');
 
+            SqlDataAdapter dAdapter = new SqlDataAdapter();
+            DataSet ds = new DataSet();
+
+            Conexao con = new Conexao();
+            con.conectar();
+            con.command.Parameters.AddWithValue("@codEmpresa", Convert.ToInt32(codEmpresa[2]));
+            con.command.CommandType = CommandType.StoredProcedure;
+            con.command.CommandText = "USP_BuscarVagasEmpresa";
+            dAdapter.SelectCommand = con.command;
+            dAdapter.Fill(ds);
+
+            gdEditaVaga.DataSource = ds;
+            gdEditaVaga.DataBind();
+
+            con.fechaConexao();
+        }
     }
 
     protected void carregarVagas(object sender, EventArgs e)
@@ -21,7 +41,24 @@ public partial class aspx_lancarVaga : System.Web.UI.Page
 
     protected void adicionarVaga(object sender, EventArgs e)
     {
+        string sessao = Session["funcionario"].ToString();
+        string[] codEmpresa = sessao.Split('/');
 
+        Conexao con = new Conexao();
+        con.conectar();
+        con.command.Parameters.AddWithValue("@Titulo", txtNomeVaga.Text.Trim());
+        con.command.Parameters.AddWithValue("@Descricao", txtDescricaoVaga.Text.Trim());
+        con.command.Parameters.AddWithValue("@CodEmpresa", codEmpresa[2]);
+        con.command.Parameters.AddWithValue("@Endereco", txtEnderecoVaga.Text.Trim());
+        con.command.Parameters.AddWithValue("@CodCategoria", Convert.ToInt32(ddlCategorias.SelectedItem.Value));
+        con.command.Parameters.AddWithValue("@CodArea", Convert.ToInt32(ddlAreas.SelectedItem.Value));
+        con.command.Parameters.AddWithValue("@Data", DateTime.Now.ToShortDateString());
+        con.command.CommandType = CommandType.StoredProcedure;
+        con.command.CommandText = "USP_AdicionarVaga";
+
+        con.command.ExecuteNonQuery();
+
+        con.fechaConexao();
     }
 
     protected void editarVaga(object sender, EventArgs e)
@@ -91,13 +128,13 @@ public partial class aspx_lancarVaga : System.Web.UI.Page
             dAdapter.SelectCommand = con.command;
             dAdapter.Fill(ds, "Categorias");
 
-            ddlCategorias.DataSource = ds.Tables["Categorias"].DefaultView;
-            ddlCategorias.DataTextField = "Nome";
-            ddlCategorias.DataValueField = "codCategoria";
+            ddl.DataSource = ds.Tables["Categorias"].DefaultView;
+            ddl.DataTextField = "Nome";
+            ddl.DataValueField = "codCategoria";
             
-            ddlCategorias.DataBind();
-            ddlCategorias.Items.Insert(0, "Selecione uma Categoria");
-            ddlCategorias.SelectedIndex = 0;
+            ddl.DataBind();
+            ddl.Items.Insert(0, "Selecione uma Categoria");
+            ddl.SelectedIndex = 0;
 
             con.fechaConexao();
         }
@@ -105,13 +142,15 @@ public partial class aspx_lancarVaga : System.Web.UI.Page
 
     protected void carregarArea(object sender, EventArgs e)
     {
-        if (ddlCategorias.SelectedIndex > 0)
+        DropDownList ddl = (DropDownList)sender;
+
+        if (ddl.SelectedIndex > 0)
         {
             Conexao con = new Conexao();
             DataSet ds = new DataSet();
             SqlDataAdapter dAdapter = new SqlDataAdapter();
 
-            int codigoCategoria = Convert.ToInt32(ddlCategorias.SelectedItem.Value);
+            int codigoCategoria = Convert.ToInt32(ddl.SelectedItem.Value);
 
             con.conectar();
             con.command.CommandText = "select * from Areas where codCategoria = " + codigoCategoria;
@@ -119,19 +158,26 @@ public partial class aspx_lancarVaga : System.Web.UI.Page
             dAdapter.SelectCommand = con.command;
             dAdapter.Fill(ds, "Areas");
 
-            ddlAreas.DataSource = ds.Tables["Areas"].DefaultView;
-            ddlAreas.DataTextField = "Nome";
-            ddlAreas.DataValueField = "codArea";
-
-            ddlAreas.DataBind();
-
-            if (ddlAreas.Items[0].Text != "Selecione uma área")
-            {
-                ddlAreas.Items.Insert(0, "Selecione uma área");
-                ddlAreas.SelectedIndex = 0;
-            }
-
             con.fechaConexao();
+
+            foreach (Control ctr in ddl.Parent.Controls)
+            {
+                if (ctr is DropDownList && ctr.ID.Contains("Area"))
+                {
+                    DropDownList ddl2 = (DropDownList)ctr;
+                    ddl2.DataSource = ds.Tables["Areas"].DefaultView;
+                    ddl2.DataTextField = "Nome";
+                    ddl2.DataValueField = "codArea";
+
+                    ddl2.DataBind();
+
+                    if (ddl2.Items[0].Text != "Selecione uma área")
+                    {
+                        ddl2.Items.Insert(0, "Selecione uma área");
+                        ddl2.SelectedIndex = 0;
+                    }
+                }
+            }
 
             pnlSelecionaArea.Visible = true;
         }

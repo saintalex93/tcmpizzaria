@@ -142,7 +142,8 @@ insert into Vagas values
 ('Analista de sistemas', 'Análise, desenvolvimento, acompanhamento e evolução de sistemas em C#', 2, 'Alameda da Lambranda, 388, Vila Odin, São Paulo', 1, 1, CONVERT(VARCHAR(10),GETDATE()- ABS(Checksum(NewID()) % 50),103) , 1),
 ('Desenvolvedor de sistemas', 'Análise, desenvolvimento, acompanhamento e evolução de sistemas em Java', 2, 'Alameda da Lambranda, 388, Vila Odin, São Paulo', 1, 1, CONVERT(VARCHAR(10),GETDATE()- ABS(Checksum(NewID()) % 50),103) , 1),
 ('Avalista de sistemas', 'Análise, desenvolvimento, acompanhamento e evolução de sistemas em ASP.NET', 2, 'Alameda da Lambranda, 388, Vila Odin, São Paulo', 1, 1, CONVERT(VARCHAR(10),GETDATE()- ABS(Checksum(NewID()) % 50),103) , 1),
-('Engenheiro de produção', 'Análise, desenvolvimento, acompanhamento e evolução de sistemas de produção', 3, 'Alameda Suzano, 388, Vila Suzano, Suzano', 1, 1, CONVERT(VARCHAR(10),GETDATE()- ABS(Checksum(NewID()) % 365),103) , 1)
+('Engenheiro de produção', 'Análise, desenvolvimento, acompanhamento e evolução de sistemas de produção', 3, 'Alameda Suzano, 388, Vila Suzano, Suzano', 1, 1, CONVERT(VARCHAR(10),GETDATE()- ABS(Checksum(NewID()) % 365),103) , 1),
+('Engenheiro de aplicação', 'Análise, desenvolvimento, acompanhamento e evolução de sistemas de produção', 1, 'Alameda Suzano, 388, Vila Suzano, Suzano', 1, 1, CONVERT(VARCHAR(10),GETDATE()- ABS(Checksum(NewID()) % 365),103) , 1)
 go
 
 insert into AiDeMim values
@@ -407,13 +408,23 @@ as
 	
 	
 	if (@Estado2 = 1)
-	begin
-	Update Vagas set Estado = 0 where codVaga = @CodVaga
-	end
+		begin
+			Update Vagas set Estado = 0 where codVaga = @CodVaga
+		end
 	else
-	begin
-	Update Vagas set Estado = 1 where codVaga = @CodVaga
+		begin
+			Update Vagas set Estado = 1 where codVaga = @CodVaga
+		end
 	end
-	end
-
-	select * from Vagas
+	
+go
+	
+	create proc USP_BuscarVagasEmpresa
+	(
+		@codEmpresa int
+	)
+AS
+	Begin
+		select v.Titulo, v.Descricao, v.Endereco, v.codCategoria, v.codArea from Vagas as v inner join Categorias as c on codEmpresa = 1 inner join Areas as a on a.codArea = v.codArea and c.codCategoria = v.codCategoria
+	End
+go
