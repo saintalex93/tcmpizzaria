@@ -23,7 +23,12 @@ import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
 import Modelo.ModeloBackup;
 import Controlador.ControladorBackup;
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.Icon;
+import javax.swing.plaf.metal.MetalButtonUI;
 
 //import net.sf.jasperreports.engine.JRResultSetDataSource;
 //import net.sf.jasperreports.engine.JasperFillManager;
@@ -35,25 +40,26 @@ import javax.swing.Icon;
  */
 public class frmHome extends javax.swing.JFrame {
 
-    SqlServer conn;
+    
     ModeloBackup modBack;
     ControladorBackup controBack;
-
+    frmCalculadora calculadora;
+    SqlServer con;
     /**
      * Creates new form frmHome
      */
     public frmHome() throws Exception {
-        
+        calculadora = new frmCalculadora();
         modBack = new ModeloBackup();
         controBack = new ControladorBackup();
         setUndecorated(true);
         //Color Branco = new Color(255,255,255); 
         this.setExtendedState(MAXIMIZED_BOTH);
-        SqlServer conn = new SqlServer();
         
-        
-        
+        con = new SqlServer();
+
         this.setIconImage(new ImageIcon(getClass().getResource("/Imagens/Icone.png")).getImage());
+        
         initComponents();
         Color Fundo = new Color(238, 235, 227);
         Color Laranja = new Color(242, 184, 171);
@@ -61,8 +67,11 @@ public class frmHome extends javax.swing.JFrame {
         getContentPane().setBackground(Fundo);
         UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Tahoma", Font.BOLD, 16)));
         UIManager.put("OptionPane.messageForeground", Roxo);
+        
+       btnLembrete.setUI(new MetalButtonUI()); 
+       btnMensagem.setUI(new MetalButtonUI()); 
+         
 
-       
     }
 
     /**
@@ -75,8 +84,10 @@ public class frmHome extends javax.swing.JFrame {
     private void initComponents() {
 
         jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
-        lblIcone = new javax.swing.JLabel();
         lblNomeFuncionario = new javax.swing.JLabel();
+        btnLembrete = new javax.swing.JButton();
+        btnMensagem = new javax.swing.JButton();
+        lblIcone = new javax.swing.JLabel();
         MenuTopo = new javax.swing.JMenuBar();
         MenuPedidos = new javax.swing.JMenu();
         MenuPromocao = new javax.swing.JMenu();
@@ -91,6 +102,10 @@ public class frmHome extends javax.swing.JFrame {
         MenuLancar = new javax.swing.JCheckBoxMenuItem();
         MenuRelatorios = new javax.swing.JMenu();
         MenuBackup = new javax.swing.JMenu();
+        menuBackup = new javax.swing.JMenuItem();
+        menuCalculadora = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        Anotações = new javax.swing.JMenuItem();
         MenuSair1 = new javax.swing.JMenu();
 
         jCheckBoxMenuItem1.setSelected(true);
@@ -111,15 +126,35 @@ public class frmHome extends javax.swing.JFrame {
         });
         getContentPane().setLayout(null);
 
-        lblIcone.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblIcone.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/marcaTimer.png"))); // NOI18N
-        getContentPane().add(lblIcone);
-        lblIcone.setBounds(0, -30, 1310, 920);
-
         lblNomeFuncionario.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
         lblNomeFuncionario.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         getContentPane().add(lblNomeFuncionario);
         lblNomeFuncionario.setBounds(0, 0, 1320, 30);
+
+        btnLembrete.setBackground(new java.awt.Color(238, 235, 227));
+        btnLembrete.setForeground(new java.awt.Color(238, 235, 227));
+        btnLembrete.setOpaque(false);
+        btnLembrete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLembreteActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnLembrete);
+        btnLembrete.setBounds(10, 60, 120, 100);
+
+        btnMensagem.setOpaque(false);
+        btnMensagem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMensagemActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnMensagem);
+        btnMensagem.setBounds(10, 170, 120, 100);
+
+        lblIcone.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblIcone.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/marcaTimer.png"))); // NOI18N
+        getContentPane().add(lblIcone);
+        lblIcone.setBounds(0, -30, 1310, 920);
 
         MenuTopo.setAutoscrolls(true);
         MenuTopo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -128,8 +163,9 @@ public class frmHome extends javax.swing.JFrame {
 
         MenuPedidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/papers7.png"))); // NOI18N
         MenuPedidos.setText("Pedidos");
-        MenuPedidos.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        MenuPedidos.setPreferredSize(new java.awt.Dimension(130, 20));
+        MenuPedidos.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        MenuPedidos.setMaximumSize(new java.awt.Dimension(120, 32767));
+        MenuPedidos.setPreferredSize(new java.awt.Dimension(115, 20));
         MenuPedidos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 MenuPedidosMouseClicked(evt);
@@ -149,7 +185,7 @@ public class frmHome extends javax.swing.JFrame {
 
         MenuPromocao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/discount4 cópia.png"))); // NOI18N
         MenuPromocao.setText("Promoções");
-        MenuPromocao.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        MenuPromocao.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         MenuPromocao.setMaximumSize(new java.awt.Dimension(150, 32767));
         MenuPromocao.setPreferredSize(new java.awt.Dimension(140, 19));
         MenuPromocao.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -161,8 +197,8 @@ public class frmHome extends javax.swing.JFrame {
 
         MenuInsumo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/shopping-cart16.png"))); // NOI18N
         MenuInsumo.setText("Insumos");
-        MenuInsumo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        MenuInsumo.setPreferredSize(new java.awt.Dimension(140, 55));
+        MenuInsumo.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        MenuInsumo.setPreferredSize(new java.awt.Dimension(130, 55));
         MenuInsumo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 MenuInsumoMouseClicked(evt);
@@ -172,8 +208,8 @@ public class frmHome extends javax.swing.JFrame {
 
         MenuProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/italian1.png"))); // NOI18N
         MenuProduto.setText("Produtos");
-        MenuProduto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        MenuProduto.setPreferredSize(new java.awt.Dimension(140, 45));
+        MenuProduto.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        MenuProduto.setPreferredSize(new java.awt.Dimension(125, 45));
         MenuProduto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 MenuProdutoMouseClicked(evt);
@@ -183,9 +219,9 @@ public class frmHome extends javax.swing.JFrame {
 
         MenuFornecedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/delivery22.png"))); // NOI18N
         MenuFornecedores.setText("Fornecedores");
-        MenuFornecedores.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        MenuFornecedores.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         MenuFornecedores.setMaximumSize(new java.awt.Dimension(170, 32767));
-        MenuFornecedores.setPreferredSize(new java.awt.Dimension(140, 50));
+        MenuFornecedores.setPreferredSize(new java.awt.Dimension(150, 50));
         MenuFornecedores.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 MenuFornecedoresMouseClicked(evt);
@@ -195,17 +231,18 @@ public class frmHome extends javax.swing.JFrame {
 
         MenuFuncionarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/office.png"))); // NOI18N
         MenuFuncionarios.setText("Funcionários");
-        MenuFuncionarios.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        MenuFuncionarios.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         MenuFuncionarios.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         MenuFuncionarios.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MenuFuncionarios.setMaximumSize(new java.awt.Dimension(170, 32767));
-        MenuFuncionarios.setPreferredSize(new java.awt.Dimension(145, 55));
+        MenuFuncionarios.setPreferredSize(new java.awt.Dimension(150, 55));
         MenuFuncionarios.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 MenuFuncionariosMouseClicked(evt);
             }
         });
 
+        GerenciarUsuario.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         GerenciarUsuario.setText("Gerenciar de Permissões");
         GerenciarUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -219,6 +256,7 @@ public class frmHome extends javax.swing.JFrame {
         });
         MenuFuncionarios.add(GerenciarUsuario);
 
+        jMenuItem2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jMenuItem2.setText("Lançamento de Despesa");
         jMenuItem2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -236,8 +274,8 @@ public class frmHome extends javax.swing.JFrame {
 
         MenuDespesas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/piggy10.png"))); // NOI18N
         MenuDespesas.setText("Despesas");
-        MenuDespesas.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        MenuDespesas.setPreferredSize(new java.awt.Dimension(140, 50));
+        MenuDespesas.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        MenuDespesas.setPreferredSize(new java.awt.Dimension(130, 50));
         MenuDespesas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 MenuDespesasMouseClicked(evt);
@@ -278,7 +316,7 @@ public class frmHome extends javax.swing.JFrame {
 
         MenuRelatorios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Relatorios.png"))); // NOI18N
         MenuRelatorios.setText("Relatórios");
-        MenuRelatorios.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        MenuRelatorios.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         MenuRelatorios.setMaximumSize(new java.awt.Dimension(150, 250));
         MenuRelatorios.setName(""); // NOI18N
         MenuRelatorios.setPreferredSize(new java.awt.Dimension(130, 50));
@@ -289,27 +327,68 @@ public class frmHome extends javax.swing.JFrame {
         });
         MenuTopo.add(MenuRelatorios);
 
-        MenuBackup.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/data storage1.png"))); // NOI18N
-        MenuBackup.setText("Backup");
-        MenuBackup.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        MenuBackup.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Ferramentas.png"))); // NOI18N
+        MenuBackup.setText("Ferramentas");
+        MenuBackup.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         MenuBackup.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         MenuBackup.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MenuBackup.setMaximumSize(new java.awt.Dimension(150, 32767));
-        MenuBackup.setPreferredSize(new java.awt.Dimension(120, 45));
+        MenuBackup.setMaximumSize(new java.awt.Dimension(160, 32767));
+        MenuBackup.setPreferredSize(new java.awt.Dimension(150, 45));
         MenuBackup.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 MenuBackupMouseClicked(evt);
             }
         });
+
+        menuBackup.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.SHIFT_MASK));
+        menuBackup.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        menuBackup.setText("Backup");
+        menuBackup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuBackupActionPerformed(evt);
+            }
+        });
+        MenuBackup.add(menuBackup);
+
+        menuCalculadora.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_MASK));
+        menuCalculadora.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        menuCalculadora.setText("Calculadora");
+        menuCalculadora.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCalculadoraActionPerformed(evt);
+            }
+        });
+        MenuBackup.add(menuCalculadora);
+
+        jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.SHIFT_MASK));
+        jMenuItem4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jMenuItem4.setText("Mensagens");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        MenuBackup.add(jMenuItem4);
+
+        Anotações.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.SHIFT_MASK));
+        Anotações.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Anotações.setText("Anotações");
+        Anotações.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AnotaçõesActionPerformed(evt);
+            }
+        });
+        MenuBackup.add(Anotações);
+
         MenuTopo.add(MenuBackup);
 
         MenuSair1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icone_sair2.png"))); // NOI18N
         MenuSair1.setText("Sair");
-        MenuSair1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        MenuSair1.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         MenuSair1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         MenuSair1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MenuSair1.setMaximumSize(new java.awt.Dimension(150, 32767));
-        MenuSair1.setPreferredSize(new java.awt.Dimension(130, 45));
+        MenuSair1.setPreferredSize(new java.awt.Dimension(90, 45));
         MenuSair1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 MenuSair1MouseClicked(evt);
@@ -319,8 +398,8 @@ public class frmHome extends javax.swing.JFrame {
 
         setJMenuBar(MenuTopo);
 
-        setSize(new java.awt.Dimension(1376, 946));
-        setLocationRelativeTo(null);
+        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+        setBounds((screenSize.width-1376)/2, (screenSize.height-946)/2, 1376, 946);
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -329,14 +408,17 @@ public class frmHome extends javax.swing.JFrame {
         lblIcone.setSize(getWidth(), getHeight());
         CodPermFun = frmLogin.getPermissaoFunci();
         timer.start();
+        timerAtualizavel.start();
+        DataAtual();
         
-
+      
+        
+      
         if (CodPermFun == 1) {
             GerenciarUsuario.setVisible(true);
         } else {
             GerenciarUsuario.setVisible(false);
         }
-      
 
 
     }//GEN-LAST:event_formWindowOpened
@@ -351,135 +433,84 @@ public class frmHome extends javax.swing.JFrame {
     }//GEN-LAST:event_formMouseMoved
 
     private void MenuPedidosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuPedidosMouseClicked
- if (binario==1)
-        {
-            Icon figura = new ImageIcon (getToolkit().createImage(getClass().getResource("/Imagens/login.png")));
-         JOptionPane JOP = new JOptionPane("Feche um formulário para abrir outro, seu bosta.....",JOptionPane.INFORMATION_MESSAGE, JOptionPane.PLAIN_MESSAGE, figura);
-                JDialog DIALOGO = JOP.createDialog("Aviso");
-                DIALOGO.setResizable(false);
-                DIALOGO.setAlwaysOnTop(true); //<-- this line
-                DIALOGO.setModal(true);
-                
-                //
-                DIALOGO.setVisible(true);
-        
-        }
-        else
-        {
-        
-        try {
+        if (binario == 1) {
+            aviso();
 
-            new frmPedidos().setVisible(true);
-            binario =1;
-        } catch (Exception ex) {
-            Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
-        }}
+        } else {
+
+            try {
+
+                new frmPedidos().setVisible(true);
+                binario = 1;
+            } catch (Exception ex) {
+                Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
 
 
     }//GEN-LAST:event_MenuPedidosMouseClicked
 
     private void MenuPromocaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuPromocaoMouseClicked
-        if (binario==1)
-        {
-            Icon figura = new ImageIcon (getToolkit().createImage(getClass().getResource("/Imagens/login.png")));
-         JOptionPane JOP = new JOptionPane("Feche um formulário para abrir outro, seu bosta.....",JOptionPane.INFORMATION_MESSAGE, JOptionPane.PLAIN_MESSAGE, figura);
-                JDialog DIALOGO = JOP.createDialog("Aviso");
-                DIALOGO.setResizable(false);
-                DIALOGO.setAlwaysOnTop(true); //<-- this line
-                DIALOGO.setModal(true);
-                
-                //
-                DIALOGO.setVisible(true);
-        
+        if (binario == 1) {
+           aviso();
+
+        } else {
+            try {
+
+                new frmPromocoes().setVisible(true);
+                binario = 1;
+
+            } catch (Exception ex) {
+                Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-        else
-        {
-         try {
-
-            new frmPromocoes().setVisible(true);
-            binario =1;
-
-        } catch (Exception ex) {
-            Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
-        }}
 
     }//GEN-LAST:event_MenuPromocaoMouseClicked
 
     private void MenuInsumoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuInsumoMouseClicked
-      if (binario==1)
-        {
-            Icon figura = new ImageIcon (getToolkit().createImage(getClass().getResource("/Imagens/login.png")));
-         JOptionPane JOP = new JOptionPane("Feche um formulário para abrir outro, seu bosta.....",JOptionPane.INFORMATION_MESSAGE, JOptionPane.PLAIN_MESSAGE, figura);
-                JDialog DIALOGO = JOP.createDialog("Aviso");
-                DIALOGO.setResizable(false);
-                DIALOGO.setAlwaysOnTop(true); //<-- this line
-                DIALOGO.setModal(true);
-                
-                //
-                DIALOGO.setVisible(true);
-        
-        }
-        else
-        {
-           try {
+        if (binario == 1) {
+           aviso();
 
-            new frmInsumos().setVisible(true);
-            binario =1;
-        } catch (Exception ex) {
-            Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
-        }}
+        } else {
+            try {
+
+                new frmInsumos().setVisible(true);
+                binario = 1;
+            } catch (Exception ex) {
+                Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
 
 
     }//GEN-LAST:event_MenuInsumoMouseClicked
 
     private void MenuProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuProdutoMouseClicked
-         if (binario==1)
-        {
-            Icon figura = new ImageIcon (getToolkit().createImage(getClass().getResource("/Imagens/login.png")));
-         JOptionPane JOP = new JOptionPane("Feche um formulário para abrir outro, seu bosta.....",JOptionPane.INFORMATION_MESSAGE, JOptionPane.PLAIN_MESSAGE, figura);
-                JDialog DIALOGO = JOP.createDialog("Aviso");
-                DIALOGO.setResizable(false);
-                DIALOGO.setAlwaysOnTop(true); //<-- this line
-                DIALOGO.setModal(true);
-                
-                //
-                DIALOGO.setVisible(true);
-        
+        if (binario == 1) {
+            aviso();
+
+        } else {
+            try {
+                new frmProdutos().setVisible(true);
+                binario = 1;
+            } catch (Exception ex) {
+                Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-        else
-        {
-        try {
-            new frmProdutos().setVisible(true);
-            binario =1;
-        } catch (Exception ex) {
-            Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
-        }}
 
 
     }//GEN-LAST:event_MenuProdutoMouseClicked
 
     private void MenuFornecedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuFornecedoresMouseClicked
-       if (binario==1)
-        {
-            Icon figura = new ImageIcon (getToolkit().createImage(getClass().getResource("/Imagens/login.png")));
-         JOptionPane JOP = new JOptionPane("Feche um formulário para abrir outro, seu bosta.....",JOptionPane.INFORMATION_MESSAGE, JOptionPane.PLAIN_MESSAGE, figura);
-                JDialog DIALOGO = JOP.createDialog("Aviso");
-                DIALOGO.setResizable(false);
-                DIALOGO.setAlwaysOnTop(true); //<-- this line
-                DIALOGO.setModal(true);
-                
-                //
-                DIALOGO.setVisible(true);
-        
-        }
-        else
-        {
-          try {
-            new frmFornecedores().setVisible(true);
-            binario =1;
-        } catch (Exception ex) {
-            Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        if (binario == 1) {
+            aviso();
+
+        } else {
+            try {
+                new frmFornecedores().setVisible(true);
+                binario = 1;
+            } catch (Exception ex) {
+                Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
     }//GEN-LAST:event_MenuFornecedoresMouseClicked
@@ -495,187 +526,57 @@ public class frmHome extends javax.swing.JFrame {
     }//GEN-LAST:event_MenuDespesasMouseClicked
 
     private void MenuBackupMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuBackupMouseClicked
- if (binario==1)
-        {
-            Icon figura = new ImageIcon (getToolkit().createImage(getClass().getResource("/Imagens/login.png")));
-         JOptionPane JOP = new JOptionPane("Feche um formulário para abrir outro, seu bosta.....",JOptionPane.INFORMATION_MESSAGE, JOptionPane.PLAIN_MESSAGE, figura);
-                JDialog DIALOGO = JOP.createDialog("Aviso");
-                DIALOGO.setResizable(false);
-                DIALOGO.setAlwaysOnTop(true); //<-- this line
-                DIALOGO.setModal(true);
-                
-                //
-                DIALOGO.setVisible(true);
-        
-        }
-        else
-        {
-        
-
- if (CodPermFun == 1) {
-            
-   binario = 1;   
-      
-File pdf = null;
-JFileChooser chooser = null;
-
-try {
-  pdf = File.createTempFile("NomedoArquivoSemExtensão",".bak");            
-} catch (IOException e1) {            
-  e1.printStackTrace();
-}
-
-//Geração do arquivo
-
-chooser = new JFileChooser();
-chooser.setCurrentDirectory(pdf);
-chooser.setSelectedFile(pdf);
-javax.swing.filechooser.FileFilter filter = new javax.swing.filechooser.FileFilter() {  
-  
-    public boolean accept(File f) {  
-        return f.isDirectory()  
-                || f.getName().toLowerCase().endsWith(  
-                ".bak");  
-    }  
-  
-    public String getDescription() {  
-        return "(*.bak)";  
-        // return "(*.xls)";  
-    }  
-};  
-chooser.addChoosableFileFilter(filter);  
-chooser.setAcceptAllFileFilterUsed(false);
-chooser.setMultiSelectionEnabled(false);
-
-caminho = "";
-
-int retorno = chooser.showSaveDialog(null);
-if (retorno==JFileChooser.APPROVE_OPTION){
-  caminho = chooser.getSelectedFile().getAbsolutePath();
-}
-
-if(!caminho.equals("")){
-  boolean ok = pdf.renameTo(new File(caminho));
-  if(ok) {
-      try {
-     if (preencherObjeto()){
-      
-          controBack.Incluir(modBack);
-          JOptionPane.showMessageDialog(this,"Backup Realizado com Sucesso \nCaminho: " + caminho);
-     
-      
-     }
-     } catch (Exception ex) {
-          JOptionPane.showMessageDialog(this, "Erro ao salvar documento:" + ex); 
-      }
-  }
- 
-}else{
-  //throw new FileNaoSelecionadoException();
-     JOptionPane.showMessageDialog(this, "Erro ao salvar documento" ); 
-}      
-
-  } else {
-     Icon figura = new ImageIcon (getToolkit().createImage(getClass().getResource("/Imagens/login.png")));
-     
-                JOptionPane JOP = new JOptionPane("Permissão negada para efetuar o backup. \n Contate o administrador do sistema.",JOptionPane.INFORMATION_MESSAGE, JOptionPane.PLAIN_MESSAGE, figura);
-                JDialog DIALOGO = JOP.createDialog("Aviso");
-                
-                DIALOGO.setResizable(false);
-                DIALOGO.setAlwaysOnTop(true); //<-- this line
-                DIALOGO.setModal(true);
-                
-                //
-                DIALOGO.setVisible(true);
-     
-     
-     
-     
-        }}
-
+    
     }//GEN-LAST:event_MenuBackupMouseClicked
 
     private void MenuCadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuCadastrarMouseClicked
-       if (binario==1)
-        {
-            Icon figura = new ImageIcon (getToolkit().createImage(getClass().getResource("/Imagens/login.png")));
-         JOptionPane JOP = new JOptionPane("Feche um formulário para abrir outro, seu bosta.....",JOptionPane.INFORMATION_MESSAGE, JOptionPane.PLAIN_MESSAGE, figura);
-                JDialog DIALOGO = JOP.createDialog("Aviso");
-                DIALOGO.setResizable(false);
-                DIALOGO.setAlwaysOnTop(true); //<-- this line
-                DIALOGO.setModal(true);
-                
-                //
-                DIALOGO.setVisible(true);
-        
+        if (binario == 1) {
+          aviso();
+
+        } else {
+
+            try {
+                new frmCadastrarDespesa().setVisible(true);
+                binario = 1;
+            } catch (Exception ex) {
+                Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-        else
-        {
-        
-        
-        try {
-            new frmCadastrarDespesa().setVisible(true);
-            binario =1;
-        } catch (Exception ex) {
-            Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
-        }}
     }//GEN-LAST:event_MenuCadastrarMouseClicked
 
     private void MenuLancarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuLancarMouseClicked
-    
+
     }//GEN-LAST:event_MenuLancarMouseClicked
 
     private void MenuCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuCadastrarActionPerformed
-       if (binario==1)
-        {
-            Icon figura = new ImageIcon (getToolkit().createImage(getClass().getResource("/Imagens/login.png")));
-         JOptionPane JOP = new JOptionPane("Feche um formulário para abrir outro, seu bosta.....",JOptionPane.INFORMATION_MESSAGE, JOptionPane.PLAIN_MESSAGE, figura);
-                JDialog DIALOGO = JOP.createDialog("Aviso");
-                DIALOGO.setResizable(false);
-                DIALOGO.setAlwaysOnTop(true); //<-- this line
-                DIALOGO.setModal(true);
-                
-                //
-                DIALOGO.setVisible(true);
-        
+        if (binario == 1) {
+            aviso();
+
+        } else {
+
+            try {
+                new frmCadastrarDespesa().setVisible(true);
+                binario = 1;
+            } catch (Exception ex) {
+                Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-        else
-        {
-        
-        
-        try {
-            new frmCadastrarDespesa().setVisible(true);
-            binario =1;
-        } catch (Exception ex) {
-            Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
-        }}
     }//GEN-LAST:event_MenuCadastrarActionPerformed
 
     private void MenuLancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuLancarActionPerformed
-       if (binario==1)
-        {
-            Icon figura = new ImageIcon (getToolkit().createImage(getClass().getResource("/Imagens/login.png")));
-         JOptionPane JOP = new JOptionPane("Feche um formulário para abrir outro, seu bosta.....",JOptionPane.INFORMATION_MESSAGE, JOptionPane.PLAIN_MESSAGE, figura);
-                JDialog DIALOGO = JOP.createDialog("Aviso");
-                DIALOGO.setResizable(false);
-                DIALOGO.setAlwaysOnTop(true); //<-- this line
-                DIALOGO.setModal(true);
-                
-                //
-                DIALOGO.setVisible(true);
-        
+        if (binario == 1) {
+           aviso();
+
+        } else {
+
+            try {
+                new frmDespesas().setVisible(true);
+                binario = 1;
+
+            } catch (Exception ex) {
+                Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-        else
-        {
-        
-        
-        try {
-            new frmDespesas().setVisible(true);
-            binario =1;
-            
-        } catch (Exception ex) {
-            Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
-        }}
     }//GEN-LAST:event_MenuLancarActionPerformed
 
     private void MenuPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuPedidosActionPerformed
@@ -687,55 +588,34 @@ if(!caminho.equals("")){
     }//GEN-LAST:event_jMenuItem2MouseClicked
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-         if (binario==1)
-        {
-            Icon figura = new ImageIcon (getToolkit().createImage(getClass().getResource("/Imagens/login.png")));
-         JOptionPane JOP = new JOptionPane("Feche um formulário para abrir outro, seu bosta.....",JOptionPane.INFORMATION_MESSAGE, JOptionPane.PLAIN_MESSAGE, figura);
-                JDialog DIALOGO = JOP.createDialog("Aviso");
-                DIALOGO.setResizable(false);
-                DIALOGO.setAlwaysOnTop(true); //<-- this line
-                DIALOGO.setModal(true);
-                
-                //
-                DIALOGO.setVisible(true);
-        
-        }
-        else
-        {
-        
-        
-        try {
-            new frmFuncionarios().setVisible(true);
-            binario =1;
+        if (binario == 1) {
+            aviso();
+
+        } else {
+
+            try {
+                new frmFuncionarios().setVisible(true);
+                binario = 1;
             } catch (Exception ex) {
-            Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
-        }}
+                Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
 
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void MenuRelatoriosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuRelatoriosMouseClicked
-         if (binario==1)
-        {
-            Icon figura = new ImageIcon (getToolkit().createImage(getClass().getResource("/Imagens/login.png")));
-         JOptionPane JOP = new JOptionPane("Feche um formulário para abrir outro, seu bosta....",JOptionPane.INFORMATION_MESSAGE, JOptionPane.PLAIN_MESSAGE, figura);
-                JDialog DIALOGO = JOP.createDialog("Aviso");
-                JDialog.setDefaultLookAndFeelDecorated(false);
-                DIALOGO.setAlwaysOnTop(true); //<-- this line
-                DIALOGO.setModal(true);
-                
-                //
-                DIALOGO.setVisible(true);
-        
+        if (binario == 1) {
+            aviso();
+
+        } else {
+
+            try {
+                new frmRelatorios().setVisible(true);
+                binario = 1;
+            } catch (Exception ex) {
+                Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-        else
-        {
-        
-        try {
-            new frmRelatorios().setVisible(true);
-            binario = 1;
-        } catch (Exception ex) {
-            Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
-        }}
     }//GEN-LAST:event_MenuRelatoriosMouseClicked
 
     private void MenuPedidosComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_MenuPedidosComponentHidden
@@ -743,118 +623,216 @@ if(!caminho.equals("")){
     }//GEN-LAST:event_MenuPedidosComponentHidden
 
     private void GerenciarUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GerenciarUsuarioMouseClicked
-        if (binario==1)
-        {
-            Icon figura = new ImageIcon (getToolkit().createImage(getClass().getResource("/Imagens/login.png")));
-         JOptionPane JOP = new JOptionPane("Feche um formulário para abrir outro, seu bosta.....",JOptionPane.INFORMATION_MESSAGE, JOptionPane.PLAIN_MESSAGE, figura);
-                JDialog DIALOGO = JOP.createDialog("Aviso");
-                DIALOGO.setResizable(false);
-                DIALOGO.setAlwaysOnTop(true); //<-- this line
-                DIALOGO.setModal(true);
-                
-                //
-                DIALOGO.setVisible(true);
-        
+        if (binario == 1) {
+            aviso();
+
+        } else {
+
+            try {
+                new frmSenhaFuncionarios().setVisible(true);
+                binario = 1;
+            } catch (Exception ex) {
+                Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-        else
-        {
-        
-        
-        try {
-            new frmSenhaFuncionarios().setVisible(true);
-            binario =1;
-        } catch (Exception ex) {
-            Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
-        }}
     }//GEN-LAST:event_GerenciarUsuarioMouseClicked
 
     private void GerenciarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GerenciarUsuarioActionPerformed
-        if (binario==1)
-        {
-            Icon figura = new ImageIcon (getToolkit().createImage(getClass().getResource("/Imagens/login.png")));
-         JOptionPane JOP = new JOptionPane("Feche um formulário para abrir outro, seu bosta.....",JOptionPane.INFORMATION_MESSAGE, JOptionPane.PLAIN_MESSAGE, figura);
-                JDialog DIALOGO = JOP.createDialog("Aviso");
-                DIALOGO.setResizable(false);
-                DIALOGO.setAlwaysOnTop(true); //<-- this line
-                DIALOGO.setModal(true);
-                
-                //
-                DIALOGO.setVisible(true);
+        if (binario == 1) {
+           aviso();
         
-        }
-        else
-        {
-        
-        
-        try {
-            new frmSenhaFuncionarios().setVisible(true);
-            binario =1;
-            
+        } else {
 
-        } catch (Exception ex) {
-            Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
-        }}
+            try {
+                new frmSenhaFuncionarios().setVisible(true);
+                binario = 1;
+
+            } catch (Exception ex) {
+                Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_GerenciarUsuarioActionPerformed
 
     private void MenuSair1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuSair1MouseClicked
-     
-         if (binario==1)
-        {
-            Icon figura = new ImageIcon (getToolkit().createImage(getClass().getResource("/Imagens/login.png")));
-         JOptionPane JOP = new JOptionPane("Feche um formulário para abrir outro, seu bosta.....",JOptionPane.INFORMATION_MESSAGE, JOptionPane.PLAIN_MESSAGE, figura);
-                JDialog DIALOGO = JOP.createDialog("Aviso");
-                DIALOGO.setResizable(false);
-                DIALOGO.setAlwaysOnTop(true); //<-- this line
-                DIALOGO.setModal(true);
-                
-                //
-                DIALOGO.setVisible(true);
-        
-        }
-        else
-        {
-        
-        Icon figura = new ImageIcon (getToolkit().createImage(getClass().getResource("/Imagens/login.png")));
-        int opcao = JOptionPane.showConfirmDialog(null, "Deseja Sair do Sistema?", "Sair", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,figura);
-        binario=1;
-        if (opcao == JOptionPane.YES_OPTION) {
 
-            System.exit(0);
+        if (binario == 1) {
+            aviso();
 
-        }
-        if (opcao == JOptionPane.NO_OPTION) {
+        } else {
 
-            binario = 0;
+            Icon figura = new ImageIcon(getToolkit().createImage(getClass().getResource("/Imagens/login.png")));
+            int opcao = JOptionPane.showConfirmDialog(null, "Deseja Sair do Sistema?", "Sair", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, figura);
+            binario = 1;
+            if (opcao == JOptionPane.YES_OPTION) {
 
-        }
-        if (opcao == JOptionPane.CANCEL_OPTION) {
+                System.exit(0);
 
-            binario = 0;
+            }
+            if (opcao == JOptionPane.NO_OPTION) {
 
-        }
-          if (opcao == JOptionPane.CLOSED_OPTION) {
+                binario = 0;
 
-            binario = 0;
+            }
+            if (opcao == JOptionPane.CANCEL_OPTION) {
 
-        }
+                binario = 0;
+
+            }
+            if (opcao == JOptionPane.CLOSED_OPTION) {
+
+                binario = 0;
+
+            }
         }
 
         // JOptionPane.showConfirmDialog(null, "Deseja Sair","Sair", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
 
     }//GEN-LAST:event_MenuSair1MouseClicked
-   
-   String caminho;
-    int CodPermFun = 0;
-    public static int contador = 20;
-  
 
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void menuBackupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuBackupActionPerformed
+        if (binario == 1) {
+            aviso();
+
+        } else {
+
+            if (CodPermFun == 1) {
+
+                binario = 1;
+
+                File pdf = null;
+                JFileChooser chooser = null;
+
+                try {
+                    pdf = File.createTempFile("NomedoArquivoSemExtensão", ".bak");
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+
+//Geração do arquivo
+                chooser = new JFileChooser();
+                chooser.setCurrentDirectory(pdf);
+                chooser.setSelectedFile(pdf);
+                javax.swing.filechooser.FileFilter filter = new javax.swing.filechooser.FileFilter() {
+
+                    public boolean accept(File f) {
+                        return f.isDirectory()
+                                || f.getName().toLowerCase().endsWith(
+                                        ".bak");
+                    }
+
+                    public String getDescription() {
+                        return "(*.bak)";
+                        // return "(*.xls)";  
+                    }
+                };
+                chooser.addChoosableFileFilter(filter);
+                chooser.setAcceptAllFileFilterUsed(false);
+                chooser.setMultiSelectionEnabled(false);
+
+                caminho = "";
+
+                int retorno = chooser.showSaveDialog(null);
+                if (retorno == JFileChooser.APPROVE_OPTION) {
+                    caminho = chooser.getSelectedFile().getAbsolutePath();
+                }
+
+                if (!caminho.equals("")) {
+                    boolean ok = pdf.renameTo(new File(caminho));
+                    if (ok) {
+                        try {
+                            if (preencherObjeto()) {
+
+                                controBack.Incluir(modBack);
+                                JOptionPane.showMessageDialog(this, "Backup Realizado com Sucesso \nCaminho: " + caminho);
+
+                            }
+                        } catch (Exception ex) {
+                            JOptionPane.showMessageDialog(this, "Erro ao salvar documento:" + ex);
+                        }
+                    }
+
+                } else {
+                    //throw new FileNaoSelecionadoException();
+                    JOptionPane.showMessageDialog(this, "Erro ao salvar documento");
+                }
+
+            } else {
+                Icon figura = new ImageIcon(getToolkit().createImage(getClass().getResource("/Imagens/BackupCancelado.png")));
+
+                JOptionPane JOP = new JOptionPane("Permissão negada para efetuar o backup. \n Contate o administrador do sistema.", JOptionPane.INFORMATION_MESSAGE, JOptionPane.PLAIN_MESSAGE, figura);
+                JDialog DIALOGO = JOP.createDialog("Aviso");
+
+                DIALOGO.setResizable(false);
+                DIALOGO.setAlwaysOnTop(true); //<-- this line
+                DIALOGO.setModal(true);
+
+                //
+                DIALOGO.setVisible(true);
+
+            }
+        }
+
+    }//GEN-LAST:event_menuBackupActionPerformed
+
+    private void menuCalculadoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCalculadoraActionPerformed
+      if (binario == 1) {
+            aviso();
+
+        } else {
+          
+          calculadora.setVisible(true);
+          
+      }
+    }//GEN-LAST:event_menuCalculadoraActionPerformed
+
+    private void AnotaçõesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnotaçõesActionPerformed
+       Mensagem = 0;
+        try {
+            new frmAnotacoes().setVisible(true);
+        } catch (Exception ex) {
+            Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_AnotaçõesActionPerformed
+
+    private void btnLembreteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLembreteActionPerformed
+    Mensagem = 1;
+        try {
+            new frmAnotacoes().setVisible(true);
+        } catch (Exception ex) {
+            Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
+        }
     
+    
+    
+    }//GEN-LAST:event_btnLembreteActionPerformed
+
+    private void btnMensagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMensagemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMensagemActionPerformed
+
+    String caminho;
+   public static int CodPermFun = 0;
+    public static int contador = 20;
+     int contadorIcones = 2;
+     int contadorMensagem = 2;
+     public static int contadorArea = 3;
+
     public void escreva() {
         System.out.println(contador);
 
     }
+    
+     public void escrevaIcones() {
+        System.out.println(contadorIcones);
 
-    private javax.swing.Timer timer = new javax.swing.Timer(60*1000, new java.awt.event.ActionListener() {
+    }
+    
+
+    private javax.swing.Timer timer = new javax.swing.Timer(60 * 1000, new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent e) {
 
 //            try {
@@ -866,8 +844,6 @@ if(!caminho.equals("")){
 //            } catch (Exception ex) {
 //                Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
 //            }
-           
-            
             if (contador == 20) {
                 Image troca;
                 troca = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Imagens/marcaTimer.Png"));
@@ -908,19 +884,17 @@ if(!caminho.equals("")){
                 lblIcone.setIcon(icone);
             }
 
-           
-
             if (contador == 0) {
                 Image troca;
                 troca = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Imagens/marcaTimer4.png"));
                 ImageIcon icone = new ImageIcon(troca);
 
                 lblIcone.setIcon(icone);
-                JOptionPane op = new JOptionPane("Sistema Fechado por Inatividade",JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane op = new JOptionPane("Sistema Fechado por Inatividade", JOptionPane.INFORMATION_MESSAGE);
                 JDialog dialog = op.createDialog("Aviso");
                 dialog.setAlwaysOnTop(true); //<-- this line
                 dialog.setModal(true);
-                
+
                 //
                 dialog.setVisible(true);
 //                JOptionPane.showMessageDialog(null, "Sistema Fechado por Inatividade");
@@ -934,12 +908,108 @@ if(!caminho.equals("")){
                 }
 
             }
-              escreva();
+            escreva();
             contador--;
         }
     });
     
+    
+     private javax.swing.Timer timerLembrete = new javax.swing.Timer(500, new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent e) {
 
+
+            if (contadorMensagem == 2) {
+                Image Mensage;
+                Mensage = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Imagens/Lembrete1.png"));
+                ImageIcon icone = new ImageIcon(Mensage);                      
+                btnLembrete.setIcon(icone);
+
+            }
+            if (contadorMensagem == 1) {
+               Image Mensage;
+                Mensage = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Imagens/LEmbrete2.png"));
+                ImageIcon icone = new ImageIcon(Mensage);                      
+                btnLembrete.setIcon(icone);
+                
+               
+
+            }
+
+            
+            
+            
+            contadorMensagem--;
+            
+            if (contadorMensagem ==0)
+            {
+            contadorMensagem = 2;
+            
+            }
+            
+            
+            
+        }
+    });
+     
+     
+      private javax.swing.Timer timerMensagem = new javax.swing.Timer(500, new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+
+
+            if (contadorIcones == 2) {
+                Image Mensage;
+                Mensage = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Imagens/email2.png"));
+                ImageIcon icone = new ImageIcon(Mensage);                      
+                btnMensagem.setIcon(icone);
+
+            }
+            if (contadorIcones == 1) {
+               Image Mensage;
+                Mensage = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Imagens/email1.png"));
+                ImageIcon icone = new ImageIcon(Mensage);                      
+                btnMensagem.setIcon(icone);
+                
+               
+
+            }
+
+            
+            
+            escrevaIcones();
+            contadorIcones--;
+            
+            if (contadorIcones ==0)
+            {
+            contadorIcones = 2;
+            
+            }
+            
+            
+            
+        }
+    });
+
+           private javax.swing.Timer timerAtualizavel = new javax.swing.Timer(500, new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+
+
+            if (contadorArea == 1) {
+              ContaLinhaLembrete("select count(codLembrete) as contagem from lembretes where DataAviso = '"+DataAtual+"' and aviso = 1 and codFuncionario = '"+frmLogin.codFuncionario+"'");
+                
+            }
+      
+            
+            contadorArea--;
+            
+            if (contadorArea ==0)
+            {
+            contadorArea = 10;
+            
+            }
+  
+        }
+    });
+      
 
     /**
      * @param args the command line arguments
@@ -981,6 +1051,7 @@ if(!caminho.equals("")){
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem Anotações;
     private javax.swing.JMenuItem GerenciarUsuario;
     private javax.swing.JMenu MenuBackup;
     private javax.swing.JCheckBoxMenuItem MenuCadastrar;
@@ -995,51 +1066,140 @@ if(!caminho.equals("")){
     private javax.swing.JMenu MenuRelatorios;
     private javax.swing.JMenu MenuSair1;
     private javax.swing.JMenuBar MenuTopo;
+    private javax.swing.JButton btnLembrete;
+    private javax.swing.JButton btnMensagem;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JLabel lblIcone;
     private javax.swing.JLabel lblNomeFuncionario;
+    private javax.swing.JMenuItem menuBackup;
+    private javax.swing.JMenuItem menuCalculadora;
     // End of variables declaration//GEN-END:variables
 public static int binario = 0;
-    
-    public void DesabilitarBotoes ()
-    {
-    MenuCadastrar.setVisible(false);
-    MenuDespesas.setVisible(false);
-    MenuFornecedores.setVisible(false);
-    MenuFuncionarios.setVisible(false);
-    MenuInsumo.setVisible(false);
-    MenuLancar.setVisible(false);
-    MenuPedidos.setVisible(false);
-    MenuProduto.setVisible(false);
-    MenuPromocao.setEnabled(false);
-    MenuRelatorios.setVisible(false);
-    MenuBackup.setVisible(false);
+String DataAtual;
+public static int Mensagem = 0;
+
+    public void DesabilitarBotoes() {
+        MenuCadastrar.setVisible(false);
+        MenuDespesas.setVisible(false);
+        MenuFornecedores.setVisible(false);
+        MenuFuncionarios.setVisible(false);
+        MenuInsumo.setVisible(false);
+        MenuLancar.setVisible(false);
+        MenuPedidos.setVisible(false);
+        MenuProduto.setVisible(false);
+        MenuPromocao.setEnabled(false);
+        MenuRelatorios.setVisible(false);
+        MenuBackup.setVisible(false);
 
     }
-    
-     public void HabilitarBotoes ()
-    {
-    MenuCadastrar.setEnabled(true);
-    MenuDespesas.setEnabled(true);
-    MenuFornecedores.setEnabled(true);
-    MenuFuncionarios.setEnabled(true);
-    MenuInsumo.setEnabled(true);
-    MenuLancar.setEnabled(true);
-    MenuPedidos.setEnabled(true);
-    MenuProduto.setEnabled(true);
-    MenuPromocao.setEnabled(true);
-    MenuRelatorios.setEnabled(true);
-    MenuBackup.setEnabled(true);
+
+    public void HabilitarBotoes() {
+        MenuCadastrar.setEnabled(true);
+        MenuDespesas.setEnabled(true);
+        MenuFornecedores.setEnabled(true);
+        MenuFuncionarios.setEnabled(true);
+        MenuInsumo.setEnabled(true);
+        MenuLancar.setEnabled(true);
+        MenuPedidos.setEnabled(true);
+        MenuProduto.setEnabled(true);
+        MenuPromocao.setEnabled(true);
+        MenuRelatorios.setEnabled(true);
+        MenuBackup.setEnabled(true);
 
     }
-     
-     public boolean preencherObjeto ()
-     {
-     modBack.setCaminho(caminho);
-     
-     return true;
-     }
-     
+
+    public boolean preencherObjeto() {
+        modBack.setCaminho(caminho);
+
+        return true;
+    }
     
+    public void aviso()
+            
+    {
+     Icon figura = new ImageIcon(getToolkit().createImage(getClass().getResource("/Imagens/FormularioAviso.png")));
+            JOptionPane JOP = new JOptionPane("Feche um formulário para abrir outro!", JOptionPane.INFORMATION_MESSAGE, JOptionPane.PLAIN_MESSAGE, figura);
+            JDialog DIALOGO = JOP.createDialog("Aviso");
+            DIALOGO.setResizable(false);
+            DIALOGO.setAlwaysOnTop(true);
+            DIALOGO.setModal(true);
+            DIALOGO.setVisible(true);
+    
+    }
+    
+    
+    public boolean ContaLinhaLembrete(String Sql) {
+      
+
+        con.executaSql(Sql);
+        try {
+            con.rs.first();
+            do {
+               
+               if (con.rs.getInt("contagem") >= 1) {
+                
+                 timerLembrete.start();
+                 btnLembrete.setVisible(true);
+                 btnLembrete.setEnabled(true);
+                
+                   return true;
+                }
+                else
+               {
+                 btnLembrete.setVisible(false);
+                 btnLembrete.setEnabled(false);
+                return false;
+               }
+
+            } while (con.rs.next());
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Erro de aviso de Lembrete:" + e);
+
+        }
+        
+       return true;
+    }
+    
+    
+       public boolean ContaLinhaMensagem(String Sql) {
+      
+
+        con.executaSql(Sql);
+        try {
+            con.rs.first();
+            do {
+               
+               if (con.rs.getInt("contagem") >= 1) {
+                
+                 timerLembrete.start();
+                
+                   return true;
+                }
+                else
+               {
+                return false;
+               }
+
+            } while (con.rs.next());
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Erro de aviso de Mensagem:" + e);
+
+        }
+        
+       return true;
+    }
+    
+    
+    private String DataAtual(){
+    DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+    Date date = new Date();
+    DataAtual = dateFormat.format(date);
+    return dateFormat.format(date); 
+    }
+
+
 }

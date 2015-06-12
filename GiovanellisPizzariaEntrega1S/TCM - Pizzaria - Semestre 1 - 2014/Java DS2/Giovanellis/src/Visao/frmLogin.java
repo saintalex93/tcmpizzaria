@@ -104,6 +104,8 @@ public class frmLogin extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Senha");
 
+        mtxt_senha.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+
         btn_entrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/enter3.png"))); // NOI18N
         btn_entrar.setText("Entrar");
         btn_entrar.addActionListener(new java.awt.event.ActionListener() {
@@ -119,6 +121,8 @@ public class frmLogin extends javax.swing.JFrame {
                 btn_entrar1ActionPerformed(evt);
             }
         });
+
+        txtUsuario.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -193,6 +197,7 @@ public class frmLogin extends javax.swing.JFrame {
                 conecta.rs.first();
                 nomeFuncionario = (conecta.rs.getString("Nome_Func"));
                 setPermissaoFunci(conecta.rs.getInt("Cod_Permissao"));
+                codFuncionario = (conecta.rs.getInt("Cod_Funcionario"));
 
             } catch (SQLException ex) {
                 Logger.getLogger(frmDespesas.class.getName()).log(Level.SEVERE, null, ex);
@@ -254,7 +259,7 @@ public class frmLogin extends javax.swing.JFrame {
     private javax.swing.JPasswordField mtxt_senha;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
-
+public static int codFuncionario;
 String NomeUsuario;
     public boolean usuarioExiste() {
         boolean opc = false;

@@ -40,7 +40,13 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
-import javafx.stage.FileChooser;
+//import javafx.stage.FileChooser;
+
+
+
+
+
+
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
 import javax.swing.JFileChooser;

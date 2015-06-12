@@ -230,12 +230,10 @@ public class frmFornecedores extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
-        try {
-        } catch (Exception ex) {
-            Logger.getLogger(frmFornecedores.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        dispose();
         timer.stop();
+        frmHome.binario = 0;      
+        dispose();
+       
 
     }//GEN-LAST:event_btnVoltarActionPerformed
 

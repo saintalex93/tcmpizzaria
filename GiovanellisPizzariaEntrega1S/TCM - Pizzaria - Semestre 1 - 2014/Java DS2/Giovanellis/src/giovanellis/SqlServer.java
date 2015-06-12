@@ -21,14 +21,14 @@ public class SqlServer {
     public ResultSet rs;
 
     public SqlServer() throws Exception {
-
-        String usuario = "sa", senha = "123456", url = "jdbc:jtds:sqlserver://ALEX-PC:1433/Pizzaria";
-        Class.forName("net.sourceforge.jtds.jdbc.Driver");
-        con = DriverManager.getConnection(url, usuario, senha);
-
-//        String usuario = "aluno", senha = "etesp", url = "jdbc:jtds:sqlserver://LAB02T-19:1433/Pizzaria";
+//
+//        String usuario = "sa", senha = "123456", url = "jdbc:jtds:sqlserver://ALEX-PC:1433/Pizzaria";
 //        Class.forName("net.sourceforge.jtds.jdbc.Driver");
 //        con = DriverManager.getConnection(url, usuario, senha);
+
+        String usuario = "aluno", senha = "etesp", url = "jdbc:jtds:sqlserver://LAB02T-18:1433/Pizzaria";
+        Class.forName("net.sourceforge.jtds.jdbc.Driver");
+        con = DriverManager.getConnection(url, usuario, senha);
     }
 
     public Connection getConexao() {

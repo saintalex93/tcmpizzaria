@@ -292,6 +292,8 @@ public class frmFuncionarios extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        timer.stop();
+        frmHome.binario = 0;      
         dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
 

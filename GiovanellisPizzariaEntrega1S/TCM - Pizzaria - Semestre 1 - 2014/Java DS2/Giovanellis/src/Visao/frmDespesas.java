@@ -39,9 +39,11 @@ public class frmDespesas extends javax.swing.JFrame {
     SqlServer conecta;
     SqlServer connCombo;
     SqlServer conn;
+    frmCalculadora calculadora;
 
     public frmDespesas() throws Exception {
         limitadormoeda = new LimitadorMoeda();
+        calculadora = new frmCalculadora();
         teclaspermitidas = new teclasPermitidas();
         conn = new SqlServer();
         ObjLancaDespesa = new ModeloLancamentoDespesas();
@@ -91,6 +93,7 @@ public class frmDespesas extends javax.swing.JFrame {
         CmbDespesa = new javax.swing.JComboBox();
         jcbLancamentoDespesa = new javax.swing.JComboBox();
         txtCodDesp = new javax.swing.JTextField();
+        btnCalculadora = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -295,6 +298,16 @@ public class frmDespesas extends javax.swing.JFrame {
         txtCodDesp.setEditable(false);
         getContentPane().add(txtCodDesp, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 50, -1));
 
+        btnCalculadora.setBackground(new java.awt.Color(88, 55, 66));
+        btnCalculadora.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/CalculadoraIcone cópia.png"))); // NOI18N
+        btnCalculadora.setOpaque(false);
+        btnCalculadora.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCalculadoraActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnCalculadora, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 50, 50, 60));
+
         jMenu1.setForeground(new java.awt.Color(88, 55, 66));
         jMenu1.setText("Cadastrar Despesa");
         jMenu1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -318,9 +331,12 @@ public class frmDespesas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-        dispose();
-        timer.stop();;
+         timer.stop();
+         frmHome.binario = 0;      
+         dispose();
+         calculadora.dispose();
+         
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void BtnLancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLancarActionPerformed
@@ -495,13 +511,21 @@ public class frmDespesas extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         timer.stop();
         frmHome.contador = 10;
-        frmHome.binario = 0;      
+        frmHome.binario = 0; 
+        calculadora.dispose();
    
     }//GEN-LAST:event_formWindowClosing
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void btnCalculadoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculadoraActionPerformed
+   
+   calculadora.setVisible(true);
+   calculadora.setAlwaysOnTop(true);
+   
+    }//GEN-LAST:event_btnCalculadoraActionPerformed
     int contador = 10;
 
     public void escreva() {
@@ -573,6 +597,7 @@ public class frmDespesas extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser JdcPagamento;
     private com.toedter.calendar.JDateChooser JdcVencimento;
     private javax.swing.JTextField TxtValor;
+    private javax.swing.JButton btnCalculadora;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -657,7 +682,7 @@ public class frmDespesas extends javax.swing.JFrame {
                 return false;
             }
         } catch (Exception erro) {
-            JOptionPane.showMessageDialog(this, "Informe a Data");
+            JOptionPane.showMessageDialog(this, "Informe a Data de Vencimento");
         }
 
         try {
@@ -667,7 +692,7 @@ public class frmDespesas extends javax.swing.JFrame {
                 return false;
             }
         } catch (Exception erro) {
-            JOptionPane.showMessageDialog(this, "Informe a Data");
+            JOptionPane.showMessageDialog(this, "Informe a Data de Pagamento");
         }
 
         return true;
