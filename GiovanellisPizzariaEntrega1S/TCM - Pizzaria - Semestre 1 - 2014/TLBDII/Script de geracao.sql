@@ -2630,6 +2630,174 @@ as
 		delete from Produto where Cod_Produto = (select max(Cod_Produto) from Produto)
 	End
 go
+
+create proc USP_CSharp_Categoria_ValidarCategoriaNoBanco
+
+	@CodCategoria int,
+	@NomeCategoria varchar(20)
+
+as
+	Begin
+		if @CodCategoria = 0
+			select count(*) 
+			from Categoria 
+			where NomeCategoria = @NomeCategoria
+		else
+			select count(*) 
+			from Categoria 
+			where 
+				NomeCategoria = @NomeCategoria and
+				CodCategoria != @CodCategoria
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Categoria_ValidaProdutoNaCategoria
+
+	@CodProduto int,
+	@CodCategoria int
+
+as
+	Begin
+		select count(*)
+		From ProdutoCategoria
+		where 
+			CodCategoria = @CodCategoria and
+			CodProduto = @CodProduto
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Categoria_RemoverProdutoDaCategoria
+
+	@CodCategoria int,
+	@CodProduto int
+
+as
+	Begin
+		delete from ProdutoCategoria
+		where 
+			CodProduto = @CodProduto and
+			CodCategoria = @CodCategoria
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Categoria_ValidaExclusaoCategoria
+
+	@CodCategoria int
+
+as
+	Begin
+		select
+		(select count(*) from ProdutoCategoria where CodCategoria = @CodCategoria)
+		+
+		(select count(*) from InsumoCategoria where CodCategoria = @CodCategoria)
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Categoria_ValidaInsumoNaCategoria
+
+	@CodInsumo int,
+	@CodCategoria int
+
+as
+	Begin
+		select count(*)
+		From InsumoCategoria
+		where 
+			CodCategoria = @CodCategoria and
+			CodInsumo = @CodInsumo
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Categoria_InserirInsumoNaCategoria
+
+	@CodInsumo int,
+	@CodCategoria int
+
+as
+	Begin
+		insert into InsumoCategoria values (@CodInsumo, @CodCategoria)
+	End
+go
+
+---------------------------------------------------
+create proc USP_CSharp_Categoria_RemoverInsumoDaCategoria
+
+	@CodCategoria int,
+	@CodInsumo int
+
+as
+	Begin
+		delete from InsumoCategoria
+		where 
+			CodInsumo = @CodInsumo and
+			CodCategoria = @CodCategoria
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Categoria_CancelarSequenciaDeCadastroDeProduto
+as
+	Begin
+		delete from ProdutoCategoria where CodProduto = (select max(Cod_Produto) from Produto)
+		delete from Consumo where CodProduto = (select max(Cod_Produto) from Produto)
+		delete from Produto where Cod_Produto = (select max(Cod_Produto) from Produto)
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_ConfirmacaoAlterarStatus_AbaterInsumo
+
+	@CodProduto int
+
+as
+	Begin
+		update i
+		set QtdeEmEstoque -= c.Quantidade
+		from Insumo i
+		inner join Consumo c on
+			i.Cod_Insumo = c.CodConsumo and c.CodProduto = @CodProduto
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_ConfirmacaoAlterarStatus_ProdutosNoPedido
+
+	@CodPedido int
+
+as
+	Begin
+		Select Cod_Produto From Detalhe_Pedido where Cod_Pedido = @CodPedido
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_ConfirmacaoAlterarStatus_ChecarEstadoPedido
+
+	@CodPedido int
+
+as
+	Begin
+		Select Estado From Pedido where Cod_Pedido = @CodPedido
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Entregas_SelecionaEntregadores
+as
+	Begin
+		Select Nome_Func, Cod_Funcionario 
+		From Funcionario 
+		where Cod_Permissao = 4
+		order by Nome_Func
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Entregas_AtribuirEntregador
+
+	@CodPedido int,
+	@CodFuncionario int
+
+as
+	Begin
+		update Pedido set Cod_Funcionario = @CodFuncionario where Cod_Pedido = @CodPedido
+	End
+go
+---------------------------------------------------
 ---------------------------------------------------
 
 ---------------------------------------Procedures Java------------------------------------------------
@@ -2826,174 +2994,7 @@ begin
 	Values (@ValorPagamento, @DataExpedido, @TipoPagamento, @CodFuncionario)
 end
 go
------------------------------------------------------------------------------------------------------------------------------------------------
-create proc USP_CSharp_Categoria_ValidarCategoriaNoBanco
-
-	@CodCategoria int,
-	@NomeCategoria varchar(20)
-
-as
-	Begin
-		if @CodCategoria = 0
-			select count(*) 
-			from Categoria 
-			where NomeCategoria = @NomeCategoria
-		else
-			select count(*) 
-			from Categoria 
-			where 
-				NomeCategoria = @NomeCategoria and
-				CodCategoria != @CodCategoria
-	End
-go
----------------------------------------------------
-create proc USP_CSharp_Categoria_ValidaProdutoNaCategoria
-
-	@CodProduto int,
-	@CodCategoria int
-
-as
-	Begin
-		select count(*)
-		From ProdutoCategoria
-		where 
-			CodCategoria = @CodCategoria and
-			CodProduto = @CodProduto
-	End
-go
----------------------------------------------------
-create proc USP_CSharp_Categoria_RemoverProdutoDaCategoria
-
-	@CodCategoria int,
-	@CodProduto int
-
-as
-	Begin
-		delete from ProdutoCategoria
-		where 
-			CodProduto = @CodProduto and
-			CodCategoria = @CodCategoria
-	End
-go
----------------------------------------------------
-create proc USP_CSharp_Categoria_ValidaExclusaoCategoria
-
-	@CodCategoria int
-
-as
-	Begin
-		select
-		(select count(*) from ProdutoCategoria where CodCategoria = @CodCategoria)
-		+
-		(select count(*) from InsumoCategoria where CodCategoria = @CodCategoria)
-	End
-go
----------------------------------------------------
-create proc USP_CSharp_Categoria_ValidaInsumoNaCategoria
-
-	@CodInsumo int,
-	@CodCategoria int
-
-as
-	Begin
-		select count(*)
-		From InsumoCategoria
-		where 
-			CodCategoria = @CodCategoria and
-			CodInsumo = @CodInsumo
-	End
-go
----------------------------------------------------
-create proc USP_CSharp_Categoria_InserirInsumoNaCategoria
-
-	@CodInsumo int,
-	@CodCategoria int
-
-as
-	Begin
-		insert into InsumoCategoria values (@CodInsumo, @CodCategoria)
-	End
-go
-
----------------------------------------------------
-create proc USP_CSharp_Categoria_RemoverInsumoDaCategoria
-
-	@CodCategoria int,
-	@CodInsumo int
-
-as
-	Begin
-		delete from InsumoCategoria
-		where 
-			CodInsumo = @CodInsumo and
-			CodCategoria = @CodCategoria
-	End
-go
----------------------------------------------------
-create proc USP_CSharp_Categoria_CancelarSequenciaDeCadastroDeProduto
-as
-	Begin
-		delete from ProdutoCategoria where CodProduto = (select max(Cod_Produto) from Produto)
-		delete from Consumo where CodProduto = (select max(Cod_Produto) from Produto)
-		delete from Produto where Cod_Produto = (select max(Cod_Produto) from Produto)
-	End
-go
----------------------------------------------------
-create proc USP_CSharp_ConfirmacaoAlterarStatus_AbaterInsumo
-
-	@CodProduto int
-
-as
-	Begin
-		update i
-		set QtdeEmEstoque -= c.Quantidade
-		from Insumo i
-		inner join Consumo c on
-			i.Cod_Insumo = c.CodConsumo and c.CodProduto = @CodProduto
-	End
-go
----------------------------------------------------
-create proc USP_CSharp_ConfirmacaoAlterarStatus_ProdutosNoPedido
-
-	@CodPedido int
-
-as
-	Begin
-		Select Cod_Produto From Detalhe_Pedido where Cod_Pedido = @CodPedido
-	End
-go
----------------------------------------------------
-create proc USP_CSharp_ConfirmacaoAlterarStatus_ChecarEstadoPedido
-
-	@CodPedido int
-
-as
-	Begin
-		Select Estado From Pedido where Cod_Pedido = @CodPedido
-	End
-go
----------------------------------------------------
-create proc USP_CSharp_Entregas_SelecionaEntregadores
-as
-	Begin
-		Select Nome_Func, Cod_Funcionario 
-		From Funcionario 
-		where Cod_Permissao = 4
-		order by Nome_Func
-	End
-go
----------------------------------------------------
-create proc USP_CSharp_Entregas_AtribuirEntregador
-
-	@CodPedido int,
-	@CodFuncionario int
-
-as
-	Begin
-		update Pedido set Cod_Funcionario = @CodFuncionario where Cod_Pedido = @CodPedido
-	End
-go
----------------------------------------------------
+---------------------------------------------------------Lembretes-------------------------------------------------------------
 
 create procedure USP_JAVA_INSERELEMBRETE
 (
@@ -3017,6 +3018,7 @@ values (@codFuncionario, @Assunto, @Mensagem, @DataCriacao, @DataAviso, @Aviso )
 end
 go
 
+---------------------------------------------------------Lembretes-------------------------------------------------------------
 
 
 
@@ -3041,6 +3043,7 @@ Mensagem = @Mensagem,DataAviso = @DataAviso, Aviso = @Aviso where codLembrete = 
 
 end
 
+---------------------------------------------------------Lembretes-------------------------------------------------------------
 
 go
 
@@ -3057,6 +3060,25 @@ delete Lembretes where codLembrete = @codLembrete
 
 
 end
+
+
+go
+---------------------------------------------------------Backup-------------------------------------------------------------
+
+create procedure USP_JAVA_BACKUP
+(@Caminho varchar (200))
+
+as
+
+begin
+
+
+BACKUP DATABASE Pizzaria TO DISK = @Caminho
+ WITH FORMAT, MEDIANAME = 'GiovanellisBackup', NAME = 'GiovanellisBackup';
+
+end
+
+
 
 
 
