@@ -1066,89 +1066,99 @@ public partial class aspx_pedir2 : System.Web.UI.Page
 
     protected void finalizaPedido(object sender, EventArgs e)
     {
-        string enderecoF = "";
-        string bairroF = "";
-        string numeroF = "";
-        string numapartF = "";
+        //Conexão que recupera os pedidos do cliente, para impedir que ele faça vários pedidos.
+        Conexao con5 = new Conexao();
+        con5.conectar();
+        con5.command.Parameters.Add("@codCli", SqlDbType.Int).Value = codCli;
+        con5.command.CommandText = "select * from Pedido where Cod_Cliente = @codCli and Estado = 'Na Fila'";
+        int? qtdPedidos = Convert.ToInt32(con5.command.ExecuteScalar());
+        con5.fechaConexao();
 
-        string formaPag = "";
-        double valorPago = Convert.ToDouble(txtValor.Text.Substring(2).Trim());
-        string valor = valorPago.ToString();
-        valor.Replace(",", ".");
-        valorPago = Convert.ToDouble(valor);
-
-        //Variáveis para inserção no banco
-        string testeData = DateTime.Now.ToShortDateString();
-        string testeHora = DateTime.Now.ToShortTimeString();
-        double preco = Convert.ToDouble(lblPrecoTotal.Text.Substring(2).Trim());
-
-        int codUltimoPedido = 0;
-
-        if (rbtnEnd.SelectedItem.Value == "2")
+        if (qtdPedidos <= 0 || qtdPedidos == null)
         {
-            enderecoF = txtEnderecoPedido.Text;
-            numeroF = txtNum.Text;
-            bairroF = txtBairro.Text;
-            numapartF = txtNumApart.Text;
-        }
+            string enderecoF = "";
+            string bairroF = "";
+            string numeroF = "";
+            string numapartF = "";
 
-        if (rbtnPagamento.SelectedItem.Value == "1")
-        {
-            formaPag = "Dinheiro";
-        }
-        else
-        {
-            formaPag = "Cartão";
-        }
+            string formaPag = "";
+            double valorPago = Convert.ToDouble(txtValor.Text.Substring(2).Trim());
+            string valor = valorPago.ToString();
+            valor.Replace(",", ".");
+            valorPago = Convert.ToDouble(valor);
 
-        Conexao con = new Conexao();
-        con.conectar();
-        con.command.CommandText = "insert into Pedido(Data,Hora,Valor,Cod_Funcionario,Cod_Cliente, Observacao,Origem,Estado, EnderecoAlt, NumeroResidencialAlt, BairroAlt , NumeroApartamentoAlt ,FormaDePagamento,ValorPago)" + "values(@data, @hora,@valor,@codFunc,@codCliente,@obs,@origem,@estado,@enderecoAlt,@numAlt,@bairroAlt,@numApartAlt,@pagamento,@valorPago)";
-        con.command.Parameters.Add("@data", SqlDbType.Date).Value = testeData;
-        con.command.Parameters.Add("@hora", SqlDbType.VarChar).Value = testeHora;
-        con.command.Parameters.Add("@valor", SqlDbType.Decimal).Value = preco;
-        con.command.Parameters.Add("@codFunc", SqlDbType.Int).Value = 1;
-        con.command.Parameters.Add("@codCliente", SqlDbType.Int).Value = codCli;
-        con.command.Parameters.Add("@obs", SqlDbType.VarChar).Value = txtObservacoes.Text;
-        con.command.Parameters.Add("@origem", SqlDbType.VarChar).Value = "Site";
-        con.command.Parameters.Add("@estado", SqlDbType.VarChar).Value = "A caminho";
-        con.command.Parameters.Add("@enderecoAlt", SqlDbType.VarChar).Value = enderecoF;
-        con.command.Parameters.Add("@numAlt", SqlDbType.VarChar).Value = numeroF;
-        con.command.Parameters.Add("@bairroAlt", SqlDbType.VarChar).Value = bairroF;
-        con.command.Parameters.Add("@numApartAlt", SqlDbType.VarChar).Value = numapartF;
-        con.command.Parameters.Add("@pagamento", SqlDbType.VarChar).Value = formaPag;
-        con.command.Parameters.Add("@valorPago", SqlDbType.Decimal).Value = valorPago;
-        int qtd = con.command.ExecuteNonQuery();
-        if (qtd <= 0)
-        {
-            Session.Clear();
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect","alert('Problema ao Registrar seu pedido'); window.location='" + Request.ApplicationPath + "/aspx/pedir.aspx';", true);
-        }
-        con.fechaConexao();
+            //Variáveis para inserção no banco
+            string testeData = DateTime.Now.ToShortDateString();
+            string testeHora = DateTime.Now.ToShortTimeString();
+            double preco = Convert.ToDouble(lblPrecoTotal.Text.Substring(2).Trim());
+
+            int codUltimoPedido = 0;
+
+            if (rbtnEnd.SelectedItem.Value == "2")
+            {
+                enderecoF = txtEnderecoPedido.Text;
+                numeroF = txtNum.Text;
+                bairroF = txtBairro.Text;
+                numapartF = txtNumApart.Text;
+            }
+
+            if (rbtnPagamento.SelectedItem.Value == "1")
+            {
+                formaPag = "Dinheiro";
+            }
+            else
+            {
+                formaPag = "Cartão";
+            }
+
+            Conexao con = new Conexao();
+            con.conectar();
+            con.command.CommandText = "insert into Pedido(Data,Hora,Valor,Cod_Funcionario,Cod_Cliente, Observacao,Origem,Estado, EnderecoAlt, NumeroResidencialAlt, BairroAlt , NumeroApartamentoAlt ,FormaDePagamento,ValorPago)" + "values(@data, @hora,@valor,@codFunc,@codCliente,@obs,@origem,@estado,@enderecoAlt,@numAlt,@bairroAlt,@numApartAlt,@pagamento,@valorPago)";
+            con.command.Parameters.Add("@data", SqlDbType.Date).Value = testeData;
+            con.command.Parameters.Add("@hora", SqlDbType.VarChar).Value = testeHora;
+            con.command.Parameters.Add("@valor", SqlDbType.Decimal).Value = preco;
+            con.command.Parameters.Add("@codFunc", SqlDbType.Int).Value = 1;
+            con.command.Parameters.Add("@codCliente", SqlDbType.Int).Value = codCli;
+            con.command.Parameters.Add("@obs", SqlDbType.VarChar).Value = txtObservacoes.Text;
+            con.command.Parameters.Add("@origem", SqlDbType.VarChar).Value = "Site";
+            con.command.Parameters.Add("@estado", SqlDbType.VarChar).Value = "Na Fila";
+            con.command.Parameters.Add("@enderecoAlt", SqlDbType.VarChar).Value = enderecoF;
+            con.command.Parameters.Add("@numAlt", SqlDbType.VarChar).Value = numeroF;
+            con.command.Parameters.Add("@bairroAlt", SqlDbType.VarChar).Value = bairroF;
+            con.command.Parameters.Add("@numApartAlt", SqlDbType.VarChar).Value = numapartF;
+            con.command.Parameters.Add("@pagamento", SqlDbType.VarChar).Value = formaPag;
+            con.command.Parameters.Add("@valorPago", SqlDbType.Decimal).Value = valorPago;
+            int qtd = con.command.ExecuteNonQuery();
+            if (qtd <= 0)
+            {
+                Session.Clear();
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect", "alert('Problema ao Registrar seu pedido'); window.location='" + Request.ApplicationPath + "/aspx/pedir.aspx';", true);
+            }
+            con.fechaConexao();
 
 
-        //Conexão que traz o Código do último pedido inserido(esse do insert de cima).
-        Conexao con2 = new Conexao();
-        con2.conectar();
-        con2.command.CommandText = "select MAX(Cod_Pedido) as 'UltimoPedido' from Pedido";
-        codUltimoPedido = Convert.ToInt32(con2.command.ExecuteScalar());
-        con2.fechaConexao();
+            //Conexão que traz o Código do último pedido inserido(esse do insert de cima).
+            Conexao con2 = new Conexao();
+            con2.conectar();
+            con2.command.CommandText = "select MAX(Cod_Pedido) as 'UltimoPedido' from Pedido";
+            codUltimoPedido = Convert.ToInt32(con2.command.ExecuteScalar());
+            con2.fechaConexao();
 
-        DataTable dt = (DataTable)Session["carrinho"];
-        DataSet ds = (DataSet)Session["valorPizza"];
-        DataSet dsBebida = (DataSet)Session["valorBebida"];
+            DataTable dt = (DataTable)Session["carrinho"];
+            DataSet ds = (DataSet)Session["valorPizza"];
+            DataSet dsBebida = (DataSet)Session["valorBebida"];
 
-        //Conexão que cria o Detalhe_Pedido utilizando-se do Código do Pedido retornado.
-        Conexao con3 = new Conexao();
-        con3.conectar();
+            //Conexão que cria o Detalhe_Pedido utilizando-se do Código do Pedido retornado.
+            Conexao con3 = new Conexao();
+            con3.conectar();
 
-        int contadorVolta = 0;
-        int numLinhas = dt.Rows.Count;
-        string[] prodArray = {""};
-        int? codProduto1 = 0;
-        int? codProduto2 = 0;
-        string produto = "";
-        int quantidade = 0;
+            int contadorVolta = 0;
+            int numLinhas = dt.Rows.Count;
+            string[] prodArray = { "" };
+            int? codProduto1 = 0;
+            int? codProduto2 = 0;
+            string produto = "";
+            int quantidade = 0;
 
             foreach (DataRow row in dt.Rows)
             {
@@ -1220,10 +1230,14 @@ public partial class aspx_pedir2 : System.Web.UI.Page
                         }
                     }
                 }
+            }
+            con3.fechaConexao();
+            Session.Clear();
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "ScriptManager1", "alert('Pedido Registrado com Sucesso !!');window.location='" + Request.ApplicationPath + "/aspx/pedidos.aspx';", true);
         }
-
-        con3.fechaConexao();
-        Session.Clear();
-        ScriptManager.RegisterStartupScript(this, this.GetType(), "ScriptManager1", "alert('Pedido Registrado com Sucesso !!');window.location='" + Request.ApplicationPath + "/aspx/pedir.aspx';", true);
+        else
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "ScriptManager1", "alert('Você não pode ter 2 pedidos ao mesmo tempo !!');", true);
+        }
     }
 }//Chave Final
