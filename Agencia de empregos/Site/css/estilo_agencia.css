@@ -9,10 +9,8 @@ TOM DE AZUL: #3498db;
 FONTE UTILIZADA EM TODO O SITE: Constantia (Não é necessário declarar, ela vai ser usada automaticamente)
 
 Pra que serve a div wrapper?
-    Para conter o conteúdo, e centralizá-lo na página... seu animal.
+    Para conter o conteúdo, e centralizá-lo na página.
 */
-
-
 
 *
 {
@@ -348,20 +346,20 @@ footer
 
 /* Formatação da grid de vagas na home */
 
-tbody
+.gridHome tbody
 {
     border-radius: 10px;
     border: 1px solid black;
 
 }
 
-th 
+.gridHome th
 {
     background-color: #e67e22;
     padding: 5px 10px;
 }
 
-td
+.gridHome td
 {
     background-color: #AED6F1;
     border-top: 1px solid black;
@@ -397,6 +395,89 @@ td
     border-radius: 6px;
     color: #fff;
 }
+.linhaSelecionada
+{
+    background: #333;
+    color: #fff;
+}
+
+/* CSS DA PÁGINA LANÇAR VAGAS */
+
+article.lancarVaga h1{
+    font-size: 35px;
+    text-align: center;
+    margin: 0 0 40px 0;
+    color: #313131;
+}
+article.lancarVaga h2 {
+    color: #333;
+    margin: 0 0 20px 40px;
+}
+
+.painelVaga {
+    padding: 30px 0;
+    border-top: 1px solid #3498db;
+    overflow: auto;
+}
+.painelVaga span {
+    color: #333;
+}
+.painelVaga textarea {
+    border: 1px solid #3498db;
+    min-height: 70px;
+    min-width: 200px;
+    max-height: 200px;
+    max-width: 400px;
+    float: left;
+    clear: left;
+}
+.painelVaga input[type="text"] {
+    border: 1px solid #3498db;
+    padding: 3px;
+    letter-spacing: 1px;
+    float: left;
+}
+.painelVaga input[type="submit"] {
+    float: left;
+    clear: left;
+    padding: 6px;
+    margin: 15px 0 0 0;
+    color: #fff;
+    font-weight: bold;
+    background: #e67e22;
+    border-radius: 4px;
+}
+.painelVaga select {
+    font-family: Constantia;
+    padding: 2px;
+    font-size: 16px;
+    border: 1px solid #3498db;
+    border-radius: 3px;
+}
+.painelVaga .pnlSeleciona {
+    float: left;
+    clear: left;
+}
+.painelVaga .pnlSeleciona p {
+    text-align: center;
+    margin: 10px 0 5px 0;
+}
+
+/* ELEMENTOS ESPECIFICOS DE CADA PAINEL */
+
+/* PRIMEIRO PAINEL */
+
+div.painelVaga:nth-child(1) input[type="text"]{
+    margin: 0 0 0 10px;
+}
+div.painelVaga:nth-child(2) table tr td{
+    padding: 5px;
+}
+div.painelVaga:nth-child(2) table tr td a
+{
+    text-decoration: none;
+    color: #333;
+}
 
 /*
 
@@ -406,5 +487,5 @@ TOM DE AZUL: #3498db;
 FONTE UTILIZADA EM TODO O SITE: Constantia (Não é necessário declarar, ela vai ser usada automaticamente)
 
 Pra que serve a div wrapper?
-    Para conter o conteúdo, e centralizá-lo na página... seu animal.
+    Para conter o conteúdo, e centralizá-lo na página.
 */

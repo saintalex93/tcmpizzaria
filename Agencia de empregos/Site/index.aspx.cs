@@ -81,7 +81,7 @@ public partial class index : System.Web.UI.Page
             {
                 while (dr.Read())
                 {
-                    Session["funcionario"] = dr[0] + " / " + dr[1];
+                    Session["funcionario"] = dr[0] + " / " + dr[1] + " / " + dr[2];
                     Session.Timeout = 60;
                     lblNomeFunc.Text = dr[1].ToString();
                     pnlLogin.Visible = false;

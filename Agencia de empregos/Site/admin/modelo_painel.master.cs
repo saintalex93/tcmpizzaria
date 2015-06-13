@@ -15,11 +15,15 @@ public partial class admin_modelo_painel : System.Web.UI.MasterPage
             string[] nomeAdm = admin.Split('/');
             lblNome.Text = nomeAdm[1];
         }
+        else
+        {
+            Response.Redirect(Request.ApplicationPath + "/admin/index.aspx");
+        }
     }
 
     protected void Logout(object sender, EventArgs e)
     {
         Session["admin"] = null;
-        Response.Redirect("index.aspx");
+        Response.Redirect(Request.ApplicationPath + "/admin/index.aspx");
     }
 }
