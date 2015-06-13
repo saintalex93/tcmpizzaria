@@ -52,7 +52,14 @@ namespace Pizzaria
         {
             if (txt_usuario.Text.Length == 0)
             {
-                MessageBox.Show("Por favor, insira um LOGIN de usuário para entrar no sistema.","Falha de login");
+                MessageBox.Show("Por favor, insira um LOGIN de usuário para entrar no sistema.","Falha no login");
+
+                return false;
+            }
+
+            if (txt_senha.Text.Length == 0)
+            {
+                MessageBox.Show("Por favor, insira uma SENHA de usuário para entrar no sistema.", "Falha no login");
 
                 return false;
             }

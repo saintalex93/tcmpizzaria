@@ -30,13 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Pedidos));
             this.gpb_detalhamento = new System.Windows.Forms.GroupBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnGravarAjuste = new System.Windows.Forms.Button();
-            this.txtAjuste = new System.Windows.Forms.TextBox();
             this.txtTotal = new System.Windows.Forms.TextBox();
-            this.txtSaldo = new System.Windows.Forms.TextBox();
-            this.lbl_saldo = new System.Windows.Forms.Label();
-            this.lbl_ajuste = new System.Windows.Forms.Label();
             this.lbl_total = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtIDProduto = new System.Windows.Forms.TextBox();
@@ -61,7 +55,6 @@
             this.lbl_nome = new System.Windows.Forms.Label();
             this.btn_sair = new System.Windows.Forms.Button();
             this.gpb_detalhamento.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridProdutosEncontrados)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridProdutosConsumidos)).BeginInit();
             this.gpb_dadoscliente.SuspendLayout();
@@ -71,7 +64,8 @@
             // 
             // gpb_detalhamento
             // 
-            this.gpb_detalhamento.Controls.Add(this.groupBox1);
+            this.gpb_detalhamento.Controls.Add(this.txtTotal);
+            this.gpb_detalhamento.Controls.Add(this.lbl_total);
             this.gpb_detalhamento.Controls.Add(this.label1);
             this.gpb_detalhamento.Controls.Add(this.txtIDProduto);
             this.gpb_detalhamento.Controls.Add(this.txtPalavraChave);
@@ -84,88 +78,24 @@
             this.gpb_detalhamento.Controls.Add(this.gridProdutosConsumidos);
             this.gpb_detalhamento.Location = new System.Drawing.Point(381, 12);
             this.gpb_detalhamento.Name = "gpb_detalhamento";
-            this.gpb_detalhamento.Size = new System.Drawing.Size(373, 481);
+            this.gpb_detalhamento.Size = new System.Drawing.Size(373, 426);
             this.gpb_detalhamento.TabIndex = 0;
             this.gpb_detalhamento.TabStop = false;
             this.gpb_detalhamento.Text = "Produtos do Pedido";
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.btnGravarAjuste);
-            this.groupBox1.Controls.Add(this.txtAjuste);
-            this.groupBox1.Controls.Add(this.txtTotal);
-            this.groupBox1.Controls.Add(this.txtSaldo);
-            this.groupBox1.Controls.Add(this.lbl_saldo);
-            this.groupBox1.Controls.Add(this.lbl_ajuste);
-            this.groupBox1.Controls.Add(this.lbl_total);
-            this.groupBox1.Location = new System.Drawing.Point(12, 393);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(350, 77);
-            this.groupBox1.TabIndex = 22;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Valores";
-            // 
-            // btnGravarAjuste
-            // 
-            this.btnGravarAjuste.Enabled = false;
-            this.btnGravarAjuste.Location = new System.Drawing.Point(109, 45);
-            this.btnGravarAjuste.Name = "btnGravarAjuste";
-            this.btnGravarAjuste.Size = new System.Drawing.Size(113, 23);
-            this.btnGravarAjuste.TabIndex = 22;
-            this.btnGravarAjuste.Text = "Processar ajuste";
-            this.btnGravarAjuste.UseVisualStyleBackColor = true;
-            this.btnGravarAjuste.Click += new System.EventHandler(this.btnGravarAjuste_Click);
-            // 
-            // txtAjuste
-            // 
-            this.txtAjuste.Location = new System.Drawing.Point(182, 19);
-            this.txtAjuste.Name = "txtAjuste";
-            this.txtAjuste.Size = new System.Drawing.Size(40, 20);
-            this.txtAjuste.TabIndex = 21;
-            this.txtAjuste.TextChanged += new System.EventHandler(this.txtAjuste_TextChanged);
-            this.txtAjuste.Enter += new System.EventHandler(this.txtAjuste_Enter_1);
-            this.txtAjuste.Leave += new System.EventHandler(this.txtAjuste_Leave_1);
-            // 
             // txtTotal
             // 
             this.txtTotal.Enabled = false;
-            this.txtTotal.Location = new System.Drawing.Point(304, 19);
+            this.txtTotal.Location = new System.Drawing.Point(327, 393);
             this.txtTotal.Name = "txtTotal";
             this.txtTotal.ReadOnly = true;
             this.txtTotal.Size = new System.Drawing.Size(40, 20);
             this.txtTotal.TabIndex = 20;
             // 
-            // txtSaldo
-            // 
-            this.txtSaldo.Enabled = false;
-            this.txtSaldo.Location = new System.Drawing.Point(71, 19);
-            this.txtSaldo.Name = "txtSaldo";
-            this.txtSaldo.ReadOnly = true;
-            this.txtSaldo.Size = new System.Drawing.Size(40, 20);
-            this.txtSaldo.TabIndex = 19;
-            // 
-            // lbl_saldo
-            // 
-            this.lbl_saldo.AutoSize = true;
-            this.lbl_saldo.Location = new System.Drawing.Point(8, 22);
-            this.lbl_saldo.Name = "lbl_saldo";
-            this.lbl_saldo.Size = new System.Drawing.Size(57, 13);
-            this.lbl_saldo.TabIndex = 13;
-            this.lbl_saldo.Text = "Saldo - R$";
-            // 
-            // lbl_ajuste
-            // 
-            this.lbl_ajuste.AutoSize = true;
-            this.lbl_ajuste.Location = new System.Drawing.Point(117, 22);
-            this.lbl_ajuste.Name = "lbl_ajuste";
-            this.lbl_ajuste.Size = new System.Drawing.Size(59, 13);
-            this.lbl_ajuste.TabIndex = 15;
-            this.lbl_ajuste.Text = "Ajuste - R$";
-            // 
             // lbl_total
             // 
             this.lbl_total.AutoSize = true;
-            this.lbl_total.Location = new System.Drawing.Point(244, 22);
+            this.lbl_total.Location = new System.Drawing.Point(267, 396);
             this.lbl_total.Name = "lbl_total";
             this.lbl_total.Size = new System.Drawing.Size(54, 13);
             this.lbl_total.TabIndex = 14;
@@ -194,7 +124,7 @@
             // txtPalavraChave
             // 
             this.txtPalavraChave.Enabled = false;
-            this.txtPalavraChave.Location = new System.Drawing.Point(92, 26);
+            this.txtPalavraChave.Location = new System.Drawing.Point(57, 26);
             this.txtPalavraChave.Name = "txtPalavraChave";
             this.txtPalavraChave.Size = new System.Drawing.Size(100, 20);
             this.txtPalavraChave.TabIndex = 1;
@@ -216,15 +146,16 @@
             this.lbl_palavrachave.AutoSize = true;
             this.lbl_palavrachave.Location = new System.Drawing.Point(9, 29);
             this.lbl_palavrachave.Name = "lbl_palavrachave";
-            this.lbl_palavrachave.Size = new System.Drawing.Size(77, 13);
+            this.lbl_palavrachave.Size = new System.Drawing.Size(44, 13);
             this.lbl_palavrachave.TabIndex = 0;
-            this.lbl_palavrachave.Text = "Palavra Chave";
+            this.lbl_palavrachave.Text = "Produto";
             // 
             // gridProdutosEncontrados
             // 
             this.gridProdutosEncontrados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.gridProdutosEncontrados.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.gridProdutosEncontrados.Location = new System.Drawing.Point(12, 66);
+            this.gridProdutosEncontrados.MultiSelect = false;
             this.gridProdutosEncontrados.Name = "gridProdutosEncontrados";
             this.gridProdutosEncontrados.ReadOnly = true;
             this.gridProdutosEncontrados.Size = new System.Drawing.Size(355, 106);
@@ -269,6 +200,7 @@
             this.gridProdutosConsumidos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.gridProdutosConsumidos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridProdutosConsumidos.Location = new System.Drawing.Point(12, 220);
+            this.gridProdutosConsumidos.MultiSelect = false;
             this.gridProdutosConsumidos.Name = "gridProdutosConsumidos";
             this.gridProdutosConsumidos.ReadOnly = true;
             this.gridProdutosConsumidos.Size = new System.Drawing.Size(355, 167);
@@ -330,6 +262,7 @@
             this.gridPedidosClientes.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.gridPedidosClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridPedidosClientes.Location = new System.Drawing.Point(11, 295);
+            this.gridPedidosClientes.MultiSelect = false;
             this.gridPedidosClientes.Name = "gridPedidosClientes";
             this.gridPedidosClientes.ReadOnly = true;
             this.gridPedidosClientes.Size = new System.Drawing.Size(346, 150);
@@ -352,12 +285,12 @@
             this.gridClientesEncontrados.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.gridClientesEncontrados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridClientesEncontrados.Location = new System.Drawing.Point(10, 64);
+            this.gridClientesEncontrados.MultiSelect = false;
             this.gridClientesEncontrados.Name = "gridClientesEncontrados";
             this.gridClientesEncontrados.ReadOnly = true;
             this.gridClientesEncontrados.Size = new System.Drawing.Size(347, 182);
             this.gridClientesEncontrados.TabIndex = 22;
             this.gridClientesEncontrados.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridClientesEncontrados_CellClick);
-            this.gridClientesEncontrados.DoubleClick += new System.EventHandler(this.gridClientesEncontrados_DoubleClick);
             // 
             // txtCPF
             // 
@@ -400,7 +333,7 @@
             // 
             // btn_sair
             // 
-            this.btn_sair.Location = new System.Drawing.Point(679, 499);
+            this.btn_sair.Location = new System.Drawing.Point(679, 444);
             this.btn_sair.Name = "btn_sair";
             this.btn_sair.Size = new System.Drawing.Size(75, 23);
             this.btn_sair.TabIndex = 21;
@@ -412,7 +345,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(762, 533);
+            this.ClientSize = new System.Drawing.Size(762, 475);
             this.ControlBox = false;
             this.Controls.Add(this.btn_sair);
             this.Controls.Add(this.gpb_dadoscliente);
@@ -426,8 +359,6 @@
             this.Shown += new System.EventHandler(this.Pedidos_Shown);
             this.gpb_detalhamento.ResumeLayout(false);
             this.gpb_detalhamento.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridProdutosEncontrados)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridProdutosConsumidos)).EndInit();
             this.gpb_dadoscliente.ResumeLayout(false);
@@ -454,22 +385,16 @@
         private System.Windows.Forms.DataGridView gridProdutosEncontrados;
         private System.Windows.Forms.DataGridView gridProdutosConsumidos;
         private System.Windows.Forms.Button btn_remover;
-        private System.Windows.Forms.Label lbl_saldo;
         private System.Windows.Forms.Label lbl_total;
-        private System.Windows.Forms.Label lbl_ajuste;
         private System.Windows.Forms.Button btn_sair;
         private System.Windows.Forms.DataGridView gridClientesEncontrados;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView gridPedidosClientes;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox txtTotal;
-        private System.Windows.Forms.TextBox txtSaldo;
         private System.Windows.Forms.Button btn_inserir;
         private System.Windows.Forms.Button btnRemoverPedido;
         private System.Windows.Forms.Button btnNovoPedido;
-        private System.Windows.Forms.TextBox txtAjuste;
-        private System.Windows.Forms.Button btnGravarAjuste;
     }
 }

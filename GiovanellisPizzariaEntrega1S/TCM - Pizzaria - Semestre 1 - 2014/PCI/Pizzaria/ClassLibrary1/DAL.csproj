@@ -54,6 +54,7 @@
     <Compile Include="Model\clsPedidoFornecedor.cs" />
     <Compile Include="Model\clsPermissao.cs" />
     <Compile Include="Model\clsProduto.cs" />
+    <Compile Include="Model\clsProdutoPedido.cs" />
     <Compile Include="Model\clsProdutoPromocao.cs" />
     <Compile Include="Model\clsPromocao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

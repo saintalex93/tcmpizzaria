@@ -39,6 +39,13 @@ namespace BLL
             return Banco.ExecuteProc("USP_CSharp_Compras_SelectFornecedores", lista);
         }
 
+        public DataTable SelectInsumos()
+        {
+            List<SqlParameter> lista = null;
+
+            return Banco.ExecuteProc("USP_CSharp_Compras_SelectInsumos", lista);
+        }
+
         public DataTable BuscarFornecedoresPorID(clsFornecedor objFornecedor)
         {
             List<SqlParameter> lista = new List<SqlParameter>();

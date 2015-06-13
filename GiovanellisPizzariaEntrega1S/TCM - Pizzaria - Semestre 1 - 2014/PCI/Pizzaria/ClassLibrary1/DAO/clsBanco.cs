@@ -84,7 +84,6 @@ namespace DAL.DAO
                         }
                     }
                     return dtDados;
-                    
                 }
             }
             catch (Exception ex)

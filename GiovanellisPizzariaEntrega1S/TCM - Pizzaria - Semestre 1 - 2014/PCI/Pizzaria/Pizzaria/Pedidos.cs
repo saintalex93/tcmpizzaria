@@ -10,6 +10,9 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Globalization;
 
+using BLL;
+using DAL.DAO;
+using DAL.Model;
 
 namespace Pizzaria
 {
@@ -20,15 +23,15 @@ namespace Pizzaria
             InitializeComponent();
         }
 
-        string conexao = "";
-
+        clsPedidoBLL pedidos = new clsPedidoBLL();
+        //TODO: Limpar comentários
         public void preencherGrid(string busca, DataGridView tabela)
-        {
+        {/*
             //conexao = "Data Source=localhost; Initial Catalog=Pizzaria; Persist Security Info = True; User ID=SA; Password=peganomeupau";
           //  conexao = "Data Source=Tuca\\SQLEXPRESS; Initial Catalog=Pizzaria; Persist Security Info = True; User ID=sa; Password=peganomeupau";
-            SqlConnection conn = new SqlConnection(conexao);
+            //SqlConnection conn = new SqlConnection(conexao);
             
-            conn.Open();
+            //conn.Open();
             SqlCommand sqlComm = new SqlCommand(busca, conn);
 //            sqlComm.ExecuteNonQuery();
             SqlDataAdapter da = new SqlDataAdapter();
@@ -36,7 +39,7 @@ namespace Pizzaria
             DataTable dt = new DataTable();
             da.Fill(dt);
             tabela.DataSource = dt;
-            conn.Close();
+            conn.Close();*/
         }
 
         public void limparGrid(DataGridView tabela)
@@ -63,18 +66,20 @@ namespace Pizzaria
             double ajuste = 0;
             double total = 0;
 
-            for (int x = 0; x < gridProdutosConsumidos.Rows.Count; x++)
+            for (int x = 0; x < gridProdutosConsumidos.Rows.Count - 1; x++)
             {
-                saldo += Convert.ToDouble(gridProdutosConsumidos.Rows[x].Cells[3].Value);
+                saldo += Convert.ToDouble(gridProdutosConsumidos.Rows[x].Cells[2].Value);
             }
 
-            txtSaldo.Text = saldo.ToString();
+            txtTotal.Text = saldo.ToString();
 
-//            ajuste = Convert.ToDouble(txtAjuste.Text/*.Replace("_", "").Replace(",", ".")*/);
+            clsPedido objPedido = new clsPedido();
+            objPedido.Cod_Pedido = gridPedidosClientes.CurrentRow.Cells[0].Value.ToString();
+            objPedido.Valor = txtTotal.Text;
 
-            total = saldo - ajuste;
+            gridProdutosConsumidos.DataSource = pedidos.BuscarProdutosDoPedido(objPedido);
 
-            txtTotal.Text = total.ToString();
+            pedidos.AtualizarValor(objPedido);
         }
 
         public Form FormHome { get; set; }
@@ -92,7 +97,7 @@ namespace Pizzaria
 
         private void Pedidos_Load(object sender, EventArgs e)
         {
-            conexao = Acesso.Conexao;
+            //conexao = Acesso.Conexao;
 
         }
 
@@ -112,23 +117,23 @@ namespace Pizzaria
 
         private void txt_nome_TextChanged(object sender, EventArgs e)
         {
-            if (txtNome.TextLength != 0) 
-            {
-                txtCPF.Text = "";
+            string cpf = txtCPF.Text.ToString();
 
-                preencherGrid("select Cod_Cliente, Nome_Cliente ,CPF_Cliente from cliente where Nome_Cliente like ('%" + txtNome.Text + "%')", gridClientesEncontrados);
+            clsCliente objCliente = new clsCliente();
+            objCliente.Nome_Cliente = txtNome.Text.ToString();
 
-                txtCPF.Clear();
-                limparGrid(gridPedidosClientes);
-                txtPalavraChave.Clear();
-                txtPalavraChave.Enabled = false;
-                txtIDProduto.Clear();
-                txtIDProduto.Enabled = false;
-                btn_inserir.Enabled = false;
-                limparGrid(gridProdutosEncontrados);
-                limparGrid(gridProdutosConsumidos);
-                btn_remover.Enabled = false;
-            }
+            gridClientesEncontrados.DataSource = pedidos.BuscarClientesPorNome(objCliente);
+
+            txtCPF.Clear();
+            limparGrid(gridPedidosClientes);
+            txtPalavraChave.Clear();
+            txtPalavraChave.Enabled = false;
+            txtIDProduto.Clear();
+            txtIDProduto.Enabled = false;
+            btn_inserir.Enabled = false;
+            limparGrid(gridProdutosEncontrados);
+            limparGrid(gridProdutosConsumidos);
+            btn_remover.Enabled = false;
             
         }
 
@@ -137,44 +142,21 @@ namespace Pizzaria
             //conexao = Rede.DataContainer.conexaoGlobal;
         }
 
+
         private void txtCPF_TextChanged(object sender, EventArgs e)
         {
-            if (txtCPF.TextLength != 0) 
-            {
-                txtNome.Text = "";
+            clsCliente objCliente = new clsCliente();
+            objCliente.Cpf_Cliente = txtCPF.Text;
 
-                string cpfOriginal = txtCPF.Text/*.Replace(" ", "").Replace(".", "").Replace(" ","")*/;
-                string cpfCorrigido = "";
-                bool primeiroNumeroDoStringEncontardo = false;
-                int i = 0;
+            gridClientesEncontrados.DataSource = pedidos.BuscarClientesPorCPF(objCliente);
 
-                if (txtCPF.Text != "   .   .   -")
-                {
-                    while (!primeiroNumeroDoStringEncontardo)
-                    {
-                        if (char.IsNumber(cpfOriginal[i]))
-                            break;
-                        i++;
-                    }
-
-                    for (int j = i; j < cpfOriginal.Length; j++)
-                        if (cpfOriginal[j].ToString() != " ")
-                            cpfCorrigido += cpfOriginal[j].ToString();
-                        else
-                            break;
-                }
-
-                preencherGrid("select Cod_Cliente, Nome_Cliente ,CPF_Cliente from cliente where CPF_Cliente like ('%" + cpfCorrigido + "%')", gridClientesEncontrados);
-
-                txtNome.Clear();
-                txtPalavraChave.Clear();
-                txtIDProduto.Clear();
-                btn_inserir.Enabled = false;
-                limparGrid(gridProdutosEncontrados);
-                limparGrid(gridProdutosConsumidos);
-                btn_remover.Enabled = false;
-            }
-            
+            txtNome.Clear();
+            txtPalavraChave.Clear();
+            txtIDProduto.Clear();
+            btn_inserir.Enabled = false;
+            limparGrid(gridProdutosEncontrados);
+            limparGrid(gridProdutosConsumidos);
+            btn_remover.Enabled = false;
         }
 
         private void txtCPFTeste_TextChanged(object sender, EventArgs e)
@@ -194,9 +176,10 @@ namespace Pizzaria
 
         private void gridClientesEncontrados_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            int id = Convert.ToInt32(gridClientesEncontrados.CurrentRow.Cells[0].Value);
+            clsPedido objPedido = new clsPedido();
+            objPedido.Cod_Cliente = gridClientesEncontrados.CurrentRow.Cells[0].Value.ToString();
 
-            preencherGrid("select Cod_Pedido, Data, Hora from pedido where Cod_Cliente like ('%" + id + "%')", gridPedidosClientes);
+            gridPedidosClientes.DataSource = pedidos.BuscarPedidosDoCliente(objPedido);
 
 /*            for (int i = 0; i < gridPedidosClientes.RowCount; i++)
             {
@@ -233,13 +216,11 @@ namespace Pizzaria
 
         private void gridPedidosClientes_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            int id = Convert.ToInt32(gridPedidosClientes.CurrentRow.Cells[0].Value);
+            clsPedido objPedido = new clsPedido();
+            objPedido.Cod_Pedido = gridPedidosClientes.CurrentRow.Cells[0].Value.ToString();
 
-            atualizarGridProdutosConsumidos();
+            gridProdutosConsumidos.DataSource = pedidos.BuscarProdutosDoPedido(objPedido);
             
-//            for (int i = 0; i < gridProdutosConsumidos.Columns.Count; i++)
-  //              gridProdutosConsumidos.Columns[i].Width = 85;
-
             txtPalavraChave.Clear();
             txtIDProduto.Clear();
             txtPalavraChave.Enabled = true;
@@ -254,19 +235,17 @@ namespace Pizzaria
 
         private void txt_palavrachave_TextChanged(object sender, EventArgs e)
         {
-            txtIDProduto.Clear();
+            clsProduto objProduto = new clsProduto();
+            objProduto.Nome_Produto = txtPalavraChave.Text;
 
-            preencherGrid("select Cod_Produto as [ID Produto],  Nome_Produto as [Produto], Valor_Venda as [Preço] from Produto where Nome_Produto like ('%" + txtPalavraChave.Text + "%')", gridProdutosEncontrados);
+            gridProdutosEncontrados.DataSource = pedidos.BuscarProdutosPorPalavraChave(objProduto);
 
-            txtIDProduto.Clear();
             btn_inserir.Enabled = true;
             btn_remover.Enabled = true;
         }
 
         private void txtIDProduto_TextChanged(object sender, EventArgs e)
         {
-            txtPalavraChave.Clear();
-
             for (int i = 0; i < txtIDProduto.Text.Length; i++)
                 if (!char.IsNumber(txtIDProduto.Text[i]))
                 {
@@ -275,7 +254,17 @@ namespace Pizzaria
                     txtIDProduto.Focus();
                 }
 
-            preencherGrid("select Cod_Produto as [ID Produto],  Nome_Produto as [Produto], Valor_Venda as [Preço] from Produto where Cod_Produto like ('%" + txtIDProduto.Text + "%')", gridProdutosEncontrados);
+            if (Int32.Parse(txtIDProduto.Text) > 0)
+            {
+                clsProduto objProduto = new clsProduto();
+                objProduto.Cod_Produto = Int32.Parse(txtIDProduto.Text);
+
+                gridProdutosEncontrados.DataSource = pedidos.BuscarProdutosPorID(objProduto);
+            }
+            else
+            {
+                gridProdutosEncontrados.DataSource = pedidos.BuscarTodosProdutos();
+            }
 
             txtPalavraChave.Clear();
             btn_inserir.Enabled = true;
@@ -284,20 +273,11 @@ namespace Pizzaria
 
         private void btn_inserir_Click(object sender, EventArgs e)
         {
-            string idProduto = "";
-            string idPedido = "";
+            clsProdutoPedido objProdutoPedido = new clsProdutoPedido();
+            objProdutoPedido.CodProduto = (int)gridProdutosEncontrados.CurrentRow.Cells[0].Value;
+            objProdutoPedido.CodPedido = (int)gridPedidosClientes.CurrentRow.Cells[0].Value;
 
-            idPedido = gridPedidosClientes.CurrentRow.Cells[0].Value.ToString();
-            idProduto = gridProdutosEncontrados.CurrentRow.Cells[0].Value.ToString();
-
-            preencherGrid("insert into Detalhe_Pedido(Cod_pedido, Cod_Produto) values(" + idPedido + ", "+ idProduto +")", gridProdutosConsumidos);
-
-            atualizarGridProdutosConsumidos();
-
-//            for (int i = 0; i < gridProdutosConsumidos.Columns.Count; i++)
-  
-            
-//            gridProdutosConsumidos.Columns[i].Width = 85;
+            pedidos.InserirProdutoNoPedido(objProdutoPedido);
 
             calcularSaldo();
         }
@@ -309,16 +289,16 @@ namespace Pizzaria
 
         private void btn_remover_Click(object sender, EventArgs e)
         {
-            string id = "";
+            clsProdutoPedido objProdutoPedido = new clsProdutoPedido();
+            objProdutoPedido.CodPedido = (int)gridPedidosClientes.CurrentRow.Cells[0].Value;
+            objProdutoPedido.CodProduto = (int)gridProdutosConsumidos.CurrentRow.Cells[0].Value;
 
-            id = gridProdutosConsumidos.CurrentRow.Cells[0].Value.ToString();
+            pedidos.ExcluirProdutoDoPedido(objProdutoPedido);
 
-            preencherGrid("delete from Detalhe_Pedido where Cod_Detalhe = " + id, gridProdutosConsumidos);
+            clsPedido objPedido = new clsPedido();
+            objPedido.Cod_Pedido = objProdutoPedido.CodPedido.ToString();
 
-            atualizarGridProdutosConsumidos();
-
-//            for (int i = 0; i < gridProdutosConsumidos.Columns.Count; i++)
-  //              gridProdutosConsumidos.Columns[i].Width = 85;
+            gridProdutosConsumidos.DataSource = pedidos.BuscarProdutosDoPedido(objPedido);
 
             calcularSaldo();
         }
@@ -370,8 +350,6 @@ namespace Pizzaria
         
         private void txtAjuste_Leave(object sender, EventArgs e)
         {
-            if (txtAjuste.Text == "")
-                btnGravarAjuste.Enabled = false;
         }
         
         private void mtxtAjuste_Leave(object sender, EventArgs e)
@@ -381,88 +359,49 @@ namespace Pizzaria
 
         private void txtAjuste_Leave_1(object sender, EventArgs e)
         {
-            txtAjuste.BackColor = Color.White;
         }
 
         private void btnGravarAjuste_Click(object sender, EventArgs e)
         {
-            if (txtAjuste.Text.Contains(".")) 
-            {
-                Home.mensagemDeErro("Por favor, use vírgula (,) no lugar de ponto (.).","Símbolos proibidos na busca");
-                return;
-            }
-                
-
-            decimal decSaldo = 0;
-            decimal decAjuste = 0;
-            decimal decTotal = 0;
-
-            decSaldo = Convert.ToDecimal(txtSaldo.Text);
-            decAjuste = Convert.ToDecimal(txtAjuste.Text);
-
-            if (decAjuste > decSaldo)
-                decAjuste = decSaldo;
-            
-            decTotal = decSaldo - decAjuste;
-
-            txtAjuste.Text = decAjuste.ToString();
-            txtTotal.Text = decTotal.ToString();
-
-            SqlConnection conn = new SqlConnection(conexao);
-            conn.Open();
-            SqlCommand sqlComm = new SqlCommand("update Pedido set Ajuste = " + decAjuste.ToString().Replace(",", ".") + ", Valor = "+decSaldo.ToString().Replace(",", ".")+ " where cod_Pedido =" + gridPedidosClientes.CurrentRow.Cells[0].Value.ToString(), conn);
-            sqlComm.ExecuteNonQuery();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            DialogResult decisao = MessageBox.Show("Tem certeza que deseja remover esse pedido?", "Remover Pedido", MessageBoxButtons.YesNo);
+            clsPedido objPedido = new clsPedido();
+            objPedido.Cod_Pedido = gridPedidosClientes.CurrentRow.Cells[0].Value.ToString();
 
-            if (decisao == DialogResult.Yes)
+            if ((int)pedidos.ValidarExclusaoDePedido(objPedido).Rows[0][0] > 0) 
             {
-                int idCliente = Convert.ToInt32(gridClientesEncontrados.CurrentRow.Cells[0].Value);
-                int idPedido = Convert.ToInt32(gridPedidosClientes.CurrentRow.Cells[0].Value);
+                Home.mensagemDeErro("Esse pedido não pode ser excluido, porque possui associações com outras partes do sistema.","Exclusão negada");
 
-                preencherGrid("DELETE FROM detalhe_pedido where Cod_Pedido =" + idPedido, gridPedidosClientes);
-
-                preencherGrid("DELETE FROM pedido where Cod_Pedido =" + idPedido, gridPedidosClientes);
-
-                preencherGrid("select Cod_Pedido, Data, Hora from pedido where Cod_Cliente like ('%" + idCliente + "%')", gridPedidosClientes);
-            }
-            else if (decisao == DialogResult.No)
-            {
                 return;
             }
+
+            pedidos.ExcluirPedido(objPedido);
+
+            objPedido.Cod_Cliente = gridClientesEncontrados.CurrentRow.Cells[0].Value.ToString();
+
+            gridPedidosClientes.DataSource = pedidos.BuscarPedidosDoCliente(objPedido);
         }
 
         private void txtNovoPedido_Click(object sender, EventArgs e)
         {
-            int id = Convert.ToInt32(gridClientesEncontrados.CurrentRow.Cells[0].Value);
+            clsPedido objPedido = new clsPedido();
+            objPedido.Cod_Cliente = gridClientesEncontrados.CurrentRow.Cells[0].Value.ToString();
+            objPedido.Data = DateTime.Today.ToString("dd/MM/yyyy"); 
+            objPedido.Hora = DateTime.Now.ToString("HH:mm"); 
 
-            DateTime hoje = DateTime.Today;
-            DateTime agora = DateTime.Now;
-            
-            preencherGrid("insert into Pedido(Cod_Cliente, Data, Hora, Valor) values ("+
-                gridClientesEncontrados.CurrentRow.Cells[0].Value + ", '" +
-                hoje.ToString("dd/MM/yyyy") + "', '"+
-                agora.ToString("HH:mm") + "', " +
-                "0)", gridPedidosClientes);
+            pedidos.InserirNovoPedido(objPedido);
 
-            preencherGrid("select Cod_Pedido, Data, Hora from pedido where Cod_Cliente like ('%" + id + "%')", gridPedidosClientes);
-
-//            for (int i = 0; i < gridPedidosClientes.Columns.Count; i++)
-  //              gridPedidosClientes.Columns[i].Width = 70;
+            gridPedidosClientes.DataSource = pedidos.BuscarPedidosDoCliente(objPedido);
         }
 
         private void txtAjuste_TextChanged(object sender, EventArgs e)
         {
-            if(txtSaldo.Text != "")
-                btnGravarAjuste.Enabled = true;
         }
 
         private void txtAjuste_Enter_1(object sender, EventArgs e)
         {
-            txtAjuste.BackColor = Color.Aquamarine;
         }
     }
 }
