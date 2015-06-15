@@ -302,6 +302,7 @@ CodDestinatario int foreign key references Funcionario (Cod_Funcionario),
 Assunto varchar (100),
 Mensagem varchar (1000),
 DataCriacao date,
+HoraCriacao time,
 Aviso int
 )
 go
@@ -981,6 +982,18 @@ values
 (4,4,1,20,10),
 (2,3,13,20,10),
 (2,3,8,9,10)
+go
+
+insert into Mensagens (CodRemetente, CodDestinatario, Assunto, Mensagem, DataCriacao, HoraCriacao, Aviso)
+values
+(5,2,'Pizza doce','Lembrar de inserir Pizza doce no cardápio','2015-06-15','15:12:27',1),
+(5,1,'Teleffy','Favor pegar o Teleffy do Talaris','2015-06-15','15:12:27',1),
+(5,3,'Integrante','Lembrar de lembrar','2015-06-14','15:12:27',1),
+(5,4,'Insumos','Checkar Insumos','2015-06-14','16:12:27',1),
+(2,5,'Relatórios','Favor enviar relatório do mês de Abril','2015-06-15','18:12:27',1),
+(3,5,'Despesas','Favor cadastrar despesas das novas contas','2015-06-15','15:12:27',1),
+(1,5,'Salário','Efetuar o Pagamento do Sr João','2015-06-14','18:12:27',1),
+(3,5,'Encontro','Hoje, às 21h?','2015-06-14','15:12:27',1)
 go
 
 	-------------------------------------------------------------- 
@@ -3103,25 +3116,33 @@ create procedure USP_JAVA_ENVIARMENSAGEM
 @codRemetente int,
 @CodDestinatario int,
 @Assunto varchar (100),
-@Mensagem varchar (1000),
-@DataCriacao date
+@Mensagem varchar (1000)
 )
 
 as
+declare @Aviso int
+set @Aviso = 1
+Declare @DataCriacao date
+set @DataCriacao = GETDATE()
+Declare @HoraCriacao time
+set @HoraCriacao =  Convert(Char(8),GetDate(),114)
 
 begin
 
 insert into Mensagens 
 (
-CodRemetente, CodDestinatario, Assunto, Mensagem, DataCriacao
+CodRemetente, CodDestinatario, Assunto, Mensagem, DataCriacao,HoraCriacao, Aviso
 )
 values
 (
-@codRemetente, @CodDestinatario, @Assunto, @Mensagem, @DataCriacao
+@codRemetente, @CodDestinatario, @Assunto, @Mensagem, @DataCriacao,@HoraCriacao, @Aviso
 )
 
 End
+
+
 go
+
 
 -----------------------------------------------------------------------------------------------------------------------------------
 
