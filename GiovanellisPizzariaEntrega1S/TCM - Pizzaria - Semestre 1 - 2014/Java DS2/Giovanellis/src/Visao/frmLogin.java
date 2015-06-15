@@ -15,6 +15,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import giovanellis.SqlServer;
 import java.awt.Font;
+import java.awt.event.KeyEvent;
 import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
 
@@ -44,11 +45,13 @@ public class frmLogin extends javax.swing.JFrame {
     Controlador.ControladorLogin DAO;
     SqlServer conecta;
     
+    
 
     /**
      * Creates new form frmLogin
      */
     public frmLogin() throws Exception {
+        
          Color Roxo = new Color(88,55,66); 
         UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Tahoma", Font.BOLD,16)));  
         UIManager.put("OptionPane.messageForeground", Roxo);
@@ -170,7 +173,8 @@ public class frmLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_entrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_entrarActionPerformed
-       NomeUsuario = txtUsuario.getText();
+     
+        NomeUsuario = txtUsuario.getText();
         
         if (validarCampos()) {
             if (usuarioExiste()) {
@@ -214,6 +218,7 @@ public class frmLogin extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -241,10 +246,13 @@ public class frmLogin extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
+                    
                     new frmLogin().setVisible(true);
+                    
                 } catch (Exception ex) {
                     Logger.getLogger(frmLogin.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                
             }
         });
     }

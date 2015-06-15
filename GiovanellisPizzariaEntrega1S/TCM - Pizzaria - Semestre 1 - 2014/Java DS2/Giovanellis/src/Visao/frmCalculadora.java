@@ -86,6 +86,7 @@ public class frmCalculadora extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Giovanelli's Calculator");
+        setResizable(false);
 
         jPanel1.setName("Giovanelli's Calculator"); // NOI18N
         jPanel1.setOpaque(false);

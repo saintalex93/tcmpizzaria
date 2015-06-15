@@ -5,17 +5,48 @@
  */
 package Visao;
 
+import Modelo.ModeloTabelas;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JInternalFrame;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import giovanellis.SqlServer;
+import java.awt.Color;
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
+
 /**
  *
  * @author Alex
  */
 public class frmCorreio extends javax.swing.JFrame {
 
+    SqlServer conecta;
+    SimpleDateFormat dt;
+    SimpleDateFormat hr;
+
     /**
      * Creates new form frmCorreio
+     *
+     * @throws java.lang.Exception
      */
-    public frmCorreio() {
+    public frmCorreio() throws Exception {
+        setAlwaysOnTop(true);
+        Color Fundo = new Color(238, 235, 227);
+        getContentPane().setBackground(Fundo);
+        this.setIconImage(new ImageIcon(getClass().getResource("/Imagens/Icone.png")).getImage());
+
+        dt = new SimpleDateFormat("dd/MM/yyyy");
+        conecta = new SqlServer();
         initComponents();
+
     }
 
     /**
@@ -27,129 +58,358 @@ public class frmCorreio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        JifNovoEmail = new javax.swing.JInternalFrame();
-        cmbDestinatario = new javax.swing.JComboBox();
-        jLabel1 = new javax.swing.JLabel();
-        txtAssunto = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        lblAssunto1 = new javax.swing.JLabel();
+        lblDestinatario2 = new javax.swing.JLabel();
+        lblDestinatario3 = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        JtxtMensagem1 = new javax.swing.JTextArea();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser();
         jButton3 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        JtableHojeRecebidas = new javax.swing.JTable();
+        jLabel5 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        JtableAntigasRecebidas = new javax.swing.JTable();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        JtableHojeEnviadas = new javax.swing.JTable();
+        jLabel8 = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        JtableAntigasEnviadas = new javax.swing.JTable();
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu4 = new javax.swing.JMenu();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu5 = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
+        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                formMouseMoved(evt);
+            }
+        });
         addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
         });
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        JifNovoEmail.setTitle("Novo E-mail");
-        JifNovoEmail.setVisible(true);
+        jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel2.setOpaque(false);
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        cmbDestinatario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cmbDestinatario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbDestinatarioActionPerformed(evt);
+        lblAssunto1.setText("Assunto:");
+        jPanel2.add(lblAssunto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 13, -1, -1));
+
+        lblDestinatario2.setText("Destinatário:");
+        jPanel2.add(lblDestinatario2, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 45, -1, -1));
+
+        lblDestinatario3.setText("Enviada em:");
+        jPanel2.add(lblDestinatario3, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 77, -1, -1));
+
+        JtxtMensagem1.setColumns(20);
+        JtxtMensagem1.setRows(5);
+        jScrollPane5.setViewportView(JtxtMensagem1);
+
+        jPanel2.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 420, 350));
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(356, 46, 440, 460));
+
+        jDateChooser1.setOpaque(false);
+        getContentPane().add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 43, -1, -1));
+
+        jDateChooser2.setOpaque(false);
+        getContentPane().add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 43, -1, -1));
+
+        jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(239, 111, 83));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/button.png"))); // NOI18N
+        jButton3.setText("Filtrar");
+        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 80, 100, 40));
+
+        jLabel6.setBackground(new java.awt.Color(88, 55, 66));
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(239, 111, 83));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Giovanelli's Correio's");
+        jLabel6.setOpaque(true);
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 855, 32));
+
+        jTabbedPane1.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
+
+        jPanel1.setOpaque(false);
+
+        jLabel4.setBackground(new java.awt.Color(88, 55, 66));
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(239, 111, 83));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Hoje");
+        jLabel4.setOpaque(true);
+
+        JtableHojeRecebidas.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        JtableHojeRecebidas.setForeground(new java.awt.Color(88, 55, 66));
+        JtableHojeRecebidas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        JtableHojeRecebidas.setSelectionBackground(new java.awt.Color(88, 55, 66));
+        JtableHojeRecebidas.setSelectionForeground(new java.awt.Color(242, 184, 171));
+        jScrollPane2.setViewportView(JtableHojeRecebidas);
+
+        jLabel5.setBackground(new java.awt.Color(88, 55, 66));
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(239, 111, 83));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("Mais Antigas");
+        jLabel5.setOpaque(true);
+
+        JtableAntigasRecebidas.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        JtableAntigasRecebidas.setForeground(new java.awt.Color(88, 55, 66));
+        JtableAntigasRecebidas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        JtableAntigasRecebidas.setSelectionBackground(new java.awt.Color(88, 55, 66));
+        JtableAntigasRecebidas.setSelectionForeground(new java.awt.Color(242, 184, 171));
+        jScrollPane3.setViewportView(JtableAntigasRecebidas);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Recebidas", jPanel1);
+
+        jPanel3.setOpaque(false);
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel7.setBackground(new java.awt.Color(88, 55, 66));
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(239, 111, 83));
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("Hoje");
+        jLabel7.setOpaque(true);
+        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 331, 40));
+
+        JtableHojeEnviadas.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        JtableHojeEnviadas.setForeground(new java.awt.Color(88, 55, 66));
+        JtableHojeEnviadas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        JtableHojeEnviadas.setSelectionBackground(new java.awt.Color(88, 55, 66));
+        JtableHojeEnviadas.setSelectionForeground(new java.awt.Color(242, 184, 171));
+        jScrollPane4.setViewportView(JtableHojeEnviadas);
+
+        jPanel3.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 46, 331, 122));
+
+        jLabel8.setBackground(new java.awt.Color(88, 55, 66));
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(239, 111, 83));
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("Mais Antigas");
+        jLabel8.setOpaque(true);
+        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 179, 331, 40));
+
+        JtableAntigasEnviadas.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        JtableAntigasEnviadas.setForeground(new java.awt.Color(88, 55, 66));
+        JtableAntigasEnviadas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        JtableAntigasEnviadas.setSelectionBackground(new java.awt.Color(88, 55, 66));
+        JtableAntigasEnviadas.setSelectionForeground(new java.awt.Color(242, 184, 171));
+        jScrollPane6.setViewportView(JtableAntigasEnviadas);
+
+        jPanel3.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 225, 331, 110));
+
+        jTabbedPane1.addTab("Enviadas", jPanel3);
+
+        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
+
+        jMenu4.setText("Enviar Mensagem");
+        jMenu4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu4MouseClicked(evt);
             }
         });
+        jMenu4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu4ActionPerformed(evt);
+            }
+        });
+        jMenuBar2.add(jMenu4);
 
-        jLabel1.setText("Destinatário");
+        jMenu1.setText("Receber/Enviar Mensagens");
+        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu1MouseClicked(evt);
+            }
+        });
+        jMenuBar2.add(jMenu1);
 
-        jLabel2.setText("Assunto:");
+        jMenu5.setText("Contatos");
+        jMenuBar2.add(jMenu5);
 
-        jLabel3.setText("Mensagem:");
+        setJMenuBar(jMenuBar2);
 
-        jScrollPane1.setViewportView(jTextPane1);
-
-        jButton1.setText("Enviar");
-
-        jButton2.setText("Sair");
-
-        javax.swing.GroupLayout JifNovoEmailLayout = new javax.swing.GroupLayout(JifNovoEmail.getContentPane());
-        JifNovoEmail.getContentPane().setLayout(JifNovoEmailLayout);
-        JifNovoEmailLayout.setHorizontalGroup(
-            JifNovoEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(JifNovoEmailLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(JifNovoEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
-                .addGap(34, 34, 34)
-                .addGroup(JifNovoEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cmbDestinatario, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtAssunto)
-                    .addComponent(jScrollPane1)
-                    .addGroup(JifNovoEmailLayout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 215, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(46, Short.MAX_VALUE))
-        );
-        JifNovoEmailLayout.setVerticalGroup(
-            JifNovoEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(JifNovoEmailLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(JifNovoEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cmbDestinatario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(JifNovoEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtAssunto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGroup(JifNovoEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(JifNovoEmailLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel3))
-                    .addGroup(JifNovoEmailLayout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(JifNovoEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(29, Short.MAX_VALUE))
-        );
-
-        jButton3.setText("jButton3");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(209, Short.MAX_VALUE)
-                .addComponent(JifNovoEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(87, 87, 87))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton3)
-                .addGap(2, 2, 2)
-                .addComponent(JifNovoEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(133, Short.MAX_VALUE))
-        );
-
-        pack();
+        setSize(new java.awt.Dimension(819, 582));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-    JifNovoEmail.setVisible(false);
+        timer.start();
+        timerAtualizavel.start();
+        ContaLinhaHojeRecebidas("select count(CodDestinatario) as contagem from Mensagens where CodDestinatario = '" + frmLogin.codFuncionario + "' and DataCriacao = '" + DataAtual() + "'");
+        ContaLinhaAntigaRecebidas("select count(CodDestinatario) as contagem from Mensagens where CodDestinatario = '" + frmLogin.codFuncionario + "' and DataCriacao <> '" + DataAtual() + "'");
+        ContaLinhaHojeEnviadas("select count(CodRemetente) as contagem from Mensagens where CodRemetente = '" + frmLogin.codFuncionario + "' and DataCriacao = '" + DataAtual() + "'");
+        ContaLinhaAntigaEnviada("select count(CodRemetente) as contagem from Mensagens where CodRemetente = '" + frmLogin.codFuncionario + "' and DataCriacao <> '" + DataAtual() + "'");
     }//GEN-LAST:event_formWindowOpened
 
-    private void cmbDestinatarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbDestinatarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbDestinatarioActionPerformed
+    private void jMenu4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu4ActionPerformed
 
+    }//GEN-LAST:event_jMenu4ActionPerformed
+
+    private void jMenu4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MouseClicked
+        try {
+            new frmNovoEmail().setVisible(true);        // TODO add your handling code here:
+        } catch (Exception ex) {
+            Logger.getLogger(frmCorreio.class.getName()).log(Level.SEVERE, null, ex);
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu4MouseClicked
+
+    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+        ContaLinhaHojeRecebidas("select count(CodDestinatario) as contagem from Mensagens where CodDestinatario = '" + frmLogin.codFuncionario + "' and DataCriacao = '" + DataAtual() + "'");
+        ContaLinhaAntigaRecebidas("select count(CodDestinatario) as contagem from Mensagens where CodDestinatario = '" + frmLogin.codFuncionario + "' and DataCriacao <> '" + DataAtual() + "'");
+        ContaLinhaHojeEnviadas("select count(CodRemetente) as contagem from Mensagens where CodRemetente = '" + frmLogin.codFuncionario + "' and DataCriacao = '" + DataAtual() + "'");
+        ContaLinhaAntigaEnviada("select count(CodRemetente) as contagem from Mensagens where CodRemetente = '" + frmLogin.codFuncionario + "' and DataCriacao <> '" + DataAtual() + "'");
+    }//GEN-LAST:event_jMenu1MouseClicked
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+    timerAtualizavel.stop();    
+     timer.stop();
+        frmHome.contador = 10;
+        frmHome.binario = 0;// TODO add your handling code here:
+    }//GEN-LAST:event_formWindowClosing
+
+    private void formMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseMoved
+     frmHome.contador = 20;
+        contador = 10;          // TODO add your handling code here:
+    }//GEN-LAST:event_formMouseMoved
+    
+         int contador = 10;
+    
+    public void escreva()
+    {
+        System.out.println(contador);
+       
+    }
+ 
+    private javax.swing.Timer timer = new javax.swing.Timer(60*1000,new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent e)
+        {
+            escreva();
+            contador--;
+            if(contador == 0)
+            {
+               
+               
+                try {
+                dispose();
+                timer.stop();
+                } catch (Exception ex) {
+                    Logger.getLogger(frmInsumos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        
+    });   
+    
+    
+    
+    
+    private javax.swing.Timer timerAtualizavel = new javax.swing.Timer(500, new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+            
+
+            if (contadorArea == 1) {
+        ContaLinhaHojeRecebidas("select count(CodDestinatario) as contagem from Mensagens where CodDestinatario = '" + frmLogin.codFuncionario + "' and DataCriacao = '" + DataAtual() + "'");
+        ContaLinhaAntigaRecebidas("select count(CodDestinatario) as contagem from Mensagens where CodDestinatario = '" + frmLogin.codFuncionario + "' and DataCriacao <> '" + DataAtual() + "'");
+        ContaLinhaHojeEnviadas("select count(CodRemetente) as contagem from Mensagens where CodRemetente = '" + frmLogin.codFuncionario + "' and DataCriacao = '" + DataAtual() + "'");
+        ContaLinhaAntigaEnviada("select count(CodRemetente) as contagem from Mensagens where CodRemetente = '" + frmLogin.codFuncionario + "' and DataCriacao <> '" + DataAtual() + "'");
+                
+            }
+      
+            
+            contadorArea--;
+            
+            if (contadorArea ==0)
+            {
+            contadorArea = 10;
+            
+            }
+  
+        }
+    });
     /**
      * @param args the command line arguments
      */
@@ -180,22 +440,422 @@ public class frmCorreio extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmCorreio().setVisible(true);
+                try {
+                    new frmCorreio().setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(frmCorreio.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JInternalFrame JifNovoEmail;
-    private javax.swing.JComboBox cmbDestinatario;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JTable JtableAntigasEnviadas;
+    private javax.swing.JTable JtableAntigasRecebidas;
+    private javax.swing.JTable JtableHojeEnviadas;
+    private javax.swing.JTable JtableHojeRecebidas;
+    private javax.swing.JTextArea JtxtMensagem1;
     private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextPane jTextPane1;
-    private javax.swing.JTextField txtAssunto;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser jDateChooser2;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel lblAssunto1;
+    private javax.swing.JLabel lblDestinatario2;
+    private javax.swing.JLabel lblDestinatario3;
     // End of variables declaration//GEN-END:variables
+int contadorArea = 3;
+
+
+    public void preencherTabelaRecebidasHoje(String Sql) {
+        ArrayList dados = new ArrayList();
+        String[] Colunas = new String[]{
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Remetente</span></html>",
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Assunto</span></html>",
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Data</span></html>",
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Hora</span></html>",
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Mensagem</span></html>"};
+
+        conecta.executaSql(Sql);
+        try {
+            conecta.rs.first();
+            do {
+
+                dados.add(new Object[]{conecta.rs.getString("Nome_Func"), conecta.rs.getString("Assunto"), dt.format(conecta.rs.getDate("DataCriacao")), conecta.rs.getString("HoraCriacao").substring(0, 5), conecta.rs.getString("Mensagem")});
+
+            } while (conecta.rs.next());
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro ao Preencher tabela /n Erro: " + e);
+
+        }
+
+        ModeloTabelas modelo = new ModeloTabelas(dados, Colunas); //Instacia a classe do modelo da Tabela.
+        JtableHojeRecebidas.setModel(modelo);
+        JtableHojeRecebidas.getColumnModel().getColumn(0).setPreferredWidth(115); // Tamanho em pixel da coluna
+        JtableHojeRecebidas.getColumnModel().getColumn(0).setResizable(false);
+        JtableHojeRecebidas.getColumnModel().getColumn(1).setPreferredWidth(82);
+        JtableHojeRecebidas.getColumnModel().getColumn(1).setResizable(false);
+        JtableHojeRecebidas.getColumnModel().getColumn(2).setPreferredWidth(80);
+        JtableHojeRecebidas.getColumnModel().getColumn(2).setResizable(false);
+        JtableHojeRecebidas.getColumnModel().getColumn(3).setPreferredWidth(50);
+        JtableHojeRecebidas.getColumnModel().getColumn(3).setResizable(false);
+        JtableHojeRecebidas.getColumnModel().getColumn(4).setMaxWidth(0);
+        JtableHojeRecebidas.getColumnModel().getColumn(4).setMinWidth(0);
+        JtableHojeRecebidas.getTableHeader().getColumnModel().getColumn(4).setMaxWidth(0);
+        JtableHojeRecebidas.getTableHeader().getColumnModel().getColumn(4).setMinWidth(0);
+        JtableHojeRecebidas.getTableHeader().setReorderingAllowed(false);
+        JtableHojeRecebidas.setAutoResizeMode(JtableHojeRecebidas.AUTO_RESIZE_OFF);//Não pode ser redimensionada
+        JtableHojeRecebidas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+    }
+
+    public void preencherTabelaRecebidasAntigas(String Sql) {
+        ArrayList dados = new ArrayList();
+        String[] Colunas = new String[]{
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Remetente</span></html>",
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Assunto</span></html>",
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Data</span></html>",
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Hora</span></html>",
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Mensagem</span></html>"};
+
+        conecta.executaSql(Sql);
+        try {
+            conecta.rs.first();
+            do {
+
+                dados.add(new Object[]{conecta.rs.getString("Nome_Func"), conecta.rs.getString("Assunto"), dt.format(conecta.rs.getDate("DataCriacao")), conecta.rs.getString("HoraCriacao").substring(0, 5), conecta.rs.getString("Mensagem")});
+
+            } while (conecta.rs.next());
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro ao Preencher tabela /n Erro: " + e);
+
+        }
+
+        ModeloTabelas modelo = new ModeloTabelas(dados, Colunas); //Instacia a classe do modelo da Tabela.
+        JtableAntigasRecebidas.setModel(modelo);
+        JtableAntigasRecebidas.getColumnModel().getColumn(0).setPreferredWidth(115); // Tamanho em pixel da coluna
+        JtableAntigasRecebidas.getColumnModel().getColumn(0).setResizable(false);
+        JtableAntigasRecebidas.getColumnModel().getColumn(1).setPreferredWidth(82);
+        JtableAntigasRecebidas.getColumnModel().getColumn(1).setResizable(false);
+        JtableAntigasRecebidas.getColumnModel().getColumn(2).setPreferredWidth(80);
+        JtableAntigasRecebidas.getColumnModel().getColumn(2).setResizable(false);
+        JtableAntigasRecebidas.getColumnModel().getColumn(3).setPreferredWidth(50);
+        JtableAntigasRecebidas.getColumnModel().getColumn(3).setResizable(false);
+        JtableAntigasRecebidas.getColumnModel().getColumn(4).setMaxWidth(0);
+        JtableAntigasRecebidas.getColumnModel().getColumn(4).setMinWidth(0);
+        JtableAntigasRecebidas.getTableHeader().getColumnModel().getColumn(4).setMaxWidth(0);
+        JtableAntigasRecebidas.getTableHeader().getColumnModel().getColumn(4).setMinWidth(0);
+        JtableAntigasRecebidas.getTableHeader().setReorderingAllowed(false);
+        JtableAntigasRecebidas.setAutoResizeMode(JtableAntigasRecebidas.AUTO_RESIZE_OFF);//Não pode ser redimensionada
+        JtableAntigasRecebidas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+    }
+
+    public void preencherTabelaEnviadasHoje(String Sql) {
+        ArrayList dados = new ArrayList();
+        String[] Colunas = new String[]{
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Destinatário</span></html>",
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Assunto</span></html>",
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Data</span></html>",
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Hora</span></html>",
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Mensagem</span></html>"};
+
+        conecta.executaSql(Sql);
+        try {
+            conecta.rs.first();
+            do {
+
+                dados.add(new Object[]{conecta.rs.getString("Nome_Func"), conecta.rs.getString("Assunto"), dt.format(conecta.rs.getDate("DataCriacao")), conecta.rs.getString("HoraCriacao").substring(0, 5), conecta.rs.getString("Mensagem")});
+
+            } while (conecta.rs.next());
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro ao Preencher tabela /n Erro: " + e);
+
+        }
+
+        ModeloTabelas modelo = new ModeloTabelas(dados, Colunas); //Instacia a classe do modelo da Tabela.
+        JtableHojeEnviadas.setModel(modelo);
+        JtableHojeEnviadas.getColumnModel().getColumn(0).setPreferredWidth(115); // Tamanho em pixel da coluna
+        JtableHojeEnviadas.getColumnModel().getColumn(0).setResizable(false);
+        JtableHojeEnviadas.getColumnModel().getColumn(1).setPreferredWidth(82);
+        JtableHojeEnviadas.getColumnModel().getColumn(1).setResizable(false);
+        JtableHojeEnviadas.getColumnModel().getColumn(2).setPreferredWidth(80);
+        JtableHojeEnviadas.getColumnModel().getColumn(2).setResizable(false);
+        JtableHojeEnviadas.getColumnModel().getColumn(3).setPreferredWidth(50);
+        JtableHojeEnviadas.getColumnModel().getColumn(3).setResizable(false);
+        JtableHojeEnviadas.getColumnModel().getColumn(4).setMaxWidth(0);
+        JtableHojeEnviadas.getColumnModel().getColumn(4).setMinWidth(0);
+        JtableHojeEnviadas.getTableHeader().getColumnModel().getColumn(4).setMaxWidth(0);
+        JtableHojeEnviadas.getTableHeader().getColumnModel().getColumn(4).setMinWidth(0);
+        JtableHojeEnviadas.getTableHeader().setReorderingAllowed(false);
+        JtableHojeEnviadas.setAutoResizeMode(JtableHojeEnviadas.AUTO_RESIZE_OFF);//Não pode ser redimensionada
+        JtableHojeEnviadas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+    }
+
+    public void preencherTabelaEnviadasAntiga(String Sql) {
+        ArrayList dados = new ArrayList();
+        String[] Colunas = new String[]{
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Destinatário</span></html>",
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Assunto</span></html>",
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Data</span></html>",
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Hora</span></html>",
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Mensagem</span></html>"};
+
+        conecta.executaSql(Sql);
+        try {
+            conecta.rs.first();
+            do {
+
+                dados.add(new Object[]{conecta.rs.getString("Nome_Func"), conecta.rs.getString("Assunto"), dt.format(conecta.rs.getDate("DataCriacao")), conecta.rs.getString("HoraCriacao").substring(0, 5), conecta.rs.getString("Mensagem")});
+
+            } while (conecta.rs.next());
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro ao Preencher tabela /n Erro: " + e);
+
+        }
+
+        ModeloTabelas modelo = new ModeloTabelas(dados, Colunas); //Instacia a classe do modelo da Tabela.
+        JtableAntigasEnviadas.setModel(modelo);
+        JtableAntigasEnviadas.getColumnModel().getColumn(0).setPreferredWidth(115); // Tamanho em pixel da coluna
+        JtableAntigasEnviadas.getColumnModel().getColumn(0).setResizable(false);
+        JtableAntigasEnviadas.getColumnModel().getColumn(1).setPreferredWidth(82);
+        JtableAntigasEnviadas.getColumnModel().getColumn(1).setResizable(false);
+        JtableAntigasEnviadas.getColumnModel().getColumn(2).setPreferredWidth(80);
+        JtableAntigasEnviadas.getColumnModel().getColumn(2).setResizable(false);
+        JtableAntigasEnviadas.getColumnModel().getColumn(3).setPreferredWidth(50);
+        JtableAntigasEnviadas.getColumnModel().getColumn(3).setResizable(false);
+        JtableAntigasEnviadas.getColumnModel().getColumn(4).setMaxWidth(0);
+        JtableAntigasEnviadas.getColumnModel().getColumn(4).setMinWidth(0);
+        JtableAntigasEnviadas.getTableHeader().getColumnModel().getColumn(4).setMaxWidth(0);
+        JtableAntigasEnviadas.getTableHeader().getColumnModel().getColumn(4).setMinWidth(0);
+        JtableAntigasEnviadas.getTableHeader().setReorderingAllowed(false);
+        JtableAntigasEnviadas.setAutoResizeMode(JtableAntigasEnviadas.AUTO_RESIZE_OFF);//Não pode ser redimensionada
+        JtableAntigasEnviadas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+    }
+
+    public void AnularTabelaHojeRecebidas() {
+        ArrayList dados = new ArrayList();
+        String[] Colunas = new String[]{
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Remetente</span></html>",
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Assunto</span></html>",
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Data</span></html>",
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Hora</span></html>"};
+
+        ModeloTabelas modelo = new ModeloTabelas(dados, Colunas); //Instacia a classe do modelo da Tabela.
+        JtableHojeRecebidas.setModel(modelo);
+        JtableHojeRecebidas.getColumnModel().getColumn(0).setPreferredWidth(115); // Tamanho em pixel da coluna
+        JtableHojeRecebidas.getColumnModel().getColumn(0).setResizable(false);
+        JtableHojeRecebidas.getColumnModel().getColumn(1).setPreferredWidth(82);
+        JtableHojeRecebidas.getColumnModel().getColumn(1).setResizable(false);
+        JtableHojeRecebidas.getColumnModel().getColumn(2).setPreferredWidth(80);
+        JtableHojeRecebidas.getColumnModel().getColumn(2).setResizable(false);
+        JtableHojeRecebidas.getColumnModel().getColumn(3).setPreferredWidth(50);
+        JtableHojeRecebidas.getColumnModel().getColumn(3).setResizable(false);
+        JtableHojeRecebidas.getTableHeader().setReorderingAllowed(false);
+        JtableHojeRecebidas.setAutoResizeMode(JtableHojeRecebidas.AUTO_RESIZE_OFF);//Não pode ser redimensionada
+        JtableHojeRecebidas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+    }
+
+    public void AnularTabelaAntigasRecebidas() {
+        ArrayList dados = new ArrayList();
+        String[] Colunas = new String[]{
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Remetente</span></html>",
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Assunto</span></html>",
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Data</span></html>",
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Hora</span></html>"};
+
+        ModeloTabelas modelo = new ModeloTabelas(dados, Colunas); //Instacia a classe do modelo da Tabela.
+        JtableAntigasRecebidas.setModel(modelo);
+        JtableAntigasRecebidas.getColumnModel().getColumn(0).setPreferredWidth(115); // Tamanho em pixel da coluna
+        JtableAntigasRecebidas.getColumnModel().getColumn(0).setResizable(false);
+        JtableAntigasRecebidas.getColumnModel().getColumn(1).setPreferredWidth(82);
+        JtableAntigasRecebidas.getColumnModel().getColumn(1).setResizable(false);
+        JtableAntigasRecebidas.getColumnModel().getColumn(2).setPreferredWidth(80);
+        JtableAntigasRecebidas.getColumnModel().getColumn(2).setResizable(false);
+        JtableAntigasRecebidas.getColumnModel().getColumn(3).setPreferredWidth(50);
+        JtableAntigasRecebidas.getColumnModel().getColumn(3).setResizable(false);
+        JtableAntigasRecebidas.getTableHeader().setReorderingAllowed(false);
+        JtableAntigasRecebidas.setAutoResizeMode(JtableAntigasRecebidas.AUTO_RESIZE_OFF);//Não pode ser redimensionada
+        JtableAntigasRecebidas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+    }
+
+    public void AnularTabelaHojeEnviadas() {
+        ArrayList dados = new ArrayList();
+        String[] Colunas = new String[]{"<html><span style='color:#ef6f53;font-weight: bold;'>Destinatário</span></html>",
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Assunto</span></html>",
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Data</span></html>",
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Hora</span></html>"};
+
+        ModeloTabelas modelo = new ModeloTabelas(dados, Colunas); //Instacia a classe do modelo da Tabela.
+        JtableHojeEnviadas.setModel(modelo);
+        JtableHojeEnviadas.getColumnModel().getColumn(0).setPreferredWidth(115); // Tamanho em pixel da coluna
+        JtableHojeEnviadas.getColumnModel().getColumn(0).setResizable(false);
+        JtableHojeEnviadas.getColumnModel().getColumn(1).setPreferredWidth(82);
+        JtableHojeEnviadas.getColumnModel().getColumn(1).setResizable(false);
+        JtableHojeEnviadas.getColumnModel().getColumn(2).setPreferredWidth(80);
+        JtableHojeEnviadas.getColumnModel().getColumn(2).setResizable(false);
+        JtableHojeEnviadas.getColumnModel().getColumn(3).setPreferredWidth(50);
+        JtableHojeEnviadas.getColumnModel().getColumn(3).setResizable(false);
+        JtableHojeEnviadas.getTableHeader().setReorderingAllowed(false);
+        JtableHojeEnviadas.setAutoResizeMode(JtableHojeEnviadas.AUTO_RESIZE_OFF);//Não pode ser redimensionada
+        JtableHojeEnviadas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+    }
+
+    public void AnularTabelaAntigasEnviadas() {
+        ArrayList dados = new ArrayList();
+        String[] Colunas = new String[]{"<html><span style='color:#ef6f53;font-weight: bold;'>Destinatário</span></html>",
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Assunto</span></html>",
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Data</span></html>",
+            "<html><span style='color:#ef6f53;font-weight: bold;'>Hora</span></html>"};
+
+        ModeloTabelas modelo = new ModeloTabelas(dados, Colunas); //Instacia a classe do modelo da Tabela.
+        JtableAntigasEnviadas.setModel(modelo);
+        JtableAntigasEnviadas.getColumnModel().getColumn(0).setPreferredWidth(115); // Tamanho em pixel da coluna
+        JtableAntigasEnviadas.getColumnModel().getColumn(0).setResizable(false);
+        JtableAntigasEnviadas.getColumnModel().getColumn(1).setPreferredWidth(82);
+        JtableAntigasEnviadas.getColumnModel().getColumn(1).setResizable(false);
+        JtableAntigasEnviadas.getColumnModel().getColumn(2).setPreferredWidth(80);
+        JtableAntigasEnviadas.getColumnModel().getColumn(2).setResizable(false);
+        JtableAntigasEnviadas.getColumnModel().getColumn(3).setPreferredWidth(50);
+        JtableAntigasEnviadas.getColumnModel().getColumn(3).setResizable(false);
+        JtableAntigasEnviadas.getTableHeader().setReorderingAllowed(false);
+        JtableAntigasEnviadas.setAutoResizeMode(JtableAntigasEnviadas.AUTO_RESIZE_OFF);//Não pode ser redimensionada
+        JtableAntigasEnviadas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+    }
+
+    public boolean ContaLinhaHojeEnviadas(String Sql) {
+
+        conecta.executaSql(Sql);
+        try {
+            conecta.rs.first();
+            do {
+
+                if (conecta.rs.getInt("contagem") >= 1) {
+
+                    preencherTabelaEnviadasHoje("select (select Nome_Func from Funcionario where men.CodRemetente = Cod_Funcionario)as Remetente,func.Nome_Func, men.Assunto, men.DataCriacao, men.HoraCriacao, men.Mensagem from Mensagens as men inner join Funcionario as func on func.Cod_Funcionario = men.CodDestinatario and CodRemetente ='" + frmLogin.codFuncionario + "' and men.DataCriacao ='" + DataAtual() + "'order by DataCriacao, HoraCriacao desc");
+
+                    return true;
+                } else {
+                    AnularTabelaHojeEnviadas();
+                    return false;
+                }
+
+            } while (conecta.rs.next());
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Não foram lançados nenhum registro");
+
+        }
+
+        return true;
+    }
+
+    public boolean ContaLinhaAntigaEnviada(String Sql) {
+
+        conecta.executaSql(Sql);
+        try {
+            conecta.rs.first();
+            do {
+
+                if (conecta.rs.getInt("contagem") >= 1) {
+
+                    preencherTabelaEnviadasAntiga("select (select Nome_Func from Funcionario where men.CodRemetente = Cod_Funcionario)as Remetente,func.Nome_Func, men.Assunto, men.DataCriacao, men.HoraCriacao, men.Mensagem from Mensagens as men inner join Funcionario as func on func.Cod_Funcionario = men.CodDestinatario and CodRemetente = '" + frmLogin.codFuncionario + "' and men.DataCriacao <>'" + DataAtual() + "'order by DataCriacao, HoraCriacao desc");
+                    return true;
+                } else {
+                    AnularTabelaAntigasEnviadas();
+                    return false;
+                }
+
+            } while (conecta.rs.next());
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Não foram lançados nenhum registro");
+
+        }
+
+        return true;
+    }
+
+    public boolean ContaLinhaHojeRecebidas(String Sql) {
+
+        conecta.executaSql(Sql);
+        try {
+            conecta.rs.first();
+            do {
+
+                if (conecta.rs.getInt("contagem") >= 1) {
+
+                    preencherTabelaRecebidasHoje("select (select Nome_Func from Funcionario where men.CodDestinatario = Cod_Funcionario)as Destinatario,func.Nome_Func, men.Assunto, men.DataCriacao, men.HoraCriacao, men.Mensagem from Mensagens as men inner join Funcionario as func on func.Cod_Funcionario = men.CodRemetente and CodDestinatario ='" + frmLogin.codFuncionario + "' and men.DataCriacao = '" + DataAtual() + "'order by DataCriacao, HoraCriacao desc");
+
+                    return true;
+                } else {
+                    AnularTabelaHojeRecebidas();
+                    return false;
+                }
+
+            } while (conecta.rs.next());
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Não foram lançados nenhum registro");
+
+        }
+
+        return true;
+    }
+
+    public boolean ContaLinhaAntigaRecebidas(String Sql) {
+
+        conecta.executaSql(Sql);
+        try {
+            conecta.rs.first();
+            do {
+
+                if (conecta.rs.getInt("contagem") >= 1) {
+
+                    preencherTabelaRecebidasAntigas("select (select Nome_Func from Funcionario where men.CodDestinatario = Cod_Funcionario)as Destinatario,func.Nome_Func, men.Assunto, men.DataCriacao, men.HoraCriacao, men.Mensagem from Mensagens as men inner join Funcionario as func on func.Cod_Funcionario = men.CodRemetente and CodDestinatario ='" + frmLogin.codFuncionario + "' and men.DataCriacao <> '" + DataAtual() + "'order by DataCriacao, HoraCriacao desc");
+
+                    return true;
+                } else {
+                    AnularTabelaAntigasRecebidas();
+                    return false;
+                }
+
+            } while (conecta.rs.next());
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Não foram lançados nenhum registro");
+
+        }
+
+        return true;
+    }
+
+    private String DataAtual() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
 }

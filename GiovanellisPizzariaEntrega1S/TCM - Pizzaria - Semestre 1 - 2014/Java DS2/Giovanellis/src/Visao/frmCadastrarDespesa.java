@@ -321,6 +321,18 @@ public class frmCadastrarDespesa extends javax.swing.JFrame {
         txtSituação.setText(JTable.getValueAt(linha_selecionada, 2).toString());
         btnAcao.setEnabled(true);
         rdAtualizaAtivo.setSelected(true);
+        lblCadastro.setVisible(false);
+        lblAltera.setVisible(true);
+        rdTodas.setSelected(true);
+        rdAtualizaAtivo.setVisible(true);
+        rdAtualizaInativo.setVisible(true);
+        btnAcao.setText("  Alterar  ");
+        acao = 2;
+        btnAcao.setVisible(true);
+        if (acao==2)
+        {
+        btnAcao.setEnabled(false);
+        }
 
 
     }//GEN-LAST:event_JTableMouseClicked

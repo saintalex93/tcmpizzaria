@@ -70,6 +70,7 @@ public class frmHome extends javax.swing.JFrame {
         
        btnLembrete.setUI(new MetalButtonUI()); 
        btnMensagem.setUI(new MetalButtonUI()); 
+       
          
 
     }
@@ -283,7 +284,6 @@ public class frmHome extends javax.swing.JFrame {
         });
 
         MenuCadastrar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        MenuCadastrar.setSelected(true);
         MenuCadastrar.setText("Cadastrar");
         MenuCadastrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -298,7 +298,6 @@ public class frmHome extends javax.swing.JFrame {
         MenuDespesas.add(MenuCadastrar);
 
         MenuLancar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        MenuLancar.setSelected(true);
         MenuLancar.setText("Lançar/Consultar");
         MenuLancar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -398,8 +397,8 @@ public class frmHome extends javax.swing.JFrame {
 
         setJMenuBar(MenuTopo);
 
-        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-1376)/2, (screenSize.height-946)/2, 1376, 946);
+        setSize(new java.awt.Dimension(1376, 946));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -690,7 +689,21 @@ public class frmHome extends javax.swing.JFrame {
     }//GEN-LAST:event_MenuSair1MouseClicked
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        // TODO add your handling code here:
+        if (binario == 1) {
+            aviso();
+
+        } else {
+          
+          binario = 0;
+           try {
+            new frmCorreio().setVisible(true);       // TODO add your handling code here:
+        } catch (Exception ex) {
+            Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
+        }
+          
+      }
+        
+        
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void menuBackupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuBackupActionPerformed
@@ -748,16 +761,18 @@ public class frmHome extends javax.swing.JFrame {
 
                                 controBack.Incluir(modBack);
                                 JOptionPane.showMessageDialog(this, "Backup Realizado com Sucesso \nCaminho: " + caminho);
-
+                                frmHome.binario = 0;  
                             }
                         } catch (Exception ex) {
-                            JOptionPane.showMessageDialog(this, "Erro ao salvar documento:" + ex);
+                            JOptionPane.showMessageDialog(this, "Erro ao salvar Backup:" + ex);
+                            frmHome.binario = 0;  
                         }
                     }
 
                 } else {
                     //throw new FileNaoSelecionadoException();
-                    JOptionPane.showMessageDialog(this, "Erro ao salvar documento");
+                    JOptionPane.showMessageDialog(this, "Backup cancelado");
+                    frmHome.binario = 0;  
                 }
 
             } else {
@@ -779,35 +794,43 @@ public class frmHome extends javax.swing.JFrame {
     }//GEN-LAST:event_menuBackupActionPerformed
 
     private void menuCalculadoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCalculadoraActionPerformed
-      if (binario == 1) {
-            aviso();
-
-        } else {
-          
+     
           calculadora.setVisible(true);
           
-      }
+      
     }//GEN-LAST:event_menuCalculadoraActionPerformed
 
     private void AnotaçõesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnotaçõesActionPerformed
-       Mensagem = 0;
+       
+          if (binario == 1) {
+           aviso();
+        
+        } else {
         try {
+            binario = 0;
+            Mensagem = 0;
             new frmAnotacoes().setVisible(true);
         } catch (Exception ex) {
             Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }}
     }//GEN-LAST:event_AnotaçõesActionPerformed
 
     private void btnLembreteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLembreteActionPerformed
-    Mensagem = 1;
+    
+       if (binario == 1) {
+           aviso();
+        
+        } else {
         try {
+            binario = 0;
+            Mensagem = 1;
             new frmAnotacoes().setVisible(true);
         } catch (Exception ex) {
             Logger.getLogger(frmHome.class.getName()).log(Level.SEVERE, null, ex);
         }
     
     
-    
+       }
     }//GEN-LAST:event_btnLembreteActionPerformed
 
     private void btnMensagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMensagemActionPerformed
@@ -832,7 +855,7 @@ public class frmHome extends javax.swing.JFrame {
     }
     
 
-    private javax.swing.Timer timer = new javax.swing.Timer(60 * 1000, new java.awt.event.ActionListener() {
+    private javax.swing.Timer timer = new javax.swing.Timer(60*1000, new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent e) {
 
 //            try {

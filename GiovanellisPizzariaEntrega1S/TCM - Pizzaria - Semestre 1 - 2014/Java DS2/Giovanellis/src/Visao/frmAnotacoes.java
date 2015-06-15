@@ -76,7 +76,7 @@ public class frmAnotacoes extends javax.swing.JFrame {
         txtAssunto = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtMensagem = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
+        btnSalvar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
@@ -90,7 +90,15 @@ public class frmAnotacoes extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
+        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                formMouseMoved(evt);
+            }
+        });
         addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
@@ -100,7 +108,7 @@ public class frmAnotacoes extends javax.swing.JFrame {
         jLabel1.setBackground(new java.awt.Color(88, 55, 66));
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel1.setText("Data:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 64, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 67, -1, -1));
 
         chkAviso.setBackground(new java.awt.Color(88, 55, 66));
         chkAviso.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -116,12 +124,12 @@ public class frmAnotacoes extends javax.swing.JFrame {
         lblDataAviso.setBackground(new java.awt.Color(88, 55, 66));
         lblDataAviso.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lblDataAviso.setText("Data de Aviso:");
-        getContentPane().add(lblDataAviso, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 64, -1, -1));
+        getContentPane().add(lblDataAviso, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 67, -1, -1));
 
         jLabel3.setBackground(new java.awt.Color(88, 55, 66));
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setText("Assunto:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 143, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 145, -1, -1));
 
         txtAssunto.setFont(new java.awt.Font("Comic Sans MS", 1, 12)); // NOI18N
         txtAssunto.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -143,18 +151,18 @@ public class frmAnotacoes extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, 511, 223));
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(239, 111, 83));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/button.png"))); // NOI18N
-        jButton1.setText("Salvar");
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setOpaque(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnSalvar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnSalvar.setForeground(new java.awt.Color(239, 111, 83));
+        btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/button.png"))); // NOI18N
+        btnSalvar.setText("Salvar");
+        btnSalvar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnSalvar.setOpaque(false);
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnSalvarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 420, 100, 40));
+        getContentPane().add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 420, 100, 40));
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(239, 111, 83));
@@ -237,7 +245,7 @@ public class frmAnotacoes extends javax.swing.JFrame {
         jLabel6.setBackground(new java.awt.Color(88, 55, 66));
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel6.setText("Lembrete:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 183, -1, -1));
 
         jdcData.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jdcData.setOpaque(false);
@@ -251,7 +259,7 @@ public class frmAnotacoes extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         if (Operacao == 0) {
 
             if (ValidaCampos()) {
@@ -289,11 +297,11 @@ public class frmAnotacoes extends javax.swing.JFrame {
             }
 
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         ContaLinha("select count(codLembrete) as contagem from lembretes");
-        
+        timer.start();
         txtMensagem.setLineWrap(true);
         DesabilitarBotões();
 
@@ -323,7 +331,7 @@ ContaLinha("select count(codLembrete) as contagem from lembretes");
         DesabilitaCampos();
         HabilitarBotoes();
         codLembrete = Integer.parseInt(jTableLembretes.getValueAt(linha_selecionada, 0).toString());
-       
+       btnSalvar.setEnabled(false);
         
         txtAssunto.setText(jTableLembretes.getValueAt(linha_selecionada, 1).toString());
         txtMensagem.setText(jTableLembretes.getValueAt(linha_selecionada, 5).toString());
@@ -346,7 +354,7 @@ ContaLinha("select count(codLembrete) as contagem from lembretes");
             
             if(frmHome.Mensagem==1)
             {
-             con.executaSql("update Lembretes set Aviso = 0 where codlembrete = '"+codLembrete+"'");
+             con.executaSql("update Lembretes set Aviso = 0 where codlembrete = '"+codLembrete+"' and DataAviso = '"+DataAtual()+"'");
              ContaLinha("select count(codLembrete) as contagem from lembretes");
                          
             }
@@ -370,6 +378,7 @@ ContaLinha("select count(codLembrete) as contagem from lembretes");
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         HabilitaCampos();
         Operacao = 1;
+        btnSalvar.setEnabled(true);
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
@@ -386,6 +395,7 @@ ContaLinha("select count(codLembrete) as contagem from lembretes");
                  ContaLinha("select count(codLembrete) as contagem from lembretes");
                 limparCampos();
                 DesabilitarBotões();
+                btnSalvar.setEnabled(true);
 
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Erro ao Excluir lembrete :" + e);
@@ -408,6 +418,46 @@ ContaLinha("select count(codLembrete) as contagem from lembretes");
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+    frmHome.binario = 0;  
+    timer.stop();
+    frmHome.contador = 10;
+    
+    }//GEN-LAST:event_formWindowClosing
+
+    private void formMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseMoved
+    frmHome.contador = 20;
+        contador = 10;          
+    }//GEN-LAST:event_formMouseMoved
+
+        int contador = 10;
+    
+    public void escreva()
+    {
+        System.out.println(contador);
+       
+    }
+ 
+    private javax.swing.Timer timer = new javax.swing.Timer(60*1000,new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent e)
+        {
+            escreva();
+            contador--;
+            if(contador == 0)
+            {
+               
+               
+                try {
+                dispose();
+                timer.stop();
+                } catch (Exception ex) {
+                    Logger.getLogger(frmInsumos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        
+    });   
+    
     /**
      * @param args the command line arguments
      */
@@ -450,8 +500,8 @@ ContaLinha("select count(codLembrete) as contagem from lembretes");
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnExcluir;
+    private javax.swing.JButton btnSalvar;
     private javax.swing.JCheckBox chkAviso;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
@@ -498,6 +548,7 @@ ContaLinha("select count(codLembrete) as contagem from lembretes");
             String DataLembrete = ano + "-" + mes + "-" + dia;
 
             ModLembrete.setCodFuncionario(codFuncionario);
+            ModLembrete.setCodLembrete(codLembrete);
             ModLembrete.setAssunto(txtAssunto.getText());
             ModLembrete.setMensagem(txtMensagem.getText());
             ModLembrete.setDataAviso(null);

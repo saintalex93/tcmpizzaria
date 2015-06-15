@@ -628,12 +628,12 @@ public class frmDespesas extends javax.swing.JFrame {
     public boolean preencheObjeto() {
 
         int ano = JdcPagamento.getCalendar().get(Calendar.YEAR);
-        int mes = JdcPagamento.getCalendar().get(Calendar.MONTH);
+        int mes = JdcPagamento.getCalendar().get(Calendar.MONTH)+1;
         int dia = JdcPagamento.getCalendar().get(Calendar.DAY_OF_MONTH);
         String DataPag = ano + "-" + mes + "-" + dia;
 
         int ano1 = JdcVencimento.getCalendar().get(Calendar.YEAR);
-        int mes1 = JdcVencimento.getCalendar().get(Calendar.MONTH);
+        int mes1 = JdcVencimento.getCalendar().get(Calendar.MONTH)+1;
         int dia1 = JdcVencimento.getCalendar().get(Calendar.DAY_OF_MONTH);
         String DataVenc = ano1 + "-" + mes1 + "-" + dia1;
 
