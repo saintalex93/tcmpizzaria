@@ -11,8 +11,6 @@
         </article>
         <article class="cardapio">
             <div class="wrapper">
-                <h2>Clique em um sabor para adicioná-lo ao seu pedido.</h2>
-
                 <asp:GridView ID="gdCardapio" runat="server" AutoGenerateColumns="true" ShowHeaderWhenEmpty="true">
 
                 </asp:GridView>

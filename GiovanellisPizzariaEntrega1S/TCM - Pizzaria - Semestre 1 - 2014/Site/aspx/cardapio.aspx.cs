@@ -9,7 +9,6 @@ using System.Data.SqlClient;
 
 public partial class aspx_cardapio : System.Web.UI.Page
 {
-    int teste;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -21,6 +20,7 @@ public partial class aspx_cardapio : System.Web.UI.Page
         //gdCardapio.Columns[1].ItemStyle.CssClass = "colunaheader";
         refresh();
     }
+
     protected void refresh()
     {
         Conexao con = new Conexao();
@@ -70,17 +70,26 @@ public partial class aspx_cardapio : System.Web.UI.Page
                 //Fazendo um loop pra "tirar" os insumos das respectivas pizzas a quais eles pertencem
                 while (codProdutoTabelaConsumo == codigoProd && contadorQtd < Convert.ToInt32(row["Quantidade"]))
                 {
-                    if (contadorQtd == 0)
+                    string insumoProduto = ds2.Tables[0].DefaultView[totalInsumos].Row["Nome_Insumo"].ToString();
+                    if (insumoProduto == "Azeitona" || insumoProduto == "Embalagem para Pizza" || insumoProduto == "Massa para pizza" || insumoProduto == "Molho de tomate")
                     {
-                        insumos = ds2.Tables[0].DefaultView[totalInsumos].Row["Nome_Insumo"].ToString();
                         totalInsumos++;
                         contadorQtd++;
                     }
                     else
                     {
-                        insumos = insumos + ", " + ds2.Tables[0].DefaultView[totalInsumos].Row["Nome_Insumo"].ToString();
-                        totalInsumos++;
-                        contadorQtd++;
+                        if (contadorQtd == 0)
+                        {
+                            insumos = ds2.Tables[0].DefaultView[totalInsumos].Row["Nome_Insumo"].ToString();
+                            totalInsumos++;
+                            contadorQtd++;
+                        }
+                        else
+                        {
+                            insumos = insumos + ", " + ds2.Tables[0].DefaultView[totalInsumos].Row["Nome_Insumo"].ToString();
+                            totalInsumos++;
+                            contadorQtd++;
+                        }
                     }
                 }
                 //Criando as linhas que serão adicionadas do DataTable

@@ -15,8 +15,20 @@
                 <asp:ScriptManager ID="ScriptManager1" runat="server" />
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                     <ContentTemplate>
+
                         <h2>Pedido atualmente em andamento</h2>
-                        
+
+                        <asp:GridView ID="gdPedidoAtual" runat="server">
+                            
+                            <Columns>
+
+                            </Columns>
+                            
+                        </asp:GridView>
+                        <div class="cancelar">
+                            <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" OnClick="cancelar" />
+                        </div>
+
                     </ContentTemplate>
                 </asp:UpdatePanel>
             </div>
@@ -26,16 +38,19 @@
             <div class="wrapper">
                 <asp:UpdatePanel ID="UpdatePanel2" ChildrenAsTriggers="true" runat="server">
                     <ContentTemplate>
+
+                        <h2>Pedidos Realizados</h2>
                         
                         <asp:Panel ID="pnlBotoesPedidos" CssClass="buttonsPedidos" runat="server">
-
                             <asp:Button ID="btnOrdenarData" runat="server" Text="Ordenar pelo mais Recente" CssClass="button" OnClick="btnOrdenarData_Click" ValidationGroup="Group5" />
                             <asp:Button ID="btnOrdenarDataAntiga" runat="server" Text="Ordenar pelo mais Antigo" CssClass="button" OnClick="btnOrdenarDataAntiga_Click" ValidationGroup="Group5" />
                             <asp:Button ID="btnOrdenarPrecoCaro" runat="server" Text="Ordenar pelo mais Caro" CssClass="button" OnClick="btnOrdenarPreco_Click" ValidationGroup="Group5" />
                             <asp:Button ID="btnOrdenarBarato" runat="server" Text="Ordenar pelo mais Barato" CssClass="button" OnClick="btnOrdenarBarato_Click" ValidationGroup="Group5" />
                         </asp:Panel>
+
                         <asp:DataGrid ID="datagPedidos" runat="server" AutoGenerateColumns="False">
                             <Columns>
+
                                 <asp:BoundColumn DataField="Data" HeaderText="Data do Pedido" ReadOnly="True" DataFormatString="{0:dd/MM/yyyy}">
                                     <HeaderStyle CssClass="colunaheader" />
                                     <ItemStyle CssClass="clmDataPed" />

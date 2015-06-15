@@ -1153,6 +1153,7 @@ public partial class aspx_pedir2 : System.Web.UI.Page
             con3.conectar();
 
             int contadorVolta = 0;
+            int contadorParametro = 0;
             int numLinhas = dt.Rows.Count;
             string[] prodArray = { "" };
             int? codProduto1 = 0;
@@ -1172,6 +1173,7 @@ public partial class aspx_pedir2 : System.Web.UI.Page
                         string produtos = dt.Rows[i]["Produtos"].ToString();
                         prodArray = produtos.Split('/');
 
+                        //Foreach para recuperar o código de cada produto separadamente
                         foreach (DataTable table in ds.Tables)
                         {
                             foreach (DataRow row2 in table.Rows)
@@ -1212,23 +1214,24 @@ public partial class aspx_pedir2 : System.Web.UI.Page
                     {
                         if (codProduto2 == 0)
                         {
-                            con3.command.Parameters.Add("@CodPedido" + contadorVolta.ToString(), SqlDbType.Int).Value = codUltimoPedido;
-                            con3.command.Parameters.Add("@CodProduto" + contadorVolta.ToString(), SqlDbType.Int).Value = codProduto1;
-                            con3.command.Parameters.Add("@CodProdutoMeio" + contadorVolta.ToString(), SqlDbType.Int).Value = DBNull.Value;
-                            con3.command.CommandText = "insert into Detalhe_Pedido(Cod_Pedido,Cod_Produto,Cod_Produto2)" + "values(@CodPedido" + contadorVolta.ToString() + ",@CodProduto" + contadorVolta.ToString() + ",@CodProdutoMeio" + contadorVolta.ToString() + ")";
+                            con3.command.Parameters.Add("@CodPedido" + contadorParametro.ToString(), SqlDbType.Int).Value = codUltimoPedido;
+                            con3.command.Parameters.Add("@CodProduto" + contadorParametro.ToString(), SqlDbType.Int).Value = codProduto1;
+                            con3.command.Parameters.Add("@CodProdutoMeio" + contadorParametro.ToString(), SqlDbType.Int).Value = DBNull.Value;
+                            con3.command.CommandText = "insert into Detalhe_Pedido(Cod_Pedido,Cod_Produto,Cod_Produto2)" + "values(@CodPedido" + contadorParametro.ToString() + ",@CodProduto" + contadorParametro.ToString() + ",@CodProdutoMeio" + contadorParametro.ToString() + ")";
                             con3.command.ExecuteNonQuery();
-                            contadorVolta++;
+                            contadorParametro++;
                         }
                         else
                         {
-                            con3.command.Parameters.Add("@CodPedido" + contadorVolta.ToString(), SqlDbType.Int).Value = codUltimoPedido;
-                            con3.command.Parameters.Add("@CodProduto" + contadorVolta.ToString(), SqlDbType.Int).Value = codProduto1;
-                            con3.command.Parameters.Add("@CodProdutoMeio" + contadorVolta.ToString(), SqlDbType.Int).Value = codProduto2;
-                            con3.command.CommandText = "insert into Detalhe_Pedido(Cod_Pedido,Cod_Produto,Cod_Produto2)" + "values(@CodPedido" + contadorVolta.ToString() + ",@CodProduto" + contadorVolta.ToString() + ",@CodProdutoMeio" + contadorVolta.ToString() + ")";
+                            con3.command.Parameters.Add("@CodPedido" + contadorParametro.ToString(), SqlDbType.Int).Value = codUltimoPedido;
+                            con3.command.Parameters.Add("@CodProduto" + contadorParametro.ToString(), SqlDbType.Int).Value = codProduto1;
+                            con3.command.Parameters.Add("@CodProdutoMeio" + contadorParametro.ToString(), SqlDbType.Int).Value = codProduto2;
+                            con3.command.CommandText = "insert into Detalhe_Pedido(Cod_Pedido,Cod_Produto,Cod_Produto2)" + "values(@CodPedido" + contadorParametro.ToString() + ",@CodProduto" + contadorParametro.ToString() + ",@CodProdutoMeio" + contadorParametro.ToString() + ")";
                             con3.command.ExecuteNonQuery();
-                            contadorVolta++;
+                            contadorParametro++;
                         }
                     }
+                    contadorVolta++;
                 }
             }
             con3.fechaConexao();

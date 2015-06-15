@@ -603,10 +603,37 @@ footer p {
 	background: #eeebe3;
 	border-top: 1px solid #583742;
 }
+.pedidoAndamento table {
+    margin: 20px auto;
+}
+.pedidoAndamento tr td {
+    text-align: center;
+    padding: 10px 15px;
+    border: 1px solid #583742;
+    font-weight: bold;
+    color: #ef6f53;
+}
+.pedidoAndamento tr th {
+    font-size: 18px;
+    text-align: center;
+    padding: 10px 15px;
+    background: url(../imagens/fundo_header.jpg);
+    color: #fff;
+}
+.pedidoAndamento input[type="submit"] {
+    margin: 0 auto;
+    display: block;
+    padding: 8px 6px;
+    background: linear-gradient(to bottom, #e00000, #f23333);
+    color: #fff;
+    font-weight: bold;
+    border-radius: 8px;
+    font-size: 18px;
+}
 
 .pedidos .buttonsPedidos {
 	float: left;
-	margin: 0 136px 30px 136px;
+	margin: 30px 136px;
 }
 .pedidos .buttonsPedidos input[type="submit"]{
 	padding: 8px 4px;
