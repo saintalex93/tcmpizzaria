@@ -4,34 +4,34 @@
 		-------------------------------------------------------------- 
 		-------------------------------------------------------------- 
 
-	Use master
-	go
-	-----------------------------------
-	set nocount on
-	declare @databasename varchar(100)
-	declare @query varchar(max)
-	set @query = ''
+Use master
+go
+-----------------------------------
+set nocount on
+declare @databasename varchar(100)
+declare @query varchar(max)
+set @query = ''
 
-	set @databasename = 'Pizzaria'
-	if db_id(@databasename) < 4
-	begin
-		print 'system database connection cannot be killeed'
-	return
-	end
-	-----------------------------------
-	select @query=coalesce(@query,',' )+'kill '+convert(varchar, spid)+ '; '
-	from master..sysprocesses where dbid=db_id(@databasename)
+set @databasename = 'Pizzaria'
+if db_id(@databasename) < 4
+begin
+print 'system database connection cannot be killeed'
+return
+end
+-----------------------------------
+select @query=coalesce(@query,',' )+'kill '+convert(varchar, spid)+ '; '
+from master..sysprocesses where dbid=db_id(@databasename)
 
-	if len(@query) > 0
-	begin
-	print @query
-		exec(@query)
-	end
-	go
-	-----------------------------------
-	IF EXISTS (SELECT * from sys.databases where name = 'Pizzaria')
-	DROP DATABASE Pizzaria
-	go
+if len(@query) > 0
+begin
+print @query
+exec(@query)
+end
+go
+-----------------------------------
+IF EXISTS (SELECT * from sys.databases where name = 'Pizzaria')
+DROP DATABASE Pizzaria
+go
 
 		-------------------------------------------------------------- 
 		-------------------------------------------------------------- 
@@ -39,13 +39,13 @@
 		-------------------------------------------------------------- 
 		-------------------------------------------------------------- 
 
-	create database Pizzaria
-	go
+create database Pizzaria
+go
 
-	use Pizzaria
-	go
-
-	create table Cliente
+use Pizzaria
+go
+-----------------------------------------
+create table Cliente
 (
 Cod_Cliente INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 Nome_Cliente VARCHAR(40),
@@ -66,7 +66,7 @@ DataNascimento DATE,
 DataCadastro DATE
 )
 go
-
+-----------------------------------------
 create table TipoDespesa
 (
 codTipoDespesa INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
@@ -74,7 +74,7 @@ NomeDespesa VARCHAR(50) unique,
 SituacaoDespesa varchar(10)
 )
 go
-
+-----------------------------------------
 create table Despesa
 (
 codDespesa INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
@@ -84,14 +84,14 @@ DataVencimento Date,
 TipoDespesa INT FOREIGN KEY REFERENCES TipoDespesa(codTipoDespesa)
 )
 go
-
+-----------------------------------------
 create table Permissao
 (
 Cod_Permissao int IDENTITY (1,1) Primary Key,
 Cargo Varchar (20)
 )
 go
-
+-----------------------------------------
 create table Funcionario
 (
 Cod_Funcionario INT IDENTITY(1,1) PRIMARY KEY,
@@ -115,14 +115,14 @@ Cod_Permissao INT FOREIGN KEY REFERENCES
 Permissao(Cod_Permissao)
 )
 go
-
+-----------------------------------------
 create table Categoria
 (
 CodCategoria int identity (1,1) Primary Key,
 NomeCategoria VarChar (40)
 )
 go
-
+-----------------------------------------
 create table Insumo
 (
 Cod_Insumo INT IDENTITY(1,1) PRIMARY KEY,
@@ -135,7 +135,7 @@ Validade VarChar(10),
 Medida VARCHAR(10)
 )
 go
-
+-----------------------------------------
 create table Produto
 (
 Cod_Produto INT IDENTITY(0,1) PRIMARY KEY,
@@ -144,7 +144,7 @@ Valor_Venda DECIMAL(6,2),
 Sobe_Site INT
 )
 go
-
+-----------------------------------------
 create table Pedido
 (
 Cod_Pedido INT IDENTITY(1,1) PRIMARY KEY,
@@ -165,7 +165,7 @@ ValorPago dec (6,2)
 )
 
 go
-
+-----------------------------------------
 create table Fornecedor
 (
 Cod_Fornecedor INT IDENTITY(1,1) PRIMARY KEY,
@@ -188,7 +188,7 @@ Bairro_Fornecedor VarChar (30),
 Complemento VarChar (40),
 )
 go
-
+-----------------------------------------
 create table Insumo_Fornecedor
 (
 Cod_InsumoFornecedor int identity (1,1) Primary Key,
@@ -196,7 +196,7 @@ Cod_Insumo INT FOREIGN KEY REFERENCES Insumo(Cod_Insumo),
 Cod_Fornecedor INT FOREIGN KEY REFERENCES Fornecedor(Cod_Fornecedor),
 )
 go
-
+-----------------------------------------
 create table ProdutoCategoria
 (
 CodProdutoCategoria int identity (1,1) Primary Key,
@@ -204,7 +204,7 @@ CodProduto INT FOREIGN KEY REFERENCES Produto(Cod_Produto),
 CodCategoria INT FOREIGN KEY REFERENCES Categoria(CodCategoria)
 )
 go
-
+-----------------------------------------
 create table InsumoCategoria
 (
 CodInsumoCategoria int identity (1,1) Primary Key,
@@ -212,7 +212,7 @@ CodInsumo INT FOREIGN KEY REFERENCES Insumo(Cod_Insumo),
 CodCategoria INT FOREIGN KEY REFERENCES Categoria(CodCategoria)
 )
 go
-
+-----------------------------------------
 create table Consumo
 (
 CodConsumo int identity (1,1) Primary Key,
@@ -221,7 +221,7 @@ CodProduto INT FOREIGN KEY REFERENCES Produto(Cod_Produto),
 Quantidade DECIMAL (6,3)
 )
 go
-
+-----------------------------------------
 create table Promocao
 (
 Cod_Promocao INT IDENTITY(1,1) PRIMARY KEY,
@@ -233,7 +233,7 @@ sobe_promocao INT,
 AcessivelATodos INT
 )
 go
-
+-----------------------------------------
 create table ProdutoPromocao
 (
 codPromocaoProduto INT IDENTITY(1,1) PRIMARY KEY,
@@ -241,7 +241,7 @@ Cod_Produto INT FOREIGN KEY REFERENCES Produto(Cod_Produto),
 Cod_Promocao INT FOREIGN KEY REFERENCES Promocao(Cod_Promocao)
 )
 go
-
+-----------------------------------------
 create table CompraFornecedor
 (
 Cod_Compra INT IDENTITY(1,1) PRIMARY KEY,
@@ -251,7 +251,7 @@ Cod_Fornecedor INT FOREIGN KEY REFERENCES Fornecedor(Cod_Fornecedor),
 Cod_Funcionario INT FOREIGN KEY REFERENCES Funcionario(Cod_Funcionario)
 )
 go
-
+-----------------------------------------
 create table Detalhe_Pedido
 (
 Cod_Detalhe INT IDENTITY(0,1) PRIMARY KEY,
@@ -260,7 +260,7 @@ Cod_Produto2 INT FOREIGN KEY REFERENCES Produto(Cod_Produto),
 Cod_Pedido INT FOREIGN KEY REFERENCES Pedido(Cod_Pedido),
 )
 go
-
+-----------------------------------------
 create table Pagamento
 (
 Cod_Pagamento INT IDENTITY(1,1) PRIMARY KEY,
@@ -270,7 +270,7 @@ TipoPagamento VARCHAR(20),
 Cod_Funcionario INT FOREIGN KEY REFERENCES Funcionario(Cod_Funcionario)
 )
 go
-
+-----------------------------------------
 create table DetalheCompra
 (
 codcomprainsumo int identity (1,1) primary key,
@@ -281,6 +281,7 @@ valor_insumo decimal (6,2),
 qdt_comprada int,
 )
 go
+-----------------------------------------
 create table Lembretes
 (
 codLembrete int identity (1,1) primary key,
@@ -293,7 +294,7 @@ Aviso int
 
 )
 go
-
+-----------------------------------------
 create table Mensagens
 (
 CodMensagem int identity (1,1) primary key,
@@ -306,12 +307,12 @@ HoraCriacao time,
 Aviso int
 )
 go
-
 	-------------------------------------------------------------- 
 	-------------------------------------------------------------- 
 	-------------------- *** INSERT'S *** ------------------------ 
 	-------------------------------------------------------------- 
 	-------------------------------------------------------------- 
+
 insert into Cliente
 (
 Nome_Cliente,
@@ -343,7 +344,7 @@ values
 ('Gabriel Andrade Yamotsu','155.157.758-61','Rua das Laranjeiras',1785,null,'Capão Redondo','54189-206','SP','São Paulo','Em frente ao Habibs','(11)4972-1546',null,'andrade@yahoo.com','andrade123','12/05/1985','18/11/1982')
 
 go
-
+-----------------------------------------
 insert into Permissao
 (
 Cargo
@@ -355,7 +356,7 @@ values
 ('Entregador'),
 ('Operador')
 go
-
+-----------------------------------------
 insert into Funcionario
 (
 Nome_Func,
@@ -418,7 +419,7 @@ values
 ('Champagne', 15, 10, 20, 'Un.'),
 ('Camarão', 25, 2, 5, 'Kg')
 go
-
+-----------------------------------------
 insert into Categoria
 (
 NomeCategoria
@@ -445,7 +446,7 @@ values
 ('Aves'),
 ('Bebidas Alcóolicas')
 go
-
+-----------------------------------------
 insert into insumocategoria
 (
 codInsumo,
@@ -480,7 +481,7 @@ values
 (26,15)
 
 go
-
+-----------------------------------------
 insert into Produto
 (
 Nome_Produto,
@@ -510,7 +511,7 @@ values
 ('Porção de Calabresa',18.00,0),
 ('Porção de Provolone',17.00,0)
 go
-
+-----------------------------------------
 insert into ProdutoCategoria
 (
 CodCategoria,
@@ -538,7 +539,7 @@ values
 (4,19),
 (4,20)
 go
-
+-----------------------------------------
 insert into Pedido
 (Data,Hora,Valor,Cod_Funcionario,Cod_Cliente, Observacao,Origem,Estado, EnderecoAlt, BairroAlt, NumeroResidencialAlt, NumeroApartamentoAlt ,FormaDePagamento,ValorPago)
 values
@@ -572,7 +573,7 @@ values
 ('06/06/2015','00:16',75.00,3,2,'Favor, ao chegar, ligar no meu celular e não pelo interfone nem campainha','Site','Cancelado','','','', '','Cartão',75.00),
 ('06/04/2015','21:15',75.00,2,5,'','In loco','Cancelado','','','', '','Cartão',75.00)
 go
-
+-----------------------------------------
 insert into Fornecedor
 (
 CNPJ_CPF,
@@ -602,7 +603,7 @@ values
 
 ('444-444-444-44', 'Hortaliças Hortolândia EPP', 'Viva Verde Hortaliças', 'Santander', '9966', '013568-7', 'Romualdo Nunes', '97777-5501', 'rn@vivaverde.com.br', '(11)2233-5678', 'Rua do Chá', '56', '03456-321', 'SP', 'São Paulo', 'Ceasa', 'Box 100')
 go
-
+-----------------------------------------
 insert into Promocao
 (
 Nome_Promocao,
@@ -617,7 +618,7 @@ values
 ('Super três queijos','Pizza de três queijos com 25% de desconto!.',75, '2016-01-01', 1,0),
 ('Olha o refrigerante','Refrigerante agora está mais barato',90, '2016-01-01', 1, 1)
 go
-
+-----------------------------------------
 insert into insumo_fornecedor
 (
 Cod_Insumo,
@@ -628,7 +629,7 @@ values
 (3, 4),
 (1, 4)
 go
-
+-----------------------------------------
 insert into Consumo
 (
 CodProduto,
@@ -757,7 +758,7 @@ values
 
 (20,14,0.400)
 go
-
+-----------------------------------------
 insert into ProdutoPromocao
 (
 Cod_Promocao,
@@ -775,7 +776,7 @@ values
 (2, 8),
 (3, 14)
 go
-
+-----------------------------------------
 insert into CompraFornecedor
 (
 Valor_Compra,
@@ -789,7 +790,7 @@ values
 (200.00, '17/09/2015', 2,3),
 (350.00, '22/10/2015', 4,3)
 go
-
+-----------------------------------------
 insert into Detalhe_Pedido
 (
 cod_pedido,
@@ -932,7 +933,7 @@ values
 (24,0,15)
 
 go
-
+-----------------------------------------
 insert into TipoDespesa
 (
 NomeDespesa,
@@ -945,7 +946,7 @@ values
 ('Energia elétrica','Ativo'),
 ('Telefone','Ativo')
 go
-
+-----------------------------------------
 insert into Despesa
 (
 ValorDespesa,
@@ -959,7 +960,7 @@ values
 (182.35, '14/05/2015', '17/05/2015', 5),
 (120.35, '13/06/2015', '17/06/2015', 3)
 go
-
+-----------------------------------------
 insert into Pagamento
 (
 ValorPagamento,
@@ -972,7 +973,7 @@ Values
 2500.00,'2015-01-11', 'Salário', 2
 )
 go
-
+-----------------------------------------
 insert into DetalheCompra 
 values
 (1,1,2,35,6),
@@ -983,7 +984,7 @@ values
 (2,3,13,20,10),
 (2,3,8,9,10)
 go
-
+-----------------------------------------
 insert into Mensagens (CodRemetente, CodDestinatario, Assunto, Mensagem, DataCriacao, HoraCriacao, Aviso)
 values
 (5,2,'Pizza doce','Lembrar de inserir Pizza doce no cardápio','2015-06-15','15:12:27',1),
@@ -2199,9 +2200,7 @@ as
 			End
 	End
 go
-
 ------------------------------------------------
-
 create proc USP_ASP_Pedidos_PedidoAtual
 (
 	@codCliente int
@@ -2212,8 +2211,6 @@ as
 	End
 	
 go
-
-
 ------------------------------------------------
 create proc USP_CSharp_Produto_MostrarTodosProdutos
 As
@@ -2745,7 +2742,6 @@ as
 		insert into InsumoCategoria values (@CodInsumo, @CodCategoria)
 	End
 go
-
 ---------------------------------------------------
 create proc USP_CSharp_Categoria_RemoverInsumoDaCategoria
 
@@ -2824,9 +2820,528 @@ as
 		update Pedido set Cod_Funcionario = @CodFuncionario where Cod_Pedido = @CodPedido
 	End
 go
----------------------------------------------------
----------------------------------------------------
 
+create proc USP_CSharp_Pedidos_BuscarClientesPorNome
+
+	@Nome varchar(30)
+
+as
+	Begin
+		select 
+			Cod_Cliente [ID],
+			Nome_Cliente [Nome],
+			CPF_Cliente [CPF]
+			
+		From Cliente 
+		
+		where Nome_Cliente like '%' + @Nome + '%'
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Pedidos_BuscarClientesPorCPF
+
+	@CPF varchar(15)
+
+as
+	Begin
+		select 
+			Cod_Cliente [ID],
+			Nome_Cliente [Nome],
+			CPF_Cliente [CPF]
+			
+		From Cliente 
+		
+		where CPF_Cliente like '%' + @cpf + '%'
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Pedidos_BuscarPedidosDoCliente
+
+	@CodCliente int
+
+as
+	Begin
+		select 
+			Cod_Pedido [ID],
+			Data,
+			Hora
+		
+		from Pedido
+		
+		where Cod_Cliente = @CodCliente
+		order by Data desc
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Pedidos_InserirNovoPedido
+
+	@CodCliente int,
+	@Data date,
+	@Hora time
+
+as
+	Begin
+	insert into Pedido 
+	(
+		Cod_Cliente,
+		Data,
+		Hora,
+		Valor
+	)
+	values
+	(
+		@CodCliente,
+		@Data,
+		@Hora,
+		0
+	)
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Pedidos_ValidarExclusaoDePedido	
+
+	@CodPedido int
+
+as
+	Begin
+		select count(*)
+
+		from Detalhe_Pedido
+
+		where Cod_Pedido = @CodPedido
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Pedidos_ExcluirPedido
+
+	@CodPedido int
+
+as
+	Begin
+		delete from Pedido where Cod_Pedido = @CodPedido
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Pedidos_BuscarProdutosDoPedido
+
+	@CodPedido int
+
+as
+	Begin
+		select 
+			
+			pr.Cod_Produto [ID Produto], 
+			pr.Nome_Produto [Produto], 
+			pr.Valor_Venda [Preço] 
+			
+			From Pedido pe
+			inner join Detalhe_Pedido dp on 
+				pe.Cod_Pedido = dp.Cod_Pedido 
+			inner join Produto pr on 
+				dp.Cod_Produto = pr.Cod_Produto and
+				dp.Cod_Pedido = @CodPedido
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Pedidos_BuscarProdutosPorPalavraChave
+
+	@Nome varchar(20)
+
+as
+	Begin
+		select 
+			Cod_Produto [ID], 
+			Nome_Produto [Produto], 
+			Valor_Venda [Preço] 
+			
+			From Produto
+
+			Where 
+				Nome_Produto like '%' + @Nome + '%' and
+				Cod_Produto > 0
+
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Pedidos_BuscarProdutosPorID
+
+	@ID int
+	
+as
+	Begin
+		select 
+			Cod_Produto [ID], 
+			Nome_Produto [Produto], 
+			Valor_Venda [Preço] 
+			
+			From Produto
+
+			Where 
+				Cod_Produto like @ID and
+				Cod_Produto > 0
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Pedidos_BuscarTodosProdutos
+as
+	Begin
+		select 
+			Cod_Produto [ID], 
+			Nome_Produto [Produto], 
+			Valor_Venda [Preço] 
+			
+			From Produto
+
+			Where Cod_Produto > 0
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Pedidos_InserirProdutoNoPedido
+
+	@CodProduto int,
+	@CodPedido int
+
+as
+	Begin
+		Insert into Detalhe_Pedido 
+		(
+			Cod_Produto,
+			Cod_Pedido
+		)
+		values
+		(
+			@CodProduto,
+			@CodPedido
+		)
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Pedidos_AtualizarValor
+
+	@CodPedido int,
+	@Valor decimal(5,2)
+
+as
+	Begin
+		Update Pedido 
+		
+		Set Valor = @Valor
+
+		Where Cod_Pedido = @CodPedido
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Pedidos_ExcluirProdutoDoPedido
+
+	@CodPedido int,
+	@CodProduto int
+
+as
+	Begin
+		Delete From Detalhe_Pedido
+		Where 
+			Cod_Pedido = @CodPedido and
+			Cod_Produto = @CodProduto
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Funcionarios_BuscarCargos
+as
+	Begin
+		Select Cargo, Cod_Permissao
+		From Permissao
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Compras_BuscarFornecedoresPorPalavraChave
+
+	@Palavra varchar(20)
+
+as
+	Begin
+		Select 
+			Cod_Fornecedor [ID],
+			Razao_Social [Razão social],
+			Nome_Fantasia [Nome fantasia],
+			Telefone_Comercial [Telefone],
+			Responsavel [Contato],
+			Celular_Responsavel [Celular contato]
+
+		From Fornecedor
+
+		Where 
+			Nome_Fantasia like '%' + @Palavra + '%' or
+			Razao_Social like '%' + @Palavra + '%' or
+			Responsavel like '%' + @Palavra + '%'
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Compras_BuscarFornecedoresPorID
+
+	@CodFornecedor int
+
+as
+	Begin
+		Select 
+			Cod_Fornecedor [ID],
+			Razao_Social [Razão social],
+			Nome_Fantasia [Nome fantasia],
+			Telefone_Comercial [Telefone],
+			Responsavel [Contato],
+			Celular_Responsavel [Celular contato]
+
+		From Fornecedor
+
+		Where 
+			Cod_Fornecedor = @CodFornecedor
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Compras_SelectFornecedores
+as
+	Begin
+		Select 
+			Cod_Fornecedor [ID],
+			Razao_Social [Razão social],
+			Nome_Fantasia [Nome fantasia],
+			Telefone_Comercial [Telefone],
+			Responsavel [Contato],
+			Celular_Responsavel [Celular contato]
+
+		From Fornecedor
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Compras_SelectFuncionarios
+as
+	Begin
+		Select 
+			Cod_Funcionario,
+			Nome_Func
+
+		From Funcionario
+
+		Order by Nome_Func
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Compras_BuscarComprasComFornecedor
+
+	@CodFornecedor int
+
+as
+	Begin
+		Select 
+		cf.Cod_Compra [ID],
+		cf.Valor_Compra [Valor],
+		cf.Data_Venda [Data],
+		f.Nome_Func [Funcionário]
+		
+		
+		From CompraFornecedor cf
+
+		Inner join Funcionario f on
+			Cod_Fornecedor = @CodFornecedor and
+			cf.Cod_Funcionario = f.Cod_Funcionario
+
+		order by cf.Cod_Compra desc
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Compras_PreencherComboBoxFornecedores
+as
+	Begin
+		Select 
+			Cod_Fornecedor,
+			Nome_Fantasia
+
+		From Fornecedor
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Compras_RegistrarCompra
+
+	@CodFuncionario int,
+	@CodFornecedor int,
+	@Data Date
+
+as
+	Begin
+		Insert Into CompraFornecedor
+		(
+			Cod_Fornecedor,
+			Cod_Funcionario,
+			Data_Venda,
+			Valor_Compra
+		)
+		Values
+		(
+			@CodFornecedor,
+			@CodFuncionario,
+			@Data,
+			0
+		)
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Compras_SelectInsumos
+as
+	Begin
+		Select
+			Cod_Insumo,
+			Nome_Insumo
+
+		From Insumo
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Compras_BuscarInsumosNaCompra
+
+	@CodCompra int
+
+as
+	Begin
+		Select
+			i.Cod_Insumo [ID Insumo],
+			i.Nome_Insumo [Insumo],
+			dc.valor_insumo [Valor],
+			dc.qdt_comprada [Qtde],
+			i.Medida
+
+		From DetalheCompra dc
+
+		Inner join Insumo i on
+		 i.Cod_Insumo = dc.cod_insumo and
+		 Cod_Compra = @CodCompra
+
+		 order by i.Nome_Insumo
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Compras_InserirInsumoNaCompra
+
+	@CodCompra int,
+	@CodFornecedor int,
+	@CodInsumo int,
+	@Quantidade decimal (7,2),
+	@Valor decimal (7,2)
+
+as
+	Begin
+		Insert Into DetalheCompra
+		(
+			cod_compra,
+			cod_fornecedor,
+			cod_insumo,
+			qdt_comprada,
+			valor_insumo
+		)
+		Values
+		(
+			@CodCompra,
+			@CodFornecedor,
+			@CodInsumo,
+			@Quantidade,
+			@Valor
+		)
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Compras_ValidarAssociacoesNoBanco
+
+	@CodCompra int
+
+as
+	Begin
+		Select count(*)
+
+		From DetalheCompra
+
+		Where cod_compra = @CodCompra
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Compras_ExcluirCompra
+
+	@CodCompra int
+
+as
+	Begin
+		Delete From CompraFornecedor Where Cod_Compra = @CodCompra
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Compras_AtualizarCompra
+
+	@CodCompra int,
+	@CodFuncionario int,
+	@Data Date
+
+as
+	Begin
+		Update CompraFornecedor 
+		
+		Set
+			Cod_Funcionario	=	@CodFuncionario,
+			Data_Venda		=	@Data
+
+		Where Cod_Compra = @CodCompra
+
+/*		Update DetalheCompra
+
+		Set
+			cod_fornecedor
+	*/End
+go
+---------------------------------------------------
+create proc USP_CSharp_Compras_AtualizarPrecoCompra
+
+	@CodCompra int,
+	@ValorCompra decimal (7,2)
+as
+	Begin
+		Update CompraFornecedor 
+		
+		Set Valor_Compra = @ValorCompra
+
+		Where Cod_Compra = @CodCompra
+
+		End
+go
+---------------------------------------------------
+create proc USP_CSharp_Compras_ValidarExistenciaInsumoNaCompra
+
+	@CodCompra int,
+	@CodInsumo int
+
+as
+	Begin
+		Select count(*)
+		
+		From DetalheCompra
+
+		Where 
+			Cod_Compra = @CodCompra and
+			cod_insumo = @CodInsumo
+
+		End
+go
+---------------------------------------------------
+create proc USP_CSharp_Compras_ExcluirInsumoDaCompra
+
+	@CodCompra int,
+	@CodInsumo int
+
+as
+	Begin
+		Delete DetalheCompra
+		
+		Where 
+			Cod_Compra = @CodCompra and
+			cod_insumo = @CodInsumo
+
+		End
+go
 ---------------------------------------Procedures Java------------------------------------------------
 --------------------------------------RELATÓRIO---------------------------------------------
 ---TODO: mudar nome dessa proc pra se adequar à nomenclatura de entrega do Professor Luiz Ricardo
@@ -2969,12 +3484,6 @@ update TipoDespesa set NomeDespesa = @NomeDespesa, SituacaoDespesa = @SituacaoDe
 
 end
 go
-------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
-
-
 --------------------------------------------------ProcAlterarSenha------------------------------------------------------------------- 
 create proc JAVA_USP_AlterarSenha
  @Cod_Funcionario int,
@@ -3022,7 +3531,6 @@ begin
 end
 go
 ---------------------------------------------------------Lembretes-------------------------------------------------------------
-
 create procedure USP_JAVA_INSERELEMBRETE
 (
 
@@ -3044,12 +3552,7 @@ values (@codFuncionario, @Assunto, @Mensagem, @DataCriacao, @DataAviso, @Aviso )
 
 end
 go
-
 ---------------------------------------------------------Lembretes-------------------------------------------------------------
-
-
-
-
 create procedure USP_JAVA_ALTERALEMBRETE
 (
 @codLembrete int,
@@ -3073,7 +3576,7 @@ end
 ---------------------------------------------------------Lembretes-------------------------------------------------------------
 
 go
-
+----------------
 create procedure USP_JAVA_EXCLUILEMBRETE
 (
 @codLembrete int
@@ -3085,13 +3588,11 @@ begin
 
 delete Lembretes where codLembrete = @codLembrete
 
-
 end
 
 
 go
 ---------------------------------------------------------Backup-------------------------------------------------------------
-
 create procedure USP_JAVA_BACKUP
 (@Caminho varchar (200))
 
@@ -3106,11 +3607,7 @@ BACKUP DATABASE Pizzaria TO DISK = @Caminho
 end
 
 go
-
-
-
 --------------------------------------------------------Mensagens----------------------------------------------------------
-
 create procedure USP_JAVA_ENVIARMENSAGEM
 (
 @codRemetente int,
@@ -3142,10 +3639,7 @@ End
 
 
 go
-
-
 -----------------------------------------------------------------------------------------------------------------------------------
-
 create procedure USP_JAVA_RESPONDERMENSAGEM
 (
 @CodMensagem int,
@@ -3162,7 +3656,6 @@ end
 
 go
 --------------------------------------------------------------------------------------------------------------------------------------
-
 Create procedure USP_JAVA_DELETARMENSAGEM
 @CodMensagem int
 
@@ -3173,4 +3666,3 @@ begin
 delete from Mensagens where CodMensagem = @CodMensagem
 
 end
-

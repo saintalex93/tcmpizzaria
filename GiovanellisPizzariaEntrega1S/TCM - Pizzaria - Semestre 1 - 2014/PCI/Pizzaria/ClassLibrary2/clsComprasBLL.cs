@@ -92,7 +92,133 @@ namespace BLL
         {
             List<SqlParameter> lista = new List<SqlParameter>();
 
+            SqlParameter parametro  = new SqlParameter();
+            parametro.ParameterName = "@CodFuncionario";
+            parametro.Value         = objCompra.codFuncionario;
+            parametro.DbType        = System.Data.DbType.Int32;
+
+            lista.Add(parametro);
+
+            parametro = new SqlParameter();
+            parametro.ParameterName = "@CodFornecedor";
+            parametro.Value = objCompra.codFornecedor;
+            parametro.DbType = System.Data.DbType.Int32;
+
+            lista.Add(parametro);
+
+            parametro               = new SqlParameter();
+            parametro.ParameterName = "@Data";
+            parametro.Value         = objCompra.DataVenda;
+            parametro.DbType        = System.Data.DbType.Date;
+
+            lista.Add(parametro);
+
+            return Banco.ExecuteProc("USP_CSharp_Compras_RegistrarCompra", lista);
+        }
+
+        public DataTable PreencherComboBoxFornecedores()
+        {
+            List<SqlParameter> lista = null;
+
+            return Banco.ExecuteProc("USP_CSharp_Compras_PreencherComboBoxFornecedores", lista);
+        }
+
+        public DataTable BuscarInsumosNaCompra(clsCompra objCompra)
+        {
+            List<SqlParameter> lista = new List<SqlParameter>();
+
             SqlParameter parametro = new SqlParameter();
+            parametro.ParameterName = "@CodCompra";
+            parametro.Value = objCompra.codCompra;
+            parametro.DbType = System.Data.DbType.Int32;
+
+            lista.Add(parametro);
+
+            return Banco.ExecuteProc("USP_CSharp_Compras_BuscarInsumosNaCompra", lista);
+        }
+
+        public void InserirInsumoNaCompra(clsDetalheCompra objDetalheCompra)
+        {
+            List<SqlParameter> lista = new List<SqlParameter>();
+
+            SqlParameter parametro = new SqlParameter();
+            parametro.ParameterName = "@CodFornecedor";
+            parametro.Value = objDetalheCompra.codFornecedor;
+            parametro.DbType = System.Data.DbType.Int32;
+
+            lista.Add(parametro);
+
+            parametro = new SqlParameter();
+            parametro.ParameterName = "@CodCompra";
+            parametro.Value = objDetalheCompra.codCompra;
+            parametro.DbType = System.Data.DbType.Int32;
+
+            lista.Add(parametro);
+
+            parametro = new SqlParameter();
+            parametro.ParameterName = "@CodInsumo";
+            parametro.Value = objDetalheCompra.codInsumo;
+            parametro.DbType = System.Data.DbType.Int32;
+
+            lista.Add(parametro);
+
+            parametro = new SqlParameter();
+            parametro.ParameterName = "@Quantidade";
+            parametro.Value = objDetalheCompra.Quantidade;
+            parametro.DbType = System.Data.DbType.Decimal;
+
+            lista.Add(parametro);
+
+            parametro = new SqlParameter();
+            parametro.ParameterName = "@Valor";
+            parametro.Value = objDetalheCompra.valorInsumo;
+            parametro.DbType = System.Data.DbType.Decimal;
+
+            lista.Add(parametro);
+
+            Banco.ExecuteProc("USP_CSharp_Compras_InserirInsumoNaCompra", lista);
+        }
+
+        public DataTable ValidarAssociacoesNoBanco(clsCompra objCompra)
+        {
+            List<SqlParameter> lista = new List<SqlParameter>();
+
+            SqlParameter parametro = new SqlParameter();
+            parametro.ParameterName = "@CodCompra";
+            parametro.Value = objCompra.codCompra;
+            parametro.DbType = System.Data.DbType.Int32;
+
+            lista.Add(parametro);
+
+            return Banco.ExecuteProc("USP_CSharp_Compras_ValidarAssociacoesNoBanco", lista);
+        }
+
+        public void ExcluirCompra(clsCompra objCompra)
+        {
+            List<SqlParameter> lista = new List<SqlParameter>();
+
+            SqlParameter parametro = new SqlParameter();
+            parametro.ParameterName = "@CodCompra";
+            parametro.Value = objCompra.codCompra;
+            parametro.DbType = System.Data.DbType.Int32;
+
+            lista.Add(parametro);
+
+            Banco.ExecuteProc("USP_CSharp_Compras_ExcluirCompra", lista);
+        }
+        
+        public void AtualizarCompra(clsCompra objCompra)
+        {
+            List<SqlParameter> lista = new List<SqlParameter>();
+
+            SqlParameter parametro = new SqlParameter();
+            parametro.ParameterName = "@CodCompra";
+            parametro.Value = objCompra.codCompra;
+            parametro.DbType = System.Data.DbType.Int32;
+
+            lista.Add(parametro);
+
+            parametro = new SqlParameter();
             parametro.ParameterName = "@CodFuncionario";
             parametro.Value = objCompra.codFuncionario;
             parametro.DbType = System.Data.DbType.Int32;
@@ -106,7 +232,72 @@ namespace BLL
 
             lista.Add(parametro);
 
-            return Banco.ExecuteProc("USP_CSharp_Compras_RegistrarCompra", lista);
+            Banco.ExecuteProc("USP_CSharp_Compras_AtualizarCompra", lista);
         }
+
+        public void AtualizarPrecoCompra(clsDetalheCompra objDetalheCompra)
+        {
+            List<SqlParameter> lista = new List<SqlParameter>();
+
+            SqlParameter parametro = new SqlParameter();
+            parametro.ParameterName = "@CodCompra";
+            parametro.Value = objDetalheCompra.codCompra;
+            parametro.DbType = System.Data.DbType.Int32;
+
+            lista.Add(parametro);
+
+            parametro = new SqlParameter();
+            parametro.ParameterName = "@ValorCompra";
+            parametro.Value = objDetalheCompra.valorInsumo;
+            parametro.DbType = System.Data.DbType.Decimal;
+
+            lista.Add(parametro);
+
+            Banco.ExecuteProc("USP_CSharp_Compras_AtualizarPrecoCompra", lista);
+        }
+
+        public DataTable ValidarExistenciaInsumoNaCompra(clsDetalheCompra objDetalheCompra)
+        {
+            List<SqlParameter> lista = new List<SqlParameter>();
+
+            SqlParameter parametro = new SqlParameter();
+            parametro.ParameterName = "@CodCompra";
+            parametro.Value = objDetalheCompra.codCompra;
+            parametro.DbType = System.Data.DbType.Int32;
+
+            lista.Add(parametro);
+
+            parametro = new SqlParameter();
+            parametro.ParameterName = "@CodInsumo";
+            parametro.Value = objDetalheCompra.codInsumo;
+            parametro.DbType = System.Data.DbType.Int32;
+
+            lista.Add(parametro);
+
+            return Banco.ExecuteProc("USP_CSharp_Compras_ValidarExistenciaInsumoNaCompra", lista);
+        }
+
+
+        public DataTable ExcluirInsumoDaCompra(clsDetalheCompra objDetalheCompra)
+        {
+            List<SqlParameter> lista = new List<SqlParameter>();
+
+            SqlParameter parametro = new SqlParameter();
+            parametro.ParameterName = "@CodCompra";
+            parametro.Value = objDetalheCompra.codCompra;
+            parametro.DbType = System.Data.DbType.Int32;
+
+            lista.Add(parametro);
+
+            parametro = new SqlParameter();
+            parametro.ParameterName = "@CodInsumo";
+            parametro.Value = objDetalheCompra.codInsumo;
+            parametro.DbType = System.Data.DbType.Int32;
+
+            lista.Add(parametro);
+
+            return Banco.ExecuteProc("USP_CSharp_Compras_ExcluirInsumoDaCompra", lista);
+        }
+
     }
 }
