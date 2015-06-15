@@ -330,9 +330,9 @@ as
 			End
 	End
 	
-	go
+go
 	
-	create procedure USP_AdicionarVaga
+create procedure USP_AdicionarVaga
 (
 	@Titulo varchar(50),
 	@Descricao varchar (100),
@@ -341,8 +341,6 @@ as
 	@CodCategoria int,
 	@CodArea int,
 	@Data date
-	
-	
 )
 
 as
@@ -362,21 +360,20 @@ create procedure USP_EditarVaga
 	@CodVaga int,
 	@NovoTitulo varchar(50),
 	@NovaDescricao varchar (100),
-	@CodEmpresa int,
 	@NovoEndereco varchar (100),
 	@CodCategoria int,
-	@CodArea int,
-	@NovaData date,
-	@Estado int
+	@CodArea int
 )
 as
 	Begin
-		update Vagas set Titulo = @NovoTitulo, Descricao = @NovaDescricao, codEmpresa = @CodEmpresa, Endereco = @NovoEndereco
-		,codCategoria = @CodCategoria, codArea = @CodArea, Data = @NovaData, Estado = @Estado
-		 where codVaga = @CodVaga
+		update Vagas set 
+		Titulo = @NovoTitulo, 
+		Descricao = @NovaDescricao, 
+		Endereco = @NovoEndereco, 
+		codCategoria = @CodCategoria, 
+		codArea = @CodArea 
+		where codVaga = @CodVaga
 	End
-	
-	
 
 go
 
@@ -391,7 +388,7 @@ as
 	
 	
 	go
-	
+
 	create procedure USP_AtivarInativarVagas
 	
 	(
@@ -425,6 +422,6 @@ go
 	)
 AS
 	Begin
-		select v.Titulo, v.Descricao, v.Endereco, v.codCategoria, v.codArea from Vagas as v inner join Categorias as c on codEmpresa = 1 inner join Areas as a on a.codArea = v.codArea and c.codCategoria = v.codCategoria
+		select v.codVaga, v.Titulo, v.Descricao, v.Endereco, v.codCategoria, v.codArea from Vagas as v inner join Categorias as c on codEmpresa = 1 inner join Areas as a on a.codArea = v.codArea and c.codCategoria = v.codCategoria
 	End
 go
