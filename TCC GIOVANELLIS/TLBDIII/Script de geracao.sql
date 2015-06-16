@@ -3797,20 +3797,61 @@ create procedure USP_JAVA_RESPONDERMENSAGEM
 (
 @CodMensagem int,
 @Mensagem varchar (1000),
-@Assunto varchar (100)
-
+@Assunto varchar (100),
+@codRemetente int,
+@CodDestinatario int
 )
 
 as
+declare @Aviso int
+set @Aviso = 1
+Declare @DataCriacao date
+set @DataCriacao = GETDATE()
+Declare @HoraCriacao time
+set @HoraCriacao =  Convert(Char(8),GetDate(),114)
 
 begin
 
-update Mensagens set Mensagem = @Mensagem, Assunto = @Assunto where CodMensagem = @CodMensagem
+
+update Mensagens set CodRemetente = @codRemetente, CodDestinatario = @CodDestinatario, Mensagem = @Mensagem, Assunto = @Assunto, Aviso =@Aviso, DataCriacao = @DataCriacao,  HoraCriacao = @HoraCriacao
+where CodMensagem = @CodMensagem
 
 end
 
 go
 --------------------------------------------------------------------------------------------------------------------------------------
+create procedure USP_JAVA_ENCAMINHARMENSAGEM
+(
+@codRemetente int,
+@CodDestinatario int,
+@Assunto varchar (100),
+@Mensagem varchar (1000)
+)
+
+as
+declare @Aviso int
+set @Aviso = 1
+Declare @DataCriacao date
+set @DataCriacao = GETDATE()
+Declare @HoraCriacao time
+set @HoraCriacao =  Convert(Char(8),GetDate(),114)
+
+begin
+
+insert into Mensagens 
+(
+CodRemetente, CodDestinatario, Assunto, Mensagem, DataCriacao,HoraCriacao, Aviso
+)
+values
+(
+@codRemetente, @CodDestinatario, @Assunto, @Mensagem, @DataCriacao,@HoraCriacao, @Aviso
+)
+
+End
+
+go
+
+-----------------------------------------------------------------------------------------------
 Create procedure USP_JAVA_DELETARMENSAGEM
 @CodMensagem int
 
