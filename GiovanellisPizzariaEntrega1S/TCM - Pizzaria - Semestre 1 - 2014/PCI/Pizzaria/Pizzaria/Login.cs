@@ -107,15 +107,11 @@ namespace Pizzaria
 
         private void Login_Shown_1(object sender, EventArgs e)
         {
-            
-
             txt_usuario.Focus();
         }
 
         private void btnRede_Click(object sender, EventArgs e)
         {
-            Rede rede = new Rede();
-            rede.Show();
         }
 
         private void txt_usuario_Enter(object sender, EventArgs e)

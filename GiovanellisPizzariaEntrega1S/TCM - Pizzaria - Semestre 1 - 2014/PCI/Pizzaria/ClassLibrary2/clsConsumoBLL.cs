@@ -168,7 +168,7 @@ namespace BLL
                 lstParametros.Add(parametro);
 
                 parametro = new SqlParameter();
-                parametro.ParameterName = "@CodProdutoInsumo";
+                parametro.ParameterName = "@CodConsumo";
                 parametro.Value = objConsumo.CodProdutoInsumo;
                 parametro.DbType = System.Data.DbType.Int32;
                 lstParametros.Add(parametro);

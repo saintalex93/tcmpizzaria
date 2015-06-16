@@ -97,8 +97,6 @@ namespace Pizzaria
 
         private void Pedidos_Load(object sender, EventArgs e)
         {
-            //conexao = Acesso.Conexao;
-
         }
 
         private void btn_confirmar_Click(object sender, EventArgs e)
@@ -180,27 +178,6 @@ namespace Pizzaria
             objPedido.Cod_Cliente = gridClientesEncontrados.CurrentRow.Cells[0].Value.ToString();
 
             gridPedidosClientes.DataSource = pedidos.BuscarPedidosDoCliente(objPedido);
-
-/*            for (int i = 0; i < gridPedidosClientes.RowCount; i++)
-            {
-                string data = "";
-
-                if(gridPedidosClientes.Rows[i].Cells[1].Value != null)
-                    data = gridPedidosClientes.Rows[i].Cells[1].Value.ToString();
-
-
-                if(data.Length != 0)
-                    for (int j = 0; j < data.Length; j++)
-                        if (j == 4 || j == 7)
-                            data = data.Insert(j, "/");
-
-                data.Remove(9);
-
-                    gridPedidosClientes.Rows[i].Cells[1].Value = data;
-            }*/
-
-//            for (int i = 0; i < gridPedidosClientes.Columns.Count; i++)
-  //              gridPedidosClientes.Columns[i].Width = 70;
 
             txtPalavraChave.Clear();
             txtIDProduto.Clear();
@@ -345,7 +322,6 @@ namespace Pizzaria
 
         private void txtAjuste_Enter(object sender, EventArgs e)
         {
-//            txtAjuste.BackColor = Color.Aquamarine;
         }
         
         private void txtAjuste_Leave(object sender, EventArgs e)

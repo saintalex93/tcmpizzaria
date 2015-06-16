@@ -24,19 +24,6 @@ namespace Pizzaria
             InitializeComponent();
         }
 
-        private void Funcionario_Load(object sender, EventArgs e)
-        {
-            clsFuncionario teste = new clsFuncionario();
-            clsFuncionarioBLL testte1 = new clsFuncionarioBLL();
-            dtgv_gravacao.DataSource = testte1.SelecionaFuncionario(teste);
-
-            btn_alterar.Enabled = false;
-            btn_excluir.Enabled = false;
-            valida_cargo = false;
-            conexao = Acesso.Conexao;
-
-        }
-
         SqlConnection conn;
 
         string
@@ -55,18 +42,23 @@ namespace Pizzaria
             complemento = "",
             telefone = "",
             cel = "",
-            cpf = "",
-            strIncluir = "";
+            cpf = "";
 
         int num_endereco = 0;
         DateTime data;
 
-
-        //String com informações de acesso pro BD
-        string conexao = "";
-
         //Validar se e update ou insert
         Boolean valida = false, valida_cargo = false;
+        private void Funcionario_Load(object sender, EventArgs e)
+        {
+            clsFuncionario teste = new clsFuncionario();
+            clsFuncionarioBLL testte1 = new clsFuncionarioBLL();
+            dtgv_gravacao.DataSource = testte1.SelecionaFuncionario(teste);
+
+            btn_alterar.Enabled = false;
+            btn_excluir.Enabled = false;
+            valida_cargo = false;
+        }
 
         private void label15_Click(object sender, EventArgs e)
         {
@@ -83,14 +75,8 @@ namespace Pizzaria
 
         private void btn_salvar_Click_1(object sender, EventArgs e)
         {
-
-
-
-            //conexao = Rede.DataContainer.conexaoGlobal;
-
-
             //Valida se todos os campos estao preenchidos corretamente    
-            if (ValidaCampos() == true)
+            if (ValidaCampos())
             {
                 //Verifica se e para incluiur ou atualizar
                 switch (valida)
@@ -98,12 +84,10 @@ namespace Pizzaria
                     case true:
 
 
-                        //                            valida = false;
                         Clear_Dados();
                         btn_alterar.Enabled = false;
                         btn_excluir.Enabled = false;
                         mtxt_cpf.Enabled = true;
-                        //                            btn_salvar.Text = "Gravar";
                         dtgv_gravacao.Enabled = true;
 
                         break;
@@ -116,15 +100,12 @@ namespace Pizzaria
 
                         // fim da verificacao
 
-                        strIncluir = "select * from Funcionario where CPF_Funcionario = '" + cpf + "'";
                         if (ValidaCPF(cpf))
                         {
                             // se for verdadeiro nao encontrou cpf pode inserir
-
                             clsFuncionarioBLL teste = new clsFuncionarioBLL();
                             clsFuncionario teste1 = new clsFuncionario();
 
-                            //teste1.Cod_Permissao = int.Parse(cod_permissao);
                             teste1.Nome_Func = nome;
                             teste1.Bairro_Funcionario = bairro;
                             teste1.Celular_Funcionario = cel;
@@ -134,7 +115,6 @@ namespace Pizzaria
                             teste1.Login_Funcionario = txt_Usuario.Text.ToString();
                             teste1.Senha_Funcionario = txt_Senha.Text.ToString();
                             teste1.Telefone_Funcionario = telefone;
-                            //teste1.Cod_Func = int.Parse(cod_cliente);
                             teste1.Complemento_Funcionario = complemento;
                             teste1.CPF_Funcionario = cpf;
                             teste1.data_Nasc = data.ToString("yyyy/MM/dd");
@@ -144,10 +124,6 @@ namespace Pizzaria
                             teste1.Estado_Funcionario = cb_uf.SelectedItem.ToString();
 
                             teste.InsereFuncionario(teste1);
-
-
-
-                            //InsereFunc(strIncluir);
                         }
                         else
                         {
@@ -171,12 +147,8 @@ namespace Pizzaria
             {
                 gp_dadosfunc.Enabled = true;
                 groupBox3.Enabled = true;
-                //                dtgv_gravacao.Enabled = false;
-                //            valida = true;
                 btn_excluir.Enabled = true;
                 mtxt_cpf.Enabled = true;
-                //            btn_salvar.Text = "Atualizar";
-
                 btn_alterar.Text = "Salvar";
             }
             else if (btn_alterar.Text == "Salvar")
@@ -186,7 +158,6 @@ namespace Pizzaria
                     clsFuncionarioBLL teste = new clsFuncionarioBLL();
                     clsFuncionario teste1 = new clsFuncionario();
 
-                    //teste1.Cod_Permissao = int.Parse(cod_permissao);
                     teste1.Cod_Func = Int32.Parse(dtgv_gravacao.CurrentRow.Cells[0].Value.ToString());
                     teste1.Nome_Func = nome;
                     teste1.Bairro_Funcionario = bairro;
@@ -197,7 +168,6 @@ namespace Pizzaria
                     teste1.Login_Funcionario = txt_Usuario.Text.ToString();
                     teste1.Senha_Funcionario = txt_Senha.Text.ToString();
                     teste1.Telefone_Funcionario = telefone;
-                    //teste1.Cod_Func = int.Parse(cod_cliente);
                     teste1.Complemento_Funcionario = complemento;
                     teste1.CPF_Funcionario = cpf;
                     teste1.data_Nasc = data.ToString("yyyy/MM/dd");
@@ -208,8 +178,6 @@ namespace Pizzaria
 
                     teste.UpdateFuncionario(teste1);
 
-                    //strIncluir = "update Funcionario set Nome_Func = '" + txt_nome.Text + "',CPF_Funcionario = '" + mtxt_cpf.Text + "',Endereco_Funcionario = '" + txt_endereco.Text + "',Complemento_Funcionario ='" + txt_complemento.Text + "',Numero_Residencia = '" + txt_numero.Text + "',CEP_Funcionario = '" + mtxt_cep.Text + "',Estado_Funcionario = '" + cb_uf.Text + "',Cidade_Funcionario = '" + txt_cidade.Text + "' ,Email_Funcionario = '" + txt_email.Text + "' ,Telefone_Funcionario = '" + mtxt_telefone.Text + "' ,Celular_Funcionario = '" + mtxt_celular.Text + "' ,Bairro_Funcionario = '" + txt_bairro.Text + "', data_nasc = '" + data.ToString("yyyy/mm/dd") + "' where Cod_Funcionario =  '" + cod_cliente + "" + "'";
-                    //AtualizaFunc(strIncluir);
                     btn_alterar.Text = "Alterar";
 
                     Clear_Dados();
@@ -218,29 +186,12 @@ namespace Pizzaria
 
         }
 
-        private void btn_Cancelar_Click(object sender, EventArgs e)
-        {
-            dtgv_gravacao.Enabled = true;
-            gp_dadosfunc.Enabled = true;
-            groupBox3.Enabled = true;
-            valida = false;
-            btn_excluir.Enabled = false;
-            Clear_Dados();
-
-        }
-
         private void btn_excluir_Click(object sender, EventArgs e)
-        {/*
-            cpf = dtgv_gravacao.CurrentRow.Cells[0].Value.ToString();
-            strIncluir = "delete FuncPermissao where cod_Funcionario = '" + cpf + "'";
-            excluiFunc(strIncluir);
-            */
-
+        {
             clsFuncionario teste = new clsFuncionario();
             clsFuncionarioBLL teste1 = new clsFuncionarioBLL();
             teste.Cod_Func = Int32.Parse(dtgv_gravacao.CurrentRow.Cells[0].Value.ToString());
             teste1.DeleteFuncionario(teste);
-
 
             valida = false;
             preenchegrid();
@@ -254,12 +205,8 @@ namespace Pizzaria
             gp_dadosfunc.Enabled = true;
             groupBox3.Enabled = true;
 
-
-
             Clear_Dados();
             preenchegrid();
-
-
         }
 
         private void dtgv_gravacao_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -272,8 +219,6 @@ namespace Pizzaria
             txt_complemento.Text = dtgv_gravacao.CurrentRow.Cells[9].Value.ToString();
             txt_numero.Text = dtgv_gravacao.CurrentRow.Cells[4].Value.ToString();
             mtxt_cep.Text = dtgv_gravacao.CurrentRow.Cells[6].Value.ToString();
-            //Verificar logica para selecionar de acordo com o texto
-            //            cb_uf.SelectedText.Text = dtgw_dados.CurrentRow.Cells[7].Value.ToString();
             txt_cidade.Text = dtgv_gravacao.CurrentRow.Cells[8].Value.ToString();
             txt_email.Text = dtgv_gravacao.CurrentRow.Cells[12].Value.ToString();
             txt_bairro.Text = dtgv_gravacao.CurrentRow.Cells[5].Value.ToString();
@@ -283,18 +228,14 @@ namespace Pizzaria
             txt_Senha.Text = dtgv_gravacao.CurrentRow.Cells["Senha_Funcionario"].Value.ToString();
             int permissaoFuncionario = Int32.Parse(dtgv_gravacao.CurrentRow.Cells["Cod_Permissao"].Value.ToString());
 
-
             gp_dadosfunc.Enabled = false;
             groupBox3.Enabled = false;
 
-            //btn_excluir.Enabled = true;
             btn_alterar.Enabled = true;
             btn_alterar.Text = "Alterar";
 
             cod_cliente = dtgv_gravacao.CurrentRow.Cells[0].Value.ToString();
             cpf = dtgv_gravacao.CurrentRow.Cells[2].Value.ToString();
-
-
         }
 
         private void btn_Clear_Click(object sender, EventArgs e)
@@ -305,85 +246,19 @@ namespace Pizzaria
             valida = false;
             btn_excluir.Enabled = false;
             Clear_Dados();
-
-        }
-
-        private void btn_Buscar_Click(object sender, EventArgs e)
-        {
-            if (mtxt_cpf.Text.Replace(" ", "").Length == 14)
-            {
-                cpf = mtxt_cpf.Text;
-
-                if (ValidaCPF(cpf))
-                {
-                    MessageBox.Show("Não foi encontrado funcionario com este CPF");
-                    preenchegrid();
-
-
-
-                }
-                else
-                {
-                    strIncluir = "select * from Funcionario where CPF_Funcionario = '" + cpf + "'";
-                    DataTable conteudo = new DataTable();
-                    conteudo = Buscar(strIncluir);
-
-
-
-                    //conteudo.Rows[1].ItemArray.GetValue(0).ToString();
-
-
-                    txt_nome.Text = conteudo.Rows[0][1].ToString();
-                    mtxt_cpf.Text = conteudo.Rows[0][2].ToString();
-                    txt_endereco.Text = conteudo.Rows[0][3].ToString();
-                    txt_complemento.Text = conteudo.Rows[0][4].ToString();
-                    txt_numero.Text = conteudo.Rows[0][5].ToString();
-                    mtxt_cep.Text = conteudo.Rows[0][6].ToString();
-                    //Verificar logica para selecionar de acordo com o texto
-                    //cb_uf.SelectedText.Text = dtgw_dados.CurrentRow.Cells[7].Value.ToString();
-                    txt_cidade.Text = conteudo.Rows[0][8].ToString();
-                    txt_email.Text = conteudo.Rows[0][9].ToString();
-                    txt_bairro.Text = conteudo.Rows[0][10].ToString();
-                    mtxt_celular.Text = conteudo.Rows[0][11].ToString();
-                    mtxt_telefone.Text = conteudo.Rows[0][12].ToString();
-
-
-                    gp_dadosfunc.Enabled = false;
-                    groupBox3.Enabled = false;
-
-
-                    //btn_excluir.Enabled = true;
-                    btn_alterar.Enabled = true;
-
-
-                }
-
-
-            }
-
-            else
-            {
-                MessageBox.Show("Prencha corretamente o Campo CPF");
-                preenchegrid();
-            }
         }
 
         public void preenchegrid()
         {
-
             clsFuncionario teste = new clsFuncionario();
             clsFuncionarioBLL teste1 = new clsFuncionarioBLL();
 
             teste1.SelecionaFuncionario(teste);
-
-
-
         }
 
         public Boolean ValidaCampos()
         {
 
-            // MessageBox.Show("teste");
             if (txt_Senha.TextLength > 3)
             {
                 senha = txt_Senha.Text.ToString();
@@ -424,19 +299,13 @@ namespace Pizzaria
 
                                 if (dtp_datanasc.Value.Date.AddYears(18) <= DateTime.Today.ToLocalTime())
                                 {
-
                                     data = dtp_datanasc.Value;
-
-                                    //  MessageBox.Show(Convert.ToString(dtp_datanasc.Value.Date.AddYears(18)));
                                 }
                                 else
                                 {
-                                    //  MessageBox.Show(Convert.ToString(dtp_datanasc.Value.Date.AddYears(18)));
                                     MessageBox.Show("Data de Nascimento Incorreta");
                                     return false;
-                                    //cel = ""; 
                                 }
-
 
                                 // Valida Campo Celular
                                 if (mtxt_celular.Text.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "").Length >= 11 || mtxt_celular.Text.Replace(" ", "").Length == 0)
@@ -447,9 +316,7 @@ namespace Pizzaria
                                 {
                                     MessageBox.Show("Celular Incorreto");
                                     return false;
-                                    //cel = ""; 
                                 }
-
 
                                 //Valida Campo CEP
                                 if (mtxt_cep.Text.Replace(" ", "").Replace("-", "").Replace(".", "").Length == 8 || mtxt_cep.Text.Replace(" ", "").Replace("-", "").Replace(".", "").Length == 0)
@@ -540,13 +407,8 @@ namespace Pizzaria
                                     return false;
                                 }
 
-
                                 return true;
-
-
-
                             }
-
                             else
                             {
                                 MessageBox.Show("Telefone Incorreto!");
@@ -572,14 +434,11 @@ namespace Pizzaria
             {
                 MessageBox.Show("Senha deve conter no minimo 4 caracteres");
             }
-
             return false;
-
         }
 
         public void Clear_Dados()
         {
-
             txt_nome.Clear();
             mtxt_telefone.Clear();
             txt_email.Clear();
@@ -595,205 +454,8 @@ namespace Pizzaria
             txt_Senha.Clear();
             txt_Usuario.Clear();
 
-
             gp_dadosfunc.Enabled = true;
             groupBox3.Enabled = true;
-        }
-
-        public DataTable Buscar(string strIncluir)
-        {
-
-
-            SqlConnection conn = new SqlConnection(conexao);
-
-            conn.Open();
-            DataTable dt = new DataTable();
-
-            try
-            {
-
-
-                SqlCommand sqlComm = new SqlCommand(strIncluir, conn);
-
-                sqlComm.ExecuteNonQuery();
-                SqlDataAdapter da = new SqlDataAdapter();
-                da.SelectCommand = sqlComm;
-
-                da.Fill(dt);
-                if (dt.Rows.Count > 0)
-                {
-                    dtgv_gravacao.Columns.Clear();
-                    dtgv_gravacao.DataSource = dt;
-                    //  MessageBox.Show("CLiente com este CPF ja Cadastrado");
-                }
-
-                return dt;
-
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Falha ao conectar ao Bano de Dados, Contate seu suporte");
-
-                return dt;
-            }
-            conn.Close();
-
-
-        }
-
-        public void InsereFunc(string stringInc)
-        {
-            conn = new SqlConnection(conexao);
-            conn.Open();
-            try
-            {
-
-                SqlCommand sqlComm = new SqlCommand(stringInc, conn);
-
-                sqlComm.ExecuteNonQuery();
-                //Seleciona Cargo
-                DataTable dt = new DataTable();
-                try
-                {
-                    stringInc = "select cod_Permissao from Permissao where Cargo = '" + cargo + "'";
-                    sqlComm = new SqlCommand(stringInc, conn);
-
-                    sqlComm.ExecuteNonQuery();
-                    SqlDataAdapter da = new SqlDataAdapter();
-                    da.SelectCommand = sqlComm;
-                    da.Fill(dt);
-                    cod_permissao = dt.Rows[0][0].ToString();
-
-                    //Cod Funcionario
-
-                    dt = new DataTable();
-                    try
-                    {
-                        stringInc = "select cod_Funcionario from Funcionario where CPF_Funcionario = '" + cpf + "'";
-                        sqlComm = new SqlCommand(stringInc, conn);
-
-                        sqlComm.ExecuteNonQuery();
-                        da = new SqlDataAdapter();
-                        da.SelectCommand = sqlComm;
-                        da.Fill(dt);
-                        cod_cliente = dt.Rows[0][0].ToString();
-
-                        //insere tabela permissao funcionario
-
-                        dt = new DataTable();
-                        try
-                        {
-                            stringInc = "insert into FuncPermissao (Login_,Senha,Cod_Funcionario,Cod_Permissao) values ('" + usuario + "','" + senha + "','" + cod_cliente + "','" + cod_permissao + "')";
-                            sqlComm = new SqlCommand(stringInc, conn);
-
-                            sqlComm.ExecuteNonQuery();
-
-                            /*    stringInc = "update FUncPermissao set Login_ = '" + usuario + "',senha='" + senha + "',cod_Permissao = '" + cod_permissao + "' where cod_Funcionario ='" + cod_cliente + "'";
-                                sqlComm = new SqlCommand(stringInc, conn);
-                                sqlComm.ExecuteNonQuery();
-                             */
-
-                            stringInc = "update Funcionario set cod_Permissao = '" + cod_permissao + "'";
-                            sqlComm = new SqlCommand(stringInc, conn);
-                            sqlComm.ExecuteNonQuery();
-
-
-
-                        }
-                        catch (Exception)
-                        {
-                            MessageBox.Show("Falha tabela de permissoes de funcionario");
-                        }
-
-
-                    }
-                    catch (Exception)
-                    {
-                        MessageBox.Show("Falha ao obter numero do Funcionario");
-                    }
-
-
-
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Falha ao Selecionar o Cargo");
-                }
-
-
-
-
-
-
-                MessageBox.Show("Funcionario Inserido com sucesso");
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Falha ao Inserir Funcionario");
-
-            }
-            conn.Close();
-
-            preenchegrid();
-            Clear_Dados();
-        }
-
-        public void AtualizaFunc(string stringUpd)
-        {
-            conn = new SqlConnection(conexao);
-            conn.Open();
-
-            try
-            {
-                SqlCommand sqlComm = new SqlCommand(stringUpd, conn);
-
-                sqlComm.ExecuteNonQuery();
-
-                //Seleciona Cargo
-                DataTable dt = new DataTable();
-                try
-                {
-                    stringUpd = "select cod_Permissao from Permissao where Cargo = '" + cargo + "'";
-                    sqlComm = new SqlCommand(stringUpd, conn);
-
-                    sqlComm.ExecuteNonQuery();
-                    SqlDataAdapter da = new SqlDataAdapter();
-                    da.SelectCommand = sqlComm;
-                    da.Fill(dt);
-                    cod_permissao = dt.Rows[0][0].ToString();
-
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Falha ao Selecionar o Cargo");
-                }
-
-
-
-                stringUpd = "update FUncPermissao set Login_ = '" + usuario + "',senha='" + senha + "',cod_Permissao = '" + cod_permissao + "' where cod_Funcionario ='" + cod_cliente + "'";
-                sqlComm = new SqlCommand(stringUpd, conn);
-                sqlComm.ExecuteNonQuery();
-
-                stringUpd = "update Funcionario set cod_Permissao = '" + cod_permissao + "' where CPF_FUncionario ='" + cpf + "'";
-                sqlComm = new SqlCommand(stringUpd, conn);
-                sqlComm.ExecuteNonQuery();
-
-
-
-
-                MessageBox.Show("Dados do funcionario atualizado.");
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Falha ao Atualizar Funcionario");
-
-
-
-            }
-            conn.Close();
-
-            preenchegrid();
-
         }
 
         public Boolean ValidaCPF(string strValida)
@@ -808,70 +470,18 @@ namespace Pizzaria
 
             try
             {
-
                 if (dt.Rows.Count > 0)
-                {
                     return false;
-
-                }
             }
             catch (Exception)
             {
                 MessageBox.Show("Falha ao consultar CPF do Funcionario");
             }
-
+            
             return true;
-
-
-        }
-
-        public void excluiFunc(string strExclui)
-        {
-            conn = new SqlConnection(conexao);
-            conn.Open();
-            try
-            {
-
-                SqlCommand sqlComm = new SqlCommand(strExclui, conn);
-                sqlComm.ExecuteNonQuery();
-
-                strExclui = "update Pedido set cod_Funcionario = null where cod_Funcionario = '" + cpf + "'";
-                sqlComm = new SqlCommand(strExclui, conn);
-                sqlComm.ExecuteNonQuery();
-
-                strExclui = "update PedidoFornecedor set cod_Funcionario = null where cod_Funcionario = '" + cpf + "'";
-                sqlComm = new SqlCommand(strExclui, conn);
-                sqlComm.ExecuteNonQuery();
-
-                strExclui = "delete Funcionario where cod_Funcionario = '" + cpf + "'";
-                sqlComm = new SqlCommand(strExclui, conn);
-
-                sqlComm.ExecuteNonQuery();
-
-                MessageBox.Show("Funcionario Excluido com sucesso");
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Falha ao Excluir Funcionario");
-
-            }
-            conn.Close();
-
-            preenchegrid();
-            Clear_Dados();
         }
 
         private void dtgv_gravacao_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void dtp(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dtp_datanasc_ValueChanged(object sender, EventArgs e)
         {
 
         }
@@ -888,11 +498,7 @@ namespace Pizzaria
                 dt = teste.SelecionaCargo(teste1);
 
                 for (int i = 0; dt.Rows.Count > i; i++)
-                {
                     cbox_Cargo.Items.Add(dt.Rows[i][0].ToString());
-
-                }
-
             }
             catch (Exception)
             {
@@ -1092,7 +698,6 @@ namespace Pizzaria
 
         private void txtBuscaPorNome_TextChanged(object sender, EventArgs e)
         {
-            //Home.buscarPorNome(txtBuscaPorNome, mtxtBuscaPorCPF, "funcionario", "Nome_Func", dtgv_gravacao);
             clsFuncionario teste = new clsFuncionario();
             clsFuncionarioBLL teste1 = new clsFuncionarioBLL();
 
@@ -1107,17 +712,11 @@ namespace Pizzaria
 
         private void mtxtBuscaPorCPF_TextChanged(object sender, EventArgs e)
         {
-            //Home.buscarPorCPF(mtxtBuscaPorCPF, txtBuscaPorNome, dtgv_gravacao);
             clsFuncionario teste = new clsFuncionario();
             clsFuncionarioBLL teste1 = new clsFuncionarioBLL();
 
             teste.CPF_Funcionario = mtxtBuscaPorCPF.Text.ToString();
             dtgv_gravacao.DataSource = teste1.SelecionaFuncionario(teste);
         }
-
-
-
-
-
     }
 }

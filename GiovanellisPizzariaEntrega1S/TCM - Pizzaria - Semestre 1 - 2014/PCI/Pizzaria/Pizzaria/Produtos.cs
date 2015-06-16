@@ -66,37 +66,6 @@ namespace Pizzaria
             conn.Close();
         }
 
-        public void preenchegrid()
-        {
-
-            try
-            {
-                SqlConnection conn = new SqlConnection(conexao);
-                string strIncluir = "select Nome_Produto,Valor_Venda, sobe_site from produto";
-                conn.Open();
-                SqlCommand sqlComm = new SqlCommand(strIncluir, conn);
-
-                DataTable dt = new DataTable();
-
-                SqlDataAdapter da = new SqlDataAdapter();
-                da.SelectCommand = sqlComm;
-
-
-                da.Fill(dt);
-                conn.Close();
-                dtg_produtos.DataSource = dt;
-
-
-            }
-            catch (Exception)
-            {
-                conn.Close();
-                MessageBox.Show("Falha ao preencher tabela com produtos cadastrados");
-            }
-
-
-        }   
-
         private void Insumo_Load(object sender, EventArgs e)
         {
             conexao = Acesso.Conexao;

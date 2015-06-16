@@ -175,7 +175,7 @@ namespace Pizzaria
             btnAdicionarCompra.Enabled      =       false;
             btnRemoverCompra.Enabled        =       false;
 
-            groupFornecedores.Enabled        =       false;
+            groupFornecedores.Enabled       =       false;
 
             
         }
@@ -196,7 +196,7 @@ namespace Pizzaria
             atualizarComprasComFornecedor();
 
             groupFornecedores.Enabled           = true;
-            groupDetalhes.Enabled               = true;
+            //groupDetalhes.Enabled               = true;
 
             btnAdicionarCompra.Enabled          = true;
             btnRemoverCompra.Enabled            = true;
@@ -257,7 +257,7 @@ namespace Pizzaria
         {
             if (numQuantidadeInsumo.Value <= 0)
             {
-                Home.mensagemDeErro("É preciso fornecer a quantidade comprada de " + cbInsumo.SelectedText + ".", "Quantidade inválida");
+                Home.mensagemDeErro("É preciso fornecer a quantidade comprada de insumos." + ".", "Quantidade inválida");
 
                 return false;
             }

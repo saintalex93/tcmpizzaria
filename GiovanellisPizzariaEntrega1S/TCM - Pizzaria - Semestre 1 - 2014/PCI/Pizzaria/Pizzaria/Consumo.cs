@@ -120,12 +120,15 @@ namespace Pizzaria
                 categoria.FormHome = this.FormHome;
             }
             else
-            { 
+            {
+                FormHome.Enabled = true;
                 FormHome.Show();
                 FormHome.Focus();
             }
             
             //TODO: Corrigir volta da tela de Consumo pra Home. Ela tá se mantendo disabled.
+            
+            
             Dispose();
         }
 
@@ -341,19 +344,18 @@ namespace Pizzaria
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
-            if ((int)gridConsumo.CurrentRow.Cells[1].Value == (int)cbProduto.SelectedValue)
-            {
-                DialogResult dialogResult = MessageBox.Show("Deseja realmente remover esse registro?", "Aviso", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes)
+            if(Produtos.sequenciaCadastro)
+                if ((int)gridConsumo.CurrentRow.Cells[1].Value != (int)cbProduto.SelectedValue)
                 {
-                    clsConsumo objConsumo = new clsConsumo();
-                    objConsumo.CodProdutoInsumo = (int)gridConsumo.CurrentRow.Cells[0].Value;
-                    consumo.RemoverConsumo(objConsumo);
-                    gridConsumo.DataSource = consumo.MostrarConsumo();
+                    Home.mensagemDeErro("Na sequência de cadastro não é permitido remover itens de outros produtos no banco.", "Problema no fluxo");
+
+                    return;
                 }
-            }
-            else
-                Home.mensagemDeErro("Na sequência de cadastro não é permitido remover itens de outros produtos no banco.","Problema no fluxo");
+
+            clsConsumo objConsumo = new clsConsumo();
+            objConsumo.CodProdutoInsumo = (int)gridConsumo.CurrentRow.Cells[0].Value;
+            consumo.RemoverConsumo(objConsumo);
+            gridConsumo.DataSource = consumo.MostrarConsumo();
         }
 
         private void cbProduto_SelectionChangeCommitted(object sender, EventArgs e)

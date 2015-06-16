@@ -25,38 +25,167 @@ namespace BLL
                 ObjBanco = null;
             }
 
-         public DataTable SelecionaInsumo(clsInsumo objPedido)
+         public DataTable SelecionaInsumoPorNome(clsInsumo objInsumo)
          {  
-             List<SqlParameter> LstParametros = new List<SqlParameter>();
+             List<SqlParameter> lista = new List<SqlParameter>();
 
-             SqlParameter ParametroCodInsumo = new SqlParameter();
-             ParametroCodInsumo.ParameterName = "Cod_Insumo";
-             if (objPedido.Cod_Insumo > 0)
-                 ParametroCodInsumo.Value = objPedido.Cod_Insumo;
-             else
-                 ParametroCodInsumo.Value = null;
-             ParametroCodInsumo.DbType = System.Data.DbType.Int32;
+             SqlParameter parametro     = new SqlParameter();
+             parametro.ParameterName    = "@Nome";
+             parametro.Value            = objInsumo.Nome_Insumo;
+             parametro.DbType           = System.Data.DbType.String;
 
+             lista.Add(parametro);
 
-
-             LstParametros.Add(ParametroCodInsumo);
-             SqlParameter ParametroNomeInsumo = new SqlParameter();
-             ParametroNomeInsumo.ParameterName = "Nome_Insumo";
-             ParametroNomeInsumo.Value = objPedido.Nome_Insumo;
-             ParametroNomeInsumo.DbType = System.Data.DbType.String;
-
-
-
-             LstParametros.Add(ParametroNomeInsumo);
-
-
-
-             DataTable dt = ObjBanco.ExecuteProc("SP_CSHARP_SELECIONA_INSUMO", LstParametros);
-
+             DataTable dt = ObjBanco.ExecuteProc("USP_CSharp_Insumos_SelecionaInsumoPorNome", lista);
 
              return dt;
          }
 
+         public DataTable SelecionaInsumoPorID(clsInsumo objInsumo)
+         {  
+             List<SqlParameter> lista = new List<SqlParameter>();
 
+             SqlParameter parametro     = new SqlParameter();
+             parametro.ParameterName    = "@ID";
+             parametro.Value            = objInsumo.Cod_Insumo;
+             parametro.DbType           = System.Data.DbType.Int32;
+
+             lista.Add(parametro);
+
+             DataTable dt = ObjBanco.ExecuteProc("USP_CSharp_Insumos_SelecionaInsumoPorID", lista);
+
+             return dt;
+         }
+
+         public DataTable ValidaExistente(clsInsumo objInsumo)
+         {  
+            List<SqlParameter> lista = new List<SqlParameter>();
+
+            SqlParameter parametro = new SqlParameter();
+            parametro.ParameterName = "@Nome";
+            parametro.Value = objInsumo.Nome_Insumo;
+            parametro.DbType = System.Data.DbType.String;
+            
+             lista.Add(parametro);
+
+             DataTable dt = ObjBanco.ExecuteProc("USP_CSharp_Insumos_ValidaExistente", lista);
+
+             return dt;
+         }
+
+         public void InserirInsumo(clsInsumo objInsumo)
+         {  
+            List<SqlParameter> lista = new List<SqlParameter>();
+
+            SqlParameter parametro = new SqlParameter();
+            parametro.ParameterName = "@Nome";
+            parametro.Value = objInsumo.Nome_Insumo;
+            parametro.DbType = System.Data.DbType.String;
+            
+             lista.Add(parametro);
+
+             parametro = new SqlParameter();
+             parametro.ParameterName = "@Medida";
+             parametro.Value = objInsumo.Medida;
+             parametro.DbType = System.Data.DbType.String;
+
+             lista.Add(parametro);
+
+             parametro = new SqlParameter();
+             parametro.ParameterName = "@Validade";
+             parametro.Value = objInsumo.Validade;
+             parametro.DbType = System.Data.DbType.String;
+
+             lista.Add(parametro);
+
+             parametro = new SqlParameter();
+             parametro.ParameterName = "@Fabricacao";
+             parametro.Value = objInsumo.Fabricacao;
+             parametro.DbType = System.Data.DbType.Date;
+
+             lista.Add(parametro);
+
+             parametro = new SqlParameter();
+             parametro.ParameterName = "@QtdEstoque";
+             parametro.Value = objInsumo.QtdeEmEstoque;
+             parametro.DbType = System.Data.DbType.Decimal;
+
+             lista.Add(parametro);
+
+             parametro = new SqlParameter();
+             parametro.ParameterName = "@QtdRecomendavel";
+             parametro.Value = objInsumo.QtdeRecomendavel;
+             parametro.DbType = System.Data.DbType.Decimal;
+
+             lista.Add(parametro);
+
+             ObjBanco.ExecuteProc("USP_CSharp_Insumos_InserirInsumo", lista);
+         }
+
+         public DataTable CarregaInsumos()
+         {
+             List<SqlParameter> lista = null;
+
+             DataTable dt = ObjBanco.ExecuteProc("USP_CSharp_Insumos_CarregaInsumos", lista);
+
+             return dt;
+         }
+
+         public void AtualizarInsumo(clsInsumo objInsumo)
+         {
+             List<SqlParameter> lista = new List<SqlParameter>();
+
+             SqlParameter parametro = new SqlParameter();
+             parametro.ParameterName = "@CodInsumo";
+             parametro.Value = objInsumo.Cod_Insumo;
+             parametro.DbType = System.Data.DbType.Int32;
+
+             lista.Add(parametro);
+                 
+            parametro = new SqlParameter();
+             parametro.ParameterName = "@Nome";
+             parametro.Value = objInsumo.Nome_Insumo;
+             parametro.DbType = System.Data.DbType.String;
+
+             lista.Add(parametro);
+
+             parametro = new SqlParameter();
+             parametro.ParameterName = "@Medida";
+             parametro.Value = objInsumo.Medida;
+             parametro.DbType = System.Data.DbType.String;
+
+             lista.Add(parametro);
+
+             parametro = new SqlParameter();
+             parametro.ParameterName = "@Validade";
+             parametro.Value = objInsumo.Validade;
+             parametro.DbType = System.Data.DbType.String;
+
+             lista.Add(parametro);
+
+             parametro = new SqlParameter();
+             parametro.ParameterName = "@Fabricacao";
+             parametro.Value = objInsumo.Fabricacao;
+             parametro.DbType = System.Data.DbType.Date;
+
+             lista.Add(parametro);
+
+             parametro = new SqlParameter();
+             parametro.ParameterName = "@QtdEstoque";
+             parametro.Value = objInsumo.QtdeEmEstoque;
+             parametro.DbType = System.Data.DbType.Decimal;
+
+             lista.Add(parametro);
+
+             parametro = new SqlParameter();
+             parametro.ParameterName = "@QtdRecomendavel";
+             parametro.Value = objInsumo.QtdeRecomendavel;
+             parametro.DbType = System.Data.DbType.Decimal;
+
+             lista.Add(parametro);
+
+             ObjBanco.ExecuteProc("USP_CSharp_Insumos_AtualizarInsumo", lista);
+         }
+        
     }
 }

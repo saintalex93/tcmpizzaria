@@ -27,7 +27,12 @@ namespace Pizzaria
         private void Categorias_Load(object sender, EventArgs e)
         {
             if (Produtos.sequenciaCadastro)
+            { 
                 btnFinalizar.Text = "Finalizar";
+
+                btnCancelar.Visible = true;
+            }
+                
 
             btnAlterar.Enabled = false;
             btnRemoverCategoria.Enabled = false;

@@ -11,10 +11,9 @@ namespace DAL.Model
         public int Cod_Insumo { get; set; }
         public string Nome_Insumo { get; set; }
         public double ValorDeCompra { get; set; }
-        public int QtdeRecomendavel { get; set; }
-        public int QtdeEmEstoque { get; set; }
+        public decimal QtdeRecomendavel { get; set; }
+        public decimal QtdeEmEstoque { get; set; }
         public string Fabricacao { get; set; }
-        public string Recebimento { get; set; }
         public string Validade { get; set; }
         public string Medida { get; set; }
     }

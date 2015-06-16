@@ -309,15 +309,10 @@ namespace Pizzaria
             Home.preencherGrid("select * from "+ tabelaNoBanco +" where "+ colunaNaTabela +" like ('%" + campoDoNome.Text + "%')", tabelaNoPrograma);
         }
 
-        static public void buscarPorNome(TextBox campoDoNome, TextBox limparControle, string tabelaNoBanco, string colunaNaTabela, DataGridView tabelaNoPrograma)
-        {
-            limparControle.Text = "";
-
-            Home.preencherGrid("select * from " + tabelaNoBanco + " where " + colunaNaTabela + " like ('%" + campoDoNome.Text + "%')", tabelaNoPrograma);
-        }
-
         private void consumoToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Produtos.sequenciaCadastro = false;
+
             Consumo consumo = new Consumo();
             consumo.FormHome = this;
             this.Enabled = false;

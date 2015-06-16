@@ -101,7 +101,7 @@
             this.btnRemoverCompra.Location = new System.Drawing.Point(270, 93);
             this.btnRemoverCompra.Name = "btnRemoverCompra";
             this.btnRemoverCompra.Size = new System.Drawing.Size(23, 23);
-            this.btnRemoverCompra.TabIndex = 12;
+            this.btnRemoverCompra.TabIndex = 1;
             this.btnRemoverCompra.Text = "-";
             this.btnRemoverCompra.UseVisualStyleBackColor = true;
             this.btnRemoverCompra.Click += new System.EventHandler(this.btnRemoverCompra_Click);
@@ -127,7 +127,7 @@
             this.cbFuncionario.Location = new System.Drawing.Point(22, 35);
             this.cbFuncionario.Name = "cbFuncionario";
             this.cbFuncionario.Size = new System.Drawing.Size(121, 21);
-            this.cbFuncionario.TabIndex = 7;
+            this.cbFuncionario.TabIndex = 0;
             // 
             // dtCompra
             // 
@@ -135,7 +135,7 @@
             this.dtCompra.Location = new System.Drawing.Point(149, 35);
             this.dtCompra.Name = "dtCompra";
             this.dtCompra.Size = new System.Drawing.Size(81, 20);
-            this.dtCompra.TabIndex = 7;
+            this.dtCompra.TabIndex = 1;
             // 
             // label5
             // 
@@ -160,7 +160,7 @@
             this.btnAdicionarCompra.Location = new System.Drawing.Point(236, 33);
             this.btnAdicionarCompra.Name = "btnAdicionarCompra";
             this.btnAdicionarCompra.Size = new System.Drawing.Size(23, 23);
-            this.btnAdicionarCompra.TabIndex = 7;
+            this.btnAdicionarCompra.TabIndex = 2;
             this.btnAdicionarCompra.Text = "+";
             this.btnAdicionarCompra.UseVisualStyleBackColor = true;
             this.btnAdicionarCompra.Click += new System.EventHandler(this.btnAdicionarCompra_Click);
@@ -170,7 +170,7 @@
             this.btnAlterarCompra.Location = new System.Drawing.Point(204, 93);
             this.btnAlterarCompra.Name = "btnAlterarCompra";
             this.btnAlterarCompra.Size = new System.Drawing.Size(60, 23);
-            this.btnAlterarCompra.TabIndex = 18;
+            this.btnAlterarCompra.TabIndex = 0;
             this.btnAlterarCompra.Text = "Alterar";
             this.btnAlterarCompra.UseVisualStyleBackColor = true;
             this.btnAlterarCompra.Click += new System.EventHandler(this.btnAlterarCompra_Click);
@@ -188,7 +188,7 @@
             this.gridCompras.Name = "gridCompras";
             this.gridCompras.ReadOnly = true;
             this.gridCompras.Size = new System.Drawing.Size(278, 150);
-            this.gridCompras.TabIndex = 17;
+            this.gridCompras.TabIndex = 2;
             this.gridCompras.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridCompras_CellContentClick);
             // 
             // label12
@@ -213,7 +213,7 @@
             this.btnNovoFornecedor.Location = new System.Drawing.Point(613, 13);
             this.btnNovoFornecedor.Name = "btnNovoFornecedor";
             this.btnNovoFornecedor.Size = new System.Drawing.Size(102, 23);
-            this.btnNovoFornecedor.TabIndex = 10;
+            this.btnNovoFornecedor.TabIndex = 3;
             this.btnNovoFornecedor.Text = "Novo fornecedor";
             this.btnNovoFornecedor.UseVisualStyleBackColor = true;
             this.btnNovoFornecedor.Click += new System.EventHandler(this.btnNovoFornecedor_Click);
@@ -272,7 +272,7 @@
             this.gridFornecedores.Name = "gridFornecedores";
             this.gridFornecedores.ReadOnly = true;
             this.gridFornecedores.Size = new System.Drawing.Size(697, 150);
-            this.gridFornecedores.TabIndex = 7;
+            this.gridFornecedores.TabIndex = 2;
             this.gridFornecedores.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridFornecedores_CellClick);
             // 
             // txtPalavraChave
@@ -280,7 +280,7 @@
             this.txtPalavraChave.Location = new System.Drawing.Point(15, 39);
             this.txtPalavraChave.Name = "txtPalavraChave";
             this.txtPalavraChave.Size = new System.Drawing.Size(100, 20);
-            this.txtPalavraChave.TabIndex = 13;
+            this.txtPalavraChave.TabIndex = 0;
             this.txtPalavraChave.TextChanged += new System.EventHandler(this.txtPalavraChave_TextChanged);
             // 
             // btnVoltar
@@ -288,7 +288,7 @@
             this.btnVoltar.Location = new System.Drawing.Point(658, 534);
             this.btnVoltar.Name = "btnVoltar";
             this.btnVoltar.Size = new System.Drawing.Size(75, 23);
-            this.btnVoltar.TabIndex = 12;
+            this.btnVoltar.TabIndex = 0;
             this.btnVoltar.Text = "Voltar";
             this.btnVoltar.UseVisualStyleBackColor = true;
             this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
@@ -341,7 +341,7 @@
             this.cbInsumo.Location = new System.Drawing.Point(13, 35);
             this.cbInsumo.Name = "cbInsumo";
             this.cbInsumo.Size = new System.Drawing.Size(121, 21);
-            this.cbInsumo.TabIndex = 19;
+            this.cbInsumo.TabIndex = 0;
             // 
             // label3
             // 
@@ -357,7 +357,7 @@
             this.txtPreçoUnitario.Location = new System.Drawing.Point(226, 35);
             this.txtPreçoUnitario.Name = "txtPreçoUnitario";
             this.txtPreçoUnitario.Size = new System.Drawing.Size(54, 20);
-            this.txtPreçoUnitario.TabIndex = 17;
+            this.txtPreçoUnitario.TabIndex = 2;
             this.txtPreçoUnitario.Text = "0,00";
             // 
             // label10
@@ -380,7 +380,7 @@
             0});
             this.numQuantidadeInsumo.Name = "numQuantidadeInsumo";
             this.numQuantidadeInsumo.Size = new System.Drawing.Size(61, 20);
-            this.numQuantidadeInsumo.TabIndex = 21;
+            this.numQuantidadeInsumo.TabIndex = 1;
             this.numQuantidadeInsumo.ThousandsSeparator = true;
             // 
             // btnAdicionarInsumoNaCompra
@@ -388,7 +388,7 @@
             this.btnAdicionarInsumoNaCompra.Location = new System.Drawing.Point(287, 35);
             this.btnAdicionarInsumoNaCompra.Name = "btnAdicionarInsumoNaCompra";
             this.btnAdicionarInsumoNaCompra.Size = new System.Drawing.Size(23, 23);
-            this.btnAdicionarInsumoNaCompra.TabIndex = 19;
+            this.btnAdicionarInsumoNaCompra.TabIndex = 3;
             this.btnAdicionarInsumoNaCompra.Text = "+";
             this.btnAdicionarInsumoNaCompra.UseVisualStyleBackColor = true;
             this.btnAdicionarInsumoNaCompra.Click += new System.EventHandler(this.btnAdicionarInsumoNaCompra_Click);
@@ -398,7 +398,7 @@
             this.btnRemoverInsumoDaCompra.Location = new System.Drawing.Point(377, 93);
             this.btnRemoverInsumoDaCompra.Name = "btnRemoverInsumoDaCompra";
             this.btnRemoverInsumoDaCompra.Size = new System.Drawing.Size(23, 23);
-            this.btnRemoverInsumoDaCompra.TabIndex = 20;
+            this.btnRemoverInsumoDaCompra.TabIndex = 0;
             this.btnRemoverInsumoDaCompra.Text = "-";
             this.btnRemoverInsumoDaCompra.UseVisualStyleBackColor = true;
             this.btnRemoverInsumoDaCompra.Click += new System.EventHandler(this.btnRemoverInsumoDaCompra_Click);
@@ -422,7 +422,7 @@
             this.gridInsumos.Name = "gridInsumos";
             this.gridInsumos.ReadOnly = true;
             this.gridInsumos.Size = new System.Drawing.Size(391, 150);
-            this.gridInsumos.TabIndex = 18;
+            this.gridInsumos.TabIndex = 1;
             // 
             // Compras
             // 
@@ -435,7 +435,7 @@
             this.Controls.Add(this.groupFornecedores);
             this.Controls.Add(this.groupCompras);
             this.Name = "Compras";
-            this.Text = "Compras";
+            this.Text = " ";
             this.Load += new System.EventHandler(this.Compras_Load);
             this.groupCompras.ResumeLayout(false);
             this.groupCompras.PerformLayout();

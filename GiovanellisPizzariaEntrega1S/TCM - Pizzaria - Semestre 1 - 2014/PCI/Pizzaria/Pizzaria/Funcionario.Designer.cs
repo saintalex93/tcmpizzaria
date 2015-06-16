@@ -49,6 +49,7 @@
             this.lbl_telefone = new System.Windows.Forms.Label();
             this.lbl_cpf = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btn_salvar = new System.Windows.Forms.Button();
             this.cb_uf = new System.Windows.Forms.ComboBox();
             this.mtxt_cep = new System.Windows.Forms.MaskedTextBox();
             this.txt_complemento = new System.Windows.Forms.TextBox();
@@ -64,7 +65,6 @@
             this.lbl_bairro = new System.Windows.Forms.Label();
             this.lbl_endereco = new System.Windows.Forms.Label();
             this.dtgv_gravacao = new System.Windows.Forms.DataGridView();
-            this.btn_salvar = new System.Windows.Forms.Button();
             this.btn_alterar = new System.Windows.Forms.Button();
             this.btn_excluir = new System.Windows.Forms.Button();
             this.btn_sair = new System.Windows.Forms.Button();
@@ -304,6 +304,16 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Dados de Localidade";
             // 
+            // btn_salvar
+            // 
+            this.btn_salvar.Location = new System.Drawing.Point(303, 436);
+            this.btn_salvar.Name = "btn_salvar";
+            this.btn_salvar.Size = new System.Drawing.Size(75, 23);
+            this.btn_salvar.TabIndex = 17;
+            this.btn_salvar.Text = "Inserir funcionário";
+            this.btn_salvar.UseVisualStyleBackColor = true;
+            this.btn_salvar.Click += new System.EventHandler(this.btn_salvar_Click_1);
+            // 
             // cb_uf
             // 
             this.cb_uf.FormattingEnabled = true;
@@ -489,16 +499,6 @@
             this.dtgv_gravacao.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgv_gravacao_CellContentClick);
             this.dtgv_gravacao.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgv_gravacao_CellDoubleClick);
             // 
-            // btn_salvar
-            // 
-            this.btn_salvar.Location = new System.Drawing.Point(305, 431);
-            this.btn_salvar.Name = "btn_salvar";
-            this.btn_salvar.Size = new System.Drawing.Size(75, 23);
-            this.btn_salvar.TabIndex = 17;
-            this.btn_salvar.Text = "Inserir funcionário";
-            this.btn_salvar.UseVisualStyleBackColor = true;
-            this.btn_salvar.Click += new System.EventHandler(this.btn_salvar_Click_1);
-            // 
             // btn_alterar
             // 
             this.btn_alterar.Location = new System.Drawing.Point(8, 635);
@@ -583,6 +583,7 @@
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(392, 694);
             this.ControlBox = false;
+            this.Controls.Add(this.btn_salvar);
             this.Controls.Add(this.mtxtBuscaPorCPF);
             this.Controls.Add(this.txtBuscaPorNome);
             this.Controls.Add(this.label2);
@@ -591,7 +592,6 @@
             this.Controls.Add(this.btn_sair);
             this.Controls.Add(this.btn_excluir);
             this.Controls.Add(this.btn_alterar);
-            this.Controls.Add(this.btn_salvar);
             this.Controls.Add(this.dtgv_gravacao);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.gp_dadosfunc);
