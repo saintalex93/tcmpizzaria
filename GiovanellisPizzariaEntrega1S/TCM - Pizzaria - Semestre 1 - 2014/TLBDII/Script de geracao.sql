@@ -2873,6 +2873,21 @@ as
 	End
 go
 ---------------------------------------------------
+create proc CSharp_Seleciona_pedido
+(
+	@data_inicial varchar(50) = null,
+	@data_final varchar(50) = null
+)
+as
+begin
+	
+	select * from Pedido
+	where
+	Data between @data_inicial and @data_final or @data_inicial is null and @data_final is null
+	
+end
+---------------------------------------------------
+go
 create proc USP_CSharp_Pedidos_InserirNovoPedido
 
 	@CodCliente int,
