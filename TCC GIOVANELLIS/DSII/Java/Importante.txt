@@ -1,0 +1,17 @@
+Para importrar o Jcalendar, clique em resolver problemas de projeto, criar a biblioteca JCalendar, e inserir os dados que se encontram na pasta Libs
+
+
+No formulário relatórios, filtre : //Coloquei email do gmail e senha: "Seuemail@gmail.com", "Senha"
+E caso queira enviar relatório por e-mail, insira um e-mail do gmail.
+
+Para mudar a string de conexão, vá até o pacote giovanellis, e altere Servidor, usuário e senha.
+
+
+Utilize o usuário administrador Alex - 123, para ter acesso a todas as funcionalidades.
+
+
+Obs: Deixei a fonte do menu da home um pouco menor, pois não sei em que monitor o sistema será aberto.
+**Após 20 minutos sem mexer no mouse, o sistema fecha. Mas caso fique 10 minutos sem mexer a pizza começa a desaparecer!
+
+
+Obrigado, e boa navegação!

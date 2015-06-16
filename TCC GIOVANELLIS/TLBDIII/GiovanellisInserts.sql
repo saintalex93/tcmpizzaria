@@ -1,8 +1,11 @@
+
 	-------------------------------------------------------------- 
 	-------------------------------------------------------------- 
 	-------------------- *** INSERT'S *** ------------------------ 
 	-------------------------------------------------------------- 
 	-------------------------------------------------------------- 
+use pizzaria
+go
 insert into Cliente
 (
 Nome_Cliente,
@@ -34,7 +37,7 @@ values
 ('Gabriel Andrade Yamotsu','155.157.758-61','Rua das Laranjeiras',1785,null,'Capão Redondo','54189-206','SP','São Paulo','Em frente ao Habibs','(11)4972-1546',null,'andrade@yahoo.com','andrade123','12/05/1985','18/11/1982')
 
 go
-
+-----------------------------------------
 insert into Permissao
 (
 Cargo
@@ -46,7 +49,7 @@ values
 ('Entregador'),
 ('Operador')
 go
-
+-----------------------------------------
 insert into Funcionario
 (
 Nome_Func,
@@ -109,7 +112,7 @@ values
 ('Champagne', 15, 10, 20, 'Un.'),
 ('Camarão', 25, 2, 5, 'Kg')
 go
-
+-----------------------------------------
 insert into Categoria
 (
 NomeCategoria
@@ -136,7 +139,7 @@ values
 ('Aves'),
 ('Bebidas Alcóolicas')
 go
-
+-----------------------------------------
 insert into insumocategoria
 (
 codInsumo,
@@ -171,7 +174,7 @@ values
 (26,15)
 
 go
-
+-----------------------------------------
 insert into Produto
 (
 Nome_Produto,
@@ -201,7 +204,7 @@ values
 ('Porção de Calabresa',18.00,0),
 ('Porção de Provolone',17.00,0)
 go
-
+-----------------------------------------
 insert into ProdutoCategoria
 (
 CodCategoria,
@@ -229,7 +232,7 @@ values
 (4,19),
 (4,20)
 go
-
+-----------------------------------------
 insert into Pedido
 (Data,Hora,Valor,Cod_Funcionario,Cod_Cliente, Observacao,Origem,Estado, EnderecoAlt, BairroAlt, NumeroResidencialAlt, NumeroApartamentoAlt ,FormaDePagamento,ValorPago)
 values
@@ -263,7 +266,7 @@ values
 ('06/06/2015','00:16',75.00,3,2,'Favor, ao chegar, ligar no meu celular e não pelo interfone nem campainha','Site','Cancelado','','','', '','Cartão',75.00),
 ('06/04/2015','21:15',75.00,2,5,'','In loco','Cancelado','','','', '','Cartão',75.00)
 go
-
+-----------------------------------------
 insert into Fornecedor
 (
 CNPJ_CPF,
@@ -293,7 +296,7 @@ values
 
 ('444-444-444-44', 'Hortaliças Hortolândia EPP', 'Viva Verde Hortaliças', 'Santander', '9966', '013568-7', 'Romualdo Nunes', '97777-5501', 'rn@vivaverde.com.br', '(11)2233-5678', 'Rua do Chá', '56', '03456-321', 'SP', 'São Paulo', 'Ceasa', 'Box 100')
 go
-
+-----------------------------------------
 insert into Promocao
 (
 Nome_Promocao,
@@ -308,7 +311,7 @@ values
 ('Super três queijos','Pizza de três queijos com 25% de desconto!.',75, '2016-01-01', 1,0),
 ('Olha o refrigerante','Refrigerante agora está mais barato',90, '2016-01-01', 1, 1)
 go
-
+-----------------------------------------
 insert into insumo_fornecedor
 (
 Cod_Insumo,
@@ -319,7 +322,7 @@ values
 (3, 4),
 (1, 4)
 go
-
+-----------------------------------------
 insert into Consumo
 (
 CodProduto,
@@ -448,7 +451,7 @@ values
 
 (20,14,0.400)
 go
-
+-----------------------------------------
 insert into ProdutoPromocao
 (
 Cod_Promocao,
@@ -466,7 +469,7 @@ values
 (2, 8),
 (3, 14)
 go
-
+-----------------------------------------
 insert into CompraFornecedor
 (
 Valor_Compra,
@@ -480,7 +483,7 @@ values
 (200.00, '17/09/2015', 2,3),
 (350.00, '22/10/2015', 4,3)
 go
-
+-----------------------------------------
 insert into Detalhe_Pedido
 (
 cod_pedido,
@@ -623,7 +626,7 @@ values
 (24,0,15)
 
 go
-
+-----------------------------------------
 insert into TipoDespesa
 (
 NomeDespesa,
@@ -636,7 +639,7 @@ values
 ('Energia elétrica','Ativo'),
 ('Telefone','Ativo')
 go
-
+-----------------------------------------
 insert into Despesa
 (
 ValorDespesa,
@@ -650,7 +653,7 @@ values
 (182.35, '14/05/2015', '17/05/2015', 5),
 (120.35, '13/06/2015', '17/06/2015', 3)
 go
-
+-----------------------------------------
 insert into Pagamento
 (
 ValorPagamento,
@@ -663,7 +666,7 @@ Values
 2500.00,'2015-01-11', 'Salário', 2
 )
 go
-
+-----------------------------------------
 insert into DetalheCompra 
 values
 (1,1,2,35,6),
@@ -673,3 +676,16 @@ values
 (4,4,1,20,10),
 (2,3,13,20,10),
 (2,3,8,9,10)
+go
+-----------------------------------------
+insert into Mensagens (CodRemetente, CodDestinatario, Assunto, Mensagem, DataCriacao, HoraCriacao, Aviso)
+values
+(5,2,'Pizza doce','Lembrar de inserir Pizza doce no cardápio','2015-06-15','15:12:27',1),
+(5,1,'Teleffy','Favor pegar o Teleffy do Talaris','2015-06-15','15:12:27',1),
+(5,3,'Integrante','Lembrar de lembrar','2015-06-14','15:12:27',1),
+(5,4,'Insumos','Checkar Insumos','2015-06-14','16:12:27',1),
+(2,5,'Relatórios','Favor enviar relatório do mês de Abril','2015-06-15','18:12:27',1),
+(3,5,'Despesas','Favor cadastrar despesas das novas contas','2015-06-15','15:12:27',1),
+(1,5,'Salário','Efetuar o Pagamento do Sr João','2015-06-14','18:12:27',1),
+(3,5,'Encontro','Hoje, às 21h?','2015-06-14','15:12:27',1)
+go

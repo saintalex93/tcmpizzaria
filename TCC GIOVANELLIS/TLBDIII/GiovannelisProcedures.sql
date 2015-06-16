@@ -1,9 +1,10 @@
-	-------------------------------------------------------------- 
+-------------------------------------------------------------- 
 	-------------------------------------------------------------- 
 	-------------------- *** PROCEDURES *** ----------------------
 	-------------------------------------------------------------- 
 	-------------------------------------------------------------- 
-
+use pizzaria
+go
 create proc sp_Select_cliente
 (
 @NOME_CLIENTE VARCHAR(40) = null,
@@ -55,73 +56,10 @@ from Cliente where
 (COMPLEMENTO_CLIENTE =@COMPLEMENTO_CLIENTE or @COMPLEMENTO_CLIENTE is null) and
 (TELEFONE_CLIENTE =@TELEFONE_CLIENTE or @TELEFONE_CLIENTE is null) and
 (CELULAR_CLIENTE =@CELULAR_CLIENTE or @CELULAR_CLIENTE is null) and
---(EMAIL_CLIENTE =@EMAIL_CLIENTE or @EMAIL_CLIENTE is null) and
 (SENHA_CLIENTE=@SENHA_CLIENTE  or @SENHA_CLIENTE is null) and
 (DATANASCIMENTO =@DATA_NASCIMENTO or @DATA_NASCIMENTO is null)
 end
 go
------------------------------------------
-/*
-create proc [dbo].[sp_insert_cliente]
-(
-@NOME_CLIENTE VARCHAR(40)= null,
-@CPF_CLIENTE VARCHAR(15)= null,
-@ENDERECO_CLIENTE VARCHAR(40)= null,
-@NUMERO_RESIDENCIA INT = null,
-@NUMERO_APARTAMENTO INT = null,
-@BAIRRO_CLIENTE VARCHAR(30)= null,
-@CEP_CLIENTE VARCHAR(9)= null,
-@ESTADO_CLIENTE VARCHAR(2)= null,
-@CIDADE_CLIENTE VARCHAR(20)= null,
-@COMPLEMENTO_CLIENTE VARCHAR(40)= null,
-@TELEFONE_CLIENTE VARCHAR(40)= null,
-@CELULAR_CLIENTE VARCHAR(15)= null,
-@EMAIL_CLIENTE VARCHAR(40)= null,
-@SENHA_CLIENTE VARCHAR(15)= null,
-@DATA_NASCIMENTO VARCHAR(10)= null
-
-)
-as
-Begin
-Insert into Cliente
-(
-NOME_CLIENTE ,
-CPF_CLIENTE ,
-ENDERECO_CLIENTE ,
-NUMERO_RESIDENCIA  ,
-NUMERO_APARTAMENTO  ,
-BAIRRO_CLIENTE ,
-CEP_CLIENTE ,
-ESTADO_CLIENTE ,
-CIDADE_CLIENTE ,
-COMPLEMENTO_CLIENTE ,
-TELEFONE_CLIENTE ,
-CELULAR_CLIENTE ,
-EMAIL_CLIENTE ,
-SENHA_CLIENTE ,
-DATANASCIMENTO
-)
-values (@NOME_CLIENTE ,
-@CPF_CLIENTE ,
-@ENDERECO_CLIENTE ,
-@NUMERO_RESIDENCIA  ,
-@NUMERO_APARTAMENTO  ,
-@BAIRRO_CLIENTE ,
-@CEP_CLIENTE ,
-@ESTADO_CLIENTE ,
-@CIDADE_CLIENTE ,
-@COMPLEMENTO_CLIENTE ,
-@TELEFONE_CLIENTE ,
-@CELULAR_CLIENTE ,
-@EMAIL_CLIENTE ,
-@SENHA_CLIENTE ,
-@DATA_NASCIMENTO 
-
-)
-
-end
-go
-*/
 -----------------------------------------
 create proc sp_Select_pedido
 (
@@ -1201,9 +1139,7 @@ as
 			End
 	End
 go
-
 ------------------------------------------------
-
 create proc USP_ASP_Pedidos_PedidoAtual
 (
 	@codCliente int
@@ -1214,8 +1150,6 @@ as
 	End
 	
 go
-
-
 ------------------------------------------------
 create proc USP_CSharp_Produto_MostrarTodosProdutos
 As
@@ -1659,7 +1593,7 @@ as
 		delete from Produto where Cod_Produto = (select max(Cod_Produto) from Produto)
 	End
 go
-
+---------------------------------------------------
 create proc USP_CSharp_Categoria_ValidarCategoriaNoBanco
 
 	@CodCategoria int,
@@ -1747,7 +1681,6 @@ as
 		insert into InsumoCategoria values (@CodInsumo, @CodCategoria)
 	End
 go
-
 ---------------------------------------------------
 create proc USP_CSharp_Categoria_RemoverInsumoDaCategoria
 
@@ -1827,7 +1760,679 @@ as
 	End
 go
 ---------------------------------------------------
+create proc USP_CSharp_Pedidos_BuscarClientesPorNome
+
+	@Nome varchar(30)
+
+as
+	Begin
+		select 
+			Cod_Cliente [ID],
+			Nome_Cliente [Nome],
+			CPF_Cliente [CPF]
+			
+		From Cliente 
+		
+		where Nome_Cliente like '%' + @Nome + '%'
+	End
+go
 ---------------------------------------------------
+create proc USP_CSharp_Pedidos_BuscarClientesPorCPF
+
+	@CPF varchar(15)
+
+as
+	Begin
+		select 
+			Cod_Cliente [ID],
+			Nome_Cliente [Nome],
+			CPF_Cliente [CPF]
+			
+		From Cliente 
+		
+		where CPF_Cliente like '%' + @cpf + '%'
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Pedidos_BuscarPedidosDoCliente
+
+	@CodCliente int
+
+as
+	Begin
+		select 
+			Cod_Pedido [ID],
+			Data,
+			Hora
+		
+		from Pedido
+		
+		where Cod_Cliente = @CodCliente
+		order by Data desc
+	End
+go
+---------------------------------------------------
+create proc CSharp_Seleciona_pedido
+(
+	@data_inicial varchar(50) = null,
+	@data_final varchar(50) = null
+)
+as
+begin
+	
+	select * from Pedido
+	where
+	Data between @data_inicial and @data_final or @data_inicial is null and @data_final is null
+	
+end
+---------------------------------------------------
+go
+create proc USP_CSharp_Pedidos_InserirNovoPedido
+
+	@CodCliente int,
+	@Data date,
+	@Hora time
+
+as
+	Begin
+	insert into Pedido 
+	(
+		Cod_Cliente,
+		Data,
+		Hora,
+		Valor
+	)
+	values
+	(
+		@CodCliente,
+		@Data,
+		@Hora,
+		0
+	)
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Pedidos_ValidarExclusaoDePedido	
+
+	@CodPedido int
+
+as
+	Begin
+		select count(*)
+
+		from Detalhe_Pedido
+
+		where Cod_Pedido = @CodPedido
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Pedidos_ExcluirPedido
+
+	@CodPedido int
+
+as
+	Begin
+		delete from Pedido where Cod_Pedido = @CodPedido
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Pedidos_BuscarProdutosDoPedido
+
+	@CodPedido int
+
+as
+	Begin
+		select 
+			
+			pr.Cod_Produto [ID Produto], 
+			pr.Nome_Produto [Produto], 
+			pr.Valor_Venda [Preço] 
+			
+			From Pedido pe
+			inner join Detalhe_Pedido dp on 
+				pe.Cod_Pedido = dp.Cod_Pedido 
+			inner join Produto pr on 
+				dp.Cod_Produto = pr.Cod_Produto and
+				dp.Cod_Pedido = @CodPedido
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Pedidos_BuscarProdutosPorPalavraChave
+
+	@Nome varchar(20)
+
+as
+	Begin
+		select 
+			Cod_Produto [ID], 
+			Nome_Produto [Produto], 
+			Valor_Venda [Preço] 
+			
+			From Produto
+
+			Where 
+				Nome_Produto like '%' + @Nome + '%' and
+				Cod_Produto > 0
+
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Pedidos_BuscarProdutosPorID
+
+	@ID int
+	
+as
+	Begin
+		select 
+			Cod_Produto [ID], 
+			Nome_Produto [Produto], 
+			Valor_Venda [Preço] 
+			
+			From Produto
+
+			Where 
+				Cod_Produto like @ID and
+				Cod_Produto > 0
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Pedidos_BuscarTodosProdutos
+as
+	Begin
+		select 
+			Cod_Produto [ID], 
+			Nome_Produto [Produto], 
+			Valor_Venda [Preço] 
+			
+			From Produto
+
+			Where Cod_Produto > 0
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Pedidos_InserirProdutoNoPedido
+
+	@CodProduto int,
+	@CodPedido int
+
+as
+	Begin
+		Insert into Detalhe_Pedido 
+		(
+			Cod_Produto,
+			Cod_Pedido
+		)
+		values
+		(
+			@CodProduto,
+			@CodPedido
+		)
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Pedidos_AtualizarValor
+
+	@CodPedido int,
+	@Valor decimal(5,2)
+
+as
+	Begin
+		Update Pedido 
+		
+		Set Valor = @Valor
+
+		Where Cod_Pedido = @CodPedido
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Pedidos_ExcluirProdutoDoPedido
+
+	@CodPedido int,
+	@CodProduto int
+
+as
+	Begin
+		Delete From Detalhe_Pedido
+		Where 
+			Cod_Pedido = @CodPedido and
+			Cod_Produto = @CodProduto
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Funcionarios_BuscarCargos
+as
+	Begin
+		Select Cargo, Cod_Permissao
+		From Permissao
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Compras_BuscarFornecedoresPorPalavraChave
+
+	@Palavra varchar(20)
+
+as
+	Begin
+		Select 
+			Cod_Fornecedor [ID],
+			Razao_Social [Razão social],
+			Nome_Fantasia [Nome fantasia],
+			Telefone_Comercial [Telefone],
+			Responsavel [Contato],
+			Celular_Responsavel [Celular contato]
+
+		From Fornecedor
+
+		Where 
+			Nome_Fantasia like '%' + @Palavra + '%' or
+			Razao_Social like '%' + @Palavra + '%' or
+			Responsavel like '%' + @Palavra + '%'
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Compras_BuscarFornecedoresPorID
+
+	@CodFornecedor int
+
+as
+	Begin
+		Select 
+			Cod_Fornecedor [ID],
+			Razao_Social [Razão social],
+			Nome_Fantasia [Nome fantasia],
+			Telefone_Comercial [Telefone],
+			Responsavel [Contato],
+			Celular_Responsavel [Celular contato]
+
+		From Fornecedor
+
+		Where 
+			Cod_Fornecedor = @CodFornecedor
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Compras_SelectFornecedores
+as
+	Begin
+		Select 
+			Cod_Fornecedor [ID],
+			Razao_Social [Razão social],
+			Nome_Fantasia [Nome fantasia],
+			Telefone_Comercial [Telefone],
+			Responsavel [Contato],
+			Celular_Responsavel [Celular contato]
+
+		From Fornecedor
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Compras_SelectFuncionarios
+as
+	Begin
+		Select 
+			Cod_Funcionario,
+			Nome_Func
+
+		From Funcionario
+
+		Order by Nome_Func
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Compras_BuscarComprasComFornecedor
+
+	@CodFornecedor int
+
+as
+	Begin
+		Select 
+		cf.Cod_Compra [ID],
+		cf.Valor_Compra [Valor],
+		cf.Data_Venda [Data],
+		f.Nome_Func [Funcionário]
+		
+		
+		From CompraFornecedor cf
+
+		Inner join Funcionario f on
+			Cod_Fornecedor = @CodFornecedor and
+			cf.Cod_Funcionario = f.Cod_Funcionario
+
+		order by cf.Cod_Compra desc
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Compras_PreencherComboBoxFornecedores
+as
+	Begin
+		Select 
+			Cod_Fornecedor,
+			Nome_Fantasia
+
+		From Fornecedor
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Compras_RegistrarCompra
+
+	@CodFuncionario int,
+	@CodFornecedor int,
+	@Data Date
+
+as
+	Begin
+		Insert Into CompraFornecedor
+		(
+			Cod_Fornecedor,
+			Cod_Funcionario,
+			Data_Venda,
+			Valor_Compra
+		)
+		Values
+		(
+			@CodFornecedor,
+			@CodFuncionario,
+			@Data,
+			0
+		)
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Compras_SelectInsumos
+as
+	Begin
+		Select
+			Cod_Insumo,
+			Nome_Insumo
+
+		From Insumo
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Compras_BuscarInsumosNaCompra
+
+	@CodCompra int
+
+as
+	Begin
+		Select
+			i.Cod_Insumo [ID Insumo],
+			i.Nome_Insumo [Insumo],
+			dc.valor_insumo [Valor],
+			dc.qdt_comprada [Qtde],
+			i.Medida
+
+		From DetalheCompra dc
+
+		Inner join Insumo i on
+		 i.Cod_Insumo = dc.cod_insumo and
+		 Cod_Compra = @CodCompra
+
+		 order by i.Nome_Insumo
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Compras_InserirInsumoNaCompra
+
+	@CodCompra int,
+	@CodFornecedor int,
+	@CodInsumo int,
+	@Quantidade decimal (7,2),
+	@Valor decimal (7,2)
+
+as
+	Begin
+		Insert Into DetalheCompra
+		(
+			cod_compra,
+			cod_fornecedor,
+			cod_insumo,
+			qdt_comprada,
+			valor_insumo
+		)
+		Values
+		(
+			@CodCompra,
+			@CodFornecedor,
+			@CodInsumo,
+			@Quantidade,
+			@Valor
+		)
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Compras_ValidarAssociacoesNoBanco
+
+	@CodCompra int
+
+as
+	Begin
+		Select count(*)
+
+		From DetalheCompra
+
+		Where cod_compra = @CodCompra
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Compras_ExcluirCompra
+
+	@CodCompra int
+
+as
+	Begin
+		Delete From CompraFornecedor Where Cod_Compra = @CodCompra
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Compras_AtualizarCompra
+
+	@CodCompra int,
+	@CodFuncionario int,
+	@Data Date
+
+as
+	Begin
+		Update CompraFornecedor 
+		
+		Set
+			Cod_Funcionario	=	@CodFuncionario,
+			Data_Venda		=	@Data
+
+		Where Cod_Compra = @CodCompra
+
+/*		Update DetalheCompra
+
+		Set
+			cod_fornecedor
+	*/End
+go
+---------------------------------------------------
+create proc USP_CSharp_Compras_AtualizarPrecoCompra
+
+	@CodCompra int,
+	@ValorCompra decimal (7,2)
+as
+	Begin
+		Update CompraFornecedor 
+		
+		Set Valor_Compra = @ValorCompra
+
+		Where Cod_Compra = @CodCompra
+
+		End
+go
+---------------------------------------------------
+create proc USP_CSharp_Compras_ValidarExistenciaInsumoNaCompra
+
+	@CodCompra int,
+	@CodInsumo int
+
+as
+	Begin
+		Select count(*)
+		
+		From DetalheCompra
+
+		Where 
+			Cod_Compra = @CodCompra and
+			cod_insumo = @CodInsumo
+
+		End
+go
+---------------------------------------------------
+create proc USP_CSharp_Compras_ExcluirInsumoDaCompra
+
+	@CodCompra int,
+	@CodInsumo int
+
+as
+	Begin
+		Delete DetalheCompra
+		
+		Where 
+			Cod_Compra = @CodCompra and
+			cod_insumo = @CodInsumo
+
+		End
+go
+---------------------------------------------------
+create proc USP_CSharp_Insumos_ValidaExistente
+
+	@Nome varchar(20)
+
+as
+	Begin
+		Select count(*) 
+
+		From Insumo
+		
+		Where 
+			Nome_Insumo = @Nome
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Insumos_InserirInsumo
+
+	@Nome				varchar(20),
+    @Medida				varchar(20),
+    @Validade			varchar(20),
+    @Fabricacao			Date,
+    @QtdEstoque			decimal(7,2),
+    @QtdRecomendavel	decimal (7,2)
+
+as
+	Begin
+		Insert Into Insumo
+		(
+			Nome_Insumo,
+			Medida,
+			Validade,
+			Fabricacao,
+			QtdeEmEstoque,
+			QtdeRecomendavel
+		)
+		Values
+		(
+			@Nome,
+			@Medida,
+			@Validade,
+			@Fabricacao,
+			@QtdEstoque,
+			@QtdRecomendavel		
+		)
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Insumos_CarregaInsumos
+as
+	Begin
+		Select
+			Cod_Insumo			[ID],
+			Nome_Insumo			[Insumo],
+			QtdeRecomendavel	[Qtd Recomendavel],
+			QtdeEmEstoque		[Qtd Em Estoque],
+			Medida,
+			Fabricacao			[Data de fabricação],
+			Validade
+		
+		From Insumo
+
+		Order By Cod_Insumo Desc
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Insumos_SelecionaInsumoPorNome
+
+	@Nome varchar(20)
+
+as
+	Begin
+		Select 
+			Cod_Insumo			[ID],
+			Nome_Insumo			[Insumo],
+			QtdeRecomendavel	[Qtd Recomendavel],
+			QtdeEmEstoque		[Qtd Em Estoque],
+			Medida,
+			Fabricacao			[Data de fabricação],
+			Validade
+		
+		From Insumo
+
+		Where Nome_Insumo like '%' + @Nome + '%'
+
+		Order By Cod_Insumo Desc
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Insumos_SelecionaInsumoPorID
+
+	@ID int
+
+as
+	Begin
+		Select 
+			Cod_Insumo			[ID],
+			Nome_Insumo			[Insumo],
+			QtdeRecomendavel	[Qtd Recomendavel],
+			QtdeEmEstoque		[Qtd Em Estoque],
+			Medida,
+			Fabricacao			[Data de fabricação],
+			Validade
+		
+		From Insumo
+
+		Where Cod_Insumo = @ID
+
+		Order By Cod_Insumo Desc
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Insumos_AtualizarInsumo
+
+	@CodInsumo int,
+	@Nome				varchar(20),
+    @Medida				varchar(20),
+    @Validade			varchar(20),
+    @Fabricacao			Date,
+    @QtdEstoque			decimal(7,2),
+    @QtdRecomendavel	decimal (7,2)
+
+as
+	Begin
+		Update Insumo
+		Set
+			Nome_Insumo = @Nome,
+			Medida = @Medida,
+			Validade = @Validade,
+			Fabricacao = @Fabricacao,
+			QtdeEmEstoque = @QtdEstoque,
+			QtdeRecomendavel = @QtdRecomendavel
+
+		Where Cod_Insumo = @CodInsumo
+	End
+go
+
 
 ---------------------------------------Procedures Java------------------------------------------------
 --------------------------------------RELATÓRIO---------------------------------------------
@@ -1971,12 +2576,6 @@ update TipoDespesa set NomeDespesa = @NomeDespesa, SituacaoDespesa = @SituacaoDe
 
 end
 go
-------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
-
-
 --------------------------------------------------ProcAlterarSenha------------------------------------------------------------------- 
 create proc JAVA_USP_AlterarSenha
  @Cod_Funcionario int,
@@ -2023,8 +2622,21 @@ begin
 	Values (@ValorPagamento, @DataExpedido, @TipoPagamento, @CodFuncionario)
 end
 go
----------------------------------------------------------Lembretes-------------------------------------------------------------
 
+----------------------------------------------------------------------------------------------------------------------------------------------
+create proc JAVA_USP_AlteracaoFuncionario
+@ValorPagamento float,
+@DataExpedido date,
+@TipoPagamento varchar (30),
+@CodFuncionario int,
+@codDespesa int
+as
+begin
+	update Pagamento set ValorPagamento = @ValorPagamento, DataExpedido = @DataExpedido, TipoPagamento = @TipoPagamento, Cod_Funcionario = @CodFuncionario
+	where cod_pagamento = @codDespesa
+end
+go
+---------------------------------------------------------Lembretes-------------------------------------------------------------
 create procedure USP_JAVA_INSERELEMBRETE
 (
 
@@ -2046,12 +2658,7 @@ values (@codFuncionario, @Assunto, @Mensagem, @DataCriacao, @DataAviso, @Aviso )
 
 end
 go
-
 ---------------------------------------------------------Lembretes-------------------------------------------------------------
-
-
-
-
 create procedure USP_JAVA_ALTERALEMBRETE
 (
 @codLembrete int,
@@ -2075,7 +2682,7 @@ end
 ---------------------------------------------------------Lembretes-------------------------------------------------------------
 
 go
-
+----------------
 create procedure USP_JAVA_EXCLUILEMBRETE
 (
 @codLembrete int
@@ -2087,13 +2694,11 @@ begin
 
 delete Lembretes where codLembrete = @codLembrete
 
-
 end
 
 
 go
 ---------------------------------------------------------Backup-------------------------------------------------------------
-
 create procedure USP_JAVA_BACKUP
 (@Caminho varchar (200))
 
@@ -2108,55 +2713,98 @@ BACKUP DATABASE Pizzaria TO DISK = @Caminho
 end
 
 go
-
-
-
 --------------------------------------------------------Mensagens----------------------------------------------------------
-
 create procedure USP_JAVA_ENVIARMENSAGEM
 (
 @codRemetente int,
 @CodDestinatario int,
 @Assunto varchar (100),
-@Mensagem varchar (1000),
-@DataCriacao date
+@Mensagem varchar (1000)
 )
 
 as
+declare @Aviso int
+set @Aviso = 1
+Declare @DataCriacao date
+set @DataCriacao = GETDATE()
+Declare @HoraCriacao time
+set @HoraCriacao =  Convert(Char(8),GetDate(),114)
 
 begin
 
 insert into Mensagens 
 (
-CodRemetente, CodDestinatario, Assunto, Mensagem, DataCriacao
+CodRemetente, CodDestinatario, Assunto, Mensagem, DataCriacao,HoraCriacao, Aviso
 )
 values
 (
-@codRemetente, @CodDestinatario, @Assunto, @Mensagem, @DataCriacao
+@codRemetente, @CodDestinatario, @Assunto, @Mensagem, @DataCriacao,@HoraCriacao, @Aviso
 )
 
 End
+
+
 go
-
 -----------------------------------------------------------------------------------------------------------------------------------
-
 create procedure USP_JAVA_RESPONDERMENSAGEM
 (
 @CodMensagem int,
-@Mensagem varchar (1000)
+@Mensagem varchar (1000),
+@Assunto varchar (100),
+@codRemetente int,
+@CodDestinatario int
 )
 
 as
+declare @Aviso int
+set @Aviso = 1
+Declare @DataCriacao date
+set @DataCriacao = GETDATE()
+Declare @HoraCriacao time
+set @HoraCriacao =  Convert(Char(8),GetDate(),114)
 
 begin
 
-update Mensagens set Mensagem = @Mensagem where CodMensagem = @CodMensagem
+
+update Mensagens set CodRemetente = @codRemetente, CodDestinatario = @CodDestinatario, Mensagem = @Mensagem, Assunto = @Assunto, Aviso =@Aviso, DataCriacao = @DataCriacao,  HoraCriacao = @HoraCriacao
+where CodMensagem = @CodMensagem
 
 end
 
 go
 --------------------------------------------------------------------------------------------------------------------------------------
+create procedure USP_JAVA_ENCAMINHARMENSAGEM
+(
+@codRemetente int,
+@CodDestinatario int,
+@Assunto varchar (100),
+@Mensagem varchar (1000)
+)
 
+as
+declare @Aviso int
+set @Aviso = 1
+Declare @DataCriacao date
+set @DataCriacao = GETDATE()
+Declare @HoraCriacao time
+set @HoraCriacao =  Convert(Char(8),GetDate(),114)
+
+begin
+
+insert into Mensagens 
+(
+CodRemetente, CodDestinatario, Assunto, Mensagem, DataCriacao,HoraCriacao, Aviso
+)
+values
+(
+@codRemetente, @CodDestinatario, @Assunto, @Mensagem, @DataCriacao,@HoraCriacao, @Aviso
+)
+
+End
+
+go
+
+-----------------------------------------------------------------------------------------------
 Create procedure USP_JAVA_DELETARMENSAGEM
 @CodMensagem int
 
