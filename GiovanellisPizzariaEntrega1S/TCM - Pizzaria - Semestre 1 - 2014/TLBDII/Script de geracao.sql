@@ -245,7 +245,7 @@ go
 create table CompraFornecedor
 (
 Cod_Compra INT IDENTITY(1,1) PRIMARY KEY,
-Valor_Compra DECIMAL(10),
+Valor_Compra DECIMAL(10,2),
 Data_Venda DATE,
 Cod_Fornecedor INT FOREIGN KEY REFERENCES Fornecedor(Cod_Fornecedor),
 Cod_Funcionario INT FOREIGN KEY REFERENCES Funcionario(Cod_Funcionario)
@@ -278,7 +278,7 @@ cod_compra int foreign key references comprafornecedor (cod_compra),
 cod_fornecedor int foreign key references Fornecedor (cod_fornecedor),
 cod_insumo int foreign key references insumo (cod_insumo),
 valor_insumo decimal (6,2),
-qdt_comprada int,
+qdt_comprada decimal (6,2)
 )
 go
 -----------------------------------------
@@ -2654,7 +2654,7 @@ as
 		delete from Produto where Cod_Produto = (select max(Cod_Produto) from Produto)
 	End
 go
-
+---------------------------------------------------
 create proc USP_CSharp_Categoria_ValidarCategoriaNoBanco
 
 	@CodCategoria int,
@@ -2820,7 +2820,7 @@ as
 		update Pedido set Cod_Funcionario = @CodFuncionario where Cod_Pedido = @CodPedido
 	End
 go
-
+---------------------------------------------------
 create proc USP_CSharp_Pedidos_BuscarClientesPorNome
 
 	@Nome varchar(30)
@@ -3357,6 +3357,144 @@ as
 
 		End
 go
+---------------------------------------------------
+create proc USP_CSharp_Insumos_ValidaExistente
+
+	@Nome varchar(20)
+
+as
+	Begin
+		Select count(*) 
+
+		From Insumo
+		
+		Where 
+			Nome_Insumo = @Nome
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Insumos_InserirInsumo
+
+	@Nome				varchar(20),
+    @Medida				varchar(20),
+    @Validade			varchar(20),
+    @Fabricacao			Date,
+    @QtdEstoque			decimal(7,2),
+    @QtdRecomendavel	decimal (7,2)
+
+as
+	Begin
+		Insert Into Insumo
+		(
+			Nome_Insumo,
+			Medida,
+			Validade,
+			Fabricacao,
+			QtdeEmEstoque,
+			QtdeRecomendavel
+		)
+		Values
+		(
+			@Nome,
+			@Medida,
+			@Validade,
+			@Fabricacao,
+			@QtdEstoque,
+			@QtdRecomendavel		
+		)
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Insumos_CarregaInsumos
+as
+	Begin
+		Select
+			Cod_Insumo			[ID],
+			Nome_Insumo			[Insumo],
+			QtdeRecomendavel	[Qtd Recomendavel],
+			QtdeEmEstoque		[Qtd Em Estoque],
+			Medida,
+			Fabricacao			[Data de fabricação],
+			Validade
+		
+		From Insumo
+
+		Order By Cod_Insumo Desc
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Insumos_SelecionaInsumoPorNome
+
+	@Nome varchar(20)
+
+as
+	Begin
+		Select 
+			Cod_Insumo			[ID],
+			Nome_Insumo			[Insumo],
+			QtdeRecomendavel	[Qtd Recomendavel],
+			QtdeEmEstoque		[Qtd Em Estoque],
+			Medida,
+			Fabricacao			[Data de fabricação],
+			Validade
+		
+		From Insumo
+
+		Where Nome_Insumo like '%' + @Nome + '%'
+
+		Order By Cod_Insumo Desc
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Insumos_SelecionaInsumoPorID
+
+	@ID int
+
+as
+	Begin
+		Select 
+			Cod_Insumo			[ID],
+			Nome_Insumo			[Insumo],
+			QtdeRecomendavel	[Qtd Recomendavel],
+			QtdeEmEstoque		[Qtd Em Estoque],
+			Medida,
+			Fabricacao			[Data de fabricação],
+			Validade
+		
+		From Insumo
+
+		Where Cod_Insumo = @ID
+
+		Order By Cod_Insumo Desc
+	End
+go
+---------------------------------------------------
+create proc USP_CSharp_Insumos_AtualizarInsumo
+
+	@CodInsumo int,
+	@Nome				varchar(20),
+    @Medida				varchar(20),
+    @Validade			varchar(20),
+    @Fabricacao			Date,
+    @QtdEstoque			decimal(7,2),
+    @QtdRecomendavel	decimal (7,2)
+
+as
+	Begin
+		Update Insumo
+		Set
+			Nome_Insumo = @Nome,
+			Medida = @Medida,
+			Validade = @Validade,
+			Fabricacao = @Fabricacao,
+			QtdeEmEstoque = @QtdEstoque,
+			QtdeRecomendavel = @QtdRecomendavel
+
+		Where Cod_Insumo = @CodInsumo
+	End
+go
+
+
 ---------------------------------------Procedures Java------------------------------------------------
 --------------------------------------RELATÓRIO---------------------------------------------
 ---TODO: mudar nome dessa proc pra se adequar à nomenclatura de entrega do Professor Luiz Ricardo
@@ -3681,3 +3819,8 @@ begin
 delete from Mensagens where CodMensagem = @CodMensagem
 
 end
+
+select * from Funcionario
+select * from Permissao
+
+select * from Insumo
