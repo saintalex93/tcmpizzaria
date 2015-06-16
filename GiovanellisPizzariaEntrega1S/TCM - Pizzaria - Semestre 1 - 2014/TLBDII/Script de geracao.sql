@@ -3796,14 +3796,16 @@ go
 create procedure USP_JAVA_RESPONDERMENSAGEM
 (
 @CodMensagem int,
-@Mensagem varchar (1000)
+@Mensagem varchar (1000),
+@Assunto varchar (100)
+
 )
 
 as
 
 begin
 
-update Mensagens set Mensagem = @Mensagem where CodMensagem = @CodMensagem
+update Mensagens set Mensagem = @Mensagem, Assunto = @Assunto where CodMensagem = @CodMensagem
 
 end
 
@@ -3820,7 +3822,3 @@ delete from Mensagens where CodMensagem = @CodMensagem
 
 end
 
-select * from Funcionario
-select * from Permissao
-
-select * from Insumo
