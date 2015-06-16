@@ -48,7 +48,6 @@
     <Compile Include="clsInsumoBLL.cs" />
     <Compile Include="clsLogjnBLL.cs" />
     <Compile Include="clsPedidoBLL.cs" />
-    <Compile Include="clsPermissaoBLL.cs" />
     <Compile Include="clsProdutoBLL.cs" />
     <Compile Include="clsProdutoPromocaoBLL.cs" />
     <Compile Include="clsPromocaoBLL.cs" />

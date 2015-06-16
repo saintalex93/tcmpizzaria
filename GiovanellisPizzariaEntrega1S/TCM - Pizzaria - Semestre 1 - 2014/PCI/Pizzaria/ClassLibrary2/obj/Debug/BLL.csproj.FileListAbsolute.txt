@@ -5,3 +5,10 @@ F:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 
 F:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\ClassLibrary2\obj\Debug\BLL.csprojResolveAssemblyReference.cache
 F:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\ClassLibrary2\obj\Debug\ClassLibrary2.dll
 F:\Giovanelli's Pizzaria\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\ClassLibrary2\obj\Debug\ClassLibrary2.pdb
+C:\Users\Casa\Documents\TortoiseSVN\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\ClassLibrary2\obj\Debug\BLL.csprojResolveAssemblyReference.cache
+C:\Users\Casa\Documents\TortoiseSVN\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\ClassLibrary2\obj\Debug\ClassLibrary2.dll
+C:\Users\Casa\Documents\TortoiseSVN\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\ClassLibrary2\obj\Debug\ClassLibrary2.pdb
+C:\Users\Casa\Documents\TortoiseSVN\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\ClassLibrary2\bin\Debug\ClassLibrary2.dll
+C:\Users\Casa\Documents\TortoiseSVN\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\ClassLibrary2\bin\Debug\ClassLibrary2.pdb
+C:\Users\Casa\Documents\TortoiseSVN\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\ClassLibrary2\bin\Debug\ClassLibrary1.dll
+C:\Users\Casa\Documents\TortoiseSVN\GiovanellisPizzariaEntrega1S\TCM - Pizzaria - Semestre 1 - 2014\PCI\Pizzaria\ClassLibrary2\bin\Debug\ClassLibrary1.pdb

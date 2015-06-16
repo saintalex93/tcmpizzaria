@@ -25,6 +25,31 @@ namespace BLL
             Banco = null;
         }
 
+
+
+        public DataTable Relatorio_pedido(clsPedido objCliente)
+        {
+            List<SqlParameter> lista = new List<SqlParameter>();
+
+            SqlParameter parametro = new SqlParameter();
+            parametro.ParameterName = "Data_Inicial";
+            parametro.Value = objCliente.Data;
+            parametro.DbType = System.Data.DbType.String;
+
+            lista.Add(parametro);
+
+            SqlParameter parametro1 = new SqlParameter();
+            parametro1.ParameterName = "Data_Final";
+            parametro1.Value = objCliente.DataFim;
+            parametro1.DbType = System.Data.DbType.String;
+
+            lista.Add(parametro1);
+            DataTable dt = new DataTable();
+
+            return dt = Banco.ExecuteProc("CSharp_Seleciona_pedido", lista);
+        }
+
+
         public DataTable BuscarClientesPorNome(clsCliente objCliente) 
         {
             List<SqlParameter> lista = new List<SqlParameter>();
