@@ -1054,73 +1054,10 @@ from Cliente where
 (COMPLEMENTO_CLIENTE =@COMPLEMENTO_CLIENTE or @COMPLEMENTO_CLIENTE is null) and
 (TELEFONE_CLIENTE =@TELEFONE_CLIENTE or @TELEFONE_CLIENTE is null) and
 (CELULAR_CLIENTE =@CELULAR_CLIENTE or @CELULAR_CLIENTE is null) and
---(EMAIL_CLIENTE =@EMAIL_CLIENTE or @EMAIL_CLIENTE is null) and
 (SENHA_CLIENTE=@SENHA_CLIENTE  or @SENHA_CLIENTE is null) and
 (DATANASCIMENTO =@DATA_NASCIMENTO or @DATA_NASCIMENTO is null)
 end
 go
------------------------------------------
-/*
-create proc [dbo].[sp_insert_cliente]
-(
-@NOME_CLIENTE VARCHAR(40)= null,
-@CPF_CLIENTE VARCHAR(15)= null,
-@ENDERECO_CLIENTE VARCHAR(40)= null,
-@NUMERO_RESIDENCIA INT = null,
-@NUMERO_APARTAMENTO INT = null,
-@BAIRRO_CLIENTE VARCHAR(30)= null,
-@CEP_CLIENTE VARCHAR(9)= null,
-@ESTADO_CLIENTE VARCHAR(2)= null,
-@CIDADE_CLIENTE VARCHAR(20)= null,
-@COMPLEMENTO_CLIENTE VARCHAR(40)= null,
-@TELEFONE_CLIENTE VARCHAR(40)= null,
-@CELULAR_CLIENTE VARCHAR(15)= null,
-@EMAIL_CLIENTE VARCHAR(40)= null,
-@SENHA_CLIENTE VARCHAR(15)= null,
-@DATA_NASCIMENTO VARCHAR(10)= null
-
-)
-as
-Begin
-Insert into Cliente
-(
-NOME_CLIENTE ,
-CPF_CLIENTE ,
-ENDERECO_CLIENTE ,
-NUMERO_RESIDENCIA  ,
-NUMERO_APARTAMENTO  ,
-BAIRRO_CLIENTE ,
-CEP_CLIENTE ,
-ESTADO_CLIENTE ,
-CIDADE_CLIENTE ,
-COMPLEMENTO_CLIENTE ,
-TELEFONE_CLIENTE ,
-CELULAR_CLIENTE ,
-EMAIL_CLIENTE ,
-SENHA_CLIENTE ,
-DATANASCIMENTO
-)
-values (@NOME_CLIENTE ,
-@CPF_CLIENTE ,
-@ENDERECO_CLIENTE ,
-@NUMERO_RESIDENCIA  ,
-@NUMERO_APARTAMENTO  ,
-@BAIRRO_CLIENTE ,
-@CEP_CLIENTE ,
-@ESTADO_CLIENTE ,
-@CIDADE_CLIENTE ,
-@COMPLEMENTO_CLIENTE ,
-@TELEFONE_CLIENTE ,
-@CELULAR_CLIENTE ,
-@EMAIL_CLIENTE ,
-@SENHA_CLIENTE ,
-@DATA_NASCIMENTO 
-
-)
-
-end
-go
-*/
 -----------------------------------------
 create proc sp_Select_pedido
 (
@@ -3683,6 +3620,20 @@ begin
 	Values (@ValorPagamento, @DataExpedido, @TipoPagamento, @CodFuncionario)
 end
 go
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+create proc JAVA_USP_AlteracaoFuncionario
+@ValorPagamento float,
+@DataExpedido date,
+@TipoPagamento varchar (30),
+@CodFuncionario int,
+@codDespesa int
+as
+begin
+	update Pagamento set ValorPagamento = @ValorPagamento, DataExpedido = @DataExpedido, TipoPagamento = @TipoPagamento, Cod_Funcionario = @CodFuncionario
+	where cod_pagamento = @codDespesa
+end
+go
 ---------------------------------------------------------Lembretes-------------------------------------------------------------
 create procedure USP_JAVA_INSERELEMBRETE
 (
@@ -3863,4 +3814,3 @@ delete from Mensagens where CodMensagem = @CodMensagem
 
 end
 
---
