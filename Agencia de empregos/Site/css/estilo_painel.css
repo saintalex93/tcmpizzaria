@@ -335,3 +335,38 @@ div[class*="painel"] tr td:first-child a {
     color: #fff;
     background: #3498db;
 }
+
+/* CSS DA PÁGINA DE GERENCIAR VAGAS */
+
+.gerenciaVaga {
+}
+.gerenciaVaga table {
+    margin: 0 auto;
+}
+.gerenciaVaga tr td, .gerenciaVaga tr th {
+    text-align: center;
+    padding: 5px;
+    border: 1px solid #3498db;
+}
+.gerenciaVaga tr th:first-child {
+    border: 0;
+}
+.gerenciaVaga tr td:first-child a {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 17px;
+    color: inherit;
+}
+.linhaSelecionadaVaga {
+    color: #fff;
+}
+
+.gerenciaVaga input[type="submit"] {
+    margin: 20px auto;
+    display: block;
+    padding: 7px;
+    border-radius: 5px;
+    background: #ff6a00;
+    font-size: 17px;
+    color: #fff;
+}

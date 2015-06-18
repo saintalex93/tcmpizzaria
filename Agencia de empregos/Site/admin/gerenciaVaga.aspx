@@ -4,9 +4,31 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <article class="gerenciaVaga">
-        <div class="wrapper">
-            <h1>Gerenciador de Vagas</h1>
-        </div>
+        <h1>Gerenciador de Vagas</h1>
+
+        <%-- ADICIONANDO COMPONENTES AJAX --%>
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+            <ContentTemplate>
+
+                <asp:GridView ID="gdVagas" runat="server" OnRowCreated="esconderCodigos">
+                    <SelectedRowStyle CssClass="linhaSelecionadaVaga" />
+
+                    <Columns>
+                        <asp:CommandField SelectText=">>>" ShowSelectButton="true">
+                        </asp:CommandField>
+                    </Columns>
+
+                    <EmptyDataTemplate>
+                        Não existem vagas !
+                    </EmptyDataTemplate>
+                </asp:GridView>
+
+                <asp:Button ID="btnAlterarEstado" runat="server" Text="Alterar Estado" OnClick="AlterarEstado" />
+
+            </ContentTemplate>
+        </asp:UpdatePanel>
+
     </article>
 </asp:Content>
 

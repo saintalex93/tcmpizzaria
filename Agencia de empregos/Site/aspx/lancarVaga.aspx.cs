@@ -69,29 +69,29 @@ public partial class aspx_lancarVaga : System.Web.UI.Page
     */ 
     protected bool validarCampos()
     {
-        if (txtNomeVaga.Text.Length <= 0 && txtEditarNomeVaga.Text.Length <= 0)
+        if (txtNomeVaga.Text.Length <= 0)
         {
             ScriptManager.RegisterClientScriptBlock(this.Page, this.Page.GetType(), "alert", "alert('Digite algum título para sua vaga.');", true);
             return false;
         }
-        else if (txtEnderecoVaga.Text.Length <= 0 && txtEditarEnderecoVaga.Text.Length <= 0)
+        else if (txtEnderecoVaga.Text.Length <= 0)
         {
             ScriptManager.RegisterClientScriptBlock(this.Page, this.Page.GetType(), "alert", "alert('Digite algum endereço para sua vaga.');", true);
             return false;
         }
-        else if (txtDescricaoVaga.Text.Length <= 0 && txtEditarDescricaoVaga.Text.Length <= 0)
+        else if (txtDescricaoVaga.Text.Length <= 0)
         {
             ScriptManager.RegisterClientScriptBlock(this.Page, this.Page.GetType(), "alert", "alert('Digite alguma descrição para sua vaga.');", true);
             return false;
         }
-        else if (ddlCategorias.SelectedIndex == 0 && ddlEditaCategoria.SelectedIndex == 0)
+        else if (ddlCategorias.SelectedIndex == 0)
         {
-            ScriptManager.RegisterClientScriptBlock(this.Page, this.Page.GetType(), "alert", "alert('Ecolha alguma categoria para sua vaga.');", true);
+            ScriptManager.RegisterClientScriptBlock(this.Page, this.Page.GetType(), "alert", "alert('Escolha alguma categoria para sua vaga.');", true);
             return false;
         }
-        else if (ddlAreas.SelectedIndex == 0 && ddlEditaArea.SelectedIndex == 0)
+        else if (ddlAreas.SelectedIndex == 0)
         {
-            ScriptManager.RegisterClientScriptBlock(this.Page, this.Page.GetType(), "alert", "alert('Ecolha alguma área para sua vaga.');", true);
+            ScriptManager.RegisterClientScriptBlock(this.Page, this.Page.GetType(), "alert", "alert('Escolha alguma área para sua vaga.');", true);
             return false;
         }
         else
@@ -139,7 +139,7 @@ public partial class aspx_lancarVaga : System.Web.UI.Page
 
     protected void editarVaga(object sender, EventArgs e)
     {
-        if (gdEditaVaga.SelectedRow.RowIndex > 0)
+        if (gdEditaVaga.SelectedRow.RowIndex >= 0)
         {
             Conexao con = new Conexao();
             con.conectar();
@@ -170,7 +170,7 @@ public partial class aspx_lancarVaga : System.Web.UI.Page
 
     protected void removerVaga(object sender, EventArgs e)
     {
-        if (gdRemoveVaga.SelectedRow.RowIndex > 0)
+        if (gdRemoveVaga.SelectedRow.RowIndex >= 0)
         {
             int codigoVaga = Convert.ToInt32(gdRemoveVaga.SelectedRow.Cells[1].Text);
             Conexao con = new Conexao();

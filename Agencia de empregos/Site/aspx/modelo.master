@@ -6,6 +6,7 @@
 <head runat="server">
     <title>Giovanelli's Empregos</title>
     <meta charset="utf-8" />
+    <link rel="shortcut icon" type="image/x-icon" href="../imagens/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="../css/estilo_agencia.css" />
     <script>
         $(document).ready(function () {
@@ -62,7 +63,7 @@
 
         <section>
 
-        <!-- CONTEÚDO DINÂMICO DAS OUTRAS PÁGINAS ENTRA AQUI -->
+        <%-- CONTEÚDO DINÂMICO DAS OUTRAS PÁGINAS ENTRA AQUI --%>
         <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
 
         </asp:ContentPlaceHolder>

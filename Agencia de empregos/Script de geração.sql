@@ -389,22 +389,20 @@ as
 	
 	go
 
-	create procedure USP_AtivarInativarVagas
+alter procedure USP_AtivarInativarVagas
 	
-	(
-	@CodVaga int,
-	@Estado int
-	)
-	
-	as
-	declare @Estado2 int
+(
+	@CodVaga int
+)
+as
+	declare @Estado int
 	
 	Begin
 	
-	set @Estado2 = (select Estado from Vagas where codVaga = @CodVaga)
+	set @Estado = (select Estado from Vagas where codVaga = @CodVaga)
 	
 	
-	if (@Estado2 = 1)
+	if (@Estado = 1)
 		begin
 			Update Vagas set Estado = 0 where codVaga = @CodVaga
 		end
@@ -416,12 +414,19 @@ as
 	
 go
 	
-	create proc USP_BuscarVagasEmpresa
-	(
-		@codEmpresa int
-	)
+alter proc USP_BuscarVagasEmpresa
+(
+	@codEmpresa int
+)
 AS
 	Begin
-		select v.codVaga, v.Titulo, v.Descricao, v.Endereco, v.codCategoria, v.codArea from Vagas as v inner join Categorias as c on codEmpresa = 1 inner join Areas as a on a.codArea = v.codArea and c.codCategoria = v.codCategoria
+		select v.codVaga, v.Titulo, v.Descricao, v.Endereco, v.codCategoria, v.codArea from Vagas as v inner join Categorias as c on codEmpresa = @codEmpresa inner join Areas as a on a.codArea = v.codArea and c.codCategoria = v.codCategoria
+	End
+go
+
+alter proc USP_BuscarVagasAdmin
+AS
+	Begin
+		select v.Estado ,v.codVaga as 'Código da Vaga', v.Titulo as 'Título', e.Nome as 'Empresa', v.Descricao as 'Descrição' from Vagas as v inner join Empresas as e on e.codEmpresa = v.codEmpresa
 	End
 go

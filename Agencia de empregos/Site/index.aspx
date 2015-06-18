@@ -91,9 +91,9 @@
                             <div class="grid">
                                 <!-- AQUI ENTRA O GRID DE VAGAS -->
                         
-                            <asp:Label ID="label" runat="server" Text="Buscar vagas por título"></asp:Label>
+                            <h2>Buscar vagas por título</h2>
                             <br />
-                            <asp:TextBox ID="txtBuscarTitulo" style="margin-top: 5px;" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtBuscarTitulo" Placeholder="Digite aqui sua pesquisa" style="margin-top: 5px;" runat="server"></asp:TextBox>
                             <br />
                             <asp:Button ID="btnBuscar" runat="server" Text="Buscar" OnClick="btnBuscar_Click" />
                             <br />

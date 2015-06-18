@@ -207,32 +207,27 @@ header
 {
     border-bottom: 2px solid #e67e22;
 }
-
-.procurando h2, h3
+.procurando h2, .procurando h3
 {
     text-align: center;
     color: #333;
     font-family: Tahoma;
 }
-
 .procurando h2 
 {
     font-size: 28px;
     margin: 0 0 8px 0;
 }
-
 .procurando h3 
 {
     font-size: 23px;
     letter-spacing: 2px;
 }
-
 .procurando .buttonGroup 
 {
     margin: 30px auto 0 auto;
     width: 430px;
 }
-
 .procurando .buttonGroup a 
 {
     width: 200px;
@@ -243,7 +238,6 @@ header
     color: #fff;
     border-radius: 5px;
 }
-
 .procurando .buttonGroup a:nth-child(odd) 
 {
     float: left;
@@ -267,6 +261,12 @@ header
 .buscarVagas 
 {
     text-align: center;
+}
+.buscarVagas h2 {
+    color: #333;
+    text-align: center;
+    font-size: 22px;
+    font-family: Tahoma;
 }
 
 /* FIM SECTION */
@@ -507,6 +507,7 @@ div.painelVaga:nth-child(1) input[type="text"]:nth-child(2){
 div.painelVaga:nth-child(2) input[type="text"]:nth-child(2){
     margin: 0 0 0 10px;
 }
+
 
 /*
 
