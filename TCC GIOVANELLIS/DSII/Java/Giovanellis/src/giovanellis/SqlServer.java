@@ -23,7 +23,7 @@ public class SqlServer {
 
     public SqlServer() throws Exception {
 
-        String usuario = "aluno", senha = "etesp", url = "jdbc:jtds:sqlserver://LAB21T-09:1433/Pizzaria";
+        String usuario = "sa", senha = "123456", url = "jdbc:jtds:sqlserver://ALEX-PC:1433/Pizzaria";
         Class.forName("net.sourceforge.jtds.jdbc.Driver");
         con = DriverManager.getConnection(url, usuario, senha);
     }

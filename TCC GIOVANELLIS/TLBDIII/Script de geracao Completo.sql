@@ -3608,6 +3608,21 @@ Insert into Despesa(TipoDespesa, ValorDespesa, DataPagamento, DataVencimento) va
 
 end
 go
+---------------------------------------------------------------------------------------------------------------------------------------------
+create proc JAVA_USP_AlteraDespesa
+(
+@codDespesa int,
+@ValorDespesa float,
+@DataPagamento date,
+@DataVencimento date
+)
+as
+begin
+
+Update Despesa set ValorDespesa = @ValorDespesa, DataPagamento = @DataPagamento, DataVencimento = @DataVencimento where codDespesa = @codDespesa
+
+end
+go
 ---------------------------------------------------------PagamentoFuncionario-------------------------------------------------------------
 create proc JAVA_USP_LancamentoFuncionario
 @ValorPagamento float,
